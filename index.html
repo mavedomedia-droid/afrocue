@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AfroCue — Creatively Documenting Culture</title>
+  <meta name="description" content="AfroCue is a culture and media platform spotlighting DJs, parties, and the music shaping nightlife culture."/>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
+  <!-- End Google Tag Manager -->
+
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonts/fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonts/fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonts/fonnts.com-Aesthet-Nova-.otf') format('opentype'); font-weight: 400; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonts/fonnts.com-Aesthet-Nova-Light.otf') format('opentype'); font-weight: 300; }
+
+    :root {
+      --black:  #0a0a0a;
+      --dark:   #111111;
+      --dark2:  #1c1c1c;
+      --mid:    #2e2e2e;
+      --grey:   #555555;
+      --silver: #999999;
+      --off:    #d4d4d0;
+      --white:  #f0ede8;
+      --yellow: #C8E000;
+      --pink:   #FF3DCC;
+      --yts:    2px 3px 0px rgba(0,0,0,0.9), 0 0 28px rgba(200,224,0,0.07);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: 'Figtree', sans-serif; overflow-x: hidden; }
+
+    /* ── SHARED HEADING STYLE ── */
+    .yh {
+      font-family: 'Aesthet Nova', sans-serif;
+      font-weight: 900;
+      color: var(--yellow);
+      text-shadow: var(--yts);
+      line-height: 0.9;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 52px;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    /* Logo: save as logo_afrocue.png (transparent bg, recommended height 44px) */
+    .nav-logo img { height: 44px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--silver); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); background: var(--white); padding: 10px 22px; border-radius: 2px; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--off); }
+
+    /* ── HERO ── */
+    .hero { min-height: 100vh; position: relative; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 52px 80px; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background-image: url('texture.jpg'); background-size: cover; background-position: center top; opacity: 0.65; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.3) 55%, rgba(10,10,10,0.1) 100%); }
+
+    /* HERO IMAGE SLOT — portrait editorial photo, e.g. a DJ performing */
+    /* Save as: hero_dj.jpg — recommended size: 800×1100px */
+    .hero-img-slot {
+      position: absolute; top: 0; right: 0; bottom: 0;
+      width: 45%; max-width: 560px;
+      overflow: hidden;
+    }
+    .hero-img-slot img { width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0.45; }
+    .hero-img-slot-placeholder {
+      width: 100%; height: 100%;
+      background: var(--dark2);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+      color: var(--grey); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      border-left: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .hero-content { position: relative; z-index: 2; max-width: 700px; }
+    .hero-eyebrow { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+    .hero-eyebrow-line { width: 40px; height: 1px; background: var(--silver); }
+    .hero-eyebrow span { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--silver); }
+    .hero h1 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(72px, 11vw, 160px); line-height: 0.88; letter-spacing: -0.01em; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 32px; }
+    .hero h1 .outline { -webkit-text-stroke: 1.5px var(--yellow); color: transparent; text-shadow: none; }
+    .hero-bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+    .hero-desc { font-size: 16px; font-weight: 300; line-height: 1.75; color: rgba(240,237,232,0.6); max-width: 380px; }
+    .hero-actions { display: flex; gap: 14px; align-items: center; flex-shrink: 0; }
+
+    /* ── BUTTONS ── */
+    .btn { display: inline-block; font-family: 'Figtree', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 14px 30px; border-radius: 2px; text-decoration: none; border: none; cursor: pointer; transition: all 0.2s; }
+    .btn-white { color: var(--black); background: var(--white); }
+    .btn-white:hover { background: var(--off); }
+    .btn-ghost { color: var(--silver); background: transparent; border: 1px solid rgba(255,255,255,0.15); font-weight: 500; }
+    .btn-ghost:hover { border-color: var(--white); color: var(--white); }
+    .btn-yellow { color: var(--black); background: var(--yellow); }
+    .btn-yellow:hover { opacity: 0.88; }
+
+    /* ── TICKER ── */
+    .ticker { border-top: 1px solid rgba(255,255,255,0.07); border-bottom: 1px solid rgba(255,255,255,0.07); padding: 13px 0; overflow: hidden; background: var(--dark); }
+    .ticker-inner { display: flex; white-space: nowrap; animation: ticker 30s linear infinite; }
+    .ticker-item { display: inline-flex; align-items: center; gap: 20px; padding: 0 28px; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--silver); }
+    .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--yellow); flex-shrink: 0; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── SECTIONS ── */
+    section { padding: 108px 52px; }
+    .label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+    .label::before { content: ''; width: 20px; height: 1px; background: var(--silver); }
+
+    /* ── ABOUT ── */
+    #about { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
+    .about-grid { display: grid; grid-template-columns: 5fr 4fr; gap: 90px; align-items: start; max-width: 1200px; }
+    .about-h { font-size: clamp(52px, 7vw, 96px); margin-bottom: 28px; }
+    .about-h .dim { color: rgba(200,224,0,0.2); text-shadow: none; }
+    .about-body { font-size: 16px; font-weight: 300; line-height: 1.85; color: rgba(240,237,232,0.55); }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.06); margin-top: 44px; }
+    .stat { background: var(--dark); padding: 26px 22px; }
+    .stat-val { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 34px; color: var(--yellow); text-shadow: var(--yts); line-height: 1; margin-bottom: 5px; }
+    .stat-key { font-size: 11px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); }
+
+    /* ABOUT IMAGE SLOT — tall editorial portrait */
+    /* Save as: about_editorial.jpg — recommended size: 700×950px */
+    .about-img-wrap { width: 100%; aspect-ratio: 3/4; border-radius: 4px; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,0.06); }
+    .about-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .about-img-placeholder { width: 100%; height: 100%; background: var(--dark2); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+    .about-img-placeholder::before { content: ''; position: absolute; inset: 0; background-image: url('texture.jpg'); background-size: cover; opacity: 0.2; }
+    .about-img-label { position: relative; z-index: 1; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); }
+
+    /* ── CONTENT SLIDER ── */
+    #content { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
+    .content-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 56px; gap: 40px; flex-wrap: wrap; }
+    .content-h { font-size: clamp(48px, 6vw, 84px); }
+    .slide-nav { display: flex; gap: 8px; align-items: center; padding-top: 8px; }
+    .slide-btn { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; background: transparent; color: var(--silver); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, color 0.2s; }
+    .slide-btn:hover { border-color: var(--yellow); color: var(--yellow); }
+    .slide { display: none; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .slide.active { display: grid; animation: fadeUp 0.4s ease; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* SLIDE IMAGE — Instagram post screenshot or content image */
+    /* Slide 1 → save as: content_weekly_top5.jpg (recommended: 1080×1080px square)  */
+    /* Slide 2 → save as: content_monthly_recap.jpg (recommended: 1080×1080px square) */
+    /* Slide 3 → save as: content_set_moments.jpg (recommended: 1080×1350px portrait) */
+    .slide-img-box { aspect-ratio: 1/1; border-radius: 6px; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,0.07); }
+    .slide-img-box img { width: 100%; height: 100%; object-fit: cover; }
+    .slide-img-placeholder { width: 100%; height: 100%; background: var(--dark2); display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-end; padding: 16px; position: relative; overflow: hidden; }
+    .slide-img-placeholder::before { content: ''; position: absolute; inset: 0; background-image: url('texture.jpg'); background-size: cover; opacity: 0.3; }
+    .slide-img-tag { position: relative; z-index: 1; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); border: 1px solid rgba(255,255,255,0.1); padding: 5px 10px; border-radius: 2px; }
+
+    .slide-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--grey); margin-bottom: 14px; }
+    .slide-text h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(36px, 4vw, 60px); line-height: 0.9; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 18px; }
+    .slide-text p { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.5); margin-bottom: 28px; max-width: 380px; }
+    .slide-counter { font-size: 11px; letter-spacing: 0.1em; color: var(--grey); margin-top: 18px; }
+    .slide-counter span { color: var(--yellow); }
+
+    /* ── NEWSLETTER ── */
+    #newsletter { border-top: 1px solid rgba(255,255,255,0.06); position: relative; overflow: hidden; }
+    .newsletter-bg { position: absolute; inset: 0; background-image: url('texture.jpg'); background-size: cover; background-position: center; opacity: 0.13; }
+    .newsletter-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1200px; }
+    .newsletter-h { font-size: clamp(48px, 6vw, 84px); margin-bottom: 14px; }
+    .newsletter-sub { font-size: 14px; font-weight: 300; color: var(--silver); letter-spacing: 0.08em; }
+    .newsletter-form { display: flex; flex-direction: column; gap: 12px; }
+    .newsletter-form input { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 2px; padding: 16px 20px; color: var(--white); font-family: 'Figtree', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; width: 100%; }
+    .newsletter-form input::placeholder { color: var(--grey); }
+    .newsletter-form input:focus { border-color: rgba(255,255,255,0.35); }
+
+    /* ── DJ ── */
+    #dj { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
+    .dj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; max-width: 1200px; }
+    .dj-h { font-size: clamp(52px, 7vw, 96px); margin-bottom: 22px; }
+    .dj-body { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.5); margin-bottom: 32px; }
+    .dj-features { display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+    .dj-feat { padding: 22px 26px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; gap: 18px; align-items: flex-start; transition: background 0.2s; }
+    .dj-feat:last-child { border-bottom: none; }
+    .dj-feat:hover { background: rgba(255,255,255,0.02); }
+    .dj-feat-num { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--grey); padding-top: 3px; flex-shrink: 0; width: 22px; }
+    .dj-feat-title { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 3px; }
+    .dj-feat-desc { font-size: 13px; font-weight: 300; line-height: 1.65; color: var(--grey); }
+
+    /* ── ADVERTISE ── */
+    #advertise { border-top: 1px solid rgba(255,255,255,0.06); }
+    .adv-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 52px; }
+    .adv-h { font-size: clamp(52px, 7vw, 96px); }
+    .adv-intro { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.5); }
+    .adv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+    .adv-card { background: var(--dark); padding: 36px 28px; transition: background 0.2s; }
+    .adv-card:hover { background: var(--dark2); }
+    .adv-card-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--grey); margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+    .adv-card-tag::before { content: ''; width: 16px; height: 1px; background: var(--grey); }
+    .adv-card h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 30px; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 18px; }
+    .adv-list { list-style: none; }
+    .adv-list li { font-size: 13px; font-weight: 300; line-height: 1.65; color: var(--grey); padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; gap: 10px; }
+    .adv-list li:last-child { border-bottom: none; }
+    .adv-list li::before { content: '—'; color: var(--mid); font-size: 11px; flex-shrink: 0; margin-top: 1px; }
+    .adv-cta { margin-top: 44px; display: flex; align-items: center; gap: 20px; }
+    .adv-email { font-size: 13px; color: var(--grey); }
+    .adv-email a { color: var(--silver); text-decoration: none; transition: color 0.2s; }
+    .adv-email a:hover { color: var(--white); }
+
+    /* ── AUDIENCE CARDS ── */
+    #audience { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
+    .audience-top { max-width: 640px; margin-bottom: 52px; }
+    .audience-h { font-size: clamp(52px, 7vw, 96px); margin-bottom: 20px; }
+    .audience-body { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.5); }
+
+    /* AUDIENCE IMAGE CARDS — 6 cards, one per audience type */
+    /* audience_djs.jpg             — recommended: 600×400px landscape */
+    /* audience_partygoers.jpg      — recommended: 600×400px landscape */
+    /* audience_organizers.jpg      — recommended: 600×400px landscape */
+    /* audience_creatives.jpg       — recommended: 600×400px landscape */
+    /* audience_brands.jpg          — recommended: 600×400px landscape */
+    /* audience_culture.jpg         — recommended: 600×400px landscape */
+    .audience-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .aud-card {
+      position: relative; border-radius: 6px; overflow: hidden;
+      aspect-ratio: 4/3; cursor: default;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .aud-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .aud-card:hover img { transform: scale(1.05); }
+    .aud-card-bg {
+      width: 100%; height: 100%; background: var(--dark2);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden; transition: transform 0.5s ease;
+    }
+    .aud-card:hover .aud-card-bg { transform: scale(1.04); }
+    .aud-card-bg::before { content: ''; position: absolute; inset: 0; background-image: url('texture.jpg'); background-size: cover; opacity: 0.28; }
+    .aud-card-emoji { font-size: 52px; opacity: 0.18; position: relative; z-index: 0; }
+    .aud-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,10,10,0.88) 0%, rgba(10,10,10,0.2) 55%, transparent 100%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 20px 18px; z-index: 2;
+    }
+    .aud-card-title { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 22px; color: var(--yellow); text-shadow: var(--yts); line-height: 1; margin-bottom: 4px; }
+    .aud-card-desc { font-size: 11px; font-weight: 300; color: rgba(240,237,232,0.55); letter-spacing: 0.04em; line-height: 1.5; }
+
+    /* ── FOLLOW ── */
+    #follow { border-top: 1px solid rgba(255,255,255,0.06); }
+    .follow-h { font-size: clamp(52px, 7vw, 96px); margin-bottom: 48px; }
+    .follow-ig-card { background: var(--dark); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; padding: 36px 44px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; text-decoration: none; transition: border-color 0.25s; max-width: 1200px; margin-bottom: 24px; }
+    .follow-ig-card:hover { border-color: rgba(255,255,255,0.2); }
+    .follow-ig-info h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 38px; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 4px; }
+    .follow-ig-info p { font-size: 13px; color: var(--grey); font-weight: 300; }
+    .social-row { display: flex; gap: 10px; flex-wrap: wrap; max-width: 1200px; }
+    .social-chip { border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; padding: 12px 20px; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--silver); text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+    .social-chip:hover { border-color: var(--yellow); color: var(--yellow); }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 40px 52px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; background: var(--dark); }
+    .footer-brand h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 20px; letter-spacing: 0.08em; color: var(--yellow); }
+    .footer-brand p { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); margin-top: 3px; }
+    .footer-links { display: flex; gap: 26px; flex-wrap: wrap; }
+    .footer-links a { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-email a { font-size: 12px; color: var(--grey); text-decoration: none; transition: color 0.2s; }
+    .footer-email a:hover { color: var(--white); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      section { padding: 72px 24px; }
+      .hero { padding: 0 24px 64px; }
+      .hero-img-slot { display: none; }
+      .about-grid, .dj-grid, .newsletter-inner, .adv-header { grid-template-columns: 1fr; gap: 44px; }
+      .adv-grid, .audience-cards { grid-template-columns: 1fr 1fr; }
+      .slide { grid-template-columns: 1fr; }
+      .slide-img-box { display: none; }
+      footer { padding: 32px 24px; }
+    }
+    @media (max-width: 560px) {
+      .adv-grid, .audience-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <!-- Logo: place logo_afrocue.png in same folder — transparent bg, height 44px -->
+    <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"/>
+    <span style="display:none; font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:18px; color:var(--yellow); letter-spacing:0.08em;">afro.cue</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#content">Content</a></li>
+    <li><a href="#advertise">Advertise</a></li>
+  </ul>
+  <a href="dj-signup.html" class="nav-cta">Join as DJ</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+
+  <!-- Hero image slot: save as hero_dj.jpg (800×1100px) -->
+  <div class="hero-img-slot">
+    <img src="hero_dj.jpg" alt="DJ performing" onerror="this.style.display='none'; this.parentElement.querySelector('.hero-img-slot-placeholder').style.display='flex'"/>
+    <div class="hero-img-slot-placeholder" style="display:none;">
+      <span>hero_dj.jpg</span>
+      <span style="font-size:9px; opacity:0.5;">800 × 1100px</span>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span>Culture &amp; Media Platform</span>
+    </div>
+    <h1>Creatively<br><span class="outline">Documenting</span><br>Culture.</h1>
+    <div class="hero-bottom">
+      <p class="hero-desc">We spotlight the DJs, the parties, and the music shaping nightlife culture.</p>
+      <div class="hero-actions">
+        <a href="#follow" class="btn btn-white">Follow afro.cue</a>
+        <a href="#about" class="btn btn-ghost">Learn More</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item"><span class="ticker-dot"></span>DJ Spotlights</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Party Documentation</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Set Moments</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Weekly Top 5</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Monthly Recaps</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Nightlife Culture</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Dance Music</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>afro.cue</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>DJ Spotlights</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Party Documentation</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Set Moments</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Weekly Top 5</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Monthly Recaps</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Nightlife Culture</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Dance Music</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>afro.cue</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <div class="label">About AfroCue</div>
+      <h2 class="yh about-h">Where<br><span class="dim">Culture</span><br>Lives.</h2>
+      <p class="about-body">
+        AfroCue is our attempt to creatively document and advance nightlife and dance music culture — spotlighting the DJs who power the scene, the parties that bring people together, and the music that moves the dance floor.<br><br>
+        We use creative content, DJ spotlights, party documentation, and music discovery to contribute to and support the culture.
+      </p>
+      <div class="about-stats">
+        <div class="stat"><div class="stat-val">DJs</div><div class="stat-key">We spotlight</div></div>
+        <div class="stat"><div class="stat-val">Parties</div><div class="stat-key">We document</div></div>
+        <div class="stat"><div class="stat-val">Music</div><div class="stat-key">We follow</div></div>
+        <div class="stat"><div class="stat-val">Culture</div><div class="stat-key">We advance</div></div>
+      </div>
+    </div>
+    <!-- About image: save as about_editorial.jpg (700×950px) -->
+    <div class="about-img-wrap">
+      <img src="about_editorial.jpg" alt="AfroCue editorial" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
+      <div class="about-img-placeholder" style="display:none;">
+        <span class="about-img-label">about_editorial.jpg</span>
+        <span class="about-img-label" style="opacity:0.5;">700 × 950px</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED CONTENT -->
+<section id="content">
+  <div class="content-header">
+    <div>
+      <div class="label">Featured Content</div>
+      <h2 class="yh content-h">What We're<br>Putting Out.</h2>
+    </div>
+    <div class="slide-nav">
+      <button class="slide-btn" onclick="prevSlide()">&#8592;</button>
+      <button class="slide-btn" onclick="nextSlide()">&#8594;</button>
+    </div>
+  </div>
+
+  <div class="slides-container">
+    <!-- SLIDE 1 — Weekly Top 5 -->
+    <!-- Image: content_weekly_top5.jpg (1080×1080px — Instagram post screenshot) -->
+    <div class="slide active">
+      <div class="slide-img-box">
+        <img src="content_weekly_top5.jpg" alt="AfroCue Weekly Top 5" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
+        <div class="slide-img-placeholder" style="display:none;">
+          <span class="slide-img-tag">content_weekly_top5.jpg · 1080×1080px</span>
+        </div>
+      </div>
+      <div class="slide-text">
+        <div class="slide-tag">Weekly Series</div>
+        <h3>AfroCue Weekly Top 5</h3>
+        <p>Every week, we spotlight DJs from upcoming parties and events — not to rank them, but to spotlight the people shaping the dance floor.</p>
+        <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram</a>
+        <div class="slide-counter"><span>01</span> / 03</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 — Monthly Recap -->
+    <!-- Image: content_monthly_recap.jpg (1080×1080px — Instagram carousel screenshot) -->
+    <div class="slide">
+      <div class="slide-img-box">
+        <img src="content_monthly_recap.jpg" alt="AfroCue Monthly Recap" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
+        <div class="slide-img-placeholder" style="display:none;">
+          <span class="slide-img-tag">content_monthly_recap.jpg · 1080×1080px</span>
+        </div>
+      </div>
+      <div class="slide-text">
+        <div class="slide-tag">Monthly Series</div>
+        <h3>Monthly Recap</h3>
+        <p>A recap of moments, DJs, and parties that defined the month in nightlife and dance music culture.</p>
+        <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram</a>
+        <div class="slide-counter"><span>02</span> / 03</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3 — Set Moments -->
+    <!-- Image: content_set_moments.jpg (1080×1350px — Instagram portrait post screenshot) -->
+    <div class="slide">
+      <div class="slide-img-box" style="aspect-ratio: 4/5;">
+        <img src="content_set_moments.jpg" alt="AfroCue Set Moments" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
+        <div class="slide-img-placeholder" style="display:none; aspect-ratio:4/5;">
+          <span class="slide-img-tag">content_set_moments.jpg · 1080×1350px</span>
+        </div>
+      </div>
+      <div class="slide-text">
+        <div class="slide-tag">Ongoing Series</div>
+        <h3>Set Moments</h3>
+        <p>Short moments from DJ sets that capture the energy of the dance floor and spotlight the DJ behind the moment.</p>
+        <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram</a>
+        <div class="slide-counter"><span>03</span> / 03</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter">
+  <div class="newsletter-bg"></div>
+  <div class="newsletter-inner">
+    <div>
+      <div class="label">Stay Connected</div>
+      <h2 class="yh newsletter-h">Get the<br>Updates.</h2>
+      <p class="newsletter-sub">DJs · Parties · Music · Culture</p>
+    </div>
+    <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+      <input type="email" placeholder="your@email.com" required/>
+      <button type="submit" class="btn btn-yellow">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<!-- DJ SIGNUP -->
+<section id="dj">
+  <div class="dj-grid">
+    <div>
+      <div class="label">For DJs</div>
+      <h2 class="yh dj-h">Join<br>AfroCue.</h2>
+      <p class="dj-body">If you're a DJ, manager, or part of a DJ team — sign up to join our network and stay connected with AfroCue.</p>
+      <a href="dj-signup.html" class="btn btn-white">Sign Up</a>
+    </div>
+    <div class="dj-features">
+      <div class="dj-feat"><span class="dj-feat-num">01</span><div><div class="dj-feat-title">DJ Spotlights</div><div class="dj-feat-desc">Get featured in our Weekly Top 5 and across our platforms.</div></div></div>
+      <div class="dj-feat"><span class="dj-feat-num">02</span><div><div class="dj-feat-title">Set Moments</div><div class="dj-feat-desc">We document your best set moments and push them to culture-focused audiences.</div></div></div>
+      <div class="dj-feat"><span class="dj-feat-num">03</span><div><div class="dj-feat-title">Brand Connections</div><div class="dj-feat-desc">We connect DJs with brands and events looking for the right talent.</div></div></div>
+      <div class="dj-feat"><span class="dj-feat-num">04</span><div><div class="dj-feat-title">Network</div><div class="dj-feat-desc">Be part of a growing DJ network at the center of nightlife culture documentation.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ADVERTISE -->
+<section id="advertise">
+  <div class="adv-header">
+    <div>
+      <div class="label">Work With Us</div>
+      <h2 class="yh adv-h">Partner<br>With<br>AfroCue.</h2>
+    </div>
+    <p class="adv-intro">We work with DJs, events, and brands to create culture-driven content and connect them with the right audience.</p>
+  </div>
+  <div class="adv-grid">
+    <div class="adv-card">
+      <div class="adv-card-tag">For Events</div>
+      <h3>Events</h3>
+      <ul class="adv-list">
+        <li>Feature a DJ in our Weekly Top 5</li>
+        <li>Creative documentation of a DJ from your event</li>
+        <li>Share a recap moment from your event</li>
+      </ul>
+    </div>
+    <div class="adv-card">
+      <div class="adv-card-tag">For DJs</div>
+      <h3>DJs</h3>
+      <ul class="adv-list">
+        <li>Feature in AfroCue Weekly Top 5</li>
+        <li>Share a DJ set moment from a live or recorded set</li>
+        <li>Announce a major show or debut through AfroCue</li>
+        <li>Media and content collaboration</li>
+      </ul>
+    </div>
+    <div class="adv-card">
+      <div class="adv-card-tag">For Brands</div>
+      <h3>Brands</h3>
+      <ul class="adv-list">
+        <li>Sponsored content with AfroCue</li>
+        <li>Connect with DJs and nightlife audiences</li>
+        <li>We find DJs for your events</li>
+        <li>Culturally relevant brand–DJ partnerships</li>
+      </ul>
+    </div>
+  </div>
+  <div class="adv-cta">
+    <a href="mailto:afrocueonline@gmail.com" class="btn btn-white">Get In Touch</a>
+    <p class="adv-email"><a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a></p>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section id="audience">
+  <div class="audience-top">
+    <div class="label">Our Audience</div>
+    <h2 class="yh audience-h">Who We<br>Reach.</h2>
+    <p class="audience-body">AfroCue speaks to the people who go out, listen to DJs, discover music, and shape nightlife culture.</p>
+  </div>
+
+  <!--
+    AUDIENCE IMAGE CARDS — slot your own images in by filename:
+    audience_djs.jpg          → DJ behind decks, on stage, mixing — 600×400px
+    audience_partygoers.jpg   → crowd on dance floor, hands up — 600×400px
+    audience_organizers.jpg   → event setup, production, venue — 600×400px
+    audience_creatives.jpg    → creative/studio/behind scenes — 600×400px
+    audience_brands.jpg       → brand activation, sponsor setup — 600×400px
+    audience_culture.jpg      → nightlife, fashion, culture scene — 600×400px
+  -->
+  <div class="audience-cards">
+
+    <div class="aud-card">
+      <img src="audience_djs.jpg" alt="DJs" onerror="this.style.display='none'"/>
+      <div class="aud-card-bg"><span class="aud-card-emoji">🎛️</span></div>
+      <div class="aud-card-overlay">
+        <div class="aud-card-title">DJs</div>
+        <div class="aud-card-desc">The people who control the dance floor</div>
+      </div>
+    </div>
+
+    <div class="aud-card">
+      <img src="audience_partygoers.jpg" alt="Partygoers" onerror="this.style.display='none'"/>
+      <div class="aud-card-bg"><span class="aud-card-emoji">🕺</span></div>
+      <div class="aud-card-overlay">
+        <div class="aud-card-title">Partygoers</div>
+        <div class="aud-card-desc">The ones who show up every weekend</div>
+      </div>
+    </div>
+
+    <div class="aud-card">
+      <img src="audience_organizers.jpg" alt="Event Organizers" onerror="this.style.display='none'"/>
+      <div class="aud-card-bg"><span class="aud-card-emoji">🎪</span></div>
+      <div class="aud-card-overlay">
+        <div class="aud-card-title">Event Organizers</div>
+        <div class="aud-card-desc">The people who build the rooms</div>
+      </div>
+    </div>
+
+    <div class="aud-card">
+      <img src="audience_creatives.jpg" alt="Creative Directors" onerror="this.style.display='none'"/>
+      <div class="aud-card-bg"><span class="aud-card-emoji">🎨</span></div>
+      <div class="aud-card-overlay">
+        <div class="aud-card-title">Creative Directors</div>
+        <div class="aud-card-desc">The vision behind the culture</div>
+      </div>
+    </div>
+
+    <div class="aud-card">
+      <img src="audience_brands.jpg" alt="Brand Managers" onerror="this.style.display='none'"/>
+      <div class="aud-card-bg"><span class="aud-card-emoji">📡</span></div>
+      <div class="aud-card-overlay">
+        <div class="aud-card-title">Brand Managers</div>
+        <div class="aud-card-desc">Brands seeking culture-first reach</div>
+      </div>
+    </div>
+
+    <div class="aud-card">
+      <img src="audience_culture.jpg" alt="Culture Audiences" onerror="this.style.display='none'"/>
+      <div class="aud-card-bg"><span class="aud-card-emoji">🌍</span></div>
+      <div class="aud-card-overlay">
+        <div class="aud-card-title">Culture Audiences</div>
+        <div class="aud-card-desc">People shaped by the dance floor</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOLLOW -->
+<section id="follow">
+  <div class="label">Follow AfroCue</div>
+  <h2 class="yh follow-h">Find<br>Us.</h2>
+  <a href="https://instagram.com/afro.cue" target="_blank" class="follow-ig-card">
+    <div class="follow-ig-info">
+      <h3>@afro.cue</h3>
+      <p>Instagram — our main platform</p>
+    </div>
+    <div class="btn btn-white" style="pointer-events:none;">Follow on Instagram</div>
+  </a>
+  <div class="social-row">
+    <a href="https://twitter.com/afrocue_" target="_blank" class="social-chip">Twitter / X — @afrocue_</a>
+    <a href="https://tiktok.com/@afro.cue" target="_blank" class="social-chip">TikTok — @afro.cue</a>
+    <a href="https://youtube.com/@AfroCue" target="_blank" class="social-chip">YouTube</a>
+    <a href="#" target="_blank" class="social-chip">Spotify</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <h3>AfroCue</h3>
+    <p>Creatively Documenting Culture</p>
+  </div>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#content">Content</a>
+    <a href="dj-signup.html">DJ Signup</a>
+    <a href="#advertise">Advertise</a>
+  </div>
+  <div class="footer-email"><a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a></div>
+</footer>
+
+<script>
+  let cur = 0;
+  const slides = document.querySelectorAll('.slide');
+  let timer = setInterval(() => nextSlide(), 5000);
+  function goTo(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    clearInterval(timer);
+    timer = setInterval(() => nextSlide(), 5000);
+  }
+  function nextSlide() { goTo(cur + 1); }
+  function prevSlide() { goTo(cur - 1); }
+  function handleNewsletter(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = 'Subscribed ✓';
+    btn.style.opacity = '0.7';
+    setTimeout(() => { btn.textContent = 'Subscribe'; btn.style.opacity = ''; }, 3000);
+  }
+</script>
+</body>
+</html>
