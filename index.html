@@ -17,10 +17,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 
   <style>
-    @font-face { font-family: 'Aesthet Nova'; src: url('fonts/fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
-    @font-face { font-family: 'Aesthet Nova'; src: url('fonts/fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
-    @font-face { font-family: 'Aesthet Nova'; src: url('fonts/fonnts.com-Aesthet-Nova-.otf') format('opentype'); font-weight: 400; }
-    @font-face { font-family: 'Aesthet Nova'; src: url('fonts/fonnts.com-Aesthet-Nova-Light.otf') format('opentype'); font-weight: 300; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-.otf') format('opentype'); font-weight: 400; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Light.otf') format('opentype'); font-weight: 300; }
 
     :root {
       --black:  #0a0a0a;
@@ -532,8 +532,8 @@
     </div>
   </div>
   <div class="adv-cta">
-    <a href="mailto:afrocueonline@gmail.com" class="btn btn-white">Get In Touch</a>
-    <p class="adv-email"><a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a></p>
+    <a href="/cdn-cgi/l/email-protection#2c4d4a5e434f59494342404542496c4b414d4540024f4341" class="btn btn-white">Get In Touch</a>
+    <p class="adv-email"><a href="/cdn-cgi/l/email-protection#620304100d0117070d0c0e0b0c0722050f030b0e4c010d0f"><span class="__cf_email__" data-cfemail="5d3c3b2f323e28383233313433381d3a303c3431733e3230">[email&#160;protected]</span></a></p>
   </div>
 </section>
 
@@ -644,10 +644,10 @@
     <a href="dj-signup.html">DJ Signup</a>
     <a href="#advertise">Advertise</a>
   </div>
-  <div class="footer-email"><a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a></div>
+  <div class="footer-email"><a href="/cdn-cgi/l/email-protection#1f7e796d707c6a7a70717376717a5f78727e7673317c7072"><span class="__cf_email__" data-cfemail="523334203d3127373d3c3e3b3c3712353f333b3e7c313d3f">[email&#160;protected]</span></a></div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   let cur = 0;
   const slides = document.querySelectorAll('.slide');
   let timer = setInterval(() => nextSlide(), 5000);
@@ -655,18 +655,4 @@
     slides[cur].classList.remove('active');
     cur = (n + slides.length) % slides.length;
     slides[cur].classList.add('active');
-    clearInterval(timer);
-    timer = setInterval(() => nextSlide(), 5000);
-  }
-  function nextSlide() { goTo(cur + 1); }
-  function prevSlide() { goTo(cur - 1); }
-  function handleNewsletter(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('button');
-    btn.textContent = 'Subscribed ✓';
-    btn.style.opacity = '0.7';
-    setTimeout(() => { btn.textContent = 'Subscribe'; btn.style.opacity = ''; }, 3000);
-  }
-</script>
-</body>
-</html>
+    clearInterval(ti
