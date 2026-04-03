@@ -12,9 +12,8 @@
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
-  <!-- End Google Tag Manager -->
 
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
@@ -33,271 +32,367 @@
       --white:  #f0ede8;
       --yellow: #C8E000;
       --pink:   #FF3DCC;
-      --yts:    2px 3px 0px rgba(0,0,0,0.9), 0 0 28px rgba(200,224,0,0.07);
+      --yts:    2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.06);
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { background: var(--black); color: var(--white); font-family: 'Figtree', sans-serif; overflow-x: hidden; }
-
-    /* ── SHARED HEADING STYLE ── */
-    .yh {
-      font-family: 'Aesthet Nova', sans-serif;
-      font-weight: 900;
-      color: var(--yellow);
-      text-shadow: var(--yts);
-      line-height: 0.9;
-    }
+    .yh { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; color: var(--yellow); text-shadow: var(--yts); line-height: 0.92; }
 
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 900;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 52px;
-      background: rgba(10,10,10,0.92);
-      backdrop-filter: blur(18px);
+      padding: 16px 48px;
+      background: rgba(10,10,10,0.92); backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .nav-logo { display: flex; align-items: center; text-decoration: none; }
-    /* Logo: save as logo_afrocue.png (transparent bg, recommended height 44px) */
-    .nav-logo img { height: 44px; width: auto; display: block; }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--silver); text-decoration: none; transition: color 0.2s; }
+    .nav-logo img { height: 40px; width: auto; display: block; }
+    .nav-logo-fallback { display: none; font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 17px; color: var(--yellow); letter-spacing: 0.08em; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--silver); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--white); }
-    .nav-cta { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); background: var(--white); padding: 10px 22px; border-radius: 2px; text-decoration: none; transition: background 0.2s; }
+    .nav-cta { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); background: var(--white); padding: 10px 20px; border-radius: 2px; text-decoration: none; transition: background 0.2s; white-space: nowrap; }
     .nav-cta:hover { background: var(--off); }
 
     /* ── HERO ── */
-    .hero { min-height: 100vh; position: relative; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 52px 80px; overflow: hidden; }
-    .hero-bg { position: absolute; inset: 0; background-image: url('texture.jpg'); background-size: cover; background-position: center top; opacity: 0.65; }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.3) 55%, rgba(10,10,10,0.1) 100%); }
+    .hero {
+      min-height: 100vh; position: relative;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 48px 72px; overflow: hidden;
+    }
 
-    /* HERO IMAGE SLOT — portrait editorial photo, e.g. a DJ performing */
-    /* Save as: hero_dj.jpg — recommended size: 800×1100px */
+    /* texture layer — always present */
+    .hero-texture {
+      position: absolute; inset: 0; z-index: 1;
+      background-image: url('texture.jpg');
+      background-size: cover; background-position: center;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    /* gradient overlay — always present */
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      background: linear-gradient(to top,
+        rgba(10,10,10,1) 0%,
+        rgba(10,10,10,0.55) 45%,
+        rgba(10,10,10,0.15) 100%);
+    }
+
+    /* desktop: DJ photo on right side */
     .hero-img-slot {
       position: absolute; top: 0; right: 0; bottom: 0;
-      width: 45%; max-width: 560px;
-      overflow: hidden;
+      width: 42%; max-width: 520px; overflow: hidden; z-index: 0;
     }
-    .hero-img-slot img { width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0.45; }
-    .hero-img-slot-placeholder {
+    .hero-img-slot img {
       width: 100%; height: 100%;
-      background: var(--dark2);
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
-      color: var(--grey); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-      border-left: 1px solid rgba(255,255,255,0.04);
+      object-fit: cover; object-position: top center;
+      opacity: 0.55;
+    }
+    /* right-side fade so it blends into content */
+    .hero-img-slot::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(10,10,10,0.9) 0%, transparent 40%);
     }
 
-    .hero-content { position: relative; z-index: 2; max-width: 700px; }
-    .hero-eyebrow { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
-    .hero-eyebrow-line { width: 40px; height: 1px; background: var(--silver); }
-    .hero-eyebrow span { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--silver); }
-    .hero h1 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(72px, 11vw, 160px); line-height: 0.88; letter-spacing: -0.01em; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 32px; }
-    .hero h1 .outline { -webkit-text-stroke: 1.5px var(--yellow); color: transparent; text-shadow: none; }
-    .hero-bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
-    .hero-desc { font-size: 16px; font-weight: 300; line-height: 1.75; color: rgba(240,237,232,0.6); max-width: 380px; }
-    .hero-actions { display: flex; gap: 14px; align-items: center; flex-shrink: 0; }
+    .hero-img-credit {
+      position: absolute; bottom: 80px; right: 24px;
+      font-size: 10px; letter-spacing: 0.1em;
+      color: rgba(240,237,232,0.3); text-transform: uppercase;
+      z-index: 4; writing-mode: vertical-rl;
+    }
+
+    .hero-content {
+      position: relative; z-index: 3; max-width: 660px;
+    }
+    .hero-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+    .hero-eyebrow-line { width: 36px; height: 1px; background: var(--silver); flex-shrink: 0; }
+    .hero-eyebrow span { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); }
+
+    .hero h1 {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: clamp(60px, 10vw, 148px);
+      line-height: 0.9; color: var(--yellow);
+      text-shadow: var(--yts); margin-bottom: 28px;
+      word-break: keep-all;
+    }
+    .hero h1 .outline {
+      -webkit-text-stroke: 1.5px var(--yellow);
+      color: transparent; text-shadow: none; display: block;
+    }
+
+    .hero-bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 28px; flex-wrap: wrap; }
+    .hero-desc { font-size: 15px; font-weight: 300; line-height: 1.75; color: rgba(240,237,232,0.58); max-width: 360px; }
+    .hero-actions { display: flex; gap: 12px; align-items: center; flex-shrink: 0; }
 
     /* ── BUTTONS ── */
-    .btn { display: inline-block; font-family: 'Figtree', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 14px 30px; border-radius: 2px; text-decoration: none; border: none; cursor: pointer; transition: all 0.2s; }
+    .btn { display: inline-block; font-family: 'Figtree', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 13px 26px; border-radius: 2px; text-decoration: none; border: none; cursor: pointer; transition: all 0.2s; }
     .btn-white { color: var(--black); background: var(--white); }
     .btn-white:hover { background: var(--off); }
-    .btn-ghost { color: var(--silver); background: transparent; border: 1px solid rgba(255,255,255,0.15); font-weight: 500; }
+    .btn-ghost { color: var(--silver); background: transparent; border: 1px solid rgba(255,255,255,0.18); font-weight: 500; }
     .btn-ghost:hover { border-color: var(--white); color: var(--white); }
     .btn-yellow { color: var(--black); background: var(--yellow); }
     .btn-yellow:hover { opacity: 0.88; }
 
     /* ── TICKER ── */
-    .ticker { border-top: 1px solid rgba(255,255,255,0.07); border-bottom: 1px solid rgba(255,255,255,0.07); padding: 13px 0; overflow: hidden; background: var(--dark); }
-    .ticker-inner { display: flex; white-space: nowrap; animation: ticker 30s linear infinite; }
-    .ticker-item { display: inline-flex; align-items: center; gap: 20px; padding: 0 28px; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--silver); }
+    .ticker { border-top: 1px solid rgba(255,255,255,0.07); border-bottom: 1px solid rgba(255,255,255,0.07); padding: 12px 0; overflow: hidden; background: var(--dark); }
+    .ticker-inner { display: flex; white-space: nowrap; animation: ticker 32s linear infinite; }
+    .ticker-item { display: inline-flex; align-items: center; gap: 18px; padding: 0 24px; font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--silver); }
     .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--yellow); flex-shrink: 0; }
     @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
     /* ── SECTIONS ── */
-    section { padding: 108px 52px; }
-    .label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
-    .label::before { content: ''; width: 20px; height: 1px; background: var(--silver); }
+    section { padding: 100px 48px; }
+    .label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .label::before { content: ''; width: 18px; height: 1px; background: var(--silver); flex-shrink: 0; }
 
     /* ── ABOUT ── */
     #about { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
-    .about-grid { display: grid; grid-template-columns: 5fr 4fr; gap: 90px; align-items: start; max-width: 1200px; }
-    .about-h { font-size: clamp(52px, 7vw, 96px); margin-bottom: 28px; }
+    .about-grid { display: grid; grid-template-columns: 5fr 4fr; gap: 80px; align-items: start; max-width: 1200px; }
+    .about-h { font-size: clamp(48px, 6.5vw, 92px); margin-bottom: 24px; }
     .about-h .dim { color: rgba(200,224,0,0.2); text-shadow: none; }
-    .about-body { font-size: 16px; font-weight: 300; line-height: 1.85; color: rgba(240,237,232,0.55); }
-    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.06); margin-top: 44px; }
-    .stat { background: var(--dark); padding: 26px 22px; }
-    .stat-val { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 34px; color: var(--yellow); text-shadow: var(--yts); line-height: 1; margin-bottom: 5px; }
-    .stat-key { font-size: 11px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); }
+    .about-body { font-size: 15px; font-weight: 300; line-height: 1.85; color: rgba(240,237,232,0.55); }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.06); margin-top: 40px; }
+    .stat { background: var(--dark); padding: 24px 20px; }
+    .stat-val { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 30px; color: var(--yellow); text-shadow: var(--yts); line-height: 1; margin-bottom: 4px; }
+    .stat-key { font-size: 10px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); }
 
-    /* ABOUT IMAGE SLOT — tall editorial portrait */
-    /* Save as: about_editorial.jpg — recommended size: 700×950px */
-    .about-img-wrap { width: 100%; aspect-ratio: 3/4; border-radius: 4px; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,0.06); }
-    .about-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
-    .about-img-placeholder { width: 100%; height: 100%; background: var(--dark2); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
-    .about-img-placeholder::before { content: ''; position: absolute; inset: 0; background-image: url('texture.jpg'); background-size: cover; opacity: 0.2; }
-    .about-img-label { position: relative; z-index: 1; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); }
+    /* VIDEO slot — 4:5 portrait, same ratio as IG */
+    /* File: about_video.mp4 — place in same folder */
+    .about-video-wrap {
+      width: 100%; aspect-ratio: 4/5;
+      border-radius: 4px; overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: var(--dark2);
+    }
+    .about-video-wrap video {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    /* subtle texture grain over video */
+    .about-video-wrap::after {
+      content: ''; position: absolute; inset: 0;
+      background-image: url('texture.jpg');
+      background-size: cover; opacity: 0.08;
+      pointer-events: none; border-radius: 4px;
+    }
+    /* fallback if no video */
+    .about-video-fallback {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 6px;
+    }
+    .about-video-fallback::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: url('texture.jpg'); background-size: cover; opacity: 0.2;
+    }
+    .img-label { position: relative; z-index: 1; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); }
 
     /* ── CONTENT SLIDER ── */
     #content { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
-    .content-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 56px; gap: 40px; flex-wrap: wrap; }
-    .content-h { font-size: clamp(48px, 6vw, 84px); }
-    .slide-nav { display: flex; gap: 8px; align-items: center; padding-top: 8px; }
-    .slide-btn { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; background: transparent; color: var(--silver); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, color 0.2s; }
+    .content-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 48px; gap: 32px; flex-wrap: wrap; }
+    .content-h { font-size: clamp(44px, 5.5vw, 80px); }
+    .slide-nav { display: flex; gap: 8px; align-items: center; padding-top: 6px; flex-shrink: 0; }
+    .slide-btn { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; background: transparent; color: var(--silver); cursor: pointer; font-size: 15px; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, color 0.2s; }
     .slide-btn:hover { border-color: var(--yellow); color: var(--yellow); }
-    .slide { display: none; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-    .slide.active { display: grid; animation: fadeUp 0.4s ease; }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .slides-wrap { position: relative; }
+    .slide { display: none; }
+    .slide.active { display: grid; grid-template-columns: 5fr 6fr; gap: 52px; align-items: center; animation: fadeUp 0.4s ease; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* SLIDE IMAGE — Instagram post screenshot or content image */
-    /* Slide 1 → save as: content_weekly_top5.jpg (recommended: 1080×1080px square)  */
-    /* Slide 2 → save as: content_monthly_recap.jpg (recommended: 1080×1080px square) */
-    /* Slide 3 → save as: content_set_moments.jpg (recommended: 1080×1350px portrait) */
-    .slide-img-box { aspect-ratio: 1/1; border-radius: 6px; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,0.07); }
-    .slide-img-box img { width: 100%; height: 100%; object-fit: cover; }
-    .slide-img-placeholder { width: 100%; height: 100%; background: var(--dark2); display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-end; padding: 16px; position: relative; overflow: hidden; }
-    .slide-img-placeholder::before { content: ''; position: absolute; inset: 0; background-image: url('texture.jpg'); background-size: cover; opacity: 0.3; }
-    .slide-img-tag { position: relative; z-index: 1; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); border: 1px solid rgba(255,255,255,0.1); padding: 5px 10px; border-radius: 2px; }
+    .slide-img-box { aspect-ratio: 4/5; border-radius: 6px; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,0.07); background: var(--dark2); flex-shrink: 0; }
+    .slide-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .slide-img-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-end; padding: 14px; }
+    .slide-img-placeholder::before { content: ''; position: absolute; inset: 0; background-image: url('texture.jpg'); background-size: cover; opacity: 0.28; }
+    .slide-img-tag { position: relative; z-index: 1; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); border: 1px solid rgba(255,255,255,0.1); padding: 4px 8px; border-radius: 2px; }
 
-    .slide-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--grey); margin-bottom: 14px; }
-    .slide-text h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(36px, 4vw, 60px); line-height: 0.9; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 18px; }
-    .slide-text p { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.5); margin-bottom: 28px; max-width: 380px; }
-    .slide-counter { font-size: 11px; letter-spacing: 0.1em; color: var(--grey); margin-top: 18px; }
+    .slide-text { padding: 8px 0; }
+    .slide-series { font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--grey); margin-bottom: 14px; }
+    .slide-text h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(32px, 3.5vw, 56px); line-height: 0.9; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 16px; }
+    .slide-text p { font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.5); margin-bottom: 24px; }
+    .slide-counter { font-size: 10px; letter-spacing: 0.12em; color: var(--grey); margin-top: 16px; }
     .slide-counter span { color: var(--yellow); }
 
     /* ── NEWSLETTER ── */
     #newsletter { border-top: 1px solid rgba(255,255,255,0.06); position: relative; overflow: hidden; }
-    .newsletter-bg { position: absolute; inset: 0; background-image: url('texture.jpg'); background-size: cover; background-position: center; opacity: 0.13; }
-    .newsletter-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1200px; }
-    .newsletter-h { font-size: clamp(48px, 6vw, 84px); margin-bottom: 14px; }
-    .newsletter-sub { font-size: 14px; font-weight: 300; color: var(--silver); letter-spacing: 0.08em; }
-    .newsletter-form { display: flex; flex-direction: column; gap: 12px; }
-    .newsletter-form input { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 2px; padding: 16px 20px; color: var(--white); font-family: 'Figtree', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; width: 100%; }
+    .newsletter-bg { position: absolute; inset: 0; background-image: url('texture.jpg'); background-size: cover; background-position: center; opacity: 0.12; }
+    .newsletter-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; max-width: 1100px; }
+    .newsletter-h { font-size: clamp(44px, 5.5vw, 80px); margin-bottom: 12px; }
+    .newsletter-sub { font-size: 13px; font-weight: 300; color: var(--silver); letter-spacing: 0.1em; }
+    .newsletter-form { display: flex; flex-direction: column; gap: 10px; }
+    .newsletter-form input { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 2px; padding: 15px 18px; color: var(--white); font-family: 'Figtree', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; width: 100%; }
     .newsletter-form input::placeholder { color: var(--grey); }
     .newsletter-form input:focus { border-color: rgba(255,255,255,0.35); }
 
     /* ── DJ ── */
     #dj { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
-    .dj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; max-width: 1200px; }
-    .dj-h { font-size: clamp(52px, 7vw, 96px); margin-bottom: 22px; }
-    .dj-body { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.5); margin-bottom: 32px; }
+    .dj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; max-width: 1200px; }
+    .dj-h { font-size: clamp(48px, 6.5vw, 92px); margin-bottom: 20px; }
+    .dj-body { font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.5); margin-bottom: 28px; }
     .dj-features { display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
-    .dj-feat { padding: 22px 26px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; gap: 18px; align-items: flex-start; transition: background 0.2s; }
+    .dj-feat { padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; gap: 16px; align-items: flex-start; transition: background 0.2s; }
     .dj-feat:last-child { border-bottom: none; }
     .dj-feat:hover { background: rgba(255,255,255,0.02); }
-    .dj-feat-num { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--grey); padding-top: 3px; flex-shrink: 0; width: 22px; }
-    .dj-feat-title { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 3px; }
-    .dj-feat-desc { font-size: 13px; font-weight: 300; line-height: 1.65; color: var(--grey); }
+    .dj-feat-num { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--grey); padding-top: 2px; flex-shrink: 0; width: 20px; }
+    .dj-feat-title { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 3px; }
+    .dj-feat-desc { font-size: 12px; font-weight: 300; line-height: 1.65; color: var(--grey); }
 
     /* ── ADVERTISE ── */
     #advertise { border-top: 1px solid rgba(255,255,255,0.06); }
-    .adv-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 52px; }
-    .adv-h { font-size: clamp(52px, 7vw, 96px); }
-    .adv-intro { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.5); }
+    .adv-header { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: end; margin-bottom: 48px; }
+    .adv-h { font-size: clamp(48px, 6.5vw, 92px); }
+    .adv-intro { font-size: 14px; font-weight: 300; line-height: 1.85; color: rgba(240,237,232,0.5); }
     .adv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
-    .adv-card { background: var(--dark); padding: 36px 28px; transition: background 0.2s; }
+    .adv-card { background: var(--dark); padding: 32px 26px; transition: background 0.2s; }
     .adv-card:hover { background: var(--dark2); }
-    .adv-card-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--grey); margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
-    .adv-card-tag::before { content: ''; width: 16px; height: 1px; background: var(--grey); }
-    .adv-card h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 30px; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 18px; }
+    .adv-card-tag { font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--grey); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .adv-card-tag::before { content: ''; width: 14px; height: 1px; background: var(--grey); flex-shrink: 0; }
+    .adv-card h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 28px; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 16px; }
     .adv-list { list-style: none; }
-    .adv-list li { font-size: 13px; font-weight: 300; line-height: 1.65; color: var(--grey); padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; gap: 10px; }
+    .adv-list li { font-size: 12px; font-weight: 300; line-height: 1.65; color: var(--grey); padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; gap: 8px; }
     .adv-list li:last-child { border-bottom: none; }
-    .adv-list li::before { content: '—'; color: var(--mid); font-size: 11px; flex-shrink: 0; margin-top: 1px; }
-    .adv-cta { margin-top: 44px; display: flex; align-items: center; gap: 20px; }
-    .adv-email { font-size: 13px; color: var(--grey); }
-    .adv-email a { color: var(--silver); text-decoration: none; transition: color 0.2s; }
+    .adv-list li::before { content: '—'; color: var(--mid); font-size: 10px; flex-shrink: 0; margin-top: 2px; }
+    .adv-cta { margin-top: 40px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .adv-email a { font-size: 12px; color: var(--silver); text-decoration: none; transition: color 0.2s; }
     .adv-email a:hover { color: var(--white); }
 
-    /* ── AUDIENCE CARDS ── */
+    /* ── AUDIENCE ── */
     #audience { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
-    .audience-top { max-width: 640px; margin-bottom: 52px; }
-    .audience-h { font-size: clamp(52px, 7vw, 96px); margin-bottom: 20px; }
-    .audience-body { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.5); }
-
-    /* AUDIENCE IMAGE CARDS — 6 cards, one per audience type */
-    /* audience_djs.jpg             — recommended: 600×400px landscape */
-    /* audience_partygoers.jpg      — recommended: 600×400px landscape */
-    /* audience_organizers.jpg      — recommended: 600×400px landscape */
-    /* audience_creatives.jpg       — recommended: 600×400px landscape */
-    /* audience_brands.jpg          — recommended: 600×400px landscape */
-    /* audience_culture.jpg         — recommended: 600×400px landscape */
-    .audience-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .aud-card {
-      position: relative; border-radius: 6px; overflow: hidden;
-      aspect-ratio: 4/3; cursor: default;
-      border: 1px solid rgba(255,255,255,0.07);
-    }
-    .aud-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .audience-top { max-width: 580px; margin-bottom: 48px; }
+    .audience-h { font-size: clamp(48px, 6.5vw, 92px); margin-bottom: 16px; }
+    .audience-body { font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.5); }
+    .audience-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .aud-card { position: relative; border-radius: 5px; overflow: hidden; aspect-ratio: 4/3; border: 1px solid rgba(255,255,255,0.07); }
+    .aud-card-bg { position: absolute; inset: 0; background: var(--dark2); display: flex; align-items: center; justify-content: center; }
+    .aud-card-bg::before { content: ''; position: absolute; inset: 0; background-image: url('texture.jpg'); background-size: cover; opacity: 0.25; }
+    .aud-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; z-index: 1; }
     .aud-card:hover img { transform: scale(1.05); }
-    .aud-card-bg {
-      width: 100%; height: 100%; background: var(--dark2);
-      display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden; transition: transform 0.5s ease;
-    }
-    .aud-card:hover .aud-card-bg { transform: scale(1.04); }
-    .aud-card-bg::before { content: ''; position: absolute; inset: 0; background-image: url('texture.jpg'); background-size: cover; opacity: 0.28; }
-    .aud-card-emoji { font-size: 52px; opacity: 0.18; position: relative; z-index: 0; }
-    .aud-card-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(10,10,10,0.88) 0%, rgba(10,10,10,0.2) 55%, transparent 100%);
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 20px 18px; z-index: 2;
-    }
-    .aud-card-title { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 22px; color: var(--yellow); text-shadow: var(--yts); line-height: 1; margin-bottom: 4px; }
-    .aud-card-desc { font-size: 11px; font-weight: 300; color: rgba(240,237,232,0.55); letter-spacing: 0.04em; line-height: 1.5; }
+    .aud-card-emoji { font-size: 48px; opacity: 0.15; position: relative; z-index: 0; }
+    .aud-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.15) 55%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 18px 16px; z-index: 2; }
+    .aud-card-title { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 20px; color: var(--yellow); text-shadow: var(--yts); line-height: 1; margin-bottom: 3px; }
+    .aud-card-desc { font-size: 11px; font-weight: 300; color: rgba(240,237,232,0.5); line-height: 1.45; }
 
     /* ── FOLLOW ── */
     #follow { border-top: 1px solid rgba(255,255,255,0.06); }
-    .follow-h { font-size: clamp(52px, 7vw, 96px); margin-bottom: 48px; }
-    .follow-ig-card { background: var(--dark); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; padding: 36px 44px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; text-decoration: none; transition: border-color 0.25s; max-width: 1200px; margin-bottom: 24px; }
+    .follow-h { font-size: clamp(48px, 6.5vw, 92px); margin-bottom: 44px; }
+    .follow-ig-card { background: var(--dark); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; padding: 32px 40px; display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; text-decoration: none; transition: border-color 0.25s; max-width: 1100px; margin-bottom: 20px; }
     .follow-ig-card:hover { border-color: rgba(255,255,255,0.2); }
-    .follow-ig-info h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 38px; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 4px; }
-    .follow-ig-info p { font-size: 13px; color: var(--grey); font-weight: 300; }
-    .social-row { display: flex; gap: 10px; flex-wrap: wrap; max-width: 1200px; }
-    .social-chip { border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; padding: 12px 20px; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--silver); text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+    .follow-ig-info h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 34px; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 3px; }
+    .follow-ig-info p { font-size: 12px; color: var(--grey); font-weight: 300; }
+    .social-row { display: flex; gap: 8px; flex-wrap: wrap; max-width: 1100px; }
+    .social-chip { border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; padding: 11px 18px; font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--silver); text-decoration: none; transition: border-color 0.2s, color 0.2s; }
     .social-chip:hover { border-color: var(--yellow); color: var(--yellow); }
 
     /* ── FOOTER ── */
-    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 40px 52px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; background: var(--dark); }
-    .footer-brand h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 20px; letter-spacing: 0.08em; color: var(--yellow); }
-    .footer-brand p { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); margin-top: 3px; }
-    .footer-links { display: flex; gap: 26px; flex-wrap: wrap; }
-    .footer-links a { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); text-decoration: none; transition: color 0.2s; }
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 36px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; background: var(--dark); }
+    .footer-brand h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 18px; letter-spacing: 0.08em; color: var(--yellow); }
+    .footer-brand p { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); margin-top: 3px; }
+    .footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+    .footer-links a { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: var(--white); }
-    .footer-email a { font-size: 12px; color: var(--grey); text-decoration: none; transition: color 0.2s; }
+    .footer-email a { font-size: 11px; color: var(--grey); text-decoration: none; transition: color 0.2s; }
     .footer-email a:hover { color: var(--white); }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 960px) {
-      nav { padding: 16px 24px; }
+    /* ═══ MOBILE ═══ */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
       .nav-links { display: none; }
-      section { padding: 72px 24px; }
-      .hero { padding: 0 24px 64px; }
-      .hero-img-slot { display: none; }
-      .about-grid, .dj-grid, .newsletter-inner, .adv-header { grid-template-columns: 1fr; gap: 44px; }
-      .adv-grid, .audience-cards { grid-template-columns: 1fr 1fr; }
-      .slide { grid-template-columns: 1fr; }
-      .slide-img-box { display: none; }
-      footer { padding: 32px 24px; }
+
+      /* ── MOBILE HERO: full bleed DJ photo + texture ── */
+      .hero {
+        padding: 0 20px 56px;
+        min-height: 100svh;
+        justify-content: center;
+      }
+
+      /* DJ photo fills entire hero on mobile */
+      .hero-img-slot {
+        display: block;
+        position: absolute;
+        inset: 0; width: 100%; max-width: 100%;
+      }
+      .hero-img-slot img {
+        width: 100%; height: 100%;
+        object-fit: cover; object-position: top center;
+        opacity: 1;
+      }
+      .hero-img-slot::after { display: none; }
+
+      /* texture at 30% on top of photo */
+      .hero-texture { opacity: 0.3; z-index: 1; }
+
+      /* stronger gradient so text is readable */
+      .hero-overlay {
+        background: linear-gradient(to top,
+          rgba(10,10,10,0.96) 0%,
+          rgba(10,10,10,0.7) 40%,
+          rgba(10,10,10,0.35) 75%,
+          rgba(10,10,10,0.1) 100%);
+      }
+
+      /* hero credit hidden on mobile */
+      .hero-img-credit { display: none; }
+
+      /* centered content on mobile */
+      .hero-content {
+        max-width: 100%;
+        display: flex; flex-direction: column; align-items: center;
+        text-align: center;
+      }
+      .hero-eyebrow { justify-content: center; }
+      .hero h1 {
+        font-size: clamp(48px, 13vw, 76px);
+        line-height: 0.9; word-break: break-word;
+        text-align: center;
+      }
+      .hero h1 .outline { -webkit-text-stroke-width: 1px; }
+      .hero-bottom {
+        flex-direction: column; align-items: center;
+        gap: 20px; text-align: center; width: 100%;
+      }
+      .hero-desc { max-width: 100%; font-size: 14px; text-align: center; }
+      .hero-actions { flex-wrap: wrap; gap: 10px; justify-content: center; width: 100%; }
+      .hero-actions .btn { flex: 1; min-width: 140px; text-align: center; }
+
+      section { padding: 64px 20px; }
+
+      /* about video — landscape on mobile */
+      .about-grid { grid-template-columns: 1fr; gap: 36px; }
+      .about-video-wrap { aspect-ratio: 4/5; }
+
+      /* content slider */
+      .slide.active { grid-template-columns: 1fr; gap: 28px; }
+      .slide-img-box { aspect-ratio: 4/5; width: 100%; max-width: 360px; margin: 0 auto; }
+
+      .newsletter-inner { grid-template-columns: 1fr; gap: 36px; }
+      .dj-grid { grid-template-columns: 1fr; gap: 36px; }
+      .adv-header { grid-template-columns: 1fr; gap: 20px; }
+      .adv-grid { grid-template-columns: 1fr; }
+      .audience-cards { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .follow-ig-card { padding: 24px 20px; }
+      footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
     }
-    @media (max-width: 560px) {
-      .adv-grid, .audience-cards { grid-template-columns: 1fr; }
+
+    @media (max-width: 420px) {
+      .hero h1 { font-size: clamp(40px, 12vw, 60px); }
+      .audience-cards { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">
-    <!-- Logo: place logo_afrocue.png in same folder — transparent bg, height 44px -->
-    <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"/>
-    <span style="display:none; font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:18px; color:var(--yellow); letter-spacing:0.08em;">afro.cue</span>
+    <img src="logo_afrocue.png" alt="AfroCue"
+      onerror="this.style.display='none'; document.querySelector('.nav-logo-fallback').style.display='block'"/>
+    <span class="nav-logo-fallback">afro.cue</span>
   </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
@@ -308,18 +403,14 @@
 </nav>
 
 <!-- HERO -->
+<!-- hero_dj.jpg → Aniko at Rampa Lagos — 800×1100px portrait -->
 <div class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-
-  <!-- Hero image slot: save as hero_dj.jpg (800×1100px) -->
   <div class="hero-img-slot">
-    <img src="hero_dj.jpg" alt="DJ performing" onerror="this.style.display='none'; this.parentElement.querySelector('.hero-img-slot-placeholder').style.display='flex'"/>
-    <div class="hero-img-slot-placeholder" style="display:none;">
-      <span>hero_dj.jpg</span>
-      <span style="font-size:9px; opacity:0.5;">800 × 1100px</span>
-    </div>
+    <img src="hero_dj.jpg" alt="Aniko at Rampa Lagos"/>
   </div>
+  <div class="hero-texture"></div>
+  <div class="hero-overlay"></div>
+  <span class="hero-img-credit">Aniko · Rampa Lagos</span>
 
   <div class="hero-content">
     <div class="hero-eyebrow">
@@ -376,12 +467,23 @@
         <div class="stat"><div class="stat-val">Culture</div><div class="stat-key">We advance</div></div>
       </div>
     </div>
-    <!-- About image: save as about_editorial.jpg (700×950px) -->
-    <div class="about-img-wrap">
-      <img src="about_editorial.jpg" alt="AfroCue editorial" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
-      <div class="about-img-placeholder" style="display:none;">
-        <span class="about-img-label">about_editorial.jpg</span>
-        <span class="about-img-label" style="opacity:0.5;">700 × 950px</span>
+
+    <!--
+      VIDEO: save as about_video.mp4 in the same folder.
+      Format: MP4 (H.264), 4:5 ratio (e.g. 1080×1350px), no audio needed.
+      It loops silently as an ambient visual.
+    -->
+    <div class="about-video-wrap">
+      <video
+        src="about_video.mp4"
+        autoplay muted loop playsinline
+        poster="about_editorial.jpg"
+        onerror="this.style.display='none'">
+      </video>
+      <!-- fallback shown if video file missing -->
+      <div class="about-video-fallback" id="videoFallback">
+        <span class="img-label">about_video.mp4</span>
+        <span class="img-label" style="opacity:0.4;">1080 × 1350px · 4:5</span>
       </div>
     </div>
   </div>
@@ -399,61 +501,76 @@
       <button class="slide-btn" onclick="nextSlide()">&#8594;</button>
     </div>
   </div>
+  <div class="slides-wrap">
 
-  <div class="slides-container">
-    <!-- SLIDE 1 — Weekly Top 5 -->
-    <!-- Image: content_weekly_top5.jpg (1080×1080px — Instagram post screenshot) -->
+    <!-- SLIDE 1 — content_weekly_top5.jpg -->
     <div class="slide active">
       <div class="slide-img-box">
-        <img src="content_weekly_top5.jpg" alt="AfroCue Weekly Top 5" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
-        <div class="slide-img-placeholder" style="display:none;">
-          <span class="slide-img-tag">content_weekly_top5.jpg · 1080×1080px</span>
+        <img src="content_weekly_top5.jpg" alt="AfroCue Weekly Top 5" onerror="this.style.display='none'"/>
+        <div class="slide-img-placeholder">
+          <span class="slide-img-tag">content_weekly_top5.jpg</span>
         </div>
       </div>
       <div class="slide-text">
-        <div class="slide-tag">Weekly Series</div>
+        <div class="slide-series">Weekly Series</div>
         <h3>AfroCue Weekly Top 5</h3>
         <p>Every week, we spotlight DJs from upcoming parties and events — not to rank them, but to spotlight the people shaping the dance floor.</p>
         <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram</a>
-        <div class="slide-counter"><span>01</span> / 03</div>
+        <div class="slide-counter"><span>01</span> / 04</div>
       </div>
     </div>
 
-    <!-- SLIDE 2 — Monthly Recap -->
-    <!-- Image: content_monthly_recap.jpg (1080×1080px — Instagram carousel screenshot) -->
+    <!-- SLIDE 2 — content_monthly_recap.jpg -->
     <div class="slide">
       <div class="slide-img-box">
-        <img src="content_monthly_recap.jpg" alt="AfroCue Monthly Recap" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
-        <div class="slide-img-placeholder" style="display:none;">
-          <span class="slide-img-tag">content_monthly_recap.jpg · 1080×1080px</span>
+        <img src="content_monthly_recap.jpg" alt="AfroCue Monthly Recap" onerror="this.style.display='none'"/>
+        <div class="slide-img-placeholder">
+          <span class="slide-img-tag">content_monthly_recap.jpg</span>
         </div>
       </div>
       <div class="slide-text">
-        <div class="slide-tag">Monthly Series</div>
+        <div class="slide-series">Monthly Series</div>
         <h3>Monthly Recap</h3>
         <p>A recap of moments, DJs, and parties that defined the month in nightlife and dance music culture.</p>
         <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram</a>
-        <div class="slide-counter"><span>02</span> / 03</div>
+        <div class="slide-counter"><span>02</span> / 04</div>
       </div>
     </div>
 
-    <!-- SLIDE 3 — Set Moments -->
-    <!-- Image: content_set_moments.jpg (1080×1350px — Instagram portrait post screenshot) -->
+    <!-- SLIDE 3 — content_set_moments.jpg -->
     <div class="slide">
-      <div class="slide-img-box" style="aspect-ratio: 4/5;">
-        <img src="content_set_moments.jpg" alt="AfroCue Set Moments" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
-        <div class="slide-img-placeholder" style="display:none; aspect-ratio:4/5;">
-          <span class="slide-img-tag">content_set_moments.jpg · 1080×1350px</span>
+      <div class="slide-img-box">
+        <img src="content_set_moments.jpg" alt="Set Moments" onerror="this.style.display='none'"/>
+        <div class="slide-img-placeholder">
+          <span class="slide-img-tag">content_set_moments.jpg</span>
         </div>
       </div>
       <div class="slide-text">
-        <div class="slide-tag">Ongoing Series</div>
+        <div class="slide-series">Ongoing Series</div>
         <h3>Set Moments</h3>
         <p>Short moments from DJ sets that capture the energy of the dance floor and spotlight the DJ behind the moment.</p>
         <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram</a>
-        <div class="slide-counter"><span>03</span> / 03</div>
+        <div class="slide-counter"><span>03</span> / 04</div>
       </div>
     </div>
+
+    <!-- SLIDE 4 — content_creative_events.jpg -->
+    <div class="slide">
+      <div class="slide-img-box">
+        <img src="content_creative_events.jpg" alt="Creative Event Content" onerror="this.style.display='none'"/>
+        <div class="slide-img-placeholder">
+          <span class="slide-img-tag">content_creative_events.jpg</span>
+        </div>
+      </div>
+      <div class="slide-text">
+        <div class="slide-series">Creative Event Content</div>
+        <h3>Creative Event Content</h3>
+        <p>We convey narratives through culture-aware perspectives — documenting events and the energy around them the way they actually feel.</p>
+        <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram</a>
+        <div class="slide-counter"><span>04</span> / 04</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -532,8 +649,8 @@
     </div>
   </div>
   <div class="adv-cta">
-    <a href="/cdn-cgi/l/email-protection#2c4d4a5e434f59494342404542496c4b414d4540024f4341" class="btn btn-white">Get In Touch</a>
-    <p class="adv-email"><a href="/cdn-cgi/l/email-protection#620304100d0117070d0c0e0b0c0722050f030b0e4c010d0f"><span class="__cf_email__" data-cfemail="5d3c3b2f323e28383233313433381d3a303c3431733e3230">[email&#160;protected]</span></a></p>
+    <a href="mailto:afrocueonline@gmail.com" class="btn btn-white">Get In Touch</a>
+    <p class="adv-email"><a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a></p>
   </div>
 </section>
 
@@ -544,72 +661,55 @@
     <h2 class="yh audience-h">Who We<br>Reach.</h2>
     <p class="audience-body">AfroCue speaks to the people who go out, listen to DJs, discover music, and shape nightlife culture.</p>
   </div>
-
-  <!--
-    AUDIENCE IMAGE CARDS — slot your own images in by filename:
-    audience_djs.jpg          → DJ behind decks, on stage, mixing — 600×400px
-    audience_partygoers.jpg   → crowd on dance floor, hands up — 600×400px
-    audience_organizers.jpg   → event setup, production, venue — 600×400px
-    audience_creatives.jpg    → creative/studio/behind scenes — 600×400px
-    audience_brands.jpg       → brand activation, sponsor setup — 600×400px
-    audience_culture.jpg      → nightlife, fashion, culture scene — 600×400px
-  -->
   <div class="audience-cards">
-
     <div class="aud-card">
-      <img src="audience_djs.jpg" alt="DJs" onerror="this.style.display='none'"/>
       <div class="aud-card-bg"><span class="aud-card-emoji">🎛️</span></div>
+      <img src="audience_djs.jpg" alt="DJs" onerror="this.style.display='none'"/>
       <div class="aud-card-overlay">
         <div class="aud-card-title">DJs</div>
         <div class="aud-card-desc">The people who control the dance floor</div>
       </div>
     </div>
-
     <div class="aud-card">
-      <img src="audience_partygoers.jpg" alt="Partygoers" onerror="this.style.display='none'"/>
       <div class="aud-card-bg"><span class="aud-card-emoji">🕺</span></div>
+      <img src="audience_partygoers.jpg" alt="Partygoers" onerror="this.style.display='none'"/>
       <div class="aud-card-overlay">
         <div class="aud-card-title">Partygoers</div>
         <div class="aud-card-desc">The ones who show up every weekend</div>
       </div>
     </div>
-
     <div class="aud-card">
-      <img src="audience_organizers.jpg" alt="Event Organizers" onerror="this.style.display='none'"/>
       <div class="aud-card-bg"><span class="aud-card-emoji">🎪</span></div>
+      <img src="audience_organizers.jpg" alt="Event Organizers" onerror="this.style.display='none'"/>
       <div class="aud-card-overlay">
         <div class="aud-card-title">Event Organizers</div>
         <div class="aud-card-desc">The people who build the rooms</div>
       </div>
     </div>
-
     <div class="aud-card">
-      <img src="audience_creatives.jpg" alt="Creative Directors" onerror="this.style.display='none'"/>
       <div class="aud-card-bg"><span class="aud-card-emoji">🎨</span></div>
+      <img src="audience_creatives.jpg" alt="Creative Directors" onerror="this.style.display='none'"/>
       <div class="aud-card-overlay">
         <div class="aud-card-title">Creative Directors</div>
         <div class="aud-card-desc">The vision behind the culture</div>
       </div>
     </div>
-
     <div class="aud-card">
-      <img src="audience_brands.jpg" alt="Brand Managers" onerror="this.style.display='none'"/>
       <div class="aud-card-bg"><span class="aud-card-emoji">📡</span></div>
+      <img src="audience_brands.jpg" alt="Brand Managers" onerror="this.style.display='none'"/>
       <div class="aud-card-overlay">
         <div class="aud-card-title">Brand Managers</div>
         <div class="aud-card-desc">Brands seeking culture-first reach</div>
       </div>
     </div>
-
     <div class="aud-card">
-      <img src="audience_culture.jpg" alt="Culture Audiences" onerror="this.style.display='none'"/>
       <div class="aud-card-bg"><span class="aud-card-emoji">🌍</span></div>
+      <img src="audience_culture.jpg" alt="Culture Audiences" onerror="this.style.display='none'"/>
       <div class="aud-card-overlay">
         <div class="aud-card-title">Culture Audiences</div>
         <div class="aud-card-desc">People shaped by the dance floor</div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -625,7 +725,7 @@
     <div class="btn btn-white" style="pointer-events:none;">Follow on Instagram</div>
   </a>
   <div class="social-row">
-    <a href="https://twitter.com/afrocue_" target="_blank" class="social-chip">Twitter / X — @afrocue_</a>
+    <a href="https://twitter.com/afrocue_" target="_blank" class="social-chip">X / Twitter — @afrocue_</a>
     <a href="https://tiktok.com/@afro.cue" target="_blank" class="social-chip">TikTok — @afro.cue</a>
     <a href="https://youtube.com/@AfroCue" target="_blank" class="social-chip">YouTube</a>
     <a href="#" target="_blank" class="social-chip">Spotify</a>
@@ -644,10 +744,19 @@
     <a href="dj-signup.html">DJ Signup</a>
     <a href="#advertise">Advertise</a>
   </div>
-  <div class="footer-email"><a href="/cdn-cgi/l/email-protection#1f7e796d707c6a7a70717376717a5f78727e7673317c7072"><span class="__cf_email__" data-cfemail="523334203d3127373d3c3e3b3c3712353f333b3e7c313d3f">[email&#160;protected]</span></a></div>
+  <div class="footer-email"><a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a></div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
+  /* hide video fallback if video loads */
+  const vid = document.querySelector('.about-video-wrap video');
+  if (vid) {
+    vid.addEventListener('loadeddata', () => {
+      const fb = document.getElementById('videoFallback');
+      if (fb) fb.style.display = 'none';
+    });
+  }
+
   let cur = 0;
   const slides = document.querySelectorAll('.slide');
   let timer = setInterval(() => nextSlide(), 5000);
@@ -655,4 +764,19 @@
     slides[cur].classList.remove('active');
     cur = (n + slides.length) % slides.length;
     slides[cur].classList.add('active');
-    clearInterval(ti
+    clearInterval(timer);
+    timer = setInterval(() => nextSlide(), 5000);
+  }
+  function nextSlide() { goTo(cur + 1); }
+  function prevSlide() { goTo(cur - 1); }
+
+  function handleNewsletter(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = 'Subscribed ✓';
+    btn.style.opacity = '0.7';
+    setTimeout(() => { btn.textContent = 'Subscribe'; btn.style.opacity = ''; }, 3000);
+  }
+</script>
+</body>
+</html>
