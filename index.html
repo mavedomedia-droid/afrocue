@@ -721,8 +721,8 @@
     </div>
   </div>
   <div class="adv-cta">
-    <a href="mailto:info@afrocue.xyz" class="btn btn-white">Get In Touch</a>
-    <p class="adv-email"><a href="mailto:info@afrocue.xyz">info@afrocue.xyz</a></p>
+    <a href="/cdn-cgi/l/email-protection#1f767179705f7e796d707c6a7a31676665" class="btn btn-white">Get In Touch</a>
+    <p class="adv-email"><a href="/cdn-cgi/l/email-protection#2a43444c456a4b4c5845495f4f04525350"><span class="__cf_email__" data-cfemail="066f6860694667607469657363287e7f7c">[email&#160;protected]</span></a></p>
   </div>
 </section>
 
@@ -848,47 +848,11 @@
     <a href="dj-signup.html">DJ Signup</a>
     <a href="#advertise">Get Featured</a>
   </div>
-  <div class="footer-email"><a href="/cdn-cgi/l/email-protection#7f161119103f1e190d101c0a1a51070605"><span class="__cf_email__" data-cfemail="fc95929a93bc9d9a8e939f8999d2848586">[email&#160;protected]</span></a></div>
+  <div class="footer-email"><a href="/cdn-cgi/l/email-protection#88e1e6eee7c8e9eefae7ebfdeda6f0f1f2"><span class="__cf_email__" data-cfemail="1970777f7659787f6b767a6c7c37616063">[email&#160;protected]</span></a></div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  /* video fallback */
-  const vid = document.querySelector('.about-video-wrap video');
-  if (vid) {
-    vid.addEventListener('error', () => {
-      vid.style.display = 'none';
-      document.getElementById('videoFallback').style.display = 'flex';
-    });
-  }
 
-  /* content slider */
-  let cur = 0;
-  const slides = document.querySelectorAll('.slide');
-  const contentBg = document.getElementById('contentBg');
 
-  function updateBg(idx) {
-    const img = slides[idx].dataset.img;
-    if (!img || !contentBg) return;
-    contentBg.style.backgroundImage = "url('" + img + "')";
-    contentBg.classList.remove('loaded');
-    requestAnimationFrame(function() {
-      requestAnimationFrame(function() {
-        contentBg.classList.add('loaded');
-      });
-    });
-  }
-
-  function goTo(n) {
-    slides[cur].classList.remove('active');
-    cur = (n + slides.length) % slides.length;
-    slides[cur].classList.add('active');
-    updateBg(cur);
-    clearInterval(timer);
-    timer = setInterval(function() { goTo(cur + 1); }, 5000);
-  }
-
-  function nextSlide() { goTo(cur + 1); }
-  function prevSlide() { goTo(cur - 1); }
-
-  var timer = setInterval(function() { goTo(cur + 1); }, 5000);
-  updateBg(0
+<script src="afrocue.js"></script>
+</body>
+</html>
