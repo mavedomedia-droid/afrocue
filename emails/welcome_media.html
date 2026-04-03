@@ -87,21 +87,32 @@
             </td>
             <!-- Right: IG post -->
             <td width="45%" valign="top" style="padding:32px 44px 32px 16px;">
-              <p style="font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#555;margin:0 0 12px;">Latest</p>
-              <a href="https://www.instagram.com/p/DWl2aQiAvPn/?igsh=cjRiZ3YzanEzbHJ0" target="_blank"
-                style="display:block;border-radius:4px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);background:#1c1c1c;">
-                <img src="https://afrocue.xyz/emails/ig_post_thumb.jpg"
-                  alt="Latest from AfroCue"
-                  width="100%"
-                  style="display:block;width:100%;height:auto;min-height:120px;background:#1c1c1c;"/>
-                <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                  <tr>
-                    <td style="background:rgba(10,10,10,0.85);padding:9px 12px;">
-                      <p style="font-size:10px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:rgba(240,237,232,0.6);margin:0;">&#9654;&nbsp; View on Instagram</p>
-                    </td>
-                  </tr>
-                </table>
-              </a>
+              <p style="font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#555;margin:0 0 12px;">Media</p>
+              <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                style="border-radius:4px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);">
+                <tr>
+                  <!--
+                    DJ image as cell background — most email clients support
+                    background on td. Texture image sits on top at low opacity.
+                  -->
+                  <td style="padding:0;font-size:0;line-height:0;
+                    background-image:url('https://afrocue.xyz/hero_dj.jpg');
+                    background-size:cover;
+                    background-position:center 65%;
+                    background-color:#1c1c1c;">
+                    <!-- Texture overlay image — mix-blend not needed, just opacity -->
+                    <img src="https://afrocue.xyz/texture.jpg"
+                      alt=""
+                      width="100%"
+                      style="display:block;width:100%;height:220px;object-fit:cover;opacity:0.28;mix-blend-mode:overlay;"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="background:#0a0a0a;padding:10px 12px;border-top:1px solid rgba(255,255,255,0.07);">
+                    <p style="font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,237,232,0.45);margin:0;">Creatively Documenting Culture</p>
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
         </table>
