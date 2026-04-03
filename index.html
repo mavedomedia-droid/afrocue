@@ -3,8 +3,22 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AfroCue — Creatively Documenting Culture</title>
-  <meta name="description" content="AfroCue is a culture and media platform spotlighting DJs, parties, and the music shaping nightlife culture."/>
+  <title>AfroCue — DJs, Raves &amp; Dance Music in Nigeria</title>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="apple-touch-icon" href="favicon.png"/>
+  <meta name="description" content="We follow the DJs, the parties and raves they play at, and the music they play from afrohouse, amapiano, 3step and afrobeats. AfroCue is Nigeria's nightlife and dance music media platform."/>
+  <meta name="keywords" content="DJs, raves, amapiano, afrohouse, afrobeats, 3step, dance music, Lagos, Nigeria, nightlife, parties, rave culture, DJ culture, entertainment, media"/>
+  <link rel="canonical" href="https://afrocue.xyz/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://afrocue.xyz/"/>
+  <meta property="og:title" content="AfroCue — DJs, Raves &amp; Dance Music in Nigeria"/>
+  <meta property="og:description" content="We follow the DJs, the parties and raves they play at, and the music they play from afrohouse, amapiano, 3step and afrobeats. AfroCue is Nigeria's nightlife and dance music media platform."/>
+  <meta property="og:image" content="https://afrocue.xyz/hero_dj.jpg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@afrocue_"/>
+  <meta name="twitter:title" content="AfroCue — DJs, Raves &amp; Dance Music in Nigeria"/>
+  <meta name="twitter:description" content="We follow the DJs, the parties and raves they play at, and the music they play from afrohouse, amapiano, 3step and afrobeats. AfroCue is Nigeria's nightlife and dance music media platform."/>
+  <meta name="twitter:image" content="https://afrocue.xyz/hero_dj.jpg"/>
 
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -39,6 +53,21 @@
     html { scroll-behavior: smooth; }
     body { background: var(--black); color: var(--white); font-family: 'Figtree', sans-serif; overflow-x: hidden; }
     .yh { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; color: var(--yellow); text-shadow: var(--yts); line-height: 0.92; }
+
+
+    /* nav scroll hide/show */
+    nav { transition: background 0.3s, transform 0.3s; }
+    nav.nav-hidden { transform: translateY(-100%); }
+
+    /* hero logo — visible before scroll */
+    .hero-logo {
+      position: absolute; top: 24px; left: 48px; z-index: 10;
+      display: flex; align-items: center; text-decoration: none;
+      opacity: 1; transition: opacity 0.4s;
+    }
+    .hero-logo img { height: 40px; width: auto; display: block; }
+    .hero-logo-fallback { display: none; font-family: "Aesthet Nova", sans-serif; font-weight: 900; font-size: 17px; color: var(--yellow); letter-spacing: 0.08em; }
+    .hero-logo.hidden { opacity: 0; pointer-events: none; }
 
     /* ── NAV ── */
     nav {
@@ -161,6 +190,8 @@
     /* ── ABOUT ── */
     #about { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
     .about-grid { display: grid; grid-template-columns: 5fr 4fr; gap: 80px; align-items: start; max-width: 1200px; }
+    .about-text-col { order: 1; }
+    .about-video-col { order: 2; }
     .about-h { font-size: clamp(48px, 6.5vw, 92px); margin-bottom: 24px; }
     .about-h .dim { color: rgba(200,224,0,0.2); text-shadow: none; }
     .about-body { font-size: 15px; font-weight: 300; line-height: 1.85; color: rgba(240,237,232,0.55); }
@@ -188,29 +219,29 @@
     .img-label { position: relative; z-index: 1; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); }
 
     /* ── CONTENT SLIDER ── */
-    #content { position: relative; border-top: 1px solid rgba(255,255,255,0.06); overflow: hidden; background: var(--black); }
+    #content { position: relative; border-top: 1px solid rgba(255,255,255,0.06); overflow: hidden; background: var(--black); padding: 64px 48px; }
     .content-bg { position: absolute; inset: 0; z-index: 0; background-size: cover; background-position: center; filter: blur(48px) saturate(0.7); transform: scale(1.12); opacity: 0; transition: opacity 0.7s ease; }
     .content-bg.loaded { opacity: 1; }
     .content-bg-overlay { position: absolute; inset: 0; z-index: 1; background: rgba(10,10,10,0.80); }
     #content > *:not(.content-bg):not(.content-bg-overlay) { position: relative; z-index: 2; }
-    .content-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 48px; gap: 32px; flex-wrap: wrap; }
+    .content-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; gap: 24px; flex-wrap: wrap; }
     .content-h { font-size: clamp(44px, 5.5vw, 80px); }
     .slide-nav { display: flex; gap: 8px; align-items: center; padding-top: 6px; flex-shrink: 0; }
     .slide-btn { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; background: transparent; color: var(--silver); cursor: pointer; font-size: 15px; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, color 0.2s; }
     .slide-btn:hover { border-color: var(--yellow); color: var(--yellow); }
     .slides-wrap { position: relative; }
     .slide { display: none; }
-    .slide.active { display: grid; grid-template-columns: 5fr 6fr; gap: 52px; align-items: center; animation: fadeUp 0.4s ease; }
+    .slide.active { display: grid; grid-template-columns: 5fr 6fr; gap: 36px; align-items: center; animation: fadeUp 0.4s ease; }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-    .slide-img-box { aspect-ratio: 4/5; border-radius: 6px; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,0.12); background: var(--dark2); flex-shrink: 0; }
+    .slide-img-box { aspect-ratio: 4/5; border-radius: 6px; overflow: hidden; position: relative; border: none; background: transparent; flex-shrink: 0; }
     .slide-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .slide-img-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-end; padding: 14px; background: var(--dark2); opacity: 0.8; }
+    .slide-img-placeholder { display: none; }
     .slide-img-tag { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); border: 1px solid rgba(255,255,255,0.1); padding: 4px 8px; border-radius: 2px; }
 
-    .slide-text { padding: 8px 0; }
+    .slide-text { padding: 0; }
     .slide-series { font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--grey); margin-bottom: 14px; }
-    .slide-text h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(32px, 3.5vw, 56px); line-height: 0.9; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 16px; }
-    .slide-text p { font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.5); margin-bottom: 24px; }
+    .slide-text h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(32px, 3.5vw, 56px); line-height: 0.9; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 12px; }
+    .slide-text p { font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.5); margin-bottom: 20px; }
     .slide-counter { font-size: 10px; letter-spacing: 0.12em; color: var(--grey); margin-top: 16px; }
     .slide-counter span { color: var(--yellow); }
 
@@ -306,10 +337,11 @@
     .social-chip:hover { border-color: var(--yellow); color: var(--yellow); }
 
     /* ── FOOTER ── */
-    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 36px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; background: var(--dark); }
-    .footer-brand h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 18px; letter-spacing: 0.08em; color: var(--yellow); }
-    .footer-brand p { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); margin-top: 3px; }
-    .footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 64px 48px 48px; display: flex; flex-direction: column; align-items: center; gap: 28px; background: var(--dark); text-align: center; }
+    .footer-brand { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .footer-brand img { height: 72px; width: auto; display: block; }
+    .footer-brand p { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); }
+    .footer-links { display: flex; gap: 22px; flex-wrap: wrap; justify-content: center; }
     .footer-links a { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: var(--white); }
     .footer-email a { font-size: 11px; color: var(--grey); text-decoration: none; transition: color 0.2s; }
@@ -321,7 +353,7 @@
       .nav-links { display: none; }
 
       /* MOBILE HERO — full bleed DJ photo */
-      .hero { padding: 80px 20px 56px; min-height: 100svh; height: 100svh; justify-content: center; align-items: center; }
+      .hero { padding: 80px 20px 56px; min-height: 0; height: auto; justify-content: center; align-items: center; }
 
       .hero-img-slot {
         display: block; position: absolute;
@@ -342,7 +374,7 @@
 
       .hero-img-credit { display: none; }
 
-      .hero-content { max-width: 100%; }
+      .hero-content { max-width: 100%; padding-bottom: 30vh; }
       .hero h1 { font-size: clamp(48px, 13vw, 72px); line-height: 0.9; }
       .hero h1 .outline { -webkit-text-stroke-width: 1px; }
       .hero-desc { max-width: 100%; font-size: 14px; }
@@ -352,6 +384,10 @@
       section { padding: 64px 20px; }
 
       .about-grid { grid-template-columns: 1fr; gap: 36px; }
+
+      .about-text-col { order: 1; display: flex; flex-direction: column; }
+      .about-video-col { order: 2; }
+      .about-stats { order: 3 !important; margin-top: 0; }
       .about-video-wrap { aspect-ratio: 4/5; }
 
       .slide.active { grid-template-columns: 1fr; gap: 28px; }
@@ -363,7 +399,7 @@
       .adv-grid { grid-template-columns: 1fr; }
       .audience-cards { grid-template-columns: 1fr 1fr; gap: 8px; }
       .follow-ig-card { padding: 24px 20px; }
-      footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
+      footer { padding: 48px 20px 36px; flex-direction: column; align-items: center; gap: 20px; }
       #youtube { padding: 64px 20px; }
     }
 
@@ -394,6 +430,11 @@
 
 <!-- HERO -->
 <div class="hero">
+  <a class="hero-logo" href="#" id="heroLogo">
+    <img src="logo_afrocue.png" alt="AfroCue"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"/>
+    <span class="hero-logo-fallback">afro.cue</span>
+  </a>
   <!-- hero_dj.jpg — Aniko at Rampa Lagos — 800×1100px -->
   <div class="hero-img-slot">
     <img src="hero_dj.jpg" alt="Aniko at Rampa Lagos"/>
@@ -405,10 +446,10 @@
   <div class="hero-content">
     <div class="hero-eyebrow">
       <div class="hero-eyebrow-line"></div>
-      <span>Culture &amp; Media Platform</span>
+      <span>Lagos Nightlife &amp; Dance Music</span>
     </div>
     <h1>Creatively<br><span class="outline">Documenting</span><br>Culture.</h1>
-    <p class="hero-desc">We spotlight the DJs, the parties, and the music shaping nightlife culture.</p>
+    <p class="hero-desc">We spotlight the DJs, the raves and parties they play at, and the music — from afrohouse to amapiano — shaping Nigeria's dance floor.</p>
     <div class="hero-actions">
       <!-- IG button with inline SVG logo outline -->
       <a href="https://instagram.com/afro.cue" target="_blank" class="btn-ig">
@@ -427,14 +468,13 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="about-grid">
-    <div>
+    <div class="about-text-col">
       <div class="label">About AfroCue</div>
       <h2 class="yh about-h">Where<br><span class="dim">Culture</span><br>Lives.</h2>
       <p class="about-body">
-        AfroCue is our attempt to creatively document and advance nightlife and dance music culture — spotlighting the DJs who power the scene, the parties that bring people together, and the music that moves the dance floor.<br><br>
-        We use creative content, DJ spotlights, party documentation, and music discovery to contribute to and support the culture.
+        AfroCue is our attempt to creatively document and advance the dance music culture and nightlife scene — spotlighting the DJs who power it, the raves and parties they play at, and the music that moves the dance floor. From amapiano and afrohouse to 3step and afrobeats, we contribute to and support Nigerian nightlife culture.
       </p>
-      <div class="about-stats">
+      <div class="about-stats" style="order:3;">
         <div class="stat"><div class="stat-val">DJs</div><div class="stat-key">We spotlight</div></div>
         <div class="stat"><div class="stat-val">Parties</div><div class="stat-key">We document</div></div>
         <div class="stat"><div class="stat-val">Music</div><div class="stat-key">We follow</div></div>
@@ -446,6 +486,8 @@
       VIDEO: about_video.mp4 — 4:5 ratio (1080×1350px), H.264 MP4, no audio needed.
       Falls back to about_editorial.jpg if video not present.
     -->
+    </div>
+    <div class="about-video-col">
     <div class="about-video-wrap">
       <video src="about_video.mp4" autoplay muted loop playsinline
         onerror="this.style.display='none'">
@@ -454,6 +496,7 @@
         <span class="img-label">about_video.mp4</span>
         <span class="img-label" style="opacity:0.4;">1080 × 1350px</span>
       </div>
+    </div>
     </div>
   </div>
 </section>
@@ -537,28 +580,6 @@
   </div>
 </section>
 
-<!-- FEATURED YOUTUBE SET -->
-<section id="youtube">
-  <div class="yt-inner">
-    <div class="label">Featured Set</div>
-    <h2 class="yh yt-h">Yanos Theory.</h2>
-    <p class="yt-sub">Smeez &amp; D3AN — Prep Session</p>
-    <div class="yt-embed-wrap">
-      <iframe
-        src="https://www.youtube.com/embed/Ebrtzg0cJXM?si=RST1dLRLpXVBwdDs"
-        title="Smeez &amp; D3AN — Yanos Theory Prep Session"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen>
-      </iframe>
-    </div>
-    <div class="yt-caption">
-      <div class="yt-caption-dot"></div>
-      <span class="yt-caption-text">Smeez &amp; D3AN · Yanos Theory · via afro.cue</span>
-    </div>
-  </div>
-</section>
-
 <!-- NEWSLETTER -->
 <section id="newsletter">
   <div class="newsletter-inner">
@@ -578,9 +599,9 @@
 <section id="dj">
   <div class="dj-grid">
     <div>
-      <div class="label">In The Culture</div>
-      <h2 class="yh dj-h">Are You<br>In The<br>Scene?</h2>
-      <p class="dj-body">If you're a DJ, manager, event executive, brand manager, creative, or anyone operating in nightlife and dance music culture — sign up to stay connected with AfroCue.</p>
+      <div class="label">Join AfroCue</div>
+      <h2 class="yh dj-h">Sign Up<br>to<br>AfroCue.</h2>
+      <p class="dj-body">If you're a DJ, manager, event executive, brand manager, creative, or anyone operating in Nigeria's nightlife and dance music scene — amapiano, afrohouse, raves, or beyond — sign up to stay connected with AfroCue.</p>
       <a href="dj-signup.html" class="btn btn-white">Sign Up</a>
     </div>
     <div class="dj-features">
@@ -685,7 +706,7 @@
       <div class="aud-card-tint"></div>
       <div class="aud-card-overlay">
         <div class="aud-card-title">Partygoers</div>
-        <div class="aud-card-desc">The ones who show up every weekend</div>
+        <div class="aud-card-desc">Lagos raves, amapiano nights and afrohouse sets</div>
       </div>
     </div>
     <div class="aud-card">
@@ -746,13 +767,35 @@
   </div>
 </section>
 
+<!-- FEATURED YOUTUBE SET -->
+<section id="youtube">
+  <div class="yt-inner">
+    <div class="label">Featured Set</div>
+    <h2 class="yh yt-h">Yanos Theory.</h2>
+    <p class="yt-sub">Smeez &amp; D3AN — Prep Session</p>
+    <div class="yt-embed-wrap">
+      <iframe
+        src="https://www.youtube.com/embed/Ebrtzg0cJXM?si=RST1dLRLpXVBwdDs"
+        title="Smeez &amp; D3AN — Yanos Theory Prep Session"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="yt-caption">
+      <div class="yt-caption-dot"></div>
+      <span class="yt-caption-text">Smeez &amp; D3AN · Yanos Theory · via afro.cue</span>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand">
-    <a href="#" style="display:inline-flex;align-items:center;text-decoration:none;">
-      <img src="logo_afrocue.png" alt="AfroCue" style="height:36px;width:auto;display:block;"
+    <a href="#" style="text-decoration:none;">
+      <img src="logo_afrocue.png" alt="AfroCue"
         onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
-      <span style="display:none;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:18px;letter-spacing:0.08em;color:var(--yellow);">AfroCue</span>
+      <span style="display:none;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:48px;letter-spacing:0.08em;color:var(--yellow);">AfroCue</span>
     </a>
     <p>Creatively Documenting Culture</p>
   </div>
@@ -762,10 +805,10 @@
     <a href="dj-signup.html">DJ Signup</a>
     <a href="#advertise">Get Featured</a>
   </div>
-  <div class="footer-email"><a href="/cdn-cgi/l/email-protection#026364706d6177676d6c6e6b6c6742656f636b6e2c616d6f"><span class="__cf_email__" data-cfemail="8aebecf8e5e9ffefe5e4e6e3e4efcaede7ebe3e6a4e9e5e7">[email&#160;protected]</span></a></div>
+  <div class="footer-email"><a href="/cdn-cgi/l/email-protection#09616c65656649686f7b66276a7c6c"><span class="__cf_email__" data-cfemail="6008050c0c0f200106120f4e031505">[email&#160;protected]</span></a></div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   /* video fallback */
   const vid = document.querySelector('.about-video-wrap video');
   if (vid) {
@@ -801,11 +844,32 @@
   function prevSlide() { goTo(cur - 1); }
   updateBg(0);
 
-  /* newsletter */
-  function handleNewsletter(e) {
-    e.preventDefault();
-    e.target.innerHTML = "<p style='color:var(--yellow);font-size:13px;font-weight:500;'>You are in. We will be in touch.</p>";
+
+  /* nav + hero logo scroll behaviour */
+  const nav = document.querySelector('nav');
+  const heroLogo = document.getElementById('heroLogo');
+  const heroEl = document.querySelector('.hero');
+  let lastScroll = 0;
+
+  function onScroll() {
+    const y = window.scrollY;
+    const heroH = heroEl ? heroEl.offsetHeight : 300;
+
+    // Hide nav until past hero, then show
+    if (y < heroH * 0.6) {
+      nav.style.transform = 'translateY(-100%)';
+    } else {
+      nav.style.transform = 'translateY(0)';
+    }
+
+    // Hero logo fades out once nav appears
+    if (heroLogo) {
+      heroLogo.classList.toggle('hidden', y > heroH * 0.4);
+    }
+
+    lastScroll = y;
   }
-</script>
-</body>
-</html>
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
