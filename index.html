@@ -396,6 +396,40 @@
       .hero h1 { font-size: clamp(40px, 12vw, 58px); }
       .audience-cards { grid-template-columns: 1fr; }
     }
+
+    /* ── JOIN SECTION ── */
+    #join { background: var(--dark); }
+    .join-grid { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 0 64px; align-items: start; max-width: 1100px; }
+    .join-divider { width: 1px; background: rgba(255,255,255,0.08); align-self: stretch; }
+    .join-h { font-size: clamp(44px, 5.5vw, 72px); margin-bottom: 16px; }
+    .join-body { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.5); margin-bottom: 28px; }
+    .join-newsletter-form { display: flex; flex-direction: column; gap: 10px; }
+    .join-newsletter-form input { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 2px; padding: 14px 16px; color: var(--white); font-family: 'Figtree', sans-serif; font-size: 16px; outline: none; transition: border-color 0.2s; width: 100%; }
+    .join-newsletter-form input::placeholder { color: var(--grey); }
+    .join-newsletter-form input:focus { border-color: rgba(255,255,255,0.35); }
+
+    /* ── SIGNUP MODAL ── */
+    .signup-modal-wrap { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(10,10,10,0.92); backdrop-filter: blur(16px); align-items: center; justify-content: center; padding: 24px; }
+    .signup-modal-wrap.open { display: flex; }
+    .signup-modal { background: var(--dark); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; max-width: 540px; width: 100%; padding: 48px 44px; position: relative; max-height: 90vh; overflow-y: auto; }
+    .signup-modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--silver); font-size: 18px; cursor: pointer; transition: color 0.2s; padding: 4px 8px; }
+    .signup-modal-close:hover { color: var(--white); }
+    .signup-modal-form { display: flex; flex-direction: column; gap: 12px; }
+    .signup-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .signup-field { display: flex; flex-direction: column; gap: 6px; }
+    .signup-field label { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--silver); }
+    .signup-field input, .signup-field select { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; padding: 13px 14px; color: var(--white); font-family: 'Figtree', sans-serif; font-size: 16px; outline: none; transition: border-color 0.2s; width: 100%; appearance: none; }
+    .signup-field input:focus, .signup-field select:focus { border-color: rgba(200,224,0,0.4); }
+    .signup-field input::placeholder { color: var(--grey); }
+    .signup-field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 13px center; background-color: rgba(255,255,255,0.05); padding-right: 34px; cursor: pointer; }
+    .signup-field select option { background: #1a1a1a; }
+
+    @media (max-width: 768px) {
+      .join-grid { grid-template-columns: 1fr; gap: 0; }
+      .join-divider { width: 100%; height: 1px; margin: 40px 0; }
+      .signup-modal { padding: 36px 24px; }
+      .signup-row { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -568,62 +602,83 @@
   </div>
 </section>
 
-<!-- NEWSLETTER -->
-<section id="newsletter">
-  <div class="newsletter-inner">
-    <div>
-      <div class="label">Stay Connected</div>
-      <h2 class="yh newsletter-h">Get the<br>Updates.</h2>
-      <p class="newsletter-sub">DJs · Parties · Music · Culture</p>
+<!-- JOIN AFROCUE + NEWSLETTER -->
+<section id="join" style="border-top: 1px solid rgba(255,255,255,0.06);">
+  <div class="join-grid">
+
+    <!-- Left: media signup -->
+    <div class="join-media">
+      <div class="label">Join AfroCue</div>
+      <h2 class="yh join-h">Are you<br>in media?</h2>
+      <p class="join-body">DJs, managers, event executives, creatives, brand managers — anyone operating in Nigeria's dance music and nightlife scene. Sign up and stay connected.</p>
+      <button class="btn btn-white" onclick="openSignupModal()">Sign Up</button>
     </div>
-    <form class="newsletter-form" onsubmit="handleNewsletter(event)">
-      <input type="email" placeholder="your@email.com" required/>
-      <button type="submit" class="btn btn-yellow">Subscribe</button>
-    </form>
+
+    <!-- Divider -->
+    <div class="join-divider"></div>
+
+    <!-- Right: newsletter -->
+    <div class="join-newsletter">
+      <div class="label" style="color: rgba(240,237,232,0.3);">Or</div>
+      <h2 class="yh join-h" style="font-size: clamp(28px, 3.5vw, 48px);">Get the<br>updates.</h2>
+      <p class="join-body">DJs · Parties · Music · Culture</p>
+      <form class="join-newsletter-form" onsubmit="handleNewsletter(event)">
+        <input type="text" name="nl_name" placeholder="Your name" required/>
+        <input type="email" name="nl_email" placeholder="your@email.com" required/>
+        <button type="submit" class="btn btn-yellow">Subscribe</button>
+      </form>
+    </div>
+
   </div>
 </section>
 
-<!-- IN THE CULTURE — DJ/Talent signup -->
-<section id="dj">
-  <div class="dj-grid">
-    <div>
-      <div class="label">Join AfroCue</div>
-      <h2 class="yh dj-h">Sign Up<br>to AfroCue.</h2>
-      <p class="dj-body">If you're a DJ, manager, event executive, brand manager, creative, or anyone operating in Nigeria's nightlife and dance music scene — amapiano, afrohouse, raves, or beyond — sign up to stay connected with AfroCue.</p>
-      <a href="dj-signup.html" class="btn btn-white">Sign Up</a>
-    </div>
-    <div class="dj-features">
-      <div class="dj-feat">
-        <span class="dj-feat-num">01</span>
-        <div>
-          <div class="dj-feat-title">Culture Newsletter</div>
-          <div class="dj-feat-desc">Get exclusive updates on DJs, parties, and what's moving in nightlife culture.</div>
+<!-- SIGNUP MODAL -->
+<div class="signup-modal-wrap" id="signupModal">
+  <div class="signup-modal">
+    <button class="signup-modal-close" onclick="closeSignupModal()">&#x2715;</button>
+    <div class="label" style="margin-bottom:12px;">Join AfroCue</div>
+    <h2 class="yh" style="font-size: clamp(36px, 5vw, 56px); margin-bottom: 20px; line-height:0.9;">Sign up<br>to AfroCue.</h2>
+    <p style="font-size:14px; font-weight:300; color:rgba(240,237,232,0.55); margin-bottom:28px; line-height:1.75;">Tell us who you are. We'll reach out and keep you connected to what's happening.</p>
+    <form class="signup-modal-form" onsubmit="handleSignup(event)">
+      <div class="signup-row">
+        <div class="signup-field">
+          <label>Name</label>
+          <input type="text" name="su_name" placeholder="Your name" required/>
+        </div>
+        <div class="signup-field">
+          <label>Email</label>
+          <input type="email" name="su_email" placeholder="your@email.com" required/>
         </div>
       </div>
-      <div class="dj-feat">
-        <span class="dj-feat-num">02</span>
-        <div>
-          <div class="dj-feat-title">Brand Connections</div>
-          <div class="dj-feat-desc">We connect DJs and creatives with brands and events looking for the right talent.</div>
+      <div class="signup-field">
+        <label>What do you do?</label>
+        <select name="su_role">
+          <option value="" disabled selected>Select your role</option>
+          <option>DJ</option>
+          <option>Manager</option>
+          <option>Event Executive</option>
+          <option>Brand Manager</option>
+          <option>Creative / Content</option>
+          <option>Journalist / Media</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="signup-field">
+        <label>Instagram — optional</label>
+        <div style="position:relative;">
+          <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--grey);font-size:14px;pointer-events:none;">@</span>
+          <input type="text" name="su_ig" placeholder="yourhandle" style="padding-left:30px;"/>
         </div>
       </div>
-      <div class="dj-feat">
-        <span class="dj-feat-num">03</span>
-        <div>
-          <div class="dj-feat-title">Event &amp; Festival Culture</div>
-          <div class="dj-feat-desc">Be the first to know about events, open decks, raves, and festival opportunities.</div>
-        </div>
-      </div>
-      <div class="dj-feat">
-        <span class="dj-feat-num">04</span>
-        <div>
-          <div class="dj-feat-title">Spotlight Opportunities</div>
-          <div class="dj-feat-desc">Get featured in Weekly Top 5, Set Moments, and across AfroCue's platforms.</div>
-        </div>
-      </div>
+      <button type="submit" class="btn btn-yellow" style="width:100%;padding:16px;font-size:13px;margin-top:8px;">Sign Up</button>
+      <p style="font-size:11px;color:var(--grey);text-align:center;margin-top:10px;">By signing up you agree to be contacted by AfroCue.</p>
+    </form>
+    <div class="signup-success" id="signupSuccess" style="display:none;text-align:center;padding:32px 0;">
+      <div class="yh" style="font-size:clamp(36px,5vw,52px);margin-bottom:12px;">You're in.</div>
+      <p style="font-size:14px;font-weight:300;color:rgba(240,237,232,0.55);">We'll be in touch.</p>
     </div>
   </div>
-</section>
+</div>
 
 <!-- GET FEATURED -->
 <section id="advertise">
@@ -666,8 +721,8 @@
     </div>
   </div>
   <div class="adv-cta">
-    <a href="/cdn-cgi/l/email-protection#2940474f4669484f5b464a5c4c07515053" class="btn btn-white">Get In Touch</a>
-    <p class="adv-email"><a href="/cdn-cgi/l/email-protection#c0a9aea6af80a1a6b2afa3b5a5eeb8b9ba"><span class="__cf_email__" data-cfemail="8ce5e2eae3ccedeafee3eff9e9a2f4f5f6">[email&#160;protected]</span></a></p>
+    <a href="mailto:info@afrocue.xyz" class="btn btn-white">Get In Touch</a>
+    <p class="adv-email"><a href="mailto:info@afrocue.xyz">info@afrocue.xyz</a></p>
   </div>
 </section>
 
@@ -793,7 +848,7 @@
     <a href="dj-signup.html">DJ Signup</a>
     <a href="#advertise">Get Featured</a>
   </div>
-  <div class="footer-email"><a href="/cdn-cgi/l/email-protection#5e373038311e3f382c313d2b3b70262724"><span class="__cf_email__" data-cfemail="bdd4d3dbd2fddcdbcfd2dec8d893c5c4c7">[email&#160;protected]</span></a></div>
+  <div class="footer-email"><a href="/cdn-cgi/l/email-protection#7f161119103f1e190d101c0a1a51070605"><span class="__cf_email__" data-cfemail="fc95929a93bc9d9a8e939f8999d2848586">[email&#160;protected]</span></a></div>
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
@@ -808,15 +863,32 @@
 
   /* content slider */
   let cur = 0;
-  const slides = document.querySelectorAll(".slide");
-  const contentBg = document.getElementById("contentBg");
+  const slides = document.querySelectorAll('.slide');
+  const contentBg = document.getElementById('contentBg');
 
-  function updateBg(index) {
-    const img = slides[index].dataset.img;
+  function updateBg(idx) {
+    const img = slides[idx].dataset.img;
     if (!img || !contentBg) return;
     contentBg.style.backgroundImage = "url('" + img + "')";
-    contentBg.classList.remove("loaded");
-    requestAnimationFrame(() => requestAnimationFrame(() => contentBg.classList.add("loaded")));
+    contentBg.classList.remove('loaded');
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        contentBg.classList.add('loaded');
+      });
+    });
   }
 
- 
+  function goTo(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    updateBg(cur);
+    clearInterval(timer);
+    timer = setInterval(function() { goTo(cur + 1); }, 5000);
+  }
+
+  function nextSlide() { goTo(cur + 1); }
+  function prevSlide() { goTo(cur - 1); }
+
+  var timer = setInterval(function() { goTo(cur + 1); }, 5000);
+  updateBg(0
