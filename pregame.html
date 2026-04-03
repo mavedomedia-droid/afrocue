@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pregame with AfroCue — Ride Like Royalty</title>
-  <meta name="description" content="On select weekends, a few partygoers get to ride to the hottest events in a premium ride — music, pregame drinks, and an experience, sponsored by Onburd."/>
+  <title>Pregame with AfroCue — The Ride is Part of the Night</title>
+  <meta name="description" content="The ride is part of the night. AfroCue picks a few partygoers and takes them to the hottest events in a premium ride — music, drinks, good company."/>
 
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -16,16 +16,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    @font-face { font-family: 'Aesthet Nova'; src: url('fonts/fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
-    @font-face { font-family: 'Aesthet Nova'; src: url('fonts/fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
-    @font-face { font-family: 'Aesthet Nova'; src: url('fonts/fonnts.com-Aesthet-Nova-.otf') format('opentype'); font-weight: 400; }
-    @font-face { font-family: 'Aesthet Nova'; src: url('fonts/fonnts.com-Aesthet-Nova-Light.otf') format('opentype'); font-weight: 300; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-.otf') format('opentype'); font-weight: 400; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Light.otf') format('opentype'); font-weight: 300; }
 
     :root {
-      --black:  #0a0a0a; --dark: #111111; --dark2: #1a1a1a;
-      --mid: #2e2e2e; --grey: #555; --silver: #999;
-      --off: #d4d4d0; --white: #f0ede8; --yellow: #C8E000; --pink: #FF3DCC;
-      --yts: 2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.06);
+      --black:  #0a0a0a;
+      --dark:   #111111;
+      --dark2:  #1a1a1a;
+      --mid:    #2e2e2e;
+      --grey:   #555;
+      --silver: #999;
+      --off:    #d4d4d0;
+      --white:  #f0ede8;
+      --yellow: #C8E000;
+      --pink:   #FF3DCC;
+      --yts:    2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.06);
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -34,7 +41,13 @@
     .yh { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; color: var(--yellow); text-shadow: var(--yts); line-height: 0.92; }
 
     /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 900; display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; background: rgba(10,10,10,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(10,10,10,0.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
     .nav-logo { display: flex; align-items: center; text-decoration: none; }
     .nav-logo img { height: 38px; width: auto; display: block; }
     .nav-logo-fallback { display: none; font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 16px; color: var(--yellow); letter-spacing: 0.08em; }
@@ -42,28 +55,71 @@
     .nav-back::before { content: '←'; font-size: 14px; }
     .nav-back:hover { color: var(--white); }
 
-    /* HERO */
-    .hero { min-height: 100vh; position: relative; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 48px 80px; overflow: hidden; }
-    .hero-img-slot { position: absolute; top: 0; right: 0; bottom: 0; width: 42%; max-width: 520px; overflow: hidden; z-index: 0; }
-    .hero-img-slot img { width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0.6; display: block; }
-    .hero-img-slot::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(10,10,10,1) 0%, rgba(10,10,10,0.4) 50%, transparent 100%); }
-    .hero-texture { position: absolute; inset: 0; z-index: 1; background-image: url('texture.jpg'); background-size: cover; background-position: center; opacity: 0.3; pointer-events: none; }
-    .hero-overlay { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.55) 45%, rgba(10,10,10,0.15) 100%); }
-    .hero-content { position: relative; z-index: 3; max-width: 680px; }
-    .hero-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+    /* HERO — mirrors index.html layout */
+    .hero {
+      min-height: 100vh; position: relative;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      padding: 0 48px 80px; overflow: hidden;
+    }
+
+    /* pregame_header.jpg fills right side on desktop */
+    /* Save as: pregame_header.jpg — 800×1100px portrait */
+    .hero-img-slot {
+      position: absolute; top: 0; right: 0; bottom: 0;
+      width: 42%; max-width: 520px; overflow: hidden; z-index: 0;
+    }
+    .hero-img-slot img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center;
+      opacity: 0.55;
+    }
+    .hero-img-slot::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(10,10,10,0.9) 0%, transparent 40%);
+    }
+
+    /* texture at 30% on top */
+    .hero-texture {
+      position: absolute; inset: 0; z-index: 1;
+      background-image: url('texture.jpg');
+      background-size: cover; background-position: center;
+      opacity: 0.3; pointer-events: none;
+    }
+
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      background: linear-gradient(to top,
+        rgba(10,10,10,1) 0%,
+        rgba(10,10,10,0.55) 45%,
+        rgba(10,10,10,0.15) 100%);
+    }
+
+    .hero-content { position: relative; z-index: 3; max-width: 720px; width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; }
+    .hero-eyebrow { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 20px; }
     .hero-eyebrow-line { width: 36px; height: 1px; background: var(--silver); flex-shrink: 0; }
     .hero-eyebrow span { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); }
-    .hero h1 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(60px, 10vw, 148px); line-height: 0.9; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 28px; word-break: keep-all; }
-    .hero h1 .outline { -webkit-text-stroke: 1.5px var(--yellow); color: transparent; text-shadow: none; }
-    .hero-bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 28px; flex-wrap: wrap; }
-    .hero-desc { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.6); max-width: 420px; }
+
+    .hero h1 {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: clamp(60px, 10vw, 148px);
+      line-height: 0.9; color: var(--yellow);
+      text-shadow: var(--yts); margin-bottom: 28px;
+      word-break: keep-all;
+    }
+    .hero h1 .outline {
+      -webkit-text-stroke: 1.5px var(--yellow);
+      color: transparent; text-shadow: none; display: block;
+    }
+
+    .hero-bottom { display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center; width: 100%; }
+    .hero-desc { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.6); max-width: 480px; margin-bottom: 0; text-align: center; }
     .hero-desc strong { color: var(--white); font-weight: 500; }
-    .hero-actions { display: flex; gap: 12px; align-items: center; flex-shrink: 0; }
+    .hero-actions { display: flex; gap: 12px; align-items: center; justify-content: center; flex-shrink: 0; }
 
     /* BUTTONS */
-    .btn { display: inline-block; font-family: 'Figtree', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 13px 26px; border-radius: 2px; text-decoration: none; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+    .btn { display: inline-block; font-family: 'Figtree', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 14px 28px; border-radius: 2px; text-decoration: none; border: none; cursor: pointer; transition: all 0.2s; }
     .btn-yellow { color: var(--black); background: var(--yellow); }
-    .btn-yellow:hover { opacity: 0.88; }
+    .btn-yellow:hover { opacity: 0.88; transform: translateY(-1px); }
     .btn-white { color: var(--black); background: var(--white); }
     .btn-white:hover { background: var(--off); }
     .btn-ghost { color: var(--silver); background: transparent; border: 1px solid rgba(255,255,255,0.18); font-weight: 500; }
@@ -99,7 +155,7 @@
     .step-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--yellow); margin-bottom: 18px; }
     .step p { font-size: 13px; font-weight: 300; line-height: 1.75; color: rgba(240,237,232,0.6); position: relative; z-index: 1; }
 
-    /* FORM */
+    /* FORM SECTION */
     #apply { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
     .form-layout { display: grid; grid-template-columns: 5fr 6fr; gap: 80px; align-items: start; max-width: 1200px; }
     .form-left { position: sticky; top: 100px; }
@@ -109,13 +165,16 @@
     .form-note p { font-size: 12px; font-weight: 400; line-height: 1.7; color: rgba(240,237,232,0.5); margin: 0; }
     .form-note strong { color: var(--yellow); font-weight: 500; }
 
+    /* FORM FIELDS */
     .pregame-form { display: flex; flex-direction: column; gap: 4px; }
     .fsec { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--yellow); padding: 18px 0 10px; }
     .fdivider { height: 1px; background: rgba(255,255,255,0.06); margin: 8px 0; }
     .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
     .field { display: flex; flex-direction: column; gap: 6px; }
     .field label { font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--silver); }
-    .field input, .field select {
+
+    .field input,
+    .field select {
       background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09);
       border-radius: 2px; padding: 13px 15px; color: var(--white);
       font-family: 'Figtree', sans-serif; font-size: 14px;
@@ -130,9 +189,13 @@
     .field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 13px center; padding-right: 34px; cursor: pointer; }
     .field select option { background: #1a1a1a; color: var(--white); }
 
-    /* party type pills */
+    /* party type multi-select pills */
     .pill-select { display: flex; flex-wrap: wrap; gap: 6px; }
-    .pill-opt { padding: 8px 14px; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; font-size: 12px; color: var(--silver); cursor: pointer; transition: all 0.18s; user-select: none; }
+    .pill-opt {
+      padding: 8px 14px; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px;
+      font-size: 12px; font-weight: 400; color: var(--silver); cursor: pointer;
+      transition: all 0.18s; user-select: none;
+    }
     .pill-opt.selected { background: var(--yellow); border-color: var(--yellow); color: var(--black); font-weight: 600; }
     .pill-opt:hover:not(.selected) { border-color: rgba(255,255,255,0.3); color: var(--white); }
 
@@ -146,7 +209,7 @@
     .newsletter-check { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 2px; cursor: pointer; user-select: none; transition: border-color 0.2s; }
     .newsletter-check:hover { border-color: rgba(200,224,0,0.2); }
     .newsletter-check input[type="checkbox"] { display: none; }
-    .check-box { width: 18px; height: 18px; border: 1px solid rgba(200,224,0,0.3); border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.18s; background: rgba(200,224,0,0.15); }
+    .check-box { width: 18px; height: 18px; border: 1px solid rgba(255,255,255,0.2); border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.18s; background: rgba(200,224,0,0.15); border-color: rgba(200,224,0,0.3); }
     .check-box.checked { background: var(--yellow); border-color: var(--yellow); }
     .check-box svg { display: none; }
     .check-box.checked svg { display: block; }
@@ -157,29 +220,43 @@
     .submit-wrap button { width: 100%; padding: 16px; font-size: 13px; letter-spacing: 0.1em; }
     .form-disclaimer { font-size: 10px; color: var(--grey); text-align: center; margin-top: 10px; line-height: 1.6; }
 
-    /* SUCCESS OVERLAY */
-    .success-overlay { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(10,10,10,0.96); backdrop-filter: blur(12px); align-items: center; justify-content: center; padding: 24px; }
+    /* SUCCESS SCREEN (modal overlay) */
+    .success-overlay {
+      display: none; position: fixed; inset: 0; z-index: 9999;
+      background: rgba(10,10,10,0.96); backdrop-filter: blur(12px);
+      align-items: center; justify-content: center; padding: 24px;
+    }
     .success-overlay.show { display: flex; }
-    .success-card { background: var(--dark); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; max-width: 520px; width: 100%; padding: 52px 44px; text-align: center; }
+    .success-card {
+      background: var(--dark); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px; max-width: 520px; width: 100%; padding: 52px 44px;
+      text-align: center; position: relative;
+    }
+
     .success-tick { width: 52px; height: 52px; border-radius: 50%; background: rgba(200,224,0,0.1); border: 1px solid rgba(200,224,0,0.2); display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; }
     .success-tick svg { width: 22px; height: 22px; }
+
     .success-card h2 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(40px, 7vw, 64px); color: var(--yellow); text-shadow: var(--yts); line-height: 0.9; margin-bottom: 16px; }
     .success-card .success-sub { font-size: 14px; font-weight: 300; line-height: 1.75; color: rgba(240,237,232,0.6); margin-bottom: 36px; }
 
-    /* Onburd sponsor block */
-    .onburd-block { background: rgba(200,224,0,0.05); border: 1px solid rgba(200,224,0,0.18); border-radius: 6px; padding: 28px 24px; margin-bottom: 28px; text-align: left; }
-    .onburd-block-top { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
-    .onburd-logo-box { width: 48px; height: 48px; background: var(--mid); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
-    .onburd-logo-box img { width: 100%; height: 100%; object-fit: contain; }
-    .onburd-logo-placeholder { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 11px; color: var(--yellow); letter-spacing: 0.04em; }
-    .onburd-block-title { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 20px; color: var(--white); }
-    .onburd-block-sub { font-size: 11px; color: var(--grey); margin-top: 2px; }
-    .onburd-block p { font-size: 12px; font-weight: 300; line-height: 1.7; color: rgba(240,237,232,0.55); margin-bottom: 16px; }
-    .onburd-steps { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
-    .onburd-step { display: flex; align-items: center; gap: 10px; font-size: 12px; color: rgba(240,237,232,0.65); }
-    .onburd-step-num { width: 20px; height: 20px; border-radius: 50%; background: var(--yellow); color: var(--black); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .onburd-cta { width: 100%; padding: 13px; background: var(--yellow); color: var(--black); border: none; border-radius: 2px; font-family: 'Figtree', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: opacity 0.2s; text-decoration: none; display: block; text-align: center; }
-    .onburd-cta:hover { opacity: 0.88; }
+    /* Onboard sponsor block inside success */
+    .onboard-block {
+      background: rgba(200,224,0,0.05); border: 1px solid rgba(200,224,0,0.18);
+      border-radius: 6px; padding: 28px 24px; margin-bottom: 28px; text-align: left;
+    }
+    .onboard-block-top { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+    .onboard-logo-box { width: 48px; height: 48px; background: var(--mid); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+    .onboard-logo-box img { width: 100%; height: 100%; object-fit: contain; }
+    .onboard-logo-placeholder { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 11px; color: var(--yellow); letter-spacing: 0.04em; }
+    .onboard-block-title { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 20px; color: var(--white); }
+    .onboard-block-sub { font-size: 11px; color: var(--grey); margin-top: 2px; }
+    .onboard-block p { font-size: 12px; font-weight: 300; line-height: 1.7; color: rgba(240,237,232,0.55); margin-bottom: 16px; }
+    .onboard-steps { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+    .onboard-step { display: flex; align-items: center; gap: 10px; font-size: 12px; color: rgba(240,237,232,0.65); font-weight: 400; }
+    .onboard-step-num { width: 20px; height: 20px; border-radius: 50%; background: var(--yellow); color: var(--black); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .onboard-cta { width: 100%; padding: 13px; background: var(--yellow); color: var(--black); border: none; border-radius: 2px; font-family: 'Figtree', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: opacity 0.2s; text-decoration: none; display: block; text-align: center; }
+    .onboard-cta:hover { opacity: 0.88; }
+
     .success-back { font-size: 11px; color: var(--grey); text-decoration: none; transition: color 0.2s; display: inline-block; margin-top: 4px; }
     .success-back:hover { color: var(--white); }
 
@@ -205,9 +282,8 @@
 
     /* FOOTER */
     footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 36px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; background: var(--dark); }
-    .footer-logo img { height: 36px; width: auto; display: block; }
-    .footer-logo-fallback { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 18px; color: var(--yellow); }
-    .footer-tagline { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); margin-top: 4px; }
+    .footer-brand h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 18px; color: var(--yellow); }
+    .footer-brand p { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); margin-top: 3px; }
     .footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
     .footer-links a { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: var(--white); }
@@ -215,18 +291,30 @@
     /* MOBILE */
     @media (max-width: 768px) {
       nav { padding: 14px 20px; }
+
+      /* mobile hero — full bleed image */
       .hero { padding: 0 20px 64px; min-height: 100svh; justify-content: center; }
-      .hero-img-slot { display: block; position: absolute; inset: 0; width: 100%; max-width: 100%; }
+      .hero-img-slot {
+        display: block; position: absolute;
+        inset: 0; width: 100%; max-width: 100%;
+      }
       .hero-img-slot img { opacity: 1; }
       .hero-img-slot::after { display: none; }
       .hero-texture { opacity: 0.3; }
-      .hero-overlay { background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.75) 40%, rgba(10,10,10,0.35) 70%, rgba(10,10,10,0.1) 100%); }
-      .hero-content { max-width: 100%; }
-      .hero h1 { font-size: clamp(44px, 13vw, 72px); }
+      .hero-overlay {
+        background: linear-gradient(to top,
+          rgba(10,10,10,0.96) 0%,
+          rgba(10,10,10,0.7) 40%,
+          rgba(10,10,10,0.35) 75%,
+          rgba(10,10,10,0.1) 100%);
+      }
+      .hero-content { max-width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; }
+      .hero-eyebrow { justify-content: center; }
+      .hero h1 { font-size: clamp(44px, 13vw, 72px); text-align: center; }
       .hero h1 .outline { -webkit-text-stroke-width: 1px; }
-      .hero-bottom { flex-direction: column; align-items: flex-start; gap: 20px; }
-      .hero-desc { max-width: 100%; font-size: 14px; }
-      .hero-actions { flex-wrap: wrap; gap: 10px; width: 100%; }
+      .hero-bottom { flex-direction: column; align-items: center; gap: 20px; text-align: center; width: 100%; }
+      .hero-desc { max-width: 100%; font-size: 14px; text-align: center; }
+      .hero-actions { flex-wrap: wrap; gap: 10px; justify-content: center; width: 100%; }
       .hero-actions .btn { flex: 1; min-width: 140px; text-align: center; }
       section { padding: 64px 20px; }
       #parties { padding: 52px 0; }
@@ -260,26 +348,30 @@
       </svg>
     </div>
     <h2>You're on<br>the list.</h2>
-    <p class="success-sub">If selected for Pregame, we'll reach out before the event. One more step to improve your chances.</p>
-    <div class="onburd-block">
-      <div class="onburd-block-top">
-        <div class="onburd-logo-box">
-          <img src="onburd_logo.png" alt="Onburd" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
-          <span class="onburd-logo-placeholder" style="display:none;">OB</span>
+    <p class="success-sub">If selected for Pregame, we'll reach out before the event. In the meantime — one more step to improve your chances.</p>
+
+    <div class="onboard-block">
+      <div class="onboard-block-top">
+        <div class="onboard-logo-box">
+          <img src="onboard_logo.png" alt="ONBURD"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
+          <span class="onboard-logo-placeholder" style="display:none;">OB</span>
         </div>
         <div>
-          <div class="onburd-block-title">Onburd</div>
-          <div class="onburd-block-sub">Powered by Onburd &amp; Wakanow</div>
+          <div class="onboard-block-title">ONBURD</div>
+          <div class="onboard-block-sub">Powered by ONBURD &amp; Wakanow</div>
         </div>
       </div>
-      <p>Pregame with AfroCue is powered by Onburd. To be fully considered for selection, sign up on Onburd using the same email you just used.</p>
-      <div class="onburd-steps">
-        <div class="onburd-step"><span class="onburd-step-num">1</span>Download the Onburd app</div>
-        <div class="onburd-step"><span class="onburd-step-num">2</span>Sign up with the same email you just used</div>
-        <div class="onburd-step"><span class="onburd-step-num">3</span>You're set — we'll be in touch</div>
+      <p>Pregame with AfroCue is powered by ONBURD. To be fully considered for selection, you need to be signed up on ONBURD using the same email you just used.</p>
+      <div class="onboard-steps">
+        <div class="onboard-step"><span class="onboard-step-num">1</span>Download the ONBURD app</div>
+        <div class="onboard-step"><span class="onboard-step-num">2</span>Sign up with the same email you just used</div>
+        <div class="onboard-step"><span class="onboard-step-num">3</span>You're set — we'll be in touch</div>
       </div>
-      <a href="#" class="onburd-cta" target="_blank">Download Onburd Now</a>
+      <!-- Replace # with actual Onboard app store / download link -->
+      <a href="#" class="onboard-cta" target="_blank">Download ONBURD Now</a>
     </div>
+
     <a href="index.html" class="success-back">← Back to AfroCue</a>
   </div>
 </div>
@@ -287,19 +379,22 @@
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="index.html">
-    <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none'; document.querySelector('.nav-logo-fallback').style.display='block'"/>
+    <img src="logo_afrocue.png" alt="AfroCue"
+      onerror="this.style.display='none'; document.querySelector('.nav-logo-fallback').style.display='block'"/>
     <span class="nav-logo-fallback">afro.cue</span>
   </a>
   <a href="index.html" class="nav-back">Back to AfroCue</a>
 </nav>
 
 <!-- HERO -->
+<!-- pregame_header.jpg — 800×1100px portrait, drop in same folder -->
 <div class="hero">
   <div class="hero-img-slot">
-    <img src="pregame_header.jpg" alt="Pregame with AfroCue — premium ride interior"/>
+    <img src="pregame_header.jpg" alt="Pregame with AfroCue"/>
   </div>
   <div class="hero-texture"></div>
   <div class="hero-overlay"></div>
+
   <div class="hero-content">
     <div class="hero-eyebrow">
       <div class="hero-eyebrow-line"></div>
@@ -307,7 +402,7 @@
     </div>
     <h1>Ride like<br><span class="outline">Royalty.</span></h1>
     <div class="hero-bottom">
-      <p class="hero-desc">On select weekends, a few partygoers get to ride to the hottest events in a premium ride — with music, pregame drinks, and an experience, <strong>sponsored by Onburd.</strong></p>
+      <p class="hero-desc">On select weekends, a few partygoers get to ride to the hottest events in a premium ride — with music, pregame drinks, and an experience, <strong>sponsored by ONBURD.</strong></p>
       <div class="hero-actions">
         <a href="#apply" class="btn btn-yellow">Apply for Pregame</a>
         <a href="#how" class="btn btn-ghost">How it works</a>
@@ -331,6 +426,7 @@
       <div class="party-chip"><span class="party-icon">🎵</span><span class="party-name">Amapiano District</span></div>
       <div class="party-chip"><span class="party-icon">🕺</span><span class="party-name">DanceEko</span></div>
       <div class="party-chip special"><span class="party-icon">🎉</span><span class="party-name">Other Selected Events</span></div>
+      <!-- duplicate -->
       <div class="party-chip"><span class="party-icon">🎶</span><span class="party-name">South Social</span></div>
       <div class="party-chip"><span class="party-icon">🩺</span><span class="party-name">Group Therapy</span></div>
       <div class="party-chip"><span class="party-icon">🏠</span><span class="party-name">Element House</span></div>
@@ -362,25 +458,43 @@
       <h2 class="yh form-left-h">Apply for<br>Pregame.</h2>
       <p>Fill in your details. We'll reach out before the event if you're selected. No ticket, no ride — make sure you've got yours first.</p>
       <div class="form-note">
-        <p><strong>Powered by Onburd &amp; Wakanow.</strong> After applying, you'll be prompted to download Onburd. Sign up with the same email to be fully considered.</p>
+        <p><strong>Powered by ONBURD &amp; Wakanow.</strong> After applying, you'll be prompted to download ONBURD. Sign up with the same email to be fully considered.</p>
       </div>
     </div>
 
     <form class="pregame-form" id="pregameForm" onsubmit="handleSubmit(event)" novalidate>
+
+      <!-- Personal -->
       <div class="fsec">You</div>
       <div class="frow">
-        <div class="field"><label>Name / Nickname</label><input type="text" name="name" placeholder="What do people call you?" required/></div>
-        <div class="field"><label>Email</label><input type="email" name="email" placeholder="your@email.com" required/></div>
+        <div class="field">
+          <label>Name / Nickname</label>
+          <input type="text" name="name" placeholder="What do people call you?" required/>
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="your@email.com" required/>
+        </div>
       </div>
       <div class="frow">
-        <div class="field"><label>Phone — optional</label><input type="tel" name="phone" placeholder="+234 000 000 0000"/></div>
-        <div class="field"><label>Instagram</label><div class="prefix-wrap"><input type="text" name="instagram" placeholder="yourhandle"/></div></div>
+        <div class="field">
+          <label>Phone — optional</label>
+          <input type="tel" name="phone" placeholder="+234 000 000 0000"/>
+        </div>
+        <div class="field">
+          <label>Instagram</label>
+          <div class="prefix-wrap">
+            <input type="text" name="instagram" placeholder="yourhandle"/>
+          </div>
+        </div>
       </div>
 
       <div class="fdivider"></div>
+
+      <!-- Party type -->
       <div class="fsec">Your Scene</div>
       <div class="field">
-        <label>What kind of parties do you go for?</label>
+        <label>What kind of parties do you go for? (pick all that apply)</label>
         <div class="pill-select" id="partyTypePills">
           <span class="pill-opt" onclick="togglePill(this)">Raves</span>
           <span class="pill-opt" onclick="togglePill(this)">Afrobeats Parties</span>
@@ -394,17 +508,27 @@
       </div>
 
       <div class="fdivider"></div>
+
+      <!-- Pickup -->
       <div class="fsec">Pickup</div>
       <div class="field">
         <label>Your pickup area</label>
         <select name="area" id="areaSelect" required>
           <option value="" disabled selected>Select your area</option>
-          <option>Lekki Phase 1</option><option>Ikate</option><option>Ajah</option>
-          <option>Victoria Island</option><option>Ikoyi</option><option>Yaba</option>
-          <option>Surulere</option><option>Ijesha</option>
-          <option>Shomolu (Charlie Boy)</option><option>Ikeja</option>
-          <option>Maryland</option><option>Magodo</option>
-          <option>Gbagada</option><option>Festac</option>
+          <option>Lekki Phase 1</option>
+          <option>Ikate</option>
+          <option>Ajah</option>
+          <option>Victoria Island</option>
+          <option>Ikoyi</option>
+          <option>Yaba</option>
+          <option>Surulere</option>
+          <option>Ijesha</option>
+          <option>Shomolu (Charlie Boy)</option>
+          <option>Ikeja</option>
+          <option>Maryland</option>
+          <option>Magodo</option>
+          <option>Gbagada</option>
+          <option>Festac</option>
           <option value="Other">Other</option>
         </select>
       </div>
@@ -414,6 +538,8 @@
       </div>
 
       <div class="fdivider"></div>
+
+      <!-- Plus one -->
       <div class="fsec">Plus One</div>
       <div class="field">
         <label>If you had the chance, would you want a +1?</label>
@@ -425,6 +551,8 @@
       </div>
 
       <div class="fdivider"></div>
+
+      <!-- Newsletter — pre-checked -->
       <label class="newsletter-check" onclick="toggleNewsletter(this)">
         <input type="checkbox" name="newsletter" checked/>
         <div class="check-box checked" id="checkBox">
@@ -439,6 +567,7 @@
         <button type="submit" class="btn btn-yellow" id="submitBtn">Submit</button>
       </div>
       <p class="form-disclaimer">By applying you agree to be contacted by AfroCue regarding Pregame selections.</p>
+
     </form>
   </div>
 </section>
@@ -448,21 +577,23 @@
   <div class="powered-grid">
     <div class="powered-text">
       <div class="label">Partners</div>
-      <h2 class="yh powered-h">Powered by<br>Onburd &amp;<br>Wakanow.</h2>
-      <p>Onburd and Wakanow put not just events, but the entire experience in your hands — from flights and hotels to travel, rides, and experiences.</p>
+      <h2 class="yh powered-h">Powered by<br>ONBURD &amp;<br>Wakanow.</h2>
+      <p>ONBURD and Wakanow put not just events, but the entire experience in your hands — from flights and hotels to travel, rides, and experiences.</p>
       <p>To be considered for Pregame with AfroCue:</p>
       <ul>
-        <li>Download the Onburd app</li>
+        <li>Download the ONBURD app</li>
         <li>Sign up using the same email you used for AfroCue</li>
       </ul>
     </div>
     <div class="powered-logos">
       <div class="powered-logo-box">
-        <img src="onburd_logo.png" alt="Onburd" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"/>
-        <span class="powered-logo-placeholder" style="display:none;">Onburd</span>
+        <img src="onboard_logo.png" alt="ONBURD"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"/>
+        <span class="powered-logo-placeholder" style="display:none;">ONBURD</span>
       </div>
       <div class="powered-logo-box">
-        <img src="wakanow_logo.png" alt="Wakanow" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"/>
+        <img src="wakanow_logo.png" alt="Wakanow"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"/>
         <span class="powered-logo-placeholder" style="display:none;">Wakanow</span>
       </div>
     </div>
@@ -482,34 +613,42 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">
-    <a href="index.html">
-      <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"/>
-      <span class="footer-logo-fallback" style="display:none;">afro.cue</span>
+  <div class="footer-brand">
+    <a href="index.html" style="display:inline-flex;align-items:center;text-decoration:none;">
+      <img src="logo_afrocue.png" alt="AfroCue" style="height:36px;width:auto;display:block;"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+      <span style="display:none;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:18px;color:var(--yellow);">AfroCue</span>
     </a>
-    <p class="footer-tagline">Pregame with AfroCue</p>
+    <p>Pregame with AfroCue</p>
   </div>
   <div class="footer-links">
     <a href="index.html">Home</a>
     <a href="index.html#about">About</a>
-    <a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a>
+    <a href="/cdn-cgi/l/email-protection#dcbdbaaeb3bfa9b9b3b2b0b5b2b99cbbb1bdb5b0f2bfb3b1"><span class="__cf_email__" data-cfemail="462720342925332329282a2f282306212b272f2a6825292b">[email&#160;protected]</span></a>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  /* Area other field */
   document.getElementById('areaSelect').addEventListener('change', function() {
     document.getElementById('otherAreaField').style.display = this.value === 'Other' ? 'flex' : 'none';
   });
+
+  /* Yes/No toggle */
   function toggleBtn(btn, fieldId, value) {
     btn.parentElement.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById(fieldId).value = value;
   }
+
+  /* Party type pills */
   function togglePill(el) {
     el.classList.toggle('selected');
     const selected = [...document.querySelectorAll('#partyTypePills .pill-opt.selected')].map(p => p.textContent);
     document.getElementById('partyTypesVal').value = selected.join(', ');
   }
+
+  /* Newsletter checkbox */
   let newsletterChecked = true;
   function toggleNewsletter(label) {
     newsletterChecked = !newsletterChecked;
@@ -518,36 +657,53 @@
     label.querySelector('input').checked = newsletterChecked;
   }
 
-  /* Replace with your Apps Script URL */
+  /* Submit */
+  /*
+   * GOOGLE APPS SCRIPT SETUP:
+   * 1. Create a Google Sheet with these columns:
+   *    Timestamp | Name | Email | Phone | Instagram | Party Types | Area | Plus One | Newsletter
+   * 2. Extensions → Apps Script → paste the doPost script → Deploy as Web App
+   * 3. Replace YOUR_APPS_SCRIPT_URL_HERE below with the deployed URL
+   */
   const SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
 
   async function handleSubmit(e) {
     e.preventDefault();
     const form = e.target;
     const btn = document.getElementById('submitBtn');
-    if (!form.name.value.trim() || !form.email.value.trim()) { alert('Please fill in your name and email.'); return; }
-    btn.textContent = 'Submitting...'; btn.disabled = true;
-    const area = form.area.value === 'Other' ? (form.area_other ? form.area_other.value : 'Other') : form.area.value;
+
+    /* basic validation */
+    if (!form.name.value.trim() || !form.email.value.trim()) {
+      alert('Please fill in your name and email.');
+      return;
+    }
+
+    btn.textContent = 'Submitting...';
+    btn.disabled = true;
+
+    const area = form.area.value === 'Other'
+      ? (form.area_other ? form.area_other.value : 'Other')
+      : form.area.value;
+
     const data = {
-      timestamp: new Date().toISOString(),
-      name: form.name.value.trim(), email: form.email.value.trim(),
-      phone: form.phone.value.trim(),
-      instagram: '@' + form.instagram.value.replace('@','').trim(),
+      timestamp:   new Date().toISOString(),
+      name:        form.name.value.trim(),
+      email:       form.email.value.trim(),
+      phone:       form.phone.value.trim(),
+      instagram:   '@' + form.instagram.value.replace('@','').trim(),
       party_types: document.getElementById('partyTypesVal').value,
-      area, plusone: form.plusone.value || 'Not answered',
-      newsletter: newsletterChecked ? 'Yes' : 'No'
+      area:        area,
+      plusone:     form.plusone.value || 'Not answered',
+      newsletter:  newsletterChecked ? 'Yes' : 'No'
     };
+
     try {
       if (SCRIPT_URL !== 'YOUR_APPS_SCRIPT_URL_HERE') {
-        await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+        await fetch(SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
       }
-      document.getElementById('successOverlay').classList.add('show');
-      document.body.style.overflow = 'hidden';
-    } catch(err) {
-      btn.textContent = 'Submit'; btn.disabled = false;
-      alert('Something went wrong. Please try again.');
-    }
-  }
-</script>
-</body>
-</html>
+      document.getElementById('successOverlay').clas
