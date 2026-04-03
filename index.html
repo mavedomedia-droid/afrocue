@@ -175,13 +175,15 @@
 
     /* ── ABOUT ── */
     #about { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
-    .about-grid { display: grid; grid-template-columns: 5fr 4fr; gap: 80px; align-items: start; max-width: 1200px; }
-    .about-text-col { order: 1; }
-    .about-video-col { order: 2; }
-    .about-h { font-size: clamp(48px, 6.5vw, 92px); margin-bottom: 24px; }
+    /* Desktop: 2 col grid. Col1=top+bottom stacked. Col2=video spanning both rows */
+    .about-grid { display: grid; grid-template-columns: 5fr 4fr; grid-template-rows: auto auto; gap: 0 72px; align-items: start; max-width: 1200px; }
+    .about-top    { grid-column: 1; grid-row: 1; padding-bottom: 24px; }
+    .about-bottom { grid-column: 1; grid-row: 2; }
+    .about-video-col { grid-column: 2; grid-row: 1 / span 2; }
+    .about-h { font-size: clamp(48px, 6.5vw, 92px); margin-bottom: 0; }
     .about-h .dim { color: rgba(200,224,0,0.2); text-shadow: none; }
-    .about-body { font-size: 15px; font-weight: 300; line-height: 1.85; color: rgba(240,237,232,0.55); }
-    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.06); margin-top: 40px; }
+    .about-body { font-size: 15px; font-weight: 300; line-height: 1.85; color: rgba(240,237,232,0.55); margin-bottom: 32px; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.06); margin-top: 0; }
     .stat { background: var(--dark); padding: 24px 20px; }
     .stat-val { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 30px; color: var(--yellow); text-shadow: var(--yts); line-height: 1; margin-bottom: 4px; }
     .stat-key { font-size: 10px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); }
@@ -369,13 +371,13 @@
 
       section { padding: 64px 20px; }
 
-      .about-grid { grid-template-columns: 1fr; gap: 36px; }
-      .about-media-label { display: flex !important; }
-
-      .about-text-col { order: 1; display: flex; flex-direction: column; }
-      .about-video-col { order: 2; }
-      .about-stats { order: 3 !important; margin-top: 0; }
+      .about-grid { display: flex; flex-direction: column; }
+      .about-top { order: 1; margin-bottom: 20px; }
+      .about-video-col { order: 2; margin-bottom: 28px; }
+      .about-bottom { order: 3; }
       .about-video-wrap { aspect-ratio: 4/5; }
+
+
 
       .slide.active { grid-template-columns: 1fr; gap: 28px; }
       .slide-img-box { aspect-ratio: 4/5; width: 100%; max-width: 340px; margin: 0 auto; }
@@ -450,14 +452,33 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="about-grid">
-    <div class="about-text-col">
+
+    <!-- Top: label + title (order 1 always) -->
+    <div class="about-top">
       <div class="label">About AfroCue</div>
       <h2 class="yh about-h">Where<br><span class="dim">Culture</span><br>Lives.</h2>
+    </div>
+
+    <!-- Right col — video — desktop: col 2 row 1+2 / mobile: order 2 -->
+    <div class="about-video-col">
+      <div class="label" style="margin-bottom:14px;">Media</div>
+      <div class="about-video-wrap">
+        <video src="about_video.mp4" autoplay muted loop playsinline
+          onerror="this.style.display='none'">
+        </video>
+        <div class="about-video-fallback" id="videoFallback" style="display:none;">
+          <span class="img-label">about_video.mp4</span>
+          <span class="img-label" style="opacity:0.4;">1080 × 1350px</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom: body + stats (order 3 on mobile, col 1 row 2 on desktop) -->
+    <div class="about-bottom">
       <p class="about-body">
         AfroCue is our attempt to creatively document and advance the dance music culture and nightlife scene — spotlighting the DJs who power it, the raves and parties they play at, and the music that moves the dance floor. From amapiano and afrohouse to 3step and afrobeats, we champion Nigerian nightlife culture.
       </p>
-      <div class="about-media-label" style="order:2; display:none; font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--silver); padding-top:8px; display:flex; align-items:center; gap:10px;"><span style="width:18px;height:1px;background:var(--silver);flex-shrink:0;display:inline-block;"></span>Media</div>
-      <div class="about-stats" style="order:3;">
+      <div class="about-stats">
         <div class="stat"><div class="stat-val">DJs</div><div class="stat-key">We spotlight</div></div>
         <div class="stat"><div class="stat-val">Parties</div><div class="stat-key">We document</div></div>
         <div class="stat"><div class="stat-val">Music</div><div class="stat-key">We follow</div></div>
@@ -465,22 +486,6 @@
       </div>
     </div>
 
-    <!--
-      VIDEO: about_video.mp4 — 4:5 ratio (1080×1350px), H.264 MP4, no audio needed.
-      Falls back to about_editorial.jpg if video not present.
-    -->
-    </div>
-    <div class="about-video-col">
-    <div class="about-video-wrap">
-      <video src="about_video.mp4" autoplay muted loop playsinline
-        onerror="this.style.display='none'">
-      </video>
-      <div class="about-video-fallback" id="videoFallback" style="display:none;">
-        <span class="img-label">about_video.mp4</span>
-        <span class="img-label" style="opacity:0.4;">1080 × 1350px</span>
-      </div>
-    </div>
-    </div>
   </div>
 </section>
 
@@ -661,8 +666,8 @@
     </div>
   </div>
   <div class="adv-cta">
-    <a href="mailto:info@afrocue.xyz" class="btn btn-white">Get In Touch</a>
-    <p class="adv-email"><a href="mailto:info@afrocue.xyz">info@afrocue.xyz</a></p>
+    <a href="/cdn-cgi/l/email-protection#2940474f4669484f5b464a5c4c07515053" class="btn btn-white">Get In Touch</a>
+    <p class="adv-email"><a href="/cdn-cgi/l/email-protection#c0a9aea6af80a1a6b2afa3b5a5eeb8b9ba"><span class="__cf_email__" data-cfemail="8ce5e2eae3ccedeafee3eff9e9a2f4f5f6">[email&#160;protected]</span></a></p>
   </div>
 </section>
 
@@ -788,10 +793,10 @@
     <a href="dj-signup.html">DJ Signup</a>
     <a href="#advertise">Get Featured</a>
   </div>
-  <div class="footer-email"><a href="mailto:info@afrocue.xyz">info@afrocue.xyz</a></div>
+  <div class="footer-email"><a href="/cdn-cgi/l/email-protection#5e373038311e3f382c313d2b3b70262724"><span class="__cf_email__" data-cfemail="bdd4d3dbd2fddcdbcfd2dec8d893c5c4c7">[email&#160;protected]</span></a></div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   /* video fallback */
   const vid = document.querySelector('.about-video-wrap video');
   if (vid) {
@@ -814,18 +819,4 @@
     requestAnimationFrame(() => requestAnimationFrame(() => contentBg.classList.add("loaded")));
   }
 
-  let timer = setInterval(() => nextSlide(), 5000);
-  function goTo(n) {
-    slides[cur].classList.remove("active");
-    cur = (n + slides.length) % slides.length;
-    slides[cur].classList.add("active");
-    updateBg(cur);
-    clearInterval(timer);
-    timer = setInterval(() => nextSlide(), 5000);
-  }
-  function nextSlide() { goTo(cur + 1); }
-  function prevSlide() { goTo(cur - 1); }
-  updateBg(0);
-
-
-
+ 
