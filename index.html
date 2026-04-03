@@ -55,20 +55,6 @@
     .yh { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; color: var(--yellow); text-shadow: var(--yts); line-height: 0.92; }
 
 
-    /* nav scroll hide/show */
-    nav { transition: background 0.3s, transform 0.3s; }
-    nav.nav-hidden { transform: translateY(-100%); }
-
-    /* hero logo — visible before scroll */
-    .hero-logo {
-      position: absolute; top: 24px; left: 48px; z-index: 10;
-      display: flex; align-items: center; text-decoration: none;
-      opacity: 1; transition: opacity 0.4s;
-    }
-    .hero-logo img { height: 40px; width: auto; display: block; }
-    .hero-logo-fallback { display: none; font-family: "Aesthet Nova", sans-serif; font-weight: 900; font-size: 17px; color: var(--yellow); letter-spacing: 0.08em; }
-    .hero-logo.hidden { opacity: 0; pointer-events: none; }
-
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 900;
@@ -353,13 +339,13 @@
       .nav-links { display: none; }
 
       /* MOBILE HERO — full bleed DJ photo */
-      .hero { padding: 80px 20px 56px; min-height: 0; height: auto; justify-content: center; align-items: center; }
+      .hero { padding: 0 20px; min-height: 0; height: 70vh; justify-content: center; align-items: center; }
 
       .hero-img-slot {
         display: block; position: absolute;
         inset: 0; width: 100%; max-width: 100%; height: 100%;
       }
-      .hero-img-slot img { opacity: 0.75; object-position: center 40%; width: 100%; height: 100%; object-fit: cover; }
+      .hero-img-slot img { opacity: 0.75; object-position: center 30%; width: 100%; height: 100%; object-fit: cover; }
       .hero-img-slot::after { display: none; }
 
       .hero-texture { opacity: 0.3; }
@@ -374,7 +360,7 @@
 
       .hero-img-credit { display: none; }
 
-      .hero-content { max-width: 100%; padding-bottom: 30vh; }
+      .hero-content { max-width: 100%; padding-bottom: 0; }
       .hero h1 { font-size: clamp(48px, 13vw, 72px); line-height: 0.9; }
       .hero h1 .outline { -webkit-text-stroke-width: 1px; }
       .hero-desc { max-width: 100%; font-size: 14px; }
@@ -384,6 +370,7 @@
       section { padding: 64px 20px; }
 
       .about-grid { grid-template-columns: 1fr; gap: 36px; }
+      .about-media-label { display: flex !important; }
 
       .about-text-col { order: 1; display: flex; flex-direction: column; }
       .about-video-col { order: 2; }
@@ -430,11 +417,6 @@
 
 <!-- HERO -->
 <div class="hero">
-  <a class="hero-logo" href="#" id="heroLogo">
-    <img src="logo_afrocue.png" alt="AfroCue"
-      onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"/>
-    <span class="hero-logo-fallback">afro.cue</span>
-  </a>
   <!-- hero_dj.jpg — Aniko at Rampa Lagos — 800×1100px -->
   <div class="hero-img-slot">
     <img src="hero_dj.jpg" alt="Aniko at Rampa Lagos"/>
@@ -472,8 +454,9 @@
       <div class="label">About AfroCue</div>
       <h2 class="yh about-h">Where<br><span class="dim">Culture</span><br>Lives.</h2>
       <p class="about-body">
-        AfroCue is our attempt to creatively document and advance the dance music culture and nightlife scene — spotlighting the DJs who power it, the raves and parties they play at, and the music that moves the dance floor. From amapiano and afrohouse to 3step and afrobeats, we contribute to and support Nigerian nightlife culture.
+        AfroCue is our attempt to creatively document and advance the dance music culture and nightlife scene — spotlighting the DJs who power it, the raves and parties they play at, and the music that moves the dance floor. From amapiano and afrohouse to 3step and afrobeats, we champion Nigerian nightlife culture.
       </p>
+      <div class="about-media-label" style="order:2; display:none; font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--silver); padding-top:8px; display:flex; align-items:center; gap:10px;"><span style="width:18px;height:1px;background:var(--silver);flex-shrink:0;display:inline-block;"></span>Media</div>
       <div class="about-stats" style="order:3;">
         <div class="stat"><div class="stat-val">DJs</div><div class="stat-key">We spotlight</div></div>
         <div class="stat"><div class="stat-val">Parties</div><div class="stat-key">We document</div></div>
@@ -600,7 +583,7 @@
   <div class="dj-grid">
     <div>
       <div class="label">Join AfroCue</div>
-      <h2 class="yh dj-h">Sign Up<br>to<br>AfroCue.</h2>
+      <h2 class="yh dj-h">Sign Up<br>to AfroCue.</h2>
       <p class="dj-body">If you're a DJ, manager, event executive, brand manager, creative, or anyone operating in Nigeria's nightlife and dance music scene — amapiano, afrohouse, raves, or beyond — sign up to stay connected with AfroCue.</p>
       <a href="dj-signup.html" class="btn btn-white">Sign Up</a>
     </div>
@@ -678,8 +661,8 @@
     </div>
   </div>
   <div class="adv-cta">
-    <a href="/cdn-cgi/l/email-protection#2b4a4d5944485e4e44454742454e6b4c464a424705484446" class="btn btn-white">Get In Touch</a>
-    <p class="adv-email"><a href="/cdn-cgi/l/email-protection#167770647975637379787a7f787356717b777f7a3875797b"><span class="__cf_email__" data-cfemail="335255415c5046565c5d5f5a5d5673545e525a5f1d505c5e">[email&#160;protected]</span></a></p>
+    <a href="mailto:info@afrocue.xyz" class="btn btn-white">Get In Touch</a>
+    <p class="adv-email"><a href="mailto:info@afrocue.xyz">info@afrocue.xyz</a></p>
   </div>
 </section>
 
@@ -805,10 +788,10 @@
     <a href="dj-signup.html">DJ Signup</a>
     <a href="#advertise">Get Featured</a>
   </div>
-  <div class="footer-email"><a href="/cdn-cgi/l/email-protection#09616c65656649686f7b66276a7c6c"><span class="__cf_email__" data-cfemail="6008050c0c0f200106120f4e031505">[email&#160;protected]</span></a></div>
+  <div class="footer-email"><a href="mailto:info@afrocue.xyz">info@afrocue.xyz</a></div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   /* video fallback */
   const vid = document.querySelector('.about-video-wrap video');
   if (vid) {
@@ -845,31 +828,4 @@
   updateBg(0);
 
 
-  /* nav + hero logo scroll behaviour */
-  const nav = document.querySelector('nav');
-  const heroLogo = document.getElementById('heroLogo');
-  const heroEl = document.querySelector('.hero');
-  let lastScroll = 0;
-
-  function onScroll() {
-    const y = window.scrollY;
-    const heroH = heroEl ? heroEl.offsetHeight : 300;
-
-    // Hide nav until past hero, then show
-    if (y < heroH * 0.6) {
-      nav.style.transform = 'translateY(-100%)';
-    } else {
-      nav.style.transform = 'translateY(0)';
-    }
-
-    // Hero logo fades out once nav appears
-    if (heroLogo) {
-      heroLogo.classList.toggle('hidden', y > heroH * 0.4);
-    }
-
-    lastScroll = y;
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
 
