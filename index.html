@@ -16,10 +16,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
-    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
-    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-.otf') format('opentype'); font-weight: 400; }
-    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthetet-Nova-Light.otf') format('opentype'); font-weight: 300; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonts/fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonts/fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonts/fonnts.com-Aesthet-Nova-.otf') format('opentype'); font-weight: 400; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonts/fonnts.com-Aesthet-Nova-Light.otf') format('opentype'); font-weight: 300; }
 
     :root {
       --black:  #0a0a0a;
@@ -40,7 +40,7 @@
     body { background: var(--black); color: var(--white); font-family: 'Figtree', sans-serif; overflow-x: hidden; }
     .yh { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; color: var(--yellow); text-shadow: var(--yts); line-height: 0.92; }
 
-    /* ── NAV ── */
+    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 900;
       display: flex; align-items: center; justify-content: space-between;
@@ -57,14 +57,12 @@
     .nav-cta { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); background: var(--white); padding: 10px 20px; border-radius: 2px; text-decoration: none; transition: background 0.2s; white-space: nowrap; }
     .nav-cta:hover { background: var(--off); }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero {
       min-height: 100vh; position: relative;
       display: flex; flex-direction: column; justify-content: center;
       padding: 80px 48px 72px; overflow: hidden;
     }
-
-    /* DJ photo — right side desktop */
     .hero-img-slot {
       position: absolute; top: 0; right: 0; bottom: 0;
       width: 42%; max-width: 520px; overflow: hidden; z-index: 0;
@@ -79,48 +77,27 @@
       font-size: 10px; letter-spacing: 0.1em; color: rgba(240,237,232,0.3);
       text-transform: uppercase; z-index: 4; writing-mode: vertical-rl;
     }
-
-    /* texture always on top of image */
     .hero-texture {
       position: absolute; inset: 0; z-index: 1;
-      background-image: url('texture.jpg');
-      background-size: cover; background-position: center;
+      background-image: url('texture.jpg'); background-size: cover; background-position: center;
       opacity: 0.3; pointer-events: none;
     }
-
-    /* gradient over everything */
     .hero-overlay {
       position: absolute; inset: 0; z-index: 2;
-      background: linear-gradient(to top,
-        rgba(10,10,10,1) 0%,
-        rgba(10,10,10,0.5) 50%,
-        rgba(10,10,10,0.1) 100%);
+      background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.5) 50%, rgba(10,10,10,0.1) 100%);
     }
-
     .hero-content { position: relative; z-index: 3; max-width: 620px; }
     .hero-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
     .hero-eyebrow-line { width: 36px; height: 1px; background: var(--silver); flex-shrink: 0; }
     .hero-eyebrow span { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); }
-
-    /* Hero h1 — no word break between lines */
     .hero h1 {
       font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
       font-size: clamp(58px, 9.5vw, 140px);
-      line-height: 0.9;
-      color: var(--yellow); text-shadow: var(--yts);
-      margin-bottom: 28px;
-      /* prevent orphan breaks */
-      overflow-wrap: normal;
-      word-break: keep-all;
-      hyphens: none;
+      line-height: 0.9; color: var(--yellow); text-shadow: var(--yts);
+      margin-bottom: 28px; overflow-wrap: normal; word-break: keep-all; hyphens: none;
     }
-    .hero h1 .outline {
-      -webkit-text-stroke: 1.5px var(--yellow);
-      color: transparent; text-shadow: none;
-    }
-
+    .hero h1 .outline { -webkit-text-stroke: 1.5px var(--yellow); color: transparent; text-shadow: none; }
     .hero-desc { font-size: 15px; font-weight: 300; line-height: 1.75; color: rgba(240,237,232,0.58); max-width: 380px; margin-bottom: 36px; }
-
     .hero-actions { display: flex; gap: 12px; align-items: center; flex-wrap: nowrap; }
 
     /* IG button */
@@ -130,12 +107,12 @@
       letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--black); background: var(--white);
       padding: 13px 22px; border-radius: 2px; text-decoration: none;
-      border: none; cursor: pointer; transition: background 0.2s; white-space: nowrap;
+      cursor: pointer; transition: background 0.2s; white-space: nowrap;
     }
     .btn-ig:hover { background: var(--off); }
     .btn-ig svg { width: 14px; height: 14px; flex-shrink: 0; }
 
-    /* ── BUTTONS ── */
+    /* BUTTONS */
     .btn { display: inline-block; font-family: 'Figtree', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 13px 26px; border-radius: 2px; text-decoration: none; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
     .btn-white { color: var(--black); background: var(--white); }
     .btn-white:hover { background: var(--off); }
@@ -144,23 +121,12 @@
     .btn-yellow { color: var(--black); background: var(--yellow); }
     .btn-yellow:hover { opacity: 0.88; }
 
-    /* ── SECTIONS ── */
+    /* SECTIONS */
     section { padding: 100px 48px; }
-    .section-texture {
-      position: relative;
-    }
-    .section-texture::before {
-      content: ''; position: absolute; inset: 0;
-      background-image: url('texture.jpg');
-      background-size: cover; opacity: 0.05;
-      pointer-events: none; z-index: 0;
-    }
-    .section-texture > * { position: relative; z-index: 1; }
-
     .label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
     .label::before { content: ''; width: 18px; height: 1px; background: var(--silver); flex-shrink: 0; }
 
-    /* ── ABOUT ── */
+    /* ABOUT */
     #about { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
     .about-grid { display: grid; grid-template-columns: 5fr 4fr; gap: 80px; align-items: start; max-width: 1200px; }
     .about-h { font-size: clamp(48px, 6.5vw, 92px); margin-bottom: 24px; }
@@ -171,25 +137,21 @@
     .stat-val { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 30px; color: var(--yellow); text-shadow: var(--yts); line-height: 1; margin-bottom: 4px; }
     .stat-key { font-size: 10px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); }
 
-    /* VIDEO — 4:5, no texture overlay */
+    /* VIDEO — no texture/tint overlay */
     .about-video-wrap {
-      width: 100%; aspect-ratio: 4/5;
-      border-radius: 4px; overflow: hidden;
-      position: relative;
-      border: 1px solid rgba(255,255,255,0.06);
-      background: var(--dark2);
+      width: 100%; aspect-ratio: 4/5; border-radius: 4px; overflow: hidden;
+      position: relative; border: 1px solid rgba(255,255,255,0.06); background: var(--dark2);
     }
     .about-video-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; }
-    /* fallback if video missing */
     .about-video-fallback {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 6px;
       background-image: url('about_editorial.jpg'); background-size: cover; background-position: center;
     }
     .about-video-fallback::before { content: ''; position: absolute; inset: 0; background: rgba(10,10,10,0.5); }
     .img-label { position: relative; z-index: 1; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); }
 
-    /* ── CONTENT SLIDER ── */
+    /* CONTENT SLIDER */
     #content { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
     .content-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 48px; gap: 32px; flex-wrap: wrap; }
     .content-h { font-size: clamp(44px, 5.5vw, 80px); }
@@ -200,13 +162,10 @@
     .slide { display: none; }
     .slide.active { display: grid; grid-template-columns: 5fr 6fr; gap: 52px; align-items: center; animation: fadeUp 0.4s ease; }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-    /* 4:5 image box */
     .slide-img-box { aspect-ratio: 4/5; border-radius: 6px; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,0.07); background: var(--dark2); flex-shrink: 0; }
     .slide-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .slide-img-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-end; padding: 14px; background-image: url('texture.jpg'); background-size: cover; opacity: 0.8; }
+    .slide-img-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-end; padding: 14px; background-image: url('texture.jpg'); background-size: cover; }
     .slide-img-tag { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); border: 1px solid rgba(255,255,255,0.1); padding: 4px 8px; border-radius: 2px; }
-
     .slide-text { padding: 8px 0; }
     .slide-series { font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--grey); margin-bottom: 14px; }
     .slide-text h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(32px, 3.5vw, 56px); line-height: 0.9; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 16px; }
@@ -214,25 +173,19 @@
     .slide-counter { font-size: 10px; letter-spacing: 0.12em; color: var(--grey); margin-top: 16px; }
     .slide-counter span { color: var(--yellow); }
 
-    /* ── YOUTUBE ── */
+    /* YOUTUBE */
     #youtube { border-top: 1px solid rgba(255,255,255,0.06); position: relative; }
     #youtube::before { content: ''; position: absolute; inset: 0; background-image: url('texture.jpg'); background-size: cover; opacity: 0.06; pointer-events: none; }
     .yt-inner { position: relative; z-index: 1; max-width: 1100px; }
     .yt-h { font-size: clamp(44px, 5.5vw, 80px); margin-bottom: 8px; }
     .yt-sub { font-size: 13px; font-weight: 300; color: var(--silver); margin-bottom: 44px; letter-spacing: 0.04em; }
-    .yt-embed-wrap {
-      position: relative; width: 100%;
-      padding-bottom: 56.25%; /* 16:9 */
-      border-radius: 6px; overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.07);
-      background: var(--dark2);
-    }
+    .yt-embed-wrap { position: relative; width: 100%; padding-bottom: 56.25%; border-radius: 6px; overflow: hidden; border: 1px solid rgba(255,255,255,0.07); background: var(--dark2); }
     .yt-embed-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
     .yt-caption { margin-top: 16px; display: flex; align-items: center; gap: 12px; }
     .yt-caption-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); flex-shrink: 0; }
     .yt-caption-text { font-size: 12px; font-weight: 400; color: var(--silver); letter-spacing: 0.04em; }
 
-    /* ── NEWSLETTER ── */
+    /* NEWSLETTER */
     #newsletter { border-top: 1px solid rgba(255,255,255,0.06); position: relative; overflow: hidden; }
     #newsletter::before { content: ''; position: absolute; inset: 0; background-image: url('texture.jpg'); background-size: cover; opacity: 0.1; pointer-events: none; }
     .newsletter-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; max-width: 1100px; }
@@ -243,7 +196,7 @@
     .newsletter-form input::placeholder { color: var(--grey); }
     .newsletter-form input:focus { border-color: rgba(255,255,255,0.35); }
 
-    /* ── DJ / TALENT ── */
+    /* DJ / IN THE CULTURE */
     #dj { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); position: relative; }
     #dj::before { content: ''; position: absolute; inset: 0; background-image: url('texture.jpg'); background-size: cover; opacity: 0.05; pointer-events: none; }
     .dj-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; max-width: 1200px; }
@@ -257,7 +210,7 @@
     .dj-feat-title { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 3px; }
     .dj-feat-desc { font-size: 12px; font-weight: 300; line-height: 1.65; color: var(--grey); }
 
-    /* ── GET FEATURED ── */
+    /* GET FEATURED */
     #advertise { border-top: 1px solid rgba(255,255,255,0.06); }
     .adv-header { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: end; margin-bottom: 48px; }
     .adv-h { font-size: clamp(48px, 6.5vw, 92px); }
@@ -276,7 +229,7 @@
     .adv-email a { font-size: 12px; color: var(--silver); text-decoration: none; transition: color 0.2s; }
     .adv-email a:hover { color: var(--white); }
 
-    /* ── AUDIENCE ── */
+    /* AUDIENCE */
     #audience { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
     .audience-top { max-width: 580px; margin-bottom: 48px; }
     .audience-h { font-size: clamp(48px, 6.5vw, 92px); margin-bottom: 16px; }
@@ -288,13 +241,12 @@
     .aud-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; z-index: 1; }
     .aud-card:hover img { transform: scale(1.05); }
     .aud-card-emoji { font-size: 48px; opacity: 0.15; position: relative; z-index: 0; }
-    /* tint over images */
     .aud-card-tint { position: absolute; inset: 0; background: rgba(10,10,10,0.35); z-index: 2; }
     .aud-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.2) 50%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 18px 16px; z-index: 3; }
     .aud-card-title { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 20px; color: var(--yellow); text-shadow: var(--yts); line-height: 1; margin-bottom: 3px; }
     .aud-card-desc { font-size: 11px; font-weight: 300; color: rgba(240,237,232,0.55); line-height: 1.45; }
 
-    /* ── FOLLOW ── */
+    /* FOLLOW */
     #follow { border-top: 1px solid rgba(255,255,255,0.06); }
     .follow-h { font-size: clamp(48px, 6.5vw, 92px); margin-bottom: 44px; }
     .follow-ig-card { background: var(--dark); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; padding: 32px 40px; display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; text-decoration: none; transition: border-color 0.25s; max-width: 1100px; margin-bottom: 20px; }
@@ -305,58 +257,39 @@
     .social-chip { border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; padding: 11px 18px; font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--silver); text-decoration: none; transition: border-color 0.2s, color 0.2s; }
     .social-chip:hover { border-color: var(--yellow); color: var(--yellow); }
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 36px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; background: var(--dark); }
-    .footer-brand h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 18px; letter-spacing: 0.08em; color: var(--yellow); }
-    .footer-brand p { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); margin-top: 3px; }
+    .footer-logo img { height: 36px; width: auto; display: block; }
+    .footer-logo-fallback { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 18px; color: var(--yellow); }
+    .footer-tagline { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); margin-top: 4px; }
     .footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
     .footer-links a { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: var(--white); }
     .footer-email a { font-size: 11px; color: var(--grey); text-decoration: none; transition: color 0.2s; }
     .footer-email a:hover { color: var(--white); }
 
-    /* ═══ MOBILE ═══ */
+    /* MOBILE */
     @media (max-width: 768px) {
       nav { padding: 14px 20px; }
       .nav-links { display: none; }
-
-      /* MOBILE HERO — full bleed DJ photo */
       .hero { padding: 80px 20px 56px; min-height: 100svh; justify-content: flex-end; }
-
-      .hero-img-slot {
-        display: block; position: absolute;
-        inset: 0; width: 100%; max-width: 100%;
-      }
-      .hero-img-slot img { opacity: 1; object-position: top center; }
+      .hero-img-slot { display: block; position: absolute; inset: 0; width: 100%; max-width: 100%; }
+      .hero-img-slot img { opacity: 1; }
       .hero-img-slot::after { display: none; }
-
       .hero-texture { opacity: 0.3; }
-
-      .hero-overlay {
-        background: linear-gradient(to top,
-          rgba(10,10,10,1) 0%,
-          rgba(10,10,10,0.75) 35%,
-          rgba(10,10,10,0.35) 65%,
-          rgba(10,10,10,0.08) 100%);
-      }
-
+      .hero-overlay { background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.75) 35%, rgba(10,10,10,0.35) 65%, rgba(10,10,10,0.08) 100%); }
       .hero-img-credit { display: none; }
-
       .hero-content { max-width: 100%; }
       .hero h1 { font-size: clamp(48px, 13vw, 72px); line-height: 0.9; }
       .hero h1 .outline { -webkit-text-stroke-width: 1px; }
       .hero-desc { max-width: 100%; font-size: 14px; }
       .hero-actions { flex-wrap: wrap; gap: 10px; }
       .hero-actions .btn, .hero-actions .btn-ig { flex: 1; min-width: 130px; text-align: center; justify-content: center; }
-
       section { padding: 64px 20px; }
-
       .about-grid { grid-template-columns: 1fr; gap: 36px; }
       .about-video-wrap { aspect-ratio: 4/5; }
-
       .slide.active { grid-template-columns: 1fr; gap: 28px; }
       .slide-img-box { aspect-ratio: 4/5; width: 100%; max-width: 340px; margin: 0 auto; }
-
       .newsletter-inner { grid-template-columns: 1fr; gap: 36px; }
       .dj-grid { grid-template-columns: 1fr; gap: 36px; }
       .adv-header { grid-template-columns: 1fr; gap: 20px; }
@@ -366,7 +299,6 @@
       footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
       #youtube { padding: 64px 20px; }
     }
-
     @media (max-width: 420px) {
       .hero h1 { font-size: clamp(40px, 12vw, 58px); }
       .audience-cards { grid-template-columns: 1fr; }
@@ -377,11 +309,9 @@
 
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">
-    <img src="logo_afrocue.png" alt="AfroCue"
-      onerror="this.style.display='none'; document.querySelector('.nav-logo-fallback').style.display='block'"/>
+    <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none'; document.querySelector('.nav-logo-fallback').style.display='block'"/>
     <span class="nav-logo-fallback">afro.cue</span>
   </a>
   <ul class="nav-links">
@@ -392,16 +322,13 @@
   <a href="dj-signup.html" class="nav-cta">Join as DJ</a>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
-  <!-- hero_dj.jpg — Aniko at Rampa Lagos — 800×1100px -->
   <div class="hero-img-slot">
     <img src="hero_dj.jpg" alt="Aniko at Rampa Lagos"/>
   </div>
   <div class="hero-texture"></div>
   <div class="hero-overlay"></div>
   <span class="hero-img-credit">Aniko · Rampa Lagos</span>
-
   <div class="hero-content">
     <div class="hero-eyebrow">
       <div class="hero-eyebrow-line"></div>
@@ -410,7 +337,6 @@
     <h1>Creatively<br><span class="outline">Documenting</span><br>Culture.</h1>
     <p class="hero-desc">We spotlight the DJs, the parties, and the music shaping nightlife culture.</p>
     <div class="hero-actions">
-      <!-- IG button with inline SVG logo outline -->
       <a href="https://instagram.com/afro.cue" target="_blank" class="btn-ig">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
@@ -424,16 +350,12 @@
   </div>
 </div>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="about-grid">
     <div>
       <div class="label">About AfroCue</div>
       <h2 class="yh about-h">Where<br><span class="dim">Culture</span><br>Lives.</h2>
-      <p class="about-body">
-        AfroCue is our attempt to creatively document and advance nightlife and dance music culture — spotlighting the DJs who power the scene, the parties that bring people together, and the music that moves the dance floor.<br><br>
-        We use creative content, DJ spotlights, party documentation, and music discovery to contribute to and support the culture.
-      </p>
+      <p class="about-body">AfroCue is our attempt to creatively document and advance nightlife and dance music culture — spotlighting the DJs who power the scene, the parties that bring people together, and the music that moves the dance floor.<br><br>We use creative content, DJ spotlights, party documentation, and music discovery to contribute to and support the culture.</p>
       <div class="about-stats">
         <div class="stat"><div class="stat-val">DJs</div><div class="stat-key">We spotlight</div></div>
         <div class="stat"><div class="stat-val">Parties</div><div class="stat-key">We document</div></div>
@@ -441,24 +363,17 @@
         <div class="stat"><div class="stat-val">Culture</div><div class="stat-key">We advance</div></div>
       </div>
     </div>
-
-    <!--
-      VIDEO: about_video.mp4 — 4:5 ratio (1080×1350px), H.264 MP4, no audio needed.
-      Falls back to about_editorial.jpg if video not present.
-    -->
+    <!-- about_video.mp4 — 4:5 ratio, H.264 MP4, muted loop -->
     <div class="about-video-wrap">
-      <video src="about_video.mp4" autoplay muted loop playsinline
-        onerror="this.style.display='none'">
-      </video>
-      <div class="about-video-fallback" id="videoFallback" style="display:none;">
+      <video src="about_video.mp4" autoplay muted loop playsinline onerror="this.style.display='none'; document.getElementById('vFallback').style.display='flex'"></video>
+      <div class="about-video-fallback" id="vFallback" style="display:none;">
         <span class="img-label">about_video.mp4</span>
-        <span class="img-label" style="opacity:0.4;">1080 × 1350px</span>
+        <span class="img-label" style="opacity:0.4;">1080×1350px · 4:5</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FEATURED CONTENT -->
 <section id="content">
   <div class="content-header">
     <div>
@@ -471,8 +386,6 @@
     </div>
   </div>
   <div class="slides-wrap">
-
-    <!-- SLIDE 1 — content_weekly_top5.jpg — 1080×1350px -->
     <div class="slide active">
       <div class="slide-img-box">
         <img src="content_weekly_top5.jpg" alt="AfroCue Weekly Top 5"/>
@@ -486,11 +399,9 @@
         <div class="slide-counter"><span>01</span> / 04</div>
       </div>
     </div>
-
-    <!-- SLIDE 2 — content_monthly_recap.jpg — 1080×1350px -->
     <div class="slide">
       <div class="slide-img-box">
-        <img src="content_monthly_recap.jpg" alt="AfroCue Monthly Recap"/>
+        <img src="content_monthly_recap.jpg" alt="Monthly Recap"/>
         <div class="slide-img-placeholder"><span class="slide-img-tag">content_monthly_recap.jpg</span></div>
       </div>
       <div class="slide-text">
@@ -501,8 +412,6 @@
         <div class="slide-counter"><span>02</span> / 04</div>
       </div>
     </div>
-
-    <!-- SLIDE 3 — content_set_moments.jpg — 1080×1350px -->
     <div class="slide">
       <div class="slide-img-box">
         <img src="content_set_moments.jpg" alt="Set Moments"/>
@@ -516,8 +425,6 @@
         <div class="slide-counter"><span>03</span> / 04</div>
       </div>
     </div>
-
-    <!-- SLIDE 4 — content_creative_events.jpg — 1080×1350px -->
     <div class="slide">
       <div class="slide-img-box">
         <img src="content_creative_events.jpg" alt="Creative Event Content"/>
@@ -531,24 +438,16 @@
         <div class="slide-counter"><span>04</span> / 04</div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- FEATURED YOUTUBE SET -->
 <section id="youtube">
   <div class="yt-inner">
     <div class="label">Featured Set</div>
     <h2 class="yh yt-h">Yano's Theory.</h2>
     <p class="yt-sub">Smeez &amp; D3AN — Prep Session</p>
     <div class="yt-embed-wrap">
-      <iframe
-        src="https://www.youtube.com/embed/Ebrtzg0cJXM?si=RST1dLRLpXVBwdDs"
-        title="Smeez & D3AN — Yano's Theory Prep Session"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen>
-      </iframe>
+      <iframe src="https://www.youtube.com/embed/Ebrtzg0cJXM?si=RST1dLRLpXVBwdDs" title="Smeez & D3AN — Yano's Theory Prep Session" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
     <div class="yt-caption">
       <div class="yt-caption-dot"></div>
@@ -557,7 +456,6 @@
   </div>
 </section>
 
-<!-- NEWSLETTER -->
 <section id="newsletter">
   <div class="newsletter-inner">
     <div>
@@ -572,7 +470,6 @@
   </div>
 </section>
 
-<!-- IN THE CULTURE — DJ/Talent signup -->
 <section id="dj">
   <div class="dj-grid">
     <div>
@@ -582,39 +479,14 @@
       <a href="dj-signup.html" class="btn btn-white">Sign Up</a>
     </div>
     <div class="dj-features">
-      <div class="dj-feat">
-        <span class="dj-feat-num">01</span>
-        <div>
-          <div class="dj-feat-title">Culture Newsletter</div>
-          <div class="dj-feat-desc">Get exclusive updates on DJs, parties, and what's moving in nightlife culture.</div>
-        </div>
-      </div>
-      <div class="dj-feat">
-        <span class="dj-feat-num">02</span>
-        <div>
-          <div class="dj-feat-title">Brand Connections</div>
-          <div class="dj-feat-desc">We connect DJs and creatives with brands and events looking for the right talent.</div>
-        </div>
-      </div>
-      <div class="dj-feat">
-        <span class="dj-feat-num">03</span>
-        <div>
-          <div class="dj-feat-title">Event &amp; Festival Culture</div>
-          <div class="dj-feat-desc">Be the first to know about events, open decks, raves, and festival opportunities.</div>
-        </div>
-      </div>
-      <div class="dj-feat">
-        <span class="dj-feat-num">04</span>
-        <div>
-          <div class="dj-feat-title">Spotlight Opportunities</div>
-          <div class="dj-feat-desc">Get featured in Weekly Top 5, Set Moments, and across AfroCue's platforms.</div>
-        </div>
-      </div>
+      <div class="dj-feat"><span class="dj-feat-num">01</span><div><div class="dj-feat-title">Culture Newsletter</div><div class="dj-feat-desc">Get exclusive updates on DJs, parties, and what's moving in nightlife culture.</div></div></div>
+      <div class="dj-feat"><span class="dj-feat-num">02</span><div><div class="dj-feat-title">Brand Connections</div><div class="dj-feat-desc">We connect DJs and creatives with brands and events looking for the right talent.</div></div></div>
+      <div class="dj-feat"><span class="dj-feat-num">03</span><div><div class="dj-feat-title">Event &amp; Festival Culture</div><div class="dj-feat-desc">Be the first to know about events, open decks, raves, and festival opportunities.</div></div></div>
+      <div class="dj-feat"><span class="dj-feat-num">04</span><div><div class="dj-feat-title">Spotlight Opportunities</div><div class="dj-feat-desc">Get featured in Weekly Top 5, Set Moments, and across AfroCue's platforms.</div></div></div>
     </div>
   </div>
 </section>
 
-<!-- GET FEATURED -->
 <section id="advertise">
   <div class="adv-header">
     <div>
@@ -660,7 +532,6 @@
   </div>
 </section>
 
-<!-- AUDIENCE -->
 <section id="audience">
   <div class="audience-top">
     <div class="label">Our Audience</div>
@@ -668,72 +539,20 @@
     <p class="audience-body">AfroCue speaks to the people who go out, listen to DJs, discover music, and shape nightlife culture.</p>
   </div>
   <div class="audience-cards">
-    <div class="aud-card">
-      <div class="aud-card-bg"><span class="aud-card-emoji">🎛️</span></div>
-      <img src="audience_djs.jpg" alt="DJs"/>
-      <div class="aud-card-tint"></div>
-      <div class="aud-card-overlay">
-        <div class="aud-card-title">DJs</div>
-        <div class="aud-card-desc">The people who control the dance floor</div>
-      </div>
-    </div>
-    <div class="aud-card">
-      <div class="aud-card-bg"><span class="aud-card-emoji">🕺</span></div>
-      <img src="audience_partygoers.jpg" alt="Partygoers"/>
-      <div class="aud-card-tint"></div>
-      <div class="aud-card-overlay">
-        <div class="aud-card-title">Partygoers</div>
-        <div class="aud-card-desc">The ones who show up every weekend</div>
-      </div>
-    </div>
-    <div class="aud-card">
-      <div class="aud-card-bg"><span class="aud-card-emoji">🎪</span></div>
-      <img src="audience_organizers.jpg" alt="Event Organizers"/>
-      <div class="aud-card-tint"></div>
-      <div class="aud-card-overlay">
-        <div class="aud-card-title">Event Organizers</div>
-        <div class="aud-card-desc">The people who build the rooms</div>
-      </div>
-    </div>
-    <div class="aud-card">
-      <div class="aud-card-bg"><span class="aud-card-emoji">🎨</span></div>
-      <img src="audience_creatives.jpg" alt="Creative Directors"/>
-      <div class="aud-card-tint"></div>
-      <div class="aud-card-overlay">
-        <div class="aud-card-title">Creative Directors</div>
-        <div class="aud-card-desc">The vision behind the culture</div>
-      </div>
-    </div>
-    <div class="aud-card">
-      <div class="aud-card-bg"><span class="aud-card-emoji">📡</span></div>
-      <img src="audience_brands.jpg" alt="Brand Managers"/>
-      <div class="aud-card-tint"></div>
-      <div class="aud-card-overlay">
-        <div class="aud-card-title">Brand Managers</div>
-        <div class="aud-card-desc">Brands seeking culture-first reach</div>
-      </div>
-    </div>
-    <div class="aud-card">
-      <div class="aud-card-bg"><span class="aud-card-emoji">🌍</span></div>
-      <img src="audience_culture.jpg" alt="Culture Audiences"/>
-      <div class="aud-card-tint"></div>
-      <div class="aud-card-overlay">
-        <div class="aud-card-title">Culture Audiences</div>
-        <div class="aud-card-desc">People shaped by the dance floor</div>
-      </div>
-    </div>
+    <div class="aud-card"><div class="aud-card-bg"><span class="aud-card-emoji">🎛️</span></div><img src="audience_djs.jpg" alt="DJs"/><div class="aud-card-tint"></div><div class="aud-card-overlay"><div class="aud-card-title">DJs</div><div class="aud-card-desc">The people who control the dance floor</div></div></div>
+    <div class="aud-card"><div class="aud-card-bg"><span class="aud-card-emoji">🕺</span></div><img src="audience_partygoers.jpg" alt="Partygoers"/><div class="aud-card-tint"></div><div class="aud-card-overlay"><div class="aud-card-title">Partygoers</div><div class="aud-card-desc">The ones who show up every weekend</div></div></div>
+    <div class="aud-card"><div class="aud-card-bg"><span class="aud-card-emoji">🎪</span></div><img src="audience_organizers.jpg" alt="Event Organizers"/><div class="aud-card-tint"></div><div class="aud-card-overlay"><div class="aud-card-title">Event Organizers</div><div class="aud-card-desc">The people who build the rooms</div></div></div>
+    <div class="aud-card"><div class="aud-card-bg"><span class="aud-card-emoji">🎨</span></div><img src="audience_creatives.jpg" alt="Creative Directors"/><div class="aud-card-tint"></div><div class="aud-card-overlay"><div class="aud-card-title">Creative Directors</div><div class="aud-card-desc">The vision behind the culture</div></div></div>
+    <div class="aud-card"><div class="aud-card-bg"><span class="aud-card-emoji">📡</span></div><img src="audience_brands.jpg" alt="Brand Managers"/><div class="aud-card-tint"></div><div class="aud-card-overlay"><div class="aud-card-title">Brand Managers</div><div class="aud-card-desc">Brands seeking culture-first reach</div></div></div>
+    <div class="aud-card"><div class="aud-card-bg"><span class="aud-card-emoji">🌍</span></div><img src="audience_culture.jpg" alt="Culture Audiences"/><div class="aud-card-tint"></div><div class="aud-card-overlay"><div class="aud-card-title">Culture Audiences</div><div class="aud-card-desc">People shaped by the dance floor</div></div></div>
   </div>
 </section>
 
-<!-- FOLLOW -->
 <section id="follow">
   <div class="label">Follow AfroCue</div>
   <h2 class="yh follow-h">Find<br>Us.</h2>
   <a href="https://instagram.com/afro.cue" target="_blank" class="follow-ig-card">
-    <div class="follow-ig-info">
-      <h3>@afro.cue</h3>
-      <p>Instagram — our main platform</p>
-    </div>
+    <div class="follow-ig-info"><h3>@afro.cue</h3><p>Instagram — our main platform</p></div>
     <div class="btn btn-white" style="pointer-events:none;">Follow on Instagram</div>
   </a>
   <div class="social-row">
@@ -744,11 +563,13 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-brand">
-    <h3>AfroCue</h3>
-    <p>Creatively Documenting Culture</p>
+  <div class="footer-logo">
+    <a href="#">
+      <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"/>
+      <span class="footer-logo-fallback" style="display:none;">afro.cue</span>
+    </a>
+    <p class="footer-tagline">Creatively Documenting Culture</p>
   </div>
   <div class="footer-links">
     <a href="#about">About</a>
@@ -760,37 +581,15 @@
 </footer>
 
 <script>
-  /* video fallback */
   const vid = document.querySelector('.about-video-wrap video');
-  if (vid) {
-    vid.addEventListener('error', () => {
-      vid.style.display = 'none';
-      document.getElementById('videoFallback').style.display = 'flex';
-    });
-  }
-
-  /* content slider */
+  if (vid) { vid.addEventListener('error', () => { vid.style.display='none'; document.getElementById('vFallback').style.display='flex'; }); }
   let cur = 0;
   const slides = document.querySelectorAll('.slide');
   let timer = setInterval(() => nextSlide(), 5000);
-  function goTo(n) {
-    slides[cur].classList.remove('active');
-    cur = (n + slides.length) % slides.length;
-    slides[cur].classList.add('active');
-    clearInterval(timer);
-    timer = setInterval(() => nextSlide(), 5000);
-  }
+  function goTo(n) { slides[cur].classList.remove('active'); cur = (n + slides.length) % slides.length; slides[cur].classList.add('active'); clearInterval(timer); timer = setInterval(() => nextSlide(), 5000); }
   function nextSlide() { goTo(cur + 1); }
   function prevSlide() { goTo(cur - 1); }
-
-  /* newsletter */
-  function handleNewsletter(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('button');
-    btn.textContent = 'Subscribed ✓';
-    btn.style.opacity = '0.7';
-    setTimeout(() => { btn.textContent = 'Subscribe'; btn.style.opacity = ''; }, 3000);
-  }
+  function handleNewsletter(e) { e.preventDefault(); const btn = e.target.querySelector('button'); btn.textContent = 'Subscribed ✓'; btn.style.opacity = '0.7'; setTimeout(() => { btn.textContent = 'Subscribe'; btn.style.opacity = ''; }, 3000); }
 </script>
 </body>
 </html>
