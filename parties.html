@@ -101,15 +101,30 @@
     /* Filter + header bar */
     .parties-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 40px; flex-wrap: wrap; }
     .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; }
-    .filter-btn {
-      padding: 8px 16px; border: 1px solid rgba(255,255,255,0.12); border-radius: 20px;
-      background: transparent; color: var(--silver); font-family: 'Figtree', sans-serif;
-      font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
-      cursor: pointer; transition: all 0.18s; white-space: nowrap;
+    .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .filter-select {
+      appearance: none; -webkit-appearance: none;
+      background: rgba(255,255,255,0.04);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 10px center;
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 2px;
+      color: var(--silver); font-family: 'Figtree', sans-serif;
+      font-size: 11px; font-weight: 500; letter-spacing: 0.06em;
+      padding: 9px 30px 9px 12px; cursor: pointer;
+      transition: border-color 0.2s, color 0.2s; outline: none;
     }
-    .filter-btn:hover { border-color: rgba(255,255,255,0.3); color: var(--white); }
-    .filter-btn.active { background: var(--yellow); border-color: var(--yellow); color: var(--black); font-weight: 600; }
-    .filter-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.1); flex-shrink: 0; align-self: center; }
+    .filter-select:hover { border-color: rgba(255,255,255,0.28); color: var(--white); }
+    .filter-select:focus { border-color: rgba(200,224,0,0.4); color: var(--white); }
+    .filter-select option { background: #1a1a1a; color: var(--white); }
+    .filter-select.has-value { border-color: var(--yellow); color: var(--yellow); }
+    .filter-reset {
+      font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--grey); background: none; border: none; cursor: pointer;
+      font-family: 'Figtree', sans-serif; padding: 9px 4px; transition: color 0.2s;
+      display: none;
+    }
+    .filter-reset.visible { display: block; }
+    .filter-reset:hover { color: var(--white); }
     .add-event-btn {
       padding: 10px 20px; background: transparent; border: 1px solid rgba(255,255,255,0.15);
       border-radius: 2px; color: var(--silver); font-family: 'Figtree', sans-serif;
@@ -472,24 +487,54 @@
 
   <div class="parties-header">
     <div class="filter-bar" id="filterBar">
-      <button class="filter-btn active" data-filter="all" onclick="setFilter('all', this)">All</button>
-      <span class="filter-sep"></span>
-      <button class="filter-btn" data-filter="Day" onclick="setFilter('Day', this)">Day</button>
-      <button class="filter-btn" data-filter="Night" onclick="setFilter('Night', this)">Night</button>
-      <button class="filter-btn" data-filter="Day &amp; Night" onclick="setFilter('Day &amp; Night', this)">Day &amp; Night</button>
-      <span class="filter-sep"></span>
-      <button class="filter-btn" data-filter="Free" onclick="setFilter('Free', this)">Free</button>
-      <button class="filter-btn" data-filter="Ticketed" onclick="setFilter('Ticketed', this)">Ticketed</button>
-      <button class="filter-btn" data-filter="RSVP" onclick="setFilter('RSVP', this)">RSVP</button>
-      <button class="filter-btn" data-filter="Invite Only" onclick="setFilter('Invite Only', this)">Invite Only</button>
-      <span class="filter-sep"></span>
-      <button class="filter-btn" data-filter="Indoor" onclick="setFilter('Indoor', this)">Indoor</button>
-      <button class="filter-btn" data-filter="Outdoor" onclick="setFilter('Outdoor', this)">Outdoor</button>
-      <span class="filter-sep"></span>
-      <button class="filter-btn" data-filter="Afrobeats" onclick="setFilter('Afrobeats', this)">Afrobeats</button>
-      <button class="filter-btn" data-filter="Afro House" onclick="setFilter('Afro House', this)">Afro House</button>
-      <button class="filter-btn" data-filter="Amapiano" onclick="setFilter('Amapiano', this)">Amapiano</button>
-      <button class="filter-btn" data-filter="3-Step" onclick="setFilter('3-Step', this)">3-Step</button>
+      <select class="filter-select" id="filterCity" onchange="applyFilters()">
+        <option value="">City</option>
+        <optgroup label="Nigeria">
+          <option>Lagos</option>
+          <option>Port Harcourt</option>
+          <option>Abuja</option>
+          <option>Benin</option>
+          <option>Ibadan</option>
+          <option>Enugu</option>
+          <option>Calabar</option>
+          <option>Warri</option>
+        </optgroup>
+        <optgroup label="West Africa">
+          <option>Accra</option>
+          <option>Nairobi</option>
+          <option>Johannesburg</option>
+        </optgroup>
+      </select>
+      <select class="filter-select" id="filterTime" onchange="applyFilters()">
+        <option value="">Time</option>
+        <option>Day</option>
+        <option>Night</option>
+        <option>Day &amp; Night</option>
+      </select>
+      <select class="filter-select" id="filterAccess" onchange="applyFilters()">
+        <option value="">Access</option>
+        <option>Free</option>
+        <option>Ticketed</option>
+        <option>RSVP</option>
+        <option>Invite Only</option>
+      </select>
+      <select class="filter-select" id="filterSetting" onchange="applyFilters()">
+        <option value="">Setting</option>
+        <option>Indoor</option>
+        <option>Outdoor</option>
+        <option>Both</option>
+      </select>
+      <select class="filter-select" id="filterGenre" onchange="applyFilters()">
+        <option value="">Genre</option>
+        <option>Afrobeats</option>
+        <option>Afro House</option>
+        <option>Amapiano</option>
+        <option>3-Step</option>
+        <option>Hip Hop</option>
+        <option>Dancehall</option>
+        <option>Electronic</option>
+      </select>
+      <button class="filter-reset" id="filterReset" onclick="resetFilters()">Clear</button>
     </div>
     <a href="list-party.html" class="add-event-btn">+ Add Your Event</a>
   </div>
@@ -542,29 +587,48 @@ function loadParties() {
   if (gasUrl === 'YOUR_GAS_SCRIPT_URL_HERE') {
     console.log('[AfroCue] No GAS URL — using placeholders');
     PARTIES = getPlaceholders();
-    renderCards('all');
+    renderCards({});
     return;
   }
 
-  console.log('[AfroCue] Fetching parties from GAS...');
-  fetch(gasUrl + '?action=get_parties')
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      console.log('[AfroCue] GAS response:', data);
-      if (data.parties && data.parties.length > 0) {
-        PARTIES = data.parties;
-        console.log('[AfroCue] Loaded', PARTIES.length, 'parties from sheet');
-      } else {
-        console.warn('[AfroCue] No active parties returned — using placeholders');
-        PARTIES = getPlaceholders();
-      }
-      renderCards(currentFilter);
-    })
-    .catch(function(err) {
-      console.error('[AfroCue] Fetch error:', err);
+  console.log('[AfroCue] Fetching parties via JSONP...');
+  var callbackName = 'afrocuePartiesCallback_' + Date.now();
+  var script = document.createElement('script');
+  var timeout = setTimeout(function() {
+    console.error('[AfroCue] JSONP timeout — using placeholders');
+    cleanup();
+    PARTIES = getPlaceholders();
+    renderCards(getFilters ? getFilters() : {});
+  }, 8000);
+
+  function cleanup() {
+    clearTimeout(timeout);
+    delete window[callbackName];
+    if (script.parentNode) script.parentNode.removeChild(script);
+  }
+
+  window[callbackName] = function(data) {
+    console.log('[AfroCue] GAS response:', data);
+    cleanup();
+    if (data.parties && data.parties.length > 0) {
+      PARTIES = data.parties;
+      console.log('[AfroCue] Loaded', PARTIES.length, 'parties from sheet');
+    } else {
+      console.warn('[AfroCue] No active parties — using placeholders');
       PARTIES = getPlaceholders();
-      renderCards(currentFilter);
-    });
+    }
+    renderCards(getFilters ? getFilters() : {});
+  };
+
+  script.onerror = function() {
+    console.error('[AfroCue] JSONP script error — using placeholders');
+    cleanup();
+    PARTIES = getPlaceholders();
+    renderCards(getFilters ? getFilters() : {});
+  };
+
+  script.src = gasUrl + '?action=get_parties&callback=' + callbackName;
+  document.head.appendChild(script);
 }
 
 /* Placeholder data for before GAS is wired */
@@ -580,20 +644,21 @@ function getPlaceholders() {
 }
 
 /* ── RENDER CARDS ─────────────────────────────────────────── */
-function partyMatchesFilter(party, filter) {
-  if (filter === 'all') return true;
-  if (party.time === filter) return true;
-  if (party.access === filter) return true;
-  if (party.setting === filter) return true;
-  if (party.genres && party.genres.indexOf(filter) > -1) return true;
-  return false;
+function partyMatchesFilters(party, filters) {
+  if (filters.city && party.city.toLowerCase().indexOf(filters.city.toLowerCase()) === -1) return false;
+  if (filters.time && party.time !== filters.time) return false;
+  if (filters.access && party.access !== filters.access) return false;
+  if (filters.setting && party.setting !== filters.setting) return false;
+  if (filters.genre && (!party.genres || party.genres.indexOf(filters.genre) === -1)) return false;
+  return true;
 }
 
-function renderCards(filter) {
+function renderCards(filters) {
+  filters = filters || {};
   var grid = document.getElementById('partiesGrid');
   var noResults = document.getElementById('noResults');
   grid.innerHTML = '';
-  var visible = PARTIES.filter(function(p) { return partyMatchesFilter(p, filter); });
+  var visible = PARTIES.filter(function(p) { return partyMatchesFilters(p, filters); });
   if (visible.length === 0) { noResults.style.display = 'block'; return; }
   noResults.style.display = 'none';
   visible.forEach(function(party) {
@@ -620,11 +685,37 @@ function renderCards(filter) {
   });
 }
 
-function setFilter(filter, btn) {
-  currentFilter = filter;
-  document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
-  btn.classList.add('active');
-  renderCards(filter);
+function getFilters() {
+  return {
+    city:    document.getElementById('filterCity').value,
+    time:    document.getElementById('filterTime').value,
+    access:  document.getElementById('filterAccess').value,
+    setting: document.getElementById('filterSetting').value,
+    genre:   document.getElementById('filterGenre').value
+  };
+}
+
+function applyFilters() {
+  var filters = getFilters();
+  var hasAny = filters.city || filters.time || filters.access || filters.setting || filters.genre;
+  var reset = document.getElementById('filterReset');
+  if (reset) reset.className = 'filter-reset' + (hasAny ? ' visible' : '');
+  /* Highlight active selects */
+  ['filterCity','filterTime','filterAccess','filterSetting','filterGenre'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.className = 'filter-select' + (el.value ? ' has-value' : '');
+  });
+  renderCards(filters);
+}
+
+function resetFilters() {
+  ['filterCity','filterTime','filterAccess','filterSetting','filterGenre'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) { el.value = ''; el.className = 'filter-select'; }
+  });
+  var reset = document.getElementById('filterReset');
+  if (reset) reset.className = 'filter-reset';
+  renderCards({});
 }
 
 /* ── MODAL ────────────────────────────────────────────────── */
@@ -729,14 +820,24 @@ function closeModal() {
 function incrementStat(id, action, displayId) {
   var gasUrl = getGasUrl();
   if (gasUrl === 'YOUR_GAS_SCRIPT_URL_HERE') return;
-  fetch(gasUrl + '?action=' + action + '&id=' + encodeURIComponent(id))
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      if (data.count !== undefined && displayId) {
-        document.getElementById(displayId).textContent = data.count;
-      }
-    })
-    .catch(function() {});
+  /* Use JSONP for count reads so we can update the display */
+  if (displayId) {
+    var cbName = 'afrocueCountCb_' + Date.now();
+    var s = document.createElement('script');
+    window[cbName] = function(data) {
+      if (data.count !== undefined) document.getElementById(displayId) && (document.getElementById(displayId).textContent = data.count);
+      delete window[cbName];
+      if (s.parentNode) s.parentNode.removeChild(s);
+    };
+    s.src = gasUrl + '?action=' + action + '&id=' + encodeURIComponent(id) + '&callback=' + cbName;
+    document.head.appendChild(s);
+  } else {
+    /* Fire and forget — no display update needed */
+    var s2 = document.createElement('script');
+    s2.src = gasUrl + '?action=' + action + '&id=' + encodeURIComponent(id) + '&callback=afrocueNoop';
+    window.afrocueNoop = window.afrocueNoop || function(){};
+    document.head.appendChild(s2);
+  }
 }
 
 function handleLike() {

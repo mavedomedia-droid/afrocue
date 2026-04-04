@@ -171,7 +171,35 @@
           </div>
           <div class="field">
             <label>City</label>
-            <input type="text" name="city" placeholder="e.g. Lagos, Nigeria" required/>
+            <select name="city" required>
+              <option value="" disabled selected>Select city</option>
+              <optgroup label="Nigeria">
+                <option>Lagos, Nigeria</option>
+                <option>Port Harcourt, Nigeria</option>
+                <option>Abuja, Nigeria</option>
+                <option>Benin, Nigeria</option>
+                <option>Ibadan, Nigeria</option>
+                <option>Enugu, Nigeria</option>
+                <option>Kano, Nigeria</option>
+                <option>Warri, Nigeria</option>
+                <option>Owerri, Nigeria</option>
+                <option>Calabar, Nigeria</option>
+              </optgroup>
+              <optgroup label="West Africa">
+                <option>Accra, Ghana</option>
+                <option>Kumasi, Ghana</option>
+                <option>Nairobi, Kenya</option>
+                <option>Johannesburg, South Africa</option>
+                <option>Cape Town, South Africa</option>
+                <option>Dakar, Senegal</option>
+              </optgroup>
+              <optgroup label="Diaspora">
+                <option>London, UK</option>
+                <option>New York, USA</option>
+                <option>Toronto, Canada</option>
+              </optgroup>
+              <option value="Other">Other</option>
+            </select>
           </div>
         </div>
 
@@ -221,6 +249,11 @@
           </div>
           <input type="hidden" name="genres" id="genresVal"/>
           <span class="field-note">Select all that apply</span>
+        </div>
+
+        <div class="field" id="otherCityField" style="display:none;">
+          <label>Specify City</label>
+          <input type="text" name="city_other" placeholder="e.g. Kigali, Rwanda"/>
         </div>
 
         <div class="field">
@@ -388,6 +421,12 @@
   }
 
   /* Form submit */
+  /* City other toggle */
+  document.querySelector('select[name="city"]').addEventListener('change', function() {
+    var otherField = document.getElementById('otherCityField');
+    if (otherField) otherField.style.display = this.value === 'Other' ? 'flex' : 'none';
+  });
+
   function handlePartySubmit(e) {
     e.preventDefault();
     var form = e.target;
@@ -412,7 +451,7 @@
     var data = {
       source:        'party_submission',
       party_name:    form.party_name.value.trim(),
-      city:          form.city.value.trim(),
+      city:          form.city.value === 'Other' ? (form.city_other ? form.city_other.value.trim() : 'Other') : form.city.value,
       time:          form.time.value,
       access:        form.access.value,
       setting:       form.setting.value,
