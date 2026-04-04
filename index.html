@@ -154,8 +154,6 @@
     .btn-white:hover { background: var(--off); }
     .btn-ghost { color: var(--silver); background: transparent; border: 1px solid rgba(255,255,255,0.18); font-weight: 500; }
     .btn-ghost:hover { border-color: var(--white); color: var(--white); }
-    .btn-dj-outline { color: var(--yellow); background: transparent; border: 1.5px solid var(--yellow); font-weight: 600; }
-    .btn-dj-outline:hover { background: rgba(200,224,0,0.08); color: var(--yellow); }
     .btn-yellow { color: var(--black); background: var(--yellow); }
     .btn-yellow:hover { opacity: 0.88; }
 
@@ -433,41 +431,24 @@
       .signup-row { grid-template-columns: 1fr; }
     }
 
-    /* ── DJ RADAR BANNER ── */
-    .dj-radar-banner {
-      position: relative; overflow: hidden;
-      aspect-ratio: 2/1;
-      display: flex; align-items: center; justify-content: center;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+    /* ── DJ RADAR SECTION ── */
+    #dj-radar { border-top: 1px solid rgba(255,255,255,0.06); background: var(--dark); }
+    .dj-radar-inner {
+      max-width: 1200px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
     }
-    .dj-radar-video {
-      position: absolute; inset: 0; z-index: 0;
-      width: 100%; height: 100%; object-fit: cover; display: block;
-    }
-    .dj-radar-texture {
-      position: absolute; inset: 0; z-index: 1;
-      background-image: url('texture.jpg');
-      background-size: cover; background-position: center;
-      opacity: 0.45; pointer-events: none;
-    }
-    .dj-radar-content {
-      position: relative; z-index: 2;
-      display: flex; align-items: center; justify-content: space-between;
-      width: 100%; max-width: 1200px; padding: 0 48px; gap: 40px; flex-wrap: wrap;
-    }
+    /* Left — text + CTA */
+    .dj-radar-left { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; }
     .dj-radar-title {
       font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
       font-size: clamp(44px, 6vw, 88px); line-height: 0.9;
-      color: var(--yellow);
-      text-shadow: 3px 4px 0px rgba(0,0,0,0.95), 0 0 32px rgba(0,0,0,0.8);
+      color: var(--yellow); text-shadow: var(--yts);
     }
     .dj-radar-outline {
       -webkit-text-stroke: 1.5px var(--yellow);
-      color: transparent; text-shadow: 3px 4px 0px rgba(0,0,0,0.9);
-      display: block;
+      color: transparent; text-shadow: none; display: block;
     }
-    .dj-radar-right { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; flex-shrink: 0; }
     .dj-radar-btn {
       display: inline-block; font-family: 'Figtree', sans-serif;
       font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
@@ -476,19 +457,37 @@
       padding: 14px 32px; border-radius: 2px;
       text-decoration: none; white-space: nowrap;
       transition: background 0.2s, color 0.2s;
-      text-shadow: 1px 2px 0px rgba(0,0,0,0.8);
     }
-    .dj-radar-btn:hover { background: var(--yellow); color: var(--black); text-shadow: none; }
-    /* audio/play controls */
-    .dj-radar-controls { display: flex; gap: 8px; }
+    .dj-radar-btn:hover { background: var(--yellow); color: var(--black); }
+    /* Right — rounded video box */
+    .dj-radar-video-wrap {
+      position: relative; border-radius: 12px; overflow: hidden;
+      aspect-ratio: 2/1;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: var(--dark2);
+    }
+    .dj-radar-video-wrap video {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .dj-radar-texture {
+      position: absolute; inset: 0; z-index: 1;
+      background-image: url('texture.jpg');
+      background-size: cover; background-position: center;
+      opacity: 0.45; pointer-events: none; border-radius: 12px;
+    }
+    /* play/mute controls inside video box */
+    .dj-radar-controls {
+      position: absolute; bottom: 12px; right: 12px;
+      z-index: 2; display: flex; gap: 6px;
+    }
     .dj-radar-ctrl {
-      width: 32px; height: 32px; border-radius: 2px;
-      background: rgba(10,10,10,0.5); border: 1px solid rgba(255,255,255,0.2);
-      color: var(--white); font-size: 12px; cursor: pointer;
+      width: 30px; height: 30px; border-radius: 4px;
+      background: rgba(10,10,10,0.65); border: 1px solid rgba(255,255,255,0.15);
+      color: var(--white); font-size: 11px; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s; flex-shrink: 0;
+      transition: background 0.2s;
     }
-    .dj-radar-ctrl:hover { background: rgba(10,10,10,0.8); }
+    .dj-radar-ctrl:hover { background: rgba(10,10,10,0.9); }
     .btn-join-dj {
       display: inline-block; font-family: 'Figtree', sans-serif;
       font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
@@ -500,10 +499,9 @@
     }
     .btn-join-dj:hover { border-color: var(--yellow); background: rgba(200,224,0,0.06); }
     @media (max-width: 768px) {
-      .dj-radar-banner { aspect-ratio: 1/1; }
-      .dj-radar-content { padding: 0 20px; flex-direction: column; align-items: flex-start; gap: 24px; }
+      .dj-radar-inner { grid-template-columns: 1fr; gap: 36px; }
       .dj-radar-title { font-size: clamp(40px, 12vw, 64px); }
-      .dj-radar-right { align-items: flex-start; }
+      .dj-radar-video-wrap { aspect-ratio: 2/1; }
     }
 
   </style>
@@ -555,7 +553,6 @@
         Follow Us
       </a>
       <a href="#about" class="btn btn-ghost">Learn More</a>
-      <a href="dj.html" class="btn btn-dj-outline">DJ Sign Up</a>
     </div>
   </div>
 </div>
@@ -679,22 +676,28 @@
   </div>
 </section>
 
-<!-- DJ RADAR BANNER -->
-<!-- dj_radar_banner.mp4 — 1920×960px (2:1), looping, with audio — drop in root folder -->
-<div class="dj-radar-banner" id="dj-radar">
-  <video class="dj-radar-video" id="djRadarVid" src="dj_radar_banner.mp4" loop playsinline></video>
-  <div class="dj-radar-texture"></div>
-  <div class="dj-radar-content">
-    <h2 class="dj-radar-title">Get on our<br><span class="dj-radar-outline">DJ Radar.</span></h2>
-    <div class="dj-radar-right">
+<!-- DJ RADAR SECTION -->
+<!-- dj_radar_banner.mp4 — 1920×960px (2:1 ratio) — drop in root folder -->
+<section id="dj-radar">
+  <div class="dj-radar-inner">
+
+    <div class="dj-radar-left">
+      <div class="label">Are You a DJ?</div>
+      <h2 class="dj-radar-title">Get on our<br><span class="dj-radar-outline">DJ Radar.</span></h2>
       <a href="dj.html" class="dj-radar-btn">Sign Up as a DJ</a>
+    </div>
+
+    <div class="dj-radar-video-wrap">
+      <video id="djRadarVid" src="dj_radar_banner.mp4" loop playsinline></video>
+      <div class="dj-radar-texture"></div>
       <div class="dj-radar-controls">
         <button class="dj-radar-ctrl" id="djPlayBtn" onclick="toggleDJPlay()" title="Play / Pause">&#9654;</button>
         <button class="dj-radar-ctrl" id="djMuteBtn" onclick="toggleDJMute()" title="Mute / Unmute">&#128266;</button>
       </div>
     </div>
+
   </div>
-</div>
+</section>
 
 <!-- JOIN AFROCUE + NEWSLETTER -->
 <section id="join" style="border-top: 1px solid rgba(255,255,255,0.06);">
