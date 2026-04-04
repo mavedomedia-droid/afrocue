@@ -582,53 +582,29 @@ function loadParties() {
   grid.innerHTML = '<div class="loading-grid">Loading parties...</div>';
 
   var gasUrl = getGasUrl();
-  console.log('[AfroCue] GAS URL:', gasUrl);
 
   if (gasUrl === 'YOUR_GAS_SCRIPT_URL_HERE') {
-    console.log('[AfroCue] No GAS URL — using placeholders');
     PARTIES = getPlaceholders();
     renderCards({});
     return;
   }
 
-  console.log('[AfroCue] Fetching parties via JSONP...');
-  var callbackName = 'afrocuePartiesCallback_' + Date.now();
-  var script = document.createElement('script');
-  var timeout = setTimeout(function() {
-    console.error('[AfroCue] JSONP timeout — using placeholders');
-    cleanup();
-    PARTIES = getPlaceholders();
-    renderCards(getFilters ? getFilters() : {});
-  }, 8000);
-
-  function cleanup() {
-    clearTimeout(timeout);
-    delete window[callbackName];
-    if (script.parentNode) script.parentNode.removeChild(script);
-  }
-
-  window[callbackName] = function(data) {
-    console.log('[AfroCue] GAS response:', data);
-    cleanup();
-    if (data.parties && data.parties.length > 0) {
-      PARTIES = data.parties;
-      console.log('[AfroCue] Loaded', PARTIES.length, 'parties from sheet');
-    } else {
-      console.warn('[AfroCue] No active parties — using placeholders');
+  /* Fetch parties from GAS — uses fetch() with the deployed web app URL */
+  fetch(gasUrl + '?action=get_parties')
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      if (data.parties && data.parties.length > 0) {
+        PARTIES = data.parties;
+      } else {
+        PARTIES = getPlaceholders();
+      }
+      renderCards(getFilters ? getFilters() : {});
+    })
+    .catch(function(err) {
+      console.error('[AfroCue] Fetch error:', err);
       PARTIES = getPlaceholders();
-    }
-    renderCards(getFilters ? getFilters() : {});
-  };
-
-  script.onerror = function() {
-    console.error('[AfroCue] JSONP script error — using placeholders');
-    cleanup();
-    PARTIES = getPlaceholders();
-    renderCards(getFilters ? getFilters() : {});
-  };
-
-  script.src = gasUrl + '?action=get_parties&callback=' + callbackName;
-  document.head.appendChild(script);
+      renderCards(getFilters ? getFilters() : {});
+    });
 }
 
 /* Placeholder data for before GAS is wired */
@@ -820,24 +796,15 @@ function closeModal() {
 function incrementStat(id, action, displayId) {
   var gasUrl = getGasUrl();
   if (gasUrl === 'YOUR_GAS_SCRIPT_URL_HERE') return;
-  /* Use JSONP for count reads so we can update the display */
-  if (displayId) {
-    var cbName = 'afrocueCountCb_' + Date.now();
-    var s = document.createElement('script');
-    window[cbName] = function(data) {
-      if (data.count !== undefined) document.getElementById(displayId) && (document.getElementById(displayId).textContent = data.count);
-      delete window[cbName];
-      if (s.parentNode) s.parentNode.removeChild(s);
-    };
-    s.src = gasUrl + '?action=' + action + '&id=' + encodeURIComponent(id) + '&callback=' + cbName;
-    document.head.appendChild(s);
-  } else {
-    /* Fire and forget — no display update needed */
-    var s2 = document.createElement('script');
-    s2.src = gasUrl + '?action=' + action + '&id=' + encodeURIComponent(id) + '&callback=afrocueNoop';
-    window.afrocueNoop = window.afrocueNoop || function(){};
-    document.head.appendChild(s2);
-  }
+  fetch(gasUrl + '?action=' + action + '&id=' + encodeURIComponent(id))
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      if (displayId && data.count !== undefined) {
+        var el = document.getElementById(displayId);
+        if (el) el.textContent = data.count;
+      }
+    })
+    .catch(function() {});
 }
 
 function handleLike() {
