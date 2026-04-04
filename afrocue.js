@@ -4,7 +4,8 @@
    Set SCRIPT_URL below once you deploy the GAS web app.
    ============================================================ */
 
-var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxvT625d4bp5I3up1bVHLXe9w_IEZjTjhZXnM6_BZR_pRf1fodQLDAB1Cs8iw0WsMI/exec';
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwDjezkcBJOD-UqHmZhoy93axToIh7KHGHki9PvzM6tRGOnoXuSC4OUaYduqE_nY6KV/exec';
+window.AFROCUE_SCRIPT_URL = SCRIPT_URL;
 
 
 /* ── UTILITY ─────────────────────────────────────────────── */
@@ -94,12 +95,12 @@ function submitToGAS(data) {
     btn.disabled = true;
 
     var data = {
-      source:      'index_media',
-      name:        (form.su_name  ? form.su_name.value.trim()  : ''),
-      email:       (form.su_email ? form.su_email.value.trim() : ''),
-      role:        (form.su_role  ? form.su_role.value         : ''),
-      instagram:   (form.su_ig    ? form.su_ig.value.replace('@','').trim() : ''),
-      newsletter:  'Yes'
+      source:     'index_media',
+      name:       (form.su_name  ? form.su_name.value.trim()  : ''),
+      email:      (form.su_email ? form.su_email.value.trim() : ''),
+      role:       (form.su_role  ? form.su_role.value         : ''),
+      instagram:  (form.su_ig    ? form.su_ig.value.replace('@','').trim() : ''),
+      newsletter: 'Yes'
     };
 
     submitToGAS(data).finally(function() {
@@ -116,16 +117,12 @@ function submitToGAS(data) {
 window.handleNewsletter = function(e) {
   e.preventDefault();
   var form = e.target;
-  var nameInput  = form.nl_name  ? form.nl_name.value.trim()  : '';
-  var emailInput = form.nl_email ? form.nl_email.value.trim() : '';
-
   var data = {
-    source:    'index_newsletter',
-    name:      nameInput,
-    email:     emailInput,
+    source:     'index_newsletter',
+    name:       form.nl_name  ? form.nl_name.value.trim()  : '',
+    email:      form.nl_email ? form.nl_email.value.trim() : '',
     newsletter: 'Yes'
   };
-
   submitToGAS(data).finally(function() {
     form.innerHTML = "<p style='color:var(--yellow);font-size:16px;font-weight:500;margin-top:8px;'>You are in. We will be in touch.</p>";
   });
@@ -135,7 +132,7 @@ window.handleNewsletter = function(e) {
 /* ── PREGAME: FORM HELPERS ───────────────────────────────── */
 
 (function() {
-  /* area "Other" field toggle */
+  /* area "Other" field toggle — pregame only */
   var areaSelect = document.getElementById('areaSelect');
   if (areaSelect) {
     areaSelect.addEventListener('change', function() {
@@ -144,7 +141,8 @@ window.handleNewsletter = function(e) {
     });
   }
 
-  /* yes/no toggle buttons */
+  /* toggleBtn — generic yes/no toggle.
+     DJ page redefines this after load so its version takes precedence there. */
   window.toggleBtn = function(btn, fieldId, value) {
     btn.parentElement.querySelectorAll('.toggle-btn').forEach(function(b) {
       b.classList.remove('active');
@@ -154,7 +152,7 @@ window.handleNewsletter = function(e) {
     if (field) field.value = value;
   };
 
-  /* party type pills */
+  /* party type pills — pregame only */
   window.togglePill = function(el) {
     el.classList.toggle('selected');
     var selected = Array.from(document.querySelectorAll('#partyTypePills .pill-opt.selected'))
@@ -163,7 +161,7 @@ window.handleNewsletter = function(e) {
     if (val) val.value = selected.join(', ');
   };
 
-  /* newsletter checkbox */
+  /* newsletter checkbox — pregame only */
   var newsletterChecked = true;
   window.toggleNewsletter = function(label) {
     newsletterChecked = !newsletterChecked;
@@ -177,7 +175,7 @@ window.handleNewsletter = function(e) {
   window.handleSubmit = function(e) {
     e.preventDefault();
     var form = e.target;
-    var btn = document.getElementById('submitBtn');
+    var btn  = document.getElementById('submitBtn');
 
     if (!form.name.value.trim() || !form.email.value.trim()) {
       alert('Please fill in your name and email.');
@@ -185,7 +183,7 @@ window.handleNewsletter = function(e) {
     }
 
     btn.textContent = 'Submitting...';
-    btn.disabled = true;
+    btn.disabled    = true;
 
     var area = form.area && form.area.value === 'Other'
       ? (form.area_other ? form.area_other.value : 'Other')
@@ -195,20 +193,51 @@ window.handleNewsletter = function(e) {
       source:      'pregame',
       name:        form.name.value.trim(),
       email:       form.email.value.trim(),
-      phone:       form.phone ? form.phone.value.trim() : '',
+      phone:       form.phone     ? form.phone.value.trim()     : '',
       instagram:   form.instagram ? ('@' + form.instagram.value.replace('@','').trim()) : '',
-      party_types: (document.getElementById('partyTypesVal') || {value:''}).value,
+      party_types: (document.getElementById('partyTypesVal') || {value: ''}).value,
       area:        area,
-      plusone:     (form.plusone ? form.plusone.value : '') || 'Not answered',
+      plusone:     (form.plusone  ? form.plusone.value : '') || 'Not answered',
       newsletter:  newsletterChecked ? 'Yes' : 'No'
     };
 
     submitToGAS(data).finally(function() {
       btn.textContent = 'Submit';
-      btn.disabled = false;
+      btn.disabled    = false;
       var overlay = document.getElementById('successOverlay');
-      if (overlay) overlay.classList.add('show');
+      if (overlay) {
+        overlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      }
     });
+  };
+})();
+
+
+/* ── DJ RADAR VIDEO CONTROLS ─────────────────────────────── */
+
+(function() {
+  var vid     = document.getElementById('djRadarVid');
+  var playBtn = document.getElementById('djPlayBtn');
+  var muteBtn = document.getElementById('djMuteBtn');
+  if (!vid) return;
+
+  vid.pause();
+  vid.muted = true;
+
+  window.toggleDJPlay = function() {
+    if (vid.paused) {
+      vid.play();
+      if (playBtn) playBtn.innerHTML = '&#9646;&#9646;';
+    } else {
+      vid.pause();
+      if (playBtn) playBtn.innerHTML = '&#9654;';
+    }
+  };
+
+  window.toggleDJMute = function() {
+    vid.muted = !vid.muted;
+    if (muteBtn) muteBtn.innerHTML = vid.muted ? '&#128264;' : '&#128266;';
   };
 })();
 
