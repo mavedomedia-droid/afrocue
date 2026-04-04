@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- ═══ SEO — EDIT PER POST ═══ -->
+  <title>POST TITLE — AfroCue</title>
+  <meta name="description" content="POST DESCRIPTION — one or two sentences."/>
+  <meta name="keywords" content="DJs, Lagos, Nigeria, afrohouse, amapiano, dance music, AfroCue"/>
+  <link rel="canonical" href="https://afrocue.xyz/posts/POST-SLUG.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://afrocue.xyz/posts/POST-SLUG.html"/>
+  <meta property="og:title" content="POST TITLE — AfroCue"/>
+  <meta property="og:description" content="POST DESCRIPTION"/>
+  <meta property="og:image" content="https://afrocue.xyz/posts/images/POST-COVER.jpg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@afrocue_"/>
+  <meta name="twitter:title" content="POST TITLE — AfroCue"/>
+  <meta name="twitter:description" content="POST DESCRIPTION"/>
+  <meta name="twitter:image" content="https://afrocue.xyz/posts/images/POST-COVER.jpg"/>
+  <!-- ═══ END SEO ═══ -->
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
+
+  <link rel="icon" type="image/png" href="../favicon.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face { font-family: 'Aesthet Nova'; src: url('../fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('../fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('../fonnts.com-Aesthet-Nova-.otf') format('opentype'); font-weight: 400; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('../fonnts.com-Aesthetet-Nova-Light.otf') format('opentype'); font-weight: 300; }
+
+    :root {
+      --black:  #0a0a0a;
+      --dark:   #111111;
+      --dark2:  #1c1c1c;
+      --mid:    #2e2e2e;
+      --grey:   #555555;
+      --silver: #999999;
+      --off:    #d4d4d0;
+      --white:  #f0ede8;
+      --yellow: #C8E000;
+      --pink:   #FF3DCC;
+      --yts:    2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.06);
+      --content-width: 720px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: 'Figtree', sans-serif; overflow-x: hidden; }
+    .yh { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; color: var(--yellow); text-shadow: var(--yts); line-height: 0.92; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(10,10,10,0.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 40px; width: auto; display: block; }
+    .nav-logo-fallback { display: none; font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 17px; color: var(--yellow); letter-spacing: 0.08em; }
+    .nav-back { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--silver); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 8px; }
+    .nav-back::before { content: '←'; font-size: 14px; }
+    .nav-back:hover { color: var(--white); }
+
+    /* ── COVER IMAGE ── */
+    /* Replace: posts/images/POST-COVER.jpg — recommended 1600×900px (16:9) */
+    .post-cover {
+      width: 100%; aspect-ratio: 16/9;
+      position: relative; overflow: hidden;
+      margin-top: 73px; /* nav height */
+      background: var(--dark2);
+    }
+    .post-cover img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.85; }
+    .post-cover::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 50%);
+    }
+    .post-cover-caption {
+      position: absolute; bottom: 16px; right: 20px; z-index: 2;
+      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(240,237,232,0.3);
+    }
+
+    /* ── POST WRAPPER ── */
+    .post-wrap {
+      max-width: var(--content-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── POST HEADER ── */
+    .post-header { padding: 52px 0 40px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+    .post-meta {
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .post-tag {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--black); background: var(--yellow);
+      padding: 4px 10px; border-radius: 2px;
+    }
+    .post-date {
+      font-size: 11px; font-weight: 400; letter-spacing: 0.08em;
+      color: var(--grey);
+    }
+    .post-reading-time {
+      font-size: 11px; font-weight: 400; letter-spacing: 0.08em;
+      color: var(--grey);
+    }
+    .post-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--mid); }
+
+    .post-title {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: clamp(36px, 5.5vw, 72px);
+      line-height: 0.92; color: var(--yellow);
+      text-shadow: var(--yts);
+      margin-bottom: 24px;
+    }
+
+    .post-subtitle {
+      font-size: 17px; font-weight: 300; line-height: 1.75;
+      color: rgba(240,237,232,0.6);
+      margin-bottom: 32px;
+    }
+
+    .post-byline {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .post-byline-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--dark2); border: 1px solid rgba(255,255,255,0.1);
+      overflow: hidden; flex-shrink: 0;
+    }
+    .post-byline-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .post-byline-name { font-size: 12px; font-weight: 500; color: var(--white); }
+    .post-byline-role { font-size: 11px; font-weight: 300; color: var(--grey); }
+
+    /* ── POST BODY ── */
+    .post-body { padding: 48px 0; }
+
+    /* Base paragraph */
+    .post-body p {
+      font-size: 16px; font-weight: 300; line-height: 1.9;
+      color: rgba(240,237,232,0.75);
+      margin-bottom: 28px;
+    }
+    .post-body p:last-child { margin-bottom: 0; }
+
+    /* Lead paragraph — use on the opening line */
+    .post-body p.lead {
+      font-size: 19px; font-weight: 400; line-height: 1.75;
+      color: rgba(240,237,232,0.88);
+      margin-bottom: 36px;
+    }
+
+    /* Section heading */
+    .post-body h2 {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: clamp(26px, 3.5vw, 40px);
+      line-height: 0.95; color: var(--yellow);
+      text-shadow: var(--yts);
+      margin: 52px 0 20px;
+    }
+
+    /* Sub heading */
+    .post-body h3 {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 500;
+      font-size: clamp(18px, 2.5vw, 24px);
+      line-height: 1.1; color: var(--white);
+      margin: 36px 0 14px;
+    }
+
+    /* Pull quote — highlight a line */
+    .post-body blockquote {
+      border-left: 2px solid var(--yellow);
+      margin: 40px 0; padding: 4px 0 4px 28px;
+    }
+    .post-body blockquote p {
+      font-size: 20px; font-weight: 400; font-style: italic;
+      line-height: 1.65; color: rgba(240,237,232,0.85);
+      margin: 0;
+    }
+    .post-body blockquote cite {
+      display: block; margin-top: 10px;
+      font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--grey);
+      font-style: normal;
+    }
+
+    /* Inline image — full width within content column */
+    /* Replace src with: posts/images/IMAGE-NAME.jpg */
+    .post-img {
+      width: 100%; margin: 40px 0;
+      border-radius: 4px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: var(--dark2);
+    }
+    .post-img img { width: 100%; display: block; height: auto; }
+    .post-img figcaption {
+      padding: 10px 14px;
+      font-size: 11px; font-weight: 300; letter-spacing: 0.04em;
+      color: var(--grey); background: var(--dark);
+    }
+
+    /* Wide image — breaks out of content column */
+    .post-img-wide {
+      width: calc(100% + 48px); margin: 40px -24px;
+      border-radius: 4px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: var(--dark2);
+    }
+    .post-img-wide img { width: 100%; display: block; height: auto; }
+    .post-img-wide figcaption {
+      padding: 10px 24px;
+      font-size: 11px; font-weight: 300; letter-spacing: 0.04em;
+      color: var(--grey); background: var(--dark);
+    }
+
+    /* Two image side by side */
+    .post-img-duo {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 8px; margin: 40px 0;
+    }
+    .post-img-duo figure { border-radius: 4px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); background: var(--dark2); }
+    .post-img-duo img { width: 100%; display: block; height: auto; }
+    .post-img-duo figcaption { padding: 8px 12px; font-size: 10px; font-weight: 300; color: var(--grey); background: var(--dark); }
+
+    /* Highlight box — call out a fact or stat */
+    .post-highlight {
+      background: var(--dark); border: 1px solid rgba(255,255,255,0.07);
+      border-left: 3px solid var(--yellow);
+      border-radius: 0 4px 4px 0;
+      padding: 24px 28px; margin: 40px 0;
+    }
+    .post-highlight p {
+      font-size: 14px; font-weight: 400; line-height: 1.75;
+      color: rgba(240,237,232,0.7); margin: 0;
+    }
+    .post-highlight .highlight-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--yellow);
+      margin-bottom: 8px; display: block;
+    }
+
+    /* DJ spotlight card — use for a featured DJ */
+    .post-dj-card {
+      background: var(--dark); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px; overflow: hidden; margin: 40px 0;
+      display: grid; grid-template-columns: 120px 1fr;
+    }
+    .post-dj-card-img { width: 120px; aspect-ratio: 1/1; background: var(--dark2); overflow: hidden; }
+    .post-dj-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .post-dj-card-body { padding: 20px 24px; }
+    .post-dj-card-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--yellow); margin-bottom: 6px; }
+    .post-dj-card-name { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 26px; color: var(--white); line-height: 1; margin-bottom: 8px; }
+    .post-dj-card-desc { font-size: 12px; font-weight: 300; line-height: 1.7; color: var(--grey); }
+
+    /* Tracklist — numbered list of songs */
+    .post-tracklist { margin: 40px 0; border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+    .post-tracklist-header { padding: 14px 20px; background: var(--dark2); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .post-tracklist-header span { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--yellow); }
+    .post-tracklist-item { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 16px; background: var(--dark); transition: background 0.2s; }
+    .post-tracklist-item:last-child { border-bottom: none; }
+    .post-tracklist-item:hover { background: var(--dark2); }
+    .post-tracklist-num { font-size: 11px; font-weight: 600; color: var(--grey); width: 20px; flex-shrink: 0; }
+    .post-tracklist-title { font-size: 13px; font-weight: 500; color: var(--white); flex: 1; }
+    .post-tracklist-artist { font-size: 12px; font-weight: 300; color: var(--grey); }
+
+    /* Divider */
+    .post-divider { height: 1px; background: rgba(255,255,255,0.06); margin: 48px 0; }
+
+    /* Section label — same as rest of site */
+    .post-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--silver);
+      margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+    }
+    .post-label::before { content: ''; width: 18px; height: 1px; background: var(--silver); flex-shrink: 0; }
+
+    /* Tags at bottom of post */
+    .post-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 48px 0 0; }
+    .post-tag-pill {
+      border: 1px solid rgba(255,255,255,0.1); border-radius: 2px;
+      padding: 7px 14px; font-size: 11px; font-weight: 400;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--silver); text-decoration: none; transition: border-color 0.2s, color 0.2s;
+    }
+    .post-tag-pill:hover { border-color: var(--yellow); color: var(--yellow); }
+
+    /* ── SHARE BAR ── */
+    .post-share {
+      padding: 32px 0; border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap; margin-top: 48px;
+    }
+    .post-share-label { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); }
+    .post-share-links { display: flex; gap: 10px; }
+    .post-share-btn {
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 2px;
+      padding: 9px 18px; font-size: 10px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--silver); text-decoration: none; cursor: pointer;
+      background: transparent; transition: border-color 0.2s, color 0.2s;
+    }
+    .post-share-btn:hover { border-color: var(--white); color: var(--white); }
+
+    /* ── BACK TO AFROCUE CTA ── */
+    .post-cta {
+      background: var(--dark); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 4px; padding: 36px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap; margin: 48px 0 80px;
+      text-decoration: none; transition: border-color 0.25s;
+    }
+    .post-cta:hover { border-color: rgba(255,255,255,0.18); }
+    .post-cta-text h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 22px; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 4px; }
+    .post-cta-text p { font-size: 12px; font-weight: 300; color: var(--grey); }
+    .btn-white { display: inline-block; font-family: 'Figtree', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); background: var(--white); padding: 12px 24px; border-radius: 2px; text-decoration: none; transition: background 0.2s; white-space: nowrap; }
+    .btn-white:hover { background: var(--off); }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 36px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; background: var(--dark); }
+    .footer-logo img { height: 32px; width: auto; display: block; }
+    .footer-logo-fallback { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 16px; color: var(--yellow); }
+    .footer-tagline { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); margin-top: 3px; }
+    .footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+    .footer-links a { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .post-cover { aspect-ratio: 4/3; }
+      .post-wrap { padding: 0 20px; }
+      .post-header { padding: 36px 0 28px; }
+      .post-body { padding: 32px 0; }
+      .post-img-wide { width: calc(100% + 40px); margin: 32px -20px; }
+      .post-img-duo { grid-template-columns: 1fr; }
+      .post-dj-card { grid-template-columns: 90px 1fr; }
+      .post-dj-card-img { width: 90px; }
+      .post-share { flex-direction: column; align-items: flex-start; }
+      footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="../index.html">
+    <img src="../logo_afrocue.png" alt="AfroCue"
+      onerror="this.style.display='none'; document.querySelector('.nav-logo-fallback').style.display='block'"/>
+    <span class="nav-logo-fallback">afro.cue</span>
+  </a>
+  <a href="../index.html" class="nav-back">AfroCue</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════
+     COVER IMAGE
+     Replace src with your cover image.
+     Recommended: 1600×900px (16:9)
+     Save to: posts/images/POST-COVER.jpg
+════════════════════════════════════════════════════ -->
+<div class="post-cover">
+  <img src="images/POST-COVER.jpg" alt="POST TITLE"/>
+  <!-- optional: photo credit -->
+  <span class="post-cover-caption">Photo: Photographer Name</span>
+</div>
+
+<!-- POST CONTENT -->
+<div class="post-wrap">
+
+  <!-- ═══ POST HEADER ═══ -->
+  <header class="post-header">
+    <div class="post-meta">
+      <!-- TAG: e.g. DJ Spotlight / Monthly Recap / Culture / Events -->
+      <span class="post-tag">DJ Spotlight</span>
+      <span class="post-meta-dot"></span>
+      <!-- DATE -->
+      <span class="post-date">April 2026</span>
+      <span class="post-meta-dot"></span>
+      <!-- READING TIME: estimate ~200 words per minute -->
+      <span class="post-reading-time">4 min read</span>
+    </div>
+
+    <!-- TITLE — keep short and punchy -->
+    <h1 class="post-title">POST TITLE<br>GOES HERE.</h1>
+
+    <!-- SUBTITLE / intro line — one sentence -->
+    <p class="post-subtitle">One compelling sentence that tells the reader exactly what this is about and why it matters.</p>
+
+    <!-- BYLINE — optional, remove if not needed -->
+    <div class="post-byline">
+      <div class="post-byline-avatar">
+        <!-- avatar image or leave empty for initials bg -->
+        <img src="../logo_afrocue.png" alt="AfroCue"/>
+      </div>
+      <div>
+        <div class="post-byline-name">AfroCue</div>
+        <div class="post-byline-role">afro.cue</div>
+      </div>
+    </div>
+  </header>
+  <!-- ═══ END POST HEADER ═══ -->
+
+  <!-- ═══ POST BODY ═══ -->
+  <article class="post-body">
+
+    <!-- ─── LEAD PARAGRAPH — opening sentence, slightly larger ─── -->
+    <p class="lead">
+      This is the opening paragraph. It should hook the reader immediately — one or two strong sentences that set the scene. No warm-up, no intro. Start in the middle of the story.
+    </p>
+
+    <!-- ─── REGULAR PARAGRAPH ─── -->
+    <p>
+      This is a regular body paragraph. Write in short, clear sentences. Keep paragraphs tight — 3 to 5 lines maximum. AfroCue voice is direct, culture-aware, and never corporate.
+    </p>
+
+    <!-- ─── SECTION HEADING ─── -->
+    <h2>Section Heading.</h2>
+
+    <p>
+      Body copy under the section heading. Continue the narrative here. You can have as many sections as you need — just add another h2 and follow it with paragraphs.
+    </p>
+
+    <!-- ─── PULL QUOTE ─── -->
+    <blockquote>
+      <p>Use this for a strong line from an interview, a standout moment, or a sentence you want to emphasise.</p>
+      <cite>— Source Name, if applicable</cite>
+    </blockquote>
+
+    <p>
+      Continue body copy after the pull quote. Pick up the thread of the story.
+    </p>
+
+    <!-- ─── INLINE IMAGE ─── -->
+    <!-- Save image to: posts/images/IMAGE-NAME.jpg — recommended 1200×800px -->
+    <figure class="post-img">
+      <img src="images/POST-IMAGE-1.jpg" alt="Image description"/>
+      <figcaption>Caption: what's happening in this image, who or where.</figcaption>
+    </figure>
+
+    <p>
+      Body copy continues after the image. The image sits within the content column at full width.
+    </p>
+
+    <!-- ─── HIGHLIGHT BOX — for a key fact, stat, or aside ─── -->
+    <div class="post-highlight">
+      <span class="highlight-label">Note</span>
+      <p>Use this box to call out a key fact, a stat, a context note, or something worth flagging separately from the main body copy.</p>
+    </div>
+
+    <!-- ─── SUB HEADING ─── -->
+    <h3>A Smaller Sub Heading</h3>
+
+    <p>
+      Body copy under a sub heading. Use h3 when you need a lighter heading within a section — less prominent than h2, keeps the hierarchy clean.
+    </p>
+
+    <!-- ─── WIDE IMAGE — breaks out of content column ─── -->
+    <!-- Save image to: posts/images/IMAGE-NAME.jpg — recommended 1600×900px -->
+    <figure class="post-img-wide">
+      <img src="images/POST-IMAGE-WIDE.jpg" alt="Wide image description"/>
+      <figcaption>Caption for the wide image.</figcaption>
+    </figure>
+
+    <p>
+      Body copy continues after the wide image. Use wide images sparingly — once or twice per post, for a big moment that deserves more real estate.
+    </p>
+
+    <!-- ─── TWO IMAGES SIDE BY SIDE ─── -->
+    <div class="post-img-duo">
+      <figure>
+        <img src="images/POST-IMAGE-LEFT.jpg" alt="Left image"/>
+        <figcaption>Left image caption.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/POST-IMAGE-RIGHT.jpg" alt="Right image"/>
+        <figcaption>Right image caption.</figcaption>
+      </figure>
+    </div>
+
+    <!-- ─── SECTION DIVIDER ─── -->
+    <div class="post-divider"></div>
+
+    <!-- ─── DJ SPOTLIGHT CARD — for a featured DJ ─── -->
+    <!-- Save DJ image to: posts/images/DJ-NAME.jpg — recommended 400×400px square -->
+    <div class="post-dj-card">
+      <div class="post-dj-card-img">
+        <img src="images/DJ-NAME.jpg" alt="DJ Name"/>
+      </div>
+      <div class="post-dj-card-body">
+        <div class="post-dj-card-tag">Featured DJ</div>
+        <div class="post-dj-card-name">DJ NAME</div>
+        <div class="post-dj-card-desc">City · Primary genre · A short one-liner about this DJ — where they play, what they're known for.</div>
+      </div>
+    </div>
+
+    <p>
+      Body copy continues after the DJ card. You can use this card anywhere in the post — at the top as an intro, or mid-article when you're referencing a specific DJ.
+    </p>
+
+    <!-- ─── TRACKLIST ─── -->
+    <div class="post-tracklist">
+      <div class="post-tracklist-header"><span>Tracklist / What They're Playing</span></div>
+      <div class="post-tracklist-item">
+        <span class="post-tracklist-num">01</span>
+        <span class="post-tracklist-title">Track Title</span>
+        <span class="post-tracklist-artist">Artist Name</span>
+      </div>
+      <div class="post-tracklist-item">
+        <span class="post-tracklist-num">02</span>
+        <span class="post-tracklist-title">Track Title</span>
+        <span class="post-tracklist-artist">Artist Name</span>
+      </div>
+      <div class="post-tracklist-item">
+        <span class="post-tracklist-num">03</span>
+        <span class="post-tracklist-title">Track Title</span>
+        <span class="post-tracklist-artist">Artist Name</span>
+      </div>
+      <div class="post-tracklist-item">
+        <span class="post-tracklist-num">04</span>
+        <span class="post-tracklist-title">Track Title</span>
+        <span class="post-tracklist-artist">Artist Name</span>
+      </div>
+      <div class="post-tracklist-item">
+        <span class="post-tracklist-num">05</span>
+        <span class="post-tracklist-title">Track Title</span>
+        <span class="post-tracklist-artist">Artist Name</span>
+      </div>
+    </div>
+
+    <p>
+      Closing paragraph. Land the post — summarise without over-explaining. Leave the reader with something to think about or do next.
+    </p>
+
+    <!-- ─── POST TAGS ─── -->
+    <div class="post-tags">
+      <a href="#" class="post-tag-pill">DJ Spotlight</a>
+      <a href="#" class="post-tag-pill">Lagos</a>
+      <a href="#" class="post-tag-pill">Afro House</a>
+      <a href="#" class="post-tag-pill">Amapiano</a>
+      <a href="#" class="post-tag-pill">Nightlife</a>
+    </div>
+
+  </article>
+  <!-- ═══ END POST BODY ═══ -->
+
+  <!-- ─── SHARE BAR ─── -->
+  <div class="post-share">
+    <span class="post-share-label">Share</span>
+    <div class="post-share-links">
+      <a class="post-share-btn" href="https://twitter.com/intent/tweet?text=POST+TITLE&url=https://afrocue.xyz/posts/POST-SLUG.html" target="_blank">X / Twitter</a>
+      <a class="post-share-btn" href="https://www.instagram.com/afro.cue" target="_blank">Instagram</a>
+      <button class="post-share-btn" onclick="navigator.clipboard.writeText(window.location.href); this.textContent='Copied'; setTimeout(()=>this.textContent='Copy Link',2000)">Copy Link</button>
+    </div>
+  </div>
+
+  <!-- ─── BACK TO AFROCUE CTA ─── -->
+  <a href="../index.html" class="post-cta">
+    <div class="post-cta-text">
+      <h3>afro.cue</h3>
+      <p>DJs · Parties · Music · Culture</p>
+    </div>
+    <span class="btn-white">Back to AfroCue</span>
+  </a>
+
+</div>
+<!-- END POST WRAP -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <a href="../index.html">
+      <img src="../logo_afrocue.png" alt="AfroCue"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"/>
+      <span class="footer-logo-fallback" style="display:none;">afro.cue</span>
+    </a>
+    <p class="footer-tagline">Creatively Documenting Culture</p>
+  </div>
+  <div class="footer-links">
+    <a href="../index.html">Home</a>
+    <a href="../index.html#content">Content</a>
+    <a href="../dj.html">DJ Signup</a>
+    <a href="../index.html#advertise">Get Featured</a>
+  </div>
+</footer>
+
+</body>
+</html>
