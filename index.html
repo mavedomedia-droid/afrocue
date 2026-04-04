@@ -432,6 +432,80 @@
       .signup-modal { padding: 36px 24px; }
       .signup-row { grid-template-columns: 1fr; }
     }
+
+    /* ── DJ RADAR BANNER ── */
+    .dj-radar-banner {
+      position: relative; overflow: hidden;
+      aspect-ratio: 2/1;
+      display: flex; align-items: center; justify-content: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .dj-radar-video {
+      position: absolute; inset: 0; z-index: 0;
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .dj-radar-texture {
+      position: absolute; inset: 0; z-index: 1;
+      background-image: url('texture.jpg');
+      background-size: cover; background-position: center;
+      opacity: 0.45; pointer-events: none;
+    }
+    .dj-radar-content {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1200px; padding: 0 48px; gap: 40px; flex-wrap: wrap;
+    }
+    .dj-radar-title {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: clamp(44px, 6vw, 88px); line-height: 0.9;
+      color: var(--yellow);
+      text-shadow: 3px 4px 0px rgba(0,0,0,0.95), 0 0 32px rgba(0,0,0,0.8);
+    }
+    .dj-radar-outline {
+      -webkit-text-stroke: 1.5px var(--yellow);
+      color: transparent; text-shadow: 3px 4px 0px rgba(0,0,0,0.9);
+      display: block;
+    }
+    .dj-radar-right { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; flex-shrink: 0; }
+    .dj-radar-btn {
+      display: inline-block; font-family: 'Figtree', sans-serif;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--yellow); background: transparent;
+      border: 1.5px solid var(--yellow);
+      padding: 14px 32px; border-radius: 2px;
+      text-decoration: none; white-space: nowrap;
+      transition: background 0.2s, color 0.2s;
+      text-shadow: 1px 2px 0px rgba(0,0,0,0.8);
+    }
+    .dj-radar-btn:hover { background: var(--yellow); color: var(--black); text-shadow: none; }
+    /* audio/play controls */
+    .dj-radar-controls { display: flex; gap: 8px; }
+    .dj-radar-ctrl {
+      width: 32px; height: 32px; border-radius: 2px;
+      background: rgba(10,10,10,0.5); border: 1px solid rgba(255,255,255,0.2);
+      color: var(--white); font-size: 12px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s; flex-shrink: 0;
+    }
+    .dj-radar-ctrl:hover { background: rgba(10,10,10,0.8); }
+    .btn-join-dj {
+      display: inline-block; font-family: 'Figtree', sans-serif;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--yellow); background: transparent;
+      border: 1.5px solid rgba(200,224,0,0.5);
+      padding: 13px 26px; border-radius: 2px;
+      text-decoration: none; white-space: nowrap; cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-join-dj:hover { border-color: var(--yellow); background: rgba(200,224,0,0.06); }
+    @media (max-width: 768px) {
+      .dj-radar-banner { aspect-ratio: 1/1; }
+      .dj-radar-content { padding: 0 20px; flex-direction: column; align-items: flex-start; gap: 24px; }
+      .dj-radar-title { font-size: clamp(40px, 12vw, 64px); }
+      .dj-radar-right { align-items: flex-start; }
+    }
+
   </style>
 </head>
 <body>
@@ -605,6 +679,23 @@
   </div>
 </section>
 
+<!-- DJ RADAR BANNER -->
+<!-- dj_radar_banner.mp4 — 1920×960px (2:1), looping, with audio — drop in root folder -->
+<div class="dj-radar-banner" id="dj-radar">
+  <video class="dj-radar-video" id="djRadarVid" src="dj_radar_banner.mp4" loop playsinline></video>
+  <div class="dj-radar-texture"></div>
+  <div class="dj-radar-content">
+    <h2 class="dj-radar-title">Get on our<br><span class="dj-radar-outline">DJ Radar.</span></h2>
+    <div class="dj-radar-right">
+      <a href="dj.html" class="dj-radar-btn">Sign Up as a DJ</a>
+      <div class="dj-radar-controls">
+        <button class="dj-radar-ctrl" id="djPlayBtn" onclick="toggleDJPlay()" title="Play / Pause">&#9654;</button>
+        <button class="dj-radar-ctrl" id="djMuteBtn" onclick="toggleDJMute()" title="Mute / Unmute">&#128266;</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- JOIN AFROCUE + NEWSLETTER -->
 <section id="join" style="border-top: 1px solid rgba(255,255,255,0.06);">
   <div class="join-grid">
@@ -614,10 +705,10 @@
       <div class="label">Join AfroCue</div>
       <h2 class="yh join-h">Are you a<br>creative or<br>in media?</h2>
       <p class="join-body">Managers, event executives, brand managers, photographers, videographers, journalists — anyone working in and around Nigeria's dance music scene. Sign up and stay connected.</p>
-      <button class="btn btn-white" onclick="openSignupModal()" style="margin-bottom:14px;">Sign Up</button>
-      <p style="font-size:12px;font-weight:300;color:rgba(240,237,232,0.35);margin-top:4px;">
-        If you're a DJ — <a href="dj.html" style="color:var(--yellow);font-weight:500;text-decoration:none;">sign up here &rarr;</a>
-      </p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:4px;">
+        <button class="btn btn-white" onclick="openSignupModal()">Sign Up</button>
+        <a href="#dj-radar" class="btn-join-dj">Or Join as DJ</a>
+      </div>
     </div>
 
     <!-- Divider -->
@@ -859,6 +950,33 @@
 
 
 
-<script src="afrocue.js"></script>
+<script src="afrocue.js">
+  /* DJ radar video controls */
+  (function() {
+    var vid = document.getElementById('djRadarVid');
+    if (!vid) return;
+    /* start paused — user hits play */
+    vid.pause();
+    vid.muted = true;
+    document.getElementById('djPlayBtn').innerHTML = '&#9654;';
+    document.getElementById('djMuteBtn').innerHTML = '&#128266;';
+  })();
+
+  function toggleDJPlay() {
+    var vid = document.getElementById('djRadarVid');
+    var btn = document.getElementById('djPlayBtn');
+    if (!vid) return;
+    if (vid.paused) { vid.play(); btn.innerHTML = '&#9646;&#9646;'; }
+    else { vid.pause(); btn.innerHTML = '&#9654;'; }
+  }
+
+  function toggleDJMute() {
+    var vid = document.getElementById('djRadarVid');
+    var btn = document.getElementById('djMuteBtn');
+    if (!vid) return;
+    vid.muted = !vid.muted;
+    btn.innerHTML = vid.muted ? '&#128264;' : '&#128266;';
+  }
+</script>
 </body>
 </html>
