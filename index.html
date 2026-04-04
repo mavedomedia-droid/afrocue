@@ -64,7 +64,7 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .nav-logo { display: flex; align-items: center; text-decoration: none; }
-    .nav-logo img { height: 40px; width: auto; display: block; }
+    .nav-logo img { height: 48px; width: auto; display: block; }
     .nav-logo-fallback { display: none; font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 17px; color: var(--yellow); letter-spacing: 0.08em; }
     .nav-links { display: flex; gap: 28px; list-style: none; }
     .nav-links a { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--silver); text-decoration: none; transition: color 0.2s; }
@@ -111,7 +111,7 @@
     }
 
     .hero-content { position: relative; z-index: 3; max-width: 720px; width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; }
-    .hero-eyebrow { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 20px; }
+    .hero-eyebrow { display: none; }
     .hero-eyebrow-line { width: 36px; height: 1px; background: var(--silver); flex-shrink: 0; }
     .hero-eyebrow span { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); }
 
@@ -154,6 +154,8 @@
     .btn-white:hover { background: var(--off); }
     .btn-ghost { color: var(--silver); background: transparent; border: 1px solid rgba(255,255,255,0.18); font-weight: 500; }
     .btn-ghost:hover { border-color: var(--white); color: var(--white); }
+    .btn-dj-outline { color: var(--yellow); background: transparent; border: 1.5px solid var(--yellow); font-weight: 600; }
+    .btn-dj-outline:hover { background: rgba(200,224,0,0.08); color: var(--yellow); }
     .btn-yellow { color: var(--black); background: var(--yellow); }
     .btn-yellow:hover { opacity: 0.88; }
 
@@ -448,7 +450,7 @@
     <li><a href="#content">Content</a></li>
     <li><a href="#advertise">Get Featured</a></li>
   </ul>
-  <a href="dj-signup.html" class="nav-cta">Join as DJ</a>
+  <a href="#join" class="nav-cta">Sign Up</a>
 </nav>
 
 <!-- HERO -->
@@ -467,7 +469,7 @@
       <span>Lagos Nightlife &amp; Dance Music</span>
     </div>
     <h1>Creatively<br><span class="outline">Documenting</span><br>Culture.</h1>
-    <p class="hero-desc">We spotlight the DJs, the raves and parties they play at, and the music — from afrohouse to amapiano — shaping Nigeria's dance floor.</p>
+    <p class="hero-desc">We spotlight the DJs, the raves and parties they play at, and the music — from afrohouse to amapiano and our own afrobeats — shaping Nigeria's dance floor.</p>
     <div class="hero-actions">
       <!-- IG button with inline SVG logo outline -->
       <a href="https://instagram.com/afro.cue" target="_blank" class="btn-ig">
@@ -479,6 +481,7 @@
         Follow Us
       </a>
       <a href="#about" class="btn btn-ghost">Learn More</a>
+      <a href="dj.html" class="btn btn-dj-outline">DJ Sign Up</a>
     </div>
   </div>
 </div>
@@ -609,9 +612,12 @@
     <!-- Left: media signup -->
     <div class="join-media">
       <div class="label">Join AfroCue</div>
-      <h2 class="yh join-h">Are you<br>in media?</h2>
-      <p class="join-body">DJs, managers, event executives, creatives, brand managers — anyone operating in Nigeria's dance music and nightlife scene. Sign up and stay connected.</p>
-      <button class="btn btn-white" onclick="openSignupModal()">Sign Up</button>
+      <h2 class="yh join-h">Are you a<br>creative or<br>in media?</h2>
+      <p class="join-body">Managers, event executives, brand managers, photographers, videographers, journalists — anyone working in and around Nigeria's dance music scene. Sign up and stay connected.</p>
+      <button class="btn btn-white" onclick="openSignupModal()" style="margin-bottom:14px;">Sign Up</button>
+      <p style="font-size:12px;font-weight:300;color:rgba(240,237,232,0.35);margin-top:4px;">
+        If you're a DJ — <a href="dj.html" style="color:var(--yellow);font-weight:500;text-decoration:none;">sign up here &rarr;</a>
+      </p>
     </div>
 
     <!-- Divider -->
