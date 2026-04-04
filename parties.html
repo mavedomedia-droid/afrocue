@@ -537,23 +537,31 @@ function loadParties() {
   grid.innerHTML = '<div class="loading-grid">Loading parties...</div>';
 
   var gasUrl = getGasUrl();
+  console.log('[AfroCue] GAS URL:', gasUrl);
+
   if (gasUrl === 'YOUR_GAS_SCRIPT_URL_HERE') {
+    console.log('[AfroCue] No GAS URL — using placeholders');
     PARTIES = getPlaceholders();
     renderCards('all');
     return;
   }
 
+  console.log('[AfroCue] Fetching parties from GAS...');
   fetch(gasUrl + '?action=get_parties')
     .then(function(r) { return r.json(); })
     .then(function(data) {
+      console.log('[AfroCue] GAS response:', data);
       if (data.parties && data.parties.length > 0) {
         PARTIES = data.parties;
+        console.log('[AfroCue] Loaded', PARTIES.length, 'parties from sheet');
       } else {
+        console.warn('[AfroCue] No active parties returned — using placeholders');
         PARTIES = getPlaceholders();
       }
       renderCards(currentFilter);
     })
-    .catch(function() {
+    .catch(function(err) {
+      console.error('[AfroCue] Fetch error:', err);
       PARTIES = getPlaceholders();
       renderCards(currentFilter);
     });
