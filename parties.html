@@ -831,7 +831,7 @@ function openModal(id) {
   currentParty = party;
 
   /* Hero */
-  document.getElementById('modalHeroBg').style.backgroundImage = 'url('' + party.hero_img + '')';
+  document.getElementById('modalHeroBg').style.backgroundImage = "url('" + (party.hero_img || '') + "')";
   var heroImg = document.getElementById('modalHeroImg');
   heroImg.src = party.hero_img;
   heroImg.alt = party.name;
@@ -881,16 +881,21 @@ function openModal(id) {
   var others = PARTIES.filter(function(p) { return p.id !== id; }).slice(0, 3);
   var othersGrid = document.getElementById('modalOthers');
   othersGrid.innerHTML = '';
-  others.forEach(function(op) {
+    others.forEach(function(op) {
     var el = document.createElement('div');
     el.className = 'modal-other-card';
     el.onclick = function() { openModal(op.id); };
-    el.innerHTML =
-      '<div class="modal-other-bg" style="background-image:url('' + op.hero_img + '')"></div>' +
-      '<img class="modal-other-img" src="' + op.hero_img + '" alt="' + op.name + '" onerror="this.style.opacity=0"/>' +
-      '<div class="modal-other-grad"></div>' +
-      '<div class="modal-other-name">' + op.name + '</div>';
+    var obg = document.createElement('div'); obg.className = 'modal-other-bg';
+    obg.style.backgroundImage = "url('" + (op.hero_img || '') + "')";
+    var oimg = document.createElement('img'); oimg.className = 'modal-other-img';
+    oimg.src = op.hero_img || ''; oimg.alt = op.name;
+    oimg.onerror = function() { this.style.opacity = 0; };
+    var ograd = document.createElement('div'); ograd.className = 'modal-other-grad';
+    var onm = document.createElement('div'); onm.className = 'modal-other-name';
+    onm.textContent = op.name;
+    el.appendChild(obg); el.appendChild(oimg); el.appendChild(ograd); el.appendChild(onm);
     othersGrid.appendChild(el);
+  });(el);
   });
 
   /* SEO */
