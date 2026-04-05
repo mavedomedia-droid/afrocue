@@ -176,6 +176,7 @@
     .footer-email a{font-size:11px;color:var(--grey);text-decoration:none;transition:color 0.2s}
     .footer-email a:hover{color:var(--white)}
 
+      /* TABLET & LARGE PHONE - 2 columns */
     @media(max-width:768px){
       nav{padding:14px 20px}
       .nav-links{display:none}
@@ -190,9 +191,41 @@
       .featured-slot-content{padding:10px 12px;padding-right:70px}
       #parties{padding:28px 16px 72px}
       .parties-header{flex-wrap:wrap;gap:12px}
-      .filter-bar{gap:4px}
-      .filter-select{font-size:10px;padding:7px 22px 7px 8px}
-      .parties-grid{grid-template-columns:1fr 1fr}
+      .filter-bar{gap:4px;width:100%}
+      .filter-select{font-size:10px;padding:7px 22px 7px 8px;flex:1 1 auto}
+      .add-event-btn{font-size:10px;padding:8px 16px}
+      
+      /* IMPROVED GRID - 2 columns with better spacing */
+      .parties-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:1px;
+      }
+      
+      /* Better card sizing for mobile */
+      .party-card{
+        aspect-ratio:3/4;
+      }
+      .party-card-name{
+        font-size:18px;
+      }
+      .party-card-content{
+        padding:14px 12px 12px;
+      }
+      .party-card-tags{
+        margin-bottom:6px;
+      }
+      .tag{
+        font-size:7px;
+        padding:3px 6px;
+      }
+      .party-card-meta{
+        font-size:9px;
+      }
+      .party-card-cta{
+        font-size:8px;
+        padding:4px 8px;
+      }
+      
       .modal-body{padding:0 20px 32px}
       .modal-tags{padding-top:20px}
       .modal-lower{grid-template-columns:1fr}
@@ -201,8 +234,37 @@
       .modal-others-grid{grid-template-columns:1fr 1fr 1fr;gap:2px}
       footer{padding:48px 20px 36px}
     }
-    @media(max-width:480px){
-      .parties-grid{grid-template-columns:1fr}
+    
+    /* SMALL PHONES (under 550px) - still 2 columns, just smaller */
+    @media(max-width:550px){
+      .parties-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:1px;
+      }
+      .party-card-name{
+        font-size:14px;
+      }
+      .party-card-content{
+        padding:10px 8px 8px;
+      }
+      .tag{
+        font-size:6px;
+        padding:2px 5px;
+      }
+      .party-card-meta{
+        font-size:8px;
+      }
+    }
+    
+    /* VERY SMALL (under 400px) - keep 2 columns, it works fine */
+    @media(max-width:400px){
+      .parties-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:1px;
+      }
+      .party-card-name{
+        font-size:13px;
+      }
       .modal-hero{height:260px}
     }
   </style>
