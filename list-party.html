@@ -155,8 +155,7 @@
 
     <div class="form-left">
       <div class="label">List a Party</div>
-      <h2 class="yh form-left-h">Get your<br>party on<br>the page.</h2>
-      <p>Fill in the details. We will review and publish within a few days. Once live, your party gets its own page on AfroCue - searchable, shareable, documented.</p>
+      <p>Fill in the details. We will review and publish within a few days. Once live, your party gets its own page on AfroCue — searchable, shareable, documented.</p>
       <div class="form-note">
         <p><strong>Images matter.</strong> Upload a strong event photo and a flyer. These are what people see first. High quality only.</p>
       </div>
@@ -351,14 +350,15 @@
   <div><a href="/cdn-cgi/l/email-protection#d8b9beaab7bbadbdb7b6b4b1b6bd98bfb5b9b1b4f6bbb7b5" style="font-size:11px;color:var(--grey);text-decoration:none;"><span class="__cf_email__" data-cfemail="b2d3d4c0ddd1c7d7dddcdedbdcd7f2d5dfd3dbde9cd1dddf">[email&#160;protected]</span></a></div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="afrocue.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="afrocue.js"></script>
 <script>
 var IMGBB_KEY = 'efc0a2cd9cc0a1a9f9f777f4ffe9c665';
 var uploadedUrls = { hero: '', flyer: '' };
 
 function toggleGenre(el) {
   el.classList.toggle('selected');
-  var vals = Array.from(document.querySelectorAll('#genrePills .pill-opt.selected')).map(function(p) { return p.textContent.trim(); });
+  var vals = Array.from(document.querySelectorAll('#genrePills .pill-opt.selected')).map(function(p){ return p.textContent.trim(); });
   document.getElementById('genresVal').value = vals.join(', ');
 }
 
@@ -440,4 +440,15 @@ function handlePartySubmit(e) {
 
   var SCRIPT_URL = window.AFROCUE_SCRIPT_URL || 'YOUR_GAS_SCRIPT_URL_HERE';
 
-  fetch(S
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).finally(function() {
+    window.location.href = 'party-thank-you.html';
+  });
+}
+</script>
+</body>
+</html>
