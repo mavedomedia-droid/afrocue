@@ -655,47 +655,6 @@
   </div>
 </section>
 
-<!-- INCOMING PARTY — hidden when no Featured=Yes in sheet -->
-<section id="incoming">
-  <div class="inc-bg" id="incBg"></div>
-  <div class="inc-texture"></div>
-  <div class="inc-grad"></div>
-  <div class="inc-inner">
-    <div>
-      <div class="inc-eyebrow">Next Up</div>
-      <div class="inc-name" id="incName"></div>
-      <div class="inc-tags" id="incTags"></div>
-      <div class="inc-date" id="incDate"></div>
-      <a class="inc-btn" id="incBtn" href="parties.html">View Party &rarr;</a>
-    </div>
-    <div class="inc-flyer-wrap" id="incFlyerWrap" style="display:none;">
-      <img class="inc-flyer-img" id="incFlyerImg" src="" alt=""/>
-    </div>
-  </div>
-</section>
-
-<!-- PARTIES STRIP -->
-<section id="parties-strip">
-  <div class="ps-header">
-    <div class="ps-left">
-      <div class="label">Party Directory</div>
-      <div class="ps-h yh">What's On.</div>
-      <div class="ps-sub">Raves, events and nights worth knowing — documented by AfroCue.</div>
-    </div>
-    <a href="parties.html" class="ps-see-all">See all parties &rarr;</a>
-  </div>
-  <div class="ps-grid" id="psGrid">
-    <div class="ps-loading">Loading parties...</div>
-  </div>
-  <div class="ps-cta-bar">
-    <div>
-      <div class="ps-cta-label">Is your party on here?</div>
-      <div class="ps-cta-text">Get your event in front of Lagos's nightlife audience.</div>
-    </div>
-    <a href="list-party.html" class="ps-cta-btn">List Your Party &rarr;</a>
-  </div>
-</section>
-
 <!-- FEATURED CONTENT -->
 <section id="content">
   <div class="content-bg" id="contentBg"></div>
@@ -772,6 +731,47 @@
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- INCOMING PARTY — hidden when no Featured=Yes in sheet -->
+<section id="incoming">
+  <div class="inc-bg" id="incBg"></div>
+  <div class="inc-texture"></div>
+  <div class="inc-grad"></div>
+  <div class="inc-inner">
+    <div>
+      <div class="inc-eyebrow">Next Up</div>
+      <div class="inc-name" id="incName"></div>
+      <div class="inc-tags" id="incTags"></div>
+      <div class="inc-date" id="incDate"></div>
+      <a class="inc-btn" id="incBtn" href="parties.html">View Party &rarr;</a>
+    </div>
+    <div class="inc-flyer-wrap" id="incFlyerWrap" style="display:none;">
+      <img class="inc-flyer-img" id="incFlyerImg" src="" alt=""/>
+    </div>
+  </div>
+</section>
+
+<!-- PARTIES STRIP -->
+<section id="parties-strip">
+  <div class="ps-header">
+    <div class="ps-left">
+      <div class="label">Party Directory</div>
+      <div class="ps-h yh">What's On.</div>
+      <div class="ps-sub">Raves, events and nights worth knowing — documented by AfroCue.</div>
+    </div>
+    <a href="parties.html" class="ps-see-all">See all parties &rarr;</a>
+  </div>
+  <div class="ps-grid" id="psGrid">
+    <div class="ps-loading">Loading parties...</div>
+  </div>
+  <div class="ps-cta-bar">
+    <div>
+      <div class="ps-cta-label">Is your party on here?</div>
+      <div class="ps-cta-text">Get your event in front of Lagos's nightlife audience.</div>
+    </div>
+    <a href="list-party.html" class="ps-cta-btn">List Your Party &rarr;</a>
   </div>
 </section>
 
@@ -1087,13 +1087,19 @@ function loadIndexParties(){
     .then(function(text){
       var lines=text.trim().split('\n');
       if(lines.length<2)return;
+      /* Detect column positions from header row */
+      var headers=splitCSVLine(lines[0]).map(function(h){return h.trim().toLowerCase();});
+      function col(name){var i=headers.indexOf(name);return i>-1?i:-1;}
+      var C_UPCOMING_FLYER = col('upcoming flyer')>-1 ? col('upcoming flyer') : 16;
+      var C_UPCOMING_DATE  = col('upcoming date')>-1  ? col('upcoming date')  : 17;
+      var C_FEATURED       = col('featured')>-1       ? col('featured')       : 18;
       var active=[];
       var featured=null;
       for(var i=1;i<lines.length;i++){
         var cols=splitCSVLine(lines[i]);
         if(!cols[0]||!cols[1])continue;
         var status=(cols[14]||'').trim();
-        var isFeatured=(cols[19]||'').trim().toLowerCase()==='yes';
+        var isFeatured=(cols[C_FEATURED]||'').trim().toLowerCase()==='yes';
         var p={
           id:            cols[0].trim(),
           name:          cols[1].trim(),
@@ -1104,8 +1110,8 @@ function loadIndexParties(){
           genres:        cols[6]?cols[6].trim().split(',').map(function(s){return s.trim();}): [],
           hero_img:      cols[8].trim(),
           flyer_img:     cols[9].trim(),
-          upcoming_flyer:(cols[17]||'').trim(),
-          upcoming_date: (cols[18]||'').trim()
+          upcoming_flyer:(cols[C_UPCOMING_FLYER]||'').trim(),
+          upcoming_date: (cols[C_UPCOMING_DATE]||'').trim()
         };
         if(isFeatured)featured=p;
         if(status==='Active')active.push(p);
