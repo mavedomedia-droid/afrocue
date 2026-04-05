@@ -118,6 +118,8 @@
     .party-card-meta{font-size:11px;font-weight:300;color:rgba(240,237,232,0.45)}
     .party-card-cta{position:absolute;top:14px;left:14px;z-index:6;font-size:9px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:5px 10px;border-radius:2px;opacity:0;transition:opacity 0.2s}
     .party-card:hover .party-card-cta{opacity:1}
+    .party-card-stats{display:none;align-items:center;gap:10px;margin-top:6px}
+    .card-stat{display:flex;align-items:center;gap:3px;font-size:10px;font-weight:400;color:rgba(240,237,232,0.4)}
 
     /* SKELETON */
     .party-card-skeleton{background:var(--dark2);border:1px solid rgba(255,255,255,0.04);cursor:default}
@@ -203,36 +205,71 @@
     @media(max-width:768px){
       nav{padding:14px 20px}
       .nav-links{display:none}
-      .hero{grid-template-columns:1fr;gap:24px;padding:80px 20px 32px}
-      .hero h1{font-size:clamp(38px,11vw,60px)}
-      .hero-desc{max-width:100%}
-      .featured-col{gap:10px}
+
+      /* MOBILE HERO — compact side-by-side: title left, featured card right */
+      .hero{
+        grid-template-columns:1fr 1fr;
+        gap:16px;
+        padding:72px 16px 20px;
+        align-items:center;
+      }
+      .hero-bg{opacity:0.12}
+      .label{margin-bottom:8px;font-size:9px}
+      .hero h1{font-size:clamp(28px,8vw,44px);margin-bottom:8px}
+      .hero-desc{font-size:12px;line-height:1.6;max-width:100%;margin-bottom:0;display:none}
+      .featured-col{gap:6px}
       .featured-col-label{display:none}
-      .featured-slot{aspect-ratio:16/9;border-radius:8px}
-      .featured-flyer{width:52px;bottom:8px;right:8px;border-radius:4px}
-      .featured-name{font-size:14px}
-      .featured-slot-content{padding:10px 12px;padding-right:70px}
-      #parties{padding:28px 16px 60px}
-      .parties-header{flex-direction:column;gap:16px}
-      .filter-bar{gap:6px}
-      .filter-select{font-size:10px;padding:8px 24px 8px 10px}
-      .parties-grid{grid-template-columns:1fr 1fr}
-      .modal-body{padding:0 20px 32px}
-      .modal-tags{padding-top:20px}
-      .modal-lower{grid-template-columns:1fr}
-      .modal-flyer{max-width:180px}
-      .modal-others{padding:28px 20px}
-      .modal-others-grid{grid-template-columns:1fr 1fr 1fr}
-      footer{padding:14px 20px;gap:10px}
-      .footer-links{gap:14px}
-      .list-cta-strip{padding:28px 20px}
-      .list-cta-inner{flex-direction:column;align-items:flex-start;gap:16px}
-      .list-cta-btn{width:100%;justify-content:center}
+      .featured-slot{aspect-ratio:3/4;border-radius:6px}
+      .featured-flyer{display:none!important}
+      .featured-dots{top:8px;right:8px}
+      .featured-name{font-size:13px}
+      .featured-slot-content{padding:8px 10px;padding-right:12px}
+      .featured-label{font-size:7px;padding:2px 5px;margin-bottom:4px}
+
+      /* PARTIES SECTION */
+      #parties{padding:20px 12px 60px}
+      .parties-header{flex-direction:column;gap:12px;margin-bottom:24px}
+      .filter-bar{gap:5px}
+      .filter-select{font-size:10px;padding:7px 22px 7px 9px}
+      .parties-grid{grid-template-columns:1fr 1fr;gap:2px}
+
+      /* MOBILE CARD — hide genre tags, show only type tags (max 2) */
+      .party-card-tags .tag:not(.type){display:none}
+      .party-card-tags .tag.type:nth-child(n+3){display:none}
+      .party-card-stats{display:flex}
+      .party-card-name{font-size:clamp(16px,5vw,22px);margin-bottom:4px}
+      .party-card-meta{font-size:10px}
+      .party-card-content{padding:14px 12px 12px}
+
+      /* MODAL */
+      .modal-wrap{padding:16px 8px}
+      .modal-hero{height:200px}
+      .modal-body{padding:0 16px 24px}
+      .modal-tags{padding-top:14px;gap:4px}
+      .modal-tags .tag{font-size:8px;padding:3px 6px}
+      .modal-name{font-size:clamp(28px,9vw,48px);margin-bottom:6px}
+      .modal-city{margin-bottom:16px;font-size:10px}
+      .modal-stats{gap:12px;margin-bottom:14px}
+      .modal-desc{font-size:13px;margin-bottom:20px}
+      .modal-lower{grid-template-columns:1fr;gap:16px}
+      .modal-flyer{max-width:140px}
+      .modal-others{padding:20px 16px}
+      .modal-others-grid{grid-template-columns:1fr 1fr 1fr;gap:2px}
+
+      /* FOOTER */
+      footer{padding:12px 16px;gap:8px;flex-wrap:wrap}
+      .footer-links{gap:12px}
+      .footer-email{display:none}
+
+      /* LIST CTA */
+      .list-cta-strip{padding:24px 16px}
+      .list-cta-inner{flex-direction:column;align-items:flex-start;gap:14px}
+      .list-cta-btn{width:100%;justify-content:center;padding:12px 20px}
     }
-    @media(max-width:480px){
+    @media(max-width:400px){
+      .hero{grid-template-columns:5fr 4fr}
       .parties-grid{grid-template-columns:1fr 1fr}
-      .modal-hero{height:260px}
-      .modal-name{font-size:clamp(32px,10vw,52px)}
+      .modal-hero{height:160px}
     }
   </style>
 </head>
@@ -395,10 +432,10 @@
     <a href="pregame.html">Pregame</a>
     <a href="list-party.html">List a Party</a>
   </div>
-  <div class="footer-email"><a href="mailto:info@afrocue.xyz">info@afrocue.xyz</a></div>
+  <div class="footer-email"><a href="/cdn-cgi/l/email-protection#573e3931381736312538342232792f2e2d"><span class="__cf_email__" data-cfemail="2b42454d446b4a4d5944485e4e05535251">[email&#160;protected]</span></a></div>
 </footer>
 
-<script src="afrocue.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="afrocue.js"></script>
 <script>
 
 function getGasUrl(){return window.AFROCUE_SCRIPT_URL||'YOUR_GAS_SCRIPT_URL_HERE';}
@@ -553,7 +590,12 @@ function renderCards(filters){
     li.onerror=function(){this.style.display='none';};logo.appendChild(li);
     var cta=document.createElement('div');cta.className='party-card-cta';cta.textContent='See More';
     var content=document.createElement('div');content.className='party-card-content';
-    content.innerHTML='<div class="party-card-tags">'+tagHTML+'</div><div class="party-card-name">'+party.name+'</div><div class="party-card-meta">'+party.city+'</div>';
+    var views=party.views||0;var likes=party.likes||0;
+    var statsHtml=(views||likes)?'<div class="party-card-stats">'
+      +(views?'<span class="card-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10" height="10"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>'+views+'</span>':'')
+      +(likes?'<span class="card-stat"><svg viewBox="0 0 24 24" fill="currentColor" width="10" height="10"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>'+likes+'</span>':'')
+      +'</div>':'';
+    content.innerHTML='<div class="party-card-tags">'+tagHTML+'</div><div class="party-card-name">'+party.name+'</div><div class="party-card-meta">'+party.city+'</div>'+statsHtml;
     card.appendChild(bg);card.appendChild(img);card.appendChild(tint);card.appendChild(grad);
     card.appendChild(tex);card.appendChild(logo);card.appendChild(cta);card.appendChild(content);
     grid.appendChild(card);
@@ -718,14 +760,4 @@ function showFeatured(i){
 
 function goFeatured(i){
   clearInterval(featuredTimer);showFeatured(i);
-  featuredTimer=setInterval(function(){goFeatured((featuredIndex+1)%featuredList.length);},3500);
-}
-
-function openFeaturedModal(){var p=featuredList[featuredIndex];if(p)openModal(p.id);}
-
-/* ── BOOT ── */
-loadParties();
-
-</script>
-</body>
-</html>
+  featuredTimer=se
