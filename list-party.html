@@ -54,9 +54,9 @@
     .page-banner-text .label{margin-bottom:8px}
     .page-banner-text h2{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(32px,4vw,56px);color:var(--yellow);text-shadow:var(--yts);line-height:0.9}
 
-    section{padding:48px 48px 100px}
-    .form-layout{display:grid;grid-template-columns:5fr 6fr;gap:80px;align-items:start;max-width:1200px}
-    .form-left{position:sticky;top:100px}
+    section{padding:80px 48px 100px}
+    .form-layout{display:flex;flex-direction:column;gap:40px;max-width:720px;margin:0 auto}
+    .form-left{position:static}
     .form-left-h{font-size:clamp(44px,5.5vw,72px);margin-bottom:18px}
     .form-left p{font-size:14px;font-weight:300;line-height:1.8;color:rgba(240,237,232,0.5);margin-bottom:20px}
     .form-note{background:rgba(200,224,0,0.05);border:1px solid rgba(200,224,0,0.14);border-radius:3px;padding:16px 18px;margin-bottom:16px}
@@ -120,7 +120,6 @@
       .page-banner-text{left:20px;bottom:20px}
       section{padding:40px 20px 72px}
       .form-layout{grid-template-columns:1fr;gap:36px}
-      .form-left{position:static}
       .frow{grid-template-columns:1fr}
       footer{padding:28px 20px;flex-direction:column;align-items:flex-start}
     }
@@ -157,9 +156,6 @@
       <p>Fill in the details. We will review and publish within a few days. Once live, your party gets its own page on AfroCue - searchable, shareable, documented.</p>
       <div class="form-note">
         <p><strong>Images matter.</strong> Upload a strong event photo and a flyer. These are what people see first. High quality only.</p>
-      </div>
-      <div class="approval-notice">
-        <p><strong>How approval works.</strong> Before your party goes live, we review your Instagram page, past editions, and any documentation we can find online. Make sure your Instagram is public and up to date - the more we can find, the faster the review.</p>
       </div>
     </div>
 
@@ -326,7 +322,10 @@
         <div class="submit-wrap">
           <button type="submit" class="btn btn-yellow" id="partySubmitBtn">List My Party</button>
         </div>
-        <p class="form-disclaimer">We review all submissions before publishing. Usually within 2-3 days.</p>
+        <div class="approval-notice" style="margin-top:20px;">
+        <p><strong>How approval works.</strong> Before your party goes live, we review your Instagram page, past editions, and any documentation we can find online. Make sure your Instagram is public and up to date — the more we can find, the faster the review.</p>
+      </div>
+      <p class="form-disclaimer">We review all submissions before publishing. Usually within 2–3 days.</p>
 
       </form>
     </div>
@@ -346,108 +345,101 @@
     <a href="dj.html">DJs</a>
     <a href="index.html">Home</a>
   </div>
-  <div><a href="mailto:afrocueonline@gmail.com" style="font-size:11px;color:var(--grey);text-decoration:none;">afrocueonline@gmail.com</a></div>
+  <div><a href="/cdn-cgi/l/email-protection#503136223f3325353f3e3c393e3510373d31393c7e333f3d" style="font-size:11px;color:var(--grey);text-decoration:none;"><span class="__cf_email__" data-cfemail="82e3e4f0ede1f7e7edeceeebece7c2e5efe3ebeeace1edef">[email&#160;protected]</span></a></div>
 </footer>
 
 <script src="afrocue.js"></script>
 <script>
-var IMGBB_KEY = 'efc0a2cd9cc0a1a9f9f777f4ffe9c665';
-var uploadedUrls = { hero: '', flyer: '' };
+  var IMGBB_KEY = 'efc0a2cd9cc0a1a9f9f777f4ffe9c665';
+  var uploadedUrls = { hero: '', flyer: '' };
 
-function toggleGenre(el) {
-  el.classList.toggle('selected');
-  var vals = Array.from(document.querySelectorAll('#genrePills .pill-opt.selected')).map(function(p) { return p.textContent.trim(); });
-  document.getElementById('genresVal').value = vals.join(', ');
-}
+  function toggleGenre(el) {
+    el.classList.toggle('selected');
+    var vals = Array.from(document.querySelectorAll('#genrePills .pill-opt.selected')).map(function(p){ return p.textContent.trim(); });
+    document.getElementById('genresVal').value = vals.join(', ');
+  }
 
-function updateCharCount(el) {
-  var count = el.value.length;
-  var display = document.getElementById('charCount');
-  display.textContent = count + ' / 1000';
-  display.className = 'char-count' + (count > 1000 ? ' over' : count > 800 ? ' warn' : '');
-}
+  function updateCharCount(el) {
+    var count = el.value.length;
+    var display = document.getElementById('charCount');
+    display.textContent = count + ' / 1000';
+    display.className = 'char-count' + (count > 1000 ? ' over' : count > 800 ? ' warn' : '');
+  }
 
-function previewAndUpload(input, type) {
-  var file = input.files[0];
-  if (!file) return;
-  var preview = document.getElementById(type + 'Preview');
-  var reader = new FileReader();
-  reader.onload = function(e) { preview.src = e.target.result; preview.style.display = 'block'; };
-  reader.readAsDataURL(file);
-  document.getElementById(type + 'Progress').style.display = 'block';
-  document.getElementById(type + 'Done').style.display = 'none';
-  document.getElementById(type + 'Error').style.display = 'none';
-  var formData = new FormData();
-  formData.append('image', file);
-  fetch('https://api.imgbb.com/1/upload?key=' + IMGBB_KEY, { method: 'POST', body: formData })
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      if (data.success) {
-        uploadedUrls[type] = data.data.url;
-        document.getElementById(type + 'Url').value = data.data.url;
+  function previewAndUpload(input, type) {
+    var file = input.files[0];
+    if (!file) return;
+    var preview = document.getElementById(type + 'Preview');
+    var reader = new FileReader();
+    reader.onload = function(e) { preview.src = e.target.result; preview.style.display = 'block'; };
+    reader.readAsDataURL(file);
+    document.getElementById(type + 'Progress').style.display = 'block';
+    document.getElementById(type + 'Done').style.display = 'none';
+    document.getElementById(type + 'Error').style.display = 'none';
+    var formData = new FormData();
+    formData.append('image', file);
+    fetch('https://api.imgbb.com/1/upload?key=' + IMGBB_KEY, { method: 'POST', body: formData })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data.success) {
+          uploadedUrls[type] = data.data.url;
+          document.getElementById(type + 'Url').value = data.data.url;
+          document.getElementById(type + 'Progress').style.display = 'none';
+          document.getElementById(type + 'Done').style.display = 'block';
+        } else { throw new Error('Upload failed'); }
+      })
+      .catch(function() {
         document.getElementById(type + 'Progress').style.display = 'none';
-        document.getElementById(type + 'Done').style.display = 'block';
-      } else { throw new Error('failed'); }
-    })
-    .catch(function() {
-      document.getElementById(type + 'Progress').style.display = 'none';
-      document.getElementById(type + 'Error').style.display = 'block';
+        document.getElementById(type + 'Error').style.display = 'block';
+      });
+  }
+
+  function handlePartySubmit(e) {
+    e.preventDefault();
+    var form = e.target;
+    var btn = document.getElementById('partySubmitBtn');
+    if (!form.party_name.value.trim()) { alert('Please enter the party name.'); return; }
+    if (!form.city.value) { alert('Please select a city.'); return; }
+    if (!form.time.value) { alert('Please select time of day.'); return; }
+    if (!form.access.value) { alert('Please select access type.'); return; }
+    if (!form.setting.value) { alert('Please select the setting.'); return; }
+    if (!document.getElementById('genresVal').value) { alert('Please select at least one genre.'); return; }
+    var desc = form.description.value.trim();
+    if (desc.length < 100) { alert('Description must be at least 100 characters.'); return; }
+    if (!form.instagram_url.value.trim()) { alert('Please add an Instagram URL.'); return; }
+    if (!form.contact_email.value.trim()) { alert('Please add your contact email.'); return; }
+    if (!uploadedUrls.hero) { alert('Please upload an event photo.'); return; }
+
+    btn.textContent = 'Submitting...';
+    btn.disabled = true;
+
+    var data = {
+      source:        'party_submission',
+      party_name:    form.party_name.value.trim(),
+      city:          form.city.value,
+      time:          form.time.value,
+      access:        form.access.value,
+      setting:       form.setting.value,
+      genres:        document.getElementById('genresVal').value,
+      description:   desc,
+      hero_img:      uploadedUrls.hero,
+      flyer_img:     uploadedUrls.flyer || '',
+      instagram_url: form.instagram_url.value.trim(),
+      website_url:   form.website_url ? form.website_url.value.trim() : '',
+      contact_email: form.contact_email.value.trim()
+    };
+
+    var SCRIPT_URL = window.AFROCUE_SCRIPT_URL || 'YOUR_GAS_SCRIPT_URL_HERE';
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).finally(function() {
+      window.location.href = 'party-thank-you.html';
     });
-}
-
-document.querySelector('select[name="city"]').addEventListener('change', function() {
-  var f = document.getElementById('otherCityField');
-  if (f) f.style.display = this.value === 'Other' ? 'flex' : 'none';
-});
-
-function handlePartySubmit(e) {
-  e.preventDefault();
-  var form = e.target;
-  var btn = document.getElementById('partySubmitBtn');
-
-  if (!form.party_name.value.trim()) { alert('Please enter the party name.'); return; }
-  if (!form.city.value.trim()) { alert('Please select a city.'); return; }
-  if (!form.time.value) { alert('Please select the time of day.'); return; }
-  if (!form.access.value) { alert('Please select the access type.'); return; }
-  if (!form.setting.value) { alert('Please select the setting.'); return; }
-  if (!document.getElementById('genresVal').value) { alert('Please select at least one genre.'); return; }
-  var desc = form.description.value.trim();
-  if (desc.length < 100) { alert('Description must be at least 100 characters.'); return; }
-  if (!form.instagram_url.value.trim()) { alert('Please add an Instagram URL.'); return; }
-  if (!form.contact_email.value.trim()) { alert('Please add your contact email.'); return; }
-  if (!uploadedUrls.hero) { alert('Please upload an event photo.'); return; }
-
-  btn.textContent = 'Submitting...';
-  btn.disabled = true;
-
-  var data = {
-    source:        'party_submission',
-    party_name:    form.party_name.value.trim(),
-    city:          form.city.value === 'Other' ? (form.city_other ? form.city_other.value.trim() : 'Other') : form.city.value,
-    time:          form.time.value,
-    access:        form.access.value,
-    setting:       form.setting.value,
-    genres:        document.getElementById('genresVal').value,
-    description:   desc,
-    hero_img:      uploadedUrls.hero,
-    flyer_img:     uploadedUrls.flyer || '',
-    instagram_url: form.instagram_url.value.trim(),
-    website_url:   form.website_url ? form.website_url.value.trim() : '',
-    contact_email: form.contact_email.value.trim()
-  };
-
-  var SCRIPT_URL = window.AFROCUE_SCRIPT_URL || 'YOUR_GAS_SCRIPT_URL_HERE';
-
-  fetch(SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-  })
-  .finally(function() {
-    window.location.href = 'party-thankyou.html';
-  });
-}
+  }
 </script>
 </body>
 </html>
