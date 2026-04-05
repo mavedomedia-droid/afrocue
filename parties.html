@@ -79,9 +79,9 @@
     .featured-dot.active{background:var(--yellow)}
 
     #parties{padding:40px 48px 100px;border-top:1px solid rgba(255,255,255,0.06)}
-    .parties-header{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:40px;flex-wrap:wrap}
-    .filter-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-    .filter-select{appearance:none;-webkit-appearance:none;background:rgba(255,255,255,0.04);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;border:1px solid rgba(255,255,255,0.12);border-radius:2px;color:var(--silver);font-family:'Figtree',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.06em;padding:9px 30px 9px 12px;cursor:pointer;transition:border-color 0.2s,color 0.2s;outline:none}
+    .parties-header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:40px;flex-wrap:nowrap}
+    .filter-bar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;flex:1;min-width:0}
+    .filter-select{appearance:none;-webkit-appearance:none;background:rgba(255,255,255,0.04);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;border:1px solid rgba(255,255,255,0.12);border-radius:2px;color:var(--silver);font-family:'Figtree',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.04em;padding:8px 24px 8px 10px;cursor:pointer;transition:border-color 0.2s,color 0.2s;outline:none;min-width:0}
     .filter-select:hover{border-color:rgba(255,255,255,0.28);color:var(--white)}
     .filter-select:focus{border-color:rgba(200,224,0,0.4);color:var(--white)}
     .filter-select option{background:#1a1a1a;color:var(--white)}
@@ -189,7 +189,9 @@
       .featured-name{font-size:14px}
       .featured-slot-content{padding:10px 12px;padding-right:70px}
       #parties{padding:28px 16px 72px}
-      .parties-header{flex-direction:column;gap:16px}
+      .parties-header{flex-wrap:wrap;gap:12px}
+      .filter-bar{gap:4px}
+      .filter-select{font-size:10px;padding:7px 22px 7px 8px}
       .parties-grid{grid-template-columns:1fr 1fr}
       .modal-body{padding:0 20px 32px}
       .modal-tags{padding-top:20px}
@@ -351,10 +353,10 @@
     <a href="dj.html">DJs</a>
     <a href="pregame.html">Pregame</a>
   </div>
-  <div class="footer-email"><a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a></div>
+  <div class="footer-email"><a href="/cdn-cgi/l/email-protection#a0c1c6d2cfc3d5c5cfceccc9cec5e0c7cdc1c9cc8ec3cfcd"><span class="__cf_email__" data-cfemail="ec8d8a9e838f9989838280858289ac8b818d8580c28f8381">[email&#160;protected]</span></a></div>
 </footer>
 
-<script src="afrocue.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="afrocue.js"></script>
 <script>
 
 function getGasUrl(){return window.AFROCUE_SCRIPT_URL||'YOUR_GAS_SCRIPT_URL_HERE';}
