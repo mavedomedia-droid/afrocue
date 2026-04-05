@@ -785,4 +785,14 @@ function showFeatured(i){
 
 function goFeatured(i){
   clearInterval(featuredTimer);showFeatured(i);
-  featuredTimer=se
+  featuredTimer=setInterval(function(){goFeatured((featuredIndex+1)%featuredList.length);},3500);
+}
+
+function openFeaturedModal(){var p=featuredList[featuredIndex];if(p)openModal(p.id);}
+
+/* ── BOOT ── */
+loadParties();
+
+</script>
+</body>
+</html>
