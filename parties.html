@@ -75,28 +75,80 @@
 
     /* ── HERO ── */
     .hero {
-      min-height: 60vh; position: relative;
-      display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start;
-      padding: 0 48px 72px; overflow: hidden;
+      position: relative;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 48px; align-items: center;
+      padding: 100px 48px 52px;
+      overflow: hidden;
     }
     .hero-bg {
       position: absolute; inset: 0; z-index: 0;
       background-image: url('texture.jpg');
       background-size: cover; background-position: center;
+      opacity: 0.18;
     }
-    .hero-bg::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.7) 100%);
-    }
-    .hero-content { position: relative; z-index: 1; max-width: 700px; }
+    .hero-content { position: relative; z-index: 1; }
     .label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
     .label::before { content: ''; width: 18px; height: 1px; background: var(--silver); flex-shrink: 0; }
-    .hero h1 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(56px, 8vw, 120px); line-height: 0.9; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 20px; }
+    .hero h1 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(44px, 6vw, 88px); line-height: 0.9; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 16px; }
     .hero h1 .outline { -webkit-text-stroke: 1.5px var(--yellow); color: transparent; text-shadow: none; }
-    .hero-desc { font-size: 15px; font-weight: 300; line-height: 1.75; color: rgba(240,237,232,0.55); max-width: 480px; }
+    .hero-desc { font-size: 14px; font-weight: 300; line-height: 1.75; color: rgba(240,237,232,0.5); max-width: 400px; }
+
+    /* ── FEATURED PARTY SLOT ── */
+    .featured-slot {
+      position: relative; z-index: 1;
+      border-radius: 6px; overflow: hidden;
+      aspect-ratio: 4/5; background: var(--dark2);
+      border: 1px solid rgba(255,255,255,0.07);
+      cursor: pointer;
+    }
+    .featured-slot-bg {
+      position: absolute; inset: -20px; z-index: 0;
+      background-size: cover; background-position: center;
+      filter: blur(20px) brightness(0.35) saturate(0.6);
+      transform: scale(1.15);
+      transition: background-image 0.5s ease;
+    }
+    .featured-slot-img {
+      position: absolute; inset: 0; z-index: 1;
+      width: 100%; height: 100%; object-fit: cover;
+      transition: opacity 0.5s ease;
+    }
+    .featured-slot-grad {
+      position: absolute; inset: 0; z-index: 2;
+      background: linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.1) 55%, transparent 100%);
+    }
+    .featured-slot-content {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+      padding: 16px 18px;
+    }
+    .featured-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--black); background: var(--yellow);
+      padding: 3px 8px; border-radius: 2px; display: inline-block; margin-bottom: 8px;
+    }
+    .featured-name {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: clamp(20px, 2.2vw, 30px); color: var(--yellow);
+      text-shadow: var(--yts); line-height: 0.95;
+    }
+    .featured-city {
+      font-size: 11px; font-weight: 300; color: rgba(240,237,232,0.45);
+      margin-top: 4px; letter-spacing: 0.06em;
+    }
+    /* dots */
+    .featured-dots {
+      position: absolute; top: 14px; right: 14px; z-index: 3;
+      display: flex; gap: 5px;
+    }
+    .featured-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: rgba(240,237,232,0.25); transition: background 0.3s;
+    }
+    .featured-dot.active { background: var(--yellow); }
 
     /* ── PARTIES SECTION ── */
-    #parties { padding: 64px 48px 100px; }
+    #parties { padding: 40px 48px 100px; border-top: 1px solid rgba(255,255,255,0.06); }
 
     /* Filter + header bar */
     .parties-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 40px; flex-wrap: wrap; }
@@ -367,9 +419,12 @@
     @media (max-width: 768px) {
       nav { padding: 14px 20px; }
       .nav-links { display: none; }
-      .hero { padding: 0 20px 56px; min-height: 50vh; }
-      .hero h1 { font-size: clamp(44px, 12vw, 72px); }
-      #parties { padding: 48px 16px 72px; }
+      .hero { grid-template-columns: 1fr; gap: 24px; padding: 80px 20px 32px; }
+      .hero h1 { font-size: clamp(38px, 11vw, 60px); }
+      .hero-desc { max-width: 100%; }
+      .featured-slot { aspect-ratio: 3/2; max-height: 220px; }
+      .featured-name { font-size: clamp(18px, 5vw, 24px); }
+      #parties { padding: 28px 16px 72px; }
       .parties-header { flex-direction: column; gap: 16px; }
       .parties-grid { grid-template-columns: 1fr 1fr; }
       .modal-body { padding: 0 20px 32px; }
@@ -408,10 +463,25 @@
 <!-- HERO -->
 <div class="hero">
   <div class="hero-bg"></div>
+
+  <!-- Left: text -->
   <div class="hero-content">
-    <div class="label">Lagos & Beyond</div>
+    <div class="label">Lagos &amp; Beyond</div>
     <h1>Parties.</h1>
     <p class="hero-desc">Raves, events and nights worth knowing about — from the dance floors of Lagos to wherever the music goes.</p>
+  </div>
+
+  <!-- Right: featured party rotating slot -->
+  <div class="featured-slot" id="featuredSlot" onclick="openFeaturedModal()">
+    <div class="featured-slot-bg" id="featuredBg"></div>
+    <img class="featured-slot-img" id="featuredImg" src="" alt=""/>
+    <div class="featured-slot-grad"></div>
+    <div class="featured-dots" id="featuredDots"></div>
+    <div class="featured-slot-content">
+      <span class="featured-label">Featured Party</span>
+      <div class="featured-name" id="featuredName">—</div>
+      <div class="featured-city" id="featuredCity"></div>
+    </div>
   </div>
 </div>
 
@@ -868,6 +938,81 @@ document.addEventListener('keydown', function(e) {
     }, 100);
   }
 })();
+
+/* ── FEATURED PARTY SLOT ─────────────────────────────────── */
+var featuredIndex = 0;
+var featuredTimer = null;
+
+function initFeatured() {
+  if (!PARTIES.length) return;
+  var slot = document.getElementById('featuredSlot');
+  if (!slot) return;
+
+  /* Build dots */
+  var dotsWrap = document.getElementById('featuredDots');
+  dotsWrap.innerHTML = '';
+  PARTIES.forEach(function(_, i) {
+    var d = document.createElement('div');
+    d.className = 'featured-dot' + (i === 0 ? ' active' : '');
+    d.onclick = function(e) { e.stopPropagation(); goFeatured(i); };
+    dotsWrap.appendChild(d);
+  });
+
+  showFeatured(0);
+  clearInterval(featuredTimer);
+  featuredTimer = setInterval(function() {
+    goFeatured((featuredIndex + 1) % PARTIES.length);
+  }, 4000);
+}
+
+function showFeatured(i) {
+  var p = PARTIES[i];
+  if (!p) return;
+  featuredIndex = i;
+
+  var img = document.getElementById('featuredImg');
+  var bg  = document.getElementById('featuredBg');
+  var nm  = document.getElementById('featuredName');
+  var ct  = document.getElementById('featuredCity');
+
+  /* Fade out */
+  img.style.opacity = '0';
+  setTimeout(function() {
+    img.src = p.hero_img || '';
+    bg.style.backgroundImage = "url('" + (p.hero_img || '') + "')";
+    nm.textContent = p.name;
+    ct.textContent = p.city;
+    img.style.opacity = '1';
+  }, 220);
+
+  /* Update dots */
+  var dots = document.querySelectorAll('.featured-dot');
+  dots.forEach(function(d, idx) {
+    d.className = 'featured-dot' + (idx === i ? ' active' : '');
+  });
+}
+
+function goFeatured(i) {
+  clearInterval(featuredTimer);
+  showFeatured(i);
+  featuredTimer = setInterval(function() {
+    goFeatured((featuredIndex + 1) % PARTIES.length);
+  }, 4000);
+}
+
+function openFeaturedModal() {
+  if (PARTIES[featuredIndex]) openModal(PARTIES[featuredIndex].id);
+}
+
+/* Patch renderCards to also init featured after first load */
+var _origRenderCards = renderCards;
+renderCards = function(filters) {
+  _origRenderCards(filters);
+  /* Only init featured once on first full load (no filters active) */
+  if (!filters || (!filters.city && !filters.time && !filters.access && !filters.setting && !filters.genre)) {
+    initFeatured();
+  }
+};
 
 /* ── INIT ─────────────────────────────────────────────────── */
 if (document.readyState === 'loading') {
