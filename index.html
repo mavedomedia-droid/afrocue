@@ -397,6 +397,63 @@
       .audience-cards { grid-template-columns: 1fr; }
     }
 
+
+    /* ── PARTIES STRIP ── */
+    #parties-strip { border-top: 1px solid rgba(255,255,255,0.06); background: var(--black); }
+    .ps-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; gap: 16px; flex-wrap: wrap; }
+    .ps-left .ps-h { font-size: clamp(36px,5vw,64px); margin-bottom: 0; }
+    .ps-left .ps-sub { font-size: 13px; font-weight: 300; color: rgba(240,237,232,0.4); margin-top: 10px; max-width: 380px; line-height: 1.65; }
+    .ps-see-all { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); text-decoration: none; border: 1px solid rgba(255,255,255,0.12); padding: 10px 18px; border-radius: 2px; white-space: nowrap; transition: all 0.2s; flex-shrink: 0; align-self: flex-end; }
+    .ps-see-all:hover { border-color: var(--yellow); color: var(--yellow); }
+    .ps-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; }
+    .ps-card { position: relative; aspect-ratio: 3/4; overflow: hidden; cursor: pointer; background: var(--dark2); transition: transform 0.3s ease; }
+    .ps-card:hover { transform: scale(1.01); z-index: 2; }
+    .ps-card-bg { position: absolute; inset: -16px; z-index: 0; background-size: cover; background-position: center; filter: blur(20px) saturate(0.6) brightness(0.4); transform: scale(1.1); }
+    .ps-card-img { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .ps-card:hover .ps-card-img { transform: scale(1.04); }
+    .ps-card-grad { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.35) 50%, rgba(10,10,10,0.05) 100%); }
+    .ps-card-content { position: absolute; bottom: 0; left: 0; right: 0; z-index: 3; padding: 18px 16px 16px; }
+    .ps-card-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 8px; }
+    .ps-tag { font-size: 8px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 7px; border-radius: 2px; border: 1px solid rgba(200,224,0,0.3); color: rgba(200,224,0,0.8); }
+    .ps-card-name { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(18px,2vw,26px); color: var(--yellow); text-shadow: var(--yts); line-height: 0.95; margin-bottom: 5px; }
+    .ps-card-city { font-size: 10px; font-weight: 300; color: rgba(240,237,232,0.38); }
+    .ps-cta-bar { margin-top: 2px; background: var(--dark); border: 1px solid rgba(255,255,255,0.06); padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .ps-cta-label { font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--silver); margin-bottom: 4px; }
+    .ps-cta-text { font-size: 13px; font-weight: 300; color: rgba(240,237,232,0.4); }
+    .ps-cta-btn { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); background: var(--yellow); padding: 12px 22px; border-radius: 2px; text-decoration: none; white-space: nowrap; transition: opacity 0.2s; flex-shrink: 0; }
+    .ps-cta-btn:hover { opacity: 0.88; }
+    .ps-loading { padding: 60px 0; text-align: center; color: var(--grey); font-size: 13px; font-weight: 300; }
+
+    /* ── INCOMING PARTY SECTION ── */
+    #incoming { display: none; position: relative; overflow: hidden; border-top: 1px solid rgba(255,255,255,0.06); }
+    #incoming.visible { display: block; }
+    .inc-bg { position: absolute; inset: -20px; z-index: 0; background-size: cover; background-position: center; filter: blur(28px) brightness(0.2) saturate(0.5); transform: scale(1.08); }
+    .inc-texture { position: absolute; inset: 0; z-index: 1; background-image: url('texture.jpg'); background-size: cover; opacity: 0.14; pointer-events: none; }
+    .inc-grad { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to right, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.55) 65%, rgba(10,10,10,0.25) 100%); }
+    .inc-inner { position: relative; z-index: 3; display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; padding: 52px 100px; max-width: 1400px; margin: 0 auto; }
+    .inc-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--yellow); opacity: 0.7; margin-bottom: 14px; }
+    .inc-name { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(44px,6vw,88px); color: var(--yellow); text-shadow: var(--yts); line-height: 0.9; margin-bottom: 16px; }
+    .inc-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+    .inc-date { font-size: 13px; font-weight: 300; color: rgba(240,237,232,0.5); margin-bottom: 28px; display: flex; align-items: center; gap: 8px; }
+    .inc-date::before { content: ''; width: 14px; height: 1px; background: var(--grey); flex-shrink: 0; }
+    .inc-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); background: var(--yellow); padding: 13px 24px; border-radius: 2px; text-decoration: none; transition: opacity 0.2s; }
+    .inc-btn:hover { opacity: 0.88; }
+    .inc-flyer-wrap { flex-shrink: 0; width: 110px; position: relative; }
+    .inc-flyer-wrap::before { content: ''; position: absolute; inset: 6px; background: rgba(0,0,0,0.45); transform: rotate(-2deg); border-radius: 3px; z-index: 0; }
+    .inc-flyer-img { position: relative; z-index: 1; width: 110px; aspect-ratio: 3/4; object-fit: cover; border-radius: 3px; display: block; transform: rotate(2deg); }
+
+    /* ── MOBILE: parties strip + incoming ── */
+    @media (max-width: 768px) {
+      .ps-grid { grid-template-columns: 1fr 1fr; }
+      .ps-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .ps-see-all { align-self: flex-start; }
+      .ps-cta-bar { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .ps-cta-btn { width: 100%; text-align: center; }
+      .inc-inner { grid-template-columns: 1fr; gap: 0; padding: 40px 20px; }
+      .inc-flyer-wrap { display: none; }
+      .inc-name { font-size: clamp(36px,11vw,56px); }
+    }
+
     /* ── JOIN SECTION ── */
     #join { background: var(--dark); }
     .join-grid { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 0 64px; align-items: start; max-width: 1100px; }
@@ -519,6 +576,7 @@
   </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="parties.html">Parties</a></li>
     <li><a href="#content">Content</a></li>
     <li><a href="#advertise">Get Featured</a></li>
   </ul>
@@ -594,6 +652,47 @@
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- INCOMING PARTY — hidden when no Featured=Yes in sheet -->
+<section id="incoming">
+  <div class="inc-bg" id="incBg"></div>
+  <div class="inc-texture"></div>
+  <div class="inc-grad"></div>
+  <div class="inc-inner">
+    <div>
+      <div class="inc-eyebrow">Next Up</div>
+      <div class="inc-name" id="incName"></div>
+      <div class="inc-tags" id="incTags"></div>
+      <div class="inc-date" id="incDate"></div>
+      <a class="inc-btn" id="incBtn" href="parties.html">View Party &rarr;</a>
+    </div>
+    <div class="inc-flyer-wrap" id="incFlyerWrap" style="display:none;">
+      <img class="inc-flyer-img" id="incFlyerImg" src="" alt=""/>
+    </div>
+  </div>
+</section>
+
+<!-- PARTIES STRIP -->
+<section id="parties-strip">
+  <div class="ps-header">
+    <div class="ps-left">
+      <div class="label">Party Directory</div>
+      <div class="ps-h yh">What's On.</div>
+      <div class="ps-sub">Raves, events and nights worth knowing — documented by AfroCue.</div>
+    </div>
+    <a href="parties.html" class="ps-see-all">See all parties &rarr;</a>
+  </div>
+  <div class="ps-grid" id="psGrid">
+    <div class="ps-loading">Loading parties...</div>
+  </div>
+  <div class="ps-cta-bar">
+    <div>
+      <div class="ps-cta-label">Is your party on here?</div>
+      <div class="ps-cta-text">Get your event in front of Lagos's nightlife audience.</div>
+    </div>
+    <a href="list-party.html" class="ps-cta-btn">List Your Party &rarr;</a>
   </div>
 </section>
 
@@ -906,7 +1005,7 @@
     <a href="https://twitter.com/afrocue_" target="_blank" class="social-chip">X / Twitter — @afrocue_</a>
     <a href="https://tiktok.com/@afro.cue" target="_blank" class="social-chip">TikTok — @afro.cue</a>
     <a href="https://youtube.com/@AfroCue" target="_blank" class="social-chip">YouTube</a>
-    <a href="https://open.spotify.com" target="_blank" class="social-chip">Spotify</a>
+    <a href="#" target="_blank" class="social-chip">Spotify</a>
   </div>
 </section>
 
@@ -955,17 +1054,134 @@
 
 <script src="afrocue.js"></script>
 <script>
-  /* DJ radar video controls — must be separate tag from src load */
   (function() {
     var vid = document.getElementById('djRadarVid');
     if (!vid) return;
     vid.pause();
     vid.muted = true;
-    var playBtn = document.getElementById('djPlayBtn');
-    var muteBtn = document.getElementById('djMuteBtn');
-    if (playBtn) playBtn.innerHTML = '&#9654;';
-    if (muteBtn) muteBtn.innerHTML = '&#128266;';
+    var pb = document.getElementById('djPlayBtn');
+    var mb = document.getElementById('djMuteBtn');
+    if (pb) pb.innerHTML = '&#9654;';
+    if (mb) mb.innerHTML = '&#128266;';
   })();
+</script>
+<script>
+/* ── INDEX PARTIES STRIP + INCOMING SECTION ── */
+var INDEX_CSV_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vSemAPO2lS9b54nmiLq2LUodTRkgBT6ls_iRDUy_Zh6mhIkWf2UsRFvd5zmqfmc-rzeWViOd8rX1LCe/pub?gid=199159856&single=true&output=csv';
+
+function splitCSVLine(line){
+  var cols=[],cur='',inQ=false;
+  for(var i=0;i<line.length;i++){
+    var c=line[i];
+    if(c==='"'){inQ=!inQ;}
+    else if(c===','&&!inQ){cols.push(cur);cur='';}
+    else{cur+=c;}
+  }
+  cols.push(cur);
+  return cols;
+}
+
+function loadIndexParties(){
+  fetch(INDEX_CSV_URL)
+    .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.text();})
+    .then(function(text){
+      var lines=text.trim().split('\n');
+      if(lines.length<2)return;
+      var active=[];
+      var featured=null;
+      for(var i=1;i<lines.length;i++){
+        var cols=splitCSVLine(lines[i]);
+        if(!cols[0]||!cols[1])continue;
+        var status=(cols[14]||'').trim();
+        var isFeatured=(cols[19]||'').trim().toLowerCase()==='yes';
+        var p={
+          id:            cols[0].trim(),
+          name:          cols[1].trim(),
+          city:          cols[2].trim(),
+          time:          cols[3].trim(),
+          access:        cols[4].trim(),
+          setting:       cols[5].trim(),
+          genres:        cols[6]?cols[6].trim().split(',').map(function(s){return s.trim();}): [],
+          hero_img:      cols[8].trim(),
+          flyer_img:     cols[9].trim(),
+          upcoming_flyer:(cols[17]||'').trim(),
+          upcoming_date: (cols[18]||'').trim()
+        };
+        if(isFeatured)featured=p;
+        if(status==='Active')active.push(p);
+      }
+      renderIndexStrip(active.slice(0,4));
+      renderIncoming(featured);
+    })
+    .catch(function(err){
+      console.warn('AfroCue index: CSV fetch failed',err);
+      document.getElementById('psGrid').innerHTML='<div class="ps-loading"><a href="parties.html" style="color:var(--yellow);text-decoration:none;">Browse all parties &rarr;</a></div>';
+    });
+}
+
+function renderIndexStrip(parties){
+  var grid=document.getElementById('psGrid');
+  if(!grid)return;
+  grid.innerHTML='';
+  if(!parties.length){
+    grid.innerHTML='<div class="ps-loading"><a href="parties.html" style="color:var(--yellow);text-decoration:none;">Browse all parties &rarr;</a></div>';
+    return;
+  }
+  parties.forEach(function(p){
+    var card=document.createElement('div');
+    card.className='ps-card';
+    card.onclick=function(){window.location.href='parties.html#'+p.id;};
+    var bg=document.createElement('div');bg.className='ps-card-bg';
+    if(p.hero_img)bg.style.backgroundImage="url('"+p.hero_img+"')";
+    var img=document.createElement('img');img.className='ps-card-img';
+    if(p.hero_img)img.src=p.hero_img;img.alt=p.name;
+    img.onerror=function(){this.style.opacity=0;};
+    var grad=document.createElement('div');grad.className='ps-card-grad';
+    var content=document.createElement('div');content.className='ps-card-content';
+    var typeTags=[p.time,p.access].filter(Boolean);
+    var tagHTML=typeTags.map(function(t){return'<span class="ps-tag">'+t+'</span>';}).join('');
+    content.innerHTML='<div class="ps-card-tags">'+tagHTML+'</div>'
+      +'<div class="ps-card-name">'+p.name+'</div>'
+      +'<div class="ps-card-city">'+p.city+'</div>';
+    card.appendChild(bg);card.appendChild(img);card.appendChild(grad);card.appendChild(content);
+    grid.appendChild(card);
+  });
+}
+
+function renderIncoming(party){
+  var sec=document.getElementById('incoming');
+  if(!party||!party.name){if(sec)sec.classList.remove('visible');return;}
+  if(sec)sec.classList.add('visible');
+  var bg=document.getElementById('incBg');
+  if(bg&&party.hero_img)bg.style.backgroundImage="url('"+party.hero_img+"')";
+  var nameEl=document.getElementById('incName');
+  if(nameEl)nameEl.textContent=party.name;
+  var tagsEl=document.getElementById('incTags');
+  if(tagsEl){
+    var typeTags=[party.time,party.access,party.setting].filter(Boolean);
+    var allTags=typeTags.concat(party.genres||[]);
+    tagsEl.innerHTML=allTags.map(function(t,i){
+      return'<span class="'+(i<typeTags.length?'tag type':'tag')+'">'+t+'</span>';
+    }).join('');
+  }
+  var dateEl=document.getElementById('incDate');
+  if(dateEl)dateEl.textContent=party.upcoming_date||party.city;
+  var btn=document.getElementById('incBtn');
+  if(btn)btn.href='parties.html#'+party.id;
+  var flyerWrap=document.getElementById('incFlyerWrap');
+  var flyerImg=document.getElementById('incFlyerImg');
+  var flyerSrc=party.upcoming_flyer||party.flyer_img||'';
+  if(flyerWrap&&flyerImg&&flyerSrc){
+    flyerImg.src=flyerSrc;
+    flyerImg.alt=party.name+' flyer';
+    flyerImg.onerror=function(){flyerWrap.style.display='none';};
+    flyerWrap.style.display='block';
+  }else if(flyerWrap){
+    flyerWrap.style.display='none';
+  }
+}
+
+loadIndexParties();
 </script>
 </body>
 </html>
