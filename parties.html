@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Parties — AfroCue</title>
+  <title>Party Directory — AfroCue</title>
   <meta name="description" content="The best raves, parties and events in Lagos and Nigeria — South Social, Group Therapy, Amapiano District, DanceEko and more. Documented by AfroCue."/>
   <meta name="keywords" content="Lagos parties, Lagos raves, Nigeria events, afrohouse parties Lagos, amapiano events Lagos, nightlife Lagos, South Social, Group Therapy, DanceEko, AfroCue"/>
   <link rel="canonical" href="https://afrocue.xyz/parties.html"/>
@@ -11,19 +11,17 @@
   <link rel="apple-touch-icon" href="favicon.png"/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://afrocue.xyz/parties.html"/>
-  <meta property="og:title" content="Lagos Parties & Raves — AfroCue"/>
-  <meta property="og:description" content="The best raves, parties and events in Lagos — documented by AfroCue."/>
+  <meta property="og:title" content="Party Directory — AfroCue"/>
+  <meta property="og:description" content="The best raves, parties and events in Lagos and Nigeria — documented by AfroCue."/>
   <meta property="og:image" content="https://afrocue.xyz/hero_dj.jpg"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:site" content="@afrocue_"/>
-  <meta name="twitter:title" content="Lagos Parties & Raves — AfroCue"/>
-  <meta name="twitter:description" content="The best raves, parties and events in Lagos — documented by AfroCue."/>
+  <meta name="twitter:title" content="Party Directory — AfroCue"/>
+  <meta name="twitter:description" content="The best raves, parties and events in Lagos and Nigeria — documented by AfroCue."/>
   <meta name="twitter:image" content="https://afrocue.xyz/hero_dj.jpg"/>
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Lagos Parties & Raves","description":"A curated directory of the best parties, raves and events in Lagos and Nigeria, documented by AfroCue.","url":"https://afrocue.xyz/parties.html","publisher":{"@type":"Organization","name":"AfroCue","url":"https://afrocue.xyz"}}</script>
-
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Party Directory","description":"A curated directory of the best parties, raves and events in Lagos and Nigeria, documented by AfroCue.","url":"https://afrocue.xyz/parties.html","publisher":{"@type":"Organization","name":"AfroCue","url":"https://afrocue.xyz"}}</script>
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
-
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
@@ -43,6 +41,7 @@
     body{background:var(--black);color:var(--white);font-family:'Figtree',sans-serif;overflow-x:hidden}
     .yh{font-family:'Aesthet Nova',sans-serif;font-weight:900;color:var(--yellow);text-shadow:var(--yts);line-height:0.92}
 
+    /* NAV */
     nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(10,10,10,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06)}
     .nav-logo{display:flex;align-items:center;text-decoration:none}
     .nav-logo img{height:48px;width:auto;display:block}
@@ -50,17 +49,21 @@
     .nav-links{display:flex;gap:28px;list-style:none}
     .nav-links a{font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--silver);text-decoration:none;transition:color 0.2s}
     .nav-links a:hover,.nav-links a.active{color:var(--white)}
-    .nav-cta{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--white);padding:10px 20px;border-radius:2px;text-decoration:none;transition:background 0.2s;white-space:nowrap}
-    .nav-cta:hover{background:var(--off)}
+    .nav-cta{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:10px 20px;border-radius:2px;text-decoration:none;transition:opacity 0.2s;white-space:nowrap}
+    .nav-cta:hover{opacity:0.88}
 
+    /* HERO */
     .hero{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:100px 48px 52px;overflow:hidden}
     .hero-bg{position:absolute;inset:0;z-index:0;background-image:url('texture.jpg');background-size:cover;background-position:center;opacity:0.18}
     .hero-content{position:relative;z-index:1}
     .label{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);margin-bottom:16px;display:flex;align-items:center;gap:10px}
     .label::before{content:'';width:18px;height:1px;background:var(--silver);flex-shrink:0}
     .hero h1{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(44px,6vw,88px);line-height:0.9;color:var(--yellow);text-shadow:var(--yts);margin-bottom:16px}
-    .hero-desc{font-size:14px;font-weight:300;line-height:1.75;color:rgba(240,237,232,0.5);max-width:400px}
+    .hero-desc{font-size:14px;font-weight:300;line-height:1.75;color:rgba(240,237,232,0.5);max-width:400px;margin-bottom:28px}
+    .hero-list-btn{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:12px 22px;border-radius:2px;text-decoration:none;transition:opacity 0.2s}
+    .hero-list-btn:hover{opacity:0.88}
 
+    /* FEATURED */
     .featured-col{position:relative;z-index:1;display:flex;flex-direction:column;gap:12px}
     .featured-col-label{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);display:flex;align-items:center;gap:10px}
     .featured-col-label::before{content:'';width:18px;height:1px;background:var(--silver);flex-shrink:0}
@@ -72,13 +75,14 @@
     .featured-label{font-size:8px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:3px 7px;border-radius:2px;display:inline-block;margin-bottom:6px}
     .featured-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(16px,2vw,24px);color:var(--yellow);text-shadow:var(--yts);line-height:0.95}
     .featured-city{font-size:10px;font-weight:300;color:rgba(240,237,232,0.4);margin-top:3px;letter-spacing:0.06em}
-    .featured-flyer{position:absolute;bottom:10px;right:12px;z-index:5;width:72px;aspect-ratio:3/4;border-radius:6px;overflow:hidden;border:1.5px solid rgba(255,255,255,0.18);box-shadow:0 4px 16px rgba(0,0,0,0.7),0 1px 4px rgba(0,0,0,0.5);background:var(--dark2);transition:opacity 0.4s ease}
+    .featured-flyer{position:absolute;bottom:10px;right:12px;z-index:5;width:72px;aspect-ratio:3/4;border-radius:6px;overflow:hidden;border:1.5px solid rgba(255,255,255,0.18);box-shadow:0 4px 16px rgba(0,0,0,0.7);background:var(--dark2);transition:opacity 0.4s ease}
     .featured-flyer img{width:100%;height:100%;object-fit:cover;display:block}
     .featured-dots{position:absolute;top:12px;right:12px;z-index:4;display:flex;gap:4px}
-    .featured-dot{width:5px;height:5px;border-radius:50%;background:rgba(240,237,232,0.2);transition:background 0.3s}
+    .featured-dot{width:5px;height:5px;border-radius:50%;background:rgba(240,237,232,0.2);transition:background 0.3s;cursor:pointer}
     .featured-dot.active{background:var(--yellow)}
 
-    #parties{padding:40px 48px 100px;border-top:1px solid rgba(255,255,255,0.06)}
+    /* PARTIES SECTION */
+    #parties{padding:40px 48px 80px;border-top:1px solid rgba(255,255,255,0.06)}
     .parties-header{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:40px;flex-wrap:wrap}
     .filter-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
     .filter-select{appearance:none;-webkit-appearance:none;background:rgba(255,255,255,0.04);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;border:1px solid rgba(255,255,255,0.12);border-radius:2px;color:var(--silver);font-family:'Figtree',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.06em;padding:9px 30px 9px 12px;cursor:pointer;transition:border-color 0.2s,color 0.2s;outline:none}
@@ -92,7 +96,10 @@
     .add-event-btn{padding:10px 20px;background:transparent;border:1px solid rgba(255,255,255,0.15);border-radius:2px;color:var(--silver);font-family:'Figtree',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;text-decoration:none;white-space:nowrap;display:inline-block}
     .add-event-btn:hover{border-color:var(--yellow);color:var(--yellow)}
 
+    /* GRID */
     .parties-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+
+    /* PARTY CARD */
     .party-card{position:relative;aspect-ratio:3/4;overflow:hidden;cursor:pointer;background:var(--dark2);transition:transform 0.3s ease}
     .party-card:hover{transform:scale(1.01);z-index:2}
     .party-card-bg{position:absolute;inset:-20px;z-index:0;background-size:cover;background-position:center;filter:blur(24px) saturate(0.6) brightness(0.4);transform:scale(1.15)}
@@ -112,6 +119,14 @@
     .party-card-cta{position:absolute;top:14px;left:14px;z-index:6;font-size:9px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:5px 10px;border-radius:2px;opacity:0;transition:opacity 0.2s}
     .party-card:hover .party-card-cta{opacity:1}
 
+    /* SKELETON */
+    .party-card-skeleton{background:var(--dark2);border:1px solid rgba(255,255,255,0.04);cursor:default}
+    .party-card-skeleton:hover{transform:none}
+    .skeleton-shimmer{position:absolute;inset:0;z-index:10;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.04) 50%,transparent 100%);background-size:200% 100%;animation:shimmer 1.8s infinite}
+    @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+    .skeleton-bar{background:rgba(255,255,255,0.07);border-radius:2px}
+
+    /* MODAL */
     .modal-wrap{display:none;position:fixed;inset:0;z-index:9999;background:rgba(10,10,10,0.88);backdrop-filter:blur(16px);overflow-y:auto;padding:40px 16px}
     .modal-wrap.open{display:block}
     .modal{max-width:860px;margin:0 auto;background:var(--dark);border:1px solid rgba(255,255,255,0.08);border-radius:6px;overflow:hidden;position:relative;animation:modalIn 0.3s ease}
@@ -134,7 +149,7 @@
     .modal-lower{display:grid;grid-template-columns:200px 1fr;gap:36px;align-items:start}
     .modal-flyer{aspect-ratio:3/4;border-radius:4px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);background:var(--dark2)}
     .modal-flyer img{width:100%;height:100%;object-fit:cover;display:block}
-    .modal-flyer-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+    .modal-flyer-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;min-height:120px}
     .modal-flyer-placeholder span{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey)}
     .modal-right{display:flex;flex-direction:column;gap:20px;padding-top:4px}
     .modal-cta-label{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--grey);margin-bottom:8px}
@@ -164,18 +179,27 @@
     .modal-other-name{position:absolute;bottom:12px;left:12px;right:12px;z-index:2;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:16px;color:var(--yellow);text-shadow:var(--yts);line-height:1}
 
     .no-results{padding:80px 0;text-align:center;color:var(--grey);font-size:14px;font-weight:300;display:none}
-    .loading-grid{padding:80px 0;text-align:center;color:var(--grey);font-size:13px;font-weight:300}
 
-    footer{border-top:1px solid rgba(255,255,255,0.06);padding:64px 48px 48px;display:flex;flex-direction:column;align-items:center;gap:28px;background:var(--dark);text-align:center}
-    .footer-brand{display:flex;flex-direction:column;align-items:center;gap:12px}
-    .footer-brand img{height:72px;width:auto;display:block}
-    .footer-brand p{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey)}
-    .footer-links{display:flex;gap:22px;flex-wrap:wrap;justify-content:center}
+    /* LIST CTA STRIP */
+    .list-cta-strip{background:var(--dark);border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);padding:32px 48px}
+    .list-cta-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;max-width:100%}
+    .list-cta-label{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);margin-bottom:6px}
+    .list-cta-text{font-size:14px;font-weight:300;color:rgba(240,237,232,0.5)}
+    .list-cta-btn{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:14px 28px;border-radius:2px;text-decoration:none;white-space:nowrap;transition:opacity 0.2s;flex-shrink:0}
+    .list-cta-btn:hover{opacity:0.88}
+
+    /* FOOTER — single compact row */
+    footer{border-top:1px solid rgba(255,255,255,0.06);padding:16px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;background:var(--dark)}
+    .footer-logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+    .footer-logo img{height:26px;width:auto;display:block}
+    .footer-logo-fallback{display:none;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:13px;color:var(--yellow)}
+    .footer-links{display:flex;gap:20px;flex-wrap:wrap;align-items:center}
     .footer-links a{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey);text-decoration:none;transition:color 0.2s}
     .footer-links a:hover{color:var(--white)}
-    .footer-email a{font-size:11px;color:var(--grey);text-decoration:none;transition:color 0.2s}
+    .footer-email a{font-size:10px;color:var(--grey);text-decoration:none;transition:color 0.2s}
     .footer-email a:hover{color:var(--white)}
 
+    /* RESPONSIVE */
     @media(max-width:768px){
       nav{padding:14px 20px}
       .nav-links{display:none}
@@ -188,20 +212,27 @@
       .featured-flyer{width:52px;bottom:8px;right:8px;border-radius:4px}
       .featured-name{font-size:14px}
       .featured-slot-content{padding:10px 12px;padding-right:70px}
-      #parties{padding:28px 16px 72px}
+      #parties{padding:28px 16px 60px}
       .parties-header{flex-direction:column;gap:16px}
+      .filter-bar{gap:6px}
+      .filter-select{font-size:10px;padding:8px 24px 8px 10px}
       .parties-grid{grid-template-columns:1fr 1fr}
       .modal-body{padding:0 20px 32px}
       .modal-tags{padding-top:20px}
       .modal-lower{grid-template-columns:1fr}
       .modal-flyer{max-width:180px}
       .modal-others{padding:28px 20px}
-      .modal-others-grid{grid-template-columns:1fr 1fr 1fr;gap:2px}
-      footer{padding:48px 20px 36px}
+      .modal-others-grid{grid-template-columns:1fr 1fr 1fr}
+      footer{padding:14px 20px;gap:10px}
+      .footer-links{gap:14px}
+      .list-cta-strip{padding:28px 20px}
+      .list-cta-inner{flex-direction:column;align-items:flex-start;gap:16px}
+      .list-cta-btn{width:100%;justify-content:center}
     }
     @media(max-width:480px){
-      .parties-grid{grid-template-columns:1fr}
+      .parties-grid{grid-template-columns:1fr 1fr}
       .modal-hero{height:260px}
+      .modal-name{font-size:clamp(32px,10vw,52px)}
     }
   </style>
 </head>
@@ -209,9 +240,10 @@
 
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
+<!-- NAV -->
 <nav>
   <a class="nav-logo" href="index.html">
-    <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none'; document.querySelector('.nav-logo-fallback').style.display='block'"/>
+    <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none';document.querySelector('.nav-logo-fallback').style.display='block'"/>
     <span class="nav-logo-fallback">afro.cue</span>
   </a>
   <ul class="nav-links">
@@ -219,36 +251,12 @@
     <li><a href="index.html#about">About</a></li>
     <li><a href="parties.html" class="active">Parties</a></li>
     <li><a href="dj.html">DJs</a></li>
+    <li><a href="pregame.html">Pregame</a></li>
   </ul>
-  <a href="index.html#join" class="nav-cta">Sign Up</a>
+  <a href="list-party.html" class="nav-cta">List Your Party</a>
 </nav>
 
-<div class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <div class="label">Lagos &amp; Beyond</div>
-    <h1>Parties.</h1>
-    <p class="hero-desc">Raves, events and nights worth knowing about — from the dance floors of Lagos to wherever the music goes.</p>
-  </div>
-  <div class="featured-col">
-    <div class="featured-col-label">Featured Party</div>
-    <div class="featured-slot" id="featuredSlot" onclick="openFeaturedModal()">
-      <div class="featured-slot-bg" id="featuredBg"></div>
-      <img class="featured-slot-img" id="featuredImg" src="" alt=""/>
-      <div class="featured-slot-grad"></div>
-      <div class="featured-dots" id="featuredDots"></div>
-      <div class="featured-slot-content">
-        <span class="featured-label">Trending</span>
-        <div class="featured-name" id="featuredName">—</div>
-        <div class="featured-city" id="featuredCity"></div>
-      </div>
-      <div class="featured-flyer" id="featuredFlyer" style="display:none;">
-        <img id="featuredFlyerImg" src="" alt=""/>
-      </div>
-    </div>
-  </div>
-</div>
-
+<!-- MODAL -->
 <div class="modal-wrap" id="partyModal">
   <button class="modal-close" onclick="closeModal()">&#x2715;</button>
   <div class="modal">
@@ -300,6 +308,34 @@
   </div>
 </div>
 
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="label">Party Directory</div>
+    <h1>Parties.</h1>
+    <p class="hero-desc">Raves, events and nights worth knowing about — from the dance floors of Lagos to wherever the music goes.</p>
+  </div>
+  <div class="featured-col">
+    <div class="featured-col-label">Featured Party</div>
+    <div class="featured-slot" id="featuredSlot" onclick="openFeaturedModal()">
+      <div class="featured-slot-bg" id="featuredBg"></div>
+      <img class="featured-slot-img" id="featuredImg" src="" alt=""/>
+      <div class="featured-slot-grad"></div>
+      <div class="featured-dots" id="featuredDots"></div>
+      <div class="featured-slot-content">
+        <span class="featured-label">Trending</span>
+        <div class="featured-name" id="featuredName">—</div>
+        <div class="featured-city" id="featuredCity"></div>
+      </div>
+      <div class="featured-flyer" id="featuredFlyer" style="display:none;">
+        <img id="featuredFlyerImg" src="" alt=""/>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PARTIES -->
 <section id="parties">
   <div class="parties-header">
     <div class="filter-bar">
@@ -330,31 +366,39 @@
       </select>
       <button class="filter-reset" id="filterReset" onclick="resetFilters()">Clear</button>
     </div>
-    <a href="list-party.html" class="add-event-btn">+ Add Your Event</a>
   </div>
   <div class="parties-grid" id="partiesGrid"></div>
   <div class="no-results" id="noResults">No parties match this filter yet.</div>
 </section>
 
-<footer>
-  <div class="footer-brand">
-    <a href="index.html" style="text-decoration:none;">
-      <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
-      <span style="display:none;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:48px;letter-spacing:0.08em;color:var(--yellow);">AfroCue</span>
-    </a>
-    <p>Creatively Documenting Culture</p>
+<!-- LIST YOUR PARTY CTA -->
+<div class="list-cta-strip">
+  <div class="list-cta-inner">
+    <div>
+      <div class="list-cta-label">Is your party on here?</div>
+      <div class="list-cta-text">Get your event in front of Lagos's nightlife audience.</div>
+    </div>
+    <a href="list-party.html" class="list-cta-btn">List Your Party &rarr;</a>
   </div>
+</div>
+
+<!-- FOOTER — single compact row -->
+<footer>
+  <a class="footer-logo" href="index.html">
+    <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+    <span class="footer-logo-fallback">AfroCue</span>
+  </a>
   <div class="footer-links">
-    <a href="index.html#about">About</a>
-    <a href="index.html#content">Content</a>
+    <a href="index.html">Home</a>
     <a href="parties.html">Parties</a>
     <a href="dj.html">DJs</a>
     <a href="pregame.html">Pregame</a>
+    <a href="list-party.html">List a Party</a>
   </div>
-  <div class="footer-email"><a href="/cdn-cgi/l/email-protection#aacbccd8c5c9dfcfc5c4c6c3c4cfeacdc7cbc3c684c9c5c7"><span class="__cf_email__" data-cfemail="3d5c5b4f525e48585253515453587d5a505c5451135e5250">[email&#160;protected]</span></a></div>
+  <div class="footer-email"><a href="mailto:info@afrocue.xyz">info@afrocue.xyz</a></div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="afrocue.js"></script>
+<script src="afrocue.js"></script>
 <script>
 
 function getGasUrl(){return window.AFROCUE_SCRIPT_URL||'YOUR_GAS_SCRIPT_URL_HERE';}
@@ -362,38 +406,94 @@ function getGasUrl(){return window.AFROCUE_SCRIPT_URL||'YOUR_GAS_SCRIPT_URL_HERE
 var PARTIES=[];
 var currentParty=null;
 
-function loadParties(){
+/* ── PLACEHOLDERS — always sortable, shown while loading or on GAS failure ── */
+function getPlaceholders(){
+  return[
+    {id:'south-social',name:'South Social',city:'Lagos, Nigeria',time:'Night',access:'Ticketed',setting:'Outdoor',genres:['Afrobeats','Afro House'],description:'South Social is one of Lagos\'s most consistent night experiences — a curated crowd, quality sound, and a dance floor that always delivers. Running regularly at Praia Lagos, it has become a fixture for anyone serious about a proper night out.',hero_img:'',flyer_img:'',instagram:'https://instagram.com/southsociallagos',website:'',views:10,likes:0},
+    {id:'group-therapy',name:'Group Therapy',city:'Lagos, Nigeria',time:'Night',access:'Ticketed',setting:'Indoor',genres:['Afro House','Amapiano','3-Step'],description:'Group Therapy is where Lagos goes when it wants to dance — properly. A rave with intention, focused on afro house, amapiano, and the edges of the scene. The production, the crowd, and the music selection set it apart.',hero_img:'',flyer_img:'',instagram:'https://instagram.com/grouptherapylagos',website:'',views:10,likes:0},
+    {id:'element-house',name:'Element House',city:'Lagos, Nigeria',time:'Day & Night',access:'RSVP',setting:'Both',genres:['Afro House','Amapiano'],description:'Element House bridges the gap between day and night — a carefully crafted experience that begins in the afternoon and runs deep into the evening. Known for its intimate setting and discerning crowd.',hero_img:'',flyer_img:'',instagram:'https://instagram.com/elementhouselagos',website:'',views:3,likes:0},
+    {id:'even-in-the-day',name:'Even In The Day',city:'Lagos, Nigeria',time:'Day',access:'Ticketed',setting:'Outdoor',genres:['Afrobeats','Amapiano','Afro House'],description:'Even In The Day made the afternoon a destination. A Lagos day party that understood the assignment — good music, the right setting, and a crowd that actually came to vibe.',hero_img:'',flyer_img:'',instagram:'https://instagram.com/evenintheday',website:'',views:0,likes:0},
+    {id:'amapiano-district',name:'Amapiano District',city:'Lagos, Nigeria',time:'Night',access:'Ticketed',setting:'Indoor',genres:['Amapiano','3-Step'],description:'Amapiano District does exactly what it says — a dedicated space for amapiano and 3-step in Lagos. One of the few Lagos events fully committed to the sound.',hero_img:'',flyer_img:'',instagram:'https://instagram.com/amapianodistrict',website:'',views:0,likes:0},
+    {id:'danceeko',name:'DanceEko',city:'Lagos, Nigeria',time:'Night',access:'Free',setting:'Indoor',genres:['Afro House','Amapiano','Afrobeats'],description:'DanceEko is a Lagos rave built around the idea that the dance floor is the point. Genre-fluid but rooted in afro house and amapiano, it pulls a crowd that comes specifically to move.',hero_img:'',flyer_img:'',instagram:'https://instagram.com/danceeko',website:'',views:0,likes:0}
+  ];
+}
+
+/* ── SKELETONS — shown instantly while data loads ── */
+function renderSkeletons(){
   var grid=document.getElementById('partiesGrid');
-  grid.innerHTML='<div class="loading-grid">Loading parties...</div>';
+  grid.innerHTML='';
+  for(var i=0;i<6;i++){
+    var card=document.createElement('div');
+    card.className='party-card party-card-skeleton';
+    card.innerHTML='<div class="party-card-grad"></div>'
+      +'<div class="skeleton-shimmer"></div>'
+      +'<div class="party-card-content">'
+      +'<div class="party-card-tags"><span class="skeleton-bar" style="display:inline-block;width:52px;height:18px;"></span></div>'
+      +'<div class="skeleton-bar" style="width:80%;height:28px;margin-bottom:10px;"></div>'
+      +'<div class="skeleton-bar" style="width:50%;height:14px;"></div>'
+      +'</div>';
+    grid.appendChild(card);
+  }
+}
+
+/* ── LOAD FROM GAS ── */
+function loadParties(){
+  renderSkeletons();
   var gasUrl=getGasUrl();
-  if(gasUrl==='YOUR_GAS_SCRIPT_URL_HERE'){PARTIES=getPlaceholders();renderCards({});return;}
+
+  if(gasUrl==='YOUR_GAS_SCRIPT_URL_HERE'){
+    PARTIES=getPlaceholders();
+    renderCards({});
+    initFeatured();
+    return;
+  }
+
   var cbName='afrocueCb_'+Date.now();
   var script=document.createElement('script');
   var done=false;
+
   var timer=setTimeout(function(){
     if(done)return;done=true;cleanup();
-    PARTIES=getPlaceholders();renderCards({});
-  },10000);
-  function cleanup(){clearTimeout(timer);delete window[cbName];if(script.parentNode)script.parentNode.removeChild(script);}
+    console.warn('AfroCue: GAS timeout — using placeholders');
+    PARTIES=getPlaceholders();renderCards({});initFeatured();
+  },8000);
+
+  function cleanup(){
+    clearTimeout(timer);delete window[cbName];
+    if(script.parentNode)script.parentNode.removeChild(script);
+  }
+
   window[cbName]=function(data){
     if(done)return;done=true;cleanup();
-    PARTIES=(data&&data.parties&&data.parties.length>0)?data.parties:getPlaceholders();
-    renderCards(getFilters?getFilters():{});
+    if(data&&data.parties&&data.parties.length>0){
+      PARTIES=data.parties;
+    }else{
+      console.warn('AfroCue: empty response — using placeholders');
+      PARTIES=getPlaceholders();
+    }
+    renderCards(getFilters());
+    initFeatured();
   };
-  script.onerror=function(){if(done)return;done=true;cleanup();PARTIES=getPlaceholders();renderCards({});};
+
+  script.onerror=function(){
+    if(done)return;done=true;cleanup();
+    console.warn('AfroCue: script error — using placeholders');
+    PARTIES=getPlaceholders();renderCards({});initFeatured();
+  };
+
   script.src=gasUrl+'?action=get_parties&callback='+cbName;
   document.head.appendChild(script);
 }
 
-function getPlaceholders(){
-  return [
-    {id:"south-social",name:"South Social",city:"Lagos, Nigeria",time:"Night",access:"Ticketed",setting:"Outdoor",genres:["Afrobeats","Afro House"],description:"South Social is one of Lagos's most consistent night experiences — a curated crowd, quality sound, and a dance floor that always delivers.",hero_img:"",flyer_img:"",instagram:"https://instagram.com/southsociallagos",website:"",views:0,likes:0},
-    {id:"group-therapy",name:"Group Therapy",city:"Lagos, Nigeria",time:"Night",access:"Ticketed",setting:"Indoor",genres:["Afro House","Amapiano","3-Step"],description:"Group Therapy is where Lagos goes when it wants to dance — properly. A rave with intention, focused on afro house, amapiano, and the edges of the scene.",hero_img:"",flyer_img:"",instagram:"https://instagram.com/grouptherapylagos",website:"",views:0,likes:0},
-    {id:"element-house",name:"Element House",city:"Lagos, Nigeria",time:"Day & Night",access:"RSVP",setting:"Both",genres:["Afro House","Amapiano"],description:"Element House bridges the gap between day and night — a carefully crafted experience that begins in the afternoon and runs deep into the evening.",hero_img:"",flyer_img:"",instagram:"https://instagram.com/elementhouselagos",website:"",views:0,likes:0},
-    {id:"even-in-the-day",name:"Even In The Day",city:"Lagos, Nigeria",time:"Day",access:"Ticketed",setting:"Outdoor",genres:["Afrobeats","Amapiano","Afro House"],description:"Even In The Day made the afternoon a destination. A Lagos day party that understood the assignment.",hero_img:"",flyer_img:"",instagram:"https://instagram.com/evenintheday",website:"",views:0,likes:0},
-    {id:"amapiano-district",name:"Amapiano District",city:"Lagos, Nigeria",time:"Night",access:"Ticketed",setting:"Indoor",genres:["Amapiano","3-Step"],description:"Amapiano District does exactly what it says — a dedicated space for amapiano and 3-step in Lagos.",hero_img:"",flyer_img:"",instagram:"https://instagram.com/amapianodistrict",website:"",views:0,likes:0},
-    {id:"danceeko",name:"DanceEko",city:"Lagos, Nigeria",time:"Night",access:"Free",setting:"Indoor",genres:["Afro House","Amapiano","Afrobeats"],description:"DanceEko is a Lagos rave built around the idea that the dance floor is the point.",hero_img:"",flyer_img:"",instagram:"https://instagram.com/danceeko",website:"",views:0,likes:0}
-  ];
+/* ── FILTER HELPERS ── */
+function getFilters(){
+  return{
+    city:   document.getElementById('filterCity').value,
+    time:   document.getElementById('filterTime').value,
+    access: document.getElementById('filterAccess').value,
+    setting:document.getElementById('filterSetting').value,
+    genre:  document.getElementById('filterGenre').value
+  };
 }
 
 function partyMatchesFilters(party,filters){
@@ -405,6 +505,26 @@ function partyMatchesFilters(party,filters){
   return true;
 }
 
+function applyFilters(){
+  var filters=getFilters();
+  var hasAny=filters.city||filters.time||filters.access||filters.setting||filters.genre;
+  var reset=document.getElementById('filterReset');
+  if(reset)reset.className='filter-reset'+(hasAny?' visible':'');
+  ['filterCity','filterTime','filterAccess','filterSetting','filterGenre'].forEach(function(id){
+    var el=document.getElementById(id);if(el)el.className='filter-select'+(el.value?' has-value':'');
+  });
+  renderCards(filters);
+}
+
+function resetFilters(){
+  ['filterCity','filterTime','filterAccess','filterSetting','filterGenre'].forEach(function(id){
+    var el=document.getElementById(id);if(el){el.value='';el.className='filter-select';}
+  });
+  var reset=document.getElementById('filterReset');if(reset)reset.className='filter-reset';
+  renderCards({});
+}
+
+/* ── RENDER CARDS ── */
 function renderCards(filters){
   filters=filters||{};
   var grid=document.getElementById('partiesGrid');
@@ -419,101 +539,79 @@ function renderCards(filters){
     card.onclick=function(){openModal(party.id);};
     var metaTags=[party.time,party.access,party.setting].filter(Boolean);
     var allTags=metaTags.concat(party.genres||[]);
-    var tagHTML=allTags.map(function(t,i){return '<span class="'+(i<metaTags.length?'tag type':'tag')+'">'+t+'</span>';}).join('');
-    var bg=document.createElement('div');bg.className='party-card-bg';bg.style.backgroundImage="url('"+(party.hero_img||'')+"')";
-    var img=document.createElement('img');img.className='party-card-img';img.src=party.hero_img||'';img.alt=party.name;img.onerror=function(){this.style.opacity=0;};
+    var tagHTML=allTags.map(function(t,i){return'<span class="'+(i<metaTags.length?'tag type':'tag')+'">'+t+'</span>';}).join('');
+    var bg=document.createElement('div');bg.className='party-card-bg';
+    if(party.hero_img)bg.style.backgroundImage="url('"+party.hero_img+"')";
+    var img=document.createElement('img');img.className='party-card-img';
+    if(party.hero_img)img.src=party.hero_img;img.alt=party.name;
+    img.onerror=function(){this.style.opacity=0;};
     var tint=document.createElement('div');tint.className='party-card-tint';
     var grad=document.createElement('div');grad.className='party-card-grad';
     var tex=document.createElement('div');tex.className='party-card-texture';
     var logo=document.createElement('div');logo.className='party-card-logo';
-    var li=document.createElement('img');li.src='logo_afrocue.png';li.alt='AfroCue';li.onerror=function(){this.style.display='none';};
-    logo.appendChild(li);
+    var li=document.createElement('img');li.src='logo_afrocue.png';li.alt='AfroCue';
+    li.onerror=function(){this.style.display='none';};logo.appendChild(li);
     var cta=document.createElement('div');cta.className='party-card-cta';cta.textContent='See More';
     var content=document.createElement('div');content.className='party-card-content';
     content.innerHTML='<div class="party-card-tags">'+tagHTML+'</div><div class="party-card-name">'+party.name+'</div><div class="party-card-meta">'+party.city+'</div>';
-    card.appendChild(bg);card.appendChild(img);card.appendChild(tint);card.appendChild(grad);card.appendChild(tex);card.appendChild(logo);card.appendChild(cta);card.appendChild(content);
+    card.appendChild(bg);card.appendChild(img);card.appendChild(tint);card.appendChild(grad);
+    card.appendChild(tex);card.appendChild(logo);card.appendChild(cta);card.appendChild(content);
     grid.appendChild(card);
   });
+  if(!featuredList.length)initFeatured();
 }
 
-function getFilters(){return{city:document.getElementById('filterCity').value,time:document.getElementById('filterTime').value,access:document.getElementById('filterAccess').value,setting:document.getElementById('filterSetting').value,genre:document.getElementById('filterGenre').value};}
-
-function applyFilters(){
-  var filters=getFilters();
-  var hasAny=filters.city||filters.time||filters.access||filters.setting||filters.genre;
-  var reset=document.getElementById('filterReset');
-  if(reset)reset.className='filter-reset'+(hasAny?' visible':'');
-  ['filterCity','filterTime','filterAccess','filterSetting','filterGenre'].forEach(function(id){var el=document.getElementById(id);if(el)el.className='filter-select'+(el.value?' has-value':'');});
-  renderCards(filters);
-}
-
-function resetFilters(){
-  ['filterCity','filterTime','filterAccess','filterSetting','filterGenre'].forEach(function(id){var el=document.getElementById(id);if(el){el.value='';el.className='filter-select';}});
-  var reset=document.getElementById('filterReset');if(reset)reset.className='filter-reset';
-  renderCards({});
-}
-
+/* ── MODAL ── */
 function openModal(id){
   var party=PARTIES.find(function(p){return p.id===id;});
   if(!party)return;
   currentParty=party;
-
   document.getElementById('modalHeroBg').style.backgroundImage="url('"+(party.hero_img||'')+"')";
   var heroImg=document.getElementById('modalHeroImg');
   heroImg.src=party.hero_img||'';heroImg.alt=party.name;
-
   var metaTags=[party.time,party.access,party.setting].filter(Boolean);
   var allTags=metaTags.concat(party.genres||[]);
-  document.getElementById('modalTags').innerHTML=allTags.map(function(t,i){return '<span class="'+(i<metaTags.length?'tag type':'tag')+'">'+t+'</span>';}).join('');
-
+  document.getElementById('modalTags').innerHTML=allTags.map(function(t,i){return'<span class="'+(i<metaTags.length?'tag type':'tag')+'">'+t+'</span>';}).join('');
   document.getElementById('modalName').textContent=party.name;
   document.getElementById('modalCity').textContent=party.city;
   document.getElementById('modalDesc').textContent=party.description;
   document.getElementById('viewCountNum').textContent=party.views||0;
   document.getElementById('likeCountNum').textContent=party.likes||0;
-
   document.getElementById('likeBtn').className='like-btn'+(sessionStorage.getItem('liked_'+id)?' liked':'');
-
   var shareBtn=document.getElementById('shareBtn');
   shareBtn.className='share-btn';
   shareBtn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share';
-
   var flyerEl=document.getElementById('modalFlyer');
   flyerEl.innerHTML='';
   if(party.flyer_img&&party.flyer_img!==''){
     var fi=document.createElement('img');fi.src=party.flyer_img;fi.alt=party.name+' flyer';
     fi.onerror=function(){flyerEl.innerHTML='<div class="modal-flyer-placeholder"><span>Flyer coming soon</span></div>';};
     flyerEl.appendChild(fi);
-  }else{
-    flyerEl.innerHTML='<div class="modal-flyer-placeholder"><span>Flyer coming soon</span></div>';
-  }
-
-  var link=document.getElementById('modalLink');
+  }else{flyerEl.innerHTML='<div class="modal-flyer-placeholder"><span>Flyer coming soon</span></div>';}
   var linkUrl=party.instagram||party.website||'#';
-  link.href=linkUrl;
+  document.getElementById('modalLink').href=linkUrl;
   document.getElementById('modalLinkText').textContent=linkUrl.indexOf('instagram')>-1?'Instagram':(party.website?'Website':'Instagram');
-
   var others=PARTIES.filter(function(p){return p.id!==id;}).slice(0,3);
-  var othersGrid=document.getElementById('modalOthers');
-  othersGrid.innerHTML='';
+  var othersGrid=document.getElementById('modalOthers');othersGrid.innerHTML='';
   others.forEach(function(op){
-    var el=document.createElement('div');el.className='modal-other-card';el.onclick=function(){openModal(op.id);};
-    var obg=document.createElement('div');obg.className='modal-other-bg';obg.style.backgroundImage="url('"+(op.hero_img||'')+"')";
-    var oimg=document.createElement('img');oimg.className='modal-other-img';oimg.src=op.hero_img||'';oimg.alt=op.name;oimg.onerror=function(){this.style.opacity=0;};
+    var el=document.createElement('div');el.className='modal-other-card';
+    el.onclick=function(){openModal(op.id);};
+    var obg=document.createElement('div');obg.className='modal-other-bg';
+    if(op.hero_img)obg.style.backgroundImage="url('"+op.hero_img+"')";
+    var oimg=document.createElement('img');oimg.className='modal-other-img';
+    if(op.hero_img)oimg.src=op.hero_img;oimg.alt=op.name;oimg.onerror=function(){this.style.opacity=0;};
     var ograd=document.createElement('div');ograd.className='modal-other-grad';
     var onm=document.createElement('div');onm.className='modal-other-name';onm.textContent=op.name;
     el.appendChild(obg);el.appendChild(oimg);el.appendChild(ograd);el.appendChild(onm);
     othersGrid.appendChild(el);
   });
-
-  document.title=party.name+' — AfroCue Parties';
-  updateMetaTag('og:title',party.name+' — AfroCue');
+  document.title='Discover '+party.name+' on AfroCue';
+  updateMetaTag('og:title','Discover '+party.name+' on AfroCue');
   updateMetaTag('og:description',party.description.substring(0,160));
   updateMetaTag('og:image',(party.hero_img&&party.hero_img.indexOf('http')===0)?party.hero_img:'https://afrocue.xyz/hero_dj.jpg');
-  updateMetaTag('twitter:title',party.name+' — AfroCue');
+  updateMetaTag('twitter:title','Discover '+party.name+' on AfroCue');
   updateMetaTag('twitter:description',party.description.substring(0,160));
   history.replaceState(null,'','#'+id);
-
   document.getElementById('partyModal').classList.add('open');
   document.getElementById('partyModal').scrollTop=0;
   document.body.style.overflow='hidden';
@@ -525,7 +623,7 @@ function updateMetaTag(property,content){var el=document.querySelector('meta[pro
 function closeModal(){
   document.getElementById('partyModal').classList.remove('open');
   document.body.style.overflow='';
-  document.title='Parties — AfroCue';
+  document.title='Party Directory — AfroCue';
   history.replaceState(null,'','parties.html');
   currentParty=null;
 }
@@ -556,7 +654,9 @@ function handleLike(){
 function handleShare(){
   if(!currentParty)return;
   var shareUrl='https://afrocue.xyz/parties.html#'+currentParty.id;
-  if(navigator.share){navigator.share({title:currentParty.name+' — AfroCue',text:currentParty.description.substring(0,120),url:shareUrl}).catch(function(){});}
+  var shareTitle='Discover '+currentParty.name+' on AfroCue';
+  var shareText='Discover '+currentParty.name+' on AfroCue — '+currentParty.description.substring(0,100);
+  if(navigator.share){navigator.share({title:shareTitle,text:shareText,url:shareUrl}).catch(function(){});}
   else{
     navigator.clipboard.writeText(shareUrl).then(function(){
       var btn=document.getElementById('shareBtn');
@@ -570,11 +670,15 @@ function handleShare(){
 document.getElementById('partyModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
 
+/* Deep link */
 (function(){
   var hash=window.location.hash.replace('#','');if(!hash)return;
-  var check=setInterval(function(){if(PARTIES.length>0){clearInterval(check);var match=PARTIES.find(function(p){return p.id===hash;});if(match)openModal(match.id);}},100);
+  var check=setInterval(function(){
+    if(PARTIES.length>0){clearInterval(check);var match=PARTIES.find(function(p){return p.id===hash;});if(match)openModal(match.id);}
+  },100);
 })();
 
+/* ── FEATURED CAROUSEL ── */
 var featuredIndex=0,featuredTimer=null,featuredList=[];
 
 function initFeatured(){
@@ -587,7 +691,7 @@ function initFeatured(){
     d.onclick=function(e){e.stopPropagation();goFeatured(i);};dotsWrap.appendChild(d);
   });
   showFeatured(0);clearInterval(featuredTimer);
-  featuredTimer=setInterval(function(){goFeatured((featuredIndex+1)%featuredList.length);},3000);
+  featuredTimer=setInterval(function(){goFeatured((featuredIndex+1)%featuredList.length);},3500);
 }
 
 function showFeatured(i){
@@ -600,8 +704,9 @@ function showFeatured(i){
   var flyerWrap=document.getElementById('featuredFlyer');
   img.style.opacity='0';if(flyerWrap)flyerWrap.style.opacity='0';
   setTimeout(function(){
-    bg.style.backgroundImage="url('"+(p.hero_img||'')+"')";
-    img.src=p.hero_img||'';img.alt=p.name;
+    if(p.hero_img){bg.style.backgroundImage="url('"+p.hero_img+"')";img.src=p.hero_img;}
+    else{bg.style.backgroundImage='';img.src='';}
+    img.alt=p.name;
     if(flyerImg&&flyerWrap){
       if(p.flyer_img&&p.flyer_img!==''){flyerImg.src=p.flyer_img;flyerWrap.style.display='block';flyerWrap.style.opacity='1';}
       else{flyerWrap.style.display='none';}
@@ -613,16 +718,14 @@ function showFeatured(i){
 
 function goFeatured(i){
   clearInterval(featuredTimer);showFeatured(i);
-  featuredTimer=setInterval(function(){goFeatured((featuredIndex+1)%featuredList.length);},3000);
+  featuredTimer=setInterval(function(){goFeatured((featuredIndex+1)%featuredList.length);},3500);
 }
 
 function openFeaturedModal(){var p=featuredList[featuredIndex];if(p)openModal(p.id);}
 
-var _origRenderCards=renderCards;
-renderCards=function(filters){
-  _origRenderCards(filters);
-  if(!featuredList.length)initFeatured();
-};
+/* ── BOOT ── */
+loadParties();
+
 </script>
 </body>
 </html>
