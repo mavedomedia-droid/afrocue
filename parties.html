@@ -473,53 +473,35 @@ function renderSkeletons(){
   }
 }
 
-/* ── LOAD FROM GAS ── */
+/* ── LOAD FROM parties.json ── */
+/* Reads are now served from the static JSON file on the server.
+   GAS is only called for view/like write-backs (incrementStat).
+   To add or update a party: edit parties.json and re-upload.
+   To remove a party: delete its object from the array. */
 function loadParties(){
   renderSkeletons();
-  var gasUrl=getGasUrl();
 
-  if(gasUrl==='YOUR_GAS_SCRIPT_URL_HERE'){
-    PARTIES=getPlaceholders();
-    renderCards({});
-    initFeatured();
-    return;
-  }
-
-  var cbName='afrocueCb_'+Date.now();
-  var script=document.createElement('script');
-  var done=false;
-
-  var timer=setTimeout(function(){
-    if(done)return;done=true;cleanup();
-    console.warn('AfroCue: GAS timeout — using placeholders');
-    PARTIES=getPlaceholders();renderCards({});initFeatured();
-  },8000);
-
-  function cleanup(){
-    clearTimeout(timer);delete window[cbName];
-    if(script.parentNode)script.parentNode.removeChild(script);
-  }
-
-  window[cbName]=function(data){
-    if(done)return;done=true;cleanup();
-    if(data&&data.parties&&data.parties.length>0){
-      PARTIES=data.parties;
-    }else{
-      console.warn('AfroCue: empty response — using placeholders');
+  fetch('parties.json?v='+Date.now())
+    .then(function(r){
+      if(!r.ok)throw new Error('HTTP '+r.status);
+      return r.json();
+    })
+    .then(function(data){
+      if(data&&data.parties&&data.parties.length>0){
+        PARTIES=data.parties;
+      }else{
+        console.warn('AfroCue: parties.json empty — using built-in fallback');
+        PARTIES=getPlaceholders();
+      }
+      renderCards(getFilters());
+      initFeatured();
+    })
+    .catch(function(err){
+      console.warn('AfroCue: could not load parties.json ('+err+') — using built-in fallback');
       PARTIES=getPlaceholders();
-    }
-    renderCards(getFilters());
-    initFeatured();
-  };
-
-  script.onerror=function(){
-    if(done)return;done=true;cleanup();
-    console.warn('AfroCue: script error — using placeholders');
-    PARTIES=getPlaceholders();renderCards({});initFeatured();
-  };
-
-  script.src=gasUrl+'?action=get_parties&callback='+cbName;
-  document.head.appendChild(script);
+      renderCards({});
+      initFeatured();
+    });
 }
 
 /* ── FILTER HELPERS ── */
