@@ -443,18 +443,6 @@ function getGasUrl(){return window.AFROCUE_SCRIPT_URL||'YOUR_GAS_SCRIPT_URL_HERE
 var PARTIES=[];
 var currentParty=null;
 
-/* ── PLACEHOLDERS — always sortable, shown while loading or on GAS failure ── */
-function getPlaceholders(){
-  return[
-    {id:'south-social',name:'South Social',city:'Lagos, Nigeria',time:'Night',access:'Ticketed',setting:'Outdoor',genres:['Afrobeats','Afro House'],description:'South Social is one of Lagos\'s most consistent night experiences — a curated crowd, quality sound, and a dance floor that always delivers. Running regularly at Praia Lagos, it has become a fixture for anyone serious about a proper night out.',hero_img:'',flyer_img:'',instagram:'https://instagram.com/southsociallagos',website:'',views:10,likes:0},
-    {id:'group-therapy',name:'Group Therapy',city:'Lagos, Nigeria',time:'Night',access:'Ticketed',setting:'Indoor',genres:['Afro House','Amapiano','3-Step'],description:'Group Therapy is where Lagos goes when it wants to dance — properly. A rave with intention, focused on afro house, amapiano, and the edges of the scene. The production, the crowd, and the music selection set it apart.',hero_img:'',flyer_img:'',instagram:'https://instagram.com/grouptherapylagos',website:'',views:10,likes:0},
-    {id:'element-house',name:'Element House',city:'Lagos, Nigeria',time:'Day & Night',access:'RSVP',setting:'Both',genres:['Afro House','Amapiano'],description:'Element House bridges the gap between day and night — a carefully crafted experience that begins in the afternoon and runs deep into the evening. Known for its intimate setting and discerning crowd.',hero_img:'',flyer_img:'',instagram:'https://instagram.com/elementhouselagos',website:'',views:3,likes:0},
-    {id:'even-in-the-day',name:'Even In The Day',city:'Lagos, Nigeria',time:'Day',access:'Ticketed',setting:'Outdoor',genres:['Afrobeats','Amapiano','Afro House'],description:'Even In The Day made the afternoon a destination. A Lagos day party that understood the assignment — good music, the right setting, and a crowd that actually came to vibe.',hero_img:'',flyer_img:'',instagram:'https://instagram.com/evenintheday',website:'',views:0,likes:0},
-    {id:'amapiano-district',name:'Amapiano District',city:'Lagos, Nigeria',time:'Night',access:'Ticketed',setting:'Indoor',genres:['Amapiano','3-Step'],description:'Amapiano District does exactly what it says — a dedicated space for amapiano and 3-step in Lagos. One of the few Lagos events fully committed to the sound.',hero_img:'',flyer_img:'',instagram:'https://instagram.com/amapianodistrict',website:'',views:0,likes:0},
-    {id:'danceeko',name:'DanceEko',city:'Lagos, Nigeria',time:'Night',access:'Free',setting:'Indoor',genres:['Afro House','Amapiano','Afrobeats'],description:'DanceEko is a Lagos rave built around the idea that the dance floor is the point. Genre-fluid but rooted in afro house and amapiano, it pulls a crowd that comes specifically to move.',hero_img:'',flyer_img:'',instagram:'https://instagram.com/danceeko',website:'',views:0,likes:0}
-  ];
-}
-
 /* ── SKELETONS — shown instantly while data loads ── */
 function renderSkeletons(){
   var grid=document.getElementById('partiesGrid');
@@ -473,34 +461,89 @@ function renderSkeletons(){
   }
 }
 
-/* ── LOAD FROM parties.json ── */
-/* Reads are now served from the static JSON file on the server.
-   GAS is only called for view/like write-backs (incrementStat).
-   To add or update a party: edit parties.json and re-upload.
-   To remove a party: delete its object from the array. */
+/* ── EMPTY STATE — shown when CSV fails or returns nothing ── */
+function showEmptyState(msg){
+  var grid=document.getElementById('partiesGrid');
+  grid.innerHTML='';
+  var noResults=document.getElementById('noResults');
+  noResults.textContent=msg||'No parties listed yet.';
+  noResults.style.display='block';
+}
+
+/* ── LOAD FROM GOOGLE SHEETS PUBLISHED CSV ── */
+/* Sheet is published to web as CSV — no GAS needed for reads.
+   GAS is still used only for view/like write-backs (incrementStat).
+   Column order must match: A=id, B=name, C=city, D=time, E=access,
+   F=setting, G=genres, H=description, I=hero_img, J=flyer_img,
+   K=instagram, L=website, M=views, N=likes, O=status, P=contact_email */
+var CSV_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vSemAPO2lS9b54nmiLq2LUodTRkgBT6ls_iRDUy_Zh6mhIkWf2UsRFvd5zmqfmc-rzeWViOd8rX1LCe/pub?gid=199159856&single=true&output=csv';
+
+function parseCSV(text){
+  var lines=text.trim().split('\n');
+  if(lines.length<2)return[];
+  /* skip header row (index 0) */
+  var parties=[];
+  for(var i=1;i<lines.length;i++){
+    var cols=splitCSVLine(lines[i]);
+    if(!cols[0]||!cols[1])continue; /* skip empty rows */
+    var status=(cols[14]||'').trim();
+    if(status!=='Active')continue;  /* only show Active parties */
+    parties.push({
+      id:         cols[0].trim(),
+      name:       cols[1].trim(),
+      city:       cols[2].trim(),
+      time:       cols[3].trim(),
+      access:     cols[4].trim(),
+      setting:    cols[5].trim(),
+      genres:     cols[6]?cols[6].trim().split(',').map(function(s){return s.trim();}):[],
+      description:cols[7].trim(),
+      hero_img:   cols[8].trim(),
+      flyer_img:  cols[9].trim(),
+      instagram:  cols[10].trim(),
+      website:    cols[11].trim(),
+      views:      parseInt(cols[12])||0,
+      likes:      parseInt(cols[13])||0
+      /* col 14 = status (used above, not stored) */
+      /* col 15 = contact_email (intentionally skipped — never sent to browser) */
+    });
+  }
+  return parties;
+}
+
+/* Handles quoted fields with commas inside them */
+function splitCSVLine(line){
+  var cols=[],cur='',inQuote=false;
+  for(var i=0;i<line.length;i++){
+    var c=line[i];
+    if(c==='"'){inQuote=!inQuote;}
+    else if(c===','&&!inQuote){cols.push(cur);cur='';}
+    else{cur+=c;}
+  }
+  cols.push(cur);
+  return cols;
+}
+
 function loadParties(){
   renderSkeletons();
-
-  fetch('parties.json?v='+Date.now())
+  fetch(CSV_URL)
     .then(function(r){
       if(!r.ok)throw new Error('HTTP '+r.status);
-      return r.json();
+      return r.text();
     })
-    .then(function(data){
-      if(data&&data.parties&&data.parties.length>0){
-        PARTIES=data.parties;
+    .then(function(text){
+      var parsed=parseCSV(text);
+      if(parsed.length>0){
+        PARTIES=parsed;
+        renderCards(getFilters());
+        initFeatured();
       }else{
-        console.warn('AfroCue: parties.json empty — using built-in fallback');
-        PARTIES=getPlaceholders();
+        console.warn('AfroCue: CSV returned no active parties');
+        showEmptyState('No parties listed yet. Check back soon.');
       }
-      renderCards(getFilters());
-      initFeatured();
     })
     .catch(function(err){
-      console.warn('AfroCue: could not load parties.json ('+err+') — using built-in fallback');
-      PARTIES=getPlaceholders();
-      renderCards({});
-      initFeatured();
+      console.warn('AfroCue: CSV fetch failed ('+err+')');
+      showEmptyState('Could not load parties right now. Try again shortly.');
     });
 }
 
