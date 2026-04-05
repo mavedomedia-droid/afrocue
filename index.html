@@ -234,22 +234,27 @@
     .slide-counter span { color: var(--yellow); }
 
     /* ── YOUTUBE ── */
-    #youtube { border-top: 1px solid rgba(255,255,255,0.06); position: relative; }
+    #youtube { border-top: 1px solid rgba(255,255,255,0.06); position: relative; background: var(--dark); }
     #youtube::before { content: ''; position: absolute; inset: 0; background-image: url('texture.jpg'); background-size: cover; opacity: 0.06; pointer-events: none; }
-    .yt-inner { position: relative; z-index: 1; max-width: 1100px; }
-    .yt-h { font-size: clamp(44px, 5.5vw, 80px); margin-bottom: 8px; }
-    .yt-sub { font-size: 13px; font-weight: 300; color: var(--silver); margin-bottom: 44px; letter-spacing: 0.04em; }
+    .yt-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: center; max-width: 1200px; }
+    .yt-left { display: flex; flex-direction: column; justify-content: center; }
+    .yt-h { font-size: clamp(36px, 4.5vw, 64px); margin-bottom: 10px; line-height: 0.92; }
+    .yt-artist { font-size: 13px; font-weight: 300; color: rgba(240,237,232,0.45); margin-bottom: 32px; letter-spacing: 0.04em; }
+    .yt-watch-btn { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); background: var(--yellow); padding: 14px 26px; border-radius: 2px; text-decoration: none; transition: opacity 0.2s; align-self: flex-start; }
+    .yt-watch-btn:hover { opacity: 0.88; }
+    .yt-watch-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .yt-right { position: relative; }
     .yt-embed-wrap {
       position: relative; width: 100%;
-      padding-bottom: 56.25%; /* 16:9 */
-      border-radius: 6px; overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.07);
+      padding-bottom: 56.25%;
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
       background: var(--dark2);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.6);
     }
-    .yt-embed-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
-    .yt-caption { margin-top: 16px; display: flex; align-items: center; gap: 12px; }
-    .yt-caption-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); flex-shrink: 0; }
-    .yt-caption-text { font-size: 12px; font-weight: 400; color: var(--silver); letter-spacing: 0.04em; }
+    .yt-embed-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; border-radius: 16px; }
+    .yt-sub { display: none; }
+    .yt-caption { display: none; }
 
     /* ── NEWSLETTER ── */
     #newsletter { border-top: 1px solid rgba(255,255,255,0.06); position: relative; overflow: hidden; }
@@ -390,6 +395,8 @@
       .follow-ig-card { padding: 24px 20px; }
       footer { padding: 48px 20px 36px; flex-direction: column; align-items: center; gap: 20px; }
       #youtube { padding: 64px 20px; }
+      .yt-inner { grid-template-columns: 1fr; gap: 36px; }
+      .yt-h { font-size: clamp(32px,10vw,52px); }
     }
 
     @media (max-width: 420px) {
@@ -425,21 +432,22 @@
     .ps-loading { padding: 60px 0; text-align: center; color: var(--grey); font-size: 13px; font-weight: 300; }
 
     /* ── INCOMING PARTY SECTION — thin strip ── */
+    /* ── INCOMING PARTY SECTION — thin strip ── */
     #incoming { display: none; position: relative; overflow: hidden; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
     #incoming.visible { display: block; }
-    .inc-bg { position: absolute; inset: -20px; z-index: 0; background-size: cover; background-position: center; filter: blur(32px) brightness(0.18) saturate(0.4); transform: scale(1.1); }
-    .inc-texture { position: absolute; inset: 0; z-index: 1; background-image: url('texture.jpg'); background-size: cover; opacity: 0.12; pointer-events: none; }
-    .inc-grad { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to right, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.5) 55%, rgba(10,10,10,0.1) 100%); }
-    .inc-inner { position: relative; z-index: 3; display: flex; align-items: center; gap: 28px; padding: 0 48px; min-height: 116px; }
-    .inc-flyer-wrap { flex-shrink: 0; width: 76px; position: relative; align-self: flex-end; margin-top: -24px; }
-    .inc-flyer-wrap::before { content: ''; position: absolute; inset: 4px; background: rgba(0,0,0,0.5); transform: rotate(-2deg); border-radius: 3px; z-index: 0; }
-    .inc-flyer-img { position: relative; z-index: 1; width: 76px; aspect-ratio: 3/4; object-fit: cover; border-radius: 3px; display: block; transform: rotate(1.5deg); box-shadow: 0 6px 24px rgba(0,0,0,0.7); }
-    .inc-text { flex: 1; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; min-width: 0; }
-    .inc-eyebrow { font-size: 8px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--yellow); opacity: 0.6; flex-shrink: 0; }
-    .inc-name { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(18px,2vw,28px); color: var(--yellow); text-shadow: var(--yts); line-height: 1; flex-shrink: 0; }
-    .inc-date { font-size: 11px; font-weight: 300; color: rgba(240,237,232,0.45); flex-shrink: 0; }
+    .inc-bg { position: absolute; inset: -20px; z-index: 0; background-size: cover; background-position: center; filter: blur(28px) brightness(0.32) saturate(0.6); transform: scale(1.1); }
+    .inc-texture { position: absolute; inset: 0; z-index: 1; background-image: url('texture.jpg'); background-size: cover; opacity: 0.1; pointer-events: none; }
+    .inc-grad { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to right, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.55) 50%, rgba(10,10,10,0.15) 100%); }
+    .inc-inner { position: relative; z-index: 3; display: flex; align-items: stretch; gap: 32px; padding: 0 48px; min-height: 140px; }
+    .inc-flyer-wrap { flex-shrink: 0; width: 100px; position: relative; align-self: flex-end; margin-top: -28px; }
+    .inc-flyer-wrap::before { content: ''; position: absolute; inset: 5px; background: rgba(0,0,0,0.55); transform: rotate(-2deg); border-radius: 4px; z-index: 0; }
+    .inc-flyer-img { position: relative; z-index: 1; width: 100px; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; display: block; transform: rotate(1.5deg); box-shadow: 0 8px 32px rgba(0,0,0,0.8); }
+    .inc-text { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 6px; min-width: 0; padding: 20px 0; }
+    .inc-eyebrow { font-size: 8px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--yellow); opacity: 0.6; }
+    .inc-name { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(26px,3vw,44px); color: var(--yellow); text-shadow: var(--yts); line-height: 0.95; }
+    .inc-date { font-size: 12px; font-weight: 300; color: rgba(240,237,232,0.5); }
     .inc-tags { display: none; }
-    .inc-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); background: var(--yellow); padding: 9px 16px; border-radius: 2px; text-decoration: none; transition: opacity 0.2s; margin-left: auto; flex-shrink: 0; }
+    .inc-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); background: var(--yellow); padding: 10px 18px; border-radius: 2px; text-decoration: none; transition: opacity 0.2s; align-self: center; margin-left: auto; flex-shrink: 0; }
     .inc-btn:hover { opacity: 0.88; }
 
     /* ── MOBILE: parties strip + incoming ── */
@@ -449,12 +457,12 @@
       .ps-see-all { align-self: flex-start; }
       .ps-cta-bar { flex-direction: column; align-items: flex-start; gap: 12px; }
       .ps-cta-btn { width: 100%; text-align: center; }
-      .inc-inner { padding: 0 16px; min-height: 80px; gap: 12px; }
-      .inc-flyer-wrap { width: 52px; margin-top: -16px; }
-      .inc-flyer-img { width: 52px; }
-      .inc-name { font-size: clamp(14px,5vw,20px); }
+      .inc-inner { padding: 0 16px; min-height: 110px; gap: 14px; }
+      .inc-flyer-wrap { width: 68px; margin-top: -20px; }
+      .inc-flyer-img { width: 68px; }
+      .inc-name { font-size: clamp(20px,6vw,32px); }
       .inc-eyebrow { display: none; }
-      .inc-btn { padding: 7px 12px; }
+      .inc-btn { padding: 9px 14px; font-size: 8px; }
     }
 
     /* ── JOIN SECTION ── */
@@ -682,7 +690,7 @@
       </div>
       <div class="slide-text">
         <div class="slide-series">Weekly Series</div>
-        <h3>AfroCue Weekly Top 5</h3>
+        <h3>Weekly Top 5</h3>
         <p>Every week, we spotlight DJs from upcoming parties and events — not to rank them, but to spotlight the people shaping the dance floor.</p>
         <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram</a>
         <div class="slide-counter"><span>01</span> / 04</div>
@@ -722,12 +730,12 @@
     <!-- SLIDE 4 — content_creative_events.jpeg — 1080×1350px -->
     <div class="slide" data-img="content_creative_events.jpeg">
       <div class="slide-img-box">
-        <img src="content_creative_events.jpeg" alt="Creative Event Content"/>
+        <img src="content_creative_events.jpeg" alt="Event Content"/>
         <div class="slide-img-placeholder"><span class="slide-img-tag">content_creative_events.jpeg</span></div>
       </div>
       <div class="slide-text">
-        <div class="slide-series">Creative Event Content</div>
-        <h3>Creative Event Content</h3>
+        <div class="slide-series">Event Content</div>
+        <h3>Event Content</h3>
         <p>We convey narratives through culture-aware perspectives — documenting events and the energy around them the way they actually feel.</p>
         <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram</a>
         <div class="slide-counter"><span>04</span> / 04</div>
@@ -1016,21 +1024,25 @@
 <!-- FEATURED YOUTUBE SET -->
 <section id="youtube">
   <div class="yt-inner">
-    <div class="label">Featured Set</div>
-    <h2 class="yh yt-h">Yanos Theory.</h2>
-    <p class="yt-sub">Smeez &amp; D3AN — Prep Session</p>
-    <div class="yt-embed-wrap">
-      <iframe
-        src="https://www.youtube.com/embed/Ebrtzg0cJXM?si=RST1dLRLpXVBwdDs"
-        title="Smeez &amp; D3AN — Yanos Theory Prep Session"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen>
-      </iframe>
+    <div class="yt-left">
+      <div class="label">Featured Set</div>
+      <h2 class="yh yt-h">Yanos Theory.</h2>
+      <p class="yt-artist">Smeez &amp; D3AN — Prep Session</p>
+      <a href="https://www.youtube.com/watch?v=Ebrtzg0cJXM" target="_blank" rel="noopener" class="yt-watch-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-2.75 12 12 0 0 0-8.45 0A4.83 4.83 0 0 1 3.6 6.69 46.29 46.29 0 0 0 3 12a46.29 46.29 0 0 0 .6 5.31 4.83 4.83 0 0 1 3.77 2.75 12 12 0 0 0 8.45 0 4.83 4.83 0 0 1 3.77-2.75A46.29 46.29 0 0 0 21 12a46.29 46.29 0 0 0-.41-5.31zM10 15V9l5 3-5 3z"/></svg>
+        Watch on YouTube
+      </a>
     </div>
-    <div class="yt-caption">
-      <div class="yt-caption-dot"></div>
-      <span class="yt-caption-text">Smeez &amp; D3AN · Yanos Theory · via afro.cue</span>
+    <div class="yt-right">
+      <div class="yt-embed-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/Ebrtzg0cJXM?si=RST1dLRLpXVBwdDs"
+          title="Smeez &amp; D3AN — Yanos Theory Prep Session"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
     </div>
   </div>
 </section>
