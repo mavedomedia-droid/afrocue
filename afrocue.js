@@ -4,7 +4,7 @@
    Set SCRIPT_URL below once you deploy the GAS web app.
    ============================================================ */
 
-var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwtgAcjf24CWOgDbPdScOwbBKiTnDuiliVoVCSbcVk7YwKgXVhiUhmhNgAxPd4b0llN/exec';
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxK9Rqq_H9U5P1nqvPF48z7x4n7aBZAvYNzHcg77jvRLJ9Ef-_uEkZpk8oFYaDZIJ0mzw/exec';
 window.AFROCUE_SCRIPT_URL = SCRIPT_URL;
 
 
@@ -15,8 +15,12 @@ function submitToGAS(data) {
     console.warn('AfroCue: SCRIPT_URL not set. Data not sent:', data);
     return Promise.resolve();
   }
+  /* NOTE: mode 'no-cors' is required for GAS web apps — the response will always
+     be opaque (status 0). This means we cannot distinguish success from failure.
+     The .finally() block will always fire. This is expected behaviour. */
   return fetch(SCRIPT_URL, {
     method: 'POST',
+    mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
   });
@@ -140,7 +144,8 @@ window.handleNewsletter = function(e) {
     });
   }
 
-  /* toggleBtn — generic yes/no toggle */
+  /* toggleBtn — generic yes/no toggle.
+     DJ page redefines this after load so its version takes precedence there. */
   window.toggleBtn = function(btn, fieldId, value) {
     btn.parentElement.querySelectorAll('.toggle-btn').forEach(function(b) {
       b.classList.remove('active');
@@ -250,102 +255,4 @@ window.handleNewsletter = function(e) {
     var fb = document.getElementById('videoFallback');
     if (fb) fb.style.display = 'flex';
   });
-})();
-
-
-/* ========== DJ PAGE HANDLERS — PASTE THIS PART ========== */
-
-(function() {
-  // Only run on DJ page
-  if (!document.getElementById('djForm')) return;
-
-  /* Primary genre — single select */
-  window.selectPrimary = function(el) {
-    var container = document.getElementById('primaryGenrePills');
-    if (!container) return;
-    container.querySelectorAll('.pill-opt').forEach(function(p) {
-      p.classList.remove('selected');
-    });
-    el.classList.add('selected');
-    var valField = document.getElementById('primaryGenreVal');
-    if (valField) valField.value = el.textContent.trim();
-  };
-
-  /* Secondary genres — up to 3 */
-  window.toggleSecondary = function(el) {
-    var selected = document.querySelectorAll('#secondaryGenrePills .pill-opt.selected');
-    if (!el.classList.contains('selected') && selected.length >= 3) return;
-    el.classList.toggle('selected');
-    var vals = Array.from(document.querySelectorAll('#secondaryGenrePills .pill-opt.selected'))
-      .map(function(p) { return p.textContent.trim(); });
-    var valField = document.getElementById('secondaryGenresVal');
-    if (valField) valField.value = vals.join(', ');
-  };
-
-  /* Newsletter checkbox for DJ page */
-  var djNewsletterChecked = true;
-  window.toggleDJNewsletter = function(label) {
-    djNewsletterChecked = !djNewsletterChecked;
-    var box = document.getElementById('djCheckBox');
-    if (box) box.classList.toggle('checked', djNewsletterChecked);
-    var input = label.querySelector('input');
-    if (input) input.checked = djNewsletterChecked;
-  };
-
-  /* DJ form submit */
-  window.handleDJSubmit = function(e) {
-    e.preventDefault();
-    var form = e.target;
-    var btn = document.getElementById('djSubmitBtn');
-
-    if (!form.name.value.trim() || !form.email.value.trim()) {
-      alert('Please fill in your name and email.');
-      return;
-    }
-
-    btn.textContent = 'Signing up...';
-    btn.disabled = true;
-
-    var data = {
-      source: 'dj_signup',
-      name: form.name.value.trim(),
-      email: form.email.value.trim(),
-      dj_name: form.dj_name ? form.dj_name.value.trim() : '',
-      city: form.city ? form.city.value.trim() : '',
-      instagram: form.instagram ? form.instagram.value.replace('@', '').trim() : '',
-      primary_genre: document.getElementById('primaryGenreVal') ? document.getElementById('primaryGenreVal').value : '',
-      secondary_genres: document.getElementById('secondaryGenresVal') ? document.getElementById('secondaryGenresVal').value : '',
-      resident_events: form.resident_events ? form.resident_events.value.trim() : '',
-      booking_email: form.booking_email ? form.booking_email.value.trim() : '',
-      booking_phone: form.booking_phone ? form.booking_phone.value.trim() : '',
-      booking_same: form.booking_same ? (form.booking_same.value || 'Not answered') : 'Not answered',
-      newsletter: djNewsletterChecked ? 'Yes' : 'No'
-    };
-
-    if (SCRIPT_URL === 'YOUR_GAS_SCRIPT_URL_HERE') {
-      console.warn('SCRIPT_URL not set');
-      document.getElementById('successOverlay').classList.add('show');
-      btn.disabled = false;
-      btn.textContent = 'Get on the Radar';
-      return;
-    }
-
-    fetch(SCRIPT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
-    .then(function() {
-      document.getElementById('successOverlay').classList.add('show');
-      document.body.style.overflow = 'hidden';
-    })
-    .catch(function(err) {
-      console.error('Error:', err);
-      alert('Something went wrong. Please try again.');
-    })
-    .finally(function() {
-      btn.disabled = false;
-      btn.textContent = 'Get on the Radar';
-    });
-  };
 })();

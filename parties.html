@@ -79,9 +79,9 @@
     .featured-dot.active{background:var(--yellow)}
 
     #parties{padding:40px 48px 100px;border-top:1px solid rgba(255,255,255,0.06)}
-    .parties-header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:40px;flex-wrap:nowrap}
-    .filter-bar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;flex:1;min-width:0}
-    .filter-select{appearance:none;-webkit-appearance:none;background:rgba(255,255,255,0.04);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;border:1px solid rgba(255,255,255,0.12);border-radius:2px;color:var(--silver);font-family:'Figtree',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.04em;padding:8px 24px 8px 10px;cursor:pointer;transition:border-color 0.2s,color 0.2s;outline:none;min-width:0}
+    .parties-header{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:40px;flex-wrap:wrap}
+    .filter-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .filter-select{appearance:none;-webkit-appearance:none;background:rgba(255,255,255,0.04);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;border:1px solid rgba(255,255,255,0.12);border-radius:2px;color:var(--silver);font-family:'Figtree',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.06em;padding:9px 30px 9px 12px;cursor:pointer;transition:border-color 0.2s,color 0.2s;outline:none}
     .filter-select:hover{border-color:rgba(255,255,255,0.28);color:var(--white)}
     .filter-select:focus{border-color:rgba(200,224,0,0.4);color:var(--white)}
     .filter-select option{background:#1a1a1a;color:var(--white)}
@@ -176,7 +176,6 @@
     .footer-email a{font-size:11px;color:var(--grey);text-decoration:none;transition:color 0.2s}
     .footer-email a:hover{color:var(--white)}
 
-      /* TABLET & LARGE PHONE - 2 columns */
     @media(max-width:768px){
       nav{padding:14px 20px}
       .nav-links{display:none}
@@ -190,42 +189,8 @@
       .featured-name{font-size:14px}
       .featured-slot-content{padding:10px 12px;padding-right:70px}
       #parties{padding:28px 16px 72px}
-      .parties-header{flex-wrap:wrap;gap:12px}
-      .filter-bar{gap:4px;width:100%}
-      .filter-select{font-size:10px;padding:7px 22px 7px 8px;flex:1 1 auto}
-      .add-event-btn{font-size:10px;padding:8px 16px}
-      
-      /* IMPROVED GRID - 2 columns with better spacing */
-      .parties-grid{
-        grid-template-columns:repeat(2,1fr);
-        gap:1px;
-      }
-      
-      /* Better card sizing for mobile */
-      .party-card{
-        aspect-ratio:3/4;
-      }
-      .party-card-name{
-        font-size:18px;
-      }
-      .party-card-content{
-        padding:14px 12px 12px;
-      }
-      .party-card-tags{
-        margin-bottom:6px;
-      }
-      .tag{
-        font-size:7px;
-        padding:3px 6px;
-      }
-      .party-card-meta{
-        font-size:9px;
-      }
-      .party-card-cta{
-        font-size:8px;
-        padding:4px 8px;
-      }
-      
+      .parties-header{flex-direction:column;gap:16px}
+      .parties-grid{grid-template-columns:1fr 1fr}
       .modal-body{padding:0 20px 32px}
       .modal-tags{padding-top:20px}
       .modal-lower{grid-template-columns:1fr}
@@ -234,37 +199,8 @@
       .modal-others-grid{grid-template-columns:1fr 1fr 1fr;gap:2px}
       footer{padding:48px 20px 36px}
     }
-    
-    /* SMALL PHONES (under 550px) - still 2 columns, just smaller */
-    @media(max-width:550px){
-      .parties-grid{
-        grid-template-columns:repeat(2,1fr);
-        gap:1px;
-      }
-      .party-card-name{
-        font-size:14px;
-      }
-      .party-card-content{
-        padding:10px 8px 8px;
-      }
-      .tag{
-        font-size:6px;
-        padding:2px 5px;
-      }
-      .party-card-meta{
-        font-size:8px;
-      }
-    }
-    
-    /* VERY SMALL (under 400px) - keep 2 columns, it works fine */
-    @media(max-width:400px){
-      .parties-grid{
-        grid-template-columns:repeat(2,1fr);
-        gap:1px;
-      }
-      .party-card-name{
-        font-size:13px;
-      }
+    @media(max-width:480px){
+      .parties-grid{grid-template-columns:1fr}
       .modal-hero{height:260px}
     }
   </style>
@@ -415,7 +351,7 @@
     <a href="dj.html">DJs</a>
     <a href="pregame.html">Pregame</a>
   </div>
-  <div class="footer-email"><a href="/cdn-cgi/l/email-protection#a0c1c6d2cfc3d5c5cfceccc9cec5e0c7cdc1c9cc8ec3cfcd"><span class="__cf_email__" data-cfemail="ec8d8a9e838f9989838280858289ac8b818d8580c28f8381">[email&#160;protected]</span></a></div>
+  <div class="footer-email"><a href="/cdn-cgi/l/email-protection#aacbccd8c5c9dfcfc5c4c6c3c4cfeacdc7cbc3c684c9c5c7"><span class="__cf_email__" data-cfemail="3d5c5b4f525e48585253515453587d5a505c5451135e5250">[email&#160;protected]</span></a></div>
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="afrocue.js"></script>
@@ -685,11 +621,8 @@ function openFeaturedModal(){var p=featuredList[featuredIndex];if(p)openModal(p.
 var _origRenderCards=renderCards;
 renderCards=function(filters){
   _origRenderCards(filters);
-  if(!filters||(!filters.city&&!filters.time&&!filters.access&&!filters.setting&&!filters.genre)){initFeatured();}
+  if(!featuredList.length)initFeatured();
 };
-
-if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',loadParties);}else{loadParties();}
-
 </script>
 </body>
 </html>

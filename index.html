@@ -906,7 +906,7 @@
     <a href="https://twitter.com/afrocue_" target="_blank" class="social-chip">X / Twitter — @afrocue_</a>
     <a href="https://tiktok.com/@afro.cue" target="_blank" class="social-chip">TikTok — @afro.cue</a>
     <a href="https://youtube.com/@AfroCue" target="_blank" class="social-chip">YouTube</a>
-    <a href="#" target="_blank" class="social-chip">Spotify</a>
+    <a href="https://open.spotify.com" target="_blank" class="social-chip">Spotify</a>
   </div>
 </section>
 
@@ -945,7 +945,7 @@
   <div class="footer-links">
     <a href="#about">About</a>
     <a href="#content">Content</a>
-    <a href="dj-signup.html">DJ Signup</a>
+    <a href="dj.html">DJ Signup</a>
     <a href="#advertise">Get Featured</a>
   </div>
   <div class="footer-email"><a href="/cdn-cgi/l/email-protection#88e1e6eee7c8e9eefae7ebfdeda6f0f1f2"><span class="__cf_email__" data-cfemail="1970777f7659787f6b767a6c7c37616063">[email&#160;protected]</span></a></div>
@@ -953,33 +953,19 @@
 
 
 
-<script src="afrocue.js">
-  /* DJ radar video controls */
+<script src="afrocue.js"></script>
+<script>
+  /* DJ radar video controls — must be separate tag from src load */
   (function() {
     var vid = document.getElementById('djRadarVid');
     if (!vid) return;
-    /* start paused — user hits play */
     vid.pause();
     vid.muted = true;
-    document.getElementById('djPlayBtn').innerHTML = '&#9654;';
-    document.getElementById('djMuteBtn').innerHTML = '&#128266;';
+    var playBtn = document.getElementById('djPlayBtn');
+    var muteBtn = document.getElementById('djMuteBtn');
+    if (playBtn) playBtn.innerHTML = '&#9654;';
+    if (muteBtn) muteBtn.innerHTML = '&#128266;';
   })();
-
-  function toggleDJPlay() {
-    var vid = document.getElementById('djRadarVid');
-    var btn = document.getElementById('djPlayBtn');
-    if (!vid) return;
-    if (vid.paused) { vid.play(); btn.innerHTML = '&#9646;&#9646;'; }
-    else { vid.pause(); btn.innerHTML = '&#9654;'; }
-  }
-
-  function toggleDJMute() {
-    var vid = document.getElementById('djRadarVid');
-    var btn = document.getElementById('djMuteBtn');
-    if (!vid) return;
-    vid.muted = !vid.muted;
-    btn.innerHTML = vid.muted ? '&#128264;' : '&#128266;';
-  }
 </script>
 </body>
 </html>

@@ -439,9 +439,9 @@
   <div class="footer-email"><a href="/cdn-cgi/l/email-protection#d0b9beb6bf90b1b6a2bfb3a5b5fea8a9aa"><span class="__cf_email__" data-cfemail="573e3931381736312538342232792f2e2d">[email&#160;protected]</span></a></div>
 </footer>
 
-<script src="afrocue.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="afrocue.js"></script>
 <script>
-  /* ── PRIMARY GENRE — single select ── */
+  /* Primary genre — single select */
   function selectPrimary(el) {
     document.querySelectorAll('#primaryGenrePills .pill-opt').forEach(function(p) {
       p.classList.remove('selected');
@@ -450,44 +450,36 @@
     document.getElementById('primaryGenreVal').value = el.textContent.trim();
   }
 
-  /* ── SECONDARY GENRES — up to 3 ── */
+  /* Secondary genres — up to 3 */
   function toggleSecondary(el) {
     var selected = document.querySelectorAll('#secondaryGenrePills .pill-opt.selected');
     if (!el.classList.contains('selected') && selected.length >= 3) return;
     el.classList.toggle('selected');
-    var vals = Array.from(document.querySelectorAll('#secondaryGenrePills .pill-opt.selected'))
-      .map(function(p) { return p.textContent.trim(); });
+    var vals = Array.from(document.querySelectorAll('#secondaryGenrePills .pill-opt.selected')).map(function(p) { return p.textContent.trim(); });
     document.getElementById('secondaryGenresVal').value = vals.join(', ');
   }
 
-  /* ── YES/NO TOGGLE — scoped to DJ page, does NOT conflict with afrocue.js ── */
+  /* Yes/No toggle */
   function toggleBtn(btn, fieldId, value) {
-    btn.parentElement.querySelectorAll('.toggle-btn').forEach(function(b) {
-      b.classList.remove('active');
-    });
+    btn.parentElement.querySelectorAll('.toggle-btn').forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
-    var field = document.getElementById(fieldId);
-    if (field) field.value = value;
+    document.getElementById(fieldId).value = value;
   }
 
-  /* ── NEWSLETTER CHECKBOX ── */
+  /* Newsletter */
   var djNewsletterChecked = true;
   function toggleDJNewsletter(label) {
     djNewsletterChecked = !djNewsletterChecked;
     var box = document.getElementById('djCheckBox');
-    if (box) box.classList.toggle('checked', djNewsletterChecked);
-    var input = label.querySelector('input');
-    if (input) input.checked = djNewsletterChecked;
+    box.classList.toggle('checked', djNewsletterChecked);
+    label.querySelector('input').checked = djNewsletterChecked;
   }
 
-  /* ── DJ FORM SUBMIT ──
-     Reads SCRIPT_URL from afrocue.js (window.AFROCUE_SCRIPT_URL).
-     Set that value in afrocue.js once you deploy your GAS web app.
-  ── */
+  /* Submit */
   function handleDJSubmit(e) {
     e.preventDefault();
     var form = e.target;
-    var btn  = document.getElementById('djSubmitBtn');
+    var btn = document.getElementById('djSubmitBtn');
 
     if (!form.name.value.trim() || !form.email.value.trim()) {
       alert('Please fill in your name and email.');
@@ -495,51 +487,31 @@
     }
 
     btn.textContent = 'Signing up...';
-    btn.disabled    = true;
+    btn.disabled = true;
 
     var data = {
       source:           'dj_signup',
       name:             form.name.value.trim(),
       email:            form.email.value.trim(),
-      dj_name:          form.dj_name   ? form.dj_name.value.trim()   : '',
-      city:             form.city      ? form.city.value.trim()       : '',
-      instagram:        form.instagram ? form.instagram.value.replace('@','').trim() : '',
+      dj_name:          form.dj_name.value.trim(),
+      city:             form.city.value.trim(),
+      instagram:        form.instagram.value.replace('@','').trim(),
       primary_genre:    document.getElementById('primaryGenreVal').value,
       secondary_genres: document.getElementById('secondaryGenresVal').value,
-      resident_events:  form.resident_events  ? form.resident_events.value.trim()  : '',
-      booking_email:    form.booking_email     ? form.booking_email.value.trim()    : '',
-      booking_phone:    form.booking_phone     ? form.booking_phone.value.trim()    : '',
-      booking_same:     form.booking_same      ? (form.booking_same.value || 'Not answered') : 'Not answered',
+      resident_events:  form.resident_events.value.trim(),
+      booking_email:    form.booking_email.value.trim(),
+      booking_phone:    form.booking_phone.value.trim(),
+      booking_same:     form.booking_same.value || 'Not answered',
       newsletter:       djNewsletterChecked ? 'Yes' : 'No'
     };
 
     var SCRIPT_URL = window.AFROCUE_SCRIPT_URL || 'YOUR_GAS_SCRIPT_URL_HERE';
-
     if (SCRIPT_URL === 'YOUR_GAS_SCRIPT_URL_HERE') {
-      console.warn('AfroCue: SCRIPT_URL not set in afrocue.js — showing success without sending data.');
-      btn.textContent = 'Get on the Radar';
-      btn.disabled    = false;
+      console.warn('SCRIPT_URL not set');
       document.getElementById('successOverlay').classList.add('show');
-      document.body.style.overflow = 'hidden';
       return;
     }
 
     fetch(SCRIPT_URL, {
-  method:  'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body:    JSON.stringify(data)
-})
-    .then(function() {
-      document.getElementById('successOverlay').classList.add('show');
-      document.body.style.overflow = 'hidden';
-    })
-    .catch(function(err) {
-      console.error('Submission error:', err);
-      btn.textContent = 'Get on the Radar';
-      btn.disabled    = false;
-      alert('Something went wrong. Please try again.');
-    });
-  }
-</script>
-</body>
-</html>
+      method: 'POST',
+      mode:
