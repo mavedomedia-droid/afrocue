@@ -525,11 +525,10 @@
     }
 
     fetch(SCRIPT_URL, {
-      method:  'POST',
-      mode:    'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify(data)
-    })
+  method:  'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body:    JSON.stringify(data)
+})
     .then(function() {
       document.getElementById('successOverlay').classList.add('show');
       document.body.style.overflow = 'hidden';
