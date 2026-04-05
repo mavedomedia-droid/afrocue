@@ -53,7 +53,7 @@
     .nav-cta:hover{opacity:0.88}
 
     /* HERO */
-    .hero{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:100px 48px 52px;overflow:hidden}
+    .hero{position:relative;display:flex;align-items:flex-end;padding:100px 48px 52px;overflow:hidden}
     .hero-bg{position:absolute;inset:0;z-index:0;background-image:url('texture.jpg');background-size:cover;background-position:center;opacity:0.18}
     .hero-content{position:relative;z-index:1}
     .label{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);margin-bottom:16px;display:flex;align-items:center;gap:10px}
@@ -296,7 +296,7 @@
       .list-cta-btn{width:100%;justify-content:center;padding:12px 20px}
     }
     @media(max-width:400px){
-      .hero{grid-template-columns:5fr 4fr}
+
       .parties-grid{grid-template-columns:1fr 1fr}
       .modal-hero{height:220px}
     }
@@ -380,22 +380,9 @@
     <h1>Parties.</h1>
     <p class="hero-desc">Raves, events and nights worth knowing about — from the dance floors of Lagos to wherever the music goes.</p>
   </div>
-  <div class="featured-col">
-    <div class="featured-col-label">Featured Party</div>
-    <div class="featured-slot" id="featuredSlot" onclick="openFeaturedModal()">
-      <div class="featured-slot-bg" id="featuredBg"></div>
-      <img class="featured-slot-img" id="featuredImg" src="" alt=""/>
-      <div class="featured-slot-grad"></div>
-      <div class="featured-dots" id="featuredDots"></div>
-      <div class="featured-slot-content">
-        <span class="featured-label">Trending</span>
-        <div class="featured-name" id="featuredName">—</div>
-        <div class="featured-city" id="featuredCity"></div>
-      </div>
-      <div class="featured-flyer" id="featuredFlyer" style="display:none;">
-        <img id="featuredFlyerImg" src="" alt=""/>
-      </div>
-    </div>
+  <!-- hidden elements kept for JS compatibility -->
+  <div style="display:none;">
+    <div id="featuredSlot"><div id="featuredBg"></div><img id="featuredImg" src="" alt=""/><div id="featuredDots"></div><div id="featuredName"></div><div id="featuredCity"></div><div id="featuredFlyer"><img id="featuredFlyerImg" src="" alt=""/></div></div>
   </div>
 </div>
 
