@@ -53,7 +53,7 @@
     .nav-cta:hover{opacity:0.88}
 
     /* HERO */
-    .hero{position:relative;display:flex;align-items:flex-end;padding:100px 48px 52px;overflow:hidden}
+    .hero{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:100px 48px 52px;overflow:hidden}
     .hero-bg{position:absolute;inset:0;z-index:0;background-image:url('texture.jpg');background-size:cover;background-position:center;opacity:0.18}
     .hero-content{position:relative;z-index:1}
     .label{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);margin-bottom:16px;display:flex;align-items:center;gap:10px}
@@ -133,33 +133,32 @@
     .modal-wrap.open{display:block}
     .modal{max-width:860px;margin:0 auto;background:var(--dark);border:1px solid rgba(255,255,255,0.08);border-radius:6px;overflow:hidden;position:relative;animation:modalIn 0.3s ease}
     @keyframes modalIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-    .modal-close{position:absolute;top:12px;right:12px;z-index:10001;background:rgba(10,10,10,0.6);border:1px solid rgba(255,255,255,0.15);border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--silver);cursor:pointer;transition:all 0.2s;backdrop-filter:blur(8px)}
-    .modal-close:hover{color:var(--white);border-color:rgba(255,255,255,0.5)}
-    .modal-hero{position:relative;height:480px;overflow:hidden;background:var(--dark2)}
+    .modal-close{position:fixed;top:20px;right:24px;z-index:10001;background:var(--dark2);border:1px solid rgba(255,255,255,0.12);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--silver);cursor:pointer;transition:all 0.2s}
+    .modal-close:hover{color:var(--white);border-color:var(--white)}
+    .modal-hero{position:relative;height:380px;overflow:hidden;background:var(--dark2)}
     .modal-hero-bg{position:absolute;inset:-30px;z-index:0;background-size:cover;background-position:center;filter:blur(32px) saturate(0.6) brightness(0.35);transform:scale(1.2)}
-    .modal-hero-img{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;object-position:center top}
+    .modal-hero-img{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;object-position:center}
     .modal-hero-texture{position:absolute;inset:0;z-index:2;background-image:url('texture.jpg');background-size:cover;opacity:0.18;pointer-events:none}
-    .modal-hero-grad{position:absolute;inset:0;z-index:3;background:linear-gradient(to top,rgba(17,17,17,1) 0%,rgba(17,17,17,0.55) 28%,rgba(17,17,17,0.05) 65%,rgba(17,17,17,0) 100%)}
+    .modal-hero-grad{position:absolute;inset:0;z-index:3;background:linear-gradient(to top,rgba(17,17,17,1) 0%,rgba(17,17,17,0.2) 60%,rgba(17,17,17,0.05) 100%)}
     .modal-hero-logo{position:absolute;top:20px;right:20px;z-index:4;opacity:0.5}
     .modal-hero-logo img{height:28px;width:auto;display:block}
-    .modal-body{padding:32px 44px 44px}
-    .modal-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;justify-content:center}
-    .modal-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(36px,5vw,64px);color:var(--yellow);text-shadow:var(--yts);line-height:0.92;margin-bottom:10px;text-align:center}
-    .modal-city{font-size:11px;font-weight:300;letter-spacing:0.1em;text-transform:uppercase;color:var(--silver);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:8px}
-    .modal-city::before{display:none}
-    .modal-desc{font-size:15px;font-weight:300;line-height:1.9;color:rgba(240,237,232,0.75);margin-bottom:24px}
-    .modal-lower{display:grid;grid-template-columns:1fr 160px;gap:36px;align-items:start}
-    .modal-flyer{aspect-ratio:3/4;border-radius:4px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);background:var(--dark2);width:100%}
+    .modal-body{padding:0 44px 44px}
+    .modal-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;padding-top:24px}
+    .modal-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(44px,6vw,80px);color:var(--yellow);text-shadow:var(--yts);line-height:0.92;margin-bottom:10px}
+    .modal-city{font-size:12px;font-weight:300;letter-spacing:0.1em;text-transform:uppercase;color:var(--silver);margin-bottom:28px;display:flex;align-items:center;gap:8px}
+    .modal-city::before{content:'';width:18px;height:1px;background:var(--grey);flex-shrink:0}
+    .modal-desc{font-size:15px;font-weight:300;line-height:1.85;color:rgba(240,237,232,0.6);margin-bottom:36px;max-width:580px}
+    .modal-lower{display:grid;grid-template-columns:200px 1fr;gap:36px;align-items:start}
+    .modal-flyer{aspect-ratio:3/4;border-radius:4px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);background:var(--dark2)}
     .modal-flyer img{width:100%;height:100%;object-fit:cover;display:block}
     .modal-flyer-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;min-height:120px}
     .modal-flyer-placeholder span{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey)}
-    .modal-desc-col{display:flex;flex-direction:column;gap:16px}
     .modal-right{display:flex;flex-direction:column;gap:20px;padding-top:4px}
-    .modal-cta-label{font-size:9px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--grey);margin-bottom:8px}
+    .modal-cta-label{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--grey);margin-bottom:8px}
     .modal-link{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;background:var(--yellow);border-radius:2px;font-family:'Figtree',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);text-decoration:none;transition:opacity 0.2s;align-self:flex-start}
     .modal-link:hover{opacity:0.88}
     .modal-link svg{width:13px;height:13px;flex-shrink:0}
-    .modal-stats{display:flex;align-items:center;gap:16px;margin-bottom:24px;flex-wrap:wrap;justify-content:center}
+    .modal-stats{display:flex;align-items:center;gap:20px;margin-bottom:24px}
     .stat-pill{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:400;color:var(--silver)}
     .stat-pill svg{width:13px;height:13px;opacity:0.6}
     .like-btn{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--silver);background:transparent;border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:6px 14px;cursor:pointer;transition:all 0.18s;font-family:'Figtree',sans-serif;letter-spacing:0.04em}
@@ -202,28 +201,28 @@
     .footer-email a{font-size:10px;color:var(--grey);text-decoration:none;transition:color 0.2s}
     .footer-email a:hover{color:var(--white)}
 
-    /* RESPONSIVE */
 
-    .upcoming-section{position:relative;overflow:hidden;border-top:1px solid rgba(255,255,255,0.06)}
-    .upcoming-bg{position:absolute;inset:-30px;z-index:0;background-size:cover;background-position:center;filter:blur(28px) brightness(0.28) saturate(0.5);transform:scale(1.15)}
-    .upcoming-overlay{position:absolute;inset:0;z-index:1;background:rgba(10,10,10,0.55)}
-    .upcoming-texture{position:absolute;inset:0;z-index:2;background-image:url('texture.jpg');background-size:cover;opacity:0.12;pointer-events:none}
-    .upcoming-fade-bottom{position:absolute;bottom:0;left:0;right:0;height:60px;z-index:3;background:linear-gradient(to bottom,transparent,var(--black))}
-    .upcoming-inner{position:relative;z-index:4;display:flex;align-items:center;justify-content:space-between;gap:32px;padding:36px 48px 40px}
-    .upcoming-left{flex:1;min-width:0}
-    .upcoming-eyebrow{font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:rgba(200,224,0,0.7);margin-bottom:10px;display:flex;align-items:center;gap:10px}
-    .upcoming-eyebrow::before{content:'';width:14px;height:1px;background:rgba(200,224,0,0.5);flex-shrink:0}
-    .upcoming-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(32px,4.5vw,56px);color:var(--yellow);text-shadow:var(--yts);line-height:0.9;margin-bottom:12px}
-    .upcoming-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
-    .upcoming-date{font-size:18px;font-weight:500;color:rgba(240,237,232,0.9);margin-bottom:4px}
-    .upcoming-city{font-size:11px;font-weight:300;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,237,232,0.4);margin-bottom:24px}
-    .upcoming-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:var(--yellow);border-radius:2px;font-family:'Figtree',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);text-decoration:none;border:none;cursor:pointer;transition:opacity 0.2s}
-    .upcoming-btn:hover{opacity:0.85}
-    .upcoming-flyer-wrap{flex-shrink:0;position:relative;width:120px}
-    .upcoming-flyer{width:120px;aspect-ratio:3/4;border-radius:6px;overflow:hidden;border:1.5px solid rgba(255,255,255,0.18);background:var(--dark2);transform:rotate(2deg);position:relative;z-index:1}
-    .upcoming-flyer img{width:100%;height:100%;object-fit:cover;display:block}
-    .upcoming-flyer-shadow{position:absolute;top:6px;left:-5px;width:120px;aspect-ratio:3/4;border-radius:6px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.03);transform:rotate(-1deg);z-index:0}
-    .upcoming-flyer-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey)}
+    /* UPCOMING FEATURED SECTION */
+    .upcoming{display:none;position:relative;overflow:hidden;border-top:1px solid rgba(255,255,255,0.06)}
+    .upcoming.visible{display:block}
+    .upcoming-bg{position:absolute;inset:-20px;z-index:0;background-size:cover;background-position:center;filter:blur(28px) brightness(0.22) saturate(0.5);transform:scale(1.08)}
+    .upcoming-texture{position:absolute;inset:0;z-index:1;background-image:url('texture.jpg');background-size:cover;opacity:0.15;pointer-events:none}
+    .upcoming-grad{position:absolute;inset:0;z-index:2;background:linear-gradient(to right,rgba(10,10,10,0.95) 0%,rgba(10,10,10,0.6) 60%,rgba(10,10,10,0.3) 100%)}
+    .upcoming-inner{position:relative;z-index:3;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;padding:44px 48px}
+    .upcoming-eyebrow{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--yellow);margin-bottom:12px;opacity:0.7}
+    .upcoming-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(36px,5vw,72px);color:var(--yellow);text-shadow:var(--yts);line-height:0.9;margin-bottom:14px}
+    .upcoming-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+    .upcoming-date{font-size:13px;font-weight:300;color:rgba(240,237,232,0.5);margin-bottom:22px;display:flex;align-items:center;gap:8px}
+    .upcoming-date::before{content:'';width:14px;height:1px;background:var(--grey);flex-shrink:0}
+    .upcoming-btn{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:12px 22px;border-radius:2px;text-decoration:none;cursor:pointer;border:none;font-family:'Figtree',sans-serif;transition:opacity 0.2s}
+    .upcoming-btn:hover{opacity:0.88}
+    .upcoming-flyer-wrap{flex-shrink:0;width:100px;position:relative}
+    .upcoming-flyer-wrap::before{content:'';position:absolute;inset:6px;background:rgba(0,0,0,0.4);transform:rotate(-2deg);border-radius:3px;z-index:0}
+    .upcoming-flyer-img{position:relative;z-index:1;width:100px;aspect-ratio:3/4;object-fit:cover;border-radius:3px;display:block;transform:rotate(2deg)}
+    .upcoming-flyer-placeholder{width:100px;aspect-ratio:3/4;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:3px;display:flex;align-items:center;justify-content:center;transform:rotate(2deg)}
+    .upcoming-flyer-placeholder span{font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey)}
+
+    /* RESPONSIVE */
     @media(max-width:768px){
       nav{padding:14px 20px}
       .nav-links{display:none}
@@ -250,12 +249,6 @@
 
       /* PARTIES SECTION */
       #parties{padding:20px 12px 60px}
-      .upcoming-inner{padding:28px 20px 32px;gap:20px}
-      .upcoming-name{font-size:clamp(28px,8vw,40px)}
-      .upcoming-date{font-size:15px}
-      .upcoming-flyer-wrap{width:88px}
-      .upcoming-flyer{width:88px}
-      .upcoming-flyer-shadow{width:88px}
       .parties-header{flex-direction:column;gap:12px;margin-bottom:24px}
       .filter-bar{gap:5px}
       .filter-select{font-size:10px;padding:7px 22px 7px 9px}
@@ -271,19 +264,23 @@
 
       /* MODAL */
       .modal-wrap{padding:16px 8px}
-      .modal-hero{height:280px}
-      .modal-hero-content{padding:0 20px 20px}
-      .modal-body{padding:16px 20px 28px}
+      .modal-hero{height:200px}
+      .modal-body{padding:0 16px 24px}
       .modal-tags{padding-top:14px;gap:4px}
       .modal-tags .tag{font-size:8px;padding:3px 6px}
       .modal-name{font-size:clamp(28px,9vw,48px);margin-bottom:6px}
       .modal-city{margin-bottom:16px;font-size:10px}
       .modal-stats{gap:12px;margin-bottom:14px}
       .modal-desc{font-size:13px;margin-bottom:20px}
-      .modal-lower{grid-template-columns:1fr 120px;gap:20px}
+      .modal-lower{grid-template-columns:1fr;gap:16px}
       .modal-flyer{max-width:140px}
       .modal-others{padding:20px 16px}
       .modal-others-grid{grid-template-columns:1fr 1fr 1fr;gap:2px}
+
+      /* UPCOMING */
+      .upcoming-inner{grid-template-columns:1fr;gap:20px;padding:28px 16px}
+      .upcoming-name{font-size:clamp(28px,9vw,44px)}
+      .upcoming-flyer-wrap{display:none}
 
       /* FOOTER */
       footer{padding:12px 16px;gap:8px;flex-wrap:wrap}
@@ -296,9 +293,9 @@
       .list-cta-btn{width:100%;justify-content:center;padding:12px 20px}
     }
     @media(max-width:400px){
-
+      .hero{grid-template-columns:5fr 4fr}
       .parties-grid{grid-template-columns:1fr 1fr}
-      .modal-hero{height:220px}
+      .modal-hero{height:160px}
     }
   </style>
 </head>
@@ -324,8 +321,8 @@
 
 <!-- MODAL -->
 <div class="modal-wrap" id="partyModal">
-  <div class="modal">
   <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+  <div class="modal">
     <div class="modal-hero">
       <div class="modal-hero-bg" id="modalHeroBg"></div>
       <img class="modal-hero-img" id="modalHeroImg" src="" alt=""/>
@@ -351,17 +348,19 @@
           Share
         </button>
       </div>
+      <p class="modal-desc" id="modalDesc"></p>
       <div class="modal-lower">
-        <div class="modal-desc-col">
-          <p class="modal-desc" id="modalDesc"></p>
-          <div class="modal-cta-label">Find them on</div>
-          <a class="modal-link" id="modalLink" href="#" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-            <span id="modalLinkText">Instagram</span>
-          </a>
-        </div>
         <div class="modal-flyer" id="modalFlyer">
           <div class="modal-flyer-placeholder"><span>Flyer coming soon</span></div>
+        </div>
+        <div class="modal-right">
+          <div>
+            <div class="modal-cta-label">Find them on</div>
+            <a class="modal-link" id="modalLink" href="#" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              <span id="modalLinkText">Instagram</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -380,36 +379,45 @@
     <h1>Parties.</h1>
     <p class="hero-desc">Raves, events and nights worth knowing about — from the dance floors of Lagos to wherever the music goes.</p>
   </div>
-  <!-- hidden elements kept for JS compatibility -->
-  <div style="display:none;">
-    <div id="featuredSlot"><div id="featuredBg"></div><img id="featuredImg" src="" alt=""/><div id="featuredDots"></div><div id="featuredName"></div><div id="featuredCity"></div><div id="featuredFlyer"><img id="featuredFlyerImg" src="" alt=""/></div></div>
+  <div class="featured-col">
+    <div class="featured-col-label">Featured Party</div>
+    <div class="featured-slot" id="featuredSlot" onclick="openFeaturedModal()">
+      <div class="featured-slot-bg" id="featuredBg"></div>
+      <img class="featured-slot-img" id="featuredImg" src="" alt=""/>
+      <div class="featured-slot-grad"></div>
+      <div class="featured-dots" id="featuredDots"></div>
+      <div class="featured-slot-content">
+        <span class="featured-label">Trending</span>
+        <div class="featured-name" id="featuredName">—</div>
+        <div class="featured-city" id="featuredCity"></div>
+      </div>
+      <div class="featured-flyer" id="featuredFlyer" style="display:none;">
+        <img id="featuredFlyerImg" src="" alt=""/>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- PARTIES -->
-<div class="upcoming-section" id="upcomingSection" style="display:none;">
+<!-- UPCOMING FEATURED PARTY -->
+<div class="upcoming" id="upcomingSection">
   <div class="upcoming-bg" id="upcomingBg"></div>
-  <div class="upcoming-overlay"></div>
   <div class="upcoming-texture"></div>
+  <div class="upcoming-grad"></div>
   <div class="upcoming-inner">
     <div class="upcoming-left">
       <div class="upcoming-eyebrow">Next Up</div>
       <div class="upcoming-name" id="upcomingName"></div>
       <div class="upcoming-tags" id="upcomingTags"></div>
       <div class="upcoming-date" id="upcomingDate"></div>
-      <div class="upcoming-city" id="upcomingCity"></div>
-      <button class="upcoming-btn" id="upcomingBtn" onclick="openUpcoming()">View Party</button>
+      <button class="upcoming-btn" id="upcomingBtn" onclick="openUpcomingModal()">View Party</button>
     </div>
-    <div class="upcoming-flyer-wrap">
-      <div class="upcoming-flyer" id="upcomingFlyer">
-        <div class="upcoming-flyer-placeholder">Flyer</div>
-      </div>
-      <div class="upcoming-flyer-shadow"></div>
+    <div class="upcoming-flyer-wrap" id="upcomingFlyerWrap">
+      <img class="upcoming-flyer-img" id="upcomingFlyerImg" src="" alt=""/>
     </div>
   </div>
-  <div class="upcoming-fade-bottom"></div>
 </div>
 
+<!-- PARTIES -->
 <section id="parties">
   <div class="parties-header">
     <div class="filter-bar">
@@ -508,43 +516,45 @@ function showEmptyState(msg){
 }
 
 /* ── LOAD FROM GOOGLE SHEETS PUBLISHED CSV ── */
-/* Sheet is published to web as CSV — no GAS needed for reads.
-   GAS is still used only for view/like write-backs (incrementStat).
-   Column order must match: A=id, B=name, C=city, D=time, E=access,
-   F=setting, G=genres, H=description, I=hero_img, J=flyer_img,
-   K=instagram, L=website, M=views, N=likes, O=status, P=contact_email */
+/* Columns: A=id, B=name, C=city, D=time, E=access, F=setting,
+   G=genres, H=description, I=hero_img, J=flyer_img, K=instagram,
+   L=website, M=views, N=likes, O=status, P=contact_email(skip),
+   Q=notes(skip), R=upcoming_flyer, S=upcoming_date, T=featured */
 var CSV_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vSemAPO2lS9b54nmiLq2LUodTRkgBT6ls_iRDUy_Zh6mhIkWf2UsRFvd5zmqfmc-rzeWViOd8rX1LCe/pub?gid=199159856&single=true&output=csv';
 
 function parseCSV(text){
   var lines=text.trim().split('\n');
-  if(lines.length<2)return[];
-  /* skip header row (index 0) */
+  if(lines.length<2)return{parties:[],featured:null};
   var parties=[];
+  var featured=null;
   for(var i=1;i<lines.length;i++){
     var cols=splitCSVLine(lines[i]);
-    if(!cols[0]||!cols[1])continue; /* skip empty rows */
+    if(!cols[0]||!cols[1])continue;
     var status=(cols[14]||'').trim();
-    if(status!=='Active')continue;  /* only show Active parties */
-    parties.push({
-      id:         cols[0].trim(),
-      name:       cols[1].trim(),
-      city:       cols[2].trim(),
-      time:       cols[3].trim(),
-      access:     cols[4].trim(),
-      setting:    cols[5].trim(),
-      genres:     cols[6]?cols[6].trim().split(',').map(function(s){return s.trim();}):[],
-      description:cols[7].trim(),
-      hero_img:   cols[8].trim(),
-      flyer_img:  cols[9].trim(),
-      instagram:  cols[10].trim(),
-      website:    cols[11].trim(),
-      views:      parseInt(cols[12])||0,
-      likes:      parseInt(cols[13])||0
-      /* col 14 = status (used above, not stored) */
-      /* col 15 = contact_email (intentionally skipped — never sent to browser) */
-    });
+    var isFeatured=(cols[19]||'').trim().toLowerCase()==='yes';
+    var p={
+      id:             cols[0].trim(),
+      name:           cols[1].trim(),
+      city:           cols[2].trim(),
+      time:           cols[3].trim(),
+      access:         cols[4].trim(),
+      setting:        cols[5].trim(),
+      genres:         cols[6]?cols[6].trim().split(',').map(function(s){return s.trim();}): [],
+      description:    cols[7].trim(),
+      hero_img:       cols[8].trim(),
+      flyer_img:      cols[9].trim(),
+      instagram:      cols[10].trim(),
+      website:        cols[11].trim(),
+      views:          parseInt(cols[12])||0,
+      likes:          parseInt(cols[13])||0,
+      upcoming_flyer: (cols[17]||'').trim(),
+      upcoming_date:  (cols[18]||'').trim(),
+      featured:       isFeatured
+    };
+    if(isFeatured)featured=p;
+    if(status==='Active')parties.push(p);
   }
-  return parties;
+  return{parties:parties,featured:featured};
 }
 
 /* Handles quoted fields with commas inside them */
@@ -568,9 +578,10 @@ function loadParties(){
       return r.text();
     })
     .then(function(text){
-      var parsed=parseCSV(text);
-      if(parsed.length>0){
-        PARTIES=parsed;
+      var result=parseCSV(text);
+      PARTIES=result.parties;
+      renderUpcoming(result.featured);
+      if(PARTIES.length>0){
         renderCards(getFilters());
         initFeatured();
       }else{
@@ -582,6 +593,45 @@ function loadParties(){
       console.warn('AfroCue: CSV fetch failed ('+err+')');
       showEmptyState('Could not load parties right now. Try again shortly.');
     });
+}
+
+/* ── UPCOMING FEATURED SECTION ── */
+var FEATURED_PARTY=null;
+
+function renderUpcoming(party){
+  var sec=document.getElementById('upcomingSection');
+  if(!party||!party.name){sec.classList.remove('visible');return;}
+  FEATURED_PARTY=party;
+  sec.classList.add('visible');
+  var bg=document.getElementById('upcomingBg');
+  if(party.hero_img)bg.style.backgroundImage="url('"+party.hero_img+"')";
+  document.getElementById('upcomingName').textContent=party.name;
+  var metaTags=[party.time,party.access,party.setting].filter(Boolean);
+  var allTags=metaTags.concat(party.genres||[]);
+  document.getElementById('upcomingTags').innerHTML=allTags.map(function(t,i){
+    return'<span class="'+(i<metaTags.length?'tag type':'tag')+'">'+t+'</span>';
+  }).join('');
+  var dateEl=document.getElementById('upcomingDate');
+  dateEl.textContent=party.upcoming_date||party.city;
+  var flyerImg=document.getElementById('upcomingFlyerImg');
+  var flyerWrap=document.getElementById('upcomingFlyerWrap');
+  if(party.upcoming_flyer){
+    flyerImg.src=party.upcoming_flyer;
+    flyerImg.alt=party.name+' flyer';
+    flyerImg.onerror=function(){flyerWrap.style.display='none';};
+    flyerWrap.style.display='block';
+  }else if(party.flyer_img){
+    flyerImg.src=party.flyer_img;
+    flyerImg.alt=party.name+' flyer';
+    flyerImg.onerror=function(){flyerWrap.style.display='none';};
+    flyerWrap.style.display='block';
+  }else{
+    flyerWrap.style.display='none';
+  }
+}
+
+function openUpcomingModal(){
+  if(FEATURED_PARTY)openModal(FEATURED_PARTY.id);
 }
 
 /* ── FILTER HELPERS ── */
@@ -827,44 +877,7 @@ function goFeatured(i){
 
 function openFeaturedModal(){var p=featuredList[featuredIndex];if(p)openModal(p.id);}
 
-/* ── UPCOMING FEATURED PARTY ─────────────────────────────── */
-
-var upcomingParty = null;
-
-function initUpcoming() {
-  var section = document.getElementById('upcomingSection');
-  if (!section) return;
-  var featured = null;
-  for (var i = 0; i < PARTIES.length; i++) {
-    if (PARTIES[i].featured === 'Yes' || PARTIES[i].featured === true) { featured = PARTIES[i]; break; }
-  }
-  if (!featured) { section.style.display = 'none'; return; }
-  upcomingParty = featured;
-  section.style.display = 'block';
-  document.getElementById('upcomingBg').style.backgroundImage = "url('"+(featured.hero_img||'')+"')";
-  document.getElementById('upcomingName').textContent = featured.name;
-  var metaTags = [featured.time, featured.access, featured.setting].filter(Boolean);
-  document.getElementById('upcomingTags').innerHTML = metaTags.map(function(t,i){
-    return '<span class="tag'+(i===0?' type':'')+'">'+t+'</span>';
-  }).join('');
-  var dateEl = document.getElementById('upcomingDate');
-  if (featured.upcoming_date) { dateEl.textContent = featured.upcoming_date; dateEl.style.display = 'block'; }
-  else { dateEl.style.display = 'none'; }
-  document.getElementById('upcomingCity').textContent = featured.city || '';
-  var flyerEl = document.getElementById('upcomingFlyer');
-  var flyerSrc = featured.upcoming_flyer || featured.flyer_img || '';
-  if (flyerSrc) {
-    flyerEl.innerHTML = '<img src="'+flyerSrc+'" alt="'+featured.name+' flyer" onerror="this.parentElement.innerHTML='<div class=\'upcoming-flyer-placeholder\'>Flyer</div>'"/>';
-  } else {
-    flyerEl.innerHTML = '<div class="upcoming-flyer-placeholder">Flyer</div>';
-  }
-}
-
-function openUpcoming() { if (upcomingParty) openModal(upcomingParty.id); }
-
 /* ── BOOT ── */
-var _origInitFeatured = initFeatured;
-initFeatured = function() { _origInitFeatured(); initUpcoming(); };
 loadParties();
 
 </script>
