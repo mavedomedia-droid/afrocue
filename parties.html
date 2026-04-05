@@ -207,25 +207,22 @@
     .upcoming.visible{display:block}
     .upcoming-bg{position:absolute;inset:-20px;z-index:0;background-size:cover;background-position:center;filter:blur(28px) brightness(0.32) saturate(0.6);transform:scale(1.1)}
     .upcoming-texture{position:absolute;inset:0;z-index:1;background-image:url('texture.jpg');background-size:cover;opacity:0.1;pointer-events:none}
-    .upcoming-grad{position:absolute;inset:0;z-index:2;background:linear-gradient(to right,rgba(10,10,10,0.25) 0%,rgba(10,10,10,0.6) 33%,rgba(10,10,10,0.9) 55%,rgba(10,10,10,0.96) 100%)}
-    /* thinner than index — single row layout */
-    .upcoming-inner{position:relative;z-index:3;display:grid;grid-template-columns:1fr 2fr;height:120px}
-    .upcoming-eyebrow{display:none}
-    /* name one row, no wrap */
-    .upcoming-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(20px,2.4vw,34px);color:var(--yellow);text-shadow:var(--yts);line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .upcoming-tags{display:none}
-    .upcoming-date{font-size:11px;font-weight:300;color:rgba(240,237,232,0.45)}
-    .upcoming-date::before{display:none}
-    /* right col: name + date on one row, buy tickets beside */
-    .upcoming-left{display:flex;align-items:center;justify-content:center;gap:20px;padding:0 32px;flex-wrap:wrap}
-    .upcoming-namedate{display:flex;flex-direction:column;gap:4px;align-items:center;text-align:center}
-    .upcoming-btn{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:12px 22px;border-radius:2px;text-decoration:none;cursor:pointer;border:none;font-family:'Figtree',sans-serif;transition:opacity 0.2s;flex-shrink:0}
-    .upcoming-btn:hover{opacity:0.85}
-    /* flyer fills ~90% of the shorter section height */
-    .upcoming-flyer-wrap{display:flex;align-items:center;justify-content:center;overflow:hidden;padding:6px 0}
-    .upcoming-flyer-img{height:calc(90% + 0px);max-height:104px;width:auto;aspect-ratio:3/4;object-fit:cover;border-radius:3px;display:block;transform:rotate(1deg);box-shadow:0 4px 20px rgba(0,0,0,0.9)}
-    .upcoming-flyer-placeholder{width:72px;aspect-ratio:3/4;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:3px;display:flex;align-items:center;justify-content:center}
+    .upcoming-grad{position:absolute;inset:0;z-index:2;background:linear-gradient(to right,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.5) 30%,rgba(10,10,10,0.88) 52%,rgba(10,10,10,0.96) 100%)}
+    .upcoming-inner{position:relative;z-index:3;display:grid;grid-template-columns:1fr 2fr;height:130px;overflow:hidden}
+    /* Flyer: fills full height, no padding, bleeds to edges */
+    .upcoming-flyer-wrap{overflow:hidden;padding:0;display:flex;align-items:stretch}
+    .upcoming-flyer-img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transform:none;box-shadow:none}
+    .upcoming-flyer-placeholder{width:100%;height:100%;background:rgba(255,255,255,0.04);border-right:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center}
     .upcoming-flyer-placeholder span{font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey)}
+    /* Text col */
+    .upcoming-left{display:flex;align-items:center;gap:24px;padding:0 32px;flex-wrap:nowrap}
+    .upcoming-namedate{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
+    .upcoming-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(22px,2.8vw,40px);color:var(--yellow);text-shadow:var(--yts);line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .upcoming-date{font-size:11px;font-weight:300;color:rgba(240,237,232,0.45);letter-spacing:0.04em}
+    .upcoming-tags{display:none}
+    /* Buy Tickets — warm yellow, a bit bigger */
+    .upcoming-btn{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:13px 26px;border-radius:2px;text-decoration:none;cursor:pointer;border:none;font-family:'Figtree',sans-serif;transition:opacity 0.2s;flex-shrink:0;white-space:nowrap}
+    .upcoming-btn:hover{opacity:0.85}
 
     /* RESPONSIVE */
     @media(max-width:768px){
@@ -242,20 +239,24 @@
       .hero-bg{opacity:0.12}
       .label{margin-bottom:8px;font-size:9px}
       .hero h1{font-size:clamp(28px,8vw,44px);margin-bottom:8px}
-      .hero-desc{font-size:11px;line-height:1.5;max-width:100%;margin-bottom:0;display:block;color:rgba(240,237,232,0.4)}
+      .hero-desc{font-size:12px;line-height:1.6;max-width:100%;margin-bottom:0;display:none}
       .featured-col{gap:6px}
       .featured-col-label{display:none}
-      .featured-slot{aspect-ratio:3/4;border-radius:6px;max-height:180px;overflow:hidden}
+      .featured-slot{aspect-ratio:3/4;border-radius:6px}
       .featured-flyer{display:none!important}
       .featured-dots{top:8px;right:8px}
-      .featured-name{font-size:12px}
-      .featured-label{font-size:6px;padding:2px 4px}
+      .featured-name{font-size:13px}
       .featured-slot-content{padding:8px 10px;padding-right:12px}
       .featured-label{font-size:7px;padding:2px 5px;margin-bottom:4px}
 
       /* PARTIES SECTION */
       #parties{padding:20px 12px 60px}
       .parties-header{flex-direction:column;gap:12px;margin-bottom:24px}
+      /* UPCOMING MOBILE */
+      .upcoming-inner{height:100px}
+      .upcoming-name{font-size:clamp(16px,5vw,24px)}
+      .upcoming-left{padding:0 14px;gap:12px}
+      .upcoming-btn{padding:10px 16px;font-size:9px}
       .filter-bar{gap:5px}
       .filter-select{font-size:10px;padding:7px 22px 7px 9px}
       .parties-grid{grid-template-columns:1fr 1fr;gap:2px}
@@ -282,13 +283,6 @@
       .modal-flyer{max-width:140px}
       .modal-others{padding:20px 16px}
       .modal-others-grid{grid-template-columns:1fr 1fr 1fr;gap:2px}
-
-      /* UPCOMING */
-      .upcoming-inner{height:100px}
-      .upcoming-name{font-size:clamp(16px,5vw,24px)}
-      .upcoming-flyer-img{max-height:86px}
-      .upcoming-left{padding:0 14px;gap:12px}
-      .upcoming-btn{padding:9px 14px;font-size:9px}
 
       /* FOOTER */
       footer{padding:12px 16px;gap:8px;flex-wrap:wrap}
@@ -388,6 +382,7 @@
     <p class="hero-desc">Raves, events and nights worth knowing about — from the dance floors of Lagos to wherever the music goes.</p>
   </div>
   <div class="featured-col">
+    <div class="featured-col-label">Featured Party</div>
     <div class="featured-slot" id="featuredSlot" onclick="openFeaturedModal()">
       <div class="featured-slot-bg" id="featuredBg"></div>
       <img class="featured-slot-img" id="featuredImg" src="" alt=""/>
@@ -412,14 +407,13 @@
   <div class="upcoming-grad"></div>
   <div class="upcoming-inner">
     <div class="upcoming-flyer-wrap" id="upcomingFlyerWrap">
-      <img class="upcoming-flyer-img" id="upcomingFlyerImg" src="" alt=""/>
+      <img class="upcoming-flyer-img" id="upcomingFlyerImg" src="" alt="" style="visibility:hidden;"/>
     </div>
     <div class="upcoming-left">
       <div class="upcoming-namedate">
         <div class="upcoming-name" id="upcomingName"></div>
         <div class="upcoming-date" id="upcomingDate"></div>
       </div>
-      <div class="upcoming-tags" id="upcomingTags"></div>
       <a class="upcoming-btn" id="upcomingBtn" href="#" onclick="openUpcomingModal();return false;">Buy Tickets</a>
     </div>
   </div>
@@ -524,57 +518,43 @@ function showEmptyState(msg){
 }
 
 /* ── LOAD FROM GOOGLE SHEETS PUBLISHED CSV ── */
-/* Columns: A=id, B=name, C=city, D=time, E=access, F=setting,
-   G=genres, H=description, I=hero_img, J=flyer_img, K=instagram,
-   L=website, M=views, N=likes, O=status, P=contact_email(skip),
-   Q=notes(skip), R=upcoming_flyer, S=upcoming_date, T=featured */
+/* Sheet is published to web as CSV — no GAS needed for reads.
+   GAS is still used only for view/like write-backs (incrementStat).
+   Column order must match: A=id, B=name, C=city, D=time, E=access,
+   F=setting, G=genres, H=description, I=hero_img, J=flyer_img,
+   K=instagram, L=website, M=views, N=likes, O=status, P=contact_email */
 var CSV_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vSemAPO2lS9b54nmiLq2LUodTRkgBT6ls_iRDUy_Zh6mhIkWf2UsRFvd5zmqfmc-rzeWViOd8rX1LCe/pub?gid=199159856&single=true&output=csv';
 
 function parseCSV(text){
   var lines=text.trim().split('\n');
-  if(lines.length<2)return{parties:[],featured:null};
-  /* Use header row to locate column indexes dynamically.
-     This handles Google Sheets truncating trailing empty columns. */
-  var headers=splitCSVLine(lines[0]).map(function(h){return h.trim().toLowerCase();});
-  function col(name){var i=headers.indexOf(name);return i>-1?i:-1;}
-  /* Fixed positional cols (always present) */
-  var C_ID=0,C_NAME=1,C_CITY=2,C_TIME=3,C_ACCESS=4,C_SETTING=5;
-  var C_GENRES=6,C_DESC=7,C_HERO=8,C_FLYER=9,C_IG=10,C_WEB=11;
-  var C_VIEWS=12,C_LIKES=13,C_STATUS=14;
-  /* New cols — find by header name, fall back to fixed index */
-  var C_UPCOMING_FLYER = col('upcoming flyer')>-1 ? col('upcoming flyer') : 16;
-  var C_UPCOMING_DATE  = col('upcoming date')>-1  ? col('upcoming date')  : 17;
-  var C_FEATURED       = col('featured')>-1       ? col('featured')       : 18;
+  if(lines.length<2)return[];
+  /* skip header row (index 0) */
   var parties=[];
-  var featured=null;
   for(var i=1;i<lines.length;i++){
     var cols=splitCSVLine(lines[i]);
-    if(!cols[0]||!cols[1])continue;
-    var status=(cols[C_STATUS]||'').trim();
-    var isFeatured=(cols[C_FEATURED]||'').trim().toLowerCase()==='yes';
-    var p={
-      id:             cols[C_ID].trim(),
-      name:           cols[C_NAME].trim(),
-      city:           cols[C_CITY].trim(),
-      time:           cols[C_TIME].trim(),
-      access:         cols[C_ACCESS].trim(),
-      setting:        cols[C_SETTING].trim(),
-      genres:         cols[C_GENRES]?cols[C_GENRES].trim().split(',').map(function(s){return s.trim();}): [],
-      description:    cols[C_DESC].trim(),
-      hero_img:       cols[C_HERO].trim(),
-      flyer_img:      cols[C_FLYER].trim(),
-      instagram:      cols[C_IG].trim(),
-      website:        cols[C_WEB].trim(),
-      views:          parseInt(cols[C_VIEWS])||0,
-      likes:          parseInt(cols[C_LIKES])||0,
-      upcoming_flyer: (cols[C_UPCOMING_FLYER]||'').trim(),
-      upcoming_date:  (cols[C_UPCOMING_DATE]||'').trim(),
-      featured:       isFeatured
-    };
-    if(isFeatured)featured=p;
-    if(status==='Active')parties.push(p);
+    if(!cols[0]||!cols[1])continue; /* skip empty rows */
+    var status=(cols[14]||'').trim();
+    if(status!=='Active')continue;  /* only show Active parties */
+    parties.push({
+      id:         cols[0].trim(),
+      name:       cols[1].trim(),
+      city:       cols[2].trim(),
+      time:       cols[3].trim(),
+      access:     cols[4].trim(),
+      setting:    cols[5].trim(),
+      genres:     cols[6]?cols[6].trim().split(',').map(function(s){return s.trim();}):[],
+      description:cols[7].trim(),
+      hero_img:   cols[8].trim(),
+      flyer_img:  cols[9].trim(),
+      instagram:  cols[10].trim(),
+      website:    cols[11].trim(),
+      views:      parseInt(cols[12])||0,
+      likes:      parseInt(cols[13])||0
+      /* col 14 = status (used above, not stored) */
+      /* col 15 = contact_email (intentionally skipped — never sent to browser) */
+    });
   }
-  return{parties:parties,featured:featured};
+  return parties;
 }
 
 /* Handles quoted fields with commas inside them */
@@ -598,10 +578,9 @@ function loadParties(){
       return r.text();
     })
     .then(function(text){
-      var result=parseCSV(text);
-      PARTIES=result.parties;
-      renderUpcoming(result.featured);
-      if(PARTIES.length>0){
+      var parsed=parseCSV(text);
+      if(parsed.length>0){
+        PARTIES=parsed;
         renderCards(getFilters());
         initFeatured();
       }else{
@@ -613,69 +592,6 @@ function loadParties(){
       console.warn('AfroCue: CSV fetch failed ('+err+')');
       showEmptyState('Could not load parties right now. Try again shortly.');
     });
-}
-
-/* ── UPCOMING FEATURED SECTION ── */
-var FEATURED_PARTY=null;
-
-function renderUpcoming(party){
-  var sec=document.getElementById('upcomingSection');
-  if(!party||!party.name){sec.classList.remove('visible');return;}
-  FEATURED_PARTY=party;
-  sec.classList.add('visible');
-  /* wire Buy Tickets to party website if available */
-  var upBtn=document.getElementById('upcomingBtn');
-  if(upBtn){
-    if(party.website&&party.website!==''){
-      upBtn.href=party.website;
-      upBtn.target='_blank';
-      upBtn.onclick=null;
-    }else{
-      upBtn.href='#';
-      upBtn.removeAttribute('target');
-      upBtn.onclick=function(){openUpcomingModal();return false;};
-    }
-  }
-  var bg=document.getElementById('upcomingBg');
-  if(party.hero_img)bg.style.backgroundImage="url('"+party.hero_img+"')";
-  document.getElementById('upcomingName').textContent=party.name;
-  var metaTags=[party.time,party.access,party.setting].filter(Boolean);
-  var allTags=metaTags.concat(party.genres||[]);
-  document.getElementById('upcomingTags').innerHTML=allTags.map(function(t,i){
-    return'<span class="'+(i<metaTags.length?'tag type':'tag')+'">'+t+'</span>';
-  }).join('');
-  var dateEl=document.getElementById('upcomingDate');
-  if(party.upcoming_date){
-    var rawDate=party.upcoming_date;
-    var formatted=rawDate;
-    try{
-      var d=new Date(rawDate+' 2026');
-      if(!isNaN(d.getTime())){
-        var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-        var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        formatted=days[d.getDay()]+', '+d.getDate()+' '+months[d.getMonth()];
-      }
-    }catch(ex){}
-    dateEl.textContent=String.fromCodePoint(0x1F4C5)+' '+formatted;
-  }else{
-    dateEl.textContent=party.city;
-  }
-  var flyerImg=document.getElementById('upcomingFlyerImg');
-  var flyerSrc=party.upcoming_flyer||party.flyer_img||'';
-  if(flyerImg){
-    if(flyerSrc){
-      flyerImg.src=flyerSrc;
-      flyerImg.alt=party.name+' flyer';
-      flyerImg.style.visibility='visible';
-      flyerImg.onerror=function(){this.style.visibility='hidden';};
-    }else{
-      flyerImg.style.visibility='hidden';
-    }
-  }
-}
-
-function openUpcomingModal(){
-  if(FEATURED_PARTY)openModal(FEATURED_PARTY.id);
 }
 
 /* ── FILTER HELPERS ── */
@@ -920,6 +836,42 @@ function goFeatured(i){
 }
 
 function openFeaturedModal(){var p=featuredList[featuredIndex];if(p)openModal(p.id);}
+
+/* ── UPCOMING FEATURED ── */
+var FEATURED_PARTY=null;
+
+function renderUpcoming(party){
+  var sec=document.getElementById('upcomingSection');
+  if(!party||!party.name){sec.classList.remove('visible');return;}
+  FEATURED_PARTY=party;
+  sec.classList.add('visible');
+  var upBtn=document.getElementById('upcomingBtn');
+  if(upBtn){
+    if(party.website&&party.website!==''){
+      upBtn.href=party.website;upBtn.target='_blank';upBtn.onclick=null;
+    }else{
+      upBtn.href='#';upBtn.removeAttribute('target');
+      upBtn.onclick=function(){openUpcomingModal();return false;};
+    }
+  }
+  var bg=document.getElementById('upcomingBg');
+  if(party.hero_img)bg.style.backgroundImage="url('"+party.hero_img+"')";
+  document.getElementById('upcomingName').textContent=party.name;
+  var dateEl=document.getElementById('upcomingDate');
+  if(party.upcoming_date){
+    var rawDate=party.upcoming_date;var formatted=rawDate;
+    try{var d=new Date(rawDate+' 2026');if(!isNaN(d.getTime())){var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];formatted=days[d.getDay()]+', '+d.getDate()+' '+months[d.getMonth()];}}catch(ex){}
+    dateEl.textContent=String.fromCodePoint(0x1F4C5)+' '+formatted;
+  }else{dateEl.textContent=party.city;}
+  var flyerImg=document.getElementById('upcomingFlyerImg');
+  var flyerSrc=party.upcoming_flyer||party.flyer_img||'';
+  if(flyerImg){
+    if(flyerSrc){flyerImg.src=flyerSrc;flyerImg.alt=party.name+' flyer';flyerImg.style.visibility='visible';flyerImg.onerror=function(){this.style.visibility='hidden';};}
+    else{flyerImg.style.visibility='hidden';}
+  }
+}
+
+function openUpcomingModal(){if(FEATURED_PARTY)openModal(FEATURED_PARTY.id);}
 
 /* ── BOOT ── */
 loadParties();
