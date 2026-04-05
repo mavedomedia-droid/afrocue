@@ -728,12 +728,12 @@ function loadParties() {
 /* Placeholder data for before GAS is wired */
 function getPlaceholders() {
   return [
-    { id:'south-social', name:'South Social', city:'Lagos, Nigeria', time:'Night', access:'Ticketed', setting:'Outdoor', genres:['Afrobeats','Afro House'], description:'South Social is one of Lagos's most consistent night experiences — a curated crowd, quality sound, and a dance floor that always delivers. Running regularly at Praia Lagos, it has become a fixture for anyone serious about a proper night out in the city.', hero_img:'parties/south-social-hero.jpg', flyer_img:'parties/south-social-flyer.jpg', instagram:'https://instagram.com/southsociallagos', website:'', views:0, likes:0 },
-    { id:'group-therapy', name:'Group Therapy', city:'Lagos, Nigeria', time:'Night', access:'Ticketed', setting:'Indoor', genres:['Afro House','Amapiano','3-Step'], description:'Group Therapy is where Lagos goes when it wants to dance — properly. A rave with intention, focused on afro house, amapiano, and the edges of the scene. The production, the crowd, and the music selection set it apart.', hero_img:'parties/group-therapy-hero.jpg', flyer_img:'parties/group-therapy-flyer.jpg', instagram:'https://instagram.com/grouptherapylagos', website:'', views:0, likes:0 },
-    { id:'element-house', name:'Element House', city:'Lagos, Nigeria', time:'Day & Night', access:'RSVP', setting:'Both', genres:['Afro House','Amapiano'], description:'Element House bridges the gap between day and night — a carefully crafted experience that begins in the afternoon and runs deep into the evening. Known for its intimate setting and discerning crowd.', hero_img:'parties/element-house-hero.jpg', flyer_img:'parties/element-house-flyer.jpg', instagram:'https://instagram.com/elementhouselagos', website:'', views:0, likes:0 },
-    { id:'even-in-the-day', name:'Even In The Day', city:'Lagos, Nigeria', time:'Day', access:'Ticketed', setting:'Outdoor', genres:['Afrobeats','Amapiano','Afro House'], description:'Even In The Day made the afternoon a destination. A Lagos day party that understood the assignment — good music, the right setting, and a crowd that actually came to vibe.', hero_img:'parties/even-in-the-day-hero.jpg', flyer_img:'parties/even-in-the-day-flyer.jpg', instagram:'https://instagram.com/evenintheday', website:'', views:0, likes:0 },
-    { id:'amapiano-district', name:'Amapiano District', city:'Lagos, Nigeria', time:'Night', access:'Ticketed', setting:'Indoor', genres:['Amapiano','3-Step'], description:'Amapiano District does exactly what it says — a dedicated space for amapiano and 3-step in Lagos. One of the few Lagos events fully committed to the sound.', hero_img:'parties/amapiano-district-hero.jpg', flyer_img:'parties/amapiano-district-flyer.jpg', instagram:'https://instagram.com/amapianodistrict', website:'', views:0, likes:0 },
-    { id:'danceeko', name:'DanceEko', city:'Lagos, Nigeria', time:'Night', access:'Free', setting:'Indoor', genres:['Afro House','Amapiano','Afrobeats'], description:'DanceEko is a Lagos rave built around the idea that the dance floor is the point. Genre-fluid but rooted in afro house and amapiano, it pulls a crowd that comes specifically to move.', hero_img:'parties/danceeko-hero.jpg', flyer_img:'parties/danceeko-flyer.jpg', instagram:'https://instagram.com/danceeko', website:'', views:0, likes:0 }
+    { id:"south-social", name:"South Social", city:"Lagos, Nigeria", time:"Night", access:"Ticketed", setting:"Outdoor", genres:["Afrobeats","Afro House"], description:"South Social is one of Lagos's most consistent night experiences — a curated crowd, quality sound, and a dance floor that always delivers.", hero_img:"", flyer_img:"", instagram:"https://instagram.com/southsociallagos", website:"", views:0, likes:0 },
+    { id:"group-therapy", name:"Group Therapy", city:"Lagos, Nigeria", time:"Night", access:"Ticketed", setting:"Indoor", genres:["Afro House","Amapiano","3-Step"], description:"Group Therapy is where Lagos goes when it wants to dance — properly. A rave with intention, focused on afro house, amapiano, and the edges of the scene.", hero_img:"", flyer_img:"", instagram:"https://instagram.com/grouptherapylagos", website:"", views:0, likes:0 },
+    { id:"element-house", name:"Element House", city:"Lagos, Nigeria", time:"Day & Night", access:"RSVP", setting:"Both", genres:["Afro House","Amapiano"], description:"Element House bridges the gap between day and night — a carefully crafted experience that begins in the afternoon and runs deep into the evening.", hero_img:"", flyer_img:"", instagram:"https://instagram.com/elementhouselagos", website:"", views:0, likes:0 },
+    { id:"even-in-the-day", name:"Even In The Day", city:"Lagos, Nigeria", time:"Day", access:"Ticketed", setting:"Outdoor", genres:["Afrobeats","Amapiano","Afro House"], description:"Even In The Day made the afternoon a destination. A Lagos day party that understood the assignment.", hero_img:"", flyer_img:"", instagram:"https://instagram.com/evenintheday", website:"", views:0, likes:0 },
+    { id:"amapiano-district", name:"Amapiano District", city:"Lagos, Nigeria", time:"Night", access:"Ticketed", setting:"Indoor", genres:["Amapiano","3-Step"], description:"Amapiano District does exactly what it says — a dedicated space for amapiano and 3-step in Lagos.", hero_img:"", flyer_img:"", instagram:"https://instagram.com/amapianodistrict", website:"", views:0, likes:0 },
+    { id:"danceeko", name:"DanceEko", city:"Lagos, Nigeria", time:"Night", access:"Free", setting:"Indoor", genres:["Afro House","Amapiano","Afrobeats"], description:"DanceEko is a Lagos rave built around the idea that the dance floor is the point.", hero_img:"", flyer_img:"", instagram:"https://instagram.com/danceeko", website:"", views:0, likes:0 }
   ];
 }
 
@@ -764,17 +764,29 @@ function renderCards(filters) {
     var tagHTML = allTags.map(function(t, i) {
       return '<span class="' + (i < metaTags.length ? 'tag type' : 'tag') + '">' + t + '</span>';
     }).join('');
-    card.innerHTML =
-      '<div class="party-card-bg" style="background-image:url('' + party.hero_img + '')"></div>' +
-      '<img class="party-card-img" src="' + party.hero_img + '" alt="' + party.name + '" onerror="this.style.opacity=0"/>' +
-      '<div class="party-card-tint"></div><div class="party-card-grad"></div><div class="party-card-texture"></div>' +
-      '<div class="party-card-logo"><img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none'"/></div>' +
-      '<div class="party-card-cta">See More</div>' +
-      '<div class="party-card-content">' +
-        '<div class="party-card-tags">' + tagHTML + '</div>' +
-        '<div class="party-card-name">' + party.name + '</div>' +
-        '<div class="party-card-meta">' + party.city + '</div>' +
-      '</div>';
+    var bg = document.createElement('div');
+    bg.className = 'party-card-bg';
+    bg.style.backgroundImage = "url('" + party.hero_img + "')";
+    var img = document.createElement('img');
+    img.className = 'party-card-img';
+    img.src = party.hero_img || '';
+    img.alt = party.name;
+    img.onerror = function() { this.style.opacity = 0; };
+    var tint = document.createElement('div'); tint.className = 'party-card-tint';
+    var grad = document.createElement('div'); grad.className = 'party-card-grad';
+    var tex  = document.createElement('div'); tex.className = 'party-card-texture';
+    var logo = document.createElement('div'); logo.className = 'party-card-logo';
+    var li = document.createElement('img'); li.src = 'logo_afrocue.png'; li.alt = 'AfroCue';
+    li.onerror = function() { this.style.display = 'none'; };
+    logo.appendChild(li);
+    var cta = document.createElement('div'); cta.className = 'party-card-cta'; cta.textContent = 'See More';
+    var content = document.createElement('div'); content.className = 'party-card-content';
+    content.innerHTML = '<div class="party-card-tags">' + tagHTML + '</div>' +
+      '<div class="party-card-name">' + party.name + '</div>' +
+      '<div class="party-card-meta">' + party.city + '</div>';
+    card.appendChild(bg); card.appendChild(img); card.appendChild(tint);
+    card.appendChild(grad); card.appendChild(tex); card.appendChild(logo);
+    card.appendChild(cta); card.appendChild(content);
     grid.appendChild(card);
   });
 }
@@ -852,9 +864,11 @@ function openModal(id) {
 
   /* Flyer */
   var flyerEl = document.getElementById('modalFlyer');
-  flyerEl.innerHTML = party.flyer_img
-    ? '<img src="' + party.flyer_img + '" alt="' + party.name + ' flyer" onerror="this.parentElement.innerHTML='<div class=modal-flyer-placeholder><span>Flyer coming soon</span></div>'"/>'
-    : '<div class="modal-flyer-placeholder"><span>Flyer coming soon</span></div>';
+  if (party.flyer_img && party.flyer_img !== '') {
+    flyerEl.innerHTML = '<img src="' + party.flyer_img + '" alt="' + party.name + ' flyer" onerror="this.parentElement.innerHTML='<div class=modal-flyer-placeholder><span>Flyer coming soon</span></div>'"/>';
+  } else {
+    flyerEl.innerHTML = '<div class="modal-flyer-placeholder"><span>Flyer coming soon</span></div>';
+  }
 
   /* Link */
   var link = document.getElementById('modalLink');
