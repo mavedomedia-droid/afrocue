@@ -142,12 +142,11 @@
     .modal-hero-grad{position:absolute;inset:0;z-index:3;background:linear-gradient(to top,rgba(17,17,17,1) 0%,rgba(17,17,17,0.55) 28%,rgba(17,17,17,0.05) 65%,rgba(17,17,17,0) 100%)}
     .modal-hero-logo{position:absolute;top:20px;right:20px;z-index:4;opacity:0.5}
     .modal-hero-logo img{height:28px;width:auto;display:block}
-    .modal-hero-content{position:absolute;bottom:0;left:0;right:0;z-index:5;padding:0 44px 28px}
-    .modal-body{padding:24px 44px 44px}
-    .modal-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
-    .modal-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(44px,6vw,80px);color:var(--yellow);text-shadow:var(--yts);line-height:0.92;margin-bottom:10px}
-    .modal-city{font-size:11px;font-weight:300;letter-spacing:0.1em;text-transform:uppercase;color:var(--silver);margin-bottom:16px;display:flex;align-items:center;gap:8px}
-    .modal-city::before{content:'';width:18px;height:1px;background:var(--grey);flex-shrink:0}
+    .modal-body{padding:32px 44px 44px}
+    .modal-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;justify-content:center}
+    .modal-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(36px,5vw,64px);color:var(--yellow);text-shadow:var(--yts);line-height:0.92;margin-bottom:10px;text-align:center}
+    .modal-city{font-size:11px;font-weight:300;letter-spacing:0.1em;text-transform:uppercase;color:var(--silver);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:8px}
+    .modal-city::before{display:none}
     .modal-desc{font-size:15px;font-weight:300;line-height:1.9;color:rgba(240,237,232,0.75);margin-bottom:24px}
     .modal-lower{display:grid;grid-template-columns:1fr 160px;gap:36px;align-items:start}
     .modal-flyer{aspect-ratio:3/4;border-radius:4px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);background:var(--dark2);width:100%}
@@ -160,7 +159,7 @@
     .modal-link{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;background:var(--yellow);border-radius:2px;font-family:'Figtree',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);text-decoration:none;transition:opacity 0.2s;align-self:flex-start}
     .modal-link:hover{opacity:0.88}
     .modal-link svg{width:13px;height:13px;flex-shrink:0}
-    .modal-stats{display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+    .modal-stats{display:flex;align-items:center;gap:16px;margin-bottom:24px;flex-wrap:wrap;justify-content:center}
     .stat-pill{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:400;color:var(--silver)}
     .stat-pill svg{width:13px;height:13px;opacity:0.6}
     .like-btn{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--silver);background:transparent;border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:6px 14px;cursor:pointer;transition:all 0.18s;font-family:'Figtree',sans-serif;letter-spacing:0.04em}
@@ -307,12 +306,10 @@
       <div class="modal-hero-grad"></div>
       <div class="modal-hero-logo"><img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none'"/></div>
     </div>
-    <div class="modal-hero-content">
+    <div class="modal-body">
       <div class="modal-tags" id="modalTags"></div>
       <div class="modal-name yh" id="modalName"></div>
       <div class="modal-city" id="modalCity"></div>
-    </div>
-    <div class="modal-body">
       <div class="modal-stats">
         <div class="stat-pill">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
