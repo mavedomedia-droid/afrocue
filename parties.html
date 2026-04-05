@@ -207,19 +207,24 @@
     .upcoming.visible{display:block}
     .upcoming-bg{position:absolute;inset:-20px;z-index:0;background-size:cover;background-position:center;filter:blur(28px) brightness(0.32) saturate(0.6);transform:scale(1.1)}
     .upcoming-texture{position:absolute;inset:0;z-index:1;background-image:url('texture.jpg');background-size:cover;opacity:0.1;pointer-events:none}
-    .upcoming-grad{position:absolute;inset:0;z-index:2;background:linear-gradient(to right,rgba(10,10,10,0.35) 0%,rgba(10,10,10,0.65) 33%,rgba(10,10,10,0.88) 55%,rgba(10,10,10,0.94) 100%)}
-    .upcoming-inner{position:relative;z-index:3;display:grid;grid-template-columns:1fr 2fr;height:160px}
-    .upcoming-eyebrow{font-size:8px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--yellow);opacity:0.55}
-    .upcoming-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(24px,3vw,42px);color:var(--yellow);text-shadow:var(--yts);line-height:0.92}
-    .upcoming-tags{display:flex;gap:5px;flex-wrap:wrap}
-    .upcoming-date{font-size:12px;font-weight:300;color:rgba(240,237,232,0.5)}
+    .upcoming-grad{position:absolute;inset:0;z-index:2;background:linear-gradient(to right,rgba(10,10,10,0.25) 0%,rgba(10,10,10,0.6) 33%,rgba(10,10,10,0.9) 55%,rgba(10,10,10,0.96) 100%)}
+    /* thinner than index — single row layout */
+    .upcoming-inner{position:relative;z-index:3;display:grid;grid-template-columns:1fr 2fr;height:120px}
+    .upcoming-eyebrow{display:none}
+    /* name one row, no wrap */
+    .upcoming-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(20px,2.4vw,34px);color:var(--yellow);text-shadow:var(--yts);line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .upcoming-tags{display:none}
+    .upcoming-date{font-size:11px;font-weight:300;color:rgba(240,237,232,0.45)}
     .upcoming-date::before{display:none}
-    .upcoming-left{display:flex;flex-direction:column;justify-content:center;gap:5px;padding:0 36px}
-    .upcoming-btn{display:inline-flex;align-items:center;gap:6px;font-size:9px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:10px 18px;border-radius:2px;text-decoration:none;cursor:pointer;border:none;font-family:'Figtree',sans-serif;transition:opacity 0.2s;align-self:flex-start;margin-top:6px}
-    .upcoming-btn:hover{opacity:0.88}
-    .upcoming-flyer-wrap{display:flex;align-items:center;justify-content:center;overflow:hidden}
-    .upcoming-flyer-img{width:80px;aspect-ratio:3/4;object-fit:cover;border-radius:4px;display:block;transform:rotate(1deg);box-shadow:0 6px 28px rgba(0,0,0,0.9)}
-    .upcoming-flyer-placeholder{width:80px;aspect-ratio:3/4;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;display:flex;align-items:center;justify-content:center}
+    /* right col: name + date on one row, buy tickets beside */
+    .upcoming-left{display:flex;align-items:center;gap:20px;padding:0 32px;flex-wrap:wrap}
+    .upcoming-namedate{display:flex;flex-direction:column;gap:4px;flex:1;min-width:0}
+    .upcoming-btn{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:12px 22px;border-radius:2px;text-decoration:none;cursor:pointer;border:none;font-family:'Figtree',sans-serif;transition:opacity 0.2s;flex-shrink:0}
+    .upcoming-btn:hover{opacity:0.85}
+    /* flyer fills ~90% of the shorter section height */
+    .upcoming-flyer-wrap{display:flex;align-items:center;justify-content:center;overflow:hidden;padding:6px 0}
+    .upcoming-flyer-img{height:calc(90% + 0px);max-height:104px;width:auto;aspect-ratio:3/4;object-fit:cover;border-radius:3px;display:block;transform:rotate(1deg);box-shadow:0 4px 20px rgba(0,0,0,0.9)}
+    .upcoming-flyer-placeholder{width:72px;aspect-ratio:3/4;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:3px;display:flex;align-items:center;justify-content:center}
     .upcoming-flyer-placeholder span{font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey)}
 
     /* RESPONSIVE */
@@ -279,12 +284,11 @@
       .modal-others-grid{grid-template-columns:1fr 1fr 1fr;gap:2px}
 
       /* UPCOMING */
-      .upcoming-inner{height:110px}
-      .upcoming-name{font-size:clamp(18px,5.5vw,28px)}
-      .upcoming-flyer-img{width:52px}
-      .upcoming-left{padding:0 16px;gap:4px}
-      .upcoming-btn{padding:8px 12px;font-size:8px;margin-top:4px}
-      .upcoming-eyebrow{display:none}
+      .upcoming-inner{height:100px}
+      .upcoming-name{font-size:clamp(16px,5vw,24px)}
+      .upcoming-flyer-img{max-height:86px}
+      .upcoming-left{padding:0 14px;gap:12px}
+      .upcoming-btn{padding:9px 14px;font-size:9px}
 
       /* FOOTER */
       footer{padding:12px 16px;gap:8px;flex-wrap:wrap}
@@ -411,11 +415,12 @@
       <img class="upcoming-flyer-img" id="upcomingFlyerImg" src="" alt=""/>
     </div>
     <div class="upcoming-left">
-      <div class="upcoming-eyebrow">Next Up</div>
-      <div class="upcoming-name" id="upcomingName"></div>
+      <div class="upcoming-namedate">
+        <div class="upcoming-name" id="upcomingName"></div>
+        <div class="upcoming-date" id="upcomingDate"></div>
+      </div>
       <div class="upcoming-tags" id="upcomingTags"></div>
-      <div class="upcoming-date" id="upcomingDate"></div>
-      <button class="upcoming-btn" id="upcomingBtn" onclick="openUpcomingModal()">View Party &rarr;</button>
+      <a class="upcoming-btn" id="upcomingBtn" href="#" onclick="openUpcomingModal();return false;">Buy Tickets</a>
     </div>
   </div>
 </div>
@@ -618,6 +623,19 @@ function renderUpcoming(party){
   if(!party||!party.name){sec.classList.remove('visible');return;}
   FEATURED_PARTY=party;
   sec.classList.add('visible');
+  /* wire Buy Tickets to party website if available */
+  var upBtn=document.getElementById('upcomingBtn');
+  if(upBtn){
+    if(party.website&&party.website!==''){
+      upBtn.href=party.website;
+      upBtn.target='_blank';
+      upBtn.onclick=null;
+    }else{
+      upBtn.href='#';
+      upBtn.removeAttribute('target');
+      upBtn.onclick=function(){openUpcomingModal();return false;};
+    }
+  }
   var bg=document.getElementById('upcomingBg');
   if(party.hero_img)bg.style.backgroundImage="url('"+party.hero_img+"')";
   document.getElementById('upcomingName').textContent=party.name;
