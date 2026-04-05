@@ -203,6 +203,27 @@
     .footer-email a:hover{color:var(--white)}
 
     /* RESPONSIVE */
+
+    .upcoming-section{position:relative;overflow:hidden;border-top:1px solid rgba(255,255,255,0.06)}
+    .upcoming-bg{position:absolute;inset:-30px;z-index:0;background-size:cover;background-position:center;filter:blur(28px) brightness(0.28) saturate(0.5);transform:scale(1.15)}
+    .upcoming-overlay{position:absolute;inset:0;z-index:1;background:rgba(10,10,10,0.55)}
+    .upcoming-texture{position:absolute;inset:0;z-index:2;background-image:url('texture.jpg');background-size:cover;opacity:0.12;pointer-events:none}
+    .upcoming-fade-bottom{position:absolute;bottom:0;left:0;right:0;height:60px;z-index:3;background:linear-gradient(to bottom,transparent,var(--black))}
+    .upcoming-inner{position:relative;z-index:4;display:flex;align-items:center;justify-content:space-between;gap:32px;padding:36px 48px 40px}
+    .upcoming-left{flex:1;min-width:0}
+    .upcoming-eyebrow{font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:rgba(200,224,0,0.7);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+    .upcoming-eyebrow::before{content:'';width:14px;height:1px;background:rgba(200,224,0,0.5);flex-shrink:0}
+    .upcoming-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(32px,4.5vw,56px);color:var(--yellow);text-shadow:var(--yts);line-height:0.9;margin-bottom:12px}
+    .upcoming-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+    .upcoming-date{font-size:18px;font-weight:500;color:rgba(240,237,232,0.9);margin-bottom:4px}
+    .upcoming-city{font-size:11px;font-weight:300;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,237,232,0.4);margin-bottom:24px}
+    .upcoming-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:var(--yellow);border-radius:2px;font-family:'Figtree',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);text-decoration:none;border:none;cursor:pointer;transition:opacity 0.2s}
+    .upcoming-btn:hover{opacity:0.85}
+    .upcoming-flyer-wrap{flex-shrink:0;position:relative;width:120px}
+    .upcoming-flyer{width:120px;aspect-ratio:3/4;border-radius:6px;overflow:hidden;border:1.5px solid rgba(255,255,255,0.18);background:var(--dark2);transform:rotate(2deg);position:relative;z-index:1}
+    .upcoming-flyer img{width:100%;height:100%;object-fit:cover;display:block}
+    .upcoming-flyer-shadow{position:absolute;top:6px;left:-5px;width:120px;aspect-ratio:3/4;border-radius:6px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.03);transform:rotate(-1deg);z-index:0}
+    .upcoming-flyer-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey)}
     @media(max-width:768px){
       nav{padding:14px 20px}
       .nav-links{display:none}
@@ -229,6 +250,12 @@
 
       /* PARTIES SECTION */
       #parties{padding:20px 12px 60px}
+      .upcoming-inner{padding:28px 20px 32px;gap:20px}
+      .upcoming-name{font-size:clamp(28px,8vw,40px)}
+      .upcoming-date{font-size:15px}
+      .upcoming-flyer-wrap{width:88px}
+      .upcoming-flyer{width:88px}
+      .upcoming-flyer-shadow{width:88px}
       .parties-header{flex-direction:column;gap:12px;margin-bottom:24px}
       .filter-bar{gap:5px}
       .filter-select{font-size:10px;padding:7px 22px 7px 9px}
@@ -373,6 +400,29 @@
 </div>
 
 <!-- PARTIES -->
+<div class="upcoming-section" id="upcomingSection" style="display:none;">
+  <div class="upcoming-bg" id="upcomingBg"></div>
+  <div class="upcoming-overlay"></div>
+  <div class="upcoming-texture"></div>
+  <div class="upcoming-inner">
+    <div class="upcoming-left">
+      <div class="upcoming-eyebrow">Next Up</div>
+      <div class="upcoming-name" id="upcomingName"></div>
+      <div class="upcoming-tags" id="upcomingTags"></div>
+      <div class="upcoming-date" id="upcomingDate"></div>
+      <div class="upcoming-city" id="upcomingCity"></div>
+      <button class="upcoming-btn" id="upcomingBtn" onclick="openUpcoming()">View Party</button>
+    </div>
+    <div class="upcoming-flyer-wrap">
+      <div class="upcoming-flyer" id="upcomingFlyer">
+        <div class="upcoming-flyer-placeholder">Flyer</div>
+      </div>
+      <div class="upcoming-flyer-shadow"></div>
+    </div>
+  </div>
+  <div class="upcoming-fade-bottom"></div>
+</div>
+
 <section id="parties">
   <div class="parties-header">
     <div class="filter-bar">
@@ -790,7 +840,44 @@ function goFeatured(i){
 
 function openFeaturedModal(){var p=featuredList[featuredIndex];if(p)openModal(p.id);}
 
+/* ── UPCOMING FEATURED PARTY ─────────────────────────────── */
+
+var upcomingParty = null;
+
+function initUpcoming() {
+  var section = document.getElementById('upcomingSection');
+  if (!section) return;
+  var featured = null;
+  for (var i = 0; i < PARTIES.length; i++) {
+    if (PARTIES[i].featured === 'Yes' || PARTIES[i].featured === true) { featured = PARTIES[i]; break; }
+  }
+  if (!featured) { section.style.display = 'none'; return; }
+  upcomingParty = featured;
+  section.style.display = 'block';
+  document.getElementById('upcomingBg').style.backgroundImage = "url('"+(featured.hero_img||'')+"')";
+  document.getElementById('upcomingName').textContent = featured.name;
+  var metaTags = [featured.time, featured.access, featured.setting].filter(Boolean);
+  document.getElementById('upcomingTags').innerHTML = metaTags.map(function(t,i){
+    return '<span class="tag'+(i===0?' type':'')+'">'+t+'</span>';
+  }).join('');
+  var dateEl = document.getElementById('upcomingDate');
+  if (featured.upcoming_date) { dateEl.textContent = featured.upcoming_date; dateEl.style.display = 'block'; }
+  else { dateEl.style.display = 'none'; }
+  document.getElementById('upcomingCity').textContent = featured.city || '';
+  var flyerEl = document.getElementById('upcomingFlyer');
+  var flyerSrc = featured.upcoming_flyer || featured.flyer_img || '';
+  if (flyerSrc) {
+    flyerEl.innerHTML = '<img src="'+flyerSrc+'" alt="'+featured.name+' flyer" onerror="this.parentElement.innerHTML='<div class=\'upcoming-flyer-placeholder\'>Flyer</div>'"/>';
+  } else {
+    flyerEl.innerHTML = '<div class="upcoming-flyer-placeholder">Flyer</div>';
+  }
+}
+
+function openUpcoming() { if (upcomingParty) openModal(upcomingParty.id); }
+
 /* ── BOOT ── */
+var _origInitFeatured = initFeatured;
+initFeatured = function() { _origInitFeatured(); initUpcoming(); };
 loadParties();
 
 </script>
