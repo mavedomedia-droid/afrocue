@@ -436,10 +436,10 @@
     #incoming.visible { display: block; }
     .inc-bg { position: absolute; inset: -20px; z-index: 0; background-size: cover; background-position: center; filter: blur(28px) brightness(0.35) saturate(0.6); transform: scale(1.1); }
     .inc-texture { position: absolute; inset: 0; z-index: 1; background-image: url('texture.jpg'); background-size: cover; opacity: 0.08; pointer-events: none; }
-    .inc-grad { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to right, rgba(10,10,10,0.25) 0%, rgba(10,10,10,0.6) 33%, rgba(10,10,10,0.9) 55%, rgba(10,10,10,0.96) 100%); }
+    .inc-grad { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to right, rgba(10,10,10,0.1) 0%, rgba(10,10,10,0.45) 33%, rgba(10,10,10,0.88) 52%, rgba(10,10,10,0.96) 100%); }
     .inc-inner { position: relative; z-index: 3; display: grid; grid-template-columns: 1fr 2fr; height: 240px; }
     /* flyer col — image fills 90% of section height */
-    .inc-flyer-wrap { position: relative; overflow: hidden; }
+    .inc-flyer-wrap { position: relative; overflow: hidden; height: 100%; }
     .inc-flyer-img { position: absolute; top: 12px; bottom: 12px; left: 50%; transform: translateX(-50%) rotate(1deg); width: auto; height: calc(100% - 24px); aspect-ratio: 3/4; object-fit: cover; border-radius: 5px; display: block; box-shadow: 0 8px 40px rgba(0,0,0,0.95); }
     /* text col */
     .inc-text { display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 28px 40px 28px 36px; overflow: visible; min-width: 0; }
