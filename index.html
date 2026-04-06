@@ -577,6 +577,197 @@
       .dj-radar-video-wrap { aspect-ratio: 2/1; }
     }
 
+      /* ── WHATSAPP CHANNEL SECTION ── */
+    #whatsapp-join {
+      position: relative;
+      overflow: hidden;
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .wa-bg {
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(37,211,102,0.12) 0%, rgba(37,211,102,0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .wa-bg::before {
+      content: "📱";
+      position: absolute;
+      bottom: 20%;
+      right: 10%;
+      font-size: 180px;
+      opacity: 0.06;
+      pointer-events: none;
+      transform: rotate(15deg);
+    }
+    .wa-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 64px 48px;
+      display: flex;
+      align-items: center;
+      gap: 56px;
+    }
+    .wa-icon-wrap {
+      flex-shrink: 0;
+      width: 96px;
+      height: 96px;
+      background: rgba(37,211,102,0.1);
+      border-radius: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(37,211,102,0.2);
+    }
+    .wa-icon {
+      width: 52px;
+      height: 52px;
+      color: #25d366;
+    }
+    .wa-content {
+      flex: 1;
+    }
+    .wa-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #25d366;
+      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .wa-label::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: #25d366;
+    }
+    .wa-h {
+      font-family: 'Aesthet Nova', sans-serif;
+      font-weight: 900;
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 0.92;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+    .wa-h span {
+      color: #25d366;
+    }
+    .wa-benefits {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+    .wa-benefit {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .wa-benefit-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+      width: 36px;
+    }
+    .wa-benefit-text strong {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .wa-benefit-text span {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(240,237,232,0.45);
+      line-height: 1.5;
+    }
+    .wa-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(37,211,102,0.08);
+      padding: 8px 16px;
+      border-radius: 40px;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(240,237,232,0.55);
+      margin-bottom: 28px;
+      border: 1px solid rgba(37,211,102,0.15);
+    }
+    .wa-note span {
+      font-size: 14px;
+    }
+    .wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #25d366;
+      color: var(--black);
+      font-family: 'Figtree', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 16px 32px;
+      border-radius: 60px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .wa-btn:hover {
+      transform: translateY(-2px);
+      background: #20b859;
+      box-shadow: 0 8px 28px rgba(37,211,102,0.25);
+    }
+    .wa-btn svg:first-child {
+      margin-right: -4px;
+    }
+    .wa-btn svg:last-child {
+      transition: transform 0.2s;
+    }
+    .wa-btn:hover svg:last-child {
+      transform: translateX(4px);
+    }
+    @media (max-width: 768px) {
+      .wa-inner {
+        flex-direction: column;
+        text-align: left;
+        padding: 48px 24px;
+        gap: 28px;
+      }
+      .wa-benefit {
+        gap: 12px;
+      }
+      .wa-benefit-icon {
+        font-size: 20px;
+        width: 32px;
+      }
+      .wa-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .wa-bg {
+        width: 400px;
+        height: 400px;
+        right: -30%;
+      }
+      .wa-bg::before {
+        font-size: 120px;
+      }
+    }
+  
   </style>
 </head>
 <body>
@@ -1025,6 +1216,61 @@
     <a href="https://tiktok.com/@afro.cue" target="_blank" class="social-chip">TikTok — @afro.cue</a>
     <a href="https://youtube.com/@AfroCue" target="_blank" class="social-chip">YouTube</a>
     <a href="https://open.spotify.com" target="_blank" class="social-chip">Spotify</a>
+  </div>
+</section>
+
+<!-- ── JOIN WHATSAPP CHANNEL ── -->
+<section id="whatsapp-join">
+  <div class="wa-bg"></div>
+  <div class="wa-inner">
+    <div class="wa-icon-wrap">
+      <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12.032 2.001c-5.524 0-10 4.476-10 10 0 1.647.402 3.259 1.165 4.684L2 22l5.28-1.16a9.946 9.946 0 0 0 4.752 1.16c5.524 0 10-4.476 10-10s-4.476-10-10-10zm0 18.001c-1.597 0-3.142-.392-4.523-1.132l-3.295.722.76-3.135a7.93 7.93 0 0 1-1.134-4.255c0-4.406 3.586-8 8-8s8 3.594 8 8-3.586 8-8 8z"/>
+        <path d="M16.5 13.5c-.5-.25-2.5-1.25-2.8-1.4-.3-.15-.5-.2-.7.15-.2.35-.8 1.4-1 1.7-.2.3-.4.35-.9.1-.5-.25-2.1-.75-4-2.5-1.5-1.4-2.5-3.1-2.8-3.6-.3-.5-.1-.8.2-1 .3-.3.6-.6.8-.9.2-.3.3-.6.5-.9.2-.3.1-.6 0-.8-.1-.2-.7-1.7-1-2.3-.3-.6-.6-.5-.8-.5-.2 0-.4 0-.6.1-.2.1-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.2 1.5 2.4 3.7 3.4.5.2 1 .4 1.5.5.5.1.9.1 1.2.1.4 0 .9-.1 1.4-.3.5-.2 1.4-.7 1.6-1.4.2-.7.2-1.3.1-1.4-.1-.1-.3-.2-.6-.3z"/>
+      </svg>
+    </div>
+    <div class="wa-content">
+      <div class="wa-label">Exclusive Access</div>
+      <h2 class="wa-h">Join our<br><span>WhatsApp Channel</span></h2>
+      
+      <div class="wa-benefits">
+        <div class="wa-benefit">
+          <div class="wa-benefit-icon">🔒</div>
+          <div class="wa-benefit-text">
+            <strong>Private. Nobody sees your contact.</strong>
+            <span>Your number stays hidden — only admins can post.</span>
+          </div>
+        </div>
+        <div class="wa-benefit">
+          <div class="wa-benefit-icon">🎯</div>
+          <div class="wa-benefit-text">
+            <strong>No rowdy noise. Only relevant shit.</strong>
+            <span>Curated updates. No spam, no chaos.</span>
+          </div>
+        </div>
+        <div class="wa-benefit">
+          <div class="wa-benefit-icon">🎁</div>
+          <div class="wa-benefit-text">
+            <strong>Giveaways, tickets & freebies.</strong>
+            <span>First dibs on guest list spots, discounts, and drops.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="wa-note">
+        <span>🔔</span> Turn on notifications — don't miss what's moving.
+      </div>
+      
+      <a href="https://whatsapp.com/channel/0029Vb74IjxGufJ0irS1uq0u" target="_blank" class="wa-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+          <path d="M12.032 2.001c-5.524 0-10 4.476-10 10 0 1.647.402 3.259 1.165 4.684L2 22l5.28-1.16a9.946 9.946 0 0 0 4.752 1.16c5.524 0 10-4.476 10-10s-4.476-10-10-10z"/>
+        </svg>
+        Join WhatsApp Channel
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
   </div>
 </section>
 
