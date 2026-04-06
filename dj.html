@@ -393,8 +393,8 @@
       <div class="field">
         <label>Is this contact also for bookings?</label>
         <div class="toggle-group">
-          <button type="button" class="toggle-btn" onclick="toggleBtn(this,'booking_same','Yes')">Yes, same contact</button>
-          <button type="button" class="toggle-btn" onclick="toggleBtn(this,'booking_same','No')">No, different</button>
+          <button type="button" class="toggle-btn" onclick="djToggleBtn(this,'booking_same','Yes')">Yes, same contact</button>
+          <button type="button" class="toggle-btn" onclick="djToggleBtn(this,'booking_same','No')">No, different</button>
         </div>
         <input type="hidden" name="booking_same" id="booking_same"/>
       </div>
@@ -402,7 +402,7 @@
       <div class="fdivider"></div>
 
       <!-- Newsletter -->
-      <label class="newsletter-check" onclick="toggleDJNewsletter(this)">
+      <label class="newsletter-check" id="djNLLabel" onclick="toggleDJNewsletter(event, this)">
         <input type="checkbox" name="newsletter" checked/>
         <div class="check-box checked" id="djCheckBox">
           <svg viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg" width="12" height="10">
@@ -460,15 +460,16 @@
   }
 
   /* Yes/No toggle */
-  function toggleBtn(btn, fieldId, value) {
+  window.djToggleBtn = function(btn, fieldId, value) {
     btn.parentElement.querySelectorAll('.toggle-btn').forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
     document.getElementById(fieldId).value = value;
-  }
+  };
 
-  /* Newsletter */
+  /* Newsletter — prevent double-fire from label+input click */
   var djNewsletterChecked = true;
-  function toggleDJNewsletter(label) {
+  function toggleDJNewsletter(e, label) {
+    if (e && e.target && e.target.type === 'checkbox') return;
     djNewsletterChecked = !djNewsletterChecked;
     var box = document.getElementById('djCheckBox');
     box.classList.toggle('checked', djNewsletterChecked);
@@ -514,4 +515,16 @@
 
     fetch(SCRIPT_URL, {
       method: 'POST',
-      mode:
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).finally(function() {
+      btn.textContent = 'Get on the Radar';
+      btn.disabled = false;
+      document.getElementById('successOverlay').classList.add('show');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+</script>
+</body>
+</html>
