@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Culture — AfroCue</title>
+  <meta name="description" content="DJs, parties, music and nightlife culture in Lagos and Nigeria — documented by AfroCue."/>
+  <link rel="canonical" href="https://afrocue.xyz/blog.html"/>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://afrocue.xyz/blog.html"/>
+  <meta property="og:title" content="Culture — AfroCue"/>
+  <meta property="og:image" content="https://afrocue.xyz/hero_dj.jpg"/>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');font-weight:900}
+    @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype');font-weight:500}
+    @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-.otf') format('opentype');font-weight:400}
+    @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthetet-Nova-Light.otf') format('opentype');font-weight:300}
+
+    :root{
+      --black:#0a0a0a;--dark:#111111;--dark2:#1c1c1c;--mid:#2e2e2e;
+      --grey:#555555;--silver:#999999;--off:#d4d4d0;--white:#f0ede8;
+      --yellow:#C8E000;--yts:2px 3px 0px rgba(0,0,0,0.9),0 0 24px rgba(200,224,0,0.06);
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{background:var(--black);color:var(--white);font-family:'Figtree',sans-serif;overflow-x:hidden}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(10,10,10,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06)}
+    .nav-logo{display:flex;align-items:center;text-decoration:none}
+    .nav-logo img{height:48px;width:auto;display:block}
+    .nav-logo-fallback{display:none;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:17px;color:var(--yellow);letter-spacing:0.08em}
+    .nav-links{display:flex;gap:28px;list-style:none}
+    .nav-links a{font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--silver);text-decoration:none;transition:color 0.2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--white)}
+    .nav-cta{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--off);background:transparent;border:1px solid rgba(240,237,232,0.3);padding:10px 20px;border-radius:2px;text-decoration:none;transition:all 0.2s;white-space:nowrap}
+    .nav-cta:hover{border-color:var(--white);color:var(--white)}
+
+    /* HERO */
+    .hero{padding:120px 48px 60px;border-bottom:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;z-index:0;background-image:url('texture.jpg');background-size:cover;opacity:0.1}
+    .hero-content{position:relative;z-index:1;max-width:1100px}
+    .label{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+    .label::before{content:'';width:18px;height:1px;background:var(--silver);flex-shrink:0}
+    .hero h1{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(64px,9vw,140px);line-height:0.88;color:var(--yellow);text-shadow:var(--yts);margin-bottom:20px}
+    .hero h1 .outline{-webkit-text-stroke:1.5px var(--yellow);color:transparent;text-shadow:none;display:block}
+    .hero-sub{font-size:14px;font-weight:300;color:rgba(240,237,232,0.45);max-width:480px;line-height:1.75}
+
+    /* FEATURED POST */
+    #featured{padding:0 48px;margin-top:-1px;border-bottom:1px solid rgba(255,255,255,0.06)}
+    .featured-post{display:grid;grid-template-columns:1fr 1fr;gap:0;cursor:pointer;transition:opacity 0.2s}
+    .featured-post:hover{opacity:0.92}
+    .featured-img-wrap{position:relative;overflow:hidden;aspect-ratio:16/10;background:var(--dark2)}
+    .featured-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease}
+    .featured-post:hover .featured-img{transform:scale(1.03)}
+    .featured-img-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,10,0) 60%,rgba(10,10,10,0.6) 100%)}
+    .featured-text{background:var(--dark);padding:52px 48px;display:flex;flex-direction:column;justify-content:center;gap:14px;border-left:1px solid rgba(255,255,255,0.06)}
+    .feat-eyebrow{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--yellow);opacity:0.7;display:flex;align-items:center;gap:8px}
+    .feat-eyebrow::before{content:'';width:14px;height:1px;background:var(--yellow);flex-shrink:0}
+    .feat-cat{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;padding:4px 10px;border-radius:2px;background:rgba(200,224,0,0.1);color:var(--yellow);border:1px solid rgba(200,224,0,0.2);align-self:flex-start}
+    .feat-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(28px,3.2vw,48px);color:var(--white);line-height:0.95}
+    .feat-excerpt{font-size:14px;font-weight:300;line-height:1.8;color:rgba(240,237,232,0.5);max-width:400px}
+    .feat-meta{font-size:11px;font-weight:300;color:var(--grey);display:flex;align-items:center;gap:12px}
+    .feat-meta span{display:flex;align-items:center;gap:5px}
+    .feat-read{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:13px 24px;border-radius:2px;align-self:flex-start;margin-top:4px;text-decoration:none;transition:opacity 0.2s}
+    .feat-read:hover{opacity:0.88}
+
+    /* POSTS SECTION */
+    #posts{padding:60px 48px 80px}
+    .posts-header{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:36px;flex-wrap:wrap}
+    .posts-label{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);display:flex;align-items:center;gap:10px}
+    .posts-label::before{content:'';width:18px;height:1px;background:var(--silver);flex-shrink:0}
+
+    /* Category filters */
+    .cat-filters{display:flex;gap:6px;flex-wrap:wrap}
+    .cat-btn{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:7px 16px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:transparent;color:var(--silver);cursor:pointer;font-family:'Figtree',sans-serif;transition:all 0.18s}
+    .cat-btn:hover{border-color:rgba(255,255,255,0.3);color:var(--white)}
+    .cat-btn.active{background:var(--yellow);border-color:var(--yellow);color:var(--black)}
+
+    /* Posts grid */
+    .posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+    .post-card{background:var(--dark2);cursor:pointer;transition:background 0.2s;display:flex;flex-direction:column}
+    .post-card:hover{background:#222}
+    .post-card-img{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--mid)}
+    .post-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease}
+    .post-card:hover .post-card-img img{transform:scale(1.04)}
+    .post-card-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--mid)}
+    .post-card-img-placeholder span{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey)}
+    .post-card-body{padding:20px 20px 24px;flex:1;display:flex;flex-direction:column;gap:8px}
+    .post-card-cat{font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--yellow);opacity:0.7}
+    .post-card-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(18px,1.8vw,24px);color:var(--white);line-height:1;flex:1}
+    .post-card-excerpt{font-size:12px;font-weight:300;line-height:1.7;color:rgba(240,237,232,0.4)}
+    .post-card-meta{font-size:10px;font-weight:300;color:var(--grey);margin-top:auto;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between}
+    .post-card-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:4px}
+    .post-tag{font-size:8px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:3px 7px;border-radius:2px;border:1px solid rgba(255,255,255,0.1);color:rgba(240,237,232,0.4)}
+
+    /* Skeleton */
+    .post-card-skeleton{background:var(--dark2);cursor:default}
+    .post-card-skeleton:hover{background:var(--dark2)}
+    .skel-img{aspect-ratio:16/10;background:var(--mid);position:relative;overflow:hidden}
+    .skel-bar{background:rgba(255,255,255,0.06);border-radius:2px;margin-bottom:8px}
+    .shimmer{position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.04),transparent);background-size:200% 100%;animation:shim 1.8s infinite}
+    @keyframes shim{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+    /* POST MODAL */
+    .modal-wrap{display:none;position:fixed;inset:0;z-index:9999;background:rgba(10,10,10,0.92);backdrop-filter:blur(16px);overflow-y:auto;padding:40px 16px}
+    .modal-wrap.open{display:block}
+    .modal{max-width:720px;margin:0 auto;background:var(--dark);border:1px solid rgba(255,255,255,0.08);border-radius:6px;overflow:hidden;animation:mIn 0.3s ease}
+    @keyframes mIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    .modal-close{position:fixed;top:20px;right:24px;z-index:10001;background:var(--dark2);border:1px solid rgba(255,255,255,0.12);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--silver);cursor:pointer;transition:all 0.2s}
+    .modal-close:hover{color:var(--white);border-color:var(--white)}
+    .modal-hero-img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--mid)}
+    .modal-body{padding:40px 48px 52px}
+    .modal-cat{font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--yellow);opacity:0.7;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+    .modal-cat::before{content:'';width:14px;height:1px;background:var(--yellow)}
+    .modal-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(32px,5vw,60px);color:var(--white);line-height:0.92;margin-bottom:14px}
+    .modal-meta{font-size:11px;font-weight:300;color:var(--grey);margin-bottom:32px;display:flex;align-items:center;gap:14px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,0.07)}
+    .modal-content{font-size:15px;font-weight:300;line-height:1.9;color:rgba(240,237,232,0.7)}
+    .modal-content p{margin-bottom:20px}
+    .modal-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.07)}
+
+    /* BOTTOM CTA */
+    .bottom-cta{background:var(--dark);border-top:1px solid rgba(255,255,255,0.06);padding:52px 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+    .bottom-cta-text h3{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(24px,3vw,40px);color:var(--yellow);text-shadow:var(--yts);line-height:0.95;margin-bottom:8px}
+    .bottom-cta-text p{font-size:13px;font-weight:300;color:rgba(240,237,232,0.4)}
+    .btn-yellow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:14px 28px;border-radius:2px;text-decoration:none;transition:opacity 0.2s;white-space:nowrap}
+    .btn-yellow:hover{opacity:0.88}
+
+    /* WA STRIP */
+    .wa-strip{background:#111111;border-top:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;padding:52px 48px}
+    .wa-strip-bg{position:absolute;right:-40px;top:50%;transform:translateY(-50%);opacity:0.055;pointer-events:none;z-index:0}
+    .wa-strip-inner{position:relative;z-index:1;max-width:1100px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+
+    /* FOOTER */
+    footer{border-top:1px solid rgba(255,255,255,0.06);padding:16px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;background:var(--dark)}
+    .footer-links a{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey);text-decoration:none;transition:color 0.2s;margin-right:20px}
+    .footer-links a:hover{color:var(--white)}
+
+    .no-posts{padding:80px 0;text-align:center;color:var(--grey);font-size:14px;font-weight:300;display:none}
+
+    @media(max-width:768px){
+      nav{padding:14px 20px}
+      .nav-links{display:none}
+      .hero{padding:80px 20px 40px}
+      .hero h1{font-size:clamp(52px,14vw,80px)}
+      #featured{padding:0}
+      .featured-post{grid-template-columns:1fr}
+      .featured-img-wrap{aspect-ratio:4/3}
+      .featured-text{padding:28px 20px}
+      .feat-title{font-size:clamp(22px,6vw,32px)}
+      #posts{padding:40px 20px 60px}
+      .posts-grid{grid-template-columns:1fr 1fr;gap:2px}
+      .modal-body{padding:24px 20px 36px}
+      .modal-title{font-size:clamp(24px,7vw,40px)}
+      .bottom-cta{padding:36px 20px}
+      .wa-strip{padding:36px 20px}
+      footer{padding:12px 20px}
+    }
+    @media(max-width:480px){
+      .posts-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- POST MODAL -->
+<div class="modal-wrap" id="postModal">
+  <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+  <div class="modal">
+    <img class="modal-hero-img" id="modalImg" src="" alt=""/>
+    <div class="modal-body">
+      <div class="modal-cat" id="modalCat"></div>
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-meta" id="modalMeta"></div>
+      <div class="modal-content" id="modalContent"></div>
+      <div class="modal-tags" id="modalTags"></div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none';document.querySelector('.nav-logo-fallback').style.display='block'"/>
+    <span class="nav-logo-fallback">afro.cue</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="parties.html">Parties</a></li>
+    <li><a href="dj.html">DJs</a></li>
+    <li><a href="blog.html" class="active">Culture</a></li>
+  </ul>
+  <a href="list-party.html" class="nav-cta">List Your Party</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="label">AfroCue Blog</div>
+    <h1>Culture.<br><span class="outline">Documented.</span></h1>
+    <p class="hero-sub">DJs, parties, music and the nightlife culture surrounding them — written and documented by AfroCue.</p>
+  </div>
+</div>
+
+<!-- FEATURED POST -->
+<section id="featured">
+  <div class="featured-post" id="featuredPost" onclick="openFeatured()" style="display:none;">
+    <div class="featured-img-wrap">
+      <img class="featured-img" id="featImg" src="" alt=""/>
+      <div class="featured-img-overlay"></div>
+    </div>
+    <div class="featured-text">
+      <div class="feat-eyebrow">Featured</div>
+      <span class="feat-cat" id="featCat"></span>
+      <div class="feat-title" id="featTitle"></div>
+      <p class="feat-excerpt" id="featExcerpt"></p>
+      <div class="feat-meta" id="featMeta"></div>
+      <a class="feat-read" href="#" onclick="openFeatured();return false;">Read &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- POSTS -->
+<section id="posts">
+  <div class="posts-header">
+    <div class="posts-label">All Posts</div>
+    <div class="cat-filters" id="catFilters">
+      <button class="cat-btn active" onclick="filterCat('',this)">All</button>
+      <button class="cat-btn" onclick="filterCat('Culture',this)">Culture</button>
+      <button class="cat-btn" onclick="filterCat('DJs',this)">DJs</button>
+      <button class="cat-btn" onclick="filterCat('Parties',this)">Parties</button>
+      <button class="cat-btn" onclick="filterCat('Music',this)">Music</button>
+    </div>
+  </div>
+  <div class="posts-grid" id="postsGrid"></div>
+  <div class="no-posts" id="noPosts">No posts in this category yet.</div>
+</section>
+
+<!-- BOTTOM CTA -->
+<div class="bottom-cta">
+  <div class="bottom-cta-text">
+    <h3>See the parties.</h3>
+    <p>Browse every rave and event worth knowing about in Lagos.</p>
+  </div>
+  <a href="parties.html" class="btn-yellow">Party Directory &rarr;</a>
+</div>
+
+<!-- WHATSAPP -->
+<div class="wa-strip">
+  <div class="wa-strip-bg">
+    <svg width="420" height="420" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="0.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+      <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+    </svg>
+  </div>
+  <div class="wa-strip-inner">
+    <div style="flex:1;min-width:0;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#25D366;opacity:0.7;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+        <span style="width:14px;height:1px;background:#25D366;display:inline-block;flex-shrink:0;"></span>WhatsApp Channel
+      </div>
+      <div style="font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(28px,4vw,52px);color:#f0ede8;line-height:0.92;text-shadow:2px 3px 0px rgba(0,0,0,0.9);margin-bottom:14px;">
+        Get the updates<br>on <span style="color:#25D366;">WhatsApp.</span>
+      </div>
+      <div style="font-size:12px;font-weight:300;color:rgba(240,237,232,0.35);display:flex;align-items:center;gap:8px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" style="flex-shrink:0;opacity:0.6;"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        Unmute notifications so you never miss a drop.
+      </div>
+    </div>
+    <a href="https://whatsapp.com/channel/0029Vb74IjxGufJ0irS1uq0u" target="_blank" rel="noopener"
+       style="display:inline-flex;align-items:center;gap:14px;background:#25D366;color:#0a0a0a;text-decoration:none;padding:20px 36px;border-radius:3px;font-family:'Figtree',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;flex-shrink:0;"
+       onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+      <svg viewBox="0 0 24 24" width="22" height="22" style="flex-shrink:0;" fill="#0a0a0a"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+      Follow on WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" style="display:inline-flex;align-items:center;text-decoration:none;">
+    <img src="logo_afrocue.png" alt="AfroCue" style="height:26px;width:auto;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+    <span style="display:none;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:13px;color:var(--yellow);">AfroCue</span>
+  </a>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="parties.html">Parties</a>
+    <a href="dj.html">DJs</a>
+    <a href="blog.html">Culture</a>
+  </div>
+  <div><a href="/cdn-cgi/l/email-protection#573e3931381736312538342232792f2e2d" style="font-size:10px;color:var(--grey);text-decoration:none;"><span class="__cf_email__" data-cfemail="2b42454d446b4a4d5944485e4e05535251">[email&#160;protected]</span></a></div>
+</footer>
+
+<script src="afrocue.js"></script>
+<script>
+/* ── CONFIG ── */
+/* Replace gid= with the actual tab ID of your Blog sheet once published */
+var BLOG_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSemAPO2lS9b54nmiLq2LUodTRkgBT6ls_iRDUy_Zh6mhIkWf2UsRFvd5zmqfmc-rzeWViOd8rX1LCe/pub?gid=BLOG_TAB_GID&single=true&output=csv';
+
+var POSTS = [];
+var featuredPost = null;
+var activeCategory = '';
+
+/* ── CSV PARSER ── */
+function splitCSV(line){
+  var cols=[],cur='',inQ=false;
+  for(var i=0;i<line.length;i++){
+    var c=line[i];
+    if(c==='"'){inQ=!inQ;}
+    else if(c===','&&!inQ){cols.push(cur);cur='';}
+    else{cur+=c;}
+  }
+  cols.push(cur);return cols;
+}
+
+function parseBlogCSV(text){
+  var lines=text.trim().split('\n');
+  if(lines.length<2)return{posts:[],featured:null};
+  var headers=splitCSV(lines[0]).map(function(h){return h.trim().toLowerCase();});
+  function col(n){var i=headers.indexOf(n);return i>-1?i:-1;}
+  var C={
+    id:col('post id'),title:col('title'),cat:col('category'),
+    excerpt:col('excerpt'),body:col('body'),img:col('image url'),
+    date:col('date'),author:col('author'),tags:col('tags'),
+    featured:col('featured'),status:col('status')
+  };
+  var posts=[],featured=null;
+  for(var i=1;i<lines.length;i++){
+    var r=splitCSV(lines[i]);
+    if(!r[0]||!r[1])continue;
+    var status=(r[C.status]||'').trim().toLowerCase();
+    if(status!=='published')continue;
+    var p={
+      id:(r[C.id]||'').trim(),
+      title:(r[C.title]||'').trim(),
+      category:(r[C.cat]||'').trim(),
+      excerpt:(r[C.excerpt]||'').trim(),
+      body:(r[C.body]||'').trim(),
+      image:(r[C.img]||'').trim(),
+      date:(r[C.date]||'').trim(),
+      author:(r[C.author]||'AfroCue').trim(),
+      tags:(r[C.tags]||'').trim().split(',').map(function(t){return t.trim();}).filter(Boolean),
+      featured:(r[C.featured]||'').trim().toLowerCase()==='yes'
+    };
+    if(p.featured)featured=p;
+    posts.push(p);
+  }
+  return{posts:posts,featured:featured};
+}
+
+/* ── LOAD ── */
+function loadBlog(){
+  renderSkeletons();
+  fetch(BLOG_CSV)
+    .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.text();})
+    .then(function(text){
+      var result=parseBlogCSV(text);
+      POSTS=result.posts;
+      featuredPost=result.featured;
+      renderFeatured(featuredPost);
+      renderPosts(activeCategory);
+    })
+    .catch(function(err){
+      console.warn('Blog CSV fetch failed:',err);
+      document.getElementById('noPosts').style.display='block';
+      document.getElementById('postsGrid').innerHTML='';
+    });
+}
+
+/* ── FEATURED ── */
+function renderFeatured(post){
+  var wrap=document.getElementById('featuredPost');
+  if(!post){wrap.style.display='none';return;}
+  wrap.style.display='grid';
+  var img=document.getElementById('featImg');
+  if(post.image){img.src=post.image;img.alt=post.title;}
+  document.getElementById('featCat').textContent=post.category;
+  document.getElementById('featTitle').textContent=post.title;
+  document.getElementById('featExcerpt').textContent=post.excerpt;
+  document.getElementById('featMeta').textContent=post.date+(post.author?' · '+post.author:'');
+}
+
+function openFeatured(){if(featuredPost)openModal(featuredPost.id);}
+
+/* ── RENDER POSTS ── */
+function renderSkeletons(){
+  var grid=document.getElementById('postsGrid');
+  grid.innerHTML='';
+  for(var i=0;i<6;i++){
+    var c=document.createElement('div');c.className='post-card post-card-skeleton';
+    c.innerHTML='<div class="skel-img"><div class="shimmer"></div></div>'
+      +'<div class="post-card-body">'
+      +'<div class="skel-bar" style="width:40%;height:10px;margin-bottom:10px;"></div>'
+      +'<div class="skel-bar" style="width:90%;height:22px;margin-bottom:8px;"></div>'
+      +'<div class="skel-bar" style="width:100%;height:14px;margin-bottom:4px;"></div>'
+      +'<div class="skel-bar" style="width:70%;height:14px;"></div>'
+      +'</div>';
+    grid.appendChild(c);
+  }
+}
+
+function filterCat(cat,btn){
+  activeCategory=cat;
+  document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('active');});
+  if(btn)btn.classList.add('active');
+  renderPosts(cat);
+}
+
+function renderPosts(cat){
+  var grid=document.getElementById('postsGrid');
+  var noPosts=document.getElementById('noPosts');
+  grid.innerHTML='';
+  var filtered=POSTS.filter(function(p){
+    if(cat&&p.category!==cat)return false;
+    return true;
+  });
+  if(filtered.length===0){noPosts.style.display='block';return;}
+  noPosts.style.display='none';
+  filtered.forEach(function(post){
+    var card=document.createElement('div');
+    card.className='post-card';
+    card.onclick=function(){openModal(post.id);};
+    var imgHtml=post.image
+      ?'<img src="'+post.image+'" alt="'+post.title+'" onerror="this.parentNode.innerHTML=\'<div class=post-card-img-placeholder><span>No image</span></div>\'">'
+      :'<div class="post-card-img-placeholder"><span>No image</span></div>';
+    var tagsHtml=post.tags.slice(0,3).map(function(t){return'<span class="post-tag">'+t+'</span>';}).join('');
+    card.innerHTML='<div class="post-card-img">'+imgHtml+'</div>'
+      +'<div class="post-card-body">'
+      +'<div class="post-card-cat">'+post.category+'</div>'
+      +'<div class="post-card-title">'+post.title+'</div>'
+      +'<div class="post-card-excerpt">'+post.excerpt+'</div>'
+      +(tagsHtml?'<div class="post-card-tags">'+tagsHtml+'</div>':'')
+      +'<div class="post-card-meta"><span>'+post.date+'</span><span>'+post.author+'</span></div>'
+      +'</div>';
+    grid.appendChild(card);
+  });
+}
+
+/* ── MODAL ── */
+function openModal(id){
+  var post=POSTS.find(function(p){return p.id===id;});
+  if(!post)return;
+  var img=document.getElementById('modalImg');
+  img.src=post.image||'';img.alt=post.title;
+  if(!post.image)img.style.display='none';else img.style.display='block';
+  document.getElementById('modalCat').textContent=post.category;
+  document.getElementById('modalTitle').textContent=post.title;
+  document.getElementById('modalMeta').textContent=post.date+(post.author?' · '+post.author:'');
+  /* Body — convert \n\n to paragraphs */
+  var paras=post.body.split(/\\n\\n|\n\n/).filter(Boolean);
+  document.getElementById('modalContent').innerHTML=paras.map(function(p){return'<p>'+p+'</p>';}).join('');
+  var tagsHtml=post.tags.map(function(t){return'<span class="post-tag">'+t+'</span>';}).join('');
+  document.getElementById('modalTags').innerHTML=tagsHtml;
+  document.getElementById('postModal').classList.add('open');
+  document.getElementById('postModal').scrollTop=0;
+  document.body.style.overflow='hidden';
+  history.replaceState(null,'','#'+id);
+}
+
+function closeModal(){
+  document.getElementById('postModal').classList.remove('open');
+  document.body.style.overflow='';
+  history.replaceState(null,'','blog.html');
+}
+
+document.getElementById('postModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+
+/* Deep link */
+(function(){
+  var hash=window.location.hash.replace('#','');if(!hash)return;
+  var check=setInterval(function(){
+    if(POSTS.length>0){clearInterval(check);openModal(hash);}
+  },100);
+})();
+
+loadBlog();
+</script>
+</body>
+</html>
