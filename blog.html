@@ -323,15 +323,18 @@
     <a href="dj.html">DJs</a>
     <a href="blog.html">Culture</a>
   </div>
-  <div class="ft-email"><a href="mailto:info@afrocue.xyz">info@afrocue.xyz</a></div>
+  <div class="ft-email"><a href="/cdn-cgi/l/email-protection#6b02050d042b0a0d1904081e0e45131211"><span class="__cf_email__" data-cfemail="f79e999198b796918598948292d98f8e8d">[email&#160;protected]</span></a></div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ══════════════════════════════════════════
    BLOG CSV URL
    Replace BLOG_TAB_GID with your actual
    Blog sheet tab GID from the URL
    ══════════════════════════════════════════ */
+/* ── IMPORTANT: Replace BLOG_TAB_GID below with your Blog tab's GID.
+   Find it by clicking the Blog tab in your sheet — the URL ends in #gid=754830671
+   Also make sure the Blog tab is published: File → Share → Publish to web → Blog tab → CSV ── */
 var BLOG_CSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vSemAPO2lS9b54nmiLq2LUodTRkgBT6ls_iRDUy_Zh6mhIkWf2UsRFvd5zmqfmc-rzeWViOd8rX1LCe/pub?gid=BLOG_TAB_GID&single=true&output=csv';
 
 var POSTS=[];
@@ -550,15 +553,4 @@ function handleShare(){
 }
 
 document.getElementById('postModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
-
-(function(){
-  var hash=window.location.hash.replace('#','');
-  if(!hash)return;
-  var t=setInterval(function(){if(POSTS.length>0){clearInterval(t);openModal(hash);}},100);
-})();
-
-loadBlog();
-</script>
-</body>
-</html>
+document.addEventListener('keydown',function(e){if(e.key==='Escape'
