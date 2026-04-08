@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>You're on the list.</title>
+  <style>
+    body{margin:0;padding:0;background:#0a0a0a;font-family:Arial,sans-serif;-webkit-text-size-adjust:100%;}
+    a{text-decoration:none;}
+    img{border:0;display:block;}
+  </style>
+</head>
+<body style="margin:0;padding:0;background:#0a0a0a;">
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#0a0a0a;">
+<tr><td align="center" style="padding:40px 16px 32px;">
+
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:540px;background:#111111;border:1px solid rgba(255,255,255,0.08);border-radius:6px;overflow:hidden;">
+
+    <!-- Top accent bar -->
+    <tr><td style="background:#C8E000;height:3px;font-size:0;line-height:0;">&nbsp;</td></tr>
+
+    <!-- Header -->
+    <tr>
+      <td style="padding:28px 40px 24px;border-bottom:1px solid rgba(255,255,255,0.06);background-image:url('https://afrocue.xyz/texture.jpg');background-size:cover;background-position:center;">
+        <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" height="32" style="height:32px;width:auto;"/>
+      </td>
+    </tr>
+
+    <!-- Confirmed banner -->
+    <tr>
+      <td style="background:linear-gradient(90deg,#0f2010,#0a1a0a);padding:14px 40px;border-bottom:1px solid rgba(255,255,255,0.06);">
+        <p style="font-size:9px;font-weight:700;letter-spacing:0.26em;text-transform:uppercase;color:#4ade80;margin:0;">&#9679;&nbsp; Guestlist Confirmed</p>
+      </td>
+    </tr>
+
+    <!-- Event name -->
+    <tr>
+      <td style="padding:36px 40px 28px;border-bottom:1px solid rgba(255,255,255,0.06);">
+        <p style="font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#555555;margin:0 0 10px;">You have joined the guestlist</p>
+        <h1 style="font-family:Arial,sans-serif;font-size:36px;font-weight:700;color:#f0ede8;line-height:1;margin:0;letter-spacing:-0.01em;">{{event_name}}</h1>
+        <p style="font-size:13px;font-weight:400;color:rgba(240,237,232,0.35);margin:8px 0 0;letter-spacing:0.04em;">{{event_details}}</p>
+      </td>
+    </tr>
+
+    <!-- Guest details — centered, large, easy to read at door -->
+    <tr>
+      <td style="padding:32px 40px;border-bottom:1px solid rgba(255,255,255,0.06);">
+        <p style="font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#555555;margin:0 0 20px;">Your Details</p>
+
+        <!-- Name -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:16px;">
+          <tr>
+            <td style="background:#0d0d0d;border:1px solid rgba(255,255,255,0.07);border-radius:4px;padding:16px 20px;text-align:center;">
+              <p style="font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#555555;margin:0 0 6px;">Name</p>
+              <p style="font-size:24px;font-weight:700;color:#f0ede8;margin:0;letter-spacing:-0.01em;">{{name}}</p>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Plus one — only shows if filled -->
+        {{plus_one_block}}
+
+        <!-- Party to show at door note -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:8px;">
+          <tr>
+            <td style="background:rgba(200,224,0,0.05);border:1px solid rgba(200,224,0,0.12);border-radius:4px;padding:14px 20px;text-align:center;">
+              <p style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(200,224,0,0.6);margin:0;">Show this email at the door</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- WhatsApp CTA -->
+    <tr>
+      <td style="padding:28px 40px 32px;border-bottom:1px solid rgba(255,255,255,0.06);">
+        <p style="font-size:13px;font-weight:400;color:rgba(240,237,232,0.45);line-height:1.75;margin:0 0 20px;">
+          Follow our WhatsApp channel for party updates, drops, and everything worth knowing.
+        </p>
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td style="background:#25D366;border-radius:3px;">
+              <a href="https://whatsapp.com/channel/0029Vb74IjxGufJ0irS1uq0u"
+                 style="display:inline-block;padding:14px 28px;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#0a0a0a;">
+                Follow on WhatsApp
+              </a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+      <td style="padding:22px 40px 26px;background:#0a0a0a;">
+        <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" height="26" style="display:block;height:26px;width:auto;margin-bottom:10px;"/>
+        <p style="font-size:11px;color:#444444;line-height:1.8;margin:0;">
+          Lagos, Nigeria &nbsp;&middot;&nbsp; &copy; 2026 AfroCue<br>
+          <a href="https://afrocue.xyz" style="color:#444444;">afrocue.xyz</a>
+          &nbsp;&middot;&nbsp;
+          <a href="mailto:info@afrocue.xyz" style="color:#444444;">info@afrocue.xyz</a>
+        </p>
+      </td>
+    </tr>
+
+  </table>
+</td></tr>
+</table>
+
+</body>
+</html>
