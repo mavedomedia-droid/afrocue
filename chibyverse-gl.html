@@ -161,7 +161,7 @@
         </div>
         <div class="card-intro">
           <span class="invite-badge">You're invited</span>
-          <h2>You + 1 have<br>a spot at<br>South Social.</h2>
+          <h2>You + 1 have<br>a seat at<br>South Social.</h2>
           <p>South Social &nbsp;·&nbsp; Praia Lagos<br>Saturday April 10th &nbsp;·&nbsp; From 8PM</p>
           <div class="timer-wrap">
             <svg class="timer-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -210,7 +210,7 @@
 <script>
 /* ── CONFIG ── */
 var PASSWORD     = 'CANADA';          /* stored uppercase for case-insensitive match */
-var GAS_URL      = 'YOUR_GAS_SCRIPT_URL';
+var GAS_URL      = window.AFROCUE_SCRIPT_URL || 'YOUR_GAS_SCRIPT_URL';
 var EVENT_NAME   = 'South Social';
 var FLYER_URL    = 'chibyverse_flyer.jpg'; /* replace with full imgbb URL when ready */
 var TIMER_MINUTES = 5;
@@ -326,7 +326,7 @@ function handleSubmit() {
     utm_campaign: utm.campaign
   };
 
-  if (GAS_URL === 'YOUR_GAS_SCRIPT_URL') {
+  if (!GAS_URL || GAS_URL === 'YOUR_GAS_SCRIPT_URL') {
     onSuccess();
     return;
   }
@@ -347,5 +347,6 @@ function onSuccess() {
   document.getElementById('success').style.display  = 'block';
 }
 </script>
+<script src="afrocue.js"></script>
 </body>
 </html>
