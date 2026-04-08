@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>You've been invited.</title>
+  <meta name="robots" content="noindex"/>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html,body{height:100%;background:#050508;color:#f0ede8;font-family:'Figtree',sans-serif;overflow-x:hidden}
+
+    /* ── PASSWORD SCREEN ── */
+    #pw-screen{position:fixed;inset:0;z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#050508;padding:24px;transition:opacity 0.7s ease}
+    #pw-screen.hiding{opacity:0;pointer-events:none}
+    .pw-noise{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:0.5;pointer-events:none}
+    .pw-wrap{position:relative;z-index:1;width:100%;max-width:340px;display:flex;flex-direction:column;align-items:center;gap:0}
+    .pw-ring{width:72px;height:72px;border-radius:50%;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;margin-bottom:28px;animation:ringpulse 2.8s ease-in-out infinite}
+    @keyframes ringpulse{0%,100%{border-color:rgba(255,255,255,0.08)}50%{border-color:rgba(255,255,255,0.18)}}
+    .pw-label{font-size:9px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:rgba(240,237,232,0.25);margin-bottom:20px}
+    .pw-input-wrap{width:100%;position:relative;margin-bottom:12px}
+    .pw-input{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:16px 20px;color:#f0ede8;font-family:'Figtree',sans-serif;font-size:16px;text-align:center;letter-spacing:0.18em;outline:none;transition:border-color 0.2s;text-transform:uppercase}
+    .pw-input:focus{border-color:rgba(255,255,255,0.25)}
+    .pw-input::placeholder{letter-spacing:0.1em;text-transform:none;color:rgba(240,237,232,0.2);font-size:13px}
+    .pw-btn{width:100%;padding:16px;background:#f0ede8;color:#050508;border:none;border-radius:10px;font-family:'Figtree',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;margin-bottom:10px}
+    .pw-btn:hover{opacity:0.9;transform:scale(1.01)}
+    .pw-btn:active{transform:scale(0.98)}
+    .pw-btn.shake{animation:shake 0.4s ease}
+    @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+    .pw-error{font-size:11px;color:#f87171;text-align:center;height:16px;transition:opacity 0.2s}
+    .pw-error.hidden{opacity:0}
+
+    /* ── LOCK SCREEN (after password) ── */
+    #lock{position:fixed;inset:0;z-index:100;display:none;flex-direction:column;align-items:center;justify-content:center;background:#050508;cursor:pointer;transition:opacity 0.8s ease}
+    #lock.show{display:flex}
+    #lock.hiding{opacity:0;pointer-events:none}
+    .lock-noise{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");opacity:0.4}
+    .lock-pulse{width:80px;height:80px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;animation:pulse 2.4s ease-in-out infinite;margin-bottom:28px;position:relative}
+    .lock-pulse::before{content:'';position:absolute;inset:-12px;border-radius:50%;border:1px solid rgba(255,255,255,0.05);animation:pulse 2.4s ease-in-out infinite 0.4s}
+    .lock-pulse::after{content:'';position:absolute;inset:-24px;border-radius:50%;border:1px solid rgba(255,255,255,0.03);animation:pulse 2.4s ease-in-out infinite 0.8s}
+    @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.08);opacity:0.7}}
+    .lock-text{font-size:11px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(240,237,232,0.3);margin-bottom:8px}
+    .lock-tap{font-size:10px;font-weight:300;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,237,232,0.15);animation:blink 2s ease-in-out infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+    /* ── MAIN PAGE ── */
+    #page{opacity:0;transition:opacity 1s ease 0.3s;pointer-events:none}
+    #page.visible{opacity:1;pointer-events:all}
+
+    .hero{position:relative;overflow:hidden;height:52vw;max-height:520px;min-height:280px}
+    .hero-img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:brightness(0.7)}
+    .hero-grad{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,5,8,0.2) 0%,rgba(5,5,8,0) 30%,rgba(5,5,8,0) 55%,rgba(5,5,8,1) 100%)}
+    .hero-overlay-text{position:absolute;bottom:0;left:0;right:0;padding:0 48px 36px;z-index:2}
+    .hero-eyebrow{font-size:9px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:rgba(240,237,232,0.4);margin-bottom:8px}
+    .hero-title{font-size:clamp(32px,5vw,72px);font-weight:700;line-height:0.92;letter-spacing:-0.02em;color:#f0ede8}
+    .hero-title span{color:#fff;opacity:0.35;display:block;font-weight:300}
+
+    .card-wrap{max-width:680px;margin:-60px auto 0;position:relative;z-index:3;padding:0 24px 80px}
+    .card{background:#0e0e14;border:1px solid rgba(255,255,255,0.08);border-radius:16px;overflow:hidden}
+
+    .card-top{display:grid;grid-template-columns:180px 1fr;gap:0}
+    .card-flyer{aspect-ratio:4/5;overflow:hidden;background:#1a1a22;flex-shrink:0}
+    .card-flyer img{width:100%;height:100%;object-fit:cover;display:block}
+    .card-flyer-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.2)}
+    .card-intro{padding:32px 28px;display:flex;flex-direction:column;justify-content:center;gap:10px;border-left:1px solid rgba(255,255,255,0.06)}
+    .invite-badge{display:inline-flex;align-items:center;gap:6px;font-size:8px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);padding:5px 10px;border-radius:20px;color:rgba(240,237,232,0.6);align-self:flex-start}
+    .invite-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:dot 2s ease-in-out infinite}
+    @keyframes dot{0%,100%{opacity:1}50%{opacity:0.3}}
+    .card-intro h2{font-size:clamp(20px,2.8vw,32px);font-weight:700;line-height:1;letter-spacing:-0.01em;color:#f0ede8}
+    .card-intro p{font-size:13px;font-weight:300;line-height:1.7;color:rgba(240,237,232,0.45);max-width:320px}
+    .timer-wrap{display:flex;align-items:center;gap:8px;margin-top:4px}
+    .timer-icon{width:12px;height:12px;flex-shrink:0;opacity:0.5}
+    .timer-text{font-size:11px;font-weight:400;color:rgba(240,237,232,0.35)}
+    #countdown{color:#f87171;font-weight:600}
+
+    .card-form{padding:28px;border-top:1px solid rgba(255,255,255,0.06)}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+    .field{display:flex;flex-direction:column;gap:6px}
+    .field label{font-size:9px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(240,237,232,0.35)}
+    .field input{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:8px;padding:12px 14px;color:#f0ede8;font-family:'Figtree',sans-serif;font-size:14px;outline:none;transition:border-color 0.2s;width:100%}
+    .field input:focus{border-color:rgba(255,255,255,0.25)}
+    .field input::placeholder{color:rgba(240,237,232,0.2)}
+    .submit-btn{width:100%;margin-top:14px;padding:16px;background:#f0ede8;color:#050508;border:none;border-radius:8px;font-family:'Figtree',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s}
+    .submit-btn:hover{opacity:0.88}
+    .submit-btn:disabled{opacity:0.4;cursor:not-allowed}
+    .form-note{font-size:10px;font-weight:300;color:rgba(240,237,232,0.2);text-align:center;margin-top:10px;line-height:1.6}
+    .field-error{font-size:10px;color:#f87171;margin-top:2px;display:none}
+
+    #success{display:none;padding:52px 28px;text-align:center;border-top:1px solid rgba(255,255,255,0.06)}
+    .success-icon{width:48px;height:48px;border-radius:50%;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+    #success h3{font-size:22px;font-weight:700;color:#f0ede8;margin-bottom:8px}
+    #success p{font-size:13px;font-weight:300;color:rgba(240,237,232,0.45);line-height:1.7;max-width:320px;margin:0 auto}
+
+    #expired{display:none;padding:40px 28px;text-align:center;border-top:1px solid rgba(255,255,255,0.06)}
+    #expired p{font-size:13px;color:rgba(240,237,232,0.35);line-height:1.7}
+
+    @media(max-width:600px){
+      .hero-overlay-text{padding:0 20px 24px}
+      .card-wrap{margin:-40px auto 0;padding:0 16px 60px}
+      .card-top{grid-template-columns:120px 1fr}
+      .card-intro{padding:20px 16px;gap:8px}
+      .card-intro h2{font-size:18px}
+      .card-intro p{font-size:12px}
+      .card-form{padding:20px 16px}
+      .form-row{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div id="pw-screen">
+  <div class="pw-noise"></div>
+  <div class="pw-wrap">
+    <div class="pw-ring">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(240,237,232,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+    </div>
+    <div class="pw-label">Private Invite</div>
+    <div class="pw-input-wrap">
+      <input class="pw-input" id="pwInput" type="text" placeholder="Enter your invite code" autocomplete="off" autocorrect="off" spellcheck="false" onkeydown="if(event.key==='Enter')checkPassword()"/>
+    </div>
+    <button class="pw-btn" id="pwBtn" onclick="checkPassword()">Unlock Invite &rarr;</button>
+    <div class="pw-error hidden" id="pwError">That code isn't right. Try again.</div>
+  </div>
+</div>
+
+<!-- LOCK SCREEN -->
+<div id="lock" onclick="unlock()">
+  <div class="lock-noise"></div>
+  <div class="lock-pulse">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+    </svg>
+  </div>
+  <div class="lock-text">ChibyVerse</div>
+  <div class="lock-tap">Tap to open your invite</div>
+</div>
+
+<!-- MAIN PAGE -->
+<div id="page">
+  <div class="hero">
+    <img class="hero-img" src="chibyverse_hero.jpg" alt="ChibyVerse"
+      onerror="this.style.background='linear-gradient(135deg,#1a0a2e,#0a1a3e,#1a0a1a)';this.removeAttribute('src')"/>
+    <div class="hero-grad"></div>
+    <div class="hero-overlay-text">
+      <div class="hero-eyebrow">An exclusive experience</div>
+      <div class="hero-title">ChibyVerse<span>is calling.</span></div>
+    </div>
+  </div>
+
+  <div class="card-wrap">
+    <div class="card">
+      <div class="card-top">
+        <div class="card-flyer">
+          <img src="chibyverse_flyer.jpg" alt="ChibyVerse Flyer"
+            onerror="this.parentNode.innerHTML='<div class=card-flyer-ph>Flyer</div>'"/>
+        </div>
+        <div class="card-intro">
+          <span class="invite-badge">You're invited</span>
+          <h2>You + 1 have<br>a seat at<br>ChibyVerse.</h2>
+          <p>This invite is personal. Claim it below before the window closes.</p>
+          <div class="timer-wrap">
+            <svg class="timer-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span class="timer-text">Closes in <span id="countdown">5:00</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-form" id="formWrap">
+        <div class="form-row">
+          <div class="field">
+            <label>Your name</label>
+            <input type="text" id="fname" placeholder="First and last name" autocomplete="name"/>
+            <span class="field-error" id="err-fname">Please enter your name</span>
+          </div>
+          <div class="field">
+            <label>Your email</label>
+            <input type="email" id="femail" placeholder="your@email.com" autocomplete="email"/>
+            <span class="field-error" id="err-femail">Please enter a valid email</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Plus one name <span style="font-weight:300;letter-spacing:0;text-transform:none;">(optional)</span></label>
+          <input type="text" id="fplusone" placeholder="Their name if bringing someone"/>
+        </div>
+        <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">Claim My Invite</button>
+        <p class="form-note">One invite per person. This offer expires when the timer hits zero.</p>
+        <span class="field-error" id="err-taken" style="display:none;text-align:center;margin-top:8px;">This email has already claimed an invite.</span>
+      </div>
+
+      <div id="success">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>You're in.</h3>
+        <p>Check your email — we'll send the details closer to the date. See you at ChibyVerse.</p>
+      </div>
+
+      <div id="expired">
+        <p>This invite window has closed.<br>Follow <a href="https://instagram.com/afrocue_" style="color:rgba(240,237,232,0.5);text-decoration:none;">@afrocue_</a> for future events.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── CONFIG ── */
+var PASSWORD     = 'MOIST';          /* stored uppercase for case-insensitive match */
+var GAS_URL      = 'YOUR_GAS_SCRIPT_URL';
+var EVENT_NAME   = 'ChibyVerse April 2026';
+var FLYER_URL    = 'chibyverse_flyer.jpg'; /* replace with full imgbb URL when ready */
+var TIMER_MINUTES = 5;
+
+/* ── PASSWORD ── */
+function checkPassword() {
+  var val = document.getElementById('pwInput').value.trim().toUpperCase();
+  var err = document.getElementById('pwError');
+  var btn = document.getElementById('pwBtn');
+
+  if (val === PASSWORD) {
+    err.classList.add('hidden');
+    var screen = document.getElementById('pw-screen');
+    screen.classList.add('hiding');
+    setTimeout(function() {
+      screen.style.display = 'none';
+      var lock = document.getElementById('lock');
+      lock.classList.add('show');
+    }, 700);
+  } else {
+    err.classList.remove('hidden');
+    btn.classList.add('shake');
+    setTimeout(function(){ btn.classList.remove('shake'); }, 500);
+    document.getElementById('pwInput').value = '';
+  }
+}
+
+/* ── LOCK SCREEN ── */
+function unlock() {
+  var lock = document.getElementById('lock');
+  var page = document.getElementById('page');
+  lock.classList.add('hiding');
+  setTimeout(function() {
+    lock.style.display = 'none';
+    page.classList.add('visible');
+    startTimer();
+  }, 800);
+}
+
+/* ── COUNTDOWN ── */
+var timerInterval = null;
+var secondsLeft   = TIMER_MINUTES * 60;
+var expired       = false;
+
+function startTimer() {
+  timerInterval = setInterval(function() {
+    secondsLeft--;
+    var m  = Math.floor(secondsLeft / 60);
+    var s  = secondsLeft % 60;
+    var el = document.getElementById('countdown');
+    if (el) el.textContent = m + ':' + (s < 10 ? '0' : '') + s;
+    if (secondsLeft <= 0) {
+      clearInterval(timerInterval);
+      expired = true;
+      showExpired();
+    }
+  }, 1000);
+}
+
+function showExpired() {
+  document.getElementById('formWrap').style.display = 'none';
+  document.getElementById('success').style.display  = 'none';
+  document.getElementById('expired').style.display  = 'block';
+}
+
+/* ── UTM PARAMS ── */
+function getUtm() {
+  var p = new URLSearchParams(window.location.search);
+  return {
+    source:   p.get('utm_source')   || '',
+    medium:   p.get('utm_medium')   || '',
+    campaign: p.get('utm_campaign') || ''
+  };
+}
+
+/* ── SUBMIT ── */
+function handleSubmit() {
+  if (expired) { showExpired(); return; }
+
+  var name    = document.getElementById('fname').value.trim();
+  var email   = document.getElementById('femail').value.trim();
+  var plusone = document.getElementById('fplusone').value.trim();
+
+  document.querySelectorAll('.field-error').forEach(function(e){ e.style.display='none'; });
+
+  var valid = true;
+  if (!name)  { document.getElementById('err-fname').style.display='block';  valid=false; }
+  if (!email || email.indexOf('@') === -1) { document.getElementById('err-femail').style.display='block'; valid=false; }
+  if (!valid) return;
+
+  if (sessionStorage.getItem('chibyverse_claimed')) {
+    document.getElementById('err-taken').style.display = 'block';
+    return;
+  }
+
+  var btn = document.getElementById('submitBtn');
+  btn.disabled    = true;
+  btn.textContent = 'Claiming...';
+
+  var utm = getUtm();
+
+  var data = {
+    source:       'chibyverse_invite',
+    event:        EVENT_NAME,
+    name:         name,
+    email:        email,
+    plusone:      plusone,
+    campaign:     EVENT_NAME,
+    flyer_url:    FLYER_URL,
+    password:     PASSWORD,
+    utm_source:   utm.source,
+    utm_medium:   utm.medium,
+    utm_campaign: utm.campaign
+  };
+
+  if (GAS_URL === 'YOUR_GAS_SCRIPT_URL') {
+    onSuccess();
+    return;
+  }
+
+  fetch(GAS_URL, {
+    method:  'POST',
+    mode:    'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify(data)
+  }).finally(function() { onSuccess(); });
+}
+
+function onSuccess() {
+  sessionStorage.setItem('chibyverse_claimed', '1');
+  clearInterval(timerInterval);
+  document.getElementById('formWrap').style.display = 'none';
+  document.getElementById('expired').style.display  = 'none';
+  document.getElementById('success').style.display  = 'block';
+}
+</script>
+</body>
+</html>
