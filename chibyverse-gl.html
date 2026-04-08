@@ -118,7 +118,7 @@
         <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
       </svg>
     </div>
-    <div class="pw-label">Private Invite</div>
+    <div class="pw-label" id="pwLabel">Private Invite</div>
     <div class="pw-input-wrap">
       <input class="pw-input" id="pwInput" type="text" placeholder="Enter your invite code" autocomplete="off" autocorrect="off" spellcheck="false" onkeydown="if(event.key==='Enter')checkPassword()"/>
     </div>
@@ -223,13 +223,21 @@ function checkPassword() {
 
   if (val === PASSWORD) {
     err.classList.add('hidden');
-    var screen = document.getElementById('pw-screen');
-    screen.classList.add('hiding');
+    /* Show verified state first */
+    btn.textContent = '✓  Verified';
+    btn.style.background = '#4ade80';
+    btn.style.color = '#050508';
+    document.getElementById('pwInput').style.borderColor = 'rgba(74,222,128,0.4)';
+    document.getElementById('pwLabel').textContent = 'Code accepted';
     setTimeout(function() {
-      screen.style.display = 'none';
-      var lock = document.getElementById('lock');
-      lock.classList.add('show');
-    }, 700);
+      var screen = document.getElementById('pw-screen');
+      screen.classList.add('hiding');
+      setTimeout(function() {
+        screen.style.display = 'none';
+        var lock = document.getElementById('lock');
+        lock.classList.add('show');
+      }, 700);
+    }, 1200);
   } else {
     err.classList.remove('hidden');
     btn.classList.add('shake');
