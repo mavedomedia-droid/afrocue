@@ -136,7 +136,7 @@
       <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
     </svg>
   </div>
-  <div class="lock-text">ChibyVerse</div>
+  <div class="lock-text">South Social</div>
   <div class="lock-tap">Tap to open your invite</div>
 </div>
 
@@ -148,7 +148,7 @@
     <div class="hero-grad"></div>
     <div class="hero-overlay-text">
       <div class="hero-eyebrow">An exclusive experience</div>
-      <div class="hero-title">ChibyVerse<span>is calling.</span></div>
+      <div class="hero-title">South Social<span>is calling.</span></div>
     </div>
   </div>
 
@@ -161,8 +161,8 @@
         </div>
         <div class="card-intro">
           <span class="invite-badge">You're invited</span>
-          <h2>You + 1 have<br>a seat at<br>ChibyVerse.</h2>
-          <p>This invite is personal. Claim it below before the window closes.</p>
+          <h2>You + 1 have<br>a seat at<br>South Social.</h2>
+          <p>South Social &nbsp;·&nbsp; Praia Lagos<br>Saturday April 10th &nbsp;·&nbsp; From 8PM</p>
           <div class="timer-wrap">
             <svg class="timer-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             <span class="timer-text">Closes in <span id="countdown">5:00</span></span>
@@ -197,7 +197,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
         <h3>You're in.</h3>
-        <p>Check your email — we'll send the details closer to the date. See you at ChibyVerse.</p>
+        <p>Check your email — we'll send the details. See you at South Social, Praia Lagos. April 10th from 8PM.</p>
       </div>
 
       <div id="expired">
@@ -209,9 +209,9 @@
 
 <script>
 /* ── CONFIG ── */
-var PASSWORD     = 'MOIST';          /* stored uppercase for case-insensitive match */
+var PASSWORD     = 'CANADA';          /* stored uppercase for case-insensitive match */
 var GAS_URL      = 'YOUR_GAS_SCRIPT_URL';
-var EVENT_NAME   = 'ChibyVerse April 2026';
+var EVENT_NAME   = 'South Social';
 var FLYER_URL    = 'chibyverse_flyer.jpg'; /* replace with full imgbb URL when ready */
 var TIMER_MINUTES = 5;
 
@@ -301,7 +301,7 @@ function handleSubmit() {
   if (!email || email.indexOf('@') === -1) { document.getElementById('err-femail').style.display='block'; valid=false; }
   if (!valid) return;
 
-  if (sessionStorage.getItem('chibyverse_claimed')) {
+  if (sessionStorage.getItem('southsocial_claimed')) {
     document.getElementById('err-taken').style.display = 'block';
     return;
   }
@@ -340,7 +340,7 @@ function handleSubmit() {
 }
 
 function onSuccess() {
-  sessionStorage.setItem('chibyverse_claimed', '1');
+  sessionStorage.setItem('southsocial_claimed', '1');
   clearInterval(timerInterval);
   document.getElementById('formWrap').style.display = 'none';
   document.getElementById('expired').style.display  = 'none';
