@@ -84,7 +84,7 @@
     .pc-excerpt{font-size:12px;font-weight:300;line-height:1.65;color:rgba(240,237,232,0.38)}
     .pc-meta{font-size:10px;font-weight:300;color:var(--grey);margin-top:auto;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between}
     .pc-tags{margin-top:2px}
-    .pc-tag{font-size:8px;font-weight:300;color:rgba(240,237,232,0.18);letter-spacing:0}
+    .pc-tag{font-size:6px;font-weight:300;color:rgba(240,237,232,0.18);letter-spacing:0}
 
     .skel{background:var(--dark2);cursor:default}
     .skel:hover{background:var(--dark2)}
@@ -488,7 +488,30 @@ function openModal(id){
   shareBtn.className='modal-share';
   shareBtn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share';
   var paras=post.body.split(/\\n\\n|\n\n/).filter(Boolean);
-  var bodyHtml=paras.map(function(p){return'<p>'+p+'</p>';}).join('');
+  var bodyHtml=paras.map(function(p){
+    /* CTA button marker: [CTA:url:Label] */
+    var ctaMatch=p.match(/^\[CTA:([^:]+):([^\]]+)\]$/);
+    if(ctaMatch){
+      return '<div style="margin:8px 0 16px;">'
+        +'<a href="'+ctaMatch[1]+'" target="_blank" rel="noopener" '
+        +'style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:13px 24px;border-radius:2px;text-decoration:none;">'
+        +ctaMatch[2]+'</a></div>';
+    }
+    /* Image marker: [IMG:url:caption] */
+    var imgMatch=p.match(/^\[IMG:([^:]+):?([^\]]*)\]$/);
+    if(imgMatch){
+      var cap=imgMatch[2]?'<p style="font-size:11px;color:var(--grey);margin-top:8px;line-height:1.5;">'+imgMatch[2]+'</p>':'';
+      return '<div style="margin:16px 0;">'
+        +'<img src="'+imgMatch[1]+'" style="width:100%;border-radius:6px;display:block;" loading="lazy"/>'
+        +cap+'</div>';
+    }
+    /* Section heading — lines starting with a number+period */
+    var hdgMatch=p.match(/^(\d+\.\s+.+)$/);
+    if(hdgMatch){
+      return '<p style="font-size:15px;font-weight:600;color:var(--white);margin-bottom:4px;">'+p+'</p>';
+    }
+    return'<p>'+p+'</p>';
+  }).join('');
   if(post.extraImages&&post.extraImages.length){
     var imgStrip='<div style="display:grid;grid-template-columns:repeat('+Math.min(post.extraImages.length,3)+',1fr);gap:4px;margin:20px 0;">';
     post.extraImages.forEach(function(u){imgStrip+='<img src="'+u+'" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;" loading="lazy"/>';});
