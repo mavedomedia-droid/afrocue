@@ -55,7 +55,7 @@
     .feat-text{background:var(--dark);padding:36px 44px;display:flex;flex-direction:column;justify-content:center;gap:10px;border-left:1px solid rgba(255,255,255,0.06)}
     .feat-eyebrow{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--yellow);opacity:0.7;display:flex;align-items:center;gap:8px}
     .feat-eyebrow::before{content:'';width:14px;height:1px;background:var(--yellow);flex-shrink:0}
-    .feat-cat{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;padding:4px 10px;border-radius:2px;background:rgba(200,224,0,0.1);color:var(--yellow);border:1px solid rgba(200,224,0,0.2);align-self:flex-start}
+    .feat-cat{display:none}
     .feat-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(20px,2.2vw,32px);color:var(--white);line-height:1.05}
     .feat-excerpt{font-size:13px;font-weight:300;line-height:1.8;color:rgba(240,237,232,0.5);max-width:380px}
     .feat-meta{font-size:11px;font-weight:300;color:var(--grey)}
@@ -79,13 +79,13 @@
     .post-card:hover .pc-img img{transform:scale(1.04)}
     .pc-img-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
     .pc-img-ph span{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey)}
-    .pc-body{padding:18px 18px 20px;flex:1;display:flex;flex-direction:column;gap:7px}
+    .pc-body{padding:14px 16px 16px;flex:1;display:flex;flex-direction:column;gap:4px}
     .pc-cat{font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--yellow);opacity:0.7}
     .pc-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(14px,1.3vw,18px);color:var(--white);line-height:1.05;flex:1}
-    .pc-excerpt{font-size:12px;font-weight:300;line-height:1.65;color:rgba(240,237,232,0.38)}
+    .pc-excerpt{font-size:11px;font-weight:300;line-height:1.5;color:rgba(240,237,232,0.35)}
     .pc-meta{font-size:10px;font-weight:300;color:var(--grey);margin-top:auto;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between}
-    .pc-tags{margin-top:2px}
-    .pc-tag{font-size:6px;font-weight:300;color:rgba(240,237,232,0.18);letter-spacing:0}
+    .pc-tags{margin-top:1px}
+    .pc-tag{font-size:5px;font-weight:300;color:rgba(240,237,232,0.18);letter-spacing:0}
 
     .skel{background:var(--dark2);cursor:default}
     .skel:hover{background:var(--dark2)}
@@ -226,7 +226,8 @@
       <div class="modal-related-grid" id="mRelGrid"></div>
     </div>
     <!-- WA strip inside modal -->
-    <div style="padding:24px 44px;border-top:1px solid rgba(255,255,255,0.06);background:#0d0d0d;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+    <div style="padding:24px 44px;border-top:1px solid rgba(255,255,255,0.06);background:#0d0d0d;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+      <div style="position:absolute;right:-20px;top:50%;transform:translateY(-50%);opacity:0.04;pointer-events:none;"><svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
       <div style="display:flex;align-items:center;gap:12px;">
         <svg viewBox="0 0 24 24" width="20" height="20" style="flex-shrink:0;" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
         <div>
@@ -277,8 +278,8 @@
     </div>
     <div class="feat-text">
       <div class="feat-eyebrow">Featured</div>
-      <span class="feat-cat" id="fCat"></span>
       <div class="feat-title" id="fTitle"></div>
+      <span class="feat-cat" id="fCat" style="font-size:8px;opacity:0.5;"></span>
       <p class="feat-excerpt" id="fExcerpt"></p>
       <div class="feat-meta" id="fMeta"></div>
       <button class="feat-btn" onclick="openFeatured();return false;">Read &rarr;</button>
@@ -317,6 +318,14 @@
     <svg width="380" height="380" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="0.4" stroke-linecap="round" stroke-linejoin="round">
       <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
       <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+    </svg>
+  </div>
+  <!-- Notification dot overlay -->
+  <div style="position:absolute;right:60px;top:50%;transform:translateY(-65%);opacity:0.04;pointer-events:none;z-index:0;">
+    <svg width="520" height="520" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="0.3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+      <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+      <circle cx="18" cy="5" r="3" fill="#25D366" stroke="none"/>
     </svg>
   </div>
   <div class="wa-inner">
@@ -488,7 +497,7 @@ function renderPosts(cat){
     var tags=post.tags.slice(0,2).join(' · ');
     card.innerHTML='<div class="pc-img">'+imgHtml+'</div>'
       +'<div class="pc-body">'
-      +'<div class="pc-cat">'+post.category+'</div>'
+      +''
       +'<div class="pc-title">'+post.title+'</div>'
       +'<div class="pc-excerpt">'+post.excerpt+'</div>'
       +(tags?'<div class="pc-tags">'+tags+'</div>':'')
