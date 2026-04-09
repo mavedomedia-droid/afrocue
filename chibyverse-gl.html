@@ -5,7 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>You've been invited.</title>
   <meta name="robots" content="noindex"/>
+  <script src="afrocue.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');font-weight:900}
+    @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype');font-weight:500}
+  </style>
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     html,body{height:100%;background:#050508;color:#f0ede8;font-family:'Figtree',sans-serif;overflow-x:hidden}
@@ -52,8 +57,8 @@
     .hero-grad{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,5,8,0.2) 0%,rgba(5,5,8,0) 30%,rgba(5,5,8,0) 55%,rgba(5,5,8,1) 100%)}
     .hero-overlay-text{position:absolute;bottom:0;left:0;right:0;padding:0 48px 36px;z-index:2}
     .hero-eyebrow{font-size:9px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:rgba(240,237,232,0.4);margin-bottom:8px}
-    .hero-title{font-size:clamp(32px,5vw,72px);font-weight:700;line-height:0.92;letter-spacing:-0.02em;color:#f0ede8}
-    .hero-title span{color:#fff;opacity:0.35;display:block;font-weight:300}
+    .hero-title{font-family:'Aesthet Nova',sans-serif;font-size:clamp(32px,5vw,72px);font-weight:900;line-height:0.92;letter-spacing:0;color:#f0ede8}
+    .hero-title span{color:#fff;opacity:0.35;display:block;font-weight:400}
 
     .card-wrap{max-width:680px;margin:-60px auto 0;position:relative;z-index:3;padding:0 24px 80px}
     .card{background:#0e0e14;border:1px solid rgba(255,255,255,0.08);border-radius:16px;overflow:hidden}
@@ -66,7 +71,7 @@
     .invite-badge{display:inline-flex;align-items:center;gap:6px;font-size:8px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);padding:5px 10px;border-radius:20px;color:rgba(240,237,232,0.6);align-self:flex-start}
     .invite-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:dot 2s ease-in-out infinite}
     @keyframes dot{0%,100%{opacity:1}50%{opacity:0.3}}
-    .card-intro h2{font-size:clamp(20px,2.8vw,32px);font-weight:700;line-height:1;letter-spacing:-0.01em;color:#f0ede8}
+    .card-intro h2{font-family:'Aesthet Nova',sans-serif;font-size:clamp(20px,2.8vw,32px);font-weight:900;line-height:0.95;letter-spacing:0;color:#f0ede8}
     .card-intro p{font-size:13px;font-weight:300;line-height:1.7;color:rgba(240,237,232,0.45);max-width:320px}
     .timer-wrap{display:flex;align-items:center;gap:8px;margin-top:4px}
     .timer-icon{width:12px;height:12px;flex-shrink:0;opacity:0.5}
@@ -88,15 +93,17 @@
 
     #success{display:none;padding:52px 28px;text-align:center;border-top:1px solid rgba(255,255,255,0.06)}
     .success-icon{width:48px;height:48px;border-radius:50%;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
-    #success h3{font-size:22px;font-weight:700;color:#f0ede8;margin-bottom:8px}
+    #success h3{font-family:'Aesthet Nova',sans-serif;font-size:28px;font-weight:900;color:#f0ede8;line-height:0.95;margin-bottom:12px}
     #success p{font-size:13px;font-weight:300;color:rgba(240,237,232,0.45);line-height:1.7;max-width:320px;margin:0 auto}
 
     #expired{display:none;padding:40px 28px;text-align:center;border-top:1px solid rgba(255,255,255,0.06)}
     #expired p{font-size:13px;color:rgba(240,237,232,0.35);line-height:1.7}
 
     @media(max-width:600px){
-      .hero-overlay-text{padding:0 20px 24px}
-      .card-wrap{margin:-40px auto 0;padding:0 16px 60px}
+      .hero{min-height:220px;height:44vw}
+      .hero-overlay-text{padding:0 16px 20px}
+      .hero-title{font-size:clamp(26px,8vw,44px)}
+      .card-wrap{margin:0 auto 0;padding:0 16px 60px}
       .card-top{grid-template-columns:120px 1fr}
       .card-intro{padding:20px 16px;gap:8px}
       .card-intro h2{font-size:18px}
@@ -196,8 +203,11 @@
         <div class="success-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <h3>You're in.</h3>
-        <p>Check your email — we'll send the details. See you at South Social, Praia Lagos. April 10th from 8PM.</p>
+        <h3>You've been added<br>to the guestlist.</h3>
+        <p style="margin-top:8px;">At the door, just mention</p>
+        <p style="font-family:'Aesthet Nova',sans-serif;font-size:22px;font-weight:900;color:#f0ede8;margin:8px auto 4px;line-height:1;" id="successName"></p>
+        <p id="successPlusOneWrap" style="display:none;font-size:12px;color:rgba(240,237,232,0.4);margin-bottom:0;">and <span id="successPlusOne" style="color:rgba(240,237,232,0.7);font-weight:500;"></span></p>
+        <p style="margin-top:16px;font-size:12px;">Check your email for confirmation.</p>
       </div>
 
       <div id="expired">
@@ -309,11 +319,6 @@ function handleSubmit() {
   if (!email || email.indexOf('@') === -1) { document.getElementById('err-femail').style.display='block'; valid=false; }
   if (!valid) return;
 
-  if (sessionStorage.getItem('southsocial_claimed')) {
-    document.getElementById('err-taken').style.display = 'block';
-    return;
-  }
-
   var btn = document.getElementById('submitBtn');
   btn.disabled    = true;
   btn.textContent = 'Claiming...';
@@ -348,13 +353,18 @@ function handleSubmit() {
 }
 
 function onSuccess() {
-  sessionStorage.setItem('southsocial_claimed', '1');
   clearInterval(timerInterval);
+  var name    = document.getElementById('fname').value.trim();
+  var plusone = document.getElementById('fplusone').value.trim();
+  document.getElementById('successName').textContent = name;
+  if (plusone) {
+    document.getElementById('successPlusOne').textContent = plusone;
+    document.getElementById('successPlusOneWrap').style.display = 'block';
+  }
   document.getElementById('formWrap').style.display = 'none';
   document.getElementById('expired').style.display  = 'none';
   document.getElementById('success').style.display  = 'block';
 }
 </script>
-<script src="afrocue.js"></script>
 </body>
 </html>
