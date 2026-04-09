@@ -220,11 +220,7 @@
       <div class="modal-divider"></div>
       <div class="modal-content" id="mContent"></div>
       <div class="modal-tags" id="mTags"></div>
-      <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.07);">
-        <a href="parties.html" style="display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--silver);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--silver)'">
-          See our Lagos Parties Directory &rarr;
-        </a>
-      </div>
+
     </div>
     <div class="modal-related" id="mRelated" style="display:none">
       <div class="modal-related-lbl">More posts</div>
@@ -309,14 +305,6 @@
 </section>
 
 <!-- BOTTOM CTA -->
-<div class="bottom-cta">
-  <div>
-    <h3>See the parties.</h3>
-    <p>Browse every rave and event worth knowing about in Lagos.</p>
-  </div>
-  <a href="parties.html" class="btn-y">Party Directory &rarr;</a>
-</div>
-
 <!-- WHATSAPP -->
 <div class="wa">
   <div class="wa-bg">
@@ -541,7 +529,8 @@ function openModal(id){
   var paras=post.body.split(/\\n\\n|\n\n/).filter(Boolean);
   var bodyHtml=paras.map(function(p){
     /* CTA button marker: [CTA:url:Label] */
-    var ctaMatch=p.match(/^\[CTA:([^:]+):([^\]]+)\]$/);
+    var ctaMatch=p.match(/^\[CTA:(https?:\/\/[^:]+(?::[^\]]*)?):([^\]]+)\]$/);
+    if(!ctaMatch) ctaMatch=p.match(/^\[CTA:([^\]]+):([^\]]+)\]$/);
     if(ctaMatch){
       return '<div style="margin:8px 0 16px;">'
         +'<a href="'+ctaMatch[1]+'" target="_blank" rel="noopener" '
@@ -549,7 +538,8 @@ function openModal(id){
         +ctaMatch[2]+'</a></div>';
     }
     /* Image marker: [IMG:url:caption] */
-    var imgMatch=p.match(/^\[IMG:([^:]+):?([^\]]*)\]$/);
+    var imgMatch=p.match(/^\[IMG:(https?:\/\/[^\s\]]+):?([^\]]*)\]$/);
+    if(!imgMatch) imgMatch=p.match(/^\[IMG:([^:]+):?([^\]]*)\]$/);
     if(imgMatch){
       var cap=imgMatch[2]?'<p style="font-size:11px;color:var(--grey);margin-top:8px;line-height:1.5;">'+imgMatch[2]+'</p>':'';
       return '<div style="margin:16px 0;">'
