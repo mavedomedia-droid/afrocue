@@ -10,7 +10,8 @@
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://afrocue.xyz/blog.html"/>
   <meta property="og:title" content="Culture — AfroCue"/>
-  <meta property="og:image" content="https://afrocue.xyz/hero_dj.jpg"/>
+  <!-- OG IMAGE: update this URL to match your current featured post image -->
+  <meta property="og:image" content="https://afrocue.xyz/hero_dj.jpg" id="ogImage"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:site" content="@afrocue_"/>
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
@@ -36,7 +37,7 @@
     .nav-cta:hover{border-color:var(--white);color:var(--white)}
 
     .hero{padding:100px 48px 44px;border-bottom:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden}
-    .hero-bg{position:absolute;inset:0;z-index:0;background-image:url('texture.jpg');background-size:cover;opacity:0.1}
+    .hero-bg{position:absolute;inset:0;z-index:0;background-image:url('blog_hero.jpg');background-size:cover;background-position:center;opacity:0.55}
     .hero-content{position:relative;z-index:1;max-width:1100px}
     .lbl{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);margin-bottom:16px;display:flex;align-items:center;gap:10px;overflow:visible}
     .lbl::before{content:'';width:18px;height:1px;background:var(--silver);flex-shrink:0}
@@ -102,8 +103,10 @@
     .modal-hero-img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--mid)}
     .modal-body{padding:36px 44px 48px}
     .modal-cat{font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--yellow);opacity:0.7;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+    .modal-img-wrap{position:relative}
+    .modal-img-credit{font-size:10px;font-weight:300;color:var(--grey);font-style:italic;padding:6px 0 0;text-align:right}
     .modal-cat::before{content:'';width:14px;height:1px;background:var(--yellow)}
-    .modal-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(28px,4.5vw,52px);color:var(--white);line-height:0.92;margin-bottom:12px}
+    .modal-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(22px,3.2vw,38px);color:var(--white);line-height:1;margin-bottom:12px}
     .modal-meta-row{font-size:11px;font-weight:300;color:var(--grey);margin-bottom:8px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
     .modal-reading{font-size:10px;color:var(--grey);opacity:0.7}
     .modal-share{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--silver);background:transparent;border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:5px 12px;cursor:pointer;font-family:'Figtree',sans-serif;transition:all 0.18s}
@@ -196,13 +199,19 @@
 <div class="modal-wrap" id="postModal">
   <button class="modal-x" onclick="closeModal()">&#x2715;</button>
   <div class="modal">
-    <img class="modal-hero-img" id="mImg" src="" alt=""/>
+    <div class="modal-img-wrap"><img class="modal-hero-img" id="mImg" src="" alt=""/><div class="modal-img-credit" id="mImgCredit" style="display:none;padding:4px 44px 0;background:var(--dark);"></div></div>
     <div class="modal-body">
       <div class="modal-cat" id="mCat"></div>
       <div class="modal-title" id="mTitle"></div>
-      <div class="modal-meta-row">
-        <span id="mMeta"></span>
-        <span class="modal-reading" id="mRead"></span>
+      <div class="modal-meta-row" style="border-bottom:1px solid rgba(255,255,255,0.07);padding-bottom:14px;margin-bottom:14px;">
+        <span id="mMeta" style="display:flex;align-items:center;gap:5px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="11" height="11" style="opacity:0.4"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span id="mMetaText"></span>
+        </span>
+        <span class="modal-reading" id="mRead" style="display:flex;align-items:center;gap:5px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="11" height="11" style="opacity:0.4"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          <span id="mReadText"></span>
+        </span>
         <button class="modal-share" id="mShare" onclick="handleShare()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           Share
@@ -237,6 +246,7 @@
 <!-- HERO -->
 <div class="hero">
   <div class="hero-bg"></div>
+  <div style="position:absolute;inset:0;z-index:0;background:linear-gradient(to bottom,rgba(10,10,10,0.55),rgba(10,10,10,0.75));pointer-events:none;"></div>
   <div class="hero-content">
     <div class="lbl">AfroCue Blog</div>
     <h1>Culture.<br><span class="outline">Documented.</span></h1>
@@ -354,7 +364,7 @@ function parseBlog(text){
   var C={id:c('post id'),title:c('title'),cat:c('category'),excerpt:c('excerpt'),
          body:c('body'),img:c('image url'),date:c('date'),author:c('author'),
          tags:c('tags'),feat:c('featured'),status:c('status'),
-         extra:c('extra images'),caption:c('image caption')};
+         extra:c('extra images'),caption:c('image caption'),credit:c('image credit')};
   var posts=[],featured=null;
   for(var i=1;i<lines.length;i++){
     var r=splitCSV(lines[i]);
@@ -373,7 +383,8 @@ function parseBlog(text){
       tags:(r[C.tags]||'').split(',').map(function(t){return t.trim();}).filter(Boolean),
       featured:(r[C.feat]||'').trim().toLowerCase()==='yes',
       extraImages:(r[C.extra]||'').split(',').map(function(u){return u.trim();}).filter(Boolean),
-      caption:(r[C.caption]||'').trim()
+      caption:(r[C.caption]||'').trim(),
+      credit:(r[C.credit]||'').trim()
     };
     if(p.featured)featured=p;
     posts.push(p);
@@ -480,10 +491,12 @@ function openModal(id){
   var img=document.getElementById('mImg');
   if(post.image){img.src=post.image;img.alt=post.title;img.style.display='block';}
   else{img.style.display='none';}
+  var creditEl=document.getElementById('mImgCredit');
+  if(post.credit&&creditEl){creditEl.textContent=post.credit;creditEl.style.display='block';}else if(creditEl){creditEl.style.display='none';}
   document.getElementById('mCat').textContent=post.category;
   document.getElementById('mTitle').textContent=post.title;
-  document.getElementById('mMeta').textContent=post.date+(post.author?' · '+post.author:'');
-  document.getElementById('mRead').textContent=readingTime(post.body);
+  var metaEl=document.getElementById('mMetaText');if(metaEl)metaEl.textContent=post.date+(post.author?' · '+post.author:'');
+  var readEl=document.getElementById('mReadText');if(readEl)readEl.textContent=readingTime(post.body);
   var shareBtn=document.getElementById('mShare');
   shareBtn.className='modal-share';
   shareBtn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share';
