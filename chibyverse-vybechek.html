@@ -782,7 +782,7 @@
     fetch(GAS_URL, {
       method: 'POST',
       body: JSON.stringify(vals),
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'text/plain' }
     }).catch(function(){}).finally(function(){ goTo('s-ty'); });
   }
 </script>
