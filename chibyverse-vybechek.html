@@ -104,18 +104,18 @@
 
     /* ── STEP TYPOGRAPHY ── */
     .step-label {
-      font-size: 10px; font-weight: 600;
+      font-size: 11px; font-weight: 600;
       letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(255,255,255,0.28); margin-bottom: 10px;
+      color: rgba(255,255,255,0.28); margin-bottom: 12px;
     }
     .step-q {
       font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: clamp(22px, 5.5vw, 32px);
-      color: var(--white); line-height: 0.95; margin-bottom: 8px;
+      font-size: clamp(26px, 6.5vw, 38px);
+      color: var(--white); line-height: 0.95; margin-bottom: 10px;
     }
     .step-hint {
-      font-size: 13px; font-weight: 300;
-      color: rgba(240,237,232,0.38); line-height: 1.65; margin-bottom: 20px;
+      font-size: 15px; font-weight: 300;
+      color: rgba(240,237,232,0.42); line-height: 1.65; margin-bottom: 20px;
     }
 
     /* ── OPTIONS ── */
@@ -132,8 +132,8 @@
     }
     .opt:hover { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); }
     .opt.selected { border-color: var(--yellow); background: rgba(200,224,0,0.08); }
-    .opt-title { font-size: 14px; font-weight: 500; color: var(--white); line-height: 1.3; }
-    .opt-sub { font-size: 11px; font-weight: 300; color: rgba(240,237,232,0.4); margin-top: 3px; }
+    .opt-title { font-size: 15px; font-weight: 600; color: var(--white); line-height: 1.3; }
+    .opt-sub { font-size: 12px; font-weight: 300; color: rgba(240,237,232,0.4); margin-top: 3px; }
 
     /* ── SPONSOR OPTIONS ── */
     .multi-hint {
@@ -161,7 +161,7 @@
     .sponsor-opt.selected .check { background: var(--yellow); border-color: var(--yellow); }
     .check-tick { opacity: 0; transition: opacity 0.15s; }
     .sponsor-opt.selected .check-tick { opacity: 1; }
-    .sponsor-name { font-size: 14px; font-weight: 500; color: var(--white); }
+    .sponsor-name { font-size: 15px; font-weight: 600; color: var(--white); }
 
     /* ── VIBE SLIDER ── */
     .vibe-slider-wrap { margin: 24px 0; }
@@ -202,8 +202,8 @@
       font-size: 10px; font-weight: 600; letter-spacing: 0.16em;
       text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 8px;
     }
-    .notif-card-body { font-size: 13px; font-weight: 300; line-height: 1.7; color: rgba(240,237,232,0.58); }
-    .notif-card-body strong { color: var(--white); font-weight: 500; }
+    .notif-card-body { font-size: 15px; font-weight: 400; line-height: 1.75; color: rgba(240,237,232,0.75); }
+    .notif-card-body strong { color: var(--white); font-weight: 600; }
     .notif-loader { display: flex; gap: 4px; align-items: center; margin-bottom: 8px; }
     .dot-pulse span {
       display: inline-block; width: 5px; height: 5px; border-radius: 50%;
@@ -225,7 +225,7 @@
     }
     .btn-yellow { color: var(--black); background: var(--yellow); }
     .btn-yellow:hover { opacity: 0.88; }
-    .btn-block { display: block; width: 100%; text-align: center; padding: 15px; margin-top: 14px; }
+    .btn-block { display: block; width: 80%; max-width: 320px; margin: 14px auto 0; text-align: center; padding: 15px; }
     .btn:disabled { opacity: 0.45; cursor: not-allowed; }
     .back-btn {
       background: none; border: none; cursor: pointer; font-family: 'Figtree', sans-serif;
@@ -335,36 +335,43 @@
 
     /* ── FOOTER ── */
     .afrocue-footer {
-      margin-top: 44px; text-align: center;
-      padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.05);
+      position: fixed; bottom: 0; left: 0; right: 0;
+      z-index: 10; text-align: center;
+      padding: 10px 0 12px;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255,255,255,0.05);
     }
     .afrocue-footer-label {
       font-size: 9px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(255,255,255,0.18); margin-bottom: 4px;
+      color: rgba(255,255,255,0.18); margin-bottom: 2px;
     }
     .afrocue-footer-brand {
       font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
       font-size: 13px; letter-spacing: 0.1em; color: rgba(200,224,0,0.3);
     }
+    /* give wrap bottom padding so content doesn't hide behind fixed footer */
+    .wrap { padding-bottom: 72px; }
 
     /* ── MOBILE ── */
     @media (max-width: 480px) {
-      .wrap { padding: 32px 20px 64px; }
+      .wrap { padding: 32px 20px 72px; }
       .opts.g2 { grid-template-columns: 1fr 1fr; }
-      .step-q { font-size: clamp(19px, 5.5vw, 26px); }
-      .step-hint { font-size: 12px; }
-      .opt-title { font-size: 13px; }
-      .opt-sub { font-size: 11px; }
-      .sponsor-name { font-size: 13px; }
-      .action-card-title { font-size: 13px; }
-      .action-card-desc { font-size: 11px; }
-      .choice-card-title { font-size: 13px; }
-      .choice-card-sub { font-size: 11px; }
-      .ty-title { font-size: clamp(26px, 8vw, 36px); }
-      .ty-sub { font-size: 13px; }
-      .vibe-readout { font-size: 18px; }
+      .step-q { font-size: clamp(22px, 6vw, 30px); }
+      .step-hint { font-size: 14px; }
+      .opt-title { font-size: 14px; }
+      .opt-sub { font-size: 12px; }
+      .sponsor-name { font-size: 14px; }
+      .action-card-title { font-size: 14px; }
+      .action-card-desc { font-size: 12px; }
+      .choice-card-title { font-size: 14px; }
+      .choice-card-sub { font-size: 12px; }
+      .ty-title { font-size: clamp(28px, 8vw, 38px); }
+      .ty-sub { font-size: 14px; }
+      .vibe-readout { font-size: 20px; }
       .vibe-label-item { font-size: 10px; max-width: 62px; }
-      .notif-card-body { font-size: 12px; }
+      .notif-card-body { font-size: 14px; }
+      .btn-block { width: 90%; }
     }
   </style>
 </head>
@@ -444,9 +451,8 @@
   <!-- TWITTER TIP -->
   <div class="step" id="s-twitter">
     <div class="step-label">Free Game</div>
-    <div class="step-q" style="display:inline-flex;align-items:center;gap:10px;justify-content:center;">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;opacity:0.65;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
-      Connect here tonight.
+    <div class="step-q">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:8px;opacity:0.65;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>Connect here tonight.
     </div>
     <div style="margin-top:20px;">
       <div class="notif-card visible" id="twitterCard">
@@ -649,10 +655,10 @@
   var GAS_URL = window.AFROCUE_SCRIPT_URL || '';
 
   var sponsorHandles = {
-    'Red Bull':       '@redbull',
-    'Pepsi':          '@pepsi',
-    'Smirnoff Ice':   '@smirnoff',
-    'Johnnie Walker': '@johnniewalker',
+    'Red Bull':       '@RedBullNG',
+    'Pepsi':          '@Pepsi._naija',
+    'Smirnoff Ice':   '@smirnoffng',
+    'Johnnie Walker': '@JohnnieWalkerNG',
     'Chowdeck':       '@chowdeck'
   };
 
@@ -692,7 +698,7 @@
     pl.textContent = pct + '%';
   }
 
-  /* ── TWITTER TIP — reveals at 0.8s, auto-advances at 3s ── */
+  /* ── TWITTER TIP — reveals at 0.8s, auto-advances at 5s ── */
   function startTwitterLoader() {
     var dots  = document.getElementById('twitterDots');
     var label = document.getElementById('twitterNotifLabel');
@@ -704,12 +710,12 @@
     setTimeout(function() {
       dots.style.display  = 'none';
       label.style.display = 'block';
-      body.innerHTML = 'Tweet something using <strong>#Chibyverse</strong> or <strong>#SouthSocials</strong>, then search X under Latest — you\'ll find others here tonight doing the same thing.';
+      body.innerHTML = 'Tweet something using <strong>Chibyverse</strong> or <strong>South Socials</strong>, then search X under Latest — you\'ll find others here tonight doing the same thing.';
     }, 800);
 
     setTimeout(function() {
       if (currentStep === 's-twitter') goTo('s-sponsors');
-    }, 3000);
+    }, 5000);
   }
 
   /* ── SPONSORS ── */
