@@ -11,15 +11,10 @@
 
     :root {
       --black:  #0a0a0a;
-      --dark:   #111111;
-      --dark2:  #1c1c1c;
-      --mid:    #2e2e2e;
       --grey:   #555555;
       --silver: #999999;
-      --off:    #d4d4d0;
       --white:  #f0ede8;
       --yellow: #C8E000;
-      --pink:   #FF3DCC;
       --yts:    2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.06);
     }
 
@@ -33,304 +28,186 @@
       overflow-x: hidden;
     }
 
-    /* BG IMAGE */
+    /* ── BACKGROUND LAYERS ── */
     .bg-image {
       position: fixed; inset: 0; z-index: 0;
-      background-image: url('chibyverse_bg.jpg'); /* swap filename here */
-      background-size: cover;
-      background-position: center;
-      opacity: 0.28;
-      pointer-events: none;
+      background-image: url('chibyverse_bg.jpg');
+      background-size: cover; background-position: center;
+      opacity: 0.28; pointer-events: none;
     }
-    /* dark scrim over image */
     .bg-scrim {
       position: fixed; inset: 0; z-index: 1;
-      background: rgba(10,10,10,0.55);
-      pointer-events: none;
+      background: rgba(10,10,10,0.55); pointer-events: none;
     }
-    /* TEXTURE over everything */
     .bg-texture {
       position: fixed; inset: 0; z-index: 2;
       background-image: url('texture.jpg');
-      background-size: cover;
-      opacity: 0.35;
-      pointer-events: none;
+      background-size: cover; opacity: 0.35; pointer-events: none;
     }
 
-    /* WRAPPER */
+    /* ── WRAPPER ── */
     .wrap {
       position: relative; z-index: 3;
-      max-width: 520px;
+      max-width: 480px;
       margin: 0 auto;
-      padding: 48px 24px 80px;
+      padding: 52px 32px 80px;
+      text-align: center;
     }
 
-    /* PARTY HEADER */
-    .party-header {
-      text-align: center;
-      margin-bottom: 36px;
-    }
+    /* ── PARTY HEADER ── */
+    .party-header { margin-bottom: 32px; }
     .party-logo-box {
-      width: 68px; height: 68px;
-      border-radius: 14px;
+      width: 68px; height: 68px; border-radius: 14px;
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.1);
       margin: 0 auto 14px;
       display: flex; align-items: center; justify-content: center;
       overflow: hidden;
     }
-    .party-logo-box img {
-      width: 100%; height: 100%; object-fit: contain;
-    }
+    .party-logo-box img { width: 100%; height: 100%; object-fit: contain; }
     .party-logo-fallback {
-      font-family: 'Aesthet Nova', sans-serif;
-      font-weight: 900;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      color: var(--white);
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: 10px; letter-spacing: 0.12em; color: var(--white);
     }
     .party-name {
-      font-family: 'Aesthet Nova', sans-serif;
-      font-weight: 900;
-      font-size: clamp(26px, 6.5vw, 38px);
-      color: var(--white);
-      line-height: 0.92;
-      margin-bottom: 8px;
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: clamp(24px, 6vw, 36px);
+      color: var(--white); line-height: 0.92; margin-bottom: 8px;
     }
     .party-meta {
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      color: var(--silver);
+      font-size: 11px; font-weight: 400;
+      letter-spacing: 0.08em; color: var(--silver);
     }
-    .party-meta span {
-      color: rgba(255,255,255,0.25);
-      margin: 0 6px;
-    }
+    .party-meta span { color: rgba(255,255,255,0.2); margin: 0 6px; }
 
-    /* DIVIDER */
+    /* ── DIVIDER ── */
     .divider {
-      width: 40px; height: 1px;
+      width: 32px; height: 1px;
       background: rgba(255,255,255,0.1);
       margin: 24px auto;
     }
 
-    /* PROGRESS */
-    .progress-wrap {
-      display: none;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 28px;
-    }
+    /* ── PROGRESS ── */
+    .progress-wrap { display: none; align-items: center; gap: 10px; margin-bottom: 28px; }
     .progress-wrap.visible { display: flex; }
-    .progress-bar {
-      flex: 1; height: 2px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 2px; overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%;
-      background: var(--yellow);
-      border-radius: 2px;
-      width: 0%;
-      transition: width 0.4s ease;
-    }
-    .progress-label {
-      font-size: 11px;
-      color: var(--grey);
-      white-space: nowrap;
-    }
+    .progress-bar { flex: 1; height: 2px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--yellow); border-radius: 2px; width: 0%; transition: width 0.4s ease; }
+    .progress-label { font-size: 11px; color: var(--grey); white-space: nowrap; }
 
-    /* STEPS */
+    /* ── STEPS ── */
     .step { display: none; }
-    .step.active {
-      display: block;
-      animation: fadeUp 0.35s ease both;
-    }
+    .step.active { display: block; animation: fadeUp 0.35s ease both; }
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(10px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* STEP LABELS */
+    /* ── STEP TYPOGRAPHY ── */
     .step-label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.3);
-      margin-bottom: 10px;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.28); margin-bottom: 10px;
     }
     .step-q {
-      font-family: 'Aesthet Nova', sans-serif;
-      font-weight: 900;
-      font-size: clamp(20px, 5.5vw, 30px);
-      color: var(--white);
-      line-height: 0.95;
-      margin-bottom: 6px;
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: clamp(22px, 5.5vw, 32px);
+      color: var(--white); line-height: 0.95; margin-bottom: 8px;
     }
     .step-hint {
-      font-size: 13px;
-      font-weight: 300;
-      color: rgba(240,237,232,0.4);
-      line-height: 1.65;
-      margin-bottom: 20px;
+      font-size: 13px; font-weight: 300;
+      color: rgba(240,237,232,0.38); line-height: 1.65; margin-bottom: 20px;
     }
 
-    /* OPTIONS */
+    /* ── OPTIONS ── */
     .opts { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
     .opts.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .opts.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
 
     .opt {
       border: 1.5px solid rgba(255,255,255,0.1);
-      border-radius: 10px;
-      padding: 14px 16px;
-      cursor: pointer;
-      background: rgba(255,255,255,0.03);
-      text-align: left;
+      border-radius: 10px; padding: 14px 16px;
+      cursor: pointer; background: rgba(255,255,255,0.03);
       font-family: 'Figtree', sans-serif;
       transition: border-color 0.15s, background 0.15s;
-      width: 100%;
-      display: flex; align-items: center; gap: 10px;
+      width: 100%; text-align: center;
     }
-    .opt:hover { border-color: rgba(200,224,0,0.4); background: rgba(200,224,0,0.05); }
-    .opt.selected {
-      border-color: var(--yellow);
-      background: rgba(200,224,0,0.1);
-    }
+    .opt:hover { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); }
+    .opt.selected { border-color: var(--yellow); background: rgba(200,224,0,0.08); }
     .opt-title { font-size: 14px; font-weight: 500; color: var(--white); line-height: 1.3; }
-    .opt-sub { font-size: 12px; font-weight: 300; color: rgba(240,237,232,0.45); margin-top: 2px; }
+    .opt-sub { font-size: 11px; font-weight: 300; color: rgba(240,237,232,0.4); margin-top: 3px; }
 
-    /* MULTI-SELECT hint */
+    /* ── SPONSOR OPTIONS ── */
     .multi-hint {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
-      margin-bottom: 4px;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.22); margin-bottom: 6px;
     }
-
-    /* SPONSOR OPTS */
     .sponsor-opt {
       border: 1.5px solid rgba(255,255,255,0.1);
-      border-radius: 10px;
-      padding: 12px 16px;
-      cursor: pointer;
-      background: rgba(255,255,255,0.03);
+      border-radius: 10px; padding: 13px 16px;
+      cursor: pointer; background: rgba(255,255,255,0.03);
       font-family: 'Figtree', sans-serif;
       transition: border-color 0.15s, background 0.15s;
       display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      text-align: left;
     }
-    .sponsor-opt:hover { border-color: rgba(200,224,0,0.4); background: rgba(200,224,0,0.05); }
-    .sponsor-opt.selected {
-      border-color: var(--yellow);
-      background: rgba(200,224,0,0.1);
-    }
+    .sponsor-opt:hover { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.05); }
+    .sponsor-opt.selected { border-color: var(--yellow); background: rgba(200,224,0,0.08); }
     .sponsor-opt .check {
-      width: 18px; height: 18px;
-      border-radius: 4px;
+      width: 18px; height: 18px; border-radius: 4px;
       border: 1.5px solid rgba(255,255,255,0.2);
-      flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center;
       transition: all 0.15s;
     }
-    .sponsor-opt.selected .check {
-      background: var(--yellow);
-      border-color: var(--yellow);
-    }
-    .check-tick {
-      opacity: 0;
-      transition: opacity 0.15s;
-    }
+    .sponsor-opt.selected .check { background: var(--yellow); border-color: var(--yellow); }
+    .check-tick { opacity: 0; transition: opacity 0.15s; }
     .sponsor-opt.selected .check-tick { opacity: 1; }
     .sponsor-name { font-size: 14px; font-weight: 500; color: var(--white); }
 
-    /* VIBE SLIDER */
+    /* ── VIBE SLIDER ── */
     .vibe-slider-wrap { margin: 24px 0; }
-    .vibe-labels {
-      display: flex; justify-content: space-between;
-      margin-bottom: 10px;
-    }
+    .vibe-labels { display: flex; justify-content: space-between; margin-bottom: 12px; }
     .vibe-label-item {
-      font-size: 11px; font-weight: 300;
-      color: rgba(240,237,232,0.4);
-      max-width: 80px; text-align: center;
-      line-height: 1.4;
+      font-size: 10px; font-weight: 300;
+      color: rgba(240,237,232,0.35); max-width: 72px; line-height: 1.4;
     }
-    .vibe-label-item:last-child { text-align: right; }
     .vibe-label-item:first-child { text-align: left; }
     .vibe-label-item:nth-child(2) { text-align: center; }
-
+    .vibe-label-item:last-child { text-align: right; }
     input[type=range] {
-      -webkit-appearance: none;
-      width: 100%; height: 4px;
-      border-radius: 4px;
-      background: rgba(255,255,255,0.12);
+      -webkit-appearance: none; width: 100%; height: 4px;
+      border-radius: 4px; background: rgba(255,255,255,0.12);
       outline: none; cursor: pointer;
     }
     input[type=range]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 22px; height: 22px;
-      border-radius: 50%;
-      background: var(--yellow);
-      border: 3px solid var(--black);
-      box-shadow: 0 0 0 2px rgba(200,224,0,0.4);
-      transition: box-shadow 0.15s;
+      -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%;
+      background: var(--yellow); border: 3px solid var(--black);
+      box-shadow: 0 0 0 2px rgba(200,224,0,0.35); transition: box-shadow 0.15s;
     }
-    input[type=range]::-webkit-slider-thumb:hover {
-      box-shadow: 0 0 0 5px rgba(200,224,0,0.2);
-    }
-
+    input[type=range]::-webkit-slider-thumb:hover { box-shadow: 0 0 0 5px rgba(200,224,0,0.18); }
     .vibe-readout {
-      text-align: center;
-      margin-top: 16px;
-      font-family: 'Aesthet Nova', sans-serif;
-      font-weight: 900;
-      font-size: 22px;
-      color: var(--yellow);
-      text-shadow: var(--yts);
-      min-height: 28px;
-      transition: all 0.2s;
+      text-align: center; margin-top: 16px;
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: 20px; color: var(--yellow); text-shadow: var(--yts);
+      min-height: 26px; transition: all 0.2s;
     }
 
-    /* NOTIFICATION CARD */
+    /* ── NOTIFICATION CARD ── */
     .notif-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 10px;
-      padding: 16px 18px;
-      margin: 16px 0;
-      display: none;
-      animation: fadeUp 0.3s ease;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px; padding: 18px 20px; margin: 16px 0;
+      display: none; animation: fadeUp 0.3s ease; text-align: left;
     }
     .notif-card.visible { display: block; }
     .notif-card-label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-      margin-bottom: 8px;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 8px;
     }
-    .notif-card-body {
-      font-size: 13px;
-      font-weight: 300;
-      line-height: 1.7;
-      color: rgba(240,237,232,0.6);
-    }
+    .notif-card-body { font-size: 13px; font-weight: 300; line-height: 1.7; color: rgba(240,237,232,0.58); }
     .notif-card-body strong { color: var(--white); font-weight: 500; }
-    .notif-loader {
-      display: flex; gap: 4px; align-items: center;
-      margin-bottom: 8px;
-    }
+    .notif-loader { display: flex; gap: 4px; align-items: center; margin-bottom: 8px; }
     .dot-pulse span {
-      display: inline-block;
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: var(--silver);
-      animation: pulse 1.2s infinite ease-in-out;
+      display: inline-block; width: 5px; height: 5px; border-radius: 50%;
+      background: var(--silver); animation: pulse 1.2s infinite ease-in-out;
     }
     .dot-pulse span:nth-child(2) { animation-delay: 0.2s; }
     .dot-pulse span:nth-child(3) { animation-delay: 0.4s; }
@@ -339,253 +216,142 @@
       40% { transform: scale(1); opacity: 1; }
     }
 
-    /* BUTTONS */
+    /* ── BUTTONS ── */
     .btn {
-      display: inline-block;
-      font-family: 'Figtree', sans-serif;
-      font-size: 12px; font-weight: 600;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 14px 24px; border-radius: 4px;
-      border: none; cursor: pointer;
-      transition: all 0.2s; white-space: nowrap;
-      text-decoration: none;
+      display: inline-block; font-family: 'Figtree', sans-serif;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 14px 24px; border-radius: 4px; border: none; cursor: pointer;
+      transition: all 0.2s; white-space: nowrap; text-decoration: none;
     }
     .btn-yellow { color: var(--black); background: var(--yellow); }
     .btn-yellow:hover { opacity: 0.88; }
-    .btn-ghost {
-      color: var(--silver); background: transparent;
-      border: 1px solid rgba(255,255,255,0.15);
-      font-weight: 500;
-    }
-    .btn-ghost:hover { border-color: var(--white); color: var(--white); }
-    .btn-block { display: block; width: 100%; text-align: center; padding: 15px; margin-top: 12px; }
+    .btn-block { display: block; width: 100%; text-align: center; padding: 15px; margin-top: 14px; }
     .btn:disabled { opacity: 0.45; cursor: not-allowed; }
-
     .back-btn {
-      background: none; border: none; cursor: pointer;
-      font-family: 'Figtree', sans-serif;
-      font-size: 12px; color: rgba(255,255,255,0.3);
-      padding: 0; margin-top: 14px;
-      display: inline-flex; align-items: center; gap: 5px;
-      transition: color 0.2s;
+      background: none; border: none; cursor: pointer; font-family: 'Figtree', sans-serif;
+      font-size: 12px; color: rgba(255,255,255,0.28); padding: 0; margin-top: 16px;
+      display: inline-flex; align-items: center; gap: 5px; transition: color 0.2s;
     }
-    .back-btn:hover { color: rgba(255,255,255,0.6); }
+    .back-btn:hover { color: rgba(255,255,255,0.55); }
 
-    /* CHOICE CARD (CTA section) */
+    /* ── CHOICE CARDS ── */
     .choice-cards { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
     .choice-card {
-      border: 1.5px solid rgba(255,255,255,0.1);
-      border-radius: 10px;
-      padding: 20px 18px;
-      cursor: pointer;
-      background: rgba(255,255,255,0.03);
-      transition: border-color 0.15s, background 0.15s;
-      text-align: left;
+      border: 1.5px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 20px 18px;
+      cursor: pointer; background: rgba(255,255,255,0.03);
+      transition: border-color 0.15s, background 0.15s; text-align: left;
     }
-    .choice-card:hover {
-      border-color: rgba(255,255,255,0.25);
-      background: rgba(255,255,255,0.05);
-    }
-    .choice-card-title {
-      font-size: 14px; font-weight: 600;
-      color: var(--white); margin-bottom: 4px;
-    }
-    .choice-card-sub {
-      font-size: 12px; font-weight: 300;
-      color: rgba(240,237,232,0.4); line-height: 1.5;
-    }
+    .choice-card:hover { border-color: rgba(255,255,255,0.22); background: rgba(255,255,255,0.05); }
     .choice-card-badge {
-      display: inline-block;
-      font-size: 9px; font-weight: 700;
+      display: inline-block; font-size: 9px; font-weight: 700;
       letter-spacing: 0.14em; text-transform: uppercase;
       padding: 3px 8px; border-radius: 2px;
-      background: rgba(200,224,0,0.12);
-      color: rgba(200,224,0,0.7);
-      margin-bottom: 8px;
+      background: rgba(200,224,0,0.1); color: rgba(200,224,0,0.65); margin-bottom: 8px;
     }
+    .choice-card-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+    .choice-card-sub { font-size: 12px; font-weight: 300; color: rgba(240,237,232,0.38); line-height: 1.55; }
 
-    /* SPONSOR ACTION */
+    /* ── ACTION CARDS ── */
     .action-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 10px;
-      padding: 18px 16px;
-      margin-bottom: 8px;
-      cursor: pointer;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px; padding: 16px; margin-bottom: 8px; cursor: pointer;
       transition: border-color 0.15s, background 0.15s;
-      display: flex; align-items: flex-start; gap: 12px;
+      display: flex; align-items: flex-start; gap: 12px; text-align: left;
     }
-    .action-card:hover {
-      border-color: rgba(200,224,0,0.3);
-      background: rgba(200,224,0,0.04);
-    }
-    .action-card.selected {
-      border-color: var(--yellow);
-      background: rgba(200,224,0,0.08);
-    }
+    .action-card:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); }
+    .action-card.selected { border-color: var(--yellow); background: rgba(200,224,0,0.07); }
     .action-card-num {
-      width: 24px; height: 24px;
-      border-radius: 6px;
-      background: rgba(255,255,255,0.06);
+      width: 24px; height: 24px; border-radius: 6px;
+      background: rgba(255,255,255,0.06); flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
-      font-size: 11px; font-weight: 600;
-      color: var(--silver);
-      flex-shrink: 0;
+      font-size: 11px; font-weight: 600; color: var(--silver);
       transition: background 0.15s, color 0.15s;
     }
-    .action-card.selected .action-card-num {
-      background: var(--yellow);
-      color: var(--black);
-    }
-    .action-card-content {}
-    .action-card-title {
-      font-size: 14px; font-weight: 500;
-      color: var(--white); margin-bottom: 4px;
-    }
-    .action-card-desc {
-      font-size: 12px; font-weight: 300;
-      color: rgba(240,237,232,0.45); line-height: 1.55;
-    }
-    .action-card-sub {
-      font-size: 11px; color: rgba(200,224,0,0.6);
-      margin-top: 4px; font-weight: 500;
-    }
-
-    /* WIN GAUGE */
+    .action-card.selected .action-card-num { background: var(--yellow); color: var(--black); }
+    .action-card-title { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 4px; }
+    .action-card-desc { font-size: 12px; font-weight: 300; color: rgba(240,237,232,0.42); line-height: 1.55; }
     .win-gauge-wrap { margin-top: 8px; }
-    .win-gauge-label {
-      font-size: 10px; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--grey); margin-bottom: 5px;
-    }
-    .win-gauge-bar {
-      height: 4px; border-radius: 4px;
-      background: rgba(255,255,255,0.08);
-      overflow: hidden;
-    }
-    .win-gauge-fill {
-      height: 100%; border-radius: 4px;
-      background: var(--yellow);
-      transition: width 0.4s ease;
-    }
+    .win-gauge-label { font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); margin-bottom: 4px; }
+    .win-gauge-bar { height: 3px; border-radius: 4px; background: rgba(255,255,255,0.07); overflow: hidden; }
+    .win-gauge-fill { height: 100%; border-radius: 4px; background: var(--yellow); }
 
-    /* FORM INPUTS */
-    .field { margin-bottom: 12px; }
+    /* ── FORM INPUTS ── */
+    .field { margin-bottom: 12px; text-align: left; }
     .field label {
-      display: block;
-      font-size: 10px; font-weight: 600;
+      display: block; font-size: 10px; font-weight: 600;
       letter-spacing: 0.16em; text-transform: uppercase;
-      color: rgba(255,255,255,0.4); margin-bottom: 6px;
+      color: rgba(255,255,255,0.35); margin-bottom: 6px;
     }
     .field input {
-      width: 100%;
-      padding: 13px 14px;
+      width: 100%; padding: 13px 14px;
       border: 1.5px solid rgba(255,255,255,0.1);
-      border-radius: 8px;
-      background: rgba(255,255,255,0.04);
-      color: var(--white);
-      font-family: 'Figtree', sans-serif;
-      font-size: 16px;
-      outline: none;
-      transition: border-color 0.2s;
+      border-radius: 8px; background: rgba(255,255,255,0.04);
+      color: var(--white); font-family: 'Figtree', sans-serif;
+      font-size: 16px; outline: none; transition: border-color 0.2s;
     }
-    .field input:focus { border-color: rgba(200,224,0,0.4); }
+    .field input:focus { border-color: rgba(200,224,0,0.35); }
     .field input::placeholder { color: var(--grey); }
 
-    /* SELECTED SPONSORS DISPLAY */
-    .selected-sponsors-row {
-      display: flex; flex-wrap: wrap; gap: 6px;
-      margin-bottom: 16px;
+    /* ── ACTION CONFIRM BOX ── */
+    .action-confirm-box {
+      margin-bottom: 20px; padding: 14px 16px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; text-align: left;
     }
-    .sponsor-pill {
-      font-size: 11px; font-weight: 500;
-      padding: 5px 10px; border-radius: 3px;
-      background: rgba(200,224,0,0.12);
-      color: rgba(200,224,0,0.8);
-      border: 1px solid rgba(200,224,0,0.2);
+    .action-confirm-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3); margin-bottom: 5px;
     }
+    .action-confirm-text { font-size: 13px; font-weight: 300; color: var(--white); line-height: 1.55; }
 
-    /* THANK YOU */
+    /* ── THANK YOU ── */
     .ty-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 14px;
-      padding: 32px 24px;
-      text-align: center;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px; padding: 36px 28px; text-align: center;
     }
     .ty-icon {
-      width: 52px; height: 52px;
-      border-radius: 14px;
-      background: rgba(200,224,0,0.12);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 18px;
+      width: 48px; height: 48px; border-radius: 12px;
+      background: rgba(200,224,0,0.1);
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 18px;
     }
     .ty-title {
-      font-family: 'Aesthet Nova', sans-serif;
-      font-weight: 900;
-      font-size: clamp(30px, 7vw, 44px);
-      color: var(--yellow);
-      text-shadow: var(--yts);
-      line-height: 0.92;
-      margin-bottom: 12px;
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: clamp(28px, 7vw, 42px); color: var(--yellow); text-shadow: var(--yts);
+      line-height: 0.92; margin-bottom: 12px;
     }
-    .ty-sub {
-      font-size: 14px; font-weight: 300;
-      color: rgba(240,237,232,0.5);
-      line-height: 1.75; margin-bottom: 20px;
-    }
+    .ty-sub { font-size: 14px; font-weight: 300; color: rgba(240,237,232,0.48); line-height: 1.75; margin-bottom: 20px; }
     .ty-wa-block {
-      margin-top: 20px;
-      padding: 16px 18px;
-      background: rgba(37,211,102,0.08);
-      border: 1px solid rgba(37,211,102,0.2);
-      border-radius: 10px;
+      margin-top: 20px; padding: 18px 20px;
+      background: rgba(37,211,102,0.07); border: 1px solid rgba(37,211,102,0.18); border-radius: 10px;
     }
-    .ty-wa-label {
-      font-size: 13px; font-weight: 400;
-      color: rgba(255,255,255,0.6); line-height: 1.65;
-      margin-bottom: 12px;
-    }
+    .ty-wa-label { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.5); line-height: 1.65; margin-bottom: 14px; }
     .ty-wa-btn {
       display: inline-flex; align-items: center; gap: 8px;
-      background: #25D366; color: #0a0a0a;
-      padding: 11px 20px; border-radius: 6px;
-      font-family: 'Figtree', sans-serif;
-      font-size: 12px; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      text-decoration: none; transition: opacity 0.2s;
+      background: #25D366; color: #0a0a0a; padding: 12px 22px; border-radius: 6px;
+      font-family: 'Figtree', sans-serif; font-size: 12px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: opacity 0.2s;
     }
     .ty-wa-btn:hover { opacity: 0.88; }
 
-    /* AFROCUE FOOTER */
+    /* ── FOOTER ── */
     .afrocue-footer {
-      margin-top: 40px;
-      text-align: center;
-      padding-top: 24px;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: 44px; text-align: center;
+      padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.05);
     }
     .afrocue-footer-label {
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.2);
-      margin-bottom: 4px;
+      font-size: 9px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.18); margin-bottom: 4px;
     }
     .afrocue-footer-brand {
-      font-family: 'Aesthet Nova', sans-serif;
-      font-weight: 900;
-      font-size: 13px;
-      letter-spacing: 0.1em;
-      color: rgba(200,224,0,0.35);
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: 13px; letter-spacing: 0.1em; color: rgba(200,224,0,0.3);
     }
 
+    /* ── MOBILE ── */
     @media (max-width: 480px) {
+      .wrap { padding: 32px 20px 64px; }
       .opts.g2 { grid-template-columns: 1fr 1fr; }
-      .opts.g3 { grid-template-columns: 1fr 1fr; }
-      .wrap { padding: 28px 16px 60px; }
-      .party-name { font-size: clamp(22px, 7vw, 30px); }
-      .step-q { font-size: clamp(18px, 5.5vw, 24px); }
+      .step-q { font-size: clamp(19px, 5.5vw, 26px); }
       .step-hint { font-size: 12px; }
       .opt-title { font-size: 13px; }
       .opt-sub { font-size: 11px; }
@@ -597,7 +363,7 @@
       .ty-title { font-size: clamp(26px, 8vw, 36px); }
       .ty-sub { font-size: 13px; }
       .vibe-readout { font-size: 18px; }
-      .vibe-label-item { font-size: 10px; max-width: 65px; }
+      .vibe-label-item { font-size: 10px; max-width: 62px; }
       .notif-card-body { font-size: 12px; }
     }
   </style>
@@ -618,9 +384,7 @@
       <span class="party-logo-fallback" id="logoFallback" style="display:none;">CHIBYVERSE</span>
     </div>
     <div class="party-name">South Socials</div>
-    <div class="party-meta">
-      Prior Lagos <span>·</span> Friday, April 10th
-    </div>
+    <div class="party-meta">Prior Lagos <span>·</span> Friday, April 10th</div>
   </div>
 
   <div class="divider"></div>
@@ -631,64 +395,62 @@
     <span class="progress-label" id="progressLabel"></span>
   </div>
 
-  <!-- ── STEP 0: WELCOME ── -->
+  <!-- STEP 0: WELCOME -->
   <div class="step active" id="step-0">
     <div class="step-label">VybeChek</div>
     <div class="step-q">Welcome<br>to the night.</div>
-    <p class="step-hint">Take 2 minutes to do a vibe check and potentially win something from our sponsors.</p>
+    <p class="step-hint">2 minutes. A few questions. Potentially win something from our sponsors.</p>
     <button class="btn btn-yellow btn-block" onclick="goTo('s-1')">Start Vibe Check →</button>
   </div>
 
-  <!-- ── STEP 1: HOW DID YOU GET IN ── -->
+  <!-- STEP 1: ENTRY -->
   <div class="step" id="s-1">
     <div class="step-label">Entry</div>
     <div class="step-q">How did you get in tonight?</div>
     <div class="opts g2">
       <button class="opt" onclick="setVal('entry','Online ticket');goTo('s-2')">
-        <div><div class="opt-title">Online ticket</div><div class="opt-sub">Pre-bought</div></div>
+        <div class="opt-title">Online ticket</div><div class="opt-sub">Pre-bought</div>
       </button>
       <button class="opt" onclick="setVal('entry','At the door');goTo('s-2')">
-        <div><div class="opt-title">At the door</div><div class="opt-sub">Walk-in</div></div>
+        <div class="opt-title">At the door</div><div class="opt-sub">Walk-in</div>
       </button>
       <button class="opt" onclick="setVal('entry','Guest list');goTo('s-2')">
-        <div><div class="opt-title">Guest list</div></div>
+        <div class="opt-title">Guest list</div>
       </button>
       <button class="opt" onclick="setVal('entry','Plus one');goTo('s-2')">
-        <div><div class="opt-title">Plus one</div></div>
+        <div class="opt-title">Plus one</div>
       </button>
     </div>
   </div>
 
-  <!-- ── STEP 2: HOW DID YOU COME ── -->
+  <!-- STEP 2: CREW -->
   <div class="step" id="s-2">
     <div class="step-label">Your Crew</div>
     <div class="step-q">How did you come out tonight?</div>
     <div class="opts">
       <button class="opt" onclick="setVal('crew','Solo');goTo('s-twitter')">
-        <div><div class="opt-title">Came alone</div><div class="opt-sub">Flying solo tonight</div></div>
+        <div class="opt-title">Came alone</div><div class="opt-sub">Flying solo tonight</div>
       </button>
       <button class="opt" onclick="setVal('crew','With a friend');goTo('s-twitter')">
-        <div><div class="opt-title">With a friend</div></div>
+        <div class="opt-title">With a friend</div>
       </button>
       <button class="opt" onclick="setVal('crew','With a group');goTo('s-twitter')">
-        <div><div class="opt-title">With a group</div><div class="opt-sub">Squad deep</div></div>
+        <div class="opt-title">With a group</div><div class="opt-sub">Squad deep</div>
       </button>
     </div>
     <button class="back-btn" onclick="goTo('s-1')">← Back</button>
   </div>
 
-  <!-- ── TWITTER LOADING CARD ── -->
+  <!-- TWITTER TIP -->
   <div class="step" id="s-twitter">
     <div class="step-label">Free Game</div>
-    <div class="step-q" style="display:flex;align-items:center;gap:10px;">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;opacity:0.7;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
-      Connect with people here tonight.
+    <div class="step-q" style="display:inline-flex;align-items:center;gap:10px;justify-content:center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;opacity:0.65;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+      Connect here tonight.
     </div>
-    <div style="margin-top: 20px;">
+    <div style="margin-top:20px;">
       <div class="notif-card visible" id="twitterCard">
-        <div class="notif-loader dot-pulse" id="twitterDots">
-          <span></span><span></span><span></span>
-        </div>
+        <div class="notif-loader dot-pulse" id="twitterDots"><span></span><span></span><span></span></div>
         <div class="notif-card-label" id="twitterNotifLabel" style="display:none;">Free Game 🤝</div>
         <div class="notif-card-body" id="twitterNotifBody"></div>
       </div>
@@ -696,13 +458,12 @@
     <button class="back-btn" onclick="goTo('s-2')">← Back</button>
   </div>
 
-  <!-- ── STEP 3: SPONSORS ── -->
+  <!-- STEP 3: SPONSORS -->
   <div class="step" id="s-sponsors">
-    <div class="step-label">Our Sponsors</div>
-    <div class="step-q">Which sponsors are your favourites tonight?</div>
-    <p class="step-hint">Select all that apply.</p>
-    <div class="multi-hint">Multiple choice</div>
-    <div class="opts" id="sponsorsList">
+    <div class="step-label">Tonight's Sponsors</div>
+    <div class="step-q">Which sponsors are your favourites?</div>
+    <div class="multi-hint" style="margin-top:16px;">Select all that apply</div>
+    <div class="opts" id="sponsorsList" style="margin-top:8px;">
       <button class="sponsor-opt" onclick="toggleSponsor(this,'Red Bull')">
         <div><div class="sponsor-name">🐂 Red Bull</div></div>
         <div class="check"><svg class="check-tick" width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -728,34 +489,33 @@
     <button class="back-btn" onclick="goTo('s-twitter')">← Back</button>
   </div>
 
-  <!-- ── STEP 4: VIBE SLIDER ── -->
+  <!-- STEP 4: VIBE SLIDER -->
   <div class="step" id="s-vibe">
     <div class="step-label">Current Vibe</div>
-    <div class="step-q">What is your vibe right now?</div>
+    <div class="step-q">What's your vibe right now?</div>
     <div class="vibe-slider-wrap">
       <div class="vibe-labels">
         <div class="vibe-label-item">Just calm tonight</div>
         <div class="vibe-label-item">Feeling the energy</div>
         <div class="vibe-label-item">I am too active</div>
       </div>
-      <input type="range" id="vibeSlider" min="1" max="10" value="5"
-        oninput="updateVibe(this.value)"/>
+      <input type="range" id="vibeSlider" min="1" max="10" value="5" oninput="updateVibe(this.value)"/>
       <div class="vibe-readout" id="vibeReadout">Feeling the energy</div>
     </div>
-    <button class="btn btn-yellow btn-block" onclick="setVal('vibe', document.getElementById('vibeSlider').value);goTo('s-complete')">Next →</button>
+    <button class="btn btn-yellow btn-block" onclick="setVal('vibe',document.getElementById('vibeSlider').value);goTo('s-complete')">Next →</button>
     <button class="back-btn" onclick="goTo('s-sponsors')">← Back</button>
   </div>
 
-  <!-- ── STEP 5: COMPLETE YOUR VIBE CHECK ── -->
+  <!-- STEP 5: COMPLETE -->
   <div class="step" id="s-complete">
     <div class="step-label">Complete Your Vibe Check</div>
     <div class="step-q">Almost done.</div>
-    <p class="step-hint">How do you want to finish your vibe check?</p>
+    <p class="step-hint">How do you want to finish?</p>
     <div class="choice-cards">
       <div class="choice-card" onclick="goTo('s-engage')">
         <div class="choice-card-badge">Potential reward ✦</div>
         <div class="choice-card-title">Engage with our sponsors</div>
-        <div class="choice-card-sub">Complete an action with a sponsor you picked — and stand a chance to win something from tonight.</div>
+        <div class="choice-card-sub">Complete a sponsor action — stand a chance to win something from tonight.</div>
       </div>
       <div class="choice-card" onclick="goTo('s-email-only')">
         <div class="choice-card-title">Return to your night</div>
@@ -765,42 +525,39 @@
     <button class="back-btn" onclick="goTo('s-vibe')">← Back</button>
   </div>
 
-  <!-- ── STEP 6: SPONSOR ENGAGEMENT ── -->
+  <!-- STEP 6: SPONSOR ENGAGEMENT -->
   <div class="step" id="s-engage">
     <div class="step-label">Sponsor Activity</div>
     <div class="step-q">Pick one action.</div>
-    <p class="step-hint">Your selected sponsors: <span id="engageSponsorsDisplay" style="color:rgba(200,224,0,0.7);"></span></p>
-
+    <p class="step-hint">Your sponsors: <span id="engageSponsorsDisplay" style="color:rgba(200,224,0,0.6);"></span></p>
     <div id="actionsList">
-      <div class="action-card" onclick="selectAction(this,'story','low')" id="action-story">
+      <div class="action-card" onclick="selectAction(this,'story')" id="action-story">
         <div class="action-card-num">1</div>
         <div class="action-card-content">
           <div class="action-card-title">Post a story & tag the sponsor</div>
-          <div class="action-card-desc">Post a story featuring the sponsor's logo and tag their official Instagram. Handles: <span id="storyHandles" style="color:rgba(200,224,0,0.6);"></span></div>
+          <div class="action-card-desc">Post their logo on your story and tag: <span id="storyHandles" style="color:rgba(200,224,0,0.55);"></span></div>
           <div class="win-gauge-wrap">
             <div class="win-gauge-label">Win chance</div>
-            <div class="win-gauge-bar"><div class="win-gauge-fill" style="width:33%;background:rgba(200,224,0,0.5);"></div></div>
+            <div class="win-gauge-bar"><div class="win-gauge-fill" style="width:33%;opacity:0.6;"></div></div>
           </div>
         </div>
       </div>
-
-      <div class="action-card" onclick="selectAction(this,'follow','low')" id="action-follow">
+      <div class="action-card" onclick="selectAction(this,'follow')" id="action-follow">
         <div class="action-card-num">2</div>
         <div class="action-card-content">
           <div class="action-card-title">Follow the sponsor on Instagram</div>
-          <div class="action-card-desc">Follow them using their handle: <span id="followHandles" style="color:rgba(200,224,0,0.6);"></span></div>
+          <div class="action-card-desc">Follow: <span id="followHandles" style="color:rgba(200,224,0,0.55);"></span></div>
           <div class="win-gauge-wrap">
             <div class="win-gauge-label">Win chance</div>
-            <div class="win-gauge-bar"><div class="win-gauge-fill" style="width:50%;"></div></div>
+            <div class="win-gauge-bar"><div class="win-gauge-fill" style="width:55%;"></div></div>
           </div>
         </div>
       </div>
-
-      <div class="action-card" onclick="selectAction(this,'photo','high')" id="action-photo">
+      <div class="action-card" onclick="selectAction(this,'photo')" id="action-photo">
         <div class="action-card-num">3</div>
         <div class="action-card-content">
           <div class="action-card-title">Photo with the sponsor's logo — post & tag</div>
-          <div class="action-card-desc">Take a photo with the sponsor's logo, post it on your story, and tag them: <span id="photoHandles" style="color:rgba(200,224,0,0.6);"></span></div>
+          <div class="action-card-desc">Snap a photo with their logo, post on your story, tag: <span id="photoHandles" style="color:rgba(200,224,0,0.55);"></span></div>
           <div class="win-gauge-wrap">
             <div class="win-gauge-label">Win chance</div>
             <div class="win-gauge-bar"><div class="win-gauge-fill" style="width:90%;"></div></div>
@@ -808,22 +565,19 @@
         </div>
       </div>
     </div>
-
     <button class="btn btn-yellow btn-block" id="engageNextBtn" onclick="goToEngageSubmit()" disabled>Next →</button>
     <button class="back-btn" onclick="goTo('s-complete')">← Back</button>
   </div>
 
-  <!-- ── STEP 7A: ENGAGE SUBMIT (email + ig) ── -->
+  <!-- STEP 7A: ENGAGE SUBMIT -->
   <div class="step" id="s-engage-submit">
     <div class="step-label">Almost There</div>
     <div class="step-q">Drop your details.</div>
     <p class="step-hint">We'll reach out if you win.</p>
-
-    <div id="actionConfirmBox" style="margin-bottom:20px;padding:14px 16px;background:rgba(200,224,0,0.06);border:1px solid rgba(200,224,0,0.15);border-radius:8px;">
-      <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(200,224,0,0.5);margin-bottom:5px;">Your action</div>
-      <div id="actionConfirmText" style="font-size:14px;font-weight:400;color:var(--white);line-height:1.55;"></div>
+    <div class="action-confirm-box">
+      <div class="action-confirm-label">Your action</div>
+      <div class="action-confirm-text" id="actionConfirmText"></div>
     </div>
-
     <div class="field">
       <label>Email</label>
       <input type="email" id="engageEmail" placeholder="your@email.com" oninput="setVal('email',this.value)"/>
@@ -836,7 +590,7 @@
     <button class="back-btn" onclick="goTo('s-engage')">← Back</button>
   </div>
 
-  <!-- ── STEP 7B: EMAIL ONLY ── -->
+  <!-- STEP 7B: EMAIL ONLY -->
   <div class="step" id="s-email-only">
     <div class="step-label">Last Step</div>
     <div class="step-q">Drop your email.</div>
@@ -849,11 +603,11 @@
     <button class="back-btn" onclick="goTo('s-complete')">← Back</button>
   </div>
 
-  <!-- ── THANK YOU ── -->
+  <!-- THANK YOU -->
   <div class="step" id="s-ty">
     <div class="ty-card">
       <div class="ty-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8E000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8E000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
           <polyline points="22 4 12 14.01 9 11.01"/>
         </svg>
@@ -861,16 +615,16 @@
       <div class="ty-title">Vybe<br>Checked.</div>
       <p class="ty-sub" id="tyMessage">Thanks for checking in. Now get back out there and enjoy your night.</p>
       <div class="ty-wa-block">
-        <p class="ty-wa-label">Stay updated on Lagos DJs, parties and dance music culture — join the AfroCue WhatsApp channel.</p>
+        <p class="ty-wa-label">Stay updated on Lagos DJs, parties and dance music — join the AfroCue WhatsApp channel.</p>
         <a href="https://whatsapp.com/channel/0029Vb74IjxGufJ0irS1uq0u" target="_blank" class="ty-wa-btn">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="#0a0a0a"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="#0a0a0a"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
           Follow AfroCue on WhatsApp
         </a>
       </div>
     </div>
   </div>
 
-  <!-- AFROCUE FOOTER -->
+  <!-- FOOTER -->
   <div class="afrocue-footer">
     <div class="afrocue-footer-label">Powered by</div>
     <div class="afrocue-footer-brand">AfroCue VybeChek</div>
@@ -878,14 +632,22 @@
 
 </div>
 
+<script src="afrocue.js"></script>
 <script>
   /* ── STATE ── */
-  var vals = { event: 'Chibyverse South Socials', date: 'Friday, April 10, 2025', venue: 'Prior Lagos' };
+  var vals = {
+    source: 'chibyverse_vybechek',
+    event:  'Chibyverse South Socials',
+    venue:  'Prior Lagos',
+    date:   'Friday, April 10, 2026'
+  };
   var selectedSponsors = [];
-  var selectedAction = null;
-  var currentStep = 'step-0';
+  var selectedAction   = null;
+  var currentStep      = 'step-0';
 
-  /* SPONSOR HANDLES */
+  /* ── CONFIG — uses AFROCUE_SCRIPT_URL from afrocue.js ── */
+  var GAS_URL = window.AFROCUE_SCRIPT_URL || '';
+
   var sponsorHandles = {
     'Red Bull':       '@redbull',
     'Pepsi':          '@pepsi',
@@ -894,11 +656,15 @@
     'Chowdeck':       '@chowdeck'
   };
 
-  /* GAS URL */
-  var GAS_URL = 'https://script.google.com/macros/s/YOUR_GAS_URL_HERE/exec';
+  var vibeLabels = {
+    1:'Just calm tonight', 2:'Just calm tonight',
+    3:'Taking it easy',    4:'Getting into it',
+    5:'Feeling the energy',6:'Vibing hard',
+    7:'Almost peak',       8:'On fire',
+    9:'Too active',        10:'I AM TOO ACTIVE'
+  };
 
-  var steps = ['step-0','s-1','s-2','s-twitter','s-sponsors','s-vibe','s-complete'];
-
+  /* ── NAVIGATION ── */
   function setVal(k, v) { vals[k] = v; }
 
   function goTo(stepId) {
@@ -907,7 +673,6 @@
     currentStep = stepId;
     updateProgress();
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
     if (stepId === 's-twitter') startTwitterLoader();
     if (stepId === 's-engage')  populateEngageHandles();
   }
@@ -927,12 +692,11 @@
     pl.textContent = pct + '%';
   }
 
-  /* TWITTER LOADER — shows tip then auto-advances after 3s */
+  /* ── TWITTER TIP — reveals at 0.8s, auto-advances at 3s ── */
   function startTwitterLoader() {
     var dots  = document.getElementById('twitterDots');
     var label = document.getElementById('twitterNotifLabel');
     var body  = document.getElementById('twitterNotifBody');
-    // reset
     dots.style.display  = 'flex';
     label.style.display = 'none';
     body.innerHTML      = '';
@@ -940,52 +704,38 @@
     setTimeout(function() {
       dots.style.display  = 'none';
       label.style.display = 'block';
-      body.innerHTML = 'Tweet something using <strong>#Chibyverse</strong> or <strong>#SouthSocials</strong>, then search X for those keywords under Latest. You\'ll find others here tonight doing the same thing.';
+      body.innerHTML = 'Tweet something using <strong>#Chibyverse</strong> or <strong>#SouthSocials</strong>, then search X under Latest — you\'ll find others here tonight doing the same thing.';
     }, 800);
 
-    // auto-advance after 3s from when step opens
     setTimeout(function() {
       if (currentStep === 's-twitter') goTo('s-sponsors');
     }, 3000);
   }
 
-  /* SPONSOR TOGGLE */
+  /* ── SPONSORS ── */
   function toggleSponsor(btn, name) {
     var idx = selectedSponsors.indexOf(name);
-    if (idx > -1) {
-      selectedSponsors.splice(idx, 1);
-      btn.classList.remove('selected');
-    } else {
-      selectedSponsors.push(name);
-      btn.classList.add('selected');
-    }
+    if (idx > -1) { selectedSponsors.splice(idx, 1); btn.classList.remove('selected'); }
+    else          { selectedSponsors.push(name);      btn.classList.add('selected'); }
     setVal('sponsors', selectedSponsors.join(', '));
   }
 
-  /* VIBE SLIDER */
-  var vibeLabels = {
-    1: 'Just calm tonight', 2: 'Just calm tonight',
-    3: 'Taking it easy', 4: 'Getting into it',
-    5: 'Feeling the energy', 6: 'Vibing hard',
-    7: 'Almost peak', 8: 'On fire', 9: 'I am too active',
-    10: 'I AM TOO ACTIVE'
-  };
+  /* ── VIBE SLIDER ── */
   function updateVibe(val) {
     document.getElementById('vibeReadout').textContent = vibeLabels[val] || 'Feeling the energy';
     setVal('vibe', val);
   }
 
-  /* POPULATE SPONSOR HANDLES IN ENGAGE SECTION */
+  /* ── ENGAGE ── */
   function populateEngageHandles() {
     var handles = selectedSponsors.map(function(s){ return sponsorHandles[s] || s; }).join(', ');
     document.getElementById('engageSponsorsDisplay').textContent = selectedSponsors.join(', ');
-    document.getElementById('storyHandles').textContent = handles;
+    document.getElementById('storyHandles').textContent  = handles;
     document.getElementById('followHandles').textContent = handles;
-    document.getElementById('photoHandles').textContent = handles;
+    document.getElementById('photoHandles').textContent  = handles;
   }
 
-  /* SELECT ACTION */
-  function selectAction(card, type, level) {
+  function selectAction(card, type) {
     document.querySelectorAll('.action-card').forEach(function(c){ c.classList.remove('selected'); });
     card.classList.add('selected');
     selectedAction = type;
@@ -993,51 +743,41 @@
     document.getElementById('engageNextBtn').disabled = false;
   }
 
-  /* GO TO ENGAGE SUBMIT */
   function goToEngageSubmit() {
     if (!selectedAction) { alert('Please select an action first.'); return; }
     var handles = selectedSponsors.map(function(s){ return sponsorHandles[s] || s; }).join(', ');
     var texts = {
-      story:  'Post a story featuring the sponsor\'s logo and tag: ' + handles,
+      story:  'Post a story with the sponsor logo and tag: ' + handles,
       follow: 'Follow the sponsor on Instagram: ' + handles,
-      photo:  'Take a photo with the sponsor\'s logo, post on your story, and tag: ' + handles
+      photo:  'Take a photo with the sponsor logo, post on your story and tag: ' + handles
     };
     document.getElementById('actionConfirmText').textContent = texts[selectedAction] || '';
     goTo('s-engage-submit');
   }
 
-  /* SUBMIT */
+  /* ── SUBMIT ── */
   function submitVybeCheck(type) {
     var emailEl = type === 'engage'
       ? document.getElementById('engageEmail')
       : document.getElementById('emailOnlyInput');
-
     if (!emailEl.value) { alert('Please enter your email.'); return; }
+
     setVal('email', emailEl.value);
     setVal('completionType', type);
-
-    if (type === 'engage') {
-      var igEl = document.getElementById('engageIg');
-      setVal('igHandle', igEl.value);
-    }
+    if (type === 'engage') setVal('igHandle', document.getElementById('engageIg').value);
 
     var btn = document.getElementById(type === 'engage' ? 'engageSubmitBtn' : 'emailOnlySubmitBtn');
-    btn.disabled = true;
-    btn.textContent = 'Submitting…';
+    btn.disabled = true; btn.textContent = 'Submitting…';
 
-    if (type === 'engage') {
-      document.getElementById('tyMessage').textContent = 'Your action is logged. We\'ll be in touch if you win. Now go enjoy the rest of the night.';
-    } else {
-      document.getElementById('tyMessage').textContent = 'Thanks for checking in. Now get back out there and enjoy your night.';
-    }
+    document.getElementById('tyMessage').textContent = type === 'engage'
+      ? 'Your action is logged. We\'ll be in touch if you win. Enjoy the rest of the night.'
+      : 'Thanks for checking in. Now get back out there and enjoy your night.';
 
     fetch(GAS_URL, {
       method: 'POST',
       body: JSON.stringify(vals),
       headers: { 'Content-Type': 'application/json' }
-    }).catch(function(){}).finally(function(){
-      goTo('s-ty');
-    });
+    }).catch(function(){}).finally(function(){ goTo('s-ty'); });
   }
 </script>
 
