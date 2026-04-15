@@ -203,7 +203,7 @@
     .footer-email a:hover{color:var(--white)}
 
 
-    /* UPCOMING FEATURED SECTION — same as index incoming, slightly thinner */
+    /* UPCOMING FEATURED SECTION */
     .upcoming{display:none;position:relative;overflow:hidden;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06)}
     .upcoming.visible{display:block}
     .upcoming-bg{position:absolute;inset:-20px;z-index:0;background-size:cover;background-position:center;filter:blur(28px) brightness(0.35) saturate(0.6);transform:scale(1.1)}
@@ -216,14 +216,10 @@
     .upcoming-flyer-placeholder span{font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey)}
     .upcoming-left{display:flex;flex-direction:column;justify-content:center;gap:7px;padding:24px 36px;overflow:visible;min-width:0}
     .upcoming-badge{display:inline-flex;align-items:center;gap:5px;font-size:8px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:4px 10px;border-radius:2px;align-self:flex-start;margin-bottom:2px}
-    .upcoming-eyebrow{display:none}
     .upcoming-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(26px,3.2vw,44px);color:var(--yellow);text-shadow:var(--yts);line-height:0.9}
-    .upcoming-namedate{display:none}
     .upcoming-tags{display:flex;gap:6px;flex-wrap:wrap}
     .upcoming-tag{font-size:8px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:3px 8px;border-radius:2px;border:1px solid rgba(200,224,0,0.25);color:rgba(200,224,0,0.7)}
     .upcoming-date{font-size:11px;font-weight:400;color:rgba(240,237,232,0.4);letter-spacing:0.06em}
-    .upcoming-date::before{display:none}
-    .upcoming-desc{display:none}
     .upcoming-btn{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:12px 22px;border-radius:2px;text-decoration:none;cursor:pointer;border:none;font-family:'Figtree',sans-serif;transition:opacity 0.2s;align-self:flex-start;margin-top:2px;white-space:nowrap;flex-shrink:0}
     .upcoming-btn:hover{opacity:0.85}
 
@@ -432,14 +428,11 @@
     </div>
     <div class="upcoming-left">
       <span class="upcoming-badge">&#9733; Featured</span>
-      <div class="upcoming-eyebrow">Next Up</div>
       <div class="upcoming-name" id="upcomingName"></div>
       <div class="upcoming-date" id="upcomingDate"></div>
       <div class="upcoming-tags" id="upcomingTags"></div>
-      <div class="upcoming-desc" id="upcomingDesc"></div>
       <a class="upcoming-btn" id="upcomingBtn" href="#" onclick="openUpcomingModal();return false;">Buy Tickets</a>
     </div>
-  </div>
   </div>
 </div>
 
@@ -699,8 +692,6 @@ function renderUpcoming(party){
   document.getElementById('upcomingTags').innerHTML=allTags.map(function(t){
     return'<span class="upcoming-tag">'+t+'</span>';
   }).join('');
-  var descEl=document.getElementById('upcomingDesc');
-  if(descEl)descEl.textContent=party.description||'';
   var dateEl=document.getElementById('upcomingDate');
   if(party.upcoming_date){
     var rawDate=party.upcoming_date;
