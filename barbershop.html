@@ -707,7 +707,7 @@
         <div class="label">Community Series</div>
         <h1>AfroCue<br><span class="outline">Barbershop.</span></h1>
         <p class="bs-hero-desc">
-          Have you been to <strong>Sunday Service</strong>? Pick a topic (or a few) and speak on it, including hot takes. <strong>This is AfroCue</strong>, + you can submit anonymously. We want your raw, unfiltered take.
+          Have you been to <strong>Sunday Service</strong>? Pick a topic (or a few) and speak on it. Tell us about a moment, a set, the crowd, or even a hot take or something you don't like. This is AfroCue, not Sunday Service &mdash; you can submit anonymously. We want your raw, unfiltered take, whatever you've got.
         </p>
       </div>
 
@@ -835,7 +835,7 @@
     </div>
     <div class="label" style="justify-content:center;">Submitted</div>
     <h2 class="success-h">Got it.</h2>
-    <p class="success-msg">If your entry is featured, we'll tag you (or not). Thanks for saying your mind.</p>
+    <p class="success-msg">If your entry is featured, we'll reach out. Thanks for saying your mind — this is what makes the column work.</p>
     <div class="success-actions">
       <a href="index.html" class="btn btn-yellow">Back to AfroCue</a>
       <button type="button" class="btn btn-ghost" onclick="resetForm()">Submit another</button>
@@ -861,13 +861,15 @@
   </div>
 </footer>
 
+<!-- Shared AfroCue JS (provides submitToGAS, SCRIPT_URL, modal helpers, etc) -->
+<script src="afrocue.js"></script>
+
 <script>
 /* ────────────────────────────────────────────────
    AFROCUE BARBERSHOP — config + logic
+   GAS endpoint comes from afrocue.js (SCRIPT_URL).
+   Submissions go through the shared submitToGAS() helper.
    ──────────────────────────────────────────────── */
-
-/* GAS endpoint — paste deployed Web App URL after redeployment */
-var GAS_ENDPOINT = '';   // e.g. 'https://script.google.com/macros/s/AKfycb.../exec'
 
 /* Subject of the column (sent with payload, used in helper text) */
 var SUBJECT = 'Sunday Service';
@@ -1171,40 +1173,27 @@ function submitForm(withCredit) {
   var clickedBtn = withCredit
     ? document.getElementById('submitCreditBtn')
     : document.getElementById('submitAnonBtn');
-  /* Also try the cancel-into-anon button case */
   if (clickedBtn) clickedBtn.textContent = 'Submitting...';
 
-  /* If GAS endpoint not configured, log + simulate success
-     so the form is testable before the GAS is wired up. */
-  if (!GAS_ENDPOINT) {
-    console.warn('[Barbershop] GAS_ENDPOINT not set. Payload (simulated submit):');
-    console.log(JSON.stringify(payload, null, 2));
-    setTimeout(showSuccess, 700);
+  /* Use the shared submitToGAS() helper from afrocue.js — same pattern as
+     handleNewsletter and handleSignup. Note: GAS web apps return opaque
+     responses in no-cors mode, so we can't tell success from failure here.
+     The .finally() block always fires; we treat that as "submitted". */
+  if (typeof submitToGAS !== 'function') {
+    console.error('[Barbershop] submitToGAS() not found — is afrocue.js loaded?');
+    errEl.textContent = 'Something went wrong loading the page. Please refresh and try again.';
+    errEl.classList.add('visible');
+    /* Re-enable buttons */
+    allBtns.forEach(function(b){ b.classList.remove('loading'); b.disabled = false; });
+    document.getElementById('submitAnonBtn').textContent  = 'Submit anonymously';
+    document.getElementById('getCreditBtn').textContent   = 'Get credit';
+    var sc1 = document.getElementById('submitCreditBtn'); if (sc1) sc1.textContent = 'Submit with credit';
+    var cc1 = document.getElementById('creditCancelBtn');  if (cc1) cc1.textContent = 'Actually, submit anonymously';
     return;
   }
 
-  /* GAS web apps require text/plain to avoid CORS preflight */
-  fetch(GAS_ENDPOINT, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    body: JSON.stringify(payload)
-  })
-  .then(function(){ showSuccess(); })
-  .catch(function(err){
-    console.error('[Barbershop] submit failed', err);
-    errEl.textContent = 'Something went wrong. Please try again in a moment.';
-    errEl.classList.add('visible');
-    /* Re-enable buttons */
-    allBtns.forEach(function(b){
-      b.classList.remove('loading');
-      b.disabled = false;
-    });
-    /* Restore button labels */
-    document.getElementById('submitAnonBtn').textContent   = 'Submit anonymously';
-    document.getElementById('getCreditBtn').textContent    = 'Get credit';
-    var sc = document.getElementById('submitCreditBtn'); if (sc) sc.textContent = 'Submit with credit';
-    var cc = document.getElementById('creditCancelBtn');  if (cc) cc.textContent = 'Actually, submit anonymously';
+  submitToGAS(payload).finally(function() {
+    showSuccess();
   });
 }
 
