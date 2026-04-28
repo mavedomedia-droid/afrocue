@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AfroCue Barbershop — Sunday Service</title>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="apple-touch-icon" href="favicon.png"/>
+  <meta name="description" content="Say your mind. Tell us what Sunday Service means to you. Pick a topic, share your thoughts, and you could be featured in our next AfroCue story."/>
+  <meta name="keywords" content="Sunday Service, Lagos parties, AfroCue, Barbershop, dance music, nightlife, Nigeria"/>
+  <link rel="canonical" href="https://afrocue.xyz/barbershop"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://afrocue.xyz/barbershop"/>
+  <meta property="og:title" content="AfroCue Barbershop — Sunday Service"/>
+  <meta property="og:description" content="Pick a topic, share your thoughts, and you could be featured in our next AfroCue story."/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@afrocue_"/>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-.otf') format('opentype'); font-weight: 400; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthetet-Nova-Light.otf') format('opentype'); font-weight: 300; }
+
+    :root {
+      --black:  #0a0a0a;
+      --dark:   #111111;
+      --dark2:  #1c1c1c;
+      --mid:    #2e2e2e;
+      --grey:   #555555;
+      --silver: #999999;
+      --off:    #d4d4d0;
+      --white:  #f0ede8;
+      --yellow: #C8E000;
+      --pink:   #FF3DCC;
+      --yts:    2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.06);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: 'Figtree', sans-serif; overflow-x: hidden; }
+    .yh { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; color: var(--yellow); text-shadow: var(--yts); line-height: 0.92; }
+
+    /* ── NAV ── (matched from index) */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(10,10,10,0.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 48px; width: auto; display: block; }
+    .nav-logo-fallback { display: none; font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 17px; color: var(--yellow); letter-spacing: 0.08em; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--silver); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); background: var(--white); padding: 10px 20px; border-radius: 2px; text-decoration: none; transition: background 0.2s; white-space: nowrap; }
+    .nav-cta:hover { background: var(--off); }
+
+    /* ── BUTTONS ── (matched) */
+    .btn { display: inline-block; font-family: 'Figtree', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 13px 26px; border-radius: 2px; text-decoration: none; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+    .btn-white { color: var(--black); background: var(--white); }
+    .btn-white:hover { background: var(--off); }
+    .btn-ghost { color: var(--silver); background: transparent; border: 1px solid rgba(255,255,255,0.18); font-weight: 500; }
+    .btn-ghost:hover { border-color: var(--white); color: var(--white); }
+    .btn-yellow { color: var(--black); background: var(--yellow); }
+    .btn-yellow:hover { opacity: 0.88; }
+
+    .label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .label::before { content: ''; width: 18px; height: 1px; background: var(--silver); flex-shrink: 0; }
+
+    section { padding: 100px 48px; }
+
+    /* ── HERO ── */
+    .bs-hero {
+      position: relative;
+      padding: 140px 48px 72px;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .bs-hero-texture {
+      position: absolute; inset: 0; z-index: 0;
+      background-image: url('texture.jpg');
+      background-size: cover; background-position: center;
+      opacity: 0.08; pointer-events: none;
+    }
+    /* Subtle yellow glow accents */
+    .bs-hero-glow {
+      position: absolute; z-index: 0; pointer-events: none;
+      width: 520px; height: 520px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,224,0,0.06) 0%, transparent 60%);
+      filter: blur(60px);
+    }
+    .bs-hero-glow.left  { top: -100px; left: -120px; }
+    .bs-hero-glow.right { bottom: -200px; right: -100px; background: radial-gradient(circle, rgba(255,61,204,0.04) 0%, transparent 60%); }
+
+    /* Two-column hero — text left, portrait flyer right.
+       Stays side-by-side at all viewport widths. The flyer column is sized
+       proportionally so it never crowds the text. */
+    .bs-hero-inner {
+      position: relative; z-index: 1;
+      max-width: 1180px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: 56px;
+      align-items: center;
+    }
+    .bs-hero-text { text-align: left; min-width: 0; }
+    .bs-hero h1 {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      /* Uses cqw (container query units) where supported, falls back to vw.
+         At 380px viewport, 7cqw of the inner = ~34px which fits "Barbershop." */
+      font-size: clamp(34px, 6.5vw, 104px);
+      line-height: 0.9;
+      color: var(--yellow); text-shadow: var(--yts);
+      margin-bottom: 20px;
+      overflow-wrap: normal; word-break: keep-all; hyphens: none;
+    }
+    .bs-hero h1 .outline {
+      -webkit-text-stroke: 1.5px var(--yellow);
+      color: transparent; text-shadow: none;
+    }
+    .bs-hero-desc {
+      font-size: clamp(13px, 1.3vw, 15px);
+      font-weight: 300; line-height: 1.7;
+      color: rgba(240,237,232,0.6);
+      max-width: 560px;
+    }
+    .bs-hero-desc strong {
+      color: var(--white); font-weight: 500;
+    }
+
+    /* Portrait flyer column — same proportions as the incoming-party flyer on the index page.
+       Sized as a fraction of viewport so it scales with the text column. */
+    .bs-hero-flyer-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 3/4;
+      margin-left: auto;
+      border-radius: 6px;
+      overflow: hidden;
+      transform: rotate(1.5deg);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06);
+      transition: transform 0.4s ease;
+    }
+    .bs-hero-flyer-wrap:hover { transform: rotate(0deg); }
+    .bs-hero-flyer-wrap img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    /* Tiny caption ribbon over the flyer corner — also serves as the subject signal */
+    .bs-hero-flyer-tag {
+      position: absolute; bottom: 10px; left: 10px;
+      background: rgba(10,10,10,0.82); backdrop-filter: blur(8px);
+      padding: 6px 10px; border-radius: 2px;
+      font-size: clamp(7px, 0.7vw, 9px);
+      font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--yellow);
+      border: 1px solid rgba(200,224,0,0.18);
+      z-index: 2;
+      max-width: calc(100% - 20px);
+    }
+    /* Fallback when flyer image is missing */
+    .bs-hero-flyer-fallback {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--dark2);
+      background-image: url('texture.jpg');
+      background-size: cover;
+      font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--grey);
+      text-align: center; padding: 20px;
+    }
+    .bs-hero-flyer-fallback::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(10,10,10,0.7);
+    }
+    .bs-hero-flyer-fallback span { position: relative; z-index: 1; }
+
+    /* ── FORM SECTION ── */
+    #bs-form { padding: 80px 48px; position: relative; }
+    .bs-form-inner { max-width: 1100px; margin: 0 auto; }
+
+    /* Step heading */
+    .bs-step {
+      display: flex; align-items: baseline; gap: 14px;
+      margin-bottom: 24px;
+    }
+    .bs-step-num {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: 44px; color: var(--yellow); text-shadow: var(--yts);
+      line-height: 1; flex-shrink: 0;
+    }
+    .bs-step-h {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: clamp(28px, 3.5vw, 44px);
+      line-height: 0.95; color: var(--white);
+    }
+    .bs-step-desc {
+      font-size: 13px; font-weight: 300; line-height: 1.7;
+      color: rgba(240,237,232,0.5);
+      margin-bottom: 36px; margin-top: -12px;
+      max-width: 620px; padding-left: 60px;
+    }
+
+    /* ── TOPIC GRID ── */
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .topic-card {
+      position: relative;
+      background: var(--dark);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 4px;
+      padding: 22px 20px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+      display: flex; align-items: center; gap: 14px;
+      user-select: none;
+      text-align: left;
+      width: 100%;
+      font-family: inherit;
+      color: inherit;
+    }
+    .topic-card:hover { border-color: rgba(255,255,255,0.18); background: var(--dark2); }
+    .topic-card.selected {
+      border-color: var(--yellow);
+      background: rgba(200,224,0,0.05);
+      box-shadow: 0 0 0 1px var(--yellow), 0 0 24px rgba(200,224,0,0.08);
+    }
+    .topic-icon {
+      width: 36px; height: 36px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.04);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s, color 0.2s;
+      color: var(--silver);
+    }
+    .topic-card.selected .topic-icon {
+      background: rgba(200,224,0,0.12);
+      color: var(--yellow);
+    }
+    .topic-icon svg { width: 18px; height: 18px; }
+    .topic-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--white);
+      line-height: 1.3;
+      letter-spacing: 0.01em;
+    }
+    .topic-card.selected .topic-title { color: var(--yellow); }
+    .topic-check {
+      position: absolute;
+      top: 10px; right: 10px;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .topic-card.selected .topic-check {
+      background: var(--yellow);
+      border-color: var(--yellow);
+    }
+    .topic-check svg { width: 10px; height: 10px; opacity: 0; transition: opacity 0.2s; color: var(--black); }
+    .topic-card.selected .topic-check svg { opacity: 1; }
+
+    .topic-helper {
+      font-size: 11px; font-weight: 400;
+      color: var(--grey);
+      margin-top: 6px;
+      font-style: italic;
+    }
+    .topic-counter {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--silver);
+      margin-top: 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .topic-counter strong { color: var(--yellow); font-weight: 600; }
+
+    /* ── DYNAMIC RESPONSE INPUTS ── */
+    .responses-section {
+      margin-top: 56px;
+      padding-top: 56px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: none;
+    }
+    .responses-section.visible { display: block; }
+
+    .response-item {
+      background: var(--dark);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-left: 2px solid var(--yellow);
+      border-radius: 4px;
+      padding: 24px 26px;
+      margin-bottom: 14px;
+      animation: slideIn 0.3s ease;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .response-head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; margin-bottom: 6px;
+    }
+    .response-label {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: 22px; color: var(--yellow); text-shadow: var(--yts);
+      line-height: 1; letter-spacing: 0.01em;
+    }
+    .response-remove {
+      background: none; border: none;
+      color: var(--grey); cursor: pointer;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 4px 8px; transition: color 0.2s;
+    }
+    .response-remove:hover { color: var(--white); }
+    .response-helper {
+      font-size: 12px; font-weight: 300;
+      color: rgba(240,237,232,0.5);
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+    .response-textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 2px;
+      padding: 12px 14px;
+      color: var(--white);
+      /* System font stack — slimmer rendering, no font-load delay,
+         and 16px prevents iOS Safari from zooming the page on focus. */
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.5;
+      outline: none;
+      resize: vertical;
+      min-height: 72px;
+      transition: border-color 0.2s, background 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .response-textarea::placeholder {
+      color: var(--grey);
+      font-style: italic;
+      opacity: 0.7;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    .response-textarea:focus {
+      border-color: rgba(200,224,0,0.4);
+      background: rgba(255,255,255,0.05);
+    }
+    .response-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 8px;
+      font-size: 11px; color: var(--grey);
+    }
+
+    /* ── USER INFO (inputs reused inside credit panel) ── */
+    .userinfo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .userinfo-field {
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .userinfo-field label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--silver);
+    }
+    .userinfo-input-wrap { position: relative; }
+    .userinfo-input-wrap .prefix {
+      position: absolute; left: 12px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--grey); font-size: 13px;
+      pointer-events: none;
+    }
+    .userinfo-field input {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 2px;
+      padding: 12px 14px;
+      color: var(--white);
+      /* System font + 16px to prevent iOS Safari zoom on focus */
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .userinfo-field input.has-prefix { padding-left: 28px; }
+    .userinfo-field input::placeholder { color: var(--grey); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    .userinfo-field input:focus { border-color: rgba(200,224,0,0.4); }
+
+    /* ── SUBMIT BAR ── */
+    .submit-section {
+      margin-top: 56px;
+      padding-top: 36px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .submit-step {
+      display: flex; align-items: baseline; gap: 14px;
+      margin-bottom: 20px;
+    }
+    .submit-step-num {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: 36px; color: var(--yellow); text-shadow: var(--yts);
+      line-height: 1; flex-shrink: 0;
+    }
+    .submit-step-h {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: clamp(24px, 3vw, 36px);
+      line-height: 0.95; color: var(--white);
+    }
+    .submit-summary {
+      font-size: 12px; color: var(--silver); font-weight: 300;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .submit-summary strong { color: var(--yellow); font-weight: 600; }
+
+    /* Two-choice button row */
+    .submit-choice {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .submit-btn {
+      font-family: 'Figtree', sans-serif;
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 16px 20px;
+      border-radius: 2px;
+      border: none; cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s, background 0.2s, border-color 0.2s, color 0.2s;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .submit-btn:active:not(:disabled) { transform: translateY(1px); }
+    .submit-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+    .submit-btn.loading { pointer-events: none; opacity: 0.6; }
+    .submit-btn-anonymous {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+    .submit-btn-anonymous:hover:not(:disabled) {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.04);
+    }
+    .submit-btn-credit {
+      background: var(--white);
+      color: var(--black);
+    }
+    .submit-btn-credit:hover:not(:disabled) { background: var(--off); }
+
+    /* When credit panel is open, the credit button collapses (panel takes over) */
+    .submit-section.credit-open .submit-choice { display: none; }
+
+    /* The credit panel — slides in when "Get credit" is clicked */
+    .credit-panel {
+      display: none;
+      animation: slideIn 0.3s ease;
+    }
+    .submit-section.credit-open .credit-panel { display: block; }
+    .credit-panel-head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; margin-bottom: 18px; flex-wrap: wrap;
+    }
+    .credit-panel-title {
+      font-size: 13px; font-weight: 500;
+      color: var(--white);
+      letter-spacing: 0.02em;
+    }
+    .credit-panel-back {
+      background: none; border: none;
+      color: var(--grey); cursor: pointer;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 4px 0;
+      transition: color 0.2s;
+      font-family: inherit;
+    }
+    .credit-panel-back:hover { color: var(--white); }
+    .credit-final-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .credit-note {
+      font-size: 12px; color: var(--grey);
+      margin-top: 12px;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .submit-error {
+      width: 100%;
+      background: rgba(255,61,204,0.06);
+      border: 1px solid rgba(255,61,204,0.25);
+      border-left: 2px solid var(--pink);
+      padding: 14px 18px;
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--white);
+      border-radius: 2px;
+      display: none;
+    }
+    .submit-error.visible { display: block; }
+
+    /* ── EMPTY / PRE-SELECT STATE ── */
+    .empty-state {
+      margin-top: 56px;
+      padding: 36px 28px;
+      border: 1px dashed rgba(255,255,255,0.08);
+      border-radius: 4px;
+      text-align: center;
+      color: var(--grey);
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+    .empty-state strong { color: var(--silver); font-weight: 500; }
+
+    /* ── SUCCESS STATE ── */
+    #bs-success {
+      display: none;
+      padding: 140px 48px 100px;
+      min-height: 80vh;
+      position: relative;
+      overflow: hidden;
+    }
+    #bs-success.visible { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+    #bs-success .bs-hero-texture { opacity: 0.06; }
+    .success-inner { position: relative; z-index: 1; max-width: 640px; }
+    .success-icon {
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      background: rgba(200,224,0,0.08);
+      border: 1.5px solid var(--yellow);
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-bottom: 28px;
+      box-shadow: 0 0 36px rgba(200,224,0,0.12);
+    }
+    .success-icon svg { width: 36px; height: 36px; color: var(--yellow); }
+    .success-h {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: clamp(48px, 7vw, 88px);
+      color: var(--yellow); text-shadow: var(--yts);
+      line-height: 0.9;
+      margin-bottom: 20px;
+    }
+    .success-msg {
+      font-size: 16px; font-weight: 300; line-height: 1.7;
+      color: rgba(240,237,232,0.7);
+      margin-bottom: 32px;
+      max-width: 480px;
+      margin-left: auto; margin-right: auto;
+    }
+    .success-actions {
+      display: flex; gap: 12px; justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── FOOTER ── (matched) */
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 64px 48px 48px; display: flex; flex-direction: column; align-items: center; gap: 28px; background: var(--dark); text-align: center; }
+    .footer-brand { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .footer-brand img { height: 72px; width: auto; display: block; }
+    .footer-brand p { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); }
+    .footer-links { display: flex; gap: 22px; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-email a { font-size: 11px; color: var(--grey); text-decoration: none; transition: color 0.2s; }
+    .footer-email a:hover { color: var(--white); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .topic-grid { grid-template-columns: repeat(2, 1fr); }
+      .userinfo-grid { grid-template-columns: 1fr; }
+      /* Hero stays side-by-side on tablet — just tighten the gap */
+      .bs-hero-inner { gap: 32px; }
+      .bs-hero-flyer-wrap { max-width: 240px; transform: rotate(1deg); }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      section { padding: 64px 20px; }
+      .bs-hero { padding: 110px 20px 48px; }
+      /* Side-by-side preserved on mobile — text col left, flyer right */
+      .bs-hero-inner {
+        grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+        gap: 18px;
+      }
+      .bs-hero .label { font-size: 9px; margin-bottom: 14px; }
+      .bs-hero .label::before { width: 12px; }
+      .bs-hero h1 { font-size: clamp(28px, 9vw, 48px); margin-bottom: 14px; }
+      .bs-hero h1 .outline { -webkit-text-stroke-width: 1px; }
+      .bs-hero-desc { font-size: 12px; line-height: 1.6; }
+      .bs-hero-flyer-wrap {
+        max-width: 100%;
+        transform: rotate(1deg);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06);
+      }
+      .bs-hero-flyer-tag {
+        font-size: 7px;
+        padding: 4px 7px;
+        bottom: 6px; left: 6px;
+        letter-spacing: 0.14em;
+      }
+
+      #bs-form { padding: 56px 20px; }
+      #bs-success { padding: 120px 20px 80px; }
+
+      .bs-step { gap: 10px; }
+      .bs-step-num { font-size: 32px; }
+      .bs-step-h { font-size: clamp(24px, 6.5vw, 32px); }
+      .bs-step-desc { padding-left: 0; margin-top: 12px; }
+
+      .topic-card { padding: 18px 16px; }
+      .topic-title { font-size: 12px; }
+
+      .response-item { padding: 20px 18px; }
+      .response-label { font-size: 18px; }
+      .response-textarea { font-size: 16px; }
+
+      .submit-step-num { font-size: 28px; }
+      .submit-step-h { font-size: clamp(20px, 6vw, 28px); }
+      .submit-choice { grid-template-columns: 1fr; }
+      .credit-final-row { grid-template-columns: 1fr; }
+      .submit-btn { padding: 16px; }
+
+      footer { padding: 48px 20px 36px; }
+    }
+
+    @media (max-width: 420px) {
+      .topic-grid { grid-template-columns: 1fr; gap: 10px; }
+      /* Give text column slightly more room on the smallest devices */
+      .bs-hero-inner { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 14px; }
+      .bs-hero h1 { font-size: clamp(26px, 8.5vw, 40px); }
+      .bs-hero-desc { font-size: 11px; line-height: 1.55; }
+    }
+  </style>
+</head>
+<body>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="logo_afrocue.png" alt="AfroCue"
+      onerror="this.style.display='none'; document.querySelector('.nav-logo-fallback').style.display='block'"/>
+    <span class="nav-logo-fallback">afro.cue</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="parties.html">Parties</a></li>
+    <li><a href="index.html#content">Content</a></li>
+    <li><a href="index.html#advertise">Get Featured</a></li>
+  </ul>
+  <a href="index.html#join" class="nav-cta">Sign Up</a>
+</nav>
+
+<!-- ─── FORM VIEW ─── -->
+<div id="bs-formview">
+
+  <!-- HERO -->
+  <section class="bs-hero">
+    <div class="bs-hero-texture"></div>
+    <div class="bs-hero-glow left"></div>
+    <div class="bs-hero-glow right"></div>
+
+    <div class="bs-hero-inner">
+
+      <!-- LEFT — text -->
+      <div class="bs-hero-text">
+        <div class="label">Community Series</div>
+        <h1>AfroCue<br><span class="outline">Barbershop.</span></h1>
+        <p class="bs-hero-desc">
+          Have you been to <strong>Sunday Service</strong>? Pick a topic (or a few) and speak on it. Tell us about a moment, a set, the crowd, or even a hot take or something you don't like. This is AfroCue, not Sunday Service &mdash; you can submit anonymously. We want your raw, unfiltered take, whatever you've got.
+        </p>
+      </div>
+
+      <!-- RIGHT — Sunday Service portrait flyer (place sunday_service_flyer.jpg in the root) -->
+      <div class="bs-hero-flyer-wrap">
+        <img src="sunday_service_flyer.jpg" alt="Sunday Service flyer"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+        <div class="bs-hero-flyer-fallback" style="display:none;">
+          <span>sunday_service_flyer.jpg</span>
+        </div>
+        <span class="bs-hero-flyer-tag">Subject &middot; Sunday Service</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section id="bs-form">
+    <div class="bs-form-inner">
+
+      <!-- STEP 1: TOPICS -->
+      <div class="bs-step">
+        <div class="bs-step-num">01</div>
+        <h2 class="bs-step-h">Pick your topics.</h2>
+      </div>
+      <p class="bs-step-desc">Select as many as you want.</p>
+
+      <div class="topic-grid" id="topicGrid">
+        <!-- topic cards injected by JS -->
+      </div>
+
+      <div class="topic-counter" id="topicCounter">
+        <span><strong>0</strong> selected · pick at least one to continue</span>
+      </div>
+
+      <!-- STEP 2: RESPONSES (dynamic) -->
+      <div class="responses-section" id="responsesSection">
+        <div class="bs-step">
+          <div class="bs-step-num">02</div>
+          <h2 class="bs-step-h">Speak on it.</h2>
+        </div>
+        <p class="bs-step-desc">Up to 500 characters per topic.</p>
+
+        <div id="responsesList">
+          <!-- response items injected here -->
+        </div>
+      </div>
+
+      <!-- EMPTY STATE -->
+      <div class="empty-state" id="emptyState">
+        <strong>Pick a topic above</strong> to get started. Your response space will appear right here.
+      </div>
+
+      <!-- SUBMIT (with anonymous / credit choice) -->
+      <div class="submit-section" id="submitSection" style="display:none;">
+
+        <div class="submit-step">
+          <div class="submit-step-num">03</div>
+          <h2 class="submit-step-h">Submit.</h2>
+        </div>
+
+        <div class="submit-summary" id="submitSummary">
+          You're submitting thoughts on <strong>0 topics</strong>.
+        </div>
+
+        <!-- Default state: two buttons side by side -->
+        <div class="submit-choice">
+          <button type="button" class="submit-btn submit-btn-anonymous" id="submitAnonBtn" disabled>Submit anonymously</button>
+          <button type="button" class="submit-btn submit-btn-credit" id="getCreditBtn" disabled>Get credit</button>
+        </div>
+
+        <!-- Reveals when "Get credit" is clicked -->
+        <div class="credit-panel" id="creditPanel">
+          <div class="credit-panel-head">
+            <div class="credit-panel-title">Drop your handle so we can tag you if you're featured.</div>
+            <button type="button" class="credit-panel-back" id="creditBackBtn">&larr; Back</button>
+          </div>
+
+          <div class="userinfo-grid">
+            <div class="userinfo-field">
+              <label>Name</label>
+              <div class="userinfo-input-wrap">
+                <input type="text" id="userName" placeholder="Your name" autocomplete="name"/>
+              </div>
+            </div>
+            <div class="userinfo-field">
+              <label>Twitter</label>
+              <div class="userinfo-input-wrap">
+                <span class="prefix">@</span>
+                <input type="text" id="userTwitter" class="has-prefix" placeholder="handle"/>
+              </div>
+            </div>
+            <div class="userinfo-field">
+              <label>Instagram</label>
+              <div class="userinfo-input-wrap">
+                <span class="prefix">@</span>
+                <input type="text" id="userInstagram" class="has-prefix" placeholder="handle"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="credit-final-row">
+            <button type="button" class="submit-btn submit-btn-anonymous" id="creditCancelBtn">Actually, submit anonymously</button>
+            <button type="button" class="submit-btn submit-btn-credit" id="submitCreditBtn">Submit with credit</button>
+          </div>
+          <p class="credit-note">All fields optional. Whatever you give us is how we'll credit you.</p>
+        </div>
+
+        <div class="submit-error" id="submitError"></div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- ─── SUCCESS VIEW ─── -->
+<section id="bs-success">
+  <div class="bs-hero-texture"></div>
+  <div class="bs-hero-glow left"></div>
+  <div class="success-inner">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+    <div class="label" style="justify-content:center;">Submitted</div>
+    <h2 class="success-h">Got it.</h2>
+    <p class="success-msg">If your entry is featured, we'll reach out. Thanks for saying your mind — this is what makes the column work.</p>
+    <div class="success-actions">
+      <a href="index.html" class="btn btn-yellow">Back to AfroCue</a>
+      <button type="button" class="btn btn-ghost" onclick="resetForm()">Submit another</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a href="index.html" style="text-decoration:none;">
+      <img src="logo_afrocue.png" alt="AfroCue"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+      <span style="display:none;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:48px;letter-spacing:0.08em;color:var(--yellow);">AfroCue</span>
+    </a>
+    <p>Creatively Documenting Culture</p>
+  </div>
+  <div class="footer-links">
+    <a href="index.html#about">About</a>
+    <a href="index.html#content">Content</a>
+    <a href="dj.html">DJ Signup</a>
+    <a href="index.html#advertise">Get Featured</a>
+  </div>
+</footer>
+
+<script>
+/* ────────────────────────────────────────────────
+   AFROCUE BARBERSHOP — config + logic
+   ──────────────────────────────────────────────── */
+
+/* GAS endpoint — paste deployed Web App URL after redeployment */
+var GAS_ENDPOINT = '';   // e.g. 'https://script.google.com/macros/s/AKfycb.../exec'
+
+/* Subject of the column (sent with payload, used in helper text) */
+var SUBJECT = 'Sunday Service';
+
+/* Topics — id is the column key in Sheets, helper is the prompt shown in the textarea */
+var TOPICS = [
+  { id:'street_cred',         title:'Street Cred',
+    helper:"What do you think about Sunday Service's street credibility over time?",
+    sample:"e.g. It used to feel like a secret. Now everyone knows the name — but somehow it still feels earned, not hyped.",
+    icon:'cred' },
+  { id:'location_changes',    title:'Location Changes',
+    helper:"How have the venue changes shaped the experience for you?",
+    sample:"e.g. Each spot had its own energy. The first one was raw, the new one is bigger but I miss the intimacy.",
+    icon:'pin' },
+  { id:'community_crowd',     title:'Community & Crowd',
+    helper:"Talk about the people on the floor — who shows up, the energy, the regulars.",
+    sample:"e.g. Same faces, real ones. You go alone and end up dancing with five strangers who already feel like friends.",
+    icon:'people' },
+  { id:'production_quality',  title:'Production Quality',
+    helper:"Sound, lights, staging, vibe-setting — how does Sunday Service hold up?",
+    sample:"e.g. Sound has always been clean. The lighting in the new space hits different — feels intentional, not flashy.",
+    icon:'speaker' },
+  { id:'dancefloor_energy',   title:'Dancefloor Energy',
+    helper:"What does the floor feel like when it's peaking?",
+    sample:"e.g. Around 2am the room locks in. No phones, no posing — just everyone moving like one thing.",
+    icon:'wave' },
+  { id:'local_talent',        title:'Spotlighting Local Talent',
+    helper:"How well does Sunday Service champion Nigerian DJs and acts?",
+    sample:"e.g. They give local DJs real slots, not warm-up scraps. That's where I first heard half my favourites.",
+    icon:'star' },
+  { id:'international_acts',  title:'International Acts',
+    helper:"Thoughts on the international names brought through — hits, misses, surprises?",
+    sample:"e.g. The bookings have been smart — names I actually wanted to see, not just whoever's trending on TikTok.",
+    icon:'globe' },
+  { id:'consistency',         title:'Consistency Over Time',
+    helper:"Has it stayed true to itself? Drifted? Improved? Be specific.",
+    sample:"e.g. Bigger now, sure, but the core is the same. Music first, scene second. That hasn't moved.",
+    icon:'clock' },
+  { id:'first_experience',    title:'First Experience',
+    helper:"Tell us about your first Sunday Service — what stuck, what surprised you.",
+    sample:"e.g. My first time was 2023. I came for one DJ, stayed till close, and didn't stop talking about it for a week.",
+    icon:'door' },
+  { id:'memorable_moment',    title:'Memorable Moment',
+    helper:"One moment, one set, one drop, one night. The one you still talk about.",
+    sample:"e.g. That night the power cut for ten seconds and the whole room kept singing the hook acapella. Still gives me chills.",
+    icon:'sparkle' },
+  { id:'hot_takes',           title:'Hot Takes',
+    helper:"Anything spicy? Unpopular opinion? Drop it here — we're listening.",
+    sample:"e.g. The early sets are honestly better than the headliners half the time. Nobody wants to admit it.",
+    icon:'flame' }
+];
+
+/* Inline SVG icon set — simple line style, matches IG icon in index hero */
+var ICONS = {
+  cred:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 8.5 22 9.3 17 14 18.2 21 12 17.8 5.8 21 7 14 2 9.3 9 8.5 12 2"/></svg>',
+  pin:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+  people:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+  speaker: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="14" r="4"/><line x1="12" y1="6" x2="12.01" y2="6"/></svg>',
+  wave:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="12" x2="6" y2="18"/><line x1="10" y1="6" x2="10" y2="18"/><line x1="14" y1="9" x2="14" y2="18"/><line x1="18" y1="4" x2="18" y2="18"/></svg>',
+  star:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>',
+  globe:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+  clock:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+  door:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>',
+  sparkle: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 6 6 2-6 2-2 6-2-6-6-2 6-2 2-6z"/></svg>',
+  flame:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>'
+};
+
+/* ── State ── */
+var selected = {};   // { topic_id: response_text }
+var MAX_CHARS = 500;
+
+/* ── Render topic cards ── */
+function renderTopics() {
+  var grid = document.getElementById('topicGrid');
+  grid.innerHTML = '';
+  TOPICS.forEach(function(t) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'topic-card';
+    btn.setAttribute('data-id', t.id);
+    btn.setAttribute('aria-pressed', 'false');
+    btn.innerHTML =
+      '<div class="topic-icon">'+ICONS[t.icon]+'</div>'+
+      '<div class="topic-title">'+t.title+'</div>'+
+      '<div class="topic-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>';
+    btn.onclick = function() { toggleTopic(t.id); };
+    grid.appendChild(btn);
+  });
+}
+
+/* ── Toggle a topic card ── */
+function toggleTopic(id) {
+  if (id in selected) {
+    delete selected[id];
+  } else {
+    selected[id] = '';
+  }
+  syncUI();
+}
+
+/* ── Remove from response item ── */
+function removeTopic(id) {
+  delete selected[id];
+  syncUI();
+}
+
+/* ── Sync all UI from state ── */
+function syncUI() {
+  /* topic cards visual state */
+  var cards = document.querySelectorAll('.topic-card');
+  cards.forEach(function(c) {
+    var id = c.getAttribute('data-id');
+    if (id in selected) {
+      c.classList.add('selected');
+      c.setAttribute('aria-pressed','true');
+    } else {
+      c.classList.remove('selected');
+      c.setAttribute('aria-pressed','false');
+    }
+  });
+
+  /* counter */
+  var count = Object.keys(selected).length;
+  var counterEl = document.getElementById('topicCounter');
+  if (count === 0) {
+    counterEl.innerHTML = '<span><strong>0</strong> selected · pick at least one to continue</span>';
+  } else {
+    counterEl.innerHTML = '<span><strong>'+count+'</strong> '+(count===1?'topic':'topics')+' selected</span>';
+  }
+
+  /* responses section */
+  var respSec = document.getElementById('responsesSection');
+  var subSec  = document.getElementById('submitSection');
+  var emptyEl = document.getElementById('emptyState');
+  var listEl  = document.getElementById('responsesList');
+
+  if (count === 0) {
+    respSec.classList.remove('visible');
+    subSec.style.display = 'none';
+    /* Also collapse the credit panel back to default state if user removed all topics */
+    subSec.classList.remove('credit-open');
+    emptyEl.style.display = 'block';
+    return;
+  }
+
+  emptyEl.style.display = 'none';
+  respSec.classList.add('visible');
+  subSec.style.display = 'block';
+
+  /* render response items — preserve textarea values in `selected` */
+  /* only add/remove items, don't blow away the DOM each time (keeps focus + values) */
+  var existingIds = Array.prototype.map.call(
+    listEl.querySelectorAll('.response-item'),
+    function(el){ return el.getAttribute('data-id'); }
+  );
+  var wantedIds = Object.keys(selected);
+
+  /* remove items no longer wanted */
+  existingIds.forEach(function(id){
+    if (wantedIds.indexOf(id) === -1) {
+      var el = listEl.querySelector('.response-item[data-id="'+id+'"]');
+      if (el) el.remove();
+    }
+  });
+
+  /* add missing items in TOPICS order so the response list stays in card order */
+  TOPICS.forEach(function(t){
+    if (!(t.id in selected)) return;
+    if (existingIds.indexOf(t.id) !== -1) return;
+    var item = document.createElement('div');
+    item.className = 'response-item';
+    item.setAttribute('data-id', t.id);
+
+    /* Build response item via DOM (not innerHTML) so the sample placeholder
+       — which may contain quotes/apostrophes — is set safely without escaping. */
+    var head = document.createElement('div');
+    head.className = 'response-head';
+    var lbl = document.createElement('div');
+    lbl.className = 'response-label';
+    lbl.textContent = t.title;
+    var rmv = document.createElement('button');
+    rmv.type = 'button';
+    rmv.className = 'response-remove';
+    rmv.innerHTML = '&times; Remove';
+    rmv.setAttribute('data-remove', t.id);
+    head.appendChild(lbl);
+    head.appendChild(rmv);
+
+    var help = document.createElement('div');
+    help.className = 'response-helper';
+    help.textContent = t.helper;
+
+    var ta = document.createElement('textarea');
+    ta.className = 'response-textarea';
+    ta.setAttribute('data-topic', t.id);
+    ta.setAttribute('maxlength', String(MAX_CHARS));
+    ta.placeholder = t.sample || 'Type your thoughts...';
+
+    var meta = document.createElement('div');
+    meta.className = 'response-meta';
+    meta.innerHTML = '<span></span><span class="char-count" data-count-for="'+t.id+'">0 / '+MAX_CHARS+'</span>';
+
+    item.appendChild(head);
+    item.appendChild(help);
+    item.appendChild(ta);
+    item.appendChild(meta);
+    listEl.appendChild(item);
+
+    /* hook up textarea */
+    ta.value = selected[t.id] || '';
+    ta.addEventListener('input', function() {
+      selected[t.id] = ta.value;
+      var cc = item.querySelector('.char-count');
+      if (cc) cc.textContent = ta.value.length + ' / ' + MAX_CHARS;
+      updateSubmitState();
+    });
+    rmv.addEventListener('click', function() { removeTopic(t.id); });
+  });
+
+  updateSubmitState();
+}
+
+/* ── Submit button enable/disable + summary ── */
+function updateSubmitState() {
+  var filled = 0;
+  Object.keys(selected).forEach(function(k){
+    if (selected[k] && selected[k].trim().length >= 3) filled++;
+  });
+  var anonBtn   = document.getElementById('submitAnonBtn');
+  var creditBtn = document.getElementById('getCreditBtn');
+  var sum       = document.getElementById('submitSummary');
+
+  if (filled === 0) {
+    if (anonBtn)   anonBtn.disabled = true;
+    if (creditBtn) creditBtn.disabled = true;
+    sum.innerHTML = 'Write a response in at least one topic to submit.';
+  } else {
+    if (anonBtn)   anonBtn.disabled = false;
+    if (creditBtn) creditBtn.disabled = false;
+    sum.innerHTML = "You're submitting on <strong>"+filled+' '+(filled===1?'topic':'topics')+'</strong>.';
+  }
+}
+
+/* ── Show / hide credit panel ── */
+function openCreditPanel() {
+  var subSec = document.getElementById('submitSection');
+  subSec.classList.add('credit-open');
+  /* Focus name field — but only on devices where it won't hijack scroll awkwardly */
+  if (window.matchMedia && !window.matchMedia('(max-width: 768px)').matches) {
+    setTimeout(function(){
+      var nameEl = document.getElementById('userName');
+      if (nameEl) nameEl.focus();
+    }, 100);
+  }
+}
+function closeCreditPanel() {
+  var subSec = document.getElementById('submitSection');
+  subSec.classList.remove('credit-open');
+}
+
+/* ── Submit handler — `withCredit=false` strips name/handles from payload ── */
+function submitForm(withCredit) {
+  var errEl = document.getElementById('submitError');
+  errEl.classList.remove('visible');
+
+  /* Build payload — flat structure for clean Sheets columns.
+     Uses `source` to match the AfroCue GAS routing pattern (same as VybeChek, party_submission, etc). */
+  var payload = {
+    source: 'barbershop_submit',
+    timestamp: new Date().toISOString(),
+    subject: SUBJECT,
+    name:      withCredit ? document.getElementById('userName').value.trim()      : '',
+    twitter:   withCredit ? document.getElementById('userTwitter').value.trim().replace(/^@+/, '')   : '',
+    instagram: withCredit ? document.getElementById('userInstagram').value.trim().replace(/^@+/, '') : '',
+    user_agent: navigator.userAgent,
+    referrer: document.referrer || '',
+    /* one field per topic — empty if not selected */
+    topics: {}
+  };
+  TOPICS.forEach(function(t){
+    payload.topics[t.id] = (selected[t.id] || '').trim();
+  });
+
+  /* Validate at least one filled response */
+  var hasResponse = Object.keys(payload.topics).some(function(k){
+    return payload.topics[k].length >= 3;
+  });
+  if (!hasResponse) {
+    errEl.textContent = 'Write a response in at least one topic before submitting.';
+    errEl.classList.add('visible');
+    return;
+  }
+
+  /* Disable + visually mark all submit buttons as loading */
+  var allBtns = document.querySelectorAll('.submit-btn');
+  allBtns.forEach(function(b){
+    b.classList.add('loading');
+    b.disabled = true;
+  });
+  /* Update the button that was clicked to show submitting state */
+  var clickedBtn = withCredit
+    ? document.getElementById('submitCreditBtn')
+    : document.getElementById('submitAnonBtn');
+  /* Also try the cancel-into-anon button case */
+  if (clickedBtn) clickedBtn.textContent = 'Submitting...';
+
+  /* If GAS endpoint not configured, log + simulate success
+     so the form is testable before the GAS is wired up. */
+  if (!GAS_ENDPOINT) {
+    console.warn('[Barbershop] GAS_ENDPOINT not set. Payload (simulated submit):');
+    console.log(JSON.stringify(payload, null, 2));
+    setTimeout(showSuccess, 700);
+    return;
+  }
+
+  /* GAS web apps require text/plain to avoid CORS preflight */
+  fetch(GAS_ENDPOINT, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload)
+  })
+  .then(function(){ showSuccess(); })
+  .catch(function(err){
+    console.error('[Barbershop] submit failed', err);
+    errEl.textContent = 'Something went wrong. Please try again in a moment.';
+    errEl.classList.add('visible');
+    /* Re-enable buttons */
+    allBtns.forEach(function(b){
+      b.classList.remove('loading');
+      b.disabled = false;
+    });
+    /* Restore button labels */
+    document.getElementById('submitAnonBtn').textContent   = 'Submit anonymously';
+    document.getElementById('getCreditBtn').textContent    = 'Get credit';
+    var sc = document.getElementById('submitCreditBtn'); if (sc) sc.textContent = 'Submit with credit';
+    var cc = document.getElementById('creditCancelBtn');  if (cc) cc.textContent = 'Actually, submit anonymously';
+  });
+}
+
+/* ── Show success view ── */
+function showSuccess() {
+  document.getElementById('bs-formview').style.display = 'none';
+  var s = document.getElementById('bs-success');
+  s.classList.add('visible');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── Reset form (used by "Submit another" button) ── */
+function resetForm() {
+  selected = {};
+  document.getElementById('userName').value = '';
+  document.getElementById('userTwitter').value = '';
+  document.getElementById('userInstagram').value = '';
+  document.getElementById('responsesList').innerHTML = '';
+  var s = document.getElementById('bs-success');
+  s.classList.remove('visible');
+  document.getElementById('bs-formview').style.display = 'block';
+
+  /* Reset all buttons */
+  var allBtns = document.querySelectorAll('.submit-btn');
+  allBtns.forEach(function(b){
+    b.classList.remove('loading');
+    b.disabled = true;
+  });
+  document.getElementById('submitAnonBtn').textContent = 'Submit anonymously';
+  document.getElementById('getCreditBtn').textContent  = 'Get credit';
+  var sc = document.getElementById('submitCreditBtn'); if (sc) sc.textContent = 'Submit with credit';
+  var cc = document.getElementById('creditCancelBtn');  if (cc) cc.textContent = 'Actually, submit anonymously';
+
+  closeCreditPanel();
+  document.getElementById('submitError').classList.remove('visible');
+  syncUI();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── Init ── */
+document.addEventListener('DOMContentLoaded', function() {
+  renderTopics();
+  syncUI();
+
+  /* Submit handlers — anonymous = false, credit = true */
+  document.getElementById('submitAnonBtn').addEventListener('click', function(){
+    submitForm(false);
+  });
+  document.getElementById('submitCreditBtn').addEventListener('click', function(){
+    submitForm(true);
+  });
+  document.getElementById('creditCancelBtn').addEventListener('click', function(){
+    submitForm(false);
+  });
+
+  /* Credit panel toggle */
+  document.getElementById('getCreditBtn').addEventListener('click', openCreditPanel);
+  document.getElementById('creditBackBtn').addEventListener('click', closeCreditPanel);
+
+  /* Strip leading @ as user types, in case they paste it */
+  ['userTwitter','userInstagram'].forEach(function(id){
+    var el = document.getElementById(id);
+    el.addEventListener('blur', function(){
+      el.value = el.value.replace(/^@+/, '').trim();
+    });
+  });
+});
+</script>
+
+</body>
+</html>
