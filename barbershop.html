@@ -644,10 +644,31 @@
       .bs-step { gap: 10px; }
       .bs-step-num { font-size: 32px; }
       .bs-step-h { font-size: clamp(24px, 6.5vw, 32px); }
-      .bs-step-desc { padding-left: 0; margin-top: 12px; }
+      .bs-step-desc { padding-left: 0; margin-top: 12px; margin-bottom: 24px; font-size: 12px; }
 
-      .topic-card { padding: 18px 16px; }
-      .topic-title { font-size: 12px; }
+      .topic-counter { font-size: 10.5px; margin-top: 12px; }
+
+      /* Tight topic grid on mobile — stays as 2-column grid, more compact cells */
+      .topic-grid { gap: 8px; }
+      .topic-card {
+        padding: 12px 10px;
+        gap: 9px;
+        border-radius: 3px;
+      }
+      .topic-icon {
+        width: 26px; height: 26px;
+        border-radius: 3px;
+      }
+      .topic-icon svg { width: 13px; height: 13px; }
+      .topic-title {
+        font-size: 11px;
+        line-height: 1.25;
+      }
+      .topic-check {
+        top: 6px; right: 6px;
+        width: 12px; height: 12px;
+      }
+      .topic-check svg { width: 7px; height: 7px; }
 
       .response-item { padding: 20px 18px; }
       .response-label { font-size: 18px; }
@@ -663,8 +684,19 @@
     }
 
     @media (max-width: 420px) {
-      .topic-grid { grid-template-columns: 1fr; gap: 10px; }
-      /* Give text column slightly more room on the smallest devices */
+      /* Stay as 2-column grid even on tiny phones — tighter still */
+      .topic-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+      .topic-card { padding: 10px 8px; gap: 7px; }
+      .topic-icon { width: 22px; height: 22px; }
+      .topic-icon svg { width: 11px; height: 11px; }
+      .topic-title { font-size: 10.5px; line-height: 1.2; letter-spacing: 0; }
+      .topic-check { top: 5px; right: 5px; width: 11px; height: 11px; }
+      .topic-check svg { width: 6px; height: 6px; }
+
+      /* Pull form section padding in slightly so the grid gets more horizontal space */
+      #bs-form { padding: 48px 14px; }
+
+      /* Hero stays side-by-side, give text column slightly more room on the smallest devices */
       .bs-hero-inner { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 14px; }
       .bs-hero h1 { font-size: clamp(26px, 8.5vw, 40px); }
       .bs-hero-desc { font-size: 11px; line-height: 1.55; }
