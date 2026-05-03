@@ -28,7 +28,6 @@
   <style>
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
-    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-.otf') format('opentype'); font-weight: 400; }
 
     :root {
       --black:  #0a0a0a;
@@ -48,7 +47,7 @@
     html { scroll-behavior: smooth; }
     body { background: var(--black); color: var(--white); font-family: 'Figtree', sans-serif; overflow-x: hidden; }
 
-    /* NAV - exactly as original */
+    /* NAV — exact match to index */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 900;
       display: flex; align-items: center; justify-content: space-between;
@@ -63,19 +62,17 @@
     .nav-cta { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); background: var(--white); padding: 10px 20px; border-radius: 2px; text-decoration: none; transition: background 0.2s; }
     .nav-cta:hover { background: var(--off); }
 
-    /* Buttons — matched index style (sharp corners, no oval) */
+    /* Buttons — index style (sharp corners) */
     .btn { display: inline-block; font-family: 'Figtree', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 13px 26px; border-radius: 2px; text-decoration: none; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
-    .btn-white { color: var(--black); background: var(--white); }
-    .btn-white:hover { background: var(--off); }
-    .btn-ghost { color: var(--silver); background: transparent; border: 1px solid rgba(255,255,255,0.18); font-weight: 500; }
-    .btn-ghost:hover { border-color: var(--white); color: var(--white); }
     .btn-yellow { color: var(--black); background: var(--yellow); }
     .btn-yellow:hover { opacity: 0.88; }
+    .btn-ghost { color: var(--silver); background: transparent; border: 1px solid rgba(255,255,255,0.18); font-weight: 500; }
+    .btn-ghost:hover { border-color: var(--white); color: var(--white); }
 
     .label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
     .label::before { content: ''; width: 18px; height: 1px; background: var(--silver); flex-shrink: 0; }
 
-    /* HERO - original layout preserved */
+    /* HERO — exactly as original */
     .bs-hero {
       position: relative;
       padding: 140px 48px 72px;
@@ -88,7 +85,12 @@
       background-size: cover; background-position: center;
       opacity: 0.08; pointer-events: none;
     }
-    .bs-hero-glow { position: absolute; z-index: 0; pointer-events: none; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(200,224,0,0.06) 0%, transparent 60%); filter: blur(60px); }
+    .bs-hero-glow {
+      position: absolute; z-index: 0; pointer-events: none;
+      width: 520px; height: 520px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,224,0,0.06) 0%, transparent 60%);
+      filter: blur(60px);
+    }
     .bs-hero-glow.left  { top: -100px; left: -120px; }
     .bs-hero-glow.right { bottom: -200px; right: -100px; background: radial-gradient(circle, rgba(255,61,204,0.04) 0%, transparent 60%); }
 
@@ -110,7 +112,6 @@
     }
     .bs-hero h1 .outline { -webkit-text-stroke: 1.5px var(--yellow); color: transparent; text-shadow: none; }
     .bs-hero-desc { font-size: clamp(13px, 1.3vw, 15px); font-weight: 300; line-height: 1.7; color: rgba(240,237,232,0.6); max-width: 560px; }
-    .bs-hero-desc strong { color: var(--white); font-weight: 500; }
 
     .bs-hero-flyer-wrap {
       position: relative;
@@ -122,9 +123,7 @@
       overflow: hidden;
       transform: rotate(1.5deg);
       box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06);
-      transition: transform 0.4s ease;
     }
-    .bs-hero-flyer-wrap:hover { transform: rotate(0deg); }
     .bs-hero-flyer-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .bs-hero-flyer-tag {
       position: absolute; bottom: 10px; left: 10px;
@@ -132,14 +131,14 @@
       padding: 6px 10px; border-radius: 2px;
       font-size: clamp(7px, 0.7vw, 9px);
       font-weight: 600;
-      letter-spacing: 0.18em; text-transform: uppercase;
+      letter-spacing: 0.18em;
       color: var(--yellow);
       border: 1px solid rgba(200,224,0,0.18);
     }
 
-    /* Main comment section */
+    /* MAIN COMMENT SECTION — top of fold */
     .comment-section {
-      padding: 48px 48px 64px;
+      padding: 32px 48px 64px;
       max-width: 1000px;
       margin: 0 auto;
     }
@@ -150,14 +149,13 @@
       padding: 32px 36px;
     }
 
-    /* Ticket giveaway banner - short & clean */
+    /* Ticket giveaway banner — short & clean */
     .ticket-bar {
       background: rgba(200,224,0,0.08);
       border-left: 3px solid var(--yellow);
       padding: 12px 18px;
       margin-bottom: 28px;
       font-size: 13px;
-      font-weight: 400;
       display: flex;
       flex-wrap: wrap;
       align-items: baseline;
@@ -177,15 +175,15 @@
 
     .section-title {
       font-family: 'Aesthet Nova', sans-serif;
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 900;
       color: var(--white);
       margin-bottom: 12px;
     }
     .section-desc {
-      font-size: 14px;
+      font-size: 13px;
       line-height: 1.6;
-      color: rgba(240,237,232,0.6);
+      color: rgba(240,237,232,0.55);
       margin-bottom: 24px;
     }
 
@@ -224,7 +222,7 @@
       margin-bottom: 12px;
     }
     .gist-textarea:focus { border-color: var(--yellow); outline: none; background: rgba(0,0,0,0.7); }
-    .char-counter { text-align: right; font-size: 11px; color: var(--grey); margin-bottom: 28px; }
+    .char-counter { text-align: right; font-size: 11px; color: var(--grey); margin-bottom: 24px; }
 
     .action-row {
       display: flex;
@@ -251,7 +249,7 @@
     .btn-tweet:disabled { opacity: 0.4; cursor: not-allowed; }
     .btn-tweet:hover:not(:disabled) { border-color: var(--white); background: rgba(255,255,255,0.05); }
 
-    /* MODAL for user info (required for ticket giveaway) */
+    /* INFO MODAL — for user details (ticket eligibility) */
     .info-modal {
       position: fixed; inset: 0; background: rgba(0,0,0,0.96); backdrop-filter: blur(12px); z-index: 1000;
       display: flex; align-items: center; justify-content: center; visibility: hidden; opacity: 0; transition: 0.2s;
@@ -265,43 +263,21 @@
       padding: 36px 32px;
       border-radius: 4px;
     }
-    .info-card h3 {
-      font-family: 'Aesthet Nova', sans-serif;
-      font-size: 24px;
-      color: var(--yellow);
-      margin-bottom: 8px;
-    }
+    .info-card h3 { font-family: 'Aesthet Nova', sans-serif; font-size: 24px; color: var(--yellow); margin-bottom: 8px; }
     .info-card p { font-size: 13px; color: var(--silver); margin-bottom: 24px; line-height: 1.5; }
-    .info-field {
-      margin-bottom: 16px;
-    }
+    .info-field { margin-bottom: 16px; }
     .info-field label {
-      display: block;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--silver);
-      margin-bottom: 6px;
+      display: block; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--silver); margin-bottom: 6px;
     }
     .info-field input {
-      width: 100%;
-      background: var(--dark);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 2px;
-      padding: 12px 14px;
-      color: white;
-      font-size: 14px;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      width: 100%; background: var(--dark); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 2px; padding: 12px 14px; color: white; font-size: 14px;
     }
     .info-field input:focus { border-color: var(--yellow); outline: none; }
-    .modal-actions {
-      display: flex;
-      gap: 12px;
-      margin-top: 24px;
-      justify-content: flex-end;
-    }
+    .modal-actions { display: flex; gap: 12px; margin-top: 24px; justify-content: flex-end; }
 
-    /* Success modal (sharable) */
+    /* SUCCESS MODAL — sharable */
     .success-modal {
       position: fixed; inset: 0; background: rgba(0,0,0,0.96); backdrop-filter: blur(12px); z-index: 1100;
       display: flex; align-items: center; justify-content: center; visibility: hidden; opacity: 0; transition: 0.2s;
@@ -327,45 +303,60 @@
       color: #ccc;
     }
     .tweet-this-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #000;
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 2px;
-      padding: 12px 24px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: white;
-      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #000; border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 2px; padding: 12px 24px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: white; text-decoration: none;
       margin: 8px 4px;
     }
     .tweet-this-btn:hover { border-color: var(--yellow); color: var(--yellow); }
 
-    footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.05); padding: 48px; text-align: center; margin-top: 40px; }
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 64px 48px 48px;
+      display: flex; flex-direction: column; align-items: center; gap: 28px;
+      background: var(--dark); text-align: center;
+    }
+    .footer-brand img { height: 72px; width: auto; }
+    .footer-links { display: flex; gap: 22px; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); text-decoration: none; }
+    .footer-links a:hover { color: var(--white); }
 
-    @media (max-width: 760px) {
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
       .bs-hero { padding: 110px 20px 48px; }
-      .comment-section { padding: 32px 20px; }
+      .bs-hero-inner { gap: 18px; }
+      .bs-hero h1 { font-size: clamp(28px, 9vw, 48px); }
+      .comment-section { padding: 28px 20px; }
       .comment-card { padding: 24px 20px; }
       .action-row { flex-direction: column; }
-      .ticket-bar { flex-direction: column; align-items: flex-start; }
       .ticket-badge { margin-left: 0; margin-top: 6px; }
+      footer { padding: 48px 20px 36px; }
     }
   </style>
 </head>
 <body>
+
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
+<!-- NAV -->
 <nav>
-  <a class="nav-logo" href="index.html"><img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/><span class="nav-logo-fallback" style="display:none;">afro.cue</span></a>
-  <ul class="nav-links"><li><a href="index.html#about">About</a></li><li><a href="parties.html">Parties</a></li><li><a href="index.html#content">Content</a></li><li><a href="index.html#advertise">Get Featured</a></li></ul>
+  <a class="nav-logo" href="index.html">
+    <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+    <span class="nav-logo-fallback" style="display:none;">afro.cue</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="parties.html">Parties</a></li>
+    <li><a href="index.html#content">Content</a></li>
+    <li><a href="index.html#advertise">Get Featured</a></li>
+  </ul>
   <a href="index.html#join" class="nav-cta">Sign Up</a>
 </nav>
 
-<!-- Hero (original) -->
+<!-- HERO (exactly as original) -->
 <section class="bs-hero">
   <div class="bs-hero-texture"></div>
   <div class="bs-hero-glow left"></div>
@@ -374,20 +365,22 @@
     <div class="bs-hero-text">
       <div class="label">Community Series</div>
       <h1>AfroCue<br><span class="outline">Barbershop.</span></h1>
-      <p class="bs-hero-desc">Have you been to <strong>Sunday Service</strong>? Speak on it — your first experience, a DJ set, location vibes, or a hot take.</p>
+      <p class="bs-hero-desc">
+        Have you been to <strong>Sunday Service</strong>? Drop a hot take, a memorable moment, or your honest opinion. This is AfroCue — raw, unfiltered.
+      </p>
     </div>
     <div class="bs-hero-flyer-wrap">
-      <img src="sunday_service_flyer.jpg" alt="Sunday Service flyer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
-      <div class="bs-hero-flyer-fallback" style="display:none;background:#1c1c1c; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:10px;">🎫 Sunday Service</div>
+      <img src="sunday_service_flyer.jpg" alt="Sunday Service flyer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+      <div class="bs-hero-flyer-fallback" style="display:none;background:#1c1c1c;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">🎫 Sunday Service</div>
       <span class="bs-hero-flyer-tag">Subject · Sunday Service</span>
     </div>
   </div>
 </section>
 
-<!-- Main comment form -->
+<!-- MAIN COMMENT FORM — top of fold -->
 <div class="comment-section">
   <div class="comment-card">
-    <!-- Ticket giveaway banner - short -->
+    <!-- Ticket giveaway banner -->
     <div class="ticket-bar">
       <span>🎟️ <strong>3 people</strong> get guest list access to the next Sunday Service (before/after midnight).</span>
       <span class="ticket-badge">ENTER BY SUBMITTING</span>
@@ -395,7 +388,7 @@
 
     <div class="section-title">Say something about your Sunday Service experience.</div>
     <div class="section-desc">
-      Could be your very first time, a favourite international/local DJ set, a hot take, or something about the location changes.
+      Could be your first time, a favourite DJ set, a hot take, or something about the location changes.
     </div>
 
     <div class="topic-select-row">
@@ -421,11 +414,11 @@
   </div>
 </div>
 
-<!-- Modal for user info (required for ticket giveaway, shown only when user clicks submit) -->
+<!-- INFO MODAL (for ticket eligibility) -->
 <div id="infoModal" class="info-modal">
   <div class="info-card">
     <h3>Almost there.</h3>
-    <p>Drop your details to be considered for the guest list access (before/after midnight). Anonymous submissions are welcome but won't be eligible for tickets.</p>
+    <p>Drop your details to be considered for guest list access (before/after midnight). Anonymous submissions are welcome but won't be eligible for tickets.</p>
     <div class="info-field">
       <label>Name / Moniker</label>
       <input type="text" id="modalName" placeholder="e.g. Tolu or DJ Tee" autocomplete="name">
@@ -445,23 +438,32 @@
   </div>
 </div>
 
-<!-- Success sharable modal -->
+<!-- SUCCESS MODAL (sharable) -->
 <div id="successModal" class="success-modal">
   <div class="success-card">
     <div class="label" style="justify-content:center;">gist received</div>
-    <h3 style="font-family:'Aesthet Nova'; font-size:28px; color:var(--yellow); margin: 12px 0 8px;">✂️ Locked in.</h3>
-    <p style="color:#aaa; font-size:13px;">You're now in the running for Sunday Service guest list access (before/after midnight). Winners will be contacted via email/DM.</p>
+    <h3 style="font-family:'Aesthet Nova'; font-size:28px; color:var(--yellow); margin:12px 0 8px;">✂️ Locked in.</h3>
+    <p style="color:#aaa; font-size:13px;">You're now in the running for Sunday Service guest list access (before/after midnight). Winners contacted via email/DM.</p>
     <div class="success-comment-preview" id="successPreview">"..."</div>
-    <div style="margin-top: 16px;">
+    <div style="margin-top:16px;">
       <a id="finalTweetLink" class="tweet-this-btn" target="_blank">🔁 Share this on X</a>
     </div>
-    <button onclick="closeSuccessModal()" class="btn-ghost" style="margin-top: 20px; padding:10px 20px;">Close</button>
+    <button onclick="closeSuccessModal()" class="btn-ghost" style="margin-top:20px; padding:10px 20px;">Close</button>
   </div>
 </div>
 
+<!-- FOOTER -->
 <footer>
-  <div class="footer-brand"><img src="logo_afrocue.png" alt="AfroCue" style="height:48px;" onerror="this.style.display='none'"><p>Creatively Documenting Culture</p></div>
-  <div style="display:flex; gap:20px; margin-top:12px;"><a href="index.html#about" style="color:#777; font-size:10px;">About</a><a href="parties.html" style="color:#777; font-size:10px;">Parties</a><a href="dj.html" style="color:#777; font-size:10px;">DJ Signup</a></div>
+  <div class="footer-brand">
+    <a href="index.html"><img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none'"></a>
+    <p>Creatively Documenting Culture</p>
+  </div>
+  <div class="footer-links">
+    <a href="index.html#about">About</a>
+    <a href="index.html#content">Content</a>
+    <a href="dj.html">DJ Signup</a>
+    <a href="index.html#advertise">Get Featured</a>
+  </div>
 </footer>
 
 <script src="afrocue.js"></script>
@@ -473,7 +475,6 @@
     const submitTweetBtn = document.getElementById('submitTweetBtn');
     const topicSelect = document.getElementById('topicDropdown');
     
-    // Modals
     const infoModal = document.getElementById('infoModal');
     const successModal = document.getElementById('successModal');
     const modalName = document.getElementById('modalName');
@@ -500,10 +501,9 @@
     
     function closeInfoModal() { infoModal.classList.remove('active'); }
     function openInfoModal() { infoModal.classList.add('active'); }
-    
     cancelModalBtn.addEventListener('click', closeInfoModal);
     
-    async function submitToBackend(comment, topic, userData, shouldTweetAfter) {
+    async function submitToBackend(comment, topic, userData) {
       const payload = {
         source: 'barbershop_submit_v3',
         timestamp: new Date().toISOString(),
@@ -546,14 +546,11 @@
       const email = modalEmail.value.trim();
       
       if (!comment || comment.length < 5) return;
-      // if user wants to be eligible for tickets, require at least one contact field
-      const hasContact = name !== '' || social !== '' || email !== '';
       const userData = { name, social, email };
       
-      // disables buttons visually
-      await submitToBackend(comment, topic, userData, shouldTweet);
+      await submitToBackend(comment, topic, userData);
       
-      // reset form
+      // Reset form
       commentField.value = '';
       updateChar();
       topicSelect.selectedIndex = 0;
@@ -576,17 +573,10 @@
     
     submitBtn.addEventListener('click', () => openSubmissionFlow(false));
     submitTweetBtn.addEventListener('click', () => openSubmissionFlow(true));
+    confirmSubmitBtn.addEventListener('click', async () => { await finalizeSubmission(pendingShouldTweet); });
     
-    confirmSubmitBtn.addEventListener('click', async () => {
-      await finalizeSubmission(pendingShouldTweet);
-    });
-    
-    window.closeSuccessModal = function() {
-      successModal.classList.remove('active');
-    };
+    window.closeSuccessModal = function() { successModal.classList.remove('active'); };
     document.addEventListener('keydown', (e) => { if(e.key === 'Escape') { closeSuccessModal(); closeInfoModal(); } });
-    
-    // close modal if clicking outside simple
     infoModal.addEventListener('click', (e) => { if(e.target === infoModal) closeInfoModal(); });
     successModal.addEventListener('click', (e) => { if(e.target === successModal) closeSuccessModal(); });
   })();
