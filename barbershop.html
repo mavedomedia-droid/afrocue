@@ -565,14 +565,14 @@
 <div id="successModal" class="success-modal">
   <div class="success-card">
     <div class="label" style="justify-content:center;">submitted</div>
-    <h3 style="font-family:'Aesthet Nova'; font-size:28px; color:var(--yellow); margin:12px 0 8px;">✂️ Locked in.</h3>
-    <p id="successSubtitle" style="color:#aaa; font-size:13px;">If your comment makes the cut, your quote will feature in our Sunday Service anniversary content. Look out for it on our socials &mdash; mainly Instagram <a href="https://instagram.com/afro.q" target="_blank" style="color:var(--yellow); text-decoration:none; font-weight:600;">@afro.q</a>.</p>
+    <h3 style="font-family:'Aesthet Nova'; font-size:28px; color:var(--yellow); margin:12px 0 8px;">✔️ Submitted.</h3>
+    <p id="successSubtitle" style="color:#aaa; font-size:13px;">If your comment makes the cut, your quote will feature in our Sunday Service anniversary content. Look out for it on our socials &mdash; mainly IG <a href="https://instagram.com/afro.cue" target="_blank" style="color:var(--yellow); text-decoration:none; font-weight:600;">@afro.cue</a>.</p>
     <div class="success-comment-preview" id="successPreview">"..."</div>
     <div style="margin-top:16px;">
       <a id="finalTweetLink" class="tweet-this-btn" target="_blank">🔁 Share this on X</a>
     </div>
     <div class="success-followup" id="successFollowup">
-      Didn't get guest list access this time? Follow <a href="https://instagram.com/afro.q" target="_blank">@afro.q</a> &mdash; we run giveaways pretty often, you'll catch the next one.
+      Didn't get guest list access this time? Follow <a href="https://instagram.com/afro.cue" target="_blank">@afro.cue</a> &mdash; we run giveaways pretty often, you'll catch the next one.
     </div>
     <button onclick="closeSuccessModal()" class="btn-ghost" style="margin-top:20px; padding:10px 20px;">Close</button>
   </div>
@@ -662,15 +662,15 @@
       successPreview.innerText = `"${shortComment}"`;
 
       // Subtitle is the same for everyone now — quote may feature in anniversary content.
-      successSubtitle.innerHTML = 'If your comment makes the cut, your quote will feature in our Sunday Service anniversary content. Look out for it on our socials &mdash; mainly Instagram <a href="https://instagram.com/afro.q" target="_blank" style="color:var(--yellow); text-decoration:none; font-weight:600;">@afro.q</a>.';
+      successSubtitle.innerHTML = 'If your comment makes the cut, your quote will feature in our Sunday Service anniversary content. Look out for it on our socials &mdash; mainly Instagram <a href="https://instagram.com/afro.cue" target="_blank" style="color:var(--yellow); text-decoration:none; font-weight:600;">@afro.cue</a>.';
 
       // Followup line — only show the "didn't get guest list access" nudge for non-anonymous submissions
       // (anonymous folks weren't eligible in the first place, so the wording would be confusing).
       if (isAnonymous) {
-        successFollowup.innerHTML = 'Want a shot at guest list access next time? Follow <a href="https://instagram.com/afro.q" target="_blank">@afro.q</a> &mdash; we run giveaways pretty often.';
+        successFollowup.innerHTML = 'Want a shot at guest list access next time? Follow <a href="https://instagram.com/afro.cue" target="_blank">@afro.cue</a> &mdash; we run giveaways pretty often.';
         finalTweetLink.style.display = '';
       } else {
-        successFollowup.innerHTML = 'Didn\'t get guest list access this time? Follow <a href="https://instagram.com/afro.q" target="_blank">@afro.q</a> &mdash; we run giveaways pretty often, you\'ll catch the next one.';
+        successFollowup.innerHTML = 'Didn\'t get guest list access this time? Follow <a href="https://instagram.com/afro.cue" target="_blank">@afro.cue</a> &mdash; we run giveaways pretty often, you\'ll catch the next one.';
         finalTweetLink.style.display = '';
       }
 
