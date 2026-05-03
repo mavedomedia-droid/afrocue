@@ -72,7 +72,7 @@
     .label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
     .label::before { content: ''; width: 18px; height: 1px; background: var(--silver); flex-shrink: 0; }
 
-    /* HERO — exactly as original */
+    /* ── HERO (restored to previous version) ── */
     .bs-hero {
       position: relative;
       padding: 140px 48px 72px;
@@ -85,6 +85,7 @@
       background-size: cover; background-position: center;
       opacity: 0.08; pointer-events: none;
     }
+    /* Subtle yellow glow accents */
     .bs-hero-glow {
       position: absolute; z-index: 0; pointer-events: none;
       width: 520px; height: 520px; border-radius: 50%;
@@ -94,6 +95,9 @@
     .bs-hero-glow.left  { top: -100px; left: -120px; }
     .bs-hero-glow.right { bottom: -200px; right: -100px; background: radial-gradient(circle, rgba(255,61,204,0.04) 0%, transparent 60%); }
 
+    /* Two-column hero — text left, portrait flyer right.
+       Stays side-by-side at all viewport widths. The flyer column is sized
+       proportionally so it never crowds the text. */
     .bs-hero-inner {
       position: relative; z-index: 1;
       max-width: 1180px; margin: 0 auto;
@@ -109,10 +113,24 @@
       line-height: 0.9;
       color: var(--yellow); text-shadow: var(--yts);
       margin-bottom: 20px;
+      overflow-wrap: normal; word-break: keep-all; hyphens: none;
     }
-    .bs-hero h1 .outline { -webkit-text-stroke: 1.5px var(--yellow); color: transparent; text-shadow: none; }
-    .bs-hero-desc { font-size: clamp(13px, 1.3vw, 15px); font-weight: 300; line-height: 1.7; color: rgba(240,237,232,0.6); max-width: 560px; }
+    .bs-hero h1 .outline {
+      -webkit-text-stroke: 1.5px var(--yellow);
+      color: transparent; text-shadow: none;
+    }
+    .bs-hero-desc {
+      font-size: clamp(13px, 1.3vw, 15px);
+      font-weight: 300; line-height: 1.7;
+      color: rgba(240,237,232,0.6);
+      max-width: 560px;
+    }
+    .bs-hero-desc strong {
+      color: var(--white); font-weight: 500;
+    }
 
+    /* Portrait flyer column — same proportions as the incoming-party flyer on the index page.
+       Sized as a fraction of viewport so it scales with the text column. */
     .bs-hero-flyer-wrap {
       position: relative;
       width: 100%;
@@ -123,18 +141,41 @@
       overflow: hidden;
       transform: rotate(1.5deg);
       box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06);
+      transition: transform 0.4s ease;
     }
-    .bs-hero-flyer-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .bs-hero-flyer-wrap:hover { transform: rotate(0deg); }
+    .bs-hero-flyer-wrap img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    /* Tiny caption ribbon over the flyer corner — also serves as the subject signal */
     .bs-hero-flyer-tag {
       position: absolute; bottom: 10px; left: 10px;
       background: rgba(10,10,10,0.82); backdrop-filter: blur(8px);
       padding: 6px 10px; border-radius: 2px;
       font-size: clamp(7px, 0.7vw, 9px);
       font-weight: 600;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.18em; text-transform: uppercase;
       color: var(--yellow);
       border: 1px solid rgba(200,224,0,0.18);
+      z-index: 2;
+      max-width: calc(100% - 20px);
     }
+    /* Fallback when flyer image is missing */
+    .bs-hero-flyer-fallback {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--dark2);
+      background-image: url('texture.jpg');
+      background-size: cover;
+      font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--grey);
+      text-align: center; padding: 20px;
+    }
+    .bs-hero-flyer-fallback::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(10,10,10,0.7);
+    }
+    .bs-hero-flyer-fallback span { position: relative; z-index: 1; }
 
     /* MAIN COMMENT SECTION — top of fold */
     .comment-section {
@@ -228,26 +269,43 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-start;
-      gap: 16px;
+      gap: 12px;
       margin-top: 8px;
     }
-    .btn-submit, .btn-tweet {
+    .btn-submit, .btn-tweet, .btn-anon {
       font-family: 'Figtree', sans-serif;
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      padding: 13px 26px;
+      padding: 13px 24px;
       border-radius: 2px;
       border: none;
       cursor: pointer;
       transition: 0.2s;
     }
+    /* Submit anonymously — quietest, sits leftmost so it's the first option visually */
+    .btn-anon {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.18);
+      color: var(--silver);
+    }
+    .btn-anon:hover:not(:disabled) { border-color: var(--white); color: var(--white); background: rgba(255,255,255,0.03); }
+    .btn-anon:disabled { opacity: 0.4; cursor: not-allowed; }
+    /* Submit (with credit) — primary CTA */
     .btn-submit { background: var(--yellow); color: var(--black); }
     .btn-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+    .btn-submit:hover:not(:disabled) { opacity: 0.88; }
+    /* Submit & tweet — secondary, white outline */
     .btn-tweet { background: transparent; border: 1px solid rgba(255,255,255,0.25); color: var(--white); }
     .btn-tweet:disabled { opacity: 0.4; cursor: not-allowed; }
     .btn-tweet:hover:not(:disabled) { border-color: var(--white); background: rgba(255,255,255,0.05); }
+
+    /* Action sub-text under buttons — clarifies what each does */
+    .action-note {
+      font-size: 11px; color: var(--grey); margin-top: 12px; line-height: 1.5;
+    }
+    .action-note strong { color: var(--silver); font-weight: 500; }
 
     /* INFO MODAL — for user details (ticket eligibility) */
     .info-modal {
@@ -302,6 +360,21 @@
       text-align: left;
       color: #ccc;
     }
+    /* Soft note about following IG for future giveaways */
+    .success-followup {
+      font-size: 12px;
+      color: rgba(240,237,232,0.55);
+      line-height: 1.6;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .success-followup a {
+      color: var(--yellow);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .success-followup a:hover { text-decoration: underline; }
     .tweet-this-btn {
       display: inline-flex; align-items: center; gap: 8px;
       background: #000; border: 1px solid rgba(255,255,255,0.2);
@@ -323,17 +396,52 @@
     .footer-links a { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); text-decoration: none; }
     .footer-links a:hover { color: var(--white); }
 
+    /* ── MOBILE (restored from previous version) ── */
+    @media (max-width: 900px) {
+      /* Hero stays side-by-side on tablet — just tighten the gap */
+      .bs-hero-inner { gap: 32px; }
+      .bs-hero-flyer-wrap { max-width: 240px; transform: rotate(1deg); }
+    }
+
     @media (max-width: 768px) {
       nav { padding: 14px 20px; }
       .nav-links { display: none; }
+      /* Hero stays side-by-side on mobile too */
       .bs-hero { padding: 110px 20px 48px; }
-      .bs-hero-inner { gap: 18px; }
-      .bs-hero h1 { font-size: clamp(28px, 9vw, 48px); }
+      .bs-hero-inner {
+        grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+        gap: 18px;
+      }
+      .bs-hero .label { font-size: 9px; margin-bottom: 14px; }
+      .bs-hero .label::before { width: 12px; }
+      .bs-hero h1 { font-size: clamp(28px, 9vw, 48px); margin-bottom: 14px; }
+      .bs-hero h1 .outline { -webkit-text-stroke-width: 1px; }
+      .bs-hero-desc { font-size: 12px; line-height: 1.6; }
+      .bs-hero-flyer-wrap {
+        max-width: 100%;
+        transform: rotate(1deg);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06);
+      }
+      .bs-hero-flyer-tag {
+        font-size: 7px;
+        padding: 4px 7px;
+        bottom: 6px; left: 6px;
+        letter-spacing: 0.14em;
+      }
+
       .comment-section { padding: 28px 20px; }
       .comment-card { padding: 24px 20px; }
       .action-row { flex-direction: column; }
+      .action-row button { width: 100%; }
       .ticket-badge { margin-left: 0; margin-top: 6px; }
       footer { padding: 48px 20px 36px; }
+    }
+
+    @media (max-width: 420px) {
+      /* Give text column slightly more room on the smallest devices */
+      .bs-hero-inner { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 14px; }
+      .bs-hero h1 { font-size: clamp(26px, 8.5vw, 40px); }
+      .bs-hero-desc { font-size: 11px; line-height: 1.55; }
     }
   </style>
 </head>
@@ -356,24 +464,33 @@
   <a href="index.html#join" class="nav-cta">Sign Up</a>
 </nav>
 
-<!-- HERO (exactly as original) -->
+<!-- HERO (restored) -->
 <section class="bs-hero">
   <div class="bs-hero-texture"></div>
   <div class="bs-hero-glow left"></div>
   <div class="bs-hero-glow right"></div>
+
   <div class="bs-hero-inner">
+
+    <!-- LEFT — text -->
     <div class="bs-hero-text">
       <div class="label">Community Series</div>
       <h1>AfroCue<br><span class="outline">Barbershop.</span></h1>
       <p class="bs-hero-desc">
-        Have you been to <strong>Sunday Service</strong>? Drop a hot take, a memorable moment, or your honest opinion. This is AfroCue — raw, unfiltered.
+        Have you been to <strong>Sunday Service</strong>? Pick a topic (or a few) and speak on it. Tell us about a moment, a set, the crowd, or even a hot take or something you don't like. This is AfroCue, not Sunday Service &mdash; you can submit anonymously. We want your raw, unfiltered take, whatever you've got.
       </p>
     </div>
+
+    <!-- RIGHT — Sunday Service portrait flyer (place sunday_service_flyer.jpg in the root) -->
     <div class="bs-hero-flyer-wrap">
-      <img src="sunday_service_flyer.jpg" alt="Sunday Service flyer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
-      <div class="bs-hero-flyer-fallback" style="display:none;background:#1c1c1c;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">🎫 Sunday Service</div>
-      <span class="bs-hero-flyer-tag">Subject · Sunday Service</span>
+      <img src="sunday_service_flyer.jpg" alt="Sunday Service flyer"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+      <div class="bs-hero-flyer-fallback" style="display:none;">
+        <span>sunday_service_flyer.jpg</span>
+      </div>
+      <span class="bs-hero-flyer-tag">Subject &middot; Sunday Service</span>
     </div>
+
   </div>
 </section>
 
@@ -408,13 +525,19 @@
     <div class="char-counter"><span id="charCount">0</span> / 550 characters</div>
 
     <div class="action-row">
-      <button id="submitBtn" class="btn-submit">SUBMIT</button>
-      <button id="submitTweetBtn" class="btn-tweet">SUBMIT & TWEET</button>
+      <button id="submitAnonBtn" class="btn-anon">Submit anonymously</button>
+      <button id="submitBtn" class="btn-submit">Submit (with credit)</button>
+      <button id="submitTweetBtn" class="btn-tweet">Submit &amp; Tweet</button>
     </div>
+    <p class="action-note">
+      <strong>Anonymous</strong> &mdash; no name, no ticket eligibility. &nbsp;
+      <strong>With credit</strong> &mdash; eligible for guest list draw. &nbsp;
+      <strong>&amp; Tweet</strong> &mdash; same as credit, plus auto-shares.
+    </p>
   </div>
 </div>
 
-<!-- INFO MODAL (for ticket eligibility) -->
+<!-- INFO MODAL (for ticket eligibility — only opens for credit / tweet flows) -->
 <div id="infoModal" class="info-modal">
   <div class="info-card">
     <h3>Almost there.</h3>
@@ -441,12 +564,15 @@
 <!-- SUCCESS MODAL (sharable) -->
 <div id="successModal" class="success-modal">
   <div class="success-card">
-    <div class="label" style="justify-content:center;">gist received</div>
+    <div class="label" style="justify-content:center;">submitted</div>
     <h3 style="font-family:'Aesthet Nova'; font-size:28px; color:var(--yellow); margin:12px 0 8px;">✂️ Locked in.</h3>
-    <p style="color:#aaa; font-size:13px;">You're now in the running for Sunday Service guest list access (before/after midnight). Winners contacted via email/DM.</p>
+    <p id="successSubtitle" style="color:#aaa; font-size:13px;">If your comment makes the cut, your quote will feature in our Sunday Service anniversary content. Look out for it on our socials &mdash; mainly Instagram <a href="https://instagram.com/afro.q" target="_blank" style="color:var(--yellow); text-decoration:none; font-weight:600;">@afro.q</a>.</p>
     <div class="success-comment-preview" id="successPreview">"..."</div>
     <div style="margin-top:16px;">
       <a id="finalTweetLink" class="tweet-this-btn" target="_blank">🔁 Share this on X</a>
+    </div>
+    <div class="success-followup" id="successFollowup">
+      Didn't get guest list access this time? Follow <a href="https://instagram.com/afro.q" target="_blank">@afro.q</a> &mdash; we run giveaways pretty often, you'll catch the next one.
     </div>
     <button onclick="closeSuccessModal()" class="btn-ghost" style="margin-top:20px; padding:10px 20px;">Close</button>
   </div>
@@ -473,10 +599,13 @@
     const charSpan = document.getElementById('charCount');
     const submitBtn = document.getElementById('submitBtn');
     const submitTweetBtn = document.getElementById('submitTweetBtn');
+    const submitAnonBtn = document.getElementById('submitAnonBtn');
     const topicSelect = document.getElementById('topicDropdown');
-    
+
     const infoModal = document.getElementById('infoModal');
     const successModal = document.getElementById('successModal');
+    const successSubtitle = document.getElementById('successSubtitle');
+    const successFollowup = document.getElementById('successFollowup');
     const modalName = document.getElementById('modalName');
     const modalSocial = document.getElementById('modalSocial');
     const modalEmail = document.getElementById('modalEmail');
@@ -484,32 +613,34 @@
     const cancelModalBtn = document.getElementById('cancelModalBtn');
     const finalTweetLink = document.getElementById('finalTweetLink');
     const successPreview = document.getElementById('successPreview');
-    
+
     let pendingShouldTweet = false;
     let pendingComment = "";
     let pendingTopic = "";
-    
+
     function updateChar() {
       const len = commentField.value.length;
       charSpan.innerText = len;
       const valid = len >= 5 && len <= 550;
       submitBtn.disabled = !valid;
       submitTweetBtn.disabled = !valid;
+      submitAnonBtn.disabled = !valid;
     }
     commentField.addEventListener('input', updateChar);
     updateChar();
-    
+
     function closeInfoModal() { infoModal.classList.remove('active'); }
     function openInfoModal() { infoModal.classList.add('active'); }
     cancelModalBtn.addEventListener('click', closeInfoModal);
-    
-    async function submitToBackend(comment, topic, userData) {
+
+    async function submitToBackend(comment, topic, userData, isAnonymous) {
       const payload = {
         source: 'barbershop_submit_v3',
         timestamp: new Date().toISOString(),
         subject: 'Sunday Service',
         topic: topic || "Most Memorable Moment",
         comment_raw: comment,
+        is_anonymous: !!isAnonymous,
         name: userData.name || '',
         social: userData.social || '',
         email: userData.email || '',
@@ -525,31 +656,47 @@
         return true;
       } catch(e) { console.warn(e); return true; }
     }
-    
-    function showSuccessAndTweet(comment, topic, autoTweet) {
+
+    function showSuccessAndTweet(comment, topic, autoTweet, isAnonymous) {
       const shortComment = comment.length > 220 ? comment.substring(0, 220) + '…' : comment;
       successPreview.innerText = `"${shortComment}"`;
+
+      // Subtitle is the same for everyone now — quote may feature in anniversary content.
+      successSubtitle.innerHTML = 'If your comment makes the cut, your quote will feature in our Sunday Service anniversary content. Look out for it on our socials &mdash; mainly Instagram <a href="https://instagram.com/afro.q" target="_blank" style="color:var(--yellow); text-decoration:none; font-weight:600;">@afro.q</a>.';
+
+      // Followup line — only show the "didn't get guest list access" nudge for non-anonymous submissions
+      // (anonymous folks weren't eligible in the first place, so the wording would be confusing).
+      if (isAnonymous) {
+        successFollowup.innerHTML = 'Want a shot at guest list access next time? Follow <a href="https://instagram.com/afro.q" target="_blank">@afro.q</a> &mdash; we run giveaways pretty often.';
+        finalTweetLink.style.display = '';
+      } else {
+        successFollowup.innerHTML = 'Didn\'t get guest list access this time? Follow <a href="https://instagram.com/afro.q" target="_blank">@afro.q</a> &mdash; we run giveaways pretty often, you\'ll catch the next one.';
+        finalTweetLink.style.display = '';
+      }
+
+      // Build the tweet link (always available now — share is encouraged for everyone)
       const tweetText = `💈 “${comment.substring(0, 240)}”\n\nTopic: ${topic || 'Sunday Service'}\nDropped at AfroCue Barbershop. #SundayService #AfroCue`;
       const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&via=afrocue_`;
       finalTweetLink.href = tweetUrl;
-      successModal.classList.add('active');
       if (autoTweet) {
         setTimeout(() => { window.open(tweetUrl, '_blank'); }, 300);
       }
+
+      successModal.classList.add('active');
     }
-    
+
     async function finalizeSubmission(shouldTweet) {
       const comment = pendingComment;
       const topic = pendingTopic;
       const name = modalName.value.trim();
       const social = modalSocial.value.trim().replace(/^@+/, '');
       const email = modalEmail.value.trim();
-      
+
       if (!comment || comment.length < 5) return;
       const userData = { name, social, email };
-      
-      await submitToBackend(comment, topic, userData);
-      
+
+      await submitToBackend(comment, topic, userData, false);
+
       // Reset form
       commentField.value = '';
       updateChar();
@@ -558,9 +705,29 @@
       modalSocial.value = '';
       modalEmail.value = '';
       closeInfoModal();
-      showSuccessAndTweet(comment, topic, shouldTweet);
+      showSuccessAndTweet(comment, topic, shouldTweet, false);
     }
-    
+
+    // Anonymous flow — skips info modal, submits straight, no ticket eligibility
+    async function submitAnonymously() {
+      const comment = commentField.value.trim();
+      const topic = topicSelect.options[topicSelect.selectedIndex]?.value || "Most Memorable Moment";
+      if (comment.length < 5) { alert("Write at least 5 characters."); return; }
+
+      submitAnonBtn.disabled = true;
+      const originalLabel = submitAnonBtn.textContent;
+      submitAnonBtn.textContent = 'Submitting…';
+
+      await submitToBackend(comment, topic, { name: '', social: '', email: '' }, true);
+
+      // Reset form
+      commentField.value = '';
+      topicSelect.selectedIndex = 0;
+      submitAnonBtn.textContent = originalLabel;
+      updateChar();
+      showSuccessAndTweet(comment, topic, false, true);
+    }
+
     function openSubmissionFlow(shouldTweet) {
       const comment = commentField.value.trim();
       const topic = topicSelect.options[topicSelect.selectedIndex]?.value || "Most Memorable Moment";
@@ -570,11 +737,12 @@
       pendingShouldTweet = shouldTweet;
       openInfoModal();
     }
-    
+
+    submitAnonBtn.addEventListener('click', submitAnonymously);
     submitBtn.addEventListener('click', () => openSubmissionFlow(false));
     submitTweetBtn.addEventListener('click', () => openSubmissionFlow(true));
     confirmSubmitBtn.addEventListener('click', async () => { await finalizeSubmission(pendingShouldTweet); });
-    
+
     window.closeSuccessModal = function() { successModal.classList.remove('active'); };
     document.addEventListener('keydown', (e) => { if(e.key === 'Escape') { closeSuccessModal(); closeInfoModal(); } });
     infoModal.addEventListener('click', (e) => { if(e.target === infoModal) closeInfoModal(); });
