@@ -675,7 +675,7 @@
       }
 
 // Build the tweet link (always available now — share is encouraged for everyone)
-      const tweetText = `My Sunday Service take is — 💈 ${comment.substring(0, 240)}\n\n#SundayServiceAt2`;
+      const tweetText = `💈 ${comment.substring(0, 240)}\n\n#SundayServiceAt2`;
       const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&via=afrocue_`;
       finalTweetLink.href = tweetUrl;
       if (autoTweet) {
