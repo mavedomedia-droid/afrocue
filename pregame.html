@@ -696,133 +696,17 @@
   </div>
 </footer>
 
+<!-- afrocue.js handles ALL form behavior:
+     SCRIPT_URL, togglePill, toggleBtn, toggleNewsletter, area "Other" toggle, handleSubmit -->
 <script src="afrocue.js"></script>
+
+<!-- Only FAQ accordion lives here (page-specific, not shared) -->
 <script>
-  // FAQ accordion
   function toggleFaq(el) {
     const item = el.closest('.faq-item');
     const isOpen = item.classList.contains('open');
     document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
-  }
-
-  // Party type pills
-  function togglePill(el) {
-    el.classList.toggle('selected');
-    updatePartyTypesValue();
-  }
-
-  function updatePartyTypesValue() {
-    const selected = [];
-    document.querySelectorAll('#partyTypePills .pill-opt.selected').forEach(pill => {
-      selected.push(pill.innerText.trim());
-    });
-    document.getElementById('partyTypesVal').value = selected.join(', ');
-  }
-
-  // Toggle button (Yes/No)
-  function toggleBtn(btn, fieldId, value) {
-    const parent = btn.parentElement;
-    const buttons = parent.querySelectorAll('.toggle-btn');
-    buttons.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById(fieldId).value = value;
-  }
-
-  // Newsletter checkbox
-  function toggleNewsletter(labelEl) {
-    const checkbox = labelEl.querySelector('input[type="checkbox"]');
-    const checkBoxDiv = labelEl.querySelector('.check-box');
-    checkbox.checked = !checkbox.checked;
-    if (checkbox.checked) {
-      checkBoxDiv.classList.add('checked');
-    } else {
-      checkBoxDiv.classList.remove('checked');
-    }
-  }
-
-  // Handle "Other" area selection
-  const areaSelect = document.getElementById('areaSelect');
-  const otherAreaField = document.getElementById('otherAreaField');
-
-  if (areaSelect) {
-    areaSelect.addEventListener('change', function() {
-      if (this.value === 'Other') {
-        otherAreaField.style.display = 'block';
-      } else {
-        otherAreaField.style.display = 'none';
-      }
-    });
-  }
-
-function handleSubmit(event) {
-  event.preventDefault();
-
-  const plusOne = document.getElementById('plusone').value;
-  if (!plusOne) {
-    alert('Please select Yes or No for the plus one question.');
-    return;
-  }
-
-  const formData = {
-    source: 'pregame',
-    name: document.querySelector('input[name="name"]').value,
-    email: document.querySelector('input[name="email"]').value,
-    phone: document.querySelector('input[name="phone"]').value,
-    instagram: document.querySelector('input[name="instagram"]').value,
-    party_types: document.getElementById('partyTypesVal').value,
-    area: document.getElementById('areaSelect').value,
-    area_other: document.querySelector('input[name="area_other"]')?.value || '',
-    bus_stop: document.getElementById('busStopInput')?.value || '',
-    plusone: plusOne,
-    newsletter: document.querySelector('input[name="newsletter"]').checked
-  };
-
-  // Read the GAS URL from afrocue.js — adjust the variable name to match what's in your shared file
-  const GAS_URL = window.AFROCUE_GAS_URL || window.GAS_URL;
-
-  if (!GAS_URL) {
-    console.error('GAS URL not found. Check afrocue.js exposes window.AFROCUE_GAS_URL');
-    alert('Submit error — please refresh and try again.');
-    return;
-  }
-
-  const body = 'payload=' + encodeURIComponent(JSON.stringify(formData));
-
-  fetch(GAS_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: body
-  }).catch(err => console.log('Submit error:', err));
-
-  document.getElementById('successOverlay').classList.add('show');
-}
-
-    const formData = {
-      source: 'pregame',
-      name: document.querySelector('input[name="name"]').value,
-      email: document.querySelector('input[name="email"]').value,
-      phone: document.querySelector('input[name="phone"]').value,
-      instagram: document.querySelector('input[name="instagram"]').value,
-      party_types: document.getElementById('partyTypesVal').value,
-      area: document.getElementById('areaSelect').value,
-      area_other: document.querySelector('input[name="area_other"]')?.value || '',
-      bus_stop: document.getElementById('busStopInput')?.value || '',
-      plusone: plusOne,
-      newsletter: document.querySelector('input[name="newsletter"]').checked
-    };
-
-    const body = 'payload=' + encodeURIComponent(JSON.stringify(formData));
-
-    fetch('https://script.google.com/macros/s/AKfycbxYRyC9LbYwRAPL6xE8c1XzC_LUfY0LfHkCvDSC9k6y/exec', {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: body
-    }).catch(err => console.log('Submit error:', err));
-
-    document.getElementById('successOverlay').classList.add('show');
   }
 </script>
 </body>
