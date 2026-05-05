@@ -149,7 +149,7 @@
     .party-chip.special { border-color: rgba(200,224,0,0.15); background: rgba(200,224,0,0.04); }
     .party-chip.special .party-name { color: var(--yellow); }
 
-    /* HOW IT WORKS — bumped up font sizes */
+    /* HOW IT WORKS */
     #how { border-top: 1px solid rgba(255,255,255,0.06); }
     .how-h { font-size: clamp(44px, 5.5vw, 80px); margin-bottom: 52px; }
     .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
@@ -169,18 +169,19 @@
     .form-note p { font-size: 12px; font-weight: 400; line-height: 1.7; color: rgba(240,237,232,0.5); margin: 0; }
     .form-note strong { color: var(--yellow); font-weight: 500; }
 
-    /* FORM FIELDS — minimum font-size 16px on all inputs/selects */
+    /* FORM FIELDS */
     .pregame-form { display: flex; flex-direction: column; gap: 4px; }
     .fsec { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--yellow); padding: 18px 0 10px; }
     .fdivider { height: 1px; background: rgba(255,255,255,0.06); margin: 8px 0; }
     .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
     .field { display: flex; flex-direction: column; gap: 6px; }
     .field label { font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--silver); }
+    .field-hint { font-size: 11px; font-weight: 400; color: var(--grey); margin-top: 2px; line-height: 1.5; }
     .field input,
     .field select {
       background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09);
       border-radius: 2px; padding: 13px 15px; color: var(--white);
-      font-family: 'Figtree', sans-serif; font-size: 16px; /* Minimum 16px to prevent zoom on mobile */
+      font-family: 'Figtree', sans-serif; font-size: 16px;
       outline: none; transition: border-color 0.2s, background 0.2s; width: 100%;
       appearance: none; -webkit-appearance: none;
     }
@@ -257,7 +258,7 @@
     .success-back { font-size: 11px; color: var(--grey); text-decoration: none; transition: color 0.2s; display: inline-block; margin-top: 4px; }
     .success-back:hover { color: var(--white); }
 
-    /* POWERED BY — removed Wakanow logo area */
+    /* POWERED BY */
     #powered { border-top: 1px solid rgba(255,255,255,0.06); }
     .powered-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1100px; }
     .powered-h { font-size: clamp(36px, 4.5vw, 60px); margin-bottom: 20px; }
@@ -510,6 +511,13 @@
         <input type="text" name="area_other" placeholder="Type your area"/>
       </div>
 
+      <!-- Nearest bus stop -->
+      <div class="field">
+        <label>Nearest bus stop / landmark</label>
+        <input type="text" name="bus_stop" id="busStopInput" placeholder="e.g. Lekki Phase 1 Gate, VGC Roundabout"/>
+        <p class="field-hint">Helps us figure out the best pickup spot near you.</p>
+      </div>
+
       <div class="fdivider"></div>
 
       <!-- Plus One -->
@@ -525,7 +533,7 @@
 
       <div class="fdivider"></div>
 
-      <!-- Newsletter — pre-checked -->
+      <!-- Newsletter -->
       <label class="newsletter-check" onclick="toggleNewsletter(this)">
         <input type="checkbox" name="newsletter" checked/>
         <div class="check-box checked" id="checkBox">
@@ -573,7 +581,7 @@
   </div>
 </section>
 
-<!-- POWERED BY — only ONBURD logo, removed Wakanow -->
+<!-- POWERED BY -->
 <section id="powered">
   <div class="powered-grid">
     <div class="powered-text">
@@ -610,7 +618,6 @@
       <div class="party-chip"><span class="party-icon">🎵</span><span class="party-name">Amapiano District</span></div>
       <div class="party-chip"><span class="party-icon">✝️</span><span class="party-name">Sunday Service</span></div>
       <div class="party-chip special"><span class="party-icon">🎉</span><span class="party-name">Other Selected Events</span></div>
-      <!-- duplicate for infinite scroll -->
       <div class="party-chip"><span class="party-icon">🎶</span><span class="party-name">South Social</span></div>
       <div class="party-chip"><span class="party-icon">🩺</span><span class="party-name">Group Therapy</span></div>
       <div class="party-chip"><span class="party-icon">🏠</span><span class="party-name">Element House</span></div>
@@ -695,9 +702,7 @@
   function toggleFaq(el) {
     const item = el.closest('.faq-item');
     const isOpen = item.classList.contains('open');
-    // close all
     document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-    // open clicked if it was closed
     if (!isOpen) item.classList.add('open');
   }
 
@@ -750,18 +755,16 @@
     });
   }
 
-  // Form submit handler
+  // Form submit handler — sends URL-encoded payload (most reliable with Apps Script + no-cors)
   function handleSubmit(event) {
     event.preventDefault();
-    
-    // Validate plus one is selected
+
     const plusOne = document.getElementById('plusone').value;
     if (!plusOne) {
       alert('Please select Yes or No for the plus one question.');
       return;
     }
-    
-    // Gather form data
+
     const formData = {
       source: 'pregame',
       name: document.querySelector('input[name="name"]').value,
@@ -771,19 +774,20 @@
       party_types: document.getElementById('partyTypesVal').value,
       area: document.getElementById('areaSelect').value,
       area_other: document.querySelector('input[name="area_other"]')?.value || '',
+      bus_stop: document.getElementById('busStopInput')?.value || '',
       plusone: plusOne,
       newsletter: document.querySelector('input[name="newsletter"]').checked
     };
-    
-    // Submit to Google Apps Script
+
+    const body = 'payload=' + encodeURIComponent(JSON.stringify(formData));
+
     fetch('https://script.google.com/macros/s/AKfycbxYRyC9LbYwRAPL6xE8c1XzC_LUfY0LfHkCvDSC9k6y/exec', {
       method: 'POST',
       mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body
     }).catch(err => console.log('Submit error:', err));
-    
-    // Show success overlay
+
     document.getElementById('successOverlay').classList.add('show');
   }
 </script>
