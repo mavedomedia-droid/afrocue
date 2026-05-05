@@ -4,7 +4,7 @@
    Set SCRIPT_URL below once you deploy the GAS web app.
    ============================================================ */
 
-var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw2SY6tf13Hi-iJDgmSzQ0TCRRxGJ8zD380nz2Dxyhop0TDpiUOX4TncyahtPgrH5jY/exec';
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzthmuJREidPS5pfH9065zzOaMV-PrXoY9nhPD2PVlXmqMEbsDEWVYCzOK8HbAHW_7n/exec';
 window.AFROCUE_SCRIPT_URL = SCRIPT_URL;
 
 
