@@ -755,15 +755,49 @@
     });
   }
 
-  // Form submit handler — sends URL-encoded payload (most reliable with Apps Script + no-cors)
-  function handleSubmit(event) {
-    event.preventDefault();
+function handleSubmit(event) {
+  event.preventDefault();
 
-    const plusOne = document.getElementById('plusone').value;
-    if (!plusOne) {
-      alert('Please select Yes or No for the plus one question.');
-      return;
-    }
+  const plusOne = document.getElementById('plusone').value;
+  if (!plusOne) {
+    alert('Please select Yes or No for the plus one question.');
+    return;
+  }
+
+  const formData = {
+    source: 'pregame',
+    name: document.querySelector('input[name="name"]').value,
+    email: document.querySelector('input[name="email"]').value,
+    phone: document.querySelector('input[name="phone"]').value,
+    instagram: document.querySelector('input[name="instagram"]').value,
+    party_types: document.getElementById('partyTypesVal').value,
+    area: document.getElementById('areaSelect').value,
+    area_other: document.querySelector('input[name="area_other"]')?.value || '',
+    bus_stop: document.getElementById('busStopInput')?.value || '',
+    plusone: plusOne,
+    newsletter: document.querySelector('input[name="newsletter"]').checked
+  };
+
+  // Read the GAS URL from afrocue.js — adjust the variable name to match what's in your shared file
+  const GAS_URL = window.AFROCUE_GAS_URL || window.GAS_URL;
+
+  if (!GAS_URL) {
+    console.error('GAS URL not found. Check afrocue.js exposes window.AFROCUE_GAS_URL');
+    alert('Submit error — please refresh and try again.');
+    return;
+  }
+
+  const body = 'payload=' + encodeURIComponent(JSON.stringify(formData));
+
+  fetch(GAS_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: body
+  }).catch(err => console.log('Submit error:', err));
+
+  document.getElementById('successOverlay').classList.add('show');
+}
 
     const formData = {
       source: 'pregame',
