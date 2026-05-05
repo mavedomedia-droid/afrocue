@@ -17,12 +17,16 @@ function submitToGAS(data) {
   }
   /* NOTE: mode 'no-cors' is required for GAS web apps — the response will always
      be opaque (status 0). This means we cannot distinguish success from failure.
-     The .finally() block will always fire. This is expected behaviour. */
+     The .finally() block will always fire. This is expected behaviour.
+
+     We send as URL-encoded `payload=<json>` which Apps Script's doPost
+     parses reliably (raw JSON body sometimes gets stripped under no-cors). */
+  var body = 'payload=' + encodeURIComponent(JSON.stringify(data));
   return fetch(SCRIPT_URL, {
     method: 'POST',
     mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: body
   });
 }
 
@@ -174,7 +178,7 @@ window.handleNewsletter = function(e) {
     if (input) input.checked = newsletterChecked;
   };
 
-  /* pregame form submit */
+  /* pregame form submit — PATCHED to send bus_stop + area_other */
   window.handleSubmit = function(e) {
     e.preventDefault();
     var form = e.target;
@@ -188,9 +192,12 @@ window.handleNewsletter = function(e) {
     btn.textContent = 'Submitting...';
     btn.disabled    = true;
 
-    var area = form.area && form.area.value === 'Other'
-      ? (form.area_other ? form.area_other.value : 'Other')
-      : (form.area ? form.area.value : '');
+    var rawArea = form.area ? form.area.value : '';
+    var areaOther = form.area_other ? form.area_other.value.trim() : '';
+    var area = rawArea === 'Other' ? (areaOther || 'Other') : rawArea;
+
+    var busStopEl = document.getElementById('busStopInput');
+    var busStop = busStopEl ? busStopEl.value.trim() : '';
 
     var data = {
       source:      'pregame',
@@ -199,7 +206,9 @@ window.handleNewsletter = function(e) {
       phone:       form.phone     ? form.phone.value.trim()     : '',
       instagram:   form.instagram ? ('@' + form.instagram.value.replace('@','').trim()) : '',
       party_types: (document.getElementById('partyTypesVal') || {value: ''}).value,
-      area:        area,
+      area:        rawArea,
+      area_other:  areaOther,
+      bus_stop:    busStop,
       plusone:     (form.plusone  ? form.plusone.value : '') || 'Not answered',
       newsletter:  newsletterChecked ? 'Yes' : 'No'
     };
