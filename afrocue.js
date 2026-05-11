@@ -31,6 +31,27 @@ function submitToGAS(data) {
 }
 
 
+/* ── GTM: dataLayer push for Signup trigger ─────────────────
+   Fires the "Signup" custom-event trigger which fires the
+   Meta Pixel - Lead/Signup tag. Used across all forms.
+   Event name matches the GTM trigger config: order_created_before_payment */
+function fireSignupEvent(data) {
+  try {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'order_created_before_payment',
+      source: data.source || 'unknown',
+      email: data.email || '',
+      phone: data.phone || '',
+      name: data.name || '',
+      instagram: data.instagram || ''
+    });
+  } catch (err) {
+    console.warn('AfroCue: dataLayer push failed', err);
+  }
+}
+
+
 /* ── INDEX: CONTENT SLIDER ───────────────────────────────── */
 
 (function() {
@@ -110,6 +131,8 @@ function submitToGAS(data) {
       newsletter: 'Yes'
     };
 
+    fireSignupEvent(data);
+
     submitToGAS(data).finally(function() {
       form.style.display = 'none';
       var success = document.getElementById('signupSuccess');
@@ -130,6 +153,9 @@ window.handleNewsletter = function(e) {
     email:      form.nl_email ? form.nl_email.value.trim() : '',
     newsletter: 'Yes'
   };
+
+  fireSignupEvent(data);
+
   submitToGAS(data).finally(function() {
     form.innerHTML = "<p style='color:var(--yellow);font-size:16px;font-weight:500;margin-top:8px;'>You are in. We will be in touch.</p>";
   });
@@ -212,6 +238,8 @@ window.handleNewsletter = function(e) {
       plusone:     (form.plusone  ? form.plusone.value : '') || 'Not answered',
       newsletter:  newsletterChecked ? 'Yes' : 'No'
     };
+
+    fireSignupEvent(data);
 
     submitToGAS(data).finally(function() {
       btn.textContent = 'Submit';
