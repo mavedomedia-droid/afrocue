@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Router by AfroCue — Book a Premium Ride in Lagos</title>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <meta name="description" content="Router by AfroCue — premium chauffeured rides for DJs, hype men, media execs, booking agents and guests heading to gigs and spots across Lagos. Hourly bookings, drinks in the car, no surge, no parking stress."/>
+  <link rel="canonical" href="https://afrocue.xyz/router"/>
+  <meta property="og:url" content="https://afrocue.xyz/router"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Router by AfroCue — Book a Premium Ride in Lagos"/>
+  <meta property="og:description" content="Premium chauffeured rides for talent, agents and guests heading to gigs and spots in Lagos. Book the hour, not the trip."/>
+  <meta property="og:image" content="https://afrocue.xyz/hero_dj.jpg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
+
+  <style>
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-.otf') format('opentype'); font-weight: 400; }
+
+    :root {
+      --black:#0a0a0a; --dark:#111; --dark2:#1c1c1c; --mid:#2e2e2e;
+      --grey:#555; --silver:#999; --off:#d4d4d0; --white:#f0ede8;
+      --yellow:#C8E000; --pink:#FF3DCC;
+      --yts: 2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.06);
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--black); color:var(--white); font-family:'Figtree',sans-serif; overflow-x:hidden; }
+    a { text-decoration:none; }
+    .yh { font-family:'Aesthet Nova',sans-serif; font-weight:900; color:var(--yellow); text-shadow:var(--yts); line-height:0.92; }
+
+    nav { position:fixed; top:0; left:0; right:0; z-index:900; display:flex; align-items:center; justify-content:space-between; padding:16px 48px; background:rgba(10,10,10,0.92); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.06); }
+    .nav-logo img { height:38px; width:auto; display:block; }
+    .nav-links { display:flex; gap:28px; list-style:none; }
+    .nav-links a { font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--silver); transition:color .2s; }
+    .nav-links a:hover { color:var(--white); }
+    .nav-cta { font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--black); background:var(--yellow); padding:11px 22px; border-radius:2px; transition:opacity .2s; }
+    .nav-cta:hover { opacity:.88; }
+
+    .hero { min-height:100vh; position:relative; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:100px 48px 64px; overflow:hidden; }
+    .hero-img-slot { position:absolute; inset:0; z-index:0; overflow:hidden; }
+    .hero-img-slot img { width:100%; height:100%; object-fit:cover; object-position:center 30%; opacity:.35; }
+    .hero-overlay { position:absolute; inset:0; z-index:2; background:linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,.6) 40%, rgba(10,10,10,.4) 80%, rgba(10,10,10,.85) 100%); }
+    .hero-content { position:relative; z-index:3; max-width:980px; width:100%; text-align:center; display:flex; flex-direction:column; align-items:center; }
+    .hero-eyebrow { display:inline-flex; align-items:center; gap:14px; font-size:10px; font-weight:600; letter-spacing:0.24em; text-transform:uppercase; color:var(--silver); margin-bottom:24px; }
+    .hero-eyebrow-line { width:26px; height:1px; background:var(--silver); }
+    .hero-eyebrow strong { color:var(--yellow); font-weight:600; }
+    .hero h1 { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(58px,9.5vw,140px); line-height:.9; color:var(--yellow); text-shadow:var(--yts); margin-bottom:28px; word-break:keep-all; }
+    .hero h1 .outline { -webkit-text-stroke:1.5px var(--yellow); color:transparent; text-shadow:none; }
+    .hero-desc { font-size:16px; font-weight:300; line-height:1.75; color:rgba(240,237,232,.65); max-width:580px; margin-bottom:36px; }
+    .hero-actions { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+
+    .btn { display:inline-block; font-family:'Figtree',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:14px 26px; border-radius:2px; border:none; cursor:pointer; transition:all .2s; }
+    .btn-yellow { color:var(--black); background:var(--yellow); }
+    .btn-yellow:hover { opacity:.88; }
+    .btn-ghost { color:var(--silver); background:transparent; border:1px solid rgba(255,255,255,0.18); font-weight:500; }
+    .btn-ghost:hover { border-color:var(--white); color:var(--white); }
+
+    section { padding:96px 48px; position:relative; }
+    .label { display:inline-flex; align-items:center; gap:10px; font-size:10px; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:var(--silver); margin-bottom:22px; }
+    .label::before { content:''; width:22px; height:1px; background:var(--silver); }
+
+    /* WHO */
+    #who { background:var(--dark); border-top:1px solid rgba(255,255,255,0.06); }
+    .who-h { font-size:clamp(44px,5.5vw,84px); margin-bottom:48px; }
+    .who-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(255,255,255,0.06); border-radius:4px; overflow:hidden; max-width:1200px; }
+    .who-card { background:var(--dark); padding:32px 26px; transition:background .2s; }
+    .who-card:hover { background:var(--dark2); }
+    .who-card-num { font-family:'Aesthet Nova',sans-serif; font-size:32px; font-weight:900; color:var(--yellow); text-shadow:var(--yts); margin-bottom:14px; line-height:1; }
+    .who-card-title { font-size:16px; font-weight:600; color:var(--white); margin-bottom:8px; }
+    .who-card-desc { font-size:12px; font-weight:300; line-height:1.65; color:var(--grey); }
+
+    /* WHY */
+    #why { border-top:1px solid rgba(255,255,255,0.06); }
+    .why-top { max-width:740px; margin-bottom:56px; }
+    .why-h { font-size:clamp(48px,6.5vw,96px); margin-bottom:20px; }
+    .why-sub { font-size:16px; font-weight:300; line-height:1.8; color:rgba(240,237,232,.6); }
+    .why-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; max-width:1200px; }
+    .why-card { padding:36px 32px; border-radius:4px; background:var(--dark); border:1px solid rgba(255,255,255,0.06); position:relative; overflow:hidden; transition:border-color .2s, transform .2s; }
+    .why-card:hover { border-color:rgba(200,224,0,0.25); transform:translateY(-2px); }
+    .why-card-num { position:absolute; top:16px; right:24px; font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:64px; color:rgba(200,224,0,0.06); line-height:1; }
+    .why-card-title { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:28px; color:var(--yellow); text-shadow:var(--yts); margin-bottom:14px; line-height:1; }
+    .why-card-desc { font-size:14px; font-weight:300; line-height:1.75; color:rgba(240,237,232,.65); }
+
+    /* INCLUDED */
+    #included { background:var(--dark); border-top:1px solid rgba(255,255,255,0.06); }
+    .inc-grid { display:grid; grid-template-columns:5fr 6fr; gap:80px; align-items:start; max-width:1200px; }
+    .inc-h { font-size:clamp(44px,5.5vw,88px); margin-bottom:22px; }
+    .inc-body { font-size:14px; font-weight:300; line-height:1.85; color:rgba(240,237,232,.55); margin-bottom:24px; }
+    .inc-list { display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); border-radius:4px; overflow:hidden; }
+    .inc-item { padding:22px 26px; border-bottom:1px solid rgba(255,255,255,0.05); display:flex; gap:20px; align-items:flex-start; transition:background .2s; }
+    .inc-item:last-child { border-bottom:none; }
+    .inc-item:hover { background:rgba(255,255,255,0.02); }
+    .inc-item-num { font-size:11px; font-weight:600; letter-spacing:0.1em; color:var(--yellow); padding-top:3px; flex-shrink:0; width:24px; }
+    .inc-item-title { font-size:14px; font-weight:500; color:var(--white); margin-bottom:5px; }
+    .inc-item-desc { font-size:13px; font-weight:300; line-height:1.7; color:var(--grey); }
+    .inc-callout { margin-top:18px; padding:18px 22px; background:rgba(200,224,0,0.06); border:1px solid rgba(200,224,0,0.18); border-radius:4px; font-size:13px; font-weight:400; line-height:1.75; color:rgba(240,237,232,.7); }
+    .inc-callout strong { color:var(--yellow); font-weight:600; }
+
+    /* HOW */
+    #how { border-top:1px solid rgba(255,255,255,0.06); }
+    .how-h { font-size:clamp(44px,5.5vw,84px); margin-bottom:48px; }
+    .how-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:22px; max-width:1200px; }
+    .step { padding:30px 24px; border:1px solid rgba(255,255,255,0.06); border-radius:4px; background:var(--dark); }
+    .step-num { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:36px; color:var(--yellow); text-shadow:var(--yts); line-height:1; margin-bottom:18px; }
+    .step-title { font-size:14px; font-weight:500; color:var(--white); line-height:1.5; }
+
+    /* AGENTS */
+    #agents { background:var(--dark); border-top:1px solid rgba(255,255,255,0.06); }
+    .agents-inner { display:grid; grid-template-columns:5fr 6fr; gap:80px; align-items:start; max-width:1200px; }
+    .agents-h { font-size:clamp(40px,5vw,76px); margin-bottom:18px; }
+    .agents-body { font-size:15px; font-weight:300; line-height:1.85; color:rgba(240,237,232,.6); margin-bottom:24px; }
+    .agents-cta { display:flex; gap:12px; flex-wrap:wrap; }
+    .agents-benefits { display:flex; flex-direction:column; gap:14px; }
+    .agent-benefit { padding:22px 24px; background:var(--black); border:1px solid rgba(255,255,255,0.06); border-radius:4px; transition:border-color .2s; }
+    .agent-benefit:hover { border-color:rgba(200,224,0,0.22); }
+    .agent-benefit-key { font-size:10px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--yellow); margin-bottom:8px; }
+    .agent-benefit-val { font-size:13px; font-weight:400; line-height:1.7; color:rgba(240,237,232,.7); }
+    .agent-benefit-tag { display:inline-block; margin-left:8px; font-size:9px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--pink); background:rgba(255,61,204,0.1); border:1px solid rgba(255,61,204,0.25); padding:2px 6px; border-radius:2px; vertical-align:middle; }
+
+    /* CREATIVES */
+    #creatives { border-top:1px solid rgba(255,255,255,0.06); }
+    .creatives-inner { max-width:980px; }
+    .creatives-h { font-size:clamp(40px,5vw,76px); margin-bottom:22px; }
+    .creatives-body { font-size:15px; font-weight:300; line-height:1.85; color:rgba(240,237,232,.6); margin-bottom:8px; }
+    .creatives-body strong { color:var(--white); font-weight:500; }
+
+    /* PRICING */
+    #pricing { background:var(--dark); border-top:1px solid rgba(255,255,255,0.06); }
+    .pricing-top { max-width:740px; margin-bottom:44px; }
+    .pricing-h { font-size:clamp(48px,6.5vw,92px); margin-bottom:18px; }
+    .pricing-sub { font-size:14px; font-weight:300; line-height:1.8; color:rgba(240,237,232,.55); }
+    .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; max-width:1200px; }
+    .pricing-card { padding:32px 28px 28px; border-radius:5px; background:var(--black); border:1px solid rgba(255,255,255,0.08); display:flex; flex-direction:column; }
+    .pricing-card.tier-early { border-color:rgba(200,224,0,0.22); background:rgba(200,224,0,0.03); }
+    .pricing-card.tier-peak { border-color:rgba(255,61,204,0.18); background:rgba(255,61,204,0.025); }
+    .pricing-card.tier-late { border-color:rgba(255,255,255,0.12); background:rgba(255,255,255,0.025); }
+    .pricing-tag { display:inline-block; font-size:10px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; margin-bottom:16px; }
+    .pricing-card.tier-early .pricing-tag { color:var(--yellow); }
+    .pricing-card.tier-peak .pricing-tag { color:var(--pink); }
+    .pricing-card.tier-late .pricing-tag { color:var(--off); }
+    .pricing-name { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:30px; color:var(--white); line-height:1; margin-bottom:8px; }
+    .pricing-window { font-size:12px; color:var(--silver); margin-bottom:22px; }
+    .pricing-price { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:44px; color:var(--white); line-height:1; margin-bottom:4px; }
+    .pricing-unit { font-size:12px; color:var(--silver); margin-bottom:22px; }
+    .pricing-incl { list-style:none; padding:0; }
+    .pricing-incl li { font-size:13px; font-weight:300; line-height:1.65; color:rgba(240,237,232,.6); padding:7px 0 7px 16px; position:relative; border-bottom:1px solid rgba(255,255,255,0.04); }
+    .pricing-incl li:last-child { border-bottom:none; }
+    .pricing-incl li::before { content:'—'; position:absolute; left:0; color:var(--mid); }
+    .coverage-note { max-width:1100px; margin-top:28px; padding:20px 24px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:4px; display:flex; align-items:flex-start; gap:14px; font-size:13px; font-weight:300; color:rgba(240,237,232,.65); line-height:1.65; }
+    .coverage-note strong { color:var(--yellow); font-weight:600; }
+    .coverage-icon { font-size:18px; flex-shrink:0; margin-top:2px; }
+
+    /* BOOK */
+    #book { border-top:1px solid rgba(255,255,255,0.06); }
+    .book-inner { max-width:780px; }
+    .book-h { font-size:clamp(44px,5.5vw,80px); margin-bottom:16px; }
+    .book-sub { font-size:14px; font-weight:300; line-height:1.8; color:rgba(240,237,232,.55); margin-bottom:36px; max-width:580px; }
+    .book-form { display:flex; flex-direction:column; gap:18px; background:var(--dark); border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:36px 32px; }
+    .form-section-title { font-size:11px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--yellow); margin-bottom:-4px; opacity:.85; }
+    .form-divider { height:1px; background:rgba(255,255,255,0.06); margin:8px 0; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .field { display:flex; flex-direction:column; gap:6px; }
+    .field label { font-size:10px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--silver); }
+    .field-help { font-size:12px; font-weight:300; color:var(--grey); margin-top:-2px; line-height:1.55; }
+    .field input, .field select { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:2px; padding:13px 14px; color:var(--white); font-family:'Figtree',sans-serif; font-size:15px; outline:none; transition:border-color .2s; width:100%; appearance:none; }
+    .field input:focus, .field select:focus { border-color:rgba(200,224,0,0.4); }
+    .field input::placeholder { color:var(--grey); }
+    .field select { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; background-color:rgba(255,255,255,0.04); padding-right:36px; cursor:pointer; }
+    .field select option { background:#1a1a1a; }
+    .field select optgroup { background:#1a1a1a; color:var(--yellow); font-weight:600; }
+    .toggle-group { display:flex; gap:8px; }
+    .toggle-btn { flex:1; padding:12px 14px; border:1px solid rgba(255,255,255,0.12); border-radius:2px; background:transparent; color:var(--silver); font-family:'Figtree',sans-serif; font-size:12px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; transition:all .2s; }
+    .toggle-btn.active { background:var(--yellow); color:var(--black); border-color:var(--yellow); }
+    .toggle-btn:hover:not(.active) { border-color:rgba(255,255,255,0.25); color:var(--white); }
+    .conditional { display:none; }
+    .conditional.show { display:flex; flex-direction:column; gap:14px; }
+    .fine-print { font-size:12px; font-weight:300; line-height:1.7; color:var(--grey); padding:14px 16px; background:rgba(255,255,255,0.02); border-left:2px solid rgba(200,224,0,0.4); border-radius:2px; }
+    .fine-print strong { color:var(--white); font-weight:500; }
+    .submit-btn { background:var(--yellow); color:var(--black); border:none; padding:18px 24px; border-radius:2px; cursor:pointer; font-family:'Figtree',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; display:flex; align-items:center; justify-content:center; gap:14px; transition:opacity .2s; margin-top:8px; }
+    .submit-btn:hover { opacity:.88; }
+    .submit-btn:disabled { opacity:.5; cursor:not-allowed; }
+    .submit-btn-amount { background:rgba(0,0,0,0.18); padding:4px 10px; border-radius:2px; font-size:12px; }
+
+    /* CONFIRM */
+    #confirmation { display:none; background:var(--dark); padding:80px 48px; min-height:100vh; align-items:center; justify-content:center; }
+    #confirmation.show { display:flex; }
+    .conf-card { max-width:580px; width:100%; background:var(--black); border:1px solid rgba(200,224,0,0.3); border-radius:6px; padding:48px 40px; text-align:center; }
+    .conf-checkmark { width:60px; height:60px; margin:0 auto 24px; border-radius:50%; background:var(--yellow); display:flex; align-items:center; justify-content:center; }
+    .conf-checkmark svg { width:30px; height:30px; }
+    .conf-eyebrow { font-size:10px; font-weight:700; letter-spacing:0.24em; text-transform:uppercase; color:var(--yellow); margin-bottom:14px; }
+    .conf-h { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:42px; color:var(--white); line-height:1; margin-bottom:12px; }
+    .conf-sub { font-size:14px; font-weight:300; line-height:1.7; color:rgba(240,237,232,.6); margin-bottom:32px; }
+    .conf-bookingid { display:inline-block; font-family:'Courier New',monospace; font-size:13px; padding:8px 14px; background:rgba(200,224,0,0.1); border:1px solid rgba(200,224,0,0.3); color:var(--yellow); border-radius:2px; margin-bottom:32px; letter-spacing:0.08em; }
+    .pay-block { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:4px; padding:24px 26px; text-align:left; margin-bottom:24px; }
+    .pay-label { font-size:9px; font-weight:700; letter-spacing:0.24em; text-transform:uppercase; color:var(--grey); margin-bottom:14px; }
+    .pay-row { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+    .pay-row:last-child { border-bottom:none; }
+    .pay-key { font-size:12px; color:var(--silver); }
+    .pay-val { font-size:14px; color:var(--white); font-weight:600; }
+    .pay-val--big { font-size:18px; color:var(--yellow); }
+    .pay-amount { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:32px; color:var(--yellow); margin-top:14px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:baseline; }
+    .pay-amount-label { font-size:11px; color:var(--silver); letter-spacing:0.1em; text-transform:uppercase; font-family:'Figtree',sans-serif; }
+    .conf-fine { font-size:11px; font-weight:300; line-height:1.7; color:var(--grey); margin-bottom:8px; }
+    .conf-fine strong { color:var(--yellow); font-weight:600; }
+
+    /* FAQ */
+    #faq { background:var(--dark); border-top:1px solid rgba(255,255,255,0.06); }
+    .faq-inner { max-width:900px; }
+    .faq-h { font-size:clamp(40px,5vw,76px); margin-bottom:36px; }
+    .faq-item { border-bottom:1px solid rgba(255,255,255,0.06); }
+    .faq-item:first-of-type { border-top:1px solid rgba(255,255,255,0.06); }
+    .faq-q {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:24px 4px; cursor:pointer; user-select:none;
+      font-size:15px; font-weight:500; color:var(--white);
+      transition:color .2s; gap:24px;
+    }
+    .faq-q:hover { color:var(--yellow); }
+    .faq-q-icon {
+      flex-shrink:0; width:22px; height:22px;
+      display:flex; align-items:center; justify-content:center;
+      color:var(--yellow); font-size:22px; font-weight:300;
+      transition:transform .25s ease;
+      line-height:1;
+    }
+    .faq-item.open .faq-q-icon { transform:rotate(45deg); }
+    .faq-a {
+      font-size:13px; font-weight:300; line-height:1.85; color:rgba(240,237,232,.6);
+      max-height:0; overflow:hidden; padding:0 4px;
+      transition:max-height .35s ease, padding-bottom .25s ease;
+    }
+    .faq-item.open .faq-a { max-height:320px; padding-bottom:24px; }
+
+    /* Google Places autocomplete dropdown (.pac-container is injected by Google into body) */
+    .pac-container {
+      background:#1c1c1c !important;
+      border:1px solid rgba(255,255,255,0.12) !important;
+      border-radius:2px !important;
+      box-shadow:0 8px 24px rgba(0,0,0,0.5) !important;
+      margin-top:2px !important;
+      font-family:'Figtree',sans-serif !important;
+    }
+    .pac-item {
+      padding:10px 14px !important;
+      border-top:1px solid rgba(255,255,255,0.05) !important;
+      color:#d4d4d0 !important;
+      font-size:13px !important;
+      cursor:pointer !important;
+    }
+    .pac-item:first-child { border-top:none !important; }
+    .pac-item:hover, .pac-item-selected { background:rgba(200,224,0,0.08) !important; }
+    .pac-item-query { color:#f0ede8 !important; font-weight:500 !important; }
+    .pac-matched { color:#C8E000 !important; font-weight:600 !important; }
+    .pac-icon { display:none !important; }
+    .pac-logo:after { display:none !important; }
+
+    /* Same-as-booker checkbox */
+    .same-check {
+      display:flex; align-items:center; gap:10px;
+      padding:10px 14px; background:rgba(255,255,255,0.025);
+      border:1px solid rgba(255,255,255,0.08); border-radius:2px;
+      cursor:pointer; user-select:none; transition:border-color .2s;
+      margin-top:6px;
+    }
+    .same-check:hover { border-color:rgba(200,224,0,0.25); }
+    .same-check input[type="checkbox"] { display:none; }
+    .same-check-box {
+      width:16px; height:16px; border:1px solid rgba(255,255,255,0.25);
+      border-radius:2px; display:flex; align-items:center; justify-content:center;
+      flex-shrink:0; transition:all .15s;
+    }
+    .same-check.checked .same-check-box { background:var(--yellow); border-color:var(--yellow); }
+    .same-check-box svg { display:none; width:10px; height:10px; }
+    .same-check.checked .same-check-box svg { display:block; }
+    .same-check-label { font-size:12px; color:rgba(240,237,232,.65); }
+    .same-check.checked .same-check-label { color:var(--white); }
+
+    /* FOOTER */
+    footer { border-top:1px solid rgba(255,255,255,0.06); padding:60px 48px 44px; display:flex; flex-direction:column; align-items:center; gap:20px; background:var(--dark); text-align:center; }
+    footer img { height:56px; width:auto; }
+    .tag { font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--grey); }
+    .footer-links { display:flex; gap:22px; flex-wrap:wrap; justify-content:center; }
+    .footer-links a { font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--grey); transition:color .2s; }
+    .footer-links a:hover { color:var(--white); }
+    .footer-contact { font-size:12px; color:var(--silver); }
+    .footer-contact a { color:var(--yellow); font-weight:600; }
+
+    @media (max-width:900px) {
+      .inc-grid, .agents-inner { grid-template-columns:1fr; gap:40px; }
+      .pricing-grid { grid-template-columns:1fr; }
+      .why-grid { grid-template-columns:1fr; }
+      .who-grid { grid-template-columns:1fr 1fr; }
+      .how-grid { grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width:600px) {
+      nav { padding:14px 20px; }
+      .nav-links { display:none; }
+      .hero { padding:100px 20px 60px; min-height:0; }
+      .hero h1 { font-size:clamp(50px,13vw,80px); }
+      section { padding:64px 20px; }
+      .who-grid { grid-template-columns:1fr; }
+      .how-grid { grid-template-columns:1fr; }
+      .form-row { grid-template-columns:1fr; }
+      .conf-card { padding:36px 24px; }
+      footer { padding:48px 20px 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<nav>
+  <a class="nav-logo" href="/"><img src="logo_afrocue.png" alt="AfroCue"/></a>
+  <ul class="nav-links">
+    <li><a href="#who">Who's Riding</a></li>
+    <li><a href="#why">Why Router</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+  <a href="#book" class="nav-cta">Book a Router</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-img-slot"><img src="hero_dj.jpg" alt="Router by AfroCue"/></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-line"></span>
+      <span><strong>Router</strong> by AfroCue · Lagos</span>
+      <span class="hero-eyebrow-line"></span>
+    </div>
+    <h1>Route your<br><span class="outline">night.</span></h1>
+    <p class="hero-desc">Premium chauffeured rides for DJs, hype men, media execs, booking agents and guests heading to gigs and spots in Lagos. Book the hour, not the trip.</p>
+    <div class="hero-actions">
+      <a href="#book" class="btn btn-yellow">Book a Router</a>
+      <a href="#how" class="btn btn-ghost">How It Works</a>
+    </div>
+  </div>
+</div>
+
+<section id="who">
+  <div class="label">Built For</div>
+  <h2 class="yh who-h">Who's<br>Riding.</h2>
+  <div class="who-grid">
+    <div class="who-card">
+      <div class="who-card-num">01</div>
+      <div class="who-card-title">DJs</div>
+      <div class="who-card-desc">Show up rested. Aux is yours. Set the tone before the set.</div>
+    </div>
+    <div class="who-card">
+      <div class="who-card-num">02</div>
+      <div class="who-card-title">Hype Men</div>
+      <div class="who-card-desc">Save the energy for the stage, not the stress of getting there.</div>
+    </div>
+    <div class="who-card">
+      <div class="who-card-num">03</div>
+      <div class="who-card-title">Media Execs</div>
+      <div class="who-card-desc">Coverage runs to a clock. We make sure you make it.</div>
+    </div>
+    <div class="who-card">
+      <div class="who-card-num">04</div>
+      <div class="who-card-title">Guests</div>
+      <div class="who-card-desc">No talent? Still welcome. Premium ride, same deal.</div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="why-top">
+    <div class="label">Why Router</div>
+    <h2 class="yh why-h">Own your<br>night.</h2>
+    <p class="why-sub">For Lagos creatives, talent, and people who just want to get there without the grind — Router takes the ride out of the equation so you can focus on the part that actually matters.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-card-num">01</div>
+      <div class="why-card-title">Skip the stress.</div>
+      <div class="why-card-desc">No surge pricing on busy nights. No driver cancellations five minutes in. No scrolling Uber waiting for a car you'd actually want to be seen in. Book once, it's handled.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-card-num">02</div>
+      <div class="why-card-title">Skip the parking.</div>
+      <div class="why-card-desc">Inadequate parking at big venues is a Lagos problem. You don't have one anymore. You get dropped off, you walk in, you're inside.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-card-num">03</div>
+      <div class="why-card-title">Arrive ready.</div>
+      <div class="why-card-desc">A clean premium ride with drinks in the car. Dress up. Get in. Ease into your night. By the time you arrive at the door, you're already in the mood.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-card-num">04</div>
+      <div class="why-card-title">Focus on the gig.</div>
+      <div class="why-card-desc">For talent: no thinking about ride costs, timing an Uber, or whether parking will eat your prep time. Get dressed, get picked up, focus on the performance.</div>
+    </div>
+  </div>
+</section>
+
+<section id="included">
+  <div class="inc-grid">
+    <div>
+      <div class="label">What's Included</div>
+      <h2 class="yh inc-h">Not on<br>Uber.</h2>
+      <p class="inc-body">Every Router booking is a fully chauffeured premium ride built for a night out — with the small touches that make the difference between just a ride and an arrival.</p>
+      <div class="inc-callout">
+        <strong>Each hourly booking entitles you to up to 45 minutes of drive time from pickup.</strong> If you arrive at the venue before the 45 minutes is up, you can stay in the ride, wait outside the venue, or drive somewhere nearby — until the 45-minute mark.
+      </div>
+    </div>
+    <div class="inc-list">
+      <div class="inc-item">
+        <div class="inc-item-num">01</div>
+        <div>
+          <div class="inc-item-title">Premium chauffeured ride</div>
+          <div class="inc-item-desc">A car you'd actually want to be seen getting out of. Driven by a professional, not a stranger with a sticker.</div>
+        </div>
+      </div>
+      <div class="inc-item">
+        <div class="inc-item-num">02</div>
+        <div>
+          <div class="inc-item-title">Complimentary drinks &amp; barware</div>
+          <div class="inc-item-desc">Pre-game properly. Drinks and glassware in the car so you can ease into the night before you arrive.</div>
+        </div>
+      </div>
+      <div class="inc-item">
+        <div class="inc-item-num">03</div>
+        <div>
+          <div class="inc-item-title">AUX control &amp; quiet ride</div>
+          <div class="inc-item-desc">Play what you want. Or don't say a word. Up to you.</div>
+        </div>
+      </div>
+      <div class="inc-item">
+        <div class="inc-item-num">04</div>
+        <div>
+          <div class="inc-item-title">Calendar reminders</div>
+          <div class="inc-item-desc">A calendar invite with built-in reminders so you don't miss your pickup window.</div>
+        </div>
+      </div>
+      <div class="inc-item">
+        <div class="inc-item-num">05</div>
+        <div>
+          <div class="inc-item-title">Additional pickups on the route</div>
+          <div class="inc-item-desc">Pick up your manager, hype man, or team — on the route to the venue and within the 45-minute ride window. Number of extras depends on your booking tier.</div>
+        </div>
+      </div>
+      <div class="inc-item">
+        <div class="inc-item-num">06</div>
+        <div>
+          <div class="inc-item-title">On time, no stress</div>
+          <div class="inc-item-desc">No discussing trip costs. No surge. No driver drama. Just arrive.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="label">How It Works</div>
+  <h2 class="yh how-h">Four<br>Steps.</h2>
+  <div class="how-grid">
+    <div class="step"><div class="step-num">01</div><div class="step-title">Choose your booking window</div></div>
+    <div class="step"><div class="step-num">02</div><div class="step-title">Input pickup &amp; destination</div></div>
+    <div class="step"><div class="step-num">03</div><div class="step-title">Confirm your booking and pay</div></div>
+    <div class="step"><div class="step-num">04</div><div class="step-title">We arrive on time. You ride in style.</div></div>
+  </div>
+</section>
+
+<section id="agents">
+  <div class="agents-inner">
+    <div>
+      <div class="label">For Booking Agents &amp; Organizers</div>
+      <h2 class="yh agents-h">Booking talent?<br>Cover the logistics too.</h2>
+      <p class="agents-body">Don't just book your talent — make sure they actually arrive, in the right state, ready to go. Router lets you handle the booking and the logistics in one move, so the gig starts on time, not when your headliner finally pulls up.</p>
+      <div class="agents-cta">
+        <a href="#book" class="btn btn-yellow">Book for Your Talent</a>
+        <a href="https://wa.me/2348162373553" target="_blank" class="btn btn-ghost">Talk to Us</a>
+      </div>
+    </div>
+    <div class="agents-benefits">
+      <div class="agent-benefit">
+        <div class="agent-benefit-key">Guaranteed Arrival Window</div>
+        <div class="agent-benefit-val">Their Router pickup time is their prep deadline. They know exactly when to be ready. You know exactly when they'll show. No more wondering if your DJ is on the way.</div>
+      </div>
+      <div class="agent-benefit">
+        <div class="agent-benefit-key">Book the Talent &amp; the Trip Together</div>
+        <div class="agent-benefit-val">Talent. Manager. Hype man. All in one Router. One booking, one pickup window, one driver.</div>
+      </div>
+      <div class="agent-benefit">
+        <div class="agent-benefit-key">Live Tracking <span class="agent-benefit-tag">Coming Soon</span></div>
+        <div class="agent-benefit-val">Track your talent's pickup and ETA from your phone. In development now, rolling out later this year.</div>
+      </div>
+      <div class="agent-benefit">
+        <div class="agent-benefit-key">Multi-Talent Bookings</div>
+        <div class="agent-benefit-val">Handling multiple talents for one event? WhatsApp us — we'll coordinate and quote custom agent rates.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="creatives">
+  <div class="creatives-inner">
+    <div class="label">For Creatives &amp; Guests</div>
+    <h2 class="yh creatives-h">Going out?<br>Just show up.</h2>
+    <p class="creatives-body">When you add up the Uber surge on a busy night, the parking grief at big venues, and the headache of timing rides while you're trying to leave the house — <strong>Router lands cheaper than the alternative</strong>, and it's a hell of a better arrival.</p>
+    <p class="creatives-body">Drinks in the car. Premium ride. A professional driver who isn't going to call you to cancel five minutes after pickup. You skip the grind, get on with your night, and arrive like you should.</p>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="pricing-top">
+    <div class="label">Pricing</div>
+    <h2 class="yh pricing-h">Three<br>tiers.</h2>
+    <p class="pricing-sub">All bookings are hourly. Each hour entitles you to up to 45 minutes of drive time from pickup. Pickup coverage is Central Mainland and Island up to Ajah.</p>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="pricing-card tier-early">
+      <div class="pricing-tag">Early</div>
+      <div class="pricing-name">Early Hours</div>
+      <div class="pricing-window">3 PM – 10 PM · hourly slots</div>
+      <div class="pricing-price">₦40,000</div>
+      <div class="pricing-unit">per hour</div>
+      <ul class="pricing-incl">
+        <li>Premium chauffeured ride</li>
+        <li>Complimentary drinks &amp; barware</li>
+        <li><strong style="color:var(--white);font-weight:500;">1 pickup</strong> included</li>
+        <li>Up to 45 min ride time from pickup</li>
+        <li>Calendar reminders</li>
+      </ul>
+    </div>
+
+    <div class="pricing-card tier-peak">
+      <div class="pricing-tag">Peak</div>
+      <div class="pricing-name">Peak Hours</div>
+      <div class="pricing-window">10 PM – 12 AM · hourly slots</div>
+      <div class="pricing-price">₦45,000</div>
+      <div class="pricing-unit">per hour</div>
+      <ul class="pricing-incl">
+        <li>Everything in Early</li>
+        <li><strong style="color:var(--white);font-weight:500;">Up to 2 pickups</strong> included</li>
+        <li>Roads run freer — more room for extra stops</li>
+        <li>Up to 45 min ride time from pickup</li>
+      </ul>
+    </div>
+
+    <div class="pricing-card tier-late">
+      <div class="pricing-tag">After Hours</div>
+      <div class="pricing-name">After Hours</div>
+      <div class="pricing-window">12 AM – 3 AM · hourly slots</div>
+      <div class="pricing-price">₦55,000</div>
+      <div class="pricing-unit">per hour</div>
+      <ul class="pricing-incl">
+        <li>Everything in Peak</li>
+        <li><strong style="color:var(--white);font-weight:500;">Up to 2 pickups</strong> included</li>
+        <li>Late-night driver availability</li>
+        <li>Up to 45 min ride time from pickup</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="coverage-note">
+    <span class="coverage-icon">📍</span>
+    <div><strong>Pickup coverage.</strong> Central Mainland — Ikeja, Yaba, Gbagada, Surulere, Anthony and thereabouts. Island — up to Ajah.</div>
+  </div>
+</section>
+
+<section id="book">
+  <div class="book-inner">
+    <div class="label">Book a Router</div>
+    <h2 class="yh book-h">Lock<br>it in.</h2>
+    <p class="book-sub">Fill out the details below. We'll send payment info and your booking ID to your email right after.</p>
+
+    <form class="book-form" id="bookingForm" onsubmit="submitBooking(event)">
+
+      <div class="form-section-title">Who's Riding</div>
+      <div class="form-row">
+        <div class="field">
+          <label>Talent / Primary Booking Name *</label>
+          <input type="text" name="talent_name" required placeholder="e.g. DJ Tunez"/>
+        </div>
+        <div class="field">
+          <label>Who is this for? *</label>
+          <select name="talent_type" required>
+            <option value="" disabled selected>Select role</option>
+            <option>DJ</option>
+            <option>Hype Man</option>
+            <option>Media Exec</option>
+            <option>Guest</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Primary Pickup Email *</label>
+        <input type="email" name="primary_pickup_email" id="primaryPickupEmail" required placeholder="Email of the person being picked up"/>
+        <div class="field-help">We send calendar invites &amp; reminders to this email — the person actually being picked up.</div>
+        <label class="same-check" id="sameAsBookerCheck" onclick="toggleSameAsBooker()">
+          <input type="checkbox" id="sameAsBookerInput"/>
+          <span class="same-check-box">
+            <svg viewBox="0 0 10 10" fill="none"><path d="M1 5l3 3 5-6" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="same-check-label">Same as booker's email (use this if you're booking for yourself)</span>
+        </label>
+      </div>
+
+      <div class="form-divider"></div>
+
+      <div class="form-section-title">The Trip</div>
+      <div class="field">
+        <label>Gig / Destination Name *</label>
+        <input type="text" name="gig_name" required placeholder="e.g. Sunday Service @ Hard Rock Cafe"/>
+      </div>
+      <div class="field">
+        <label>Pickup Address *</label>
+        <input type="text" name="pickup_address" required placeholder="Street, area"/>
+        <div class="field-help">Pickup coverage: Central Mainland and Island up to Ajah.</div>
+      </div>
+      <div class="field">
+        <label>Destination Address *</label>
+        <input type="text" name="destination" required placeholder="Where the gig is"/>
+      </div>
+
+      <div class="field">
+        <label>Does your estate require access code entry?</label>
+        <div class="field-help" style="margin-top:0; margin-bottom:6px;">If yes, our driver will call you on the day to get the code.</div>
+        <div class="toggle-group">
+          <button type="button" class="toggle-btn active" onclick="toggleEstate(this,'no')">No</button>
+          <button type="button" class="toggle-btn" onclick="toggleEstate(this,'yes')">Yes</button>
+        </div>
+        <input type="hidden" name="estate_access_required" value="No"/>
+      </div>
+
+      <div class="form-divider"></div>
+
+      <div class="form-section-title">When</div>
+      <div class="form-row">
+        <div class="field">
+          <label>Booking Date *</label>
+          <input type="date" name="booking_date" required/>
+        </div>
+        <div class="field">
+          <label>Booking Window *</label>
+          <select name="booking_window" required onchange="updateAmount()">
+            <option value="" disabled selected>Select time</option>
+            <optgroup label="Early — ₦40,000/hr · 1 pickup">
+              <option value="3 PM – 4 PM|40000|Early|1">3 PM – 4 PM</option>
+              <option value="4 PM – 5 PM|40000|Early|1">4 PM – 5 PM</option>
+              <option value="5 PM – 6 PM|40000|Early|1">5 PM – 6 PM</option>
+              <option value="6 PM – 7 PM|40000|Early|1">6 PM – 7 PM</option>
+              <option value="7 PM – 8 PM|40000|Early|1">7 PM – 8 PM</option>
+              <option value="8 PM – 9 PM|40000|Early|1">8 PM – 9 PM</option>
+              <option value="9 PM – 10 PM|40000|Early|1">9 PM – 10 PM</option>
+            </optgroup>
+            <optgroup label="Peak — ₦45,000/hr · up to 2 pickups">
+              <option value="10 PM – 11 PM|45000|Peak|2">10 PM – 11 PM</option>
+              <option value="11 PM – 12 AM|45000|Peak|2">11 PM – 12 AM</option>
+            </optgroup>
+            <optgroup label="After Hours — ₦55,000/hr · up to 2 pickups">
+              <option value="12 AM – 1 AM|55000|After Hours|2">12 AM – 1 AM</option>
+              <option value="1 AM – 2 AM|55000|After Hours|2">1 AM – 2 AM</option>
+              <option value="2 AM – 3 AM|55000|After Hours|2">2 AM – 3 AM</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-divider"></div>
+
+      <div class="form-section-title">Additional Pickups</div>
+      <div class="field">
+        <label>Need to pick up anyone else?</label>
+        <div class="field-help" style="margin-top:0;margin-bottom:6px;">Number depends on your booking tier. Pickups must be on the route to the destination and within the 45-min ride window.</div>
+        <div class="toggle-group">
+          <button type="button" class="toggle-btn active" onclick="setPickups(this,0)">None</button>
+          <button type="button" class="toggle-btn" onclick="setPickups(this,1)">+1</button>
+          <button type="button" class="toggle-btn" onclick="setPickups(this,2)">+2</button>
+        </div>
+        <input type="hidden" name="additional_pickups" value="0" id="additionalPickupsField"/>
+      </div>
+
+      <div class="conditional" id="pickup2Field">
+        <div class="field">
+          <label>Pickup #2 Address</label>
+          <input type="text" name="pickup_2_address" placeholder="Address of second pickup"/>
+        </div>
+      </div>
+
+      <div class="conditional" id="pickup3Field">
+        <div class="field">
+          <label>Pickup #3 Address</label>
+          <input type="text" name="pickup_3_address" placeholder="Address of third pickup"/>
+        </div>
+      </div>
+
+      <div class="form-divider"></div>
+
+      <div class="form-section-title">Return Trip <span style="color:var(--grey);font-weight:400;letter-spacing:0.08em;text-transform:none;">— optional, no charge for now</span></div>
+      <div class="field">
+        <label>Want us to bring you back after the night?</label>
+        <div class="field-help" style="margin-top:0;margin-bottom:6px;">If yes, give us a rough return window. Flexible — we'll confirm closer to the day. Not charged upfront.</div>
+        <div class="toggle-group">
+          <button type="button" class="toggle-btn active" onclick="toggleReturn(this,'no')">No</button>
+          <button type="button" class="toggle-btn" onclick="toggleReturn(this,'yes')">Yes</button>
+        </div>
+        <input type="hidden" name="return_trip" value="No"/>
+      </div>
+
+      <div class="conditional" id="returnField">
+        <div class="field">
+          <label>Approximate Return Time</label>
+          <input type="text" name="return_window" placeholder="e.g. 2 AM, or 'after the set, around 3 AM'"/>
+          <div class="field-help">Rough is fine. We'll confirm details closer to the day.</div>
+        </div>
+      </div>
+
+      <div class="form-divider"></div>
+
+      <div class="form-section-title">Your Contact</div>
+      <div class="form-row">
+        <div class="field">
+          <label>Booker's Name *</label>
+          <input type="text" name="booker_name" required placeholder="Person filling this form"/>
+        </div>
+        <div class="field">
+          <label>Booker's Email *</label>
+          <input type="email" name="booker_email" required placeholder="your@email.com"/>
+        </div>
+      </div>
+      <div class="field">
+        <label>Phone Number to Call *</label>
+        <input type="tel" name="booker_phone" required placeholder="08012345678"/>
+        <div class="field-help">The number our driver will call on arrival.</div>
+      </div>
+
+      <div class="form-divider"></div>
+
+      <div class="fine-print">
+        <strong>Heads up:</strong> A calendar invite with reminders is included so you don't miss your time. Each booking is a one-hour window. Max wait at pickup applies.
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn">
+        <span>Book Now</span>
+        <span class="submit-btn-amount" id="submitAmount">₦40,000</span>
+      </button>
+    </form>
+  </div>
+</section>
+
+<section id="confirmation">
+  <div class="conf-card">
+    <div class="conf-checkmark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <div class="conf-eyebrow">Booking Received</div>
+    <h2 class="conf-h">You're<br>Almost In.</h2>
+    <p class="conf-sub">We've received your booking and sent a copy to your email. Complete your payment to confirm. Once payment lands, we'll send a confirmation and reach out with your trip details.</p>
+    <div class="conf-bookingid" id="confBookingId">AC-RT-001</div>
+    <div class="pay-block">
+      <div class="pay-label">Pay To</div>
+      <div class="pay-row"><span class="pay-key">Bank</span><span class="pay-val">Access Bank</span></div>
+      <div class="pay-row"><span class="pay-key">Account Name</span><span class="pay-val">MAVEDO MEDIA</span></div>
+      <div class="pay-row"><span class="pay-key">Account Number</span><span class="pay-val pay-val--big">1893537653</span></div>
+      <div class="pay-amount">
+        <span class="pay-amount-label">Amount</span>
+        <span id="confAmount">₦40,000</span>
+      </div>
+    </div>
+    <p class="conf-fine"><strong>Use your booking ID</strong> as the transfer reference so we can match the payment quickly.</p>
+    <p class="conf-fine">Questions? Call or WhatsApp <strong>0816 237 3553</strong>.</p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="faq-inner">
+    <div class="label">FAQ</div>
+    <h2 class="yh faq-h">Quick<br>Answers.</h2>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>How long is the actual ride?</span>
+        <span class="faq-q-icon">+</span>
+      </div>
+      <div class="faq-a">Each hourly booking entitles you to up to 45 minutes of drive time from pickup. If you arrive at the venue before the 45 minutes is up, you can stay in the ride, wait outside the venue, or drive somewhere nearby — until the 45-minute mark.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>How many pickups are included?</span>
+        <span class="faq-q-icon">+</span>
+      </div>
+      <div class="faq-a">Depends on your tier. Early Hours (3 PM – 10 PM) includes 1 pickup. Peak Hours (10 PM – 12 AM) and After Hours (12 AM – 3 AM) include up to 2 pickups — roads run freer at night so there's more room for extra stops. Extras must be on the route and within the 45-minute ride window.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>Can I book for someone else?</span>
+        <span class="faq-q-icon">+</span>
+      </div>
+      <div class="faq-a">Yes — that's how a lot of our bookings work. Booking agents, event organizers and managers regularly book for the talent they handle. You'll fill in the talent's name and their email (the person actually being picked up), plus your own name and email as the booker. Confirmations go to both of you.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>Is there a return trip option?</span>
+        <span class="faq-q-icon">+</span>
+      </div>
+      <div class="faq-a">Yes — it's optional and not charged upfront. Toggle it on at booking, give us a rough return time, and we'll confirm details closer to the day.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>Do you cover the Mainland and Island?</span>
+        <span class="faq-q-icon">+</span>
+      </div>
+      <div class="faq-a">Yes — central Mainland (Ikeja, Yaba, Gbagada, Surulere, Anthony and thereabouts) and Island up to Ajah.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>Is there a multi-talent discount for agents?</span>
+        <span class="faq-q-icon">+</span>
+      </div>
+      <div class="faq-a">If you're booking multiple talents for one event, WhatsApp us at 0816 237 3553 and we'll work out custom agent rates with you.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>Can I change or cancel my booking?</span>
+        <span class="faq-q-icon">+</span>
+      </div>
+      <div class="faq-a">Changes — like updating your pickup location or shifting details — are fine. WhatsApp us at 0816 237 3553 as early as you can and we'll sort it. Same-day cancellations, however, are non-refundable.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="/"><img src="logo_afrocue.png" alt="AfroCue"/></a>
+  <p class="tag">Router by AfroCue · Premium Talent Logistics</p>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="#who">Who's Riding</a>
+    <a href="#why">Why Router</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#book">Book</a>
+  </div>
+  <p class="footer-contact">Support: <a href="tel:08162373553">0816 237 3553</a> · WhatsApp</p>
+</footer>
+
+<script>
+  const APPS_SCRIPT_URL = 'PASTE_YOUR_DEPLOYED_APPS_SCRIPT_WEB_APP_URL_HERE';
+
+  // ── FAQ accordion ──
+  function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    // close all open items (single-open accordion)
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // ── Same-as-booker email checkbox ──
+  function toggleSameAsBooker() {
+    const check = document.getElementById('sameAsBookerCheck');
+    const input = document.getElementById('sameAsBookerInput');
+    const primary = document.getElementById('primaryPickupEmail');
+    const booker = document.querySelector('input[name="booker_email"]');
+
+    input.checked = !input.checked;
+    check.classList.toggle('checked', input.checked);
+
+    if (input.checked) {
+      primary.value = booker ? booker.value : '';
+      primary.readOnly = true;
+      primary.style.opacity = '0.6';
+      // keep it in sync if booker email changes
+      if (booker) {
+        booker._syncListener = () => { primary.value = booker.value; };
+        booker.addEventListener('input', booker._syncListener);
+      }
+    } else {
+      primary.readOnly = false;
+      primary.style.opacity = '1';
+      if (booker && booker._syncListener) {
+        booker.removeEventListener('input', booker._syncListener);
+        booker._syncListener = null;
+      }
+    }
+  }
+
+  function toggleEstate(btn, value) {
+    btn.parentElement.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelector('input[name="estate_access_required"]').value = value === 'yes' ? 'Yes' : 'No';
+  }
+
+  function toggleReturn(btn, value) {
+    btn.parentElement.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelector('input[name="return_trip"]').value = value === 'yes' ? 'Yes' : 'No';
+    const field = document.getElementById('returnField');
+    if (value === 'yes') field.classList.add('show');
+    else { field.classList.remove('show'); field.querySelector('input').value = ''; }
+  }
+
+  function setPickups(btn, count) {
+    btn.parentElement.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('additionalPickupsField').value = count;
+    const p2 = document.getElementById('pickup2Field');
+    const p3 = document.getElementById('pickup3Field');
+    if (count >= 1) p2.classList.add('show'); else { p2.classList.remove('show'); p2.querySelector('input').value=''; }
+    if (count >= 2) p3.classList.add('show'); else { p3.classList.remove('show'); p3.querySelector('input').value=''; }
+  }
+
+  function updateAmount() {
+    const select = document.querySelector('select[name="booking_window"]');
+    const val = select.value;
+    if (!val) return;
+    const parts = val.split('|');
+    const amount = parseInt(parts[1], 10);
+    const formatted = '₦' + amount.toLocaleString();
+    document.getElementById('submitAmount').textContent = formatted;
+    document.getElementById('confAmount').textContent = formatted;
+  }
+
+  function generateClientId() {
+    return 'AC-RT-' + Date.now().toString().slice(-6);
+  }
+
+  async function submitBooking(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.querySelector('span').textContent = 'Submitting...';
+
+    const form = e.target;
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    const windowParts = (data.booking_window || '').split('|');
+    data.booking_window_label = windowParts[0] || '';
+    data.amount = windowParts[1] || '40000';
+    data.window_type = windowParts[2] || 'Early';
+    data.tier_pickups_included = windowParts[3] || '1';
+
+    try {
+      await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(data),
+      });
+
+      const bookingId = generateClientId();
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'order_created_before_payment',
+        source: 'router',
+        booking_id: bookingId,
+        value: parseInt(data.amount, 10) || 40000,
+        currency: 'NGN',
+        talent_type: data.talent_type,
+        window_type: data.window_type,
+        booking_window: data.booking_window_label,
+        gig_name: data.gig_name,
+        booker_email: data.booker_email,
+        booker_phone: data.booker_phone,
+        booker_name: data.booker_name,
+      });
+
+      document.getElementById('confBookingId').textContent = bookingId;
+      document.getElementById('confAmount').textContent = '₦' + parseInt(data.amount).toLocaleString();
+      document.getElementById('book').style.display = 'none';
+      document.getElementById('confirmation').classList.add('show');
+      window.scrollTo({ top: document.getElementById('confirmation').offsetTop - 60, behavior: 'smooth' });
+    } catch (err) {
+      alert('Something went wrong. WhatsApp us at 0816 237 3553 and we\'ll handle it directly.');
+      btn.disabled = false;
+      btn.querySelector('span').textContent = 'Book Now';
+      console.error(err);
+    }
+  }
+
+  // ── Google Places autocomplete (graceful fallback if API not loaded) ──
+  // Bias results to Lagos, restrict to Nigeria. If the script doesn't load,
+  // the inputs work as regular text fields. No breaking on missing key.
+  function initRouterPlaces() {
+    if (!window.google || !google.maps || !google.maps.places) {
+      console.info('Google Places not loaded — address fields will work as plain text.');
+      return;
+    }
+    const lagosBounds = new google.maps.LatLngBounds(
+      new google.maps.LatLng(6.3933, 3.0930),  // SW corner
+      new google.maps.LatLng(6.7027, 3.7106)   // NE corner
+    );
+    const opts = {
+      bounds: lagosBounds,
+      componentRestrictions: { country: 'ng' },
+      fields: ['formatted_address', 'name', 'geometry'],
+    };
+    ['input[name="pickup_address"]',
+     'input[name="destination"]',
+     'input[name="pickup_2_address"]',
+     'input[name="pickup_3_address"]'
+    ].forEach(sel => {
+      const el = document.querySelector(sel);
+      if (!el) return;
+      try {
+        const ac = new google.maps.places.Autocomplete(el, opts);
+        // when a place is selected, write the formatted address back to the input
+        ac.addListener('place_changed', () => {
+          const place = ac.getPlace();
+          if (place && place.formatted_address) {
+            el.value = place.formatted_address;
+          }
+        });
+      } catch (e) { console.warn('Places init failed for ' + sel, e); }
+    });
+  }
+
+  // Hook for the Google Maps script's callback param
+  window.initRouterPlaces = initRouterPlaces;
+</script>
+
+<!--
+  Google Places Autocomplete (optional)
+  ─────────────────────────────────────
+  Replace YOUR_GOOGLE_MAPS_API_KEY below with your actual API key.
+  Make sure Places API + Maps JavaScript API are enabled in Google Cloud Console.
+  Set a daily quota cap (e.g. 200/day) to guarantee you never get billed beyond the free tier.
+  If the script fails to load, the address fields gracefully fall back to plain text inputs.
+-->
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places&callback=initRouterPlaces"
+  onerror="console.warn('Google Maps script failed to load — using plain inputs.');"></script>
+
+</body>
+</html>
