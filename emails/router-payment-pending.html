@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Booking Received — AfroCue Router</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>Booking Received — Router by AfroCue</title>
   <style>
-    body { margin:0; padding:0; background:#0a0a0a; font-family:Arial,sans-serif; }
-    a { color:#C8E000; text-decoration:none; }
+    body { margin:0; padding:0; background:#0a0a0a; font-family:Arial,sans-serif; -webkit-text-size-adjust:100%; }
+    a { text-decoration:none; }
+    img { border:0; display:block; }
+    table { border-collapse:collapse; }
   </style>
 </head>
 <body style="margin:0;padding:0;background:#0a0a0a;">
@@ -35,6 +38,9 @@
         <h1 style="font-family:Arial,sans-serif;font-size:28px;font-weight:700;color:#C8E000;line-height:1.15;margin:0;letter-spacing:-0.01em;">
           {{BOOKER_NAME}}
         </h1>
+        <p style="font-size:14px;line-height:1.8;color:rgba(240,237,232,0.6);margin:16px 0 0;">
+          Thanks for booking with Router. Here&rsquo;s your summary &mdash; complete the payment below to lock it in.
+        </p>
       </td>
     </tr>
 
@@ -42,42 +48,86 @@
     <tr>
       <td style="padding:0 44px 36px;border-top:1px solid rgba(255,255,255,0.06);">
         <p style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#555555;margin:32px 0 20px;">Booking Summary</p>
-        
+
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
-          <tr><td style="padding:0 0 8px 0;"><span style="color:rgba(240,237,232,0.5);">Booking ID:</span> <span style="color:rgba(240,237,232,0.85);font-weight:600;">{{BOOKING_ID}}</span></td></tr>
-          <tr><td style="padding:0 0 8px 0;"><span style="color:rgba(240,237,232,0.5);">For:</span> <span style="color:rgba(240,237,232,0.8);">{{TALENT_NAME}} ({{TALENT_TYPE}})</span></td></tr>
-          <tr><td style="padding:0 0 8px 0;"><span style="color:rgba(240,237,232,0.5);">Gig:</span> <span style="color:rgba(240,237,232,0.8);">{{GIG_NAME}}</span></td></tr>
-          <tr><td style="padding:0 0 8px 0;"><span style="color:rgba(240,237,232,0.5);">Date:</span> <span style="color:rgba(240,237,232,0.8);">{{BOOKING_DATE}}</span></td></tr>
-          <tr><td style="padding:0 0 8px 0;"><span style="color:rgba(240,237,232,0.5);">Time:</span> <span style="color:rgba(240,237,232,0.8);">{{BOOKING_WINDOW}}</span></td></tr>
-          <tr><td style="padding:0 0 8px 0;"><span style="color:rgba(240,237,232,0.5);">Pickup:</span> <span style="color:rgba(240,237,232,0.8);">{{PICKUP_ADDRESS}}</span></td></tr>
-          <tr><td style="padding:0 0 8px 0;"><span style="color:rgba(240,237,232,0.5);">Destination:</span> <span style="color:rgba(240,237,232,0.8);">{{DESTINATION}}</span></td></tr>
+
+          <tr>
+            <td width="130" valign="top" style="padding:0 14px 12px 0;font-size:12px;color:rgba(240,237,232,0.45);line-height:1.6;">Booking&nbsp;ID</td>
+            <td valign="top" style="padding:0 0 12px 0;font-size:14px;color:#C8E000;font-weight:600;line-height:1.6;letter-spacing:0.02em;">{{BOOKING_ID}}</td>
+          </tr>
+
+          <tr>
+            <td width="130" valign="top" style="padding:0 14px 12px 0;font-size:12px;color:rgba(240,237,232,0.45);line-height:1.6;">For</td>
+            <td valign="top" style="padding:0 0 12px 0;font-size:14px;color:rgba(240,237,232,0.85);line-height:1.6;">{{TALENT_NAME}} <span style="color:rgba(240,237,232,0.5);">({{TALENT_TYPE}})</span></td>
+          </tr>
+
+          <tr>
+            <td width="130" valign="top" style="padding:0 14px 12px 0;font-size:12px;color:rgba(240,237,232,0.45);line-height:1.6;">Gig</td>
+            <td valign="top" style="padding:0 0 12px 0;font-size:14px;color:rgba(240,237,232,0.85);line-height:1.6;">{{GIG_NAME}}</td>
+          </tr>
+
+          <tr>
+            <td width="130" valign="top" style="padding:0 14px 12px 0;font-size:12px;color:rgba(240,237,232,0.45);line-height:1.6;">Date</td>
+            <td valign="top" style="padding:0 0 12px 0;font-size:14px;color:rgba(240,237,232,0.85);line-height:1.6;">{{BOOKING_DATE}}</td>
+          </tr>
+
+          <tr>
+            <td width="130" valign="top" style="padding:0 14px 12px 0;font-size:12px;color:rgba(240,237,232,0.45);line-height:1.6;">Time window</td>
+            <td valign="top" style="padding:0 0 12px 0;font-size:14px;color:rgba(240,237,232,0.85);line-height:1.6;">{{BOOKING_WINDOW}}</td>
+          </tr>
+
+          <tr>
+            <td width="130" valign="top" style="padding:0 14px 12px 0;font-size:12px;color:rgba(240,237,232,0.45);line-height:1.6;">Pickup</td>
+            <td valign="top" style="padding:0 0 12px 0;font-size:14px;color:rgba(240,237,232,0.85);line-height:1.6;">{{PICKUP_ADDRESS}}</td>
+          </tr>
+
+          <tr>
+            <td width="130" valign="top" style="padding:0 14px 12px 0;font-size:12px;color:rgba(240,237,232,0.45);line-height:1.6;">Destination</td>
+            <td valign="top" style="padding:0 0 12px 0;font-size:14px;color:rgba(240,237,232,0.85);line-height:1.6;">{{DESTINATION}}</td>
+          </tr>
+
           {{PICKUP_DETAILS}}
+
           {{RETURN_LINE}}
-          <tr><td style="padding:0 0 8px 0;"><span style="color:rgba(240,237,232,0.5);">Additional pickups:</span> <span style="color:rgba(240,237,232,0.8);">{{ADDITIONAL_PICKUPS}}</span></td></tr>
+
+          <tr>
+            <td width="130" valign="top" style="padding:0 14px 12px 0;font-size:12px;color:rgba(240,237,232,0.45);line-height:1.6;">Additional pickups</td>
+            <td valign="top" style="padding:0 0 12px 0;font-size:14px;color:rgba(240,237,232,0.85);line-height:1.6;">{{ADDITIONAL_PICKUPS}}</td>
+          </tr>
+
         </table>
       </td>
     </tr>
 
-    <!-- Payment Details -->
+    <!-- Amount + Payment -->
     <tr>
       <td style="padding:0 44px 36px;border-top:1px solid rgba(255,255,255,0.06);">
-        <p style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#555555;margin:32px 0 20px;">To Confirm Your Booking</p>
-        
-        <p style="font-size:16px;font-weight:700;color:#C8E000;margin:0 0 24px;text-align:center;">
-          {{AMOUNT}}
-        </p>
-        
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#0d0d0d;border:1px solid rgba(255,255,255,0.08);border-radius:4px;">
-          <tr><td style="padding:20px 24px;">
-            <p style="font-size:13px;color:rgba(240,237,232,0.5);margin:0 0 12px;">Transfer to:</p>
-            <p style="font-size:15px;color:#f0ede8;margin:0 0 4px;font-weight:600;">{{PAY_BANK}}</p>
-            <p style="font-size:15px;color:#f0ede8;margin:0 0 4px;">{{PAY_NAME}}</p>
-            <p style="font-size:18px;color:#C8E000;margin:0;font-weight:700;letter-spacing:0.02em;">{{PAY_ACCT}}</p>
-          </td></tr>
+        <p style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#555555;margin:32px 0 14px;">To Confirm Your Booking</p>
+
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 22px;">
+          <tr>
+            <td valign="middle" style="font-size:12px;color:rgba(240,237,232,0.5);">Amount due</td>
+            <td valign="middle" align="right" style="font-size:28px;color:#C8E000;font-weight:700;letter-spacing:-0.01em;">{{AMOUNT}}</td>
+          </tr>
         </table>
-        
-        <p style="font-size:12px;color:rgba(240,237,232,0.4);margin:16px 0 0;text-align:center;">
-          Use your Booking ID <strong style="color:#C8E000;">{{BOOKING_ID}}</strong> as transfer reference.
+
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#0d0d0d;border:1px solid rgba(255,255,255,0.08);border-radius:4px;">
+          <tr>
+            <td style="padding:22px 24px 8px;">
+              <p style="font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,237,232,0.4);margin:0 0 6px;">Bank</p>
+              <p style="font-size:15px;color:#f0ede8;margin:0 0 18px;font-weight:500;">{{PAY_BANK}}</p>
+
+              <p style="font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,237,232,0.4);margin:0 0 6px;">Account Name</p>
+              <p style="font-size:15px;color:#f0ede8;margin:0 0 18px;font-weight:500;">{{PAY_NAME}}</p>
+
+              <p style="font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,237,232,0.4);margin:0 0 6px;">Account Number</p>
+              <p style="font-size:20px;color:#C8E000;margin:0 0 8px;font-weight:700;letter-spacing:0.03em;font-family:Arial,sans-serif;">{{PAY_ACCT}}</p>
+            </td>
+          </tr>
+        </table>
+
+        <p style="font-size:12px;color:rgba(240,237,232,0.5);margin:16px 0 0;line-height:1.7;">
+          Use your booking ID <strong style="color:#C8E000;">{{BOOKING_ID}}</strong> as the transfer reference so we can match the payment quickly.
         </p>
       </td>
     </tr>
@@ -86,21 +136,21 @@
     <tr>
       <td style="padding:0 44px 36px;border-top:1px solid rgba(255,255,255,0.06);">
         <p style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#555555;margin:32px 0 16px;">What happens next</p>
-        <p style="font-size:14px;line-height:1.9;color:rgba(240,237,232,0.65);margin:0;">
-          Once we receive payment, you'll get a confirmation email with trip details — plus a calendar invite so you don't miss your pickup.
+        <p style="font-size:14px;line-height:1.9;color:rgba(240,237,232,0.7);margin:0;">
+          Once we receive payment, you&rsquo;ll get a confirmation email and a calendar invite for your pickup. Closer to the day, we&rsquo;ll reach out with your driver&rsquo;s name, car details, and exact pickup time within your window.
         </p>
       </td>
     </tr>
 
-    <!-- Reminders -->
+    <!-- Keep in mind -->
     <tr>
       <td style="padding:0 44px 36px;border-top:1px solid rgba(255,255,255,0.06);">
         <p style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#555555;margin:32px 0 16px;">Keep in mind</p>
-        <p style="font-size:14px;line-height:1.9;color:rgba(240,237,232,0.65);margin:0 0 8px;">
-          — Each booking is a one-hour window — up to 45 minutes drive time from pickup
+        <p style="font-size:14px;line-height:1.9;color:rgba(240,237,232,0.65);margin:0 0 6px;">
+          &mdash; Each booking is a one-hour window, with up to 45 minutes drive time from pickup
         </p>
         <p style="font-size:14px;line-height:1.9;color:rgba(240,237,232,0.65);margin:0;">
-          — Max wait at pickup applies
+          &mdash; Max wait at pickup applies
         </p>
       </td>
     </tr>
@@ -109,22 +159,25 @@
     <tr>
       <td style="padding:0 44px 36px;">
         <p style="font-size:14px;line-height:1.9;color:rgba(240,237,232,0.7);margin:0;text-align:center;">
-          Questions? WhatsApp <a href="https://wa.me/{{SUPPORT_PHONE_INTL}}">{{SUPPORT_PHONE}}</a>.
+          Questions? WhatsApp <a href="https://wa.me/{{SUPPORT_PHONE_INTL}}" style="color:#C8E000;font-weight:600;">{{SUPPORT_PHONE}}</a>.
         </p>
       </td>
     </tr>
 
-    <!-- Footer -->
+    <!-- Footer sign-off -->
     <tr>
-      <td style="padding:20px 44px;background:#0d0d0d;border-top:1px solid rgba(255,255,255,0.06);">
+      <td style="padding:22px 44px;background:#0d0d0d;border-top:1px solid rgba(255,255,255,0.06);">
+        <p style="font-size:12px;line-height:1.7;color:rgba(240,237,232,0.45);margin:0 0 8px;">
+          Once payment lands, you&rsquo;re locked in. We&rsquo;ll see you out there.
+        </p>
         <p style="font-size:11px;line-height:1.7;color:rgba(240,237,232,0.35);margin:0;">
-          — Router by AfroCue<br>
-          <a href="https://afrocue.xyz/router" style="color:rgba(240,237,232,0.35);">afrocue.xyz/router</a>
+          &mdash; Router by AfroCue<br>
+          <a href="https://afrocue.xyz/router" style="color:rgba(240,237,232,0.45);">afrocue.xyz/router</a>
         </p>
       </td>
     </tr>
 
-    <!-- Bottom bar -->
+    <!-- Bottom brand bar -->
     <tr>
       <td style="padding:22px 44px 28px;border-top:1px solid rgba(255,255,255,0.06);background:#0a0a0a;">
         <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" height="28" style="display:block;height:28px;width:auto;margin-bottom:10px;"/>
@@ -141,4 +194,4 @@
 </table>
 
 </body>
-</html>`
+</html>
