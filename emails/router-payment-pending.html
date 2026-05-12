@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Booking Received — AfroCue Router</title>
+  <style>
+    body { margin:0; padding:0; background:#0a0a0a; font-family:Arial,sans-serif; }
+    a { color:#C8E000; text-decoration:none; }
+  </style>
+</head>
+<body style="margin:0;padding:0;background:#0a0a0a;">
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#0a0a0a;">
+<tr><td align="center" style="padding:40px 16px 32px;">
+
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:580px;background:#111111;border:1px solid rgba(255,255,255,0.08);border-radius:6px;overflow:hidden;">
+
+    <!-- Accent bar -->
+    <tr><td style="background:#C8E000;height:3px;font-size:0;line-height:0;">&nbsp;</td></tr>
+
+    <!-- Header -->
+    <tr>
+      <td style="padding:32px 44px 28px;border-bottom:1px solid rgba(255,255,255,0.06);">
+        <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" height="36" style="height:36px;width:auto;"/>
+      </td>
+    </tr>
+
+    <!-- Hero -->
+    <tr>
+      <td style="padding:40px 44px 32px;">
+        <p style="font-size:13px;color:rgba(240,237,232,0.6);margin:0 0 12px;letter-spacing:0.02em;">
+          Booking received.
+        </p>
+        <h1 style="font-family:Arial,sans-serif;font-size:28px;font-weight:700;color:#C8E000;line-height:1.15;margin:0;letter-spacing:-0.01em;">
+          {{BOOKER_NAME}}
+        </h1>
+      </td>
+    </tr>
+
+    <!-- Booking Summary -->
+    <tr>
+      <td style="padding:0 44px 36px;border-top:1px solid rgba(255,255,255,0.06);">
+        <p style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#555555;margin:32px 0 20px;">Booking Summary</p>
+        
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr><td style="padding:0 0 8px 0;"><span style="color:rgba(240,237,232,0.5);">Booking ID:</span> <span style="color:rgba(240,237,232,0.85);font-weight:600;">{{BOOKING_ID}}</span></td></tr>
+          <tr><td style="padding:0 0 8px 0;"><span style="color:rgba(240,237,232,0.5);">For:</span> <span style="color:rgba(240,237,232,0.8);">{{TALENT_NAME}} ({{TALENT_TYPE}})</span></td></tr>
+          <tr><td style="padding:0 0 8px 0;"><span style="color:rgba(240,237,232,0.5);">Gig:</span> <span style="color:rgba(240,237,232,0.8);">{{GIG_NAME}}</span></td></tr>
+          <tr><td style="padding:0 0 8px 0;"><span style="color:rgba(240,237,232,0.5);">Date:</span> <span style="color:rgba(240,237,232,0.8);">{{BOOKING_DATE}}</span></td></tr>
+          <tr><td style="padding:0 0 8px 0;"><span style="color:rgba(240,237,232,0.5);">Time:</span> <span style="color:rgba(240,237,232,0.8);">{{BOOKING_WINDOW}}</span></td></tr>
+          <tr><td style="padding:0 0 8px 0;"><span style="color:rgba(240,237,232,0.5);">Pickup:</span> <span style="color:rgba(240,237,232,0.8);">{{PICKUP_ADDRESS}}</span></td></tr>
+          <tr><td style="padding:0 0 8px 0;"><span style="color:rgba(240,237,232,0.5);">Destination:</span> <span style="color:rgba(240,237,232,0.8);">{{DESTINATION}}</span></td></tr>
+          {{PICKUP_DETAILS}}
+          {{RETURN_LINE}}
+          <tr><td style="padding:0 0 8px 0;"><span style="color:rgba(240,237,232,0.5);">Additional pickups:</span> <span style="color:rgba(240,237,232,0.8);">{{ADDITIONAL_PICKUPS}}</span></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- Payment Details -->
+    <tr>
+      <td style="padding:0 44px 36px;border-top:1px solid rgba(255,255,255,0.06);">
+        <p style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#555555;margin:32px 0 20px;">To Confirm Your Booking</p>
+        
+        <p style="font-size:16px;font-weight:700;color:#C8E000;margin:0 0 24px;text-align:center;">
+          {{AMOUNT}}
+        </p>
+        
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#0d0d0d;border:1px solid rgba(255,255,255,0.08);border-radius:4px;">
+          <tr><td style="padding:20px 24px;">
+            <p style="font-size:13px;color:rgba(240,237,232,0.5);margin:0 0 12px;">Transfer to:</p>
+            <p style="font-size:15px;color:#f0ede8;margin:0 0 4px;font-weight:600;">{{PAY_BANK}}</p>
+            <p style="font-size:15px;color:#f0ede8;margin:0 0 4px;">{{PAY_NAME}}</p>
+            <p style="font-size:18px;color:#C8E000;margin:0;font-weight:700;letter-spacing:0.02em;">{{PAY_ACCT}}</p>
+          </td></tr>
+        </table>
+        
+        <p style="font-size:12px;color:rgba(240,237,232,0.4);margin:16px 0 0;text-align:center;">
+          Use your Booking ID <strong style="color:#C8E000;">{{BOOKING_ID}}</strong> as transfer reference.
+        </p>
+      </td>
+    </tr>
+
+    <!-- What happens next -->
+    <tr>
+      <td style="padding:0 44px 36px;border-top:1px solid rgba(255,255,255,0.06);">
+        <p style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#555555;margin:32px 0 16px;">What happens next</p>
+        <p style="font-size:14px;line-height:1.9;color:rgba(240,237,232,0.65);margin:0;">
+          Once we receive payment, you'll get a confirmation email with trip details — plus a calendar invite so you don't miss your pickup.
+        </p>
+      </td>
+    </tr>
+
+    <!-- Reminders -->
+    <tr>
+      <td style="padding:0 44px 36px;border-top:1px solid rgba(255,255,255,0.06);">
+        <p style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#555555;margin:32px 0 16px;">Keep in mind</p>
+        <p style="font-size:14px;line-height:1.9;color:rgba(240,237,232,0.65);margin:0 0 8px;">
+          — Each booking is a one-hour window — up to 45 minutes drive time from pickup
+        </p>
+        <p style="font-size:14px;line-height:1.9;color:rgba(240,237,232,0.65);margin:0;">
+          — Max wait at pickup applies
+        </p>
+      </td>
+    </tr>
+
+    <!-- Questions -->
+    <tr>
+      <td style="padding:0 44px 36px;">
+        <p style="font-size:14px;line-height:1.9;color:rgba(240,237,232,0.7);margin:0;text-align:center;">
+          Questions? WhatsApp <a href="https://wa.me/{{SUPPORT_PHONE_INTL}}">{{SUPPORT_PHONE}}</a>.
+        </p>
+      </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+      <td style="padding:20px 44px;background:#0d0d0d;border-top:1px solid rgba(255,255,255,0.06);">
+        <p style="font-size:11px;line-height:1.7;color:rgba(240,237,232,0.35);margin:0;">
+          — Router by AfroCue<br>
+          <a href="https://afrocue.xyz/router" style="color:rgba(240,237,232,0.35);">afrocue.xyz/router</a>
+        </p>
+      </td>
+    </tr>
+
+    <!-- Bottom bar -->
+    <tr>
+      <td style="padding:22px 44px 28px;border-top:1px solid rgba(255,255,255,0.06);background:#0a0a0a;">
+        <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" height="28" style="display:block;height:28px;width:auto;margin-bottom:10px;"/>
+        <p style="font-size:11px;color:#444444;line-height:1.8;margin:0;">
+          Lagos, Nigeria &nbsp;&middot;&nbsp; &copy; 2026 AfroCue<br>
+          <a href="https://afrocue.xyz" style="color:#444444;">afrocue.xyz</a>
+        </p>
+      </td>
+    </tr>
+
+  </table>
+
+</td></tr>
+</table>
+
+</body>
+</html>`
