@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>You've been specially invited.</title>
+  <meta name="robots" content="noindex"/>
+  <script src="afrocue.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');font-weight:900}
+    @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype');font-weight:500}
+  </style>
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html,body{height:100%;background:#050508;color:#f0ede8;font-family:'Figtree',sans-serif;overflow-x:hidden;-webkit-text-size-adjust:100%}
+
+    /* PASSWORD GATE */
+    #pw-screen{position:fixed;inset:0;z-index:300;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#050508;padding:24px;transition:opacity 0.7s ease}
+    #pw-screen.hiding{opacity:0;pointer-events:none}
+    .pw-noise{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:0.5;pointer-events:none}
+    .pw-wrap{position:relative;z-index:1;width:100%;max-width:340px;display:flex;flex-direction:column;align-items:center;gap:0}
+    .pw-ring{width:72px;height:72px;border-radius:50%;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;margin-bottom:28px;animation:ringpulse 2.8s ease-in-out infinite}
+    @keyframes ringpulse{0%,100%{border-color:rgba(255,255,255,0.08)}50%{border-color:rgba(255,255,255,0.18)}}
+    .pw-label{font-size:9px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:rgba(240,237,232,0.25);margin-bottom:20px}
+    .pw-input-wrap{width:100%;position:relative;margin-bottom:12px}
+    .pw-input{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:16px 20px;color:#f0ede8;font-family:'Figtree',sans-serif;font-size:16px;text-align:center;letter-spacing:0.18em;outline:none;transition:border-color 0.2s;text-transform:uppercase}
+    .pw-input:focus{border-color:rgba(255,255,255,0.25)}
+    .pw-input::placeholder{letter-spacing:0.1em;text-transform:none;color:rgba(240,237,232,0.2);font-size:13px}
+    .pw-btn{width:100%;padding:16px;background:#f0ede8;color:#050508;border:none;border-radius:10px;font-family:'Figtree',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;margin-bottom:10px}
+    .pw-btn:hover{opacity:0.9;transform:scale(1.01)}
+    .pw-btn:active{transform:scale(0.98)}
+    .pw-btn.shake{animation:shake 0.4s ease}
+    @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+    .pw-error{font-size:11px;color:#f87171;text-align:center;height:16px;transition:opacity 0.2s}
+    .pw-error.hidden{opacity:0}
+
+    /* ENVELOPE INTRO */
+    #envelope-screen{position:fixed;inset:0;z-index:200;display:none;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(ellipse at center,#0a0a14 0%,#050508 70%);padding:24px;transition:opacity 0.9s ease;overflow:hidden}
+    #envelope-screen.show{display:flex}
+    #envelope-screen.hiding{opacity:0;pointer-events:none}
+    .env-ambient{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+    .env-particle{position:absolute;width:3px;height:3px;border-radius:50%;background:rgba(240,200,120,0.4);box-shadow:0 0 8px rgba(240,200,120,0.6);animation:drift 8s linear infinite}
+    .env-particle:nth-child(1){left:15%;animation-delay:0s;animation-duration:9s}
+    .env-particle:nth-child(2){left:32%;animation-delay:2s;animation-duration:11s}
+    .env-particle:nth-child(3){left:48%;animation-delay:4s;animation-duration:8s}
+    .env-particle:nth-child(4){left:67%;animation-delay:1s;animation-duration:10s}
+    .env-particle:nth-child(5){left:82%;animation-delay:3s;animation-duration:12s}
+    .env-particle:nth-child(6){left:24%;animation-delay:5s;animation-duration:9s}
+    .env-particle:nth-child(7){left:75%;animation-delay:6s;animation-duration:11s}
+    @keyframes drift{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1;transform:translateY(90vh) scale(1)}90%{opacity:1}100%{transform:translateY(-10vh) scale(0.5);opacity:0}}
+
+    .env-headline{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(26px,5vw,40px);line-height:1.1;color:#f0ede8;text-align:center;margin-bottom:10px;letter-spacing:-0.01em;z-index:2;position:relative}
+    .env-headline em{font-style:italic;font-weight:500;background:linear-gradient(135deg,#f5d896 0%,#d4a653 50%,#f5d896 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative;animation:shimmer 3s ease-in-out infinite;background-size:200% 100%}
+    @keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+    .env-sub{font-size:13px;font-weight:300;color:rgba(240,237,232,0.45);letter-spacing:0.08em;text-align:center;margin-bottom:48px;z-index:2;position:relative}
+
+    .env-stage{position:relative;width:min(300px,80vw);aspect-ratio:1.6/1;perspective:1200px;z-index:2;cursor:pointer;margin-bottom:36px;filter:drop-shadow(0 24px 48px rgba(0,0,0,0.6))}
+    .env-stage:hover .env-body{transform:translateY(-4px)}
+    .env-stage:hover .env-flap{transform:rotateX(2deg)}
+
+    .env-body{position:absolute;inset:0;background:linear-gradient(160deg,#3d1a0f 0%,#2a1009 50%,#1c0a05 100%);border-radius:4px;box-shadow:inset 0 -2px 6px rgba(0,0,0,0.4),inset 0 2px 2px rgba(255,180,120,0.05);transition:transform 0.4s ease;overflow:hidden}
+    .env-body::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E")}
+    .env-body::after{content:'';position:absolute;inset:0;background:linear-gradient(to right, rgba(0,0,0,0.25) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.25) 100%)}
+
+    .env-letter{position:absolute;top:14%;left:8%;right:8%;bottom:18%;background:linear-gradient(180deg,#f5ede0 0%,#ebe0cc 100%);border-radius:2px;transform:translateY(0);transition:transform 0.9s cubic-bezier(0.4,0,0.2,1) 0.4s;box-shadow:0 1px 0 rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;padding:8% 12%}
+    .env-letter-mark{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(11px,2.4vw,16px);color:#3d1a0f;letter-spacing:0.08em;text-align:center;line-height:1.2}
+    .env-letter-mark small{display:block;font-weight:500;font-size:0.55em;letter-spacing:0.22em;margin-top:4px;opacity:0.5}
+
+    .env-flap{position:absolute;top:0;left:0;right:0;height:62%;transform-origin:top center;transform:rotateX(0deg);transition:transform 0.8s cubic-bezier(0.4,0,0.2,1);z-index:3}
+    .env-flap-inner{width:100%;height:100%;background:linear-gradient(180deg,#4a2113 0%,#3d1a0f 100%);clip-path:polygon(0 0,100% 0,50% 100%);box-shadow:inset 0 -2px 8px rgba(0,0,0,0.4);position:relative}
+    .env-flap-inner::after{content:'';position:absolute;inset:0;clip-path:polygon(0 0,100% 0,50% 100%);background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E")}
+
+    .env-seal{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fce18a 0%,#e0b35a 30%,#9b6e2e 70%,#5a3e15 100%);box-shadow:0 0 0 1px rgba(0,0,0,0.2),0 4px 12px rgba(0,0,0,0.5),inset 0 1px 2px rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;animation:sealpulse 2.4s ease-in-out infinite;z-index:4}
+    @keyframes sealpulse{0%,100%{box-shadow:0 0 0 1px rgba(0,0,0,0.2),0 4px 12px rgba(0,0,0,0.5),0 0 0 0 rgba(252,225,138,0.4),inset 0 1px 2px rgba(255,255,255,0.2)}50%{box-shadow:0 0 0 1px rgba(0,0,0,0.2),0 4px 12px rgba(0,0,0,0.5),0 0 0 12px rgba(252,225,138,0),inset 0 1px 2px rgba(255,255,255,0.2)}}
+    .env-seal-mark{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:18px;color:#3d1a0f;line-height:1;text-shadow:0 1px 0 rgba(252,225,138,0.5)}
+
+    .env-stage.opening .env-flap{transform:rotateX(-175deg);transition-duration:0.7s}
+    .env-stage.opening .env-seal{opacity:0;transition:opacity 0.3s ease}
+    .env-stage.opening .env-letter{transform:translateY(-160%)}
+    .env-stage.opening{animation:envrise 1.2s ease forwards 0.6s}
+    @keyframes envrise{to{transform:translateY(-40px) scale(1.05);opacity:0}}
+
+    .env-cta{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(240,237,232,0.6);padding:0 4px;animation:ctablink 2.2s ease-in-out infinite;z-index:2;position:relative;pointer-events:none}
+    @keyframes ctablink{0%,100%{opacity:1}50%{opacity:0.4}}
+    .env-cta-dot{width:5px;height:5px;border-radius:50%;background:#fce18a;flex-shrink:0;box-shadow:0 0 8px rgba(252,225,138,0.6)}
+
+    /* MAIN INVITE PAGE */
+    #page{opacity:0;transition:opacity 1s ease 0.2s;pointer-events:none}
+    #page.visible{opacity:1;pointer-events:all}
+
+    .hero{position:relative;overflow:hidden;height:48vw;max-height:480px;min-height:260px}
+    .hero-img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;filter:brightness(0.55)}
+    .hero-grad{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,5,8,0.3) 0%,rgba(5,5,8,0) 30%,rgba(5,5,8,0) 50%,rgba(5,5,8,1) 100%)}
+    .hero-overlay-text{position:absolute;bottom:0;left:0;right:0;padding:0 48px 36px;z-index:2}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:9px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:rgba(252,225,138,0.7);margin-bottom:10px}
+    .hero-eyebrow::before{content:'';width:18px;height:1px;background:rgba(252,225,138,0.5);flex-shrink:0}
+    .hero-title{font-family:'Aesthet Nova',sans-serif;font-size:clamp(34px,5.5vw,72px);font-weight:900;line-height:0.92;letter-spacing:0;color:#f0ede8}
+    .hero-title span{color:#fce18a;opacity:0.7;display:block;font-style:italic;font-weight:500;font-size:0.45em;letter-spacing:0.04em;margin-top:8px}
+
+    .card-wrap{max-width:720px;margin:-60px auto 0;position:relative;z-index:3;padding:0 24px 80px}
+    .card{background:#0e0e14;border:1px solid rgba(255,255,255,0.08);border-radius:16px;overflow:hidden}
+
+    .card-top{display:grid;grid-template-columns:240px 1fr;gap:0}
+    .card-flyer{aspect-ratio:4/5;overflow:hidden;background:#1a1a22;flex-shrink:0;position:relative}
+    .card-flyer img{width:100%;height:100%;object-fit:cover;display:block}
+    .card-flyer-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.2);position:absolute;inset:0}
+
+    .card-intro{padding:32px 32px;display:flex;flex-direction:column;justify-content:center;gap:14px;border-left:1px solid rgba(255,255,255,0.06)}
+    .invite-badge{display:inline-flex;align-items:center;gap:6px;font-size:8px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;background:rgba(252,225,138,0.07);border:1px solid rgba(252,225,138,0.18);padding:5px 10px;border-radius:20px;color:rgba(252,225,138,0.8);align-self:flex-start}
+    .invite-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#fce18a;flex-shrink:0;animation:dot 2s ease-in-out infinite;box-shadow:0 0 6px rgba(252,225,138,0.6)}
+    @keyframes dot{0%,100%{opacity:1}50%{opacity:0.3}}
+
+    .card-intro h2{font-family:'Aesthet Nova',sans-serif;font-size:clamp(22px,3vw,30px);font-weight:900;line-height:1;letter-spacing:-0.01em;color:#f0ede8;margin-bottom:2px}
+    .card-intro h2 em{font-style:italic;font-weight:500;color:#fce18a;opacity:0.95}
+
+    .event-meta{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+    .meta-row{display:flex;align-items:flex-start;gap:10px;font-size:12.5px;line-height:1.5;color:rgba(240,237,232,0.6)}
+    .meta-row svg{width:13px;height:13px;flex-shrink:0;margin-top:2px;opacity:0.5;color:#fce18a}
+    .meta-row strong{font-weight:500;color:rgba(240,237,232,0.85)}
+
+    .lineup{margin-top:8px;padding-top:14px;border-top:1px dashed rgba(255,255,255,0.07)}
+    .lineup-label{font-size:8px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,237,232,0.35);margin-bottom:6px}
+    .lineup-djs{font-size:13px;line-height:1.55;color:rgba(240,237,232,0.7);font-weight:400}
+    .lineup-djs strong{color:#f0ede8;font-weight:600}
+
+    .release-note{margin-top:8px;padding:12px 14px;background:rgba(252,225,138,0.05);border-left:2px solid rgba(252,225,138,0.4);border-radius:0 4px 4px 0;font-size:12.5px;line-height:1.6;color:rgba(240,237,232,0.7)}
+    .release-note strong{color:#fce18a;font-weight:500}
+
+    .card-form{padding:28px;border-top:1px solid rgba(255,255,255,0.06)}
+    .card-form-intro{font-size:13px;line-height:1.65;color:rgba(240,237,232,0.55);margin-bottom:20px;font-weight:300}
+    .card-form-intro strong{color:rgba(240,237,232,0.85);font-weight:500}
+
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+    .field{display:flex;flex-direction:column;gap:6px}
+    .field label{font-size:9px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(240,237,232,0.4)}
+    .field input{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:8px;padding:13px 14px;color:#f0ede8;font-family:'Figtree',sans-serif;font-size:16px;outline:none;transition:border-color 0.2s;width:100%}
+    .field input:focus{border-color:rgba(252,225,138,0.4)}
+    .field input::placeholder{color:rgba(240,237,232,0.2)}
+    .field-error{font-size:10px;color:#f87171;margin-top:2px;display:none}
+
+    .submit-btn{width:100%;margin-top:18px;padding:16px;background:linear-gradient(135deg,#f5d896 0%,#d4a653 100%);color:#3d1a0f;border:none;border-radius:8px;font-family:'Figtree',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s,transform 0.15s}
+    .submit-btn:hover:not(:disabled){opacity:0.92}
+    .submit-btn:active:not(:disabled){transform:scale(0.99)}
+    .submit-btn:disabled{opacity:0.5;cursor:not-allowed}
+    .form-note{font-size:10px;font-weight:300;color:rgba(240,237,232,0.25);text-align:center;margin-top:12px;line-height:1.6}
+
+    #success{display:none;padding:52px 28px;text-align:center;border-top:1px solid rgba(255,255,255,0.06)}
+    .success-icon{width:56px;height:56px;border-radius:50%;background:radial-gradient(circle,rgba(252,225,138,0.15) 0%,rgba(252,225,138,0.04) 100%);border:1px solid rgba(252,225,138,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 22px}
+    #success h3{font-family:'Aesthet Nova',sans-serif;font-size:30px;font-weight:900;color:#f0ede8;line-height:1;margin-bottom:14px}
+    #success p{font-size:13px;font-weight:300;color:rgba(240,237,232,0.55);line-height:1.7;max-width:360px;margin:0 auto 8px}
+    #success p.success-name{font-family:'Aesthet Nova',sans-serif;font-size:22px;font-weight:900;color:#fce18a;margin:14px auto 4px;line-height:1}
+    #success .email-note{margin-top:18px;padding-top:18px;border-top:1px dashed rgba(255,255,255,0.07);font-size:13px;color:rgba(240,237,232,0.55)}
+    #success .email-note strong{color:#fce18a;font-weight:500}
+
+    @media(max-width:600px){
+      .hero{min-height:220px;height:44vw}
+      .hero-overlay-text{padding:0 20px 22px}
+      .hero-title{font-size:clamp(28px,8vw,42px)}
+      .hero-title span{font-size:0.42em}
+      .card-wrap{margin:-40px auto 0;padding:0 14px 60px}
+      .card-top{grid-template-columns:140px 1fr}
+      .card-intro{padding:20px 18px;gap:10px}
+      .card-intro h2{font-size:19px}
+      .lineup-djs{font-size:12px}
+      .release-note{font-size:11.5px;padding:10px 12px}
+      .meta-row{font-size:12px}
+      .card-form{padding:22px 18px}
+      .form-row{grid-template-columns:1fr}
+      .env-headline{font-size:24px}
+      .env-sub{font-size:12px;margin-bottom:36px}
+    }
+    @media(max-width:420px){
+      .card-top{grid-template-columns:120px 1fr}
+      .card-intro{padding:18px 14px}
+      .card-intro h2{font-size:17px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- 1) PASSWORD GATE -->
+<div id="pw-screen">
+  <div class="pw-noise"></div>
+  <div class="pw-wrap">
+    <div class="pw-ring">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(240,237,232,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+    </div>
+    <div class="pw-label" id="pwLabel">Private Invite</div>
+    <div class="pw-input-wrap">
+      <input class="pw-input" id="pwInput" type="text" placeholder="Enter your invite code" autocomplete="off" autocorrect="off" spellcheck="false" onkeydown="if(event.key==='Enter')checkPassword()"/>
+    </div>
+    <button class="pw-btn" id="pwBtn" onclick="checkPassword()">Unlock Invite &rarr;</button>
+    <div class="pw-error hidden" id="pwError">That code isn't right. Try again.</div>
+  </div>
+</div>
+
+<!-- 2) ENVELOPE INTRO -->
+<div id="envelope-screen">
+  <div class="env-ambient">
+    <div class="env-particle"></div>
+    <div class="env-particle"></div>
+    <div class="env-particle"></div>
+    <div class="env-particle"></div>
+    <div class="env-particle"></div>
+    <div class="env-particle"></div>
+    <div class="env-particle"></div>
+  </div>
+
+  <h1 class="env-headline">You've been<br><em>specially</em> invited.</h1>
+  <p class="env-sub">A handwritten note from TheChibyVerse.</p>
+
+  <div class="env-stage" id="envStage" onclick="openEnvelope()">
+    <div class="env-body">
+      <div class="env-letter">
+        <div class="env-letter-mark">
+          TheChibyVerse
+          <small>Lagos · MMXXVI</small>
+        </div>
+      </div>
+    </div>
+    <div class="env-flap">
+      <div class="env-flap-inner"></div>
+    </div>
+    <div class="env-seal">
+      <div class="env-seal-mark">CB</div>
+    </div>
+  </div>
+
+  <div class="env-cta">
+    <span class="env-cta-dot"></span>
+    Tap the envelope to open
+  </div>
+</div>
+
+<!-- 3) MAIN INVITE PAGE -->
+<div id="page">
+  <div class="hero">
+    <img class="hero-img" src="chibyverse_hero.jpg" alt="South Social"
+      onerror="this.style.background='linear-gradient(135deg,#3d1a0f,#1c0a05,#2a1009)';this.removeAttribute('src')"/>
+    <div class="hero-grad"></div>
+    <div class="hero-overlay-text">
+      <div class="hero-eyebrow">An exclusive guest list</div>
+      <div class="hero-title">South Social<span>by TheChibyVerse</span></div>
+    </div>
+  </div>
+
+  <div class="card-wrap">
+    <div class="card">
+
+      <div class="card-top">
+        <div class="card-flyer">
+          <img src="chibyverse_flyer.jpg" alt="South Social — May 29th — Praia Lagos"
+            onerror="this.parentNode.innerHTML='<div class=card-flyer-ph>chibyverse_flyer.jpg<br>(4:5 portrait)</div>'"/>
+        </div>
+        <div class="card-intro">
+          <span class="invite-badge">You're invited</span>
+          <h2>You've been invited to<br><em>South Social</em>.</h2>
+
+          <div class="event-meta">
+            <div class="meta-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span><strong>Friday, May 29th</strong> · 10PM till late</span>
+            </div>
+            <div class="meta-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span><strong>Praia Lagos</strong><br>20 Elsie Femi Pearse Street, Victoria Island</span>
+            </div>
+          </div>
+
+          <div class="lineup">
+            <div class="lineup-label">On the decks</div>
+            <div class="lineup-djs"><strong>DJ Shawn</strong> · <strong>Titanium</strong> · Neezybeatz · Special Stanley · Yannysvibe · Tolu Daniels · DJ Naffy</div>
+          </div>
+
+          <div class="release-note">
+            <strong>Also a release party</strong> — The Chibyverse will be releasing new music on the night. Watch out for it.
+          </div>
+        </div>
+      </div>
+
+      <div class="card-form" id="formWrap">
+        <p class="card-form-intro">
+          We're extending a <strong>special invite</strong> to come around. Drop your name and email and we'll put you on the guest list.
+        </p>
+
+        <div class="form-row">
+          <div class="field">
+            <label>Your name</label>
+            <input type="text" id="fname" placeholder="First and last name" autocomplete="name"/>
+            <span class="field-error" id="err-fname">Please enter your name</span>
+          </div>
+          <div class="field">
+            <label>Your email</label>
+            <input type="email" id="femail" placeholder="your@email.com" autocomplete="email" inputmode="email"/>
+            <span class="field-error" id="err-femail">Please enter a valid email</span>
+          </div>
+        </div>
+
+        <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">Claim My Invite</button>
+        <p class="form-note">Submitting puts you on the guest list. Check your email for confirmation.</p>
+      </div>
+
+      <div id="success">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fce18a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Thanks for submitting.</h3>
+        <p>Check your email for the official invite to the party.</p>
+        <p class="success-name" id="successName"></p>
+        <div class="email-note">
+          You'll see <strong>South Social — May 29th</strong> in your inbox shortly. At the door, mention your name on the guest list.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════════════════════════════════
+   CONFIG — ChibyVerse Guestlist (dedicated source)
+   ════════════════════════════════════════════════════════════ */
+var PASSWORD     = 'PARTY SCATTER';   /* invite code — case-insensitive */
+var GAS_URL      = window.AFROCUE_SCRIPT_URL || '';
+var SUBMIT_SOURCE = 'chibyverse_guestlist';   /* NEW: dedicated source — own GAS handler */
+var EVENT_NAME   = 'South Social';
+var EVENT_DATE   = 'May 29, 2026';
+var FLYER_URL    = 'chibyverse_flyer.jpg';
+
+/* ════════════════════════════════════════════════════════════
+   PASSWORD GATE
+   ════════════════════════════════════════════════════════════ */
+function checkPassword() {
+  var val = document.getElementById('pwInput').value.trim().toUpperCase();
+  var err = document.getElementById('pwError');
+  var btn = document.getElementById('pwBtn');
+
+  if (val === PASSWORD) {
+    err.classList.add('hidden');
+    btn.textContent = '✓  Verified';
+    btn.style.background = '#fce18a';
+    btn.style.color = '#3d1a0f';
+    document.getElementById('pwInput').style.borderColor = 'rgba(252,225,138,0.4)';
+    document.getElementById('pwLabel').textContent = 'Code accepted';
+    setTimeout(function() {
+      var screen = document.getElementById('pw-screen');
+      screen.classList.add('hiding');
+      setTimeout(function() {
+        screen.style.display = 'none';
+        document.getElementById('envelope-screen').classList.add('show');
+      }, 700);
+    }, 1000);
+  } else {
+    err.classList.remove('hidden');
+    btn.classList.add('shake');
+    setTimeout(function(){ btn.classList.remove('shake'); }, 500);
+    document.getElementById('pwInput').value = '';
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   ENVELOPE OPEN ANIMATION
+   ════════════════════════════════════════════════════════════ */
+var envOpened = false;
+function openEnvelope() {
+  if (envOpened) return;
+  envOpened = true;
+  var stage = document.getElementById('envStage');
+  stage.classList.add('opening');
+  setTimeout(function() {
+    var envScreen = document.getElementById('envelope-screen');
+    envScreen.classList.add('hiding');
+    document.getElementById('page').classList.add('visible');
+    setTimeout(function() {
+      envScreen.style.display = 'none';
+    }, 900);
+  }, 1700);
+}
+
+/* ════════════════════════════════════════════════════════════
+   UTM PARAMS
+   ════════════════════════════════════════════════════════════ */
+function getUtm() {
+  var p = new URLSearchParams(window.location.search);
+  return {
+    source:   p.get('utm_source')   || '',
+    medium:   p.get('utm_medium')   || '',
+    campaign: p.get('utm_campaign') || ''
+  };
+}
+
+/* ════════════════════════════════════════════════════════════
+   SUBMIT — sends to dedicated chibyverse_guestlist handler in GAS
+   ════════════════════════════════════════════════════════════ */
+function handleSubmit() {
+  var name    = document.getElementById('fname').value.trim();
+  var email   = document.getElementById('femail').value.trim();
+
+  document.querySelectorAll('.field-error').forEach(function(e){ e.style.display='none'; });
+
+  var valid = true;
+  if (!name)  { document.getElementById('err-fname').style.display='block';  valid=false; }
+  if (!email || email.indexOf('@') === -1 || email.indexOf('.') === -1) {
+    document.getElementById('err-femail').style.display='block'; valid=false;
+  }
+  if (!valid) return;
+
+  var btn = document.getElementById('submitBtn');
+  btn.disabled    = true;
+  btn.textContent = 'Claiming...';
+
+  var utm = getUtm();
+
+  var data = {
+    source:         SUBMIT_SOURCE,
+    event:          EVENT_NAME,
+    event_date:     EVENT_DATE,
+    name:           name,
+    email:          email,
+    campaign:       EVENT_NAME,
+    flyer_url:      FLYER_URL,
+    password:       PASSWORD,
+    utm_source:     utm.source,
+    utm_medium:     utm.medium,
+    utm_campaign:   utm.campaign
+  };
+
+  if (typeof submitToGAS === 'function') {
+    submitToGAS(data).finally(onSuccess);
+  } else if (GAS_URL) {
+    fetch(GAS_URL, {
+      method:  'POST',
+      mode:    'no-cors',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body:    'payload=' + encodeURIComponent(JSON.stringify(data))
+    }).finally(onSuccess);
+  } else {
+    onSuccess();
+  }
+
+  /* GTM event — fire the Signup trigger used elsewhere in AfroCue */
+  try {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'order_created_before_payment',
+      source: SUBMIT_SOURCE,
+      name: name,
+      email: email
+    });
+  } catch (err) {}
+}
+
+function onSuccess() {
+  var name = document.getElementById('fname').value.trim();
+  document.getElementById('successName').textContent = name;
+  document.getElementById('formWrap').style.display = 'none';
+  document.getElementById('success').style.display  = 'block';
+  setTimeout(function() {
+    document.getElementById('success').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 100);
+}
+</script>
+</body>
+</html>
