@@ -5,34 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AfroCue — Why Your Last Spotify Promo Didn't Work (Carousel)</title>
 
-  <!-- Same font import as the rest of the AfroCue site -->
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     /* ════════════════════════════════════════════════════════════
-       AfroCue Carousel — Instagram 4:5 slides
-       Why Your Last Spotify Promo Didn't Move The Needle
+       AfroCue Carousel — Instagram 4:5 slides (1080 × 1350)
+       Why Your Last Spotify Playlist Promo Didn't Work
+
+       Background system per slide:
+         layer 0 — background image (image1.jpg … image5.jpg)
+         layer 1 — dark scrim for legibility (gradient + flat black)
+         layer 2 — grid texture @ ~18% opacity (the AfroCue texture)
+         layer 3 — subtle yellow/pink radial glow (atmosphere)
+         layer 4 — content (text)
        ════════════════════════════════════════════════════════════ */
 
-    /* Aesthet Nova — same as index.html. If the .otf files live next
-       to this HTML they'll load. If not, the font falls back to Figtree
-       Black weight which is visually close enough for screenshotting. */
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
 
     :root {
       --black:  #0a0a0a;
       --dark:   #111111;
-      --dark2:  #1c1c1c;
-      --mid:    #2e2e2e;
       --grey:   #555555;
       --silver: #999999;
       --off:    #d4d4d0;
       --white:  #f0ede8;
       --yellow: #C8E000;
       --pink:   #FF3DCC;
-      /* Yellow display text shadow — matches index.html .yh */
-      --yts: 2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.06);
+      --yts: 2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.08);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -45,7 +45,7 @@
       min-height: 100vh;
     }
 
-    /* ─── PAGE LAYOUT ─── */
+    /* ─── PAGE LAYOUT (the wrapper you see in browser, not on slide) ─── */
     .page-header {
       max-width: 1200px;
       margin: 0 auto 40px;
@@ -63,8 +63,16 @@
       font-size: 13px;
       color: #888;
       letter-spacing: 0.04em;
+      line-height: 1.6;
     }
     .page-header p strong { color: var(--yellow); }
+    .page-header code {
+      background: #2a2a2a;
+      padding: 2px 7px;
+      border-radius: 3px;
+      color: var(--off);
+      font-size: 12px;
+    }
 
     .carousel-stack {
       max-width: 1200px;
@@ -97,9 +105,9 @@
     }
     .slide-label strong { color: var(--yellow); }
 
-    /* ─── THE SLIDE ITSELF — 1080×1350 (4:5 IG feed) ───
-       Rendered at this exact pixel size so screenshots come out
-       at the right dimensions for Instagram upload. */
+    /* ═════════════════════════════════════════════════════════════
+       THE SLIDE — 1080 × 1350 (IG 4:5)
+       ═════════════════════════════════════════════════════════════ */
     .slide {
       width: 1080px;
       height: 1350px;
@@ -107,88 +115,121 @@
       position: relative;
       overflow: hidden;
       box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+      isolation: isolate;
     }
 
-    /* Subtle radial light — same atmosphere as index.html hero */
-    .slide::before {
-      content: '';
+    /* Background image — covers entire slide, zoom-safe regardless of upload size.
+       object-fit: cover crops gracefully; object-position can be tweaked per-slide. */
+    .slide-bg {
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(circle at 80% 20%, rgba(200,224,0,0.08) 0%, transparent 45%),
-        radial-gradient(circle at 20% 80%, rgba(255,61,204,0.04) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* Grid texture — very subtle, matches index hero */
-    .slide::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      opacity: 0.04;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
-      background-size: 100px 100px;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .slide-content {
-      position: relative;
-      z-index: 2;
       width: 100%;
       height: 100%;
-      padding: 90px 80px;
+      object-fit: cover;
+      object-position: center;
+      z-index: 0;
+      /* Slight desaturation + push warm shadows so yellow text pops on any image */
+      filter: saturate(0.85) contrast(1.05) brightness(0.7);
+    }
+
+    /* Dark scrim — anchors text legibility. Stronger at top and bottom
+       (where chrome lives) and slightly lifted in the middle so the image
+       still breathes through. */
+    .slide-scrim {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(10,10,10,0.92) 0%,
+          rgba(10,10,10,0.62) 28%,
+          rgba(10,10,10,0.58) 70%,
+          rgba(10,10,10,0.94) 100%
+        );
+    }
+
+    /* Texture layer — the faint grid used on afrocue.xyz hero.
+       18% opacity over the dark scrim, as requested. */
+    .slide-texture {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      opacity: 0.18;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.45) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.45) 1px, transparent 1px);
+      background-size: 80px 80px;
+      pointer-events: none;
+      mix-blend-mode: overlay;
+    }
+
+    /* Atmosphere glow — yellow top-right, pink bottom-left.
+       Matches the AfroCue hero color story. */
+    .slide-glow {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(200,224,0,0.14) 0%, transparent 42%),
+        radial-gradient(circle at 18% 86%, rgba(255,61,204,0.07) 0%, transparent 48%);
+      pointer-events: none;
+    }
+
+    /* Content layer — sits above everything */
+    .slide-content {
+      position: relative;
+      z-index: 4;
+      width: 100%;
+      height: 100%;
+      padding: 88px 80px;
       display: flex;
       flex-direction: column;
     }
 
-    /* ─── TOP CHROME — logo + slide indicator ─── */
+    /* ─── TOP CHROME: logo + counter ─── */
     .slide-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 60px;
+      margin-bottom: 56px;
     }
     .slide-logo {
       display: flex;
       align-items: center;
     }
     .slide-logo img {
-      height: 72px;
+      height: 70px;
       width: auto;
       display: block;
+      /* Subtle drop shadow so logo reads on any background */
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
     }
-    /* Fallback wordmark — fires when logo_afrocue.png isn't next to this file */
     .slide-logo-fallback {
       display: none;
       font-family: 'Aesthet Nova', 'Figtree', sans-serif;
       font-weight: 900;
-      font-size: 32px;
+      font-size: 30px;
       color: var(--yellow);
       letter-spacing: 0.06em;
       text-shadow: var(--yts);
     }
     .slide-counter {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       color: var(--silver);
       text-transform: uppercase;
     }
-    .slide-counter strong {
-      color: var(--yellow);
-    }
+    .slide-counter strong { color: var(--yellow); }
 
-    /* ─── DISPLAY TYPOGRAPHY — yellow brutalist ─── */
+    /* ─── DISPLAY TYPE ─── */
     .yh {
       font-family: 'Aesthet Nova', 'Figtree', sans-serif;
       font-weight: 900;
       color: var(--yellow);
       text-shadow: var(--yts);
-      line-height: 0.92;
+      line-height: 0.94;
       letter-spacing: -0.02em;
     }
     .outline {
@@ -198,12 +239,12 @@
     }
 
     .slide-eyebrow {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
-      letter-spacing: 0.24em;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
       color: var(--yellow);
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       display: flex;
       align-items: center;
       gap: 14px;
@@ -215,130 +256,140 @@
       background: var(--yellow);
     }
 
-    /* ─── BOTTOM CHROME — CTA + URL ─── */
+    /* ─── BOTTOM CHROME ─── */
     .slide-bottom {
       margin-top: auto;
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      padding-top: 40px;
-      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 36px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      gap: 24px;
     }
     .slide-bottom-left {
       font-size: 17px;
       font-weight: 400;
-      color: var(--silver);
+      color: var(--off);
       letter-spacing: 0.02em;
+      max-width: 70%;
     }
     .slide-bottom-right {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--silver);
-    }
-
-    /* ─── SWIPE HINT — for slides 1-4 ─── */
-    .swipe-hint {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: 0.15em;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--yellow);
-      padding: 18px 28px;
-      border: 2px solid var(--yellow);
-      border-radius: 4px;
-      align-self: flex-start;
-    }
-    .swipe-hint svg {
-      width: 22px;
-      height: 22px;
-      stroke: var(--yellow);
-      stroke-width: 2.5;
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+      white-space: nowrap;
     }
 
-    /* ════════════════════════════════════════════════════════════
+    /* ═════════════════════════════════════════════════════════════
        SLIDE 1 — HOOK
-       The provocative question that stops the scroll.
-       ════════════════════════════════════════════════════════════ */
-    .slide-1 .slide-headline {
-      font-size: 160px;
+       Full headline lives here, not split awkwardly.
+       ═════════════════════════════════════════════════════════════ */
+    .slide-1 .hook-eyebrow {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .slide-1 .hook-eyebrow::before {
+      content: '';
+      width: 36px;
+      height: 1px;
+      background: var(--yellow);
+    }
+    .slide-1 .hook-headline {
+      font-size: 124px;
+      line-height: 0.95;
       margin-bottom: 36px;
     }
-    .slide-1 .slide-sub {
-      font-size: 30px;
+    /* The "didn't work" word — outlined, drops to next line on its own */
+    .slide-1 .hook-headline .punch {
+      display: block;
+      margin-top: 6px;
+    }
+    .slide-1 .hook-sub {
+      font-size: 28px;
       font-weight: 300;
       line-height: 1.4;
-      color: rgba(240,237,232,0.6);
-      max-width: 720px;
+      color: rgba(240,237,232,0.8);
+      max-width: 780px;
     }
-    .slide-1 .slide-bottom-left { font-size: 19px; }
+    .slide-1 .hook-sub strong {
+      color: var(--white);
+      font-weight: 500;
+    }
 
-    /* ════════════════════════════════════════════════════════════
-       SLIDES 2-4 — THE THREE PROBLEMS
-       Each one big numbered problem statement.
-       ════════════════════════════════════════════════════════════ */
+    /* ═════════════════════════════════════════════════════════════
+       SLIDES 2–4 — PROBLEMS
+       ═════════════════════════════════════════════════════════════ */
     .problem-num {
       font-family: 'Aesthet Nova', 'Figtree', sans-serif;
       font-weight: 900;
-      font-size: 280px;
+      font-size: 240px;
       line-height: 0.85;
-      color: rgba(200,224,0,0.16);
+      color: rgba(200,224,0,0.18);
       letter-spacing: -0.04em;
-      margin-bottom: -40px;
+      margin-bottom: -20px;
+      /* Sits behind eyebrow visually */
     }
     .problem-eyebrow {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
-      letter-spacing: 0.24em;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
       color: var(--silver);
       margin-bottom: 28px;
     }
     .problem-headline {
-      font-size: 96px;
-      line-height: 0.92;
+      font-size: 108px;
+      line-height: 0.94;
       margin-bottom: 36px;
+      max-width: 920px;
+    }
+    .problem-headline .punch {
+      display: inline-block;
     }
     .problem-desc {
       font-size: 26px;
       font-weight: 300;
       line-height: 1.5;
-      color: rgba(240,237,232,0.7);
-      max-width: 820px;
+      color: rgba(240,237,232,0.82);
+      max-width: 860px;
     }
     .problem-desc strong {
       color: var(--white);
       font-weight: 600;
     }
 
-    /* ════════════════════════════════════════════════════════════
+    /* ═════════════════════════════════════════════════════════════
        SLIDE 5 — RESOLUTION + CTA
-       ════════════════════════════════════════════════════════════ */
-    .slide-5 .slide-headline {
-      font-size: 152px;
-      margin-bottom: 40px;
+       ═════════════════════════════════════════════════════════════ */
+    .slide-5 .res-headline {
+      font-size: 156px;
+      line-height: 0.94;
+      margin-bottom: 44px;
     }
     .slide-5 .resolution-list {
       list-style: none;
-      margin-bottom: 56px;
+      margin-bottom: 52px;
     }
     .slide-5 .resolution-list li {
       font-family: 'Aesthet Nova', 'Figtree', sans-serif;
       font-weight: 900;
-      font-size: 56px;
-      line-height: 1.2;
+      font-size: 52px;
+      line-height: 1.18;
       color: var(--white);
-      padding: 14px 0;
+      padding: 12px 0;
       display: flex;
       align-items: center;
       gap: 24px;
+      letter-spacing: -0.01em;
     }
     .slide-5 .resolution-list li::before {
       content: '';
@@ -348,25 +399,20 @@
       flex-shrink: 0;
       box-shadow: 0 0 0 4px rgba(200,224,0,0.15);
     }
-    .slide-5 .slide-cta-row {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      margin-bottom: 40px;
-    }
     .slide-5 .cta-pill {
       display: inline-flex;
       align-items: center;
       gap: 16px;
       background: var(--yellow);
       color: var(--black);
-      padding: 26px 44px;
-      font-size: 22px;
+      padding: 24px 42px;
+      font-size: 21px;
       font-weight: 700;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       border-radius: 4px;
       align-self: flex-start;
+      margin-bottom: 20px;
     }
     .slide-5 .cta-pill svg {
       width: 22px;
@@ -378,15 +424,14 @@
       stroke-linejoin: round;
     }
     .slide-5 .cta-url {
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 500;
       color: var(--yellow);
       letter-spacing: 0.02em;
+      margin-bottom: 28px;
     }
 
-    /* ════════════════════════════════════════════════════════════
-       Print / screenshot guidance
-       ════════════════════════════════════════════════════════════ */
+    /* ─── Print / screenshot ─── */
     @media print {
       body { background: white; padding: 0; }
       .page-header, .slide-label { display: none; }
@@ -398,18 +443,29 @@
 
   <div class="page-header">
     <h1>AfroCue carousel — "Why your last Spotify playlist promo didn't work"</h1>
-    <p>5 slides · 1080 × 1350 (4:5) · screenshot each at 100% zoom or use browser DevTools to capture at exact pixel size. Use <strong>logo_afrocue.png</strong> in the same folder for the brand mark to render — otherwise the wordmark fallback fires.</p>
+    <p>
+      5 slides · 1080 × 1350 (4:5) · drop in <code>logo_afrocue.png</code> for the brand mark
+      and <code>image1.jpg</code> … <code>image5.jpg</code> for backgrounds.
+      Images render with <strong>object-fit: cover</strong> — any aspect ratio will crop cleanly.
+      Texture sits at <strong>~18% opacity</strong> over the scrim, text on top.
+    </p>
   </div>
 
   <div class="carousel-stack">
 
     <!-- ═══════════════════════════════════════════════════════════
          SLIDE 1 — HOOK
-         The headline that stops the scroll. Provocation + intrigue.
+         "Why your last Spotify playlist promo didn't work" — full phrase.
          ═══════════════════════════════════════════════════════════ -->
     <div class="slide-wrapper">
       <div class="slide-label">Slide <strong>1 / 5</strong> · The hook</div>
       <div class="slide slide-1">
+        <img class="slide-bg" src="image1.jpg" alt=""
+          onerror="this.style.display='none'"/>
+        <div class="slide-scrim"></div>
+        <div class="slide-texture"></div>
+        <div class="slide-glow"></div>
+
         <div class="slide-content">
 
           <div class="slide-top">
@@ -421,15 +477,20 @@
             <div class="slide-counter"><strong>01</strong> / 05</div>
           </div>
 
-          <div class="slide-eyebrow">For Music Artists</div>
+          <div class="hook-eyebrow">For Music Artists</div>
 
-          <h2 class="yh slide-headline">Your<br>last<br>Spotify<br><span class="outline">promo.</span></h2>
+          <h2 class="yh hook-headline">
+            Why your last Spotify playlist promo
+            <span class="punch outline">didn't work.</span>
+          </h2>
 
-          <p class="slide-sub">Real numbers? Or a saves count that climbed in week one and died in week two?</p>
+          <p class="hook-sub">
+            <strong>Three reasons</strong> the saves climbed in week one — and went silent in week two.
+          </p>
 
           <div class="slide-bottom">
-            <span class="slide-bottom-left">Three reasons it didn't work →</span>
-            <span class="slide-bottom-right">Swipe</span>
+            <span class="slide-bottom-left">Performance-marketed playlists for African artists.</span>
+            <span class="slide-bottom-right">Swipe →</span>
           </div>
 
         </div>
@@ -437,12 +498,17 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════════════════
-         SLIDE 2 — PROBLEM 1
-         Paid upfront based on saves, not streams.
+         SLIDE 2 — PROBLEM 1: The Pricing Trap
          ═══════════════════════════════════════════════════════════ -->
     <div class="slide-wrapper">
       <div class="slide-label">Slide <strong>2 / 5</strong> · Problem 1</div>
       <div class="slide slide-2">
+        <img class="slide-bg" src="image2.jpg" alt=""
+          onerror="this.style.display='none'"/>
+        <div class="slide-scrim"></div>
+        <div class="slide-texture"></div>
+        <div class="slide-glow"></div>
+
         <div class="slide-content">
 
           <div class="slide-top">
@@ -456,12 +522,18 @@
 
           <div class="problem-num">01</div>
           <div class="problem-eyebrow">The Pricing Trap</div>
-          <h2 class="yh problem-headline">You paid<br>upfront for<br><span class="outline">saves.</span></h2>
-          <p class="problem-desc">Not streams. <strong>Saves are only part of the story</strong> — yet that's what the bill is based on. Money out the door before you see anything happen.</p>
+
+          <h2 class="yh problem-headline">
+            You paid upfront for <span class="punch outline">saves.</span>
+          </h2>
+
+          <p class="problem-desc">
+            Not streams. <strong>Saves are only part of the story</strong> — yet that's what the bill was based on. Money out the door before anything actually happens.
+          </p>
 
           <div class="slide-bottom">
-            <span class="slide-bottom-left">Problem #2 →</span>
-            <span class="slide-bottom-right">Swipe</span>
+            <span class="slide-bottom-left">Problem #2 — the week-two cliff.</span>
+            <span class="slide-bottom-right">Swipe →</span>
           </div>
 
         </div>
@@ -469,12 +541,17 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════════════════
-         SLIDE 3 — PROBLEM 2
-         Numbers got inflated in week one, then died.
+         SLIDE 3 — PROBLEM 2: The Vanishing Act
          ═══════════════════════════════════════════════════════════ -->
     <div class="slide-wrapper">
       <div class="slide-label">Slide <strong>3 / 5</strong> · Problem 2</div>
       <div class="slide slide-3">
+        <img class="slide-bg" src="image3.jpg" alt=""
+          onerror="this.style.display='none'"/>
+        <div class="slide-scrim"></div>
+        <div class="slide-texture"></div>
+        <div class="slide-glow"></div>
+
         <div class="slide-content">
 
           <div class="slide-top">
@@ -488,12 +565,18 @@
 
           <div class="problem-num">02</div>
           <div class="problem-eyebrow">The Vanishing Act</div>
-          <h2 class="yh problem-headline">Numbers<br>inflated.<br>Then <span class="outline">died.</span></h2>
-          <p class="problem-desc">Week one looked great. Week two went silent. <strong>Curators front-load activity</strong> to make the campaign feel like ROI — the rest of the contract tells a different story.</p>
+
+          <h2 class="yh problem-headline">
+            Inflated week one. Then <span class="punch outline">silent.</span>
+          </h2>
+
+          <p class="problem-desc">
+            <strong>Curators front-load activity</strong> to make the campaign look like ROI. The rest of the contract tells a completely different story.
+          </p>
 
           <div class="slide-bottom">
-            <span class="slide-bottom-left">Problem #3 →</span>
-            <span class="slide-bottom-right">Swipe</span>
+            <span class="slide-bottom-left">Problem #3 — the closed loop.</span>
+            <span class="slide-bottom-right">Swipe →</span>
           </div>
 
         </div>
@@ -501,12 +584,17 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════════════════
-         SLIDE 4 — PROBLEM 3
-         The playlist only reached people who already had it.
+         SLIDE 4 — PROBLEM 3: The Closed Loop
          ═══════════════════════════════════════════════════════════ -->
     <div class="slide-wrapper">
       <div class="slide-label">Slide <strong>4 / 5</strong> · Problem 3</div>
       <div class="slide slide-4">
+        <img class="slide-bg" src="image4.jpg" alt=""
+          onerror="this.style.display='none'"/>
+        <div class="slide-scrim"></div>
+        <div class="slide-texture"></div>
+        <div class="slide-glow"></div>
+
         <div class="slide-content">
 
           <div class="slide-top">
@@ -520,12 +608,18 @@
 
           <div class="problem-num">03</div>
           <div class="problem-eyebrow">The Closed Loop</div>
-          <h2 class="yh problem-headline">Same<br>listeners.<br>No <span class="outline">growth.</span></h2>
-          <p class="problem-desc">The playlist only reached people who <strong>already had it on their algorithm.</strong> No real-time optimization. No new audience. No discovery.</p>
+
+          <h2 class="yh problem-headline">
+            Same listeners. No <span class="punch outline">growth.</span>
+          </h2>
+
+          <p class="problem-desc">
+            The playlist only reached people who <strong>already had it on their algorithm.</strong> No real-time optimization. No new audience. No real discovery.
+          </p>
 
           <div class="slide-bottom">
-            <span class="slide-bottom-left">So we rebuilt the entire system →</span>
-            <span class="slide-bottom-right">Swipe</span>
+            <span class="slide-bottom-left">So we rebuilt the entire system.</span>
+            <span class="slide-bottom-right">Swipe →</span>
           </div>
 
         </div>
@@ -534,11 +628,16 @@
 
     <!-- ═══════════════════════════════════════════════════════════
          SLIDE 5 — RESOLUTION + CTA
-         We rebuilt it. Real tracking. Daily saves. Real audience.
          ═══════════════════════════════════════════════════════════ -->
     <div class="slide-wrapper">
       <div class="slide-label">Slide <strong>5 / 5</strong> · Resolution + CTA</div>
       <div class="slide slide-5">
+        <img class="slide-bg" src="image5.jpg" alt=""
+          onerror="this.style.display='none'"/>
+        <div class="slide-scrim"></div>
+        <div class="slide-texture"></div>
+        <div class="slide-glow"></div>
+
         <div class="slide-content">
 
           <div class="slide-top">
@@ -552,7 +651,9 @@
 
           <div class="slide-eyebrow">So we built our own</div>
 
-          <h2 class="yh slide-headline">We<br>rebuilt<br><span class="outline">it.</span></h2>
+          <h2 class="yh res-headline">
+            We rebuilt <span class="outline">it.</span>
+          </h2>
 
           <ul class="resolution-list">
             <li>Real tracking</li>
@@ -560,13 +661,11 @@
             <li>Real audience</li>
           </ul>
 
-          <div class="slide-cta-row">
-            <a class="cta-pill">
-              Learn More
-              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-            <div class="cta-url">afrocue.xyz/playlist-marketing</div>
-          </div>
+          <a class="cta-pill">
+            Learn More
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <div class="cta-url">afrocue.xyz/playlist-marketing</div>
 
           <div class="slide-bottom">
             <span class="slide-bottom-left">Performance-marketed Spotify playlists.</span>
