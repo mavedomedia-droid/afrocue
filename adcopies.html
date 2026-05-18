@@ -12,12 +12,23 @@
        AfroCue Carousel — Instagram 4:5 slides (1080 × 1350)
        Why Your Last Spotify Playlist Promo Didn't Work
 
-       Background system per slide:
-         layer 0 — background image (image1.jpg … image5.jpg)
-         layer 1 — dark scrim for legibility (gradient + flat black)
-         layer 2 — grid texture @ ~18% opacity (the AfroCue texture)
-         layer 3 — subtle yellow/pink radial glow (atmosphere)
-         layer 4 — content (text)
+       Background system — adaptive, image-aware:
+
+       NO image uploaded yet (image1.jpg etc. missing):
+         • texture.jpg fills the entire slide as the base (100% opacity)
+         • dark scrim sits over it for text contrast
+         • yellow/pink glow on top
+         → looks intentional even before assets land
+
+       Image present (image1.jpg, image2.jpg, …):
+         • image becomes the base layer
+         • texture.jpg overlays the image at ~12% opacity
+         • dark scrim + glow on top
+         → texture sits ON the image, doesn't bury it
+
+       The slide flips state via the image's onload/onerror handlers
+       which toggle [data-has-image] on the .slide. CSS dials the
+       texture-overlay opacity up (no image) or down (image present).
        ════════════════════════════════════════════════════════════ */
 
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
@@ -118,9 +129,12 @@
       isolation: isolate;
     }
 
-    /* Background image — covers entire slide, zoom-safe regardless of upload size.
-       object-fit: cover crops gracefully; object-position can be tweaked per-slide. */
-    .slide-bg {
+    /* ─── LAYER 0: BASE TEXTURE ───
+       texture.jpg always paints the slide background. When no image
+       is uploaded, this IS the slide. The slide's bg color is also
+       set to --black so even if texture.jpg fails to load, we don't
+       see anything broken. */
+    .slide-texture-base {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -128,17 +142,69 @@
       object-fit: cover;
       object-position: center;
       z-index: 0;
-      /* Slight desaturation + push warm shadows so yellow text pops on any image */
-      filter: saturate(0.85) contrast(1.05) brightness(0.7);
     }
 
-    /* Dark scrim — anchors text legibility. Stronger at top and bottom
-       (where chrome lives) and slightly lifted in the middle so the image
-       still breathes through. */
+    /* ─── LAYER 1: BACKGROUND IMAGE (optional, per-slide) ───
+       When present, sits on top of texture.jpg and becomes the visual.
+       object-fit: cover handles any aspect ratio cleanly. Hidden by
+       default; the onload handler reveals it. */
+    .slide-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      /* Slight desaturation + darkening so yellow display text pops */
+      filter: saturate(0.85) contrast(1.05) brightness(0.7);
+    }
+    .slide[data-has-image="true"] .slide-bg {
+      opacity: 1;
+    }
+
+    /* ─── LAYER 2: TEXTURE OVERLAY ───
+       Re-paints texture.jpg ON TOP of the image at ~12% opacity so
+       the grain reads on the photo. Hidden when there's no image
+       (because layer 0 already shows the texture at full opacity). */
+    .slide-texture-overlay {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 2;
+      opacity: 0;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      transition: opacity 0.2s ease;
+    }
+    .slide[data-has-image="true"] .slide-texture-overlay {
+      opacity: 0.12;
+    }
+
+    /* ─── LAYER 3: DARK SCRIM ───
+       Anchors text legibility. Heavier when an image is present
+       (image is bright), lighter when only texture is visible
+       (texture is already dark). */
     .slide-scrim {
       position: absolute;
       inset: 0;
-      z-index: 1;
+      z-index: 3;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(10,10,10,0.78) 0%,
+          rgba(10,10,10,0.38) 30%,
+          rgba(10,10,10,0.36) 68%,
+          rgba(10,10,10,0.86) 100%
+        );
+      transition: background 0.2s ease;
+    }
+    .slide[data-has-image="true"] .slide-scrim {
       background:
         linear-gradient(
           180deg,
@@ -149,27 +215,13 @@
         );
     }
 
-    /* Texture layer — the faint grid used on afrocue.xyz hero.
-       18% opacity over the dark scrim, as requested. */
-    .slide-texture {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      opacity: 0.18;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.45) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.45) 1px, transparent 1px);
-      background-size: 80px 80px;
-      pointer-events: none;
-      mix-blend-mode: overlay;
-    }
-
-    /* Atmosphere glow — yellow top-right, pink bottom-left.
-       Matches the AfroCue hero color story. */
+    /* ─── LAYER 4: ATMOSPHERE GLOW ───
+       Yellow top-right, pink bottom-left. Matches the AfroCue hero
+       color story. Sits above the scrim so it tints the whole slide. */
     .slide-glow {
       position: absolute;
       inset: 0;
-      z-index: 3;
+      z-index: 4;
       background:
         radial-gradient(circle at 82% 18%, rgba(200,224,0,0.14) 0%, transparent 42%),
         radial-gradient(circle at 18% 86%, rgba(255,61,204,0.07) 0%, transparent 48%);
@@ -179,7 +231,7 @@
     /* Content layer — sits above everything */
     .slide-content {
       position: relative;
-      z-index: 4;
+      z-index: 5;
       width: 100%;
       height: 100%;
       padding: 88px 80px;
@@ -286,27 +338,10 @@
        SLIDE 1 — HOOK
        Full headline lives here, not split awkwardly.
        ═════════════════════════════════════════════════════════════ */
-    .slide-1 .hook-eyebrow {
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: var(--yellow);
-      margin-bottom: 32px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .slide-1 .hook-eyebrow::before {
-      content: '';
-      width: 36px;
-      height: 1px;
-      background: var(--yellow);
-    }
     .slide-1 .hook-headline {
-      font-size: 124px;
+      font-size: 128px;
       line-height: 0.95;
-      margin-bottom: 36px;
+      margin-bottom: 40px;
     }
     /* The "didn't work" word — outlined, drops to next line on its own */
     .slide-1 .hook-headline .punch {
@@ -316,9 +351,9 @@
     .slide-1 .hook-sub {
       font-size: 28px;
       font-weight: 300;
-      line-height: 1.4;
+      line-height: 1.45;
       color: rgba(240,237,232,0.8);
-      max-width: 780px;
+      max-width: 820px;
     }
     .slide-1 .hook-sub strong {
       color: var(--white);
@@ -445,9 +480,11 @@
     <h1>AfroCue carousel — "Why your last Spotify playlist promo didn't work"</h1>
     <p>
       5 slides · 1080 × 1350 (4:5) · drop in <code>logo_afrocue.png</code> for the brand mark
-      and <code>image1.jpg</code> … <code>image5.jpg</code> for backgrounds.
-      Images render with <strong>object-fit: cover</strong> — any aspect ratio will crop cleanly.
-      Texture sits at <strong>~18% opacity</strong> over the scrim, text on top.
+      and <code>texture.jpg</code> (the AfroCue dot texture from afrocue.xyz).
+      Then add <code>image1.jpg</code> … <code>image5.jpg</code> for slide backgrounds
+      whenever you're ready — texture.jpg fills the slide on its own until an image is uploaded,
+      then it shifts to a <strong>~12% overlay on top of the image</strong> automatically.
+      Any aspect ratio works; everything covers cleanly.
     </p>
   </div>
 
@@ -460,10 +497,14 @@
     <div class="slide-wrapper">
       <div class="slide-label">Slide <strong>1 / 5</strong> · The hook</div>
       <div class="slide slide-1">
+        <img class="slide-texture-base" src="texture.jpg" alt=""
+          onerror="this.style.display='none'"/>
         <img class="slide-bg" src="image1.jpg" alt=""
+          onload="this.closest('.slide').setAttribute('data-has-image','true')"
+          onerror="this.style.display='none'"/>
+        <img class="slide-texture-overlay" src="texture.jpg" alt=""
           onerror="this.style.display='none'"/>
         <div class="slide-scrim"></div>
-        <div class="slide-texture"></div>
         <div class="slide-glow"></div>
 
         <div class="slide-content">
@@ -477,15 +518,13 @@
             <div class="slide-counter"><strong>01</strong> / 05</div>
           </div>
 
-          <div class="hook-eyebrow">For Music Artists</div>
-
           <h2 class="yh hook-headline">
             Why your last Spotify playlist promo
             <span class="punch outline">didn't work.</span>
           </h2>
 
           <p class="hook-sub">
-            <strong>Three reasons</strong> the saves climbed in week one — and went silent in week two.
+            <strong>Three reasons</strong> your streams climbed in the first few days and dropped — even after paying for a playlist with thousands of saves.
           </p>
 
           <div class="slide-bottom">
@@ -503,10 +542,14 @@
     <div class="slide-wrapper">
       <div class="slide-label">Slide <strong>2 / 5</strong> · Problem 1</div>
       <div class="slide slide-2">
+        <img class="slide-texture-base" src="texture.jpg" alt=""
+          onerror="this.style.display='none'"/>
         <img class="slide-bg" src="image2.jpg" alt=""
+          onload="this.closest('.slide').setAttribute('data-has-image','true')"
+          onerror="this.style.display='none'"/>
+        <img class="slide-texture-overlay" src="texture.jpg" alt=""
           onerror="this.style.display='none'"/>
         <div class="slide-scrim"></div>
-        <div class="slide-texture"></div>
         <div class="slide-glow"></div>
 
         <div class="slide-content">
@@ -521,14 +564,14 @@
           </div>
 
           <div class="problem-num">01</div>
-          <div class="problem-eyebrow">The Pricing Trap</div>
+          <div class="problem-eyebrow">The Save Count Trap</div>
 
           <h2 class="yh problem-headline">
-            You paid upfront for <span class="punch outline">saves.</span>
+            You paid for a <span class="punch outline">save count.</span>
           </h2>
 
           <p class="problem-desc">
-            Not streams. <strong>Saves are only part of the story</strong> — yet that's what the bill was based on. Money out the door before anything actually happens.
+            <strong>Saves are only a tiny part of the story.</strong> Most have been accumulating on that playlist for months — sometimes years. They don't reflect what's actually happening right now, and they don't guarantee real listeners on your track.
           </p>
 
           <div class="slide-bottom">
@@ -546,10 +589,14 @@
     <div class="slide-wrapper">
       <div class="slide-label">Slide <strong>3 / 5</strong> · Problem 2</div>
       <div class="slide slide-3">
+        <img class="slide-texture-base" src="texture.jpg" alt=""
+          onerror="this.style.display='none'"/>
         <img class="slide-bg" src="image3.jpg" alt=""
+          onload="this.closest('.slide').setAttribute('data-has-image','true')"
+          onerror="this.style.display='none'"/>
+        <img class="slide-texture-overlay" src="texture.jpg" alt=""
           onerror="this.style.display='none'"/>
         <div class="slide-scrim"></div>
-        <div class="slide-texture"></div>
         <div class="slide-glow"></div>
 
         <div class="slide-content">
@@ -564,14 +611,14 @@
           </div>
 
           <div class="problem-num">02</div>
-          <div class="problem-eyebrow">The Vanishing Act</div>
+          <div class="problem-eyebrow">The Drop-Off</div>
 
           <h2 class="yh problem-headline">
-            Inflated week one. Then <span class="punch outline">silent.</span>
+            Decent first few days. Then it <span class="punch outline">drops.</span>
           </h2>
 
           <p class="problem-desc">
-            <strong>Curators front-load activity</strong> to make the campaign look like ROI. The rest of the contract tells a completely different story.
+            Right after placement, <strong>curators push a little marketing on your track</strong> — just enough to make the early numbers look healthy. Once they've shown you something, the push stops. That's it.
           </p>
 
           <div class="slide-bottom">
@@ -589,10 +636,14 @@
     <div class="slide-wrapper">
       <div class="slide-label">Slide <strong>4 / 5</strong> · Problem 3</div>
       <div class="slide slide-4">
+        <img class="slide-texture-base" src="texture.jpg" alt=""
+          onerror="this.style.display='none'"/>
         <img class="slide-bg" src="image4.jpg" alt=""
+          onload="this.closest('.slide').setAttribute('data-has-image','true')"
+          onerror="this.style.display='none'"/>
+        <img class="slide-texture-overlay" src="texture.jpg" alt=""
           onerror="this.style.display='none'"/>
         <div class="slide-scrim"></div>
-        <div class="slide-texture"></div>
         <div class="slide-glow"></div>
 
         <div class="slide-content">
@@ -632,10 +683,14 @@
     <div class="slide-wrapper">
       <div class="slide-label">Slide <strong>5 / 5</strong> · Resolution + CTA</div>
       <div class="slide slide-5">
+        <img class="slide-texture-base" src="texture.jpg" alt=""
+          onerror="this.style.display='none'"/>
         <img class="slide-bg" src="image5.jpg" alt=""
+          onload="this.closest('.slide').setAttribute('data-has-image','true')"
+          onerror="this.style.display='none'"/>
+        <img class="slide-texture-overlay" src="texture.jpg" alt=""
           onerror="this.style.display='none'"/>
         <div class="slide-scrim"></div>
-        <div class="slide-texture"></div>
         <div class="slide-glow"></div>
 
         <div class="slide-content">
