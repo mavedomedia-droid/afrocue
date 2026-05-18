@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>The Playlist Marketing Engine — AfroCue</title>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="apple-touch-icon" href="favicon.png"/>
+  <meta name="description" content="AfroCue's Playlist Marketing Engine — a trackable, performance-based channel for Spotify streams built on cultural curation, tracking-enabled landing pages and high-performance media buying."/>
+  <meta name="keywords" content="Spotify promotion, playlist placement, music marketing, Afrobeats promotion, AfroCue, performance marketing, music ads"/>
+  <link rel="canonical" href="https://afrocue.xyz/playlist-marketing"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://afrocue.xyz/playlist-marketing"/>
+  <meta property="og:title" content="The Playlist Marketing Engine — AfroCue"/>
+  <meta property="og:description" content="Trackable, performance-based Spotify streams. Real numbers, real audience, real results."/>
+  <meta property="og:image" content="https://afrocue.xyz/playlist_groovy_afrobeats.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@afrocue_"/>
+  <meta name="theme-color" content="#0a0a0a"/>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ════════════════════════════════════════════════════════════
+       PLAYLIST MARKETING ENGINE — AfroCue
+       Pitch / case-study page for music execs, brands, labels.
+       Brand language matches afrocue.xyz/index — Aesthet Nova display,
+       Figtree body, yellow #C8E000 on near-black.
+       ════════════════════════════════════════════════════════════ */
+
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
+
+    :root {
+      --black:  #0a0a0a;
+      --dark:   #111111;
+      --dark2:  #1c1c1c;
+      --mid:    #2e2e2e;
+      --grey:   #555555;
+      --silver: #999999;
+      --off:    #d4d4d0;
+      --white:  #f0ede8;
+      --yellow: #C8E000;
+      --green:  #1DB954;
+      --yts:    2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.06);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { background: var(--black); color: var(--white); font-family: 'Figtree', sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+    img { display: block; max-width: 100%; }
+
+    .yh { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; color: var(--yellow); text-shadow: var(--yts); line-height: 0.92; }
+    .outline { -webkit-text-stroke: 1.5px var(--yellow); color: transparent; text-shadow: none; }
+
+    .label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+    .label::before { content: ''; width: 22px; height: 1px; background: var(--silver); flex-shrink: 0; }
+
+    /* ═══ NAV ═══ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 40px;
+      background: rgba(10,10,10,0.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-logo { display: flex; align-items: center; }
+    .nav-logo img { height: 42px; width: auto; }
+    .nav-logo-fallback { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 15px; color: var(--yellow); letter-spacing: 0.08em; }
+    .nav-right { display: flex; align-items: center; gap: 18px; }
+    .nav-back { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+    .nav-back:hover { color: var(--white); }
+    .nav-cta { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); background: var(--yellow); padding: 10px 18px; border-radius: 2px; transition: opacity 0.2s; }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ═══ HERO ═══ */
+    .hero {
+      min-height: 100vh; min-height: 100dvh;
+      padding: 140px 40px 80px;
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(200,224,0,0.07) 0%, transparent 50%),
+        radial-gradient(circle at 20% 80%, rgba(29,185,84,0.05) 0%, transparent 50%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 1; opacity: 0.04;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .hero-inner { position: relative; z-index: 2; max-width: 1200px; width: 100%; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: center; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--yellow); margin-bottom: 28px; }
+    .hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--yellow); }
+    .hero h1 {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: clamp(48px, 6.8vw, 108px); line-height: 0.88;
+      color: var(--yellow); text-shadow: var(--yts);
+      margin-bottom: 28px;
+      word-break: keep-all; hyphens: none;
+    }
+    .hero-sub { font-size: 17px; font-weight: 300; line-height: 1.6; color: rgba(240,237,232,0.65); max-width: 540px; margin-bottom: 36px; }
+    .hero-sub strong { color: var(--white); font-weight: 600; }
+    .hero-cta-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-family: 'Figtree', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 14px 26px; border-radius: 2px; text-decoration: none; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+    .btn-yellow { color: var(--black); background: var(--yellow); }
+    .btn-yellow:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-ghost { color: var(--silver); background: transparent; border: 1px solid rgba(255,255,255,0.18); font-weight: 500; }
+    .btn-ghost:hover { border-color: var(--white); color: var(--white); }
+    .btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* Hero right — playlist artwork */
+    .hero-art {
+      position: relative;
+      aspect-ratio: 1; max-width: 380px; justify-self: end;
+      border-radius: 8px; overflow: hidden;
+      transform: rotate(-2deg);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.08);
+    }
+    .hero-art img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-art::after {
+      content: 'EXAMPLE PLAYLIST'; position: absolute; bottom: 12px; left: 12px;
+      font-size: 9px; letter-spacing: 0.2em; color: rgba(240,237,232,0.6);
+      background: rgba(10,10,10,0.7); padding: 4px 8px; border-radius: 2px;
+    }
+
+    /* ═══ KILLER NUMBERS STRIP ═══ */
+    .numbers-strip {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: var(--dark);
+      padding: 36px 40px;
+    }
+    .numbers-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+    .num-cell { background: var(--dark); padding: 22px 24px; }
+    .num-val { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(28px,3vw,42px); color: var(--yellow); text-shadow: var(--yts); line-height: 1; margin-bottom: 6px; }
+    .num-key { font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--silver); line-height: 1.5; }
+
+    /* ═══ SECTIONS ═══ */
+    section { padding: 96px 40px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-h { font-size: clamp(40px, 5.5vw, 80px); margin-bottom: 24px; }
+
+    /* ═══ THE PROBLEM ═══ */
+    #problem { background: var(--black); border-top: 1px solid rgba(255,255,255,0.06); }
+    .problem-intro { font-size: 16px; font-weight: 300; line-height: 1.75; color: rgba(240,237,232,0.55); max-width: 720px; margin-bottom: 56px; }
+    .problem-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+    .problem-card { background: var(--dark); padding: 32px 28px; transition: background 0.2s; }
+    .problem-card:hover { background: var(--dark2); }
+    .problem-num { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 36px; color: rgba(200,224,0,0.18); line-height: 1; margin-bottom: 12px; }
+    .problem-card h3 { font-size: 17px; font-weight: 600; color: var(--white); margin-bottom: 10px; line-height: 1.35; }
+    .problem-card p { font-size: 14px; font-weight: 300; line-height: 1.65; color: var(--grey); }
+
+    /* ═══ THE SYSTEM ═══ */
+    #system { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); position: relative; }
+    .system-head { max-width: 720px; margin-bottom: 56px; }
+    .system-head p { font-size: 16px; font-weight: 300; line-height: 1.75; color: rgba(240,237,232,0.55); margin-top: 16px; }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .step { background: var(--black); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; padding: 26px 22px; position: relative; }
+    .step-num { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 14px; color: var(--yellow); margin-bottom: 18px; letter-spacing: 0.08em; }
+    .step-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 8px; line-height: 1.35; }
+    .step-desc { font-size: 12px; font-weight: 300; line-height: 1.6; color: var(--grey); }
+    .step-arrow { position: absolute; right: -16px; top: 50%; transform: translateY(-50%); color: var(--yellow); opacity: 0.4; font-size: 14px; z-index: 1; display: none; }
+    .step:not(:last-child) .step-arrow { display: block; }
+
+    /* ═══ PROOF ═══ */
+    #proof { border-top: 1px solid rgba(255,255,255,0.06); }
+    .proof-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 48px; }
+    .proof-head p { font-size: 14px; font-weight: 300; color: var(--silver); max-width: 420px; line-height: 1.65; }
+    .proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+    .proof-screenshot {
+      background: var(--dark); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 14px;
+      position: relative;
+    }
+    .proof-screenshot img { width: 100%; height: auto; border-radius: 3px; display: block; }
+    .proof-tag { display: inline-block; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--silver); margin-bottom: 10px; padding: 4px 8px; border: 1px solid rgba(255,255,255,0.12); border-radius: 2px; }
+    .proof-caption { font-size: 13px; font-weight: 300; color: rgba(240,237,232,0.55); margin-top: 12px; line-height: 1.6; }
+    .proof-caption strong { color: var(--white); font-weight: 600; }
+
+    /* unit economics card */
+    .unit-econ {
+      background: var(--dark); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px;
+      padding: 36px 32px;
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; align-items: center;
+    }
+    .ue-cell { text-align: center; }
+    .ue-cell .label { justify-content: center; margin-bottom: 12px; }
+    .ue-cell .label::before { display: none; }
+    .ue-val { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(28px, 3vw, 42px); color: var(--yellow); text-shadow: var(--yts); line-height: 1; margin-bottom: 6px; }
+    .ue-unit { font-size: 11px; color: var(--silver); letter-spacing: 0.1em; }
+    .ue-eq { font-family: 'Aesthet Nova', sans-serif; font-size: 32px; color: var(--mid); }
+
+    /* ═══ PRICING ═══ */
+    #pricing { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
+    .pricing-head { max-width: 720px; margin-bottom: 48px; }
+    .pricing-head p { font-size: 16px; font-weight: 300; line-height: 1.7; color: rgba(240,237,232,0.55); margin-top: 16px; }
+    .tiers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .tier { background: var(--black); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 28px 24px; position: relative; transition: border-color 0.25s, transform 0.25s; }
+    .tier:hover { border-color: rgba(200,224,0,0.3); transform: translateY(-3px); }
+    .tier.popular { border-color: rgba(200,224,0,0.4); background: linear-gradient(180deg, rgba(200,224,0,0.05) 0%, var(--black) 60%); }
+    .tier-badge { position: absolute; top: -10px; left: 24px; background: var(--yellow); color: var(--black); font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; }
+    .tier-name { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-bottom: 12px; }
+    .tier-price { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(28px,3vw,42px); color: var(--yellow); text-shadow: var(--yts); line-height: 1; margin-bottom: 4px; }
+    .tier-currency { font-size: 12px; color: var(--silver); letter-spacing: 0.05em; margin-bottom: 18px; }
+    .tier-row { font-size: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; gap: 8px; }
+    .tier-row:last-child { border-bottom: none; }
+    .tier-row-key { color: var(--grey); font-weight: 500; }
+    .tier-row-val { color: var(--white); font-weight: 500; text-align: right; }
+    .tier-foot { font-size: 10px; color: var(--grey); margin-top: 14px; font-style: italic; letter-spacing: 0.02em; }
+
+    .pricing-footnote { margin-top: 24px; font-size: 11px; color: var(--grey); letter-spacing: 0.04em; }
+
+    /* ═══ ALT OFFER — top 10 placement on running playlists ═══ */
+    #alt-offer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.06); }
+    .alt-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: start; margin-top: 32px; }
+    .alt-intro { font-size: 16px; font-weight: 300; line-height: 1.7; color: rgba(240,237,232,0.6); margin-bottom: 24px; }
+    .alt-list { list-style: none; }
+    .alt-list li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; gap: 14px; align-items: flex-start; font-size: 14px; font-weight: 400; color: var(--white); line-height: 1.55; }
+    .alt-list li:last-child { border-bottom: none; }
+    .alt-list li::before { content: '→'; color: var(--yellow); font-weight: 700; flex-shrink: 0; }
+    .alt-options { display: flex; flex-direction: column; gap: 14px; }
+    .alt-option { display: block; background: var(--dark); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 22px 24px; transition: border-color 0.2s, transform 0.2s; text-decoration: none; }
+    .alt-option:hover { border-color: rgba(200,224,0,0.3); transform: translateX(4px); }
+    .alt-option-tag { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); margin-bottom: 10px; }
+    .alt-option-name { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 24px; color: var(--yellow); text-shadow: var(--yts); line-height: 1; margin-bottom: 10px; }
+    .alt-option-desc { font-size: 13px; font-weight: 300; line-height: 1.55; color: var(--grey); }
+
+    /* ═══ FREE STARTER ═══ */
+    #starter { border-top: 1px solid rgba(255,255,255,0.06); position: relative; overflow: hidden; }
+    #starter::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 70% 30%, rgba(200,224,0,0.04) 0%, transparent 60%); }
+    .starter-inner { position: relative; display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: center; }
+    .starter-h { font-size: clamp(40px, 5.5vw, 76px); margin-bottom: 20px; }
+    .starter-body { font-size: 16px; font-weight: 300; line-height: 1.7; color: rgba(240,237,232,0.55); margin-bottom: 28px; }
+    .starter-list { list-style: none; }
+    .starter-list li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; gap: 14px; align-items: flex-start; font-size: 14px; font-weight: 400; color: var(--white); line-height: 1.5; }
+    .starter-list li:last-child { border-bottom: none; }
+    .starter-list li::before { content: '✓'; color: var(--yellow); font-weight: 700; flex-shrink: 0; }
+    .starter-fee { background: var(--dark); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; padding: 18px 22px; margin-top: 24px; font-size: 13px; color: var(--silver); font-weight: 300; line-height: 1.6; }
+    .starter-fee strong { color: var(--white); }
+    .starter-examples { display: flex; flex-direction: column; gap: 14px; }
+    .pl-example {
+      display: flex; align-items: center; gap: 16px;
+      background: var(--dark); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px;
+      padding: 16px; text-decoration: none;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .pl-example:hover { border-color: rgba(200,224,0,0.3); transform: translateX(4px); }
+    .pl-example-art {
+      width: 80px; height: 80px; border-radius: 4px; flex-shrink: 0;
+      background: var(--mid); overflow: hidden;
+    }
+    .pl-example-art img { width: 100%; height: 100%; object-fit: cover; }
+    .pl-example-meta-tag { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); margin-bottom: 4px; }
+    .pl-example-title { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .pl-example-url { font-size: 11px; color: var(--grey); letter-spacing: 0.04em; }
+    .pl-example-arrow { margin-left: auto; color: var(--grey); font-size: 18px; }
+
+    /* ═══ ADVANTAGES STRIP ═══ */
+    #advantages { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
+    .adv-head { max-width: 720px; margin-bottom: 48px; }
+    .adv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border-radius: 6px; overflow: hidden; }
+    .adv-cell { background: var(--black); padding: 30px 26px; }
+    .adv-cell h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 22px; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 12px; line-height: 1; }
+    .adv-cell p { font-size: 13px; font-weight: 300; line-height: 1.65; color: var(--grey); }
+
+    /* ═══ POSITIONING NOTE ═══ */
+    #positioning { border-top: 1px solid rgba(255,255,255,0.06); }
+    .pos-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .pos-card { background: var(--dark); border-left: 3px solid var(--yellow); border-radius: 0 4px 4px 0; padding: 28px 32px; }
+    .pos-card-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--yellow); margin-bottom: 10px; }
+    .pos-card h4 { font-size: 18px; font-weight: 600; color: var(--white); margin-bottom: 10px; }
+    .pos-card p { font-size: 14px; font-weight: 300; line-height: 1.65; color: var(--silver); }
+
+    /* ═══ FINAL CTA — proposal submission form ═══ */
+    #cta {
+      background:
+        radial-gradient(circle at 50% 50%, rgba(200,224,0,0.07) 0%, transparent 60%),
+        var(--black);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 100px 40px 120px;
+    }
+    .cta-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+    .cta-h { font-size: clamp(44px, 6vw, 92px); margin-bottom: 24px; }
+    .cta-body { font-size: 16px; font-weight: 300; line-height: 1.65; color: rgba(240,237,232,0.6); max-width: 560px; margin: 0 auto 44px; }
+    .cta-form { text-align: left; display: flex; flex-direction: column; gap: 18px; background: var(--dark); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 36px 32px; }
+    .cta-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .cta-field { display: flex; flex-direction: column; gap: 7px; }
+    .cta-field label { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--silver); }
+    .cta-field input, .cta-field select, .cta-field textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 3px;
+      padding: 13px 14px;
+      color: var(--white);
+      font-family: 'Figtree', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      width: 100%;
+      resize: vertical;
+    }
+    .cta-field input::placeholder, .cta-field textarea::placeholder { color: var(--grey); }
+    .cta-field input:focus, .cta-field select:focus, .cta-field textarea:focus {
+      border-color: rgba(200,224,0,0.4);
+      background: rgba(255,255,255,0.06);
+    }
+    .cta-field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .cta-field select option { background: #1a1a1a; color: var(--white); }
+    .cta-submit { align-self: stretch; justify-content: center; padding: 16px 32px; font-size: 12px; margin-top: 6px; }
+    .cta-submit:hover { transform: translateY(-1px); }
+    .cta-mail-note { font-size: 11px; color: var(--grey); text-align: center; margin-top: 6px; line-height: 1.6; }
+    .cta-mail-note a { color: var(--silver); text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
+    .cta-mail-note a:hover { color: var(--white); }
+
+    /* Success state — replaces the form after a successful POST */
+    .proposal-success { text-align: center; padding: 56px 32px; background: var(--dark); border: 1px solid rgba(200,224,0,0.25); border-radius: 6px; animation: successIn 0.5s ease-out; }
+    @keyframes successIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .success-check { width: 64px; height: 64px; margin: 0 auto 24px; border-radius: 50%; background: rgba(200,224,0,0.12); border: 2px solid var(--yellow); display: flex; align-items: center; justify-content: center; color: var(--yellow); }
+    .success-check svg { width: 32px; height: 32px; }
+    .success-title { font-size: clamp(36px, 5vw, 64px); margin-bottom: 16px; }
+    .success-body { font-size: 15px; font-weight: 300; line-height: 1.65; color: rgba(240,237,232,0.6); max-width: 440px; margin: 0 auto 18px; }
+    .success-note { font-size: 12px; color: var(--grey); max-width: 440px; margin: 0 auto; line-height: 1.6; }
+    .success-note a { color: var(--silver); text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
+    .success-note a:hover { color: var(--white); }
+
+    /* ═══ FOOTER ═══ */
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 48px 40px; text-align: center; background: var(--dark); }
+    .footer-brand img { height: 56px; width: auto; margin: 0 auto 12px; opacity: 0.7; }
+    .footer-brand p { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--grey); }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; margin-top: 16px; }
+    .footer-links a { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+
+    /* ═══ MOBILE ═══ */
+    @media (max-width: 900px) {
+      nav { padding: 12px 18px; }
+      .nav-back { display: none; }
+      section { padding: 64px 20px; }
+      .hero { padding: 110px 20px 60px; min-height: 0; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-art { justify-self: center; max-width: 280px; }
+      .numbers-strip { padding: 24px 20px; }
+      .numbers-grid { grid-template-columns: 1fr 1fr; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .proof-grid { grid-template-columns: 1fr; }
+      .unit-econ { grid-template-columns: 1fr; gap: 16px; padding: 24px 20px; }
+      .ue-eq { display: none; }
+      .tiers { grid-template-columns: 1fr; }
+      .alt-grid { grid-template-columns: 1fr; gap: 28px; }
+      .starter-inner { grid-template-columns: 1fr; gap: 36px; }
+      .adv-grid { grid-template-columns: 1fr; }
+      .pos-inner { grid-template-columns: 1fr; gap: 28px; }
+      #cta { padding: 80px 20px; }
+      .cta-form { padding: 28px 22px; }
+      .cta-form-row { grid-template-columns: 1fr; gap: 18px; }
+    }
+
+    @media (max-width: 480px) {
+      .steps { grid-template-columns: 1fr; }
+      .numbers-grid { grid-template-columns: 1fr; }
+      .hero-cta-row .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="logo_afrocue.png" alt="AfroCue"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
+    <span class="nav-logo-fallback" style="display:none;">AFRO.CUE</span>
+  </a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back">&larr; Back to AfroCue</a>
+    <a href="#cta" class="nav-cta">Work With Us</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">For Music Artists, Labels &amp; Music Executives</div>
+      <h1>The Playlist<br>Marketing<br><span class="outline">Engine.</span></h1>
+      <p class="hero-sub">A <strong>trackable, performance-based channel</strong> for Spotify <strong>playlist</strong> streams — built on cultural playlist curation, tracking-enabled landing pages, and high-performance media buying. Real audience. Real numbers. Real streams.</p>
+      <div class="hero-cta-row">
+        <a href="#cta" class="btn btn-yellow">Work with us</a>
+        <a href="#system" class="btn btn-ghost">How it works</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img src="playlist_groovy_afrobeats.png" alt="Groovy Afrobeats — AfroCue playlist cover"/>
+    </div>
+  </div>
+</section>
+
+<!-- KILLER NUMBERS -->
+<div class="numbers-strip">
+  <div class="numbers-grid">
+    <div class="num-cell">
+      <div class="num-val">₦750–950</div>
+      <div class="num-key">Safe baseline cost per save</div>
+    </div>
+    <div class="num-cell">
+      <div class="num-val">10–20×</div>
+      <div class="num-key">Streams before a save</div>
+    </div>
+    <div class="num-cell">
+      <div class="num-val">Daily</div>
+      <div class="num-key">Saves climb live on Spotify</div>
+    </div>
+    <div class="num-cell">
+      <div class="num-val">Real</div>
+      <div class="num-key">Audience, royalty-eligible streams</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="container">
+    <div class="label">The Status Quo</div>
+    <h2 class="yh section-h">Why<br>placement<br>marketing<br>is broken.</h2>
+    <p class="problem-intro">Most pay-for-placement playlist services share the same four problems. If you've spent money on Spotify promo before, you've probably hit at least two of these.</p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-num">01</div>
+        <h3>Pay fully upfront with no daily measurement.</h3>
+        <p>Value is sold based on the playlist's total save count — not the streams your song actually earns. You write the cheque before you see anything happen.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">02</div>
+        <h3>Streams get inflated at the start, then taper.</h3>
+        <p>Curators front-load activity in week one to make it feel like ROI. The rest of the campaign tells a different story — but the money is already gone.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">03</div>
+        <h3>Limited to existing playlist followers.</h3>
+        <p>You're reaching whoever already has the playlist on their algorithm. No real-time optimization. No new audience discovery. No growth curve.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">04</div>
+        <h3>Spotify's own ads don't count toward revenue.</h3>
+        <p>Native Spotify ads often reach free-tier users only, so generated streams may not translate to royalties. You're paying for streams that don't pay you back.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE SYSTEM -->
+<section id="system">
+  <div class="container">
+    <div class="system-head">
+      <div class="label">What We've Built</div>
+      <h2 class="yh section-h">A closed<br>loop that<br>actually <span class="outline">moves.</span></h2>
+      <p>We combine three things most playlist operators don't do together: <strong style="color:var(--white)">a credible cultural media brand</strong>, <strong style="color:var(--white)">a tracking-enabled landing page</strong>, and <strong style="color:var(--white)">high-performance Meta media buying</strong>. The system optimizes daily for the people most likely to actually save and stream.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01 · CURATE</div>
+        <div class="step-title">Build a playlist around a feeling</div>
+        <div class="step-desc">Groovy Afrobeats. Naija Party Starters. A real category, not a marketing slot.</div>
+        <span class="step-arrow">&rarr;</span>
+      </div>
+      <div class="step">
+        <div class="step-num">02 · LAND</div>
+        <div class="step-title">Spotify-style landing page</div>
+        <div class="step-desc">afrocue.xyz/playlist-X — pixel tracking on view, click, and Spotify open.</div>
+        <span class="step-arrow">&rarr;</span>
+      </div>
+      <div class="step">
+        <div class="step-num">03 · ADVERTISE</div>
+        <div class="step-title">Run optimized Meta ads</div>
+        <div class="step-desc">Creative built from your song + adjacent tracks. The algorithm finds your audience.</div>
+        <span class="step-arrow">&rarr;</span>
+      </div>
+      <div class="step">
+        <div class="step-num">04 · CONVERT</div>
+        <div class="step-title">Saves, streams, daily</div>
+        <div class="step-desc">Listeners save, stream, return. Spotify's own algorithm joins the push.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF — backend screenshots + unit econ -->
+<section id="proof">
+  <div class="container">
+    <div class="proof-head">
+      <div>
+        <div class="label">The Proof</div>
+        <h2 class="yh section-h">Real numbers.<br>From our<br>backend.</h2>
+      </div>
+      <p>These are not projections. This is a live campaign currently running for the Naija Party Starters playlist — which started at 10 saves and is climbing daily.</p>
+    </div>
+
+    <div class="proof-grid">
+      <div class="proof-screenshot">
+        <div class="proof-tag">Meta Ads Backend</div>
+        <img src="proof_ads_backend.png" alt="Meta Ads backend showing 13,989 reach, 650 clicks, 405 landing page views"/>
+        <p class="proof-caption"><strong>13,989 reach · 650 clicks · 405 landing page views</strong> across two ads on a live playlist campaign. Every click that opens Spotify is captured as a tracked event.</p>
+      </div>
+      <div class="proof-screenshot">
+        <div class="proof-tag">Tracking Pixel — Playlist Open Event</div>
+        <img src="proof_pixel_tracking.png" alt="Meta pixel showing Playlist Open events being tracked daily"/>
+        <p class="proof-caption">Custom <strong>Playlist Open</strong> event is active and firing daily. Every Spotify-bound click is fed back to the algorithm to find more lookalikes — automatically.</p>
+      </div>
+    </div>
+
+    <!-- Unit economics card -->
+    <div class="unit-econ">
+      <div class="ue-cell">
+        <div class="label">₦ per save</div>
+        <div class="ue-val">₦750–950</div>
+        <div class="ue-unit">Safe baseline</div>
+      </div>
+      <div class="ue-eq">×</div>
+      <div class="ue-cell">
+        <div class="label">Streams before a save</div>
+        <div class="ue-val">10–20×</div>
+        <div class="ue-unit">Average</div>
+      </div>
+    </div>
+    <p class="pricing-footnote" style="text-align:center; margin-top: 18px;">→ Based on these numbers, a <strong style="color:var(--white)">₦500K campaign produces ~750–1,750 saves</strong>, which translates to <strong style="color:var(--white)">7,500–35,000 streams</strong>. These figures are a <em style="color:var(--silver)">safe average based on data from playlist ads we have run</em> — and live campaigns can get much better. Longer ad windows also generate additional discovery from earned media.</p>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="pricing-head">
+      <div class="label">Pricing</div>
+      <h2 class="yh section-h">Pick a tier.<br>We do the<br>rest.</h2>
+      <p>Budgets size the always-on advertising window. Longer windows generally produce a stronger tail — more discovery, more return listeners, stronger Spotify algorithmic push.</p>
+    </div>
+
+    <div class="tiers">
+
+      <div class="tier">
+        <div class="tier-name">Starter</div>
+        <div class="tier-price">₦500K</div>
+        <div class="tier-currency">Naira</div>
+        <div class="tier-row"><span class="tier-row-key">Duration</span><span class="tier-row-val">2–3 weeks</span></div>
+        <div class="tier-row"><span class="tier-row-key">Saves</span><span class="tier-row-val">~750–1,750</span></div>
+        <div class="tier-row"><span class="tier-row-key">Streams (est.)</span><span class="tier-row-val">7.5K–35K</span></div>
+        <div class="tier-foot">Best for testing the system</div>
+      </div>
+
+      <div class="tier popular">
+        <div class="tier-badge">Most Picked</div>
+        <div class="tier-name">Growth</div>
+        <div class="tier-price">₦1M</div>
+        <div class="tier-currency">Naira</div>
+        <div class="tier-row"><span class="tier-row-key">Duration</span><span class="tier-row-val">2–5 weeks</span></div>
+        <div class="tier-row"><span class="tier-row-key">Saves</span><span class="tier-row-val">~1,500–3,500</span></div>
+        <div class="tier-row"><span class="tier-row-key">Streams (est.)</span><span class="tier-row-val">15K–70K</span></div>
+        <div class="tier-foot">Real audience growth window</div>
+      </div>
+
+      <div class="tier">
+        <div class="tier-name">Scale</div>
+        <div class="tier-price">₦2M</div>
+        <div class="tier-currency">Naira</div>
+        <div class="tier-row"><span class="tier-row-key">Duration</span><span class="tier-row-val">2–7 weeks</span></div>
+        <div class="tier-row"><span class="tier-row-key">Saves</span><span class="tier-row-val">~3,000–7,000</span></div>
+        <div class="tier-row"><span class="tier-row-key">Streams (est.)</span><span class="tier-row-val">30K–140K</span></div>
+        <div class="tier-foot">Multi-country, optimized</div>
+      </div>
+
+      <div class="tier">
+        <div class="tier-name">Major</div>
+        <div class="tier-price">₦5M</div>
+        <div class="tier-currency">Naira</div>
+        <div class="tier-row"><span class="tier-row-key">Duration</span><span class="tier-row-val">2–10 weeks</span></div>
+        <div class="tier-row"><span class="tier-row-key">Saves</span><span class="tier-row-val">~7,500–17,500</span></div>
+        <div class="tier-row"><span class="tier-row-key">Streams (est.)</span><span class="tier-row-val">75K–350K</span></div>
+        <div class="tier-foot">Label rollouts, major releases</div>
+      </div>
+
+    </div>
+
+    <p class="pricing-footnote">Save ranges use a ₦750–₦950 safe-baseline cost-per-save on the low end and reflect upside our live playlist ads have achieved on the high end. Streams use 10–20× (average streams before a save). Longer ad windows also produce additional discovery from earned media. A 5% ad-handling fee applies to all packages.</p>
+  </div>
+</section>
+
+<!-- ALTERNATIVE OFFER — top 10 placement on active playlists -->
+<section id="alt-offer">
+  <div class="container">
+    <div class="label">Lower-Budget Alternative</div>
+    <h2 class="yh section-h">Or — get a<br>top 10 spot<br>on a <span class="outline">running</span><br>playlist.</h2>
+    <div class="alt-grid">
+      <div>
+        <p class="alt-intro">If a full campaign is more than you want to commit to right now, we can place your song in the top 7–10 of one of our already-active playlists. Your budget contributes to the ads we're already running — and you get active streams from infrastructure that's already moving.</p>
+        <ul class="alt-list">
+          <li>Top 7–10 placement on an already-active playlist</li>
+          <li>Your budget supports the running ads</li>
+          <li>You get active streams from our existing audience &amp; algorithm momentum</li>
+          <li>Best for songs that fit cleanly into either category</li>
+        </ul>
+      </div>
+      <div class="alt-options">
+        <a href="https://afrocue.xyz/playlist-1" target="_blank" class="alt-option">
+          <div class="alt-option-tag">● Active &amp; Running</div>
+          <div class="alt-option-name">Naija Party Starters</div>
+          <div class="alt-option-desc">Music that moves Nigerian dance floors. Afrobeats, amapiano, afrohouse.</div>
+        </a>
+        <a href="https://afrocue.xyz/playlist-2" target="_blank" class="alt-option">
+          <div class="alt-option-tag">● Active &amp; Running</div>
+          <div class="alt-option-name">Groovy Afrobeats</div>
+          <div class="alt-option-desc">Tasteful curation of groovy Afrobeat gems you can feel and dance to.</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STARTER OFFER + EXAMPLES -->
+<section id="starter">
+  <div class="container starter-inner">
+    <div>
+      <div class="label">The Starter Offer</div>
+      <h2 class="yh starter-h">Free<br>setup.<br>Always.</h2>
+      <p class="starter-body">When you run a campaign with us, the entire setup is free. You only pay the ad budget itself. We absorb the creative work — because the system only succeeds when it's done properly end-to-end.</p>
+      <ul class="starter-list">
+        <li>Custom playlist curated around your song's mood and category</li>
+        <li>Original playlist cover art in AfroCue's editorial style</li>
+        <li>Branded Spotify-style landing page, live at afrocue.xyz/playlist-X</li>
+        <li>Full pixel tracking setup with custom conversion events</li>
+        <li>Ad creative production using your song + adjacent tracks</li>
+        <li>Campaign launch and daily optimization</li>
+      </ul>
+      <div class="starter-fee">You only pay the <strong>ad budget</strong> plus a <strong>5% ad-handling fee</strong>. That's it.</div>
+    </div>
+
+    <div>
+      <div class="label">Live Examples</div>
+      <div class="starter-examples">
+        <a href="https://afrocue.xyz/playlist-1" target="_blank" class="pl-example">
+          <div class="pl-example-art">
+            <img src="playlist_naija_party_starters.jpg" alt="Naija Party Starters"
+              onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#8b1a1a,#4a0d0d)';"/>
+          </div>
+          <div>
+            <div class="pl-example-meta-tag">● Live</div>
+            <div class="pl-example-title">Naija Party Starters</div>
+            <div class="pl-example-url">afrocue.xyz/playlist-1</div>
+          </div>
+          <span class="pl-example-arrow">&rarr;</span>
+        </a>
+        <a href="https://afrocue.xyz/playlist-2" target="_blank" class="pl-example">
+          <div class="pl-example-art">
+            <img src="playlist_groovy_afrobeats.png" alt="Groovy Afrobeats"/>
+          </div>
+          <div>
+            <div class="pl-example-meta-tag">● Live</div>
+            <div class="pl-example-title">Groovy Afrobeats</div>
+            <div class="pl-example-url">afrocue.xyz/playlist-2</div>
+          </div>
+          <span class="pl-example-arrow">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADVANTAGES -->
+<section id="advantages">
+  <div class="container">
+    <div class="adv-head">
+      <div class="label">What You Get</div>
+      <h2 class="yh section-h">Six things<br>nobody<br>else gives<br>you.</h2>
+    </div>
+
+    <div class="adv-grid">
+      <div class="adv-cell">
+        <h3>Music as creative.</h3>
+        <p>Your song becomes part of the ad itself — framed around a feeling and category. Not "new song out now." Cultural framing converts.</p>
+      </div>
+      <div class="adv-cell">
+        <h3>Multi-country reach.</h3>
+        <p>Run ads in multiple markets at once. Algorithm finds your audience wherever they live — international streams help Spotify's push.</p>
+      </div>
+      <div class="adv-cell">
+        <h3>Royalty-eligible streams.</h3>
+        <p>Ads run on Meta (not Spotify). Listeners include paid Spotify users — so the streams actually count toward revenue.</p>
+      </div>
+      <div class="adv-cell">
+        <h3>Cultural credibility.</h3>
+        <p>You're not selling your song. AfroCue is recommending a playlist. An emerging artist gets the same media leverage as a major.</p>
+      </div>
+      <div class="adv-cell">
+        <h3>Real-time tracking.</h3>
+        <p>Watch saves climb daily on Spotify, publicly. Watch streams flow through your artist backend. Independently verifiable.</p>
+      </div>
+      <div class="adv-cell">
+        <h3>Real discovery.</h3>
+        <p>Ads reach genuinely new listeners. A meaningful percentage become return listeners. That's organic growth, not a one-time bump.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POSITIONING NOTES -->
+<section id="positioning">
+  <div class="container pos-inner">
+    <div>
+      <div class="label">A Few Notes</div>
+      <h2 class="yh section-h">How we<br>position<br>your song.</h2>
+    </div>
+    <div>
+      <div class="pos-card" style="margin-bottom:18px;">
+        <div class="pos-card-tag">Position #2 or #3 — not #1</div>
+        <h4>The #1 slot is the hook.</h4>
+        <p>Position #1 usually goes to a well-known track that captures the playlist's category — the song that gets a cold listener to actually start playing. Your song sits at #2 or #3, where the engagement is highest. Same listener, same play-through. The familiar track does the door-opening for you.</p>
+      </div>
+      <div class="pos-card">
+        <div class="pos-card-tag">Bonus placement — top 15</div>
+        <h4>A second placement, often free.</h4>
+        <p>We can place a second song from your catalogue further down the playlist. Roughly 10–20% of listeners who start a playlist make it to track 15 — meaning meaningful extra streams on a second track, with no extra spend.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA — proposal submission form -->
+<section id="cta">
+  <div class="cta-inner">
+    <div class="label" style="justify-content:center; margin-bottom: 24px;">Work With Us</div>
+    <h2 class="yh cta-h">Let's get the<br>numbers <span class="outline">moving.</span></h2>
+    <p class="cta-body">Tell us about the track. We'll come back with a playlist concept, placement plan, and a budget recommendation. Setup is free — you only pay when you're ready to go live.</p>
+
+    <form class="cta-form" onsubmit="sendProposal(event)">
+      <div class="cta-form-row">
+        <div class="cta-field">
+          <label>Your name</label>
+          <input type="text" name="name" placeholder="Jane Doe" required/>
+        </div>
+        <div class="cta-field">
+          <label>Artist name</label>
+          <input type="text" name="artist" placeholder="Stage name or band" required/>
+        </div>
+      </div>
+
+      <div class="cta-field">
+        <label>Link to track</label>
+        <input type="url" name="track" placeholder="Spotify, Audiomack, SoundCloud, YouTube — wherever it lives" required/>
+      </div>
+
+      <div class="cta-form-row">
+        <div class="cta-field">
+          <label>Suggested category / genre</label>
+          <input type="text" name="category" placeholder="e.g. Groovy Afrobeats, Amapiano, Party Starters" required/>
+        </div>
+        <div class="cta-field">
+          <label>Proposed budget</label>
+          <select name="budget" required>
+            <option value="" disabled selected>Pick a range</option>
+            <option>Top 10 placement on existing playlist (smaller budget)</option>
+            <option>₦500K — Starter</option>
+            <option>₦1M — Growth</option>
+            <option>₦2M — Scale</option>
+            <option>₦5M — Major</option>
+            <option>Other / let's discuss</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="cta-field">
+        <label>Best email to reach you</label>
+        <input type="email" name="email" placeholder="you@email.com" required/>
+      </div>
+
+      <div class="cta-field">
+        <label>Anything else? <span style="color:var(--grey); font-weight:400; text-transform:none; letter-spacing:0;">(optional)</span></label>
+        <textarea name="notes" rows="3" placeholder="Release date, goals, anything we should know..."></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-yellow cta-submit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Send To AfroCue
+      </button>
+
+      <p class="cta-mail-note">Or email us directly at <a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a>.</p>
+    </form>
+
+    <!-- Success state — shown after the form submits -->
+    <div id="proposalSuccess" class="proposal-success" style="display:none;">
+      <div class="success-check">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3 class="yh success-title">You're in.</h3>
+      <p class="success-body">Your proposal is with us. We'll review the track and come back to you within a few days with a playlist concept and recommended plan.</p>
+      <p class="success-note">Check your inbox — including spam — for our reply. You can also reach us at <a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a href="index.html">
+      <img src="logo_afrocue.png" alt="AfroCue"
+        onerror="this.style.display='none';"/>
+    </a>
+    <p>Creatively Documenting Culture</p>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#content">Content</a>
+    <a href="parties.html">Parties</a>
+    <a href="mailto:afrocueonline@gmail.com">Contact</a>
+  </div>
+</footer>
+
+<script>
+  /* ───────────────────────────────────────────────────────────────
+     Proposal submission — POSTs to the AfroCue GAS web app, which
+     writes a row to the Spotify Playlist tab and emails the team.
+     Uses the same payload=<json> + no-cors pattern as afrocue.js
+     so the request goes through reliably.
+     ─────────────────────────────────────────────────────────────── */
+
+  /* ⚠️ PASTE YOUR GAS WEB APP URL HERE ⚠️
+     Get it from: Apps Script editor → Deploy → Manage deployments
+     → copy the Web app URL. Looks like:
+     https://script.google.com/macros/s/AKfycb…/exec */
+  var GAS_URL = 'PASTE_YOUR_GAS_URL_HERE';
+
+  function sendProposal(e) {
+    e.preventDefault();
+    var f = e.target;
+    var submitBtn = f.querySelector('button[type="submit"]');
+
+    var data = {
+      source:      'playlist_marketing',
+      name:        (f.name.value     || '').trim(),
+      artist:      (f.artist.value   || '').trim(),
+      track:       (f.track.value    || '').trim(),
+      category:    (f.category.value || '').trim(),
+      email:       (f.email.value    || '').trim(),
+      budget:      (f.budget.value   || '').trim(),
+      notes:       (f.notes.value    || '').trim(),
+      source_page: window.location.href
+    };
+
+    /* GTM — fire a conversion event */
+    try {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'proposal_submit',
+        proposal_budget: data.budget,
+        proposal_category: data.category
+      });
+    } catch (err) {}
+
+    /* UI: lock the button while submitting */
+    var originalLabel = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Sending...';
+
+    /* GAS web apps need no-cors; the response will always be opaque
+       so we cannot read success/failure — we use .finally() and trust
+       that GAS received it. The row will appear in the sheet if it worked. */
+    var body = 'payload=' + encodeURIComponent(JSON.stringify(data));
+
+    fetch(GAS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body
+    }).finally(function() {
+      /* Show success state — replaces the form with a thank-you message */
+      f.style.display = 'none';
+      var success = document.getElementById('proposalSuccess');
+      if (success) success.style.display = 'block';
+    });
+  }
+</script>
+
+</body>
+</html>
