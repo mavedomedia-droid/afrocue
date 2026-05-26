@@ -14,13 +14,11 @@
     <meta name="twitter:title" content="Sponsor an AfroCue Initiative" />
     <meta name="twitter:description" content="AfroCue Pregame vs traditional party sponsorship." />
 
-    <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
-    <!-- End Google Tag Manager -->
 
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
@@ -71,7 +69,7 @@
         .hero-bg-overlay { position:absolute; inset:0; z-index:1; background:rgba(10,10,10,0.7); }
         .hero-texture { position:absolute; inset:0; z-index:2; background-image:url('texture.jpg'); background-size:cover; opacity:0.35; pointer-events:none; }
         .hero-content { position:relative; z-index:3; max-width:1200px; width:100%; display:flex; flex-direction:column; gap:56px; }
-        .hero-headline { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(32px,8vw,72px); color:var(--yellow); text-shadow:var(--yts); line-height:0.9; text-align:center; }
+        .hero-headline { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(28px,7vw,72px); color:var(--yellow); text-shadow:var(--yts); line-height:0.92; text-align:center; }
 
         .comparison-section { display:flex; flex-direction:column; gap:36px; }
         .comparison-category {
@@ -114,10 +112,20 @@
         .what-you-get li { font-size:16px; font-weight:400; color:rgba(240,237,232,0.75); background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:4px; padding:14px 18px; display:flex; gap:10px; align-items:flex-start; }
         .what-you-get li::before { content:'✓'; color:var(--yellow); font-weight:700; flex-shrink:0; margin-top:2px; }
 
-        .pkg-table { width:100%; border-collapse:collapse; margin-top:32px; font-size:16px; }
-        .pkg-table th { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:18px; color:var(--yellow); text-align:left; padding:16px 12px 8px; border-bottom:1px solid rgba(255,255,255,0.1); }
-        .pkg-table td { padding:12px 12px; border-bottom:1px solid rgba(255,255,255,0.05); color:rgba(240,237,232,0.7); }
-        .pkg-table .tier-name { font-weight:600; color:var(--white); }
+        .pkg-cards { display:none; flex-direction:column; gap:16px; margin-top:32px; }
+        .pkg-card { background:var(--dark); border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:28px 24px; }
+        .pkg-card h3 { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:24px; color:var(--yellow); text-shadow:var(--yts); margin-bottom:20px; }
+        .pkg-card ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+        .pkg-card ul li { font-size:13px; font-weight:300; color:rgba(240,237,232,0.65); display:flex; gap:8px; align-items:flex-start; }
+        .pkg-card ul li::before { content:'✓'; color:var(--yellow); font-weight:700; flex-shrink:0; }
+        .pkg-card ul li.na { color:rgba(240,237,232,0.25); }
+        .pkg-card ul li.na::before { content:'–'; color:var(--grey); }
+
+        .pkg-table-wrap { overflow-x:auto; }
+        .pkg-table { width:100%; border-collapse:collapse; margin-top:32px; font-size:14px; min-width:600px; }
+        .pkg-table th { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:16px; color:var(--yellow); text-align:left; padding:12px 10px 8px; border-bottom:1px solid rgba(255,255,255,0.1); }
+        .pkg-table td { padding:10px 10px; border-bottom:1px solid rgba(255,255,255,0.05); color:rgba(240,237,232,0.7); }
+        .pkg-table .tier-name { font-weight:600; color:var(--white); font-size:13px; }
 
         .enquiry-form { display:flex; flex-direction:column; gap:16px; max-width:600px; margin-top:32px; }
         .enquiry-form input, .enquiry-form select, .enquiry-form textarea {
@@ -142,60 +150,54 @@
         .footer-links a:hover { color:var(--white); }
 
         .initiative-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:32px; }
-        .initiative-card { background:var(--dark); border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:32px; }
-        .initiative-card h3 { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:28px; color:var(--yellow); text-shadow:var(--yts); margin-bottom:12px; }
-        .initiative-card p { font-size:14px; font-weight:300; line-height:1.7; color:rgba(240,237,232,0.55); }
+        .initiative-card { background:var(--dark); border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:32px; display:flex; flex-direction:column; gap:20px; }
+        .initiative-card h3 { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:28px; color:var(--yellow); text-shadow:var(--yts); margin-bottom:0; }
+        .initiative-card p { font-size:14px; font-weight:300; line-height:1.7; color:rgba(240,237,232,0.55); margin:0; }
+        .highlight-note { font-style:italic; color:rgba(200,224,0,0.7); font-size:13px; margin-top:0; }
 
-        .highlight-note { font-style:italic; color:rgba(200,224,0,0.7); font-size:13px; margin-top:12px; }
-
-        .pregame-image-row {
-            display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
-            margin: 40px 0 24px;
-        }
         .pregame-image-wrap {
             position:relative; aspect-ratio:4/5; overflow:hidden; border-radius:4px;
-            border:1px solid rgba(255,255,255,0.08);
+            border:1px solid rgba(255,255,255,0.08); max-width:400px; margin:32px auto;
         }
-        .pregame-image-wrap img {
-            width:100%; height:100%; object-fit:cover; display:block;
+        .pregame-image-wrap img { width:100%; height:100%; object-fit:cover; display:block; }
+        .pregame-image-overlay { position:absolute; inset:0; z-index:1; background-image:url('texture.jpg'); background-size:cover; opacity:0.45; pointer-events:none; }
+        .pregame-image-label { position:absolute; bottom:0; left:0; right:0; z-index:2; padding:12px 16px; background:linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0) 100%); font-size:12px; font-weight:500; letter-spacing:0.06em; color:var(--white); }
+
+        .initiative-image-wrap {
+            position:relative; aspect-ratio:16/9; overflow:hidden; border-radius:4px;
+            border:1px solid rgba(255,255,255,0.08); width:100%;
         }
-        .pregame-image-overlay {
-            position:absolute; inset:0; z-index:1;
-            background-image:url('texture.jpg'); background-size:cover;
-            opacity:0.45; pointer-events:none;
-        }
-        .pregame-image-label {
-            position:absolute; bottom:0; left:0; right:0; z-index:2;
-            padding:12px 16px;
-            background:linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0) 100%);
-            font-size:12px; font-weight:500; letter-spacing:0.06em;
-            color:var(--white);
-        }
+        .initiative-image-wrap img { width:100%; height:100%; object-fit:cover; display:block; }
+        .initiative-image-overlay { position:absolute; inset:0; z-index:1; background-image:url('texture.jpg'); background-size:cover; opacity:0.4; pointer-events:none; }
+        .initiative-image-label { position:absolute; bottom:0; left:0; right:0; z-index:2; padding:10px 14px; background:linear-gradient(to top, rgba(10,10,10,0.8) 0%, rgba(10,10,10,0) 100%); font-size:11px; font-weight:500; letter-spacing:0.06em; color:var(--white); }
 
         @media (max-width:768px) {
             nav { padding:14px 20px; }
-            .hero { padding:100px 20px 60px; }
-            .hero-headline { font-size:clamp(36px,10vw,56px); }
+            .hero { padding:100px 20px 60px; min-height:auto; }
+            .hero-headline { font-size:clamp(24px,8vw,42px); line-height:0.95; }
             .comparison-category { grid-template-columns:1fr; gap:8px; }
             .comparison-category::after { display:none; }
+            .comparison-category .comp-left { border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:16px; }
             .comp-title { margin-bottom:8px; }
             section { padding:64px 20px; }
             .results-stats { grid-template-columns:1fr 1fr; }
             .what-you-get li { font-size:15px; }
             .initiative-grid { grid-template-columns:1fr; }
-            .pregame-image-row { grid-template-columns:1fr 1fr; }
+            .pkg-table-wrap { display:none; }
+            .pkg-cards { display:flex; }
+            .pregame-image-wrap { max-width:100%; aspect-ratio:3/4; }
         }
-        @media (max-width:480px) {
-            .pregame-image-row { grid-template-columns:1fr; }
+
+        @media (min-width:769px) {
+            .pkg-cards { display:none; }
+            .pkg-table-wrap { display:block; }
         }
     </style>
 </head>
 <body>
 
-<!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
     <nav>
         <a class="nav-logo" href="index.html">
@@ -257,42 +259,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             Our first sponsor, Onburd, activated Pregame with us. The results speak for themselves — and this is just the beginning.
         </p>
 
-        <div class="pregame-image-row">
-            <div class="pregame-image-wrap">
-                <img src="pregame_img_1.jpg" alt="Pregame riders in the car" />
-                <div class="pregame-image-overlay"></div>
-                <div class="pregame-image-label">Riders in the luxury car</div>
-            </div>
-            <div class="pregame-image-wrap">
-                <img src="pregame_img_2.jpg" alt="Naija House Mafia hero shoot" />
-                <div class="pregame-image-overlay"></div>
-                <div class="pregame-image-label">Naija House Mafia hero content</div>
-            </div>
-            <div class="pregame-image-wrap">
-                <img src="pregame_img_3.jpg" alt="Pregame arrival at the party" />
-                <div class="pregame-image-overlay"></div>
-                <div class="pregame-image-label">Arrival at the party</div>
-            </div>
+        <div class="pregame-image-wrap">
+            <img src="pregame_img_1.jpg" alt="Pregame with AfroCue" />
+            <div class="pregame-image-overlay"></div>
+            <div class="pregame-image-label">Pregame with AfroCue</div>
         </div>
 
         <div class="results-stats">
-            <div class="stat-card">
-                <div class="stat-value">400+</div>
-                <div class="stat-key">sign‑ups</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value">150K+</div>
-                <div class="stat-key">media reach</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value">900+</div>
-                <div class="stat-key">engagements</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value">2,000+</div>
-                <div class="stat-key">landing page views</div>
-                <div style="font-size:10px;color:var(--grey);margin-top:4px;">that's a sold‑out top‑5 Lagos large‑scale event</div>
-            </div>
+            <div class="stat-card"><div class="stat-value">400+</div><div class="stat-key">sign‑ups</div></div>
+            <div class="stat-card"><div class="stat-value">150K+</div><div class="stat-key">media reach</div></div>
+            <div class="stat-card"><div class="stat-value">900+</div><div class="stat-key">engagements</div></div>
+            <div class="stat-card"><div class="stat-value">2,000+</div><div class="stat-key">landing page views</div><div style="font-size:10px;color:var(--grey);margin-top:4px;">that's a sold‑out top‑5 Lagos large‑scale event</div></div>
         </div>
 
         <h3 style="font-family:'Aesthet Nova',sans-serif;font-weight:500;font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:var(--silver);margin:40px 0 16px;">What you get</h3>
@@ -316,11 +293,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section id="packages" style="background:var(--dark);">
         <div class="label">Sponsorship Packages</div>
         <h2 class="yh" style="font-size:clamp(44px,5.5vw,80px);margin-bottom:24px;">Pregame<br>packages.</h2>
-        <div style="overflow-x:auto;">
+
+        <div class="pkg-table-wrap">
             <table class="pkg-table">
-                <thead>
-                    <tr><th></th><th>Standard</th><th>Gold</th><th>Platinum</th></tr>
-                </thead>
+                <thead><tr><th></th><th>Standard</th><th>Gold</th><th>Platinum</th></tr></thead>
                 <tbody>
                     <tr><td class="tier-name">Luxury ride</td><td>✅</td><td>✅</td><td>✅ (high‑end)</td></tr>
                     <tr><td class="tier-name">Drinks & refreshments</td><td>✅</td><td>✅</td><td>✅</td></tr>
@@ -338,6 +314,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </tbody>
             </table>
         </div>
+
+        <div class="pkg-cards">
+            <div class="pkg-card">
+                <h3>Standard</h3>
+                <ul>
+                    <li>Luxury ride</li><li>Drinks & refreshments</li><li>Event‑day content</li><li>All announcement placements</li><li>Awareness + traffic ads</li>
+                    <li class="na">Lunch stop + content moment</li><li class="na">Hero content w/ DJ</li><li class="na">Brand collab post with DJ</li><li class="na">Community activation</li><li class="na">Creator collab</li><li class="na">In‑car ride content</li><li class="na">Post‑event recap</li><li class="na">Newsletter (700+ subs)</li>
+                </ul>
+            </div>
+            <div class="pkg-card">
+                <h3>Gold</h3>
+                <ul>
+                    <li>Luxury ride</li><li>Drinks & refreshments</li><li>Event‑day content</li><li>All announcement placements</li><li>Hero content w/ DJ</li><li>Brand collab post with DJ</li><li>Community activation</li><li>Newsletter (700+ subs)</li><li>Amplification ads</li>
+                    <li class="na">Lunch stop + content moment</li><li class="na">Creator collab</li><li class="na">In‑car ride content</li><li class="na">Post‑event recap</li>
+                </ul>
+            </div>
+            <div class="pkg-card">
+                <h3>Platinum</h3>
+                <ul>
+                    <li>Luxury ride (high‑end)</li><li>Drinks & refreshments</li><li>Lunch stop + content moment</li><li>Event‑day content</li><li>All announcement placements</li><li>Hero content w/ DJ</li><li>Brand collab post with DJ</li><li>Community activation</li><li>Creator collab</li><li>In‑car ride content</li><li>Post‑event recap</li><li>Newsletter (700+ subs)</li><li>Reach + traffic + signups</li>
+                </ul>
+            </div>
+        </div>
     </section>
 
     <section id="more-initiatives">
@@ -345,13 +344,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 class="yh" style="font-size:clamp(44px,5.5vw,80px);margin-bottom:24px;">More ways<br>to sponsor.</h2>
         <div class="initiative-grid">
             <div class="initiative-card">
+                <div class="initiative-image-wrap">
+                    <img src="homies_img.jpg" alt="Pregame Homies" />
+                    <div class="initiative-image-overlay"></div>
+                    <div class="initiative-image-label">Pregame Homies</div>
+                </div>
                 <h3>Pregame<br>Homies</h3>
-                <p>A weekend affair. Luxury apartment for 3 nights, easy access to the party, and a true third‑space experience. Luxury cars take the crew to parties at night, with content captured throughout. The ultimate group pregame.</p>
+                <p>A weekend affair. Luxury apartment for 3 nights, easy access to the party, and a true third‑space experience. Luxury cars take the crew to parties at night, with content captured throughout.</p>
             </div>
             <div class="initiative-card">
+                <div class="initiative-image-wrap">
+                    <img src="table_img.jpg" alt="Sponsor a Table" />
+                    <div class="initiative-image-overlay"></div>
+                    <div class="initiative-image-label">Sponsor a Table</div>
+                </div>
                 <h3>Sponsor<br>a Table</h3>
-                <p>Sponsor 8‑10 real people to experience the party live in VIP. We'll mix media persons, winning participants, creators, and a DJ at the table. Drinks flowing, moments captured — they blog their night, we create post‑event content, and your brand owns the night.</p>
-                <p class="highlight-note">Parties get a table sale, good vibes, and promotion from our amplification and community engagement — so they mostly say yes to this.</p>
+                <p>Sponsor 8‑10 real people to experience the party live in VIP. We'll mix media persons, winners, creators, and a DJ at the table — drinks flowing, moments captured, and your brand owns the night.</p>
+                <p class="highlight-note">Parties get a table sale, good vibes, and promotion — so they mostly say yes.</p>
             </div>
         </div>
     </section>
@@ -379,10 +388,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </section>
 
     <footer>
-        <div class="footer-brand">
-            <h3>AfroCue</h3>
-            <p>Creatively Documenting Culture</p>
-        </div>
+        <div class="footer-brand"><h3>AfroCue</h3><p>Creatively Documenting Culture</p></div>
         <div class="footer-links">
             <a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a>
             <a href="tel:+2348162373553">08162373553</a>
