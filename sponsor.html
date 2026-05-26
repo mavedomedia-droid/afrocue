@@ -14,6 +14,14 @@
     <meta name="twitter:title" content="Sponsor an AfroCue Initiative" />
     <meta name="twitter:description" content="AfroCue Pregame vs traditional party sponsorship." />
 
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
+    <!-- End Google Tag Manager -->
+
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
     <style>
@@ -63,7 +71,7 @@
         .hero-bg-overlay { position:absolute; inset:0; z-index:1; background:rgba(10,10,10,0.7); }
         .hero-texture { position:absolute; inset:0; z-index:2; background-image:url('texture.jpg'); background-size:cover; opacity:0.35; pointer-events:none; }
         .hero-content { position:relative; z-index:3; max-width:1200px; width:100%; display:flex; flex-direction:column; gap:56px; }
-        .hero-headline { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(48px,7vw,88px); color:var(--yellow); text-shadow:var(--yts); line-height:0.9; text-align:center; }
+        .hero-headline { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(32px,8vw,72px); color:var(--yellow); text-shadow:var(--yts); line-height:0.9; text-align:center; }
 
         .comparison-section { display:flex; flex-direction:column; gap:36px; }
         .comparison-category {
@@ -140,7 +148,6 @@
 
         .highlight-note { font-style:italic; color:rgba(200,224,0,0.7); font-size:13px; margin-top:12px; }
 
-        /* PREGAME IMAGE ROW */
         .pregame-image-row {
             display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
             margin: 40px 0 24px;
@@ -168,6 +175,7 @@
         @media (max-width:768px) {
             nav { padding:14px 20px; }
             .hero { padding:100px 20px 60px; }
+            .hero-headline { font-size:clamp(36px,10vw,56px); }
             .comparison-category { grid-template-columns:1fr; gap:8px; }
             .comparison-category::after { display:none; }
             .comp-title { margin-bottom:8px; }
@@ -183,6 +191,12 @@
     </style>
 </head>
 <body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
     <nav>
         <a class="nav-logo" href="index.html">
             <img src="logo_afrocue.png" alt="AfroCue"
@@ -196,7 +210,7 @@
         <div class="hero-bg-overlay"></div>
         <div class="hero-texture"></div>
         <div class="hero-content">
-            <h1 class="hero-headline">Sponsor a party<br>or sponsor an<br>AfroCue moment?</h1>
+            <h1 class="hero-headline">Sponsor a party<br>or an AfroCue<br>moment?</h1>
 
             <div class="comparison-section">
                 <div class="comparison-category">
@@ -236,7 +250,6 @@
         </div>
     </section>
 
-    <!-- PREGAME RESULTS SECTION -->
     <section id="pregame-results">
         <div class="label">Our First Initiative</div>
         <h2 class="yh" style="font-size:clamp(44px,5.5vw,80px);margin-bottom:24px;">Pregame<br>with AfroCue.</h2>
@@ -244,21 +257,17 @@
             Our first sponsor, Onburd, activated Pregame with us. The results speak for themselves — and this is just the beginning.
         </p>
 
-        <!-- IMAGE ROW WITH TEXTURE OVERLAY -->
         <div class="pregame-image-row">
-            <!-- Image 1 -->
             <div class="pregame-image-wrap">
                 <img src="pregame_img_1.jpg" alt="Pregame riders in the car" />
                 <div class="pregame-image-overlay"></div>
                 <div class="pregame-image-label">Riders in the luxury car</div>
             </div>
-            <!-- Image 2 - hidden on mobile via CSS if needed, but kept in grid -->
             <div class="pregame-image-wrap">
                 <img src="pregame_img_2.jpg" alt="Naija House Mafia hero shoot" />
                 <div class="pregame-image-overlay"></div>
                 <div class="pregame-image-label">Naija House Mafia hero content</div>
             </div>
-            <!-- Image 3 - hidden on mobile via CSS if needed, but kept in grid -->
             <div class="pregame-image-wrap">
                 <img src="pregame_img_3.jpg" alt="Pregame arrival at the party" />
                 <div class="pregame-image-overlay"></div>
@@ -304,7 +313,6 @@
         </div>
     </section>
 
-    <!-- SPONSORSHIP PACKAGES -->
     <section id="packages" style="background:var(--dark);">
         <div class="label">Sponsorship Packages</div>
         <h2 class="yh" style="font-size:clamp(44px,5.5vw,80px);margin-bottom:24px;">Pregame<br>packages.</h2>
@@ -332,7 +340,6 @@
         </div>
     </section>
 
-    <!-- MORE INITIATIVES COMING SOON -->
     <section id="more-initiatives">
         <div class="label">Coming Soon</div>
         <h2 class="yh" style="font-size:clamp(44px,5.5vw,80px);margin-bottom:24px;">More ways<br>to sponsor.</h2>
@@ -349,7 +356,6 @@
         </div>
     </section>
 
-    <!-- ENQUIRY FORM -->
     <section id="enquiry" style="background:var(--dark);">
         <div class="label">Make an Enquiry</div>
         <h2 class="yh" style="font-size:clamp(44px,5.5vw,80px);margin-bottom:24px;">Let's talk.</h2>
