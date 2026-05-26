@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sponsor an AfroCue Initiative · Pregame & More</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <meta name="description" content="A culture‑first sponsorship: why AfroCue gives your brand more than a party placement." />
+    <link rel="canonical" href="https://afrocue.xyz/sponsor" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sponsor an AfroCue Initiative · Pregame × Pocari Sweat" />
+    <meta property="og:description" content="See how sponsoring an AfroCue initiative creates more audience touchpoints than a standard party sponsorship." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sponsor an AfroCue Initiative" />
+    <meta name="twitter:description" content="AfroCue Pregame vs traditional party sponsorship." />
+
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+    <style>
+        @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
+        @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
+        @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-.otf') format('opentype'); font-weight: 400; }
+        @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Light.otf') format('opentype'); font-weight: 300; }
+
+        :root {
+            --black: #0a0a0a;
+            --dark: #111111;
+            --dark2: #1a1a1a;
+            --mid: #2e2e2e;
+            --grey: #555;
+            --silver: #999;
+            --off: #d4d4d0;
+            --white: #f0ede8;
+            --yellow: #C8E000;
+            --yts: 2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.06);
+        }
+
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+        body { background:var(--black); color:var(--white); font-family:'Figtree',sans-serif; overflow-x:hidden; }
+        .yh { font-family:'Aesthet Nova',sans-serif; font-weight:900; color:var(--yellow); text-shadow:var(--yts); line-height:0.92; }
+
+        nav {
+            position:fixed; top:0; left:0; right:0; z-index:900;
+            display:flex; align-items:center; justify-content:space-between;
+            padding:16px 48px;
+            background:rgba(10,10,10,0.92); backdrop-filter:blur(20px);
+            border-bottom:1px solid rgba(255,255,255,0.06);
+        }
+        .nav-logo { display:flex; align-items:center; text-decoration:none; }
+        .nav-logo img { height:38px; width:auto; display:block; }
+        .nav-back { font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--silver); text-decoration:none; transition:color 0.2s; display:flex; align-items:center; gap:8px; }
+        .nav-back::before { content:'←'; font-size:14px; }
+        .nav-back:hover { color:var(--white); }
+
+        .hero {
+            position:relative; min-height:100vh; overflow:hidden;
+            display:flex; align-items:center; justify-content:center;
+            padding:120px 48px 80px;
+            background:url('party_bg.jpg') no-repeat center center / cover;
+            background-color:var(--black);
+        }
+        .hero-bg-overlay { position:absolute; inset:0; z-index:1; background:rgba(10,10,10,0.7); }
+        .hero-texture { position:absolute; inset:0; z-index:2; background-image:url('texture.jpg'); background-size:cover; opacity:0.35; pointer-events:none; }
+        .hero-content { position:relative; z-index:3; max-width:1200px; width:100%; display:flex; flex-direction:column; gap:56px; }
+        .hero-headline { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(48px,7vw,88px); color:var(--yellow); text-shadow:var(--yts); line-height:0.9; text-align:center; }
+
+        .comparison-section { display:flex; flex-direction:column; gap:36px; }
+        .comparison-category {
+            display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; position:relative;
+        }
+        .comparison-category::after {
+            content:''; position:absolute; left:50%; top:0; bottom:0; width:1px;
+            background:rgba(255,255,255,0.08); transform:translateX(-50%);
+        }
+        .comp-title {
+            grid-column:1 / -1; font-size:10px; font-weight:600; letter-spacing:0.2em;
+            text-transform:uppercase; color:var(--silver); margin-bottom:0;
+            display:flex; align-items:center; gap:10px;
+        }
+        .comp-title::after { content:''; height:1px; flex:1; background:rgba(255,255,255,0.06); }
+        .comp-left, .comp-right { font-size:16px; font-weight:300; line-height:1.65; color:rgba(240,237,232,0.65); padding:8px 0; }
+        .comp-right { color:rgba(200,224,0,0.85); font-weight:400; }
+
+        .hero-cta { text-align:center; margin-top:16px; }
+
+        section { padding:100px 48px; border-top:1px solid rgba(255,255,255,0.06); }
+        .section-texture { position:relative; }
+        .section-texture::before { content:''; position:absolute; inset:0; background-image:url('texture.jpg'); background-size:cover; opacity:0.05; pointer-events:none; z-index:0; }
+        .section-texture>* { position:relative; z-index:1; }
+        .label { font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--silver); margin-bottom:20px; display:flex; align-items:center; gap:10px; }
+        .label::before { content:''; width:18px; height:1px; background:var(--silver); flex-shrink:0; }
+
+        .btn { display:inline-block; font-family:'Figtree',sans-serif; font-size:16px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:14px 28px; border-radius:2px; text-decoration:none; border:none; cursor:pointer; transition:all 0.2s; }
+        .btn-yellow { color:var(--black); background:var(--yellow); }
+        .btn-yellow:hover { opacity:0.88; transform:translateY(-1px); }
+        .btn-ghost { color:var(--silver); background:transparent; border:1px solid rgba(255,255,255,0.18); font-weight:500; }
+        .btn-ghost:hover { border-color:var(--white); color:var(--white); }
+
+        .results-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin:32px 0; }
+        .stat-card { background:var(--dark); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:28px 20px; text-align:center; }
+        .stat-value { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:36px; color:var(--yellow); text-shadow:var(--yts); line-height:1; margin-bottom:8px; }
+        .stat-key { font-size:11px; font-weight:400; letter-spacing:0.1em; text-transform:uppercase; color:var(--grey); }
+
+        .what-you-get { list-style:none; display:flex; flex-direction:column; gap:12px; margin:24px 0; }
+        .what-you-get li { font-size:16px; font-weight:400; color:rgba(240,237,232,0.75); background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:4px; padding:14px 18px; display:flex; gap:10px; align-items:flex-start; }
+        .what-you-get li::before { content:'✓'; color:var(--yellow); font-weight:700; flex-shrink:0; margin-top:2px; }
+
+        .pkg-table { width:100%; border-collapse:collapse; margin-top:32px; font-size:16px; }
+        .pkg-table th { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:18px; color:var(--yellow); text-align:left; padding:16px 12px 8px; border-bottom:1px solid rgba(255,255,255,0.1); }
+        .pkg-table td { padding:12px 12px; border-bottom:1px solid rgba(255,255,255,0.05); color:rgba(240,237,232,0.7); }
+        .pkg-table .tier-name { font-weight:600; color:var(--white); }
+
+        .enquiry-form { display:flex; flex-direction:column; gap:16px; max-width:600px; margin-top:32px; }
+        .enquiry-form input, .enquiry-form select, .enquiry-form textarea {
+            background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1);
+            border-radius:2px; padding:14px 16px; color:var(--white); font-family:'Figtree',sans-serif;
+            font-size:16px; outline:none; transition:border-color 0.2s; width:100%;
+        }
+        .enquiry-form input::placeholder, .enquiry-form textarea::placeholder { color:var(--grey); font-size:16px; }
+        .enquiry-form input:focus, .enquiry-form select:focus, .enquiry-form textarea:focus { border-color:rgba(200,224,0,0.35); }
+        .enquiry-form select {
+            background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat:no-repeat; background-position:right 13px center; background-color:rgba(255,255,255,0.04);
+            padding-right:34px; appearance:none;
+        }
+        .enquiry-form select option { background:#1a1a1a; color:var(--white); }
+
+        footer { border-top:1px solid rgba(255,255,255,0.06); padding:36px 48px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; background:var(--dark); }
+        .footer-brand h3 { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:18px; color:var(--yellow); }
+        .footer-brand p { font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--grey); margin-top:3px; }
+        .footer-links { display:flex; gap:22px; flex-wrap:wrap; }
+        .footer-links a { font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--grey); text-decoration:none; transition:color 0.2s; }
+        .footer-links a:hover { color:var(--white); }
+
+        .initiative-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:32px; }
+        .initiative-card { background:var(--dark); border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:32px; }
+        .initiative-card h3 { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:28px; color:var(--yellow); text-shadow:var(--yts); margin-bottom:12px; }
+        .initiative-card p { font-size:14px; font-weight:300; line-height:1.7; color:rgba(240,237,232,0.55); }
+
+        .highlight-note { font-style:italic; color:rgba(200,224,0,0.7); font-size:13px; margin-top:12px; }
+
+        /* PREGAME IMAGE ROW */
+        .pregame-image-row {
+            display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
+            margin: 40px 0 24px;
+        }
+        .pregame-image-wrap {
+            position:relative; aspect-ratio:4/5; overflow:hidden; border-radius:4px;
+            border:1px solid rgba(255,255,255,0.08);
+        }
+        .pregame-image-wrap img {
+            width:100%; height:100%; object-fit:cover; display:block;
+        }
+        .pregame-image-overlay {
+            position:absolute; inset:0; z-index:1;
+            background-image:url('texture.jpg'); background-size:cover;
+            opacity:0.45; pointer-events:none;
+        }
+        .pregame-image-label {
+            position:absolute; bottom:0; left:0; right:0; z-index:2;
+            padding:12px 16px;
+            background:linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0) 100%);
+            font-size:12px; font-weight:500; letter-spacing:0.06em;
+            color:var(--white);
+        }
+
+        @media (max-width:768px) {
+            nav { padding:14px 20px; }
+            .hero { padding:100px 20px 60px; }
+            .comparison-category { grid-template-columns:1fr; gap:8px; }
+            .comparison-category::after { display:none; }
+            .comp-title { margin-bottom:8px; }
+            section { padding:64px 20px; }
+            .results-stats { grid-template-columns:1fr 1fr; }
+            .what-you-get li { font-size:15px; }
+            .initiative-grid { grid-template-columns:1fr; }
+            .pregame-image-row { grid-template-columns:1fr 1fr; }
+        }
+        @media (max-width:480px) {
+            .pregame-image-row { grid-template-columns:1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a class="nav-logo" href="index.html">
+            <img src="logo_afrocue.png" alt="AfroCue"
+                onerror="this.style.display='none'; document.querySelector('.nav-logo-fallback').style.display='block'" />
+            <span class="nav-logo-fallback" style="display:none;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:16px;color:var(--yellow);">AfroCue</span>
+        </a>
+        <a href="index.html" class="nav-back">Back to AfroCue</a>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-bg-overlay"></div>
+        <div class="hero-texture"></div>
+        <div class="hero-content">
+            <h1 class="hero-headline">Sponsor a party<br>or sponsor an<br>AfroCue moment?</h1>
+
+            <div class="comparison-section">
+                <div class="comparison-category">
+                    <div class="comp-title">Placements</div>
+                    <div class="comp-left"><p>Your logo competes with other sponsors across flyers, posts, and live displays. Attention is split among multiple brands, and the party remains the main focus.</p></div>
+                    <div class="comp-right"><p>As headline sponsor of an AfroCue initiative, your brand takes center stage – the content, the ride, the conversation is built around you.</p></div>
+                </div>
+                <div class="comparison-category">
+                    <div class="comp-title">Frequency</div>
+                    <div class="comp-left"><p>You wait for the next edition of that specific party. The party must promote itself to reach critical mass, and your sponsorship is tied to their timeline.</p></div>
+                    <div class="comp-right"><p>Parties happen every weekend. With AfroCue, you can activate on any big night – we tap into an existing crowd, no need to wait months for the next event.</p></div>
+                </div>
+                <div class="comparison-category">
+                    <div class="comp-title">Audience</div>
+                    <div class="comp-left"><p>Limited to the party's current ticket buyers and past attendees. Digital placements still share space with other sponsors, and you only reach people already inside that party's bubble.</p></div>
+                    <div class="comp-right"><p>AfroCue blends the party's past/present audience with our own network of partygoers across genres, DJs, tastemakers, event executives, and general nightlife culture enthusiasts – a much richer, broader pool.</p></div>
+                </div>
+            </div>
+
+            <div class="hero-cta">
+                <a href="#afrocue" class="btn btn-yellow">Discover AfroCue</a>
+            </div>
+        </div>
+    </div>
+
+    <section id="afrocue" style="background:var(--dark);">
+        <div class="label">Who We Are</div>
+        <h2 class="yh" style="font-size:clamp(44px,5.5vw,80px);margin-bottom:24px;">AfroCue sits<br>at the heart<br>of the culture.</h2>
+        <p style="max-width:680px;font-size:16px;font-weight:300;line-height:1.8;color:rgba(240,237,232,0.5);margin-bottom:40px;">
+            We exist in the space between music, DJs, parties, and the people who bring the energy. Through storytelling, we spotlight the DJs, the tracks they're playing, the parties they're spinning at, and the audience that moves with them.
+        </p>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.06);margin-top:32px;">
+            <div class="stat" style="background:var(--dark);padding:24px 20px;text-align:center;"><div style="font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:28px;color:var(--yellow);text-shadow:var(--yts);line-height:1;margin-bottom:4px;">DJs</div><div style="font-size:10px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey);">We spotlight</div></div>
+            <div class="stat" style="background:var(--dark);padding:24px 20px;text-align:center;"><div style="font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:28px;color:var(--yellow);text-shadow:var(--yts);line-height:1;margin-bottom:4px;">Parties</div><div style="font-size:10px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey);">We document</div></div>
+            <div class="stat" style="background:var(--dark);padding:24px 20px;text-align:center;"><div style="font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:28px;color:var(--yellow);text-shadow:var(--yts);line-height:1;margin-bottom:4px;">Music</div><div style="font-size:10px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey);">We follow</div></div>
+            <div class="stat" style="background:var(--dark);padding:24px 20px;text-align:center;"><div style="font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:28px;color:var(--yellow);text-shadow:var(--yts);line-height:1;margin-bottom:4px;">Culture</div><div style="font-size:10px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey);">We advance</div></div>
+        </div>
+    </section>
+
+    <!-- PREGAME RESULTS SECTION -->
+    <section id="pregame-results">
+        <div class="label">Our First Initiative</div>
+        <h2 class="yh" style="font-size:clamp(44px,5.5vw,80px);margin-bottom:24px;">Pregame<br>with AfroCue.</h2>
+        <p style="max-width:700px;font-size:16px;font-weight:300;line-height:1.8;color:rgba(240,237,232,0.5);margin-bottom:32px;">
+            Our first sponsor, Onburd, activated Pregame with us. The results speak for themselves — and this is just the beginning.
+        </p>
+
+        <!-- IMAGE ROW WITH TEXTURE OVERLAY -->
+        <div class="pregame-image-row">
+            <!-- Image 1 -->
+            <div class="pregame-image-wrap">
+                <img src="pregame_img_1.jpg" alt="Pregame riders in the car" />
+                <div class="pregame-image-overlay"></div>
+                <div class="pregame-image-label">Riders in the luxury car</div>
+            </div>
+            <!-- Image 2 - hidden on mobile via CSS if needed, but kept in grid -->
+            <div class="pregame-image-wrap">
+                <img src="pregame_img_2.jpg" alt="Naija House Mafia hero shoot" />
+                <div class="pregame-image-overlay"></div>
+                <div class="pregame-image-label">Naija House Mafia hero content</div>
+            </div>
+            <!-- Image 3 - hidden on mobile via CSS if needed, but kept in grid -->
+            <div class="pregame-image-wrap">
+                <img src="pregame_img_3.jpg" alt="Pregame arrival at the party" />
+                <div class="pregame-image-overlay"></div>
+                <div class="pregame-image-label">Arrival at the party</div>
+            </div>
+        </div>
+
+        <div class="results-stats">
+            <div class="stat-card">
+                <div class="stat-value">400+</div>
+                <div class="stat-key">sign‑ups</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">150K+</div>
+                <div class="stat-key">media reach</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">900+</div>
+                <div class="stat-key">engagements</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">2,000+</div>
+                <div class="stat-key">landing page views</div>
+                <div style="font-size:10px;color:var(--grey);margin-top:4px;">that's a sold‑out top‑5 Lagos large‑scale event</div>
+            </div>
+        </div>
+
+        <h3 style="font-family:'Aesthet Nova',sans-serif;font-weight:500;font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:var(--silver);margin:40px 0 16px;">What you get</h3>
+        <ul class="what-you-get">
+            <li>Placements on all announcement materials, landing page, and thank‑you email — flyers, social posts, community blasts</li>
+            <li>Hero content with a DJ from the party lineup, fully branded with your logo</li>
+            <li>In‑car branding, drinkware, and touchpoints during the luxury rides</li>
+            <li>Lunch stop + photo/content moment captured by our team</li>
+            <li>Post‑event recap content for sustained recall</li>
+            <li>Full‑funnel tracking — sign‑up page, email invitation, and direct link to your activation (e.g., Kyma Beach)</li>
+            <li>Real riders picked up, real content posted organically tagging your brand</li>
+            <li>Access to our newsletter audience of 700+ real partygoers</li>
+        </ul>
+
+        <div style="margin-top:24px;">
+            <a href="https://afrocue.xyz/pregame" target="_blank" class="btn btn-ghost">Pregame page</a>
+            <a href="https://www.instagram.com/reel/DYIDS-cCdKS/?igsh=eXByY24zYXpoY3Zl" target="_blank" class="btn btn-ghost" style="margin-left:12px;">Hero video</a>
+        </div>
+    </section>
+
+    <!-- SPONSORSHIP PACKAGES -->
+    <section id="packages" style="background:var(--dark);">
+        <div class="label">Sponsorship Packages</div>
+        <h2 class="yh" style="font-size:clamp(44px,5.5vw,80px);margin-bottom:24px;">Pregame<br>packages.</h2>
+        <div style="overflow-x:auto;">
+            <table class="pkg-table">
+                <thead>
+                    <tr><th></th><th>Standard</th><th>Gold</th><th>Platinum</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="tier-name">Luxury ride</td><td>✅</td><td>✅</td><td>✅ (high‑end)</td></tr>
+                    <tr><td class="tier-name">Drinks & refreshments</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                    <tr><td class="tier-name">Lunch stop + content moment</td><td>–</td><td>–</td><td>✅</td></tr>
+                    <tr><td class="tier-name">Event‑day content</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                    <tr><td class="tier-name">All announcement placements</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                    <tr><td class="tier-name">Hero content w/ DJ</td><td>–</td><td>✅</td><td>✅</td></tr>
+                    <tr><td class="tier-name">Brand collab post with DJ</td><td>–</td><td>✅</td><td>✅</td></tr>
+                    <tr><td class="tier-name">Community activation</td><td>–</td><td>✅</td><td>✅</td></tr>
+                    <tr><td class="tier-name">Creator collab</td><td>–</td><td>–</td><td>✅</td></tr>
+                    <tr><td class="tier-name">In‑car ride content</td><td>–</td><td>–</td><td>✅</td></tr>
+                    <tr><td class="tier-name">Post‑event recap</td><td>–</td><td>–</td><td>✅</td></tr>
+                    <tr><td class="tier-name">Newsletter (700+ subs)</td><td>–</td><td>✅</td><td>✅</td></tr>
+                    <tr><td class="tier-name">Paid promotion</td><td>Awareness + traffic ads</td><td>Amplification ads</td><td>Reach + traffic + signups</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- MORE INITIATIVES COMING SOON -->
+    <section id="more-initiatives">
+        <div class="label">Coming Soon</div>
+        <h2 class="yh" style="font-size:clamp(44px,5.5vw,80px);margin-bottom:24px;">More ways<br>to sponsor.</h2>
+        <div class="initiative-grid">
+            <div class="initiative-card">
+                <h3>Pregame<br>Homies</h3>
+                <p>A weekend affair. Luxury apartment for 3 nights, easy access to the party, and a true third‑space experience. Luxury cars take the crew to parties at night, with content captured throughout. The ultimate group pregame.</p>
+            </div>
+            <div class="initiative-card">
+                <h3>Sponsor<br>a Table</h3>
+                <p>Sponsor 8‑10 real people to experience the party live in VIP. We'll mix media persons, winning participants, creators, and a DJ at the table. Drinks flowing, moments captured — they blog their night, we create post‑event content, and your brand owns the night.</p>
+                <p class="highlight-note">Parties get a table sale, good vibes, and promotion from our amplification and community engagement — so they mostly say yes to this.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENQUIRY FORM -->
+    <section id="enquiry" style="background:var(--dark);">
+        <div class="label">Make an Enquiry</div>
+        <h2 class="yh" style="font-size:clamp(44px,5.5vw,80px);margin-bottom:24px;">Let's talk.</h2>
+        <p style="max-width:500px;font-size:16px;font-weight:300;line-height:1.7;color:rgba(240,237,232,0.5);margin-bottom:32px;">
+            Tell us about your brand and which package interests you. We'll get back with full details and a custom plan.
+        </p>
+        <form class="enquiry-form" action="#" method="post">
+            <input type="text" name="name" placeholder="Your name" required>
+            <input type="email" name="email" placeholder="Your email" required>
+            <input type="text" name="brand" placeholder="Brand name" required>
+            <select name="package_interest" required>
+                <option value="" disabled selected>Package interest</option>
+                <option value="Standard">Standard</option>
+                <option value="Gold">Gold</option>
+                <option value="Platinum">Platinum</option>
+                <option value="Not sure">Not sure yet</option>
+            </select>
+            <textarea name="message" rows="4" placeholder="Your message (optional)"></textarea>
+            <button type="submit" class="btn btn-yellow" style="width:100%;padding:16px;font-size:16px;">Submit enquiry</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-brand">
+            <h3>AfroCue</h3>
+            <p>Creatively Documenting Culture</p>
+        </div>
+        <div class="footer-links">
+            <a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a>
+            <a href="tel:+2348162373553">08162373553</a>
+            <a href="https://www.afrocue.xyz" target="_blank">afrocue.xyz</a>
+        </div>
+    </footer>
+</body>
+</html>
