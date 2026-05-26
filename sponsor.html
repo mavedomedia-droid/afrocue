@@ -105,9 +105,10 @@ section{padding:100px 48px;border-top:1px solid rgba(255,255,255,.06);}
 
 /* REACH stats grid */
 .reach-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.reach-grid.reach-5{grid-template-columns:repeat(3,1fr);}
 .reach-card{background:var(--dark);border:1px solid rgba(255,255,255,.06);border-radius:6px;padding:26px 18px;text-align:center;}
-.reach-v{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(26px,3.4vw,38px);color:var(--yellow);text-shadow:var(--yts);line-height:1;margin-bottom:7px;}
-.reach-k{font-size:10px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);line-height:1.4;}
+.reach-v{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(26px,3.4vw,38px);color:var(--yellow);text-shadow:var(--yts);line-height:1;margin-bottom:9px;}
+.reach-k{font-size:12px;font-weight:500;letter-spacing:.02em;text-transform:none;color:rgba(240,237,232,.82);line-height:1.45;}
 
 .what-you-get{list-style:none;display:flex;flex-direction:column;gap:12px;margin:24px 0;}
 .what-you-get li{font-size:16px;font-weight:400;color:rgba(240,237,232,.75);background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:4px;padding:14px 18px;display:flex;gap:10px;align-items:flex-start;}
@@ -122,11 +123,18 @@ section{padding:100px 48px;border-top:1px solid rgba(255,255,255,.06);}
 .pkg-card ul li::before{content:'✓';color:var(--yellow);font-weight:700;flex-shrink:0;}
 .pkg-card ul li.na{color:rgba(240,237,232,.25);}
 .pkg-card ul li.na::before{content:'–';color:var(--grey);}
-.pkg-table-wrap{overflow-x:auto;}
-.pkg-table{width:100%;border-collapse:collapse;margin-top:32px;font-size:14px;min-width:600px;}
-.pkg-table th{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:16px;color:var(--white);text-align:left;padding:12px 10px 8px;border-bottom:1px solid rgba(255,255,255,.1);}
-.pkg-table td{padding:10px;border-bottom:1px solid rgba(255,255,255,.05);color:rgba(240,237,232,.7);}
-.pkg-table .tier-name{font-weight:600;color:var(--white);font-size:13px;}
+.pkg-table-wrap{width:100%;}
+.pkg-table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed;margin-top:32px;font-size:14px;border:1px solid rgba(255,255,255,.08);border-radius:8px;overflow:hidden;}
+.pkg-table col.pkg-feat{width:40%;}
+.pkg-table th{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(12px,2vw,16px);color:var(--white);text-align:center;padding:14px 8px;border-bottom:1px solid rgba(255,255,255,.12);line-height:1.1;}
+.pkg-table th:first-child{text-align:left;}
+.pkg-table th.col-plat{color:var(--yellow);}
+.pkg-table td{padding:11px 8px;border-bottom:1px solid rgba(255,255,255,.05);color:rgba(240,237,232,.7);text-align:center;font-size:clamp(11px,2vw,14px);}
+.pkg-table tr:last-child td{border-bottom:none;}
+.pkg-table .tier-name{font-weight:600;color:rgba(240,237,232,.85);font-size:clamp(11px,1.9vw,13px);text-align:left;line-height:1.3;}
+.pkg-table .yes{color:var(--yellow);font-weight:700;}
+.pkg-table .no{color:var(--grey);}
+.pkg-table .col-plat-cell{background:rgba(200,224,0,.04);box-shadow:inset 0 0 0 9999px rgba(200,224,0,.03);}
 
 /* INITIATIVES */
 .initiative-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px;}
@@ -137,6 +145,12 @@ section{padding:100px 48px;border-top:1px solid rgba(255,255,255,.06);}
 .initiative-card .btn{margin-top:auto;align-self:flex-start;}
 
 /* IMAGES */
+.pregame-split{display:grid;grid-template-columns:0.9fr 1.1fr;gap:32px;align-items:stretch;}
+.pregame-split .pregame-image-wrap{margin:0;max-width:none;aspect-ratio:auto;min-height:340px;}
+.metric-list{list-style:none;display:flex;flex-direction:column;justify-content:center;gap:14px;}
+.metric-list li{display:flex;align-items:baseline;gap:16px;background:var(--dark);border:1px solid rgba(255,255,255,.06);border-radius:6px;padding:18px 22px;}
+.metric-list .ml-v{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(28px,3.4vw,40px);color:var(--yellow);text-shadow:var(--yts);line-height:1;min-width:96px;}
+.metric-list .ml-k{font-size:13px;font-weight:500;color:rgba(240,237,232,.8);letter-spacing:.02em;}
 .pregame-image-wrap{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:4px;border:1px solid rgba(255,255,255,.08);max-width:400px;margin:32px auto;}
 .pregame-image-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
 .pregame-image-overlay{position:absolute;inset:0;z-index:1;background-image:url('texture.jpg');background-size:cover;opacity:.45;pointer-events:none;}
@@ -178,18 +192,17 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:36px 48px;display:flex
   section{padding:64px 20px;}
   .results-stats{grid-template-columns:1fr 1fr;}
   .wwa-grid{grid-template-columns:1fr 1fr;}
-  .reach-grid{grid-template-columns:1fr 1fr;}
+  .reach-grid,.reach-grid.reach-5{grid-template-columns:1fr 1fr;}
   .what-you-get li{font-size:15px;}
   .initiative-grid{grid-template-columns:1fr;}
   .initiative-card{padding:24px;}
-  .pkg-table-wrap{display:none;}
-  .pkg-cards{display:flex;}
+  .pkg-table th{padding:11px 5px;}
+  .pkg-table td{padding:10px 5px;}
+  .pregame-split{grid-template-columns:1fr;gap:20px;}
+  .pregame-split .pregame-image-wrap{aspect-ratio:4/5;min-height:0;}
+  .metric-list .ml-v{min-width:80px;font-size:30px;}
   .pregame-image-wrap{max-width:100%;aspect-ratio:3/4;}
   footer{flex-direction:column;align-items:flex-start;}
-}
-@media (min-width:769px){
-  .pkg-cards{display:none;}
-  .pkg-table-wrap{display:block;}
 }
 </style>
 </head>
@@ -210,7 +223,7 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:36px 48px;display:flex
   <div class="hero-texture"></div>
   <div class="hero-content">
     <div class="matchup">
-      <span class="matchup-side left">A logo<br>placement</span>
+      <span class="matchup-side left">Sponsor<br>a party</span>
       <svg class="vs-burst" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="versus">
         <polygon points="289.6,151.3 245.1,176.3 277.0,212.6 230.1,205.6 234.0,255.5 195.6,224.8 178.6,272.1 154.7,228.0 121.6,265.6 113.1,216.5 67.2,236.8 81.2,189.1 32.5,189.6 67.4,154.5 26.0,127.5 73.1,120.4 56.7,73.6 102.5,93.4 109.8,43.9 142.0,82.2 168.8,39.6 184.6,87.0 226.6,59.4 222.1,109.2 271.4,103.7 242.0,143.0" fill="#0a0a0a"/>
         <polygon points="271.9,150.6 235.3,172.0 261.4,202.0 222.8,196.6 226.5,238.0 194.5,212.9 180.1,251.9 160.7,215.4 133.0,246.5 126.4,205.8 88.4,222.0 100.6,182.7 60.4,182.4 89.6,153.7 55.4,131.5 94.4,125.0 80.6,86.6 118.6,102.8 124.9,61.9 151.4,93.5 173.5,58.5 186.4,97.6 221.2,74.8 217.7,116.0 258.5,111.6 234.3,144.0" fill="#C8E000"/>
@@ -218,7 +231,7 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:36px 48px;display:flex
       </svg>
       <span class="matchup-side right">A branded<br>party moment</span>
     </div>
-    <p class="hero-sub">There's the logo on the flyer — and then there's owning the whole experience around the night. We build the second one.</p>
+    <p class="hero-sub">Both are great ways to show up. Sponsoring a party puts you in the room. A branded party moment makes the whole experience yours — here's the difference.</p>
 
     <div class="cmp-wrap">
       <table class="cmp">
@@ -226,25 +239,35 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:36px 48px;display:flex
         <thead>
           <tr>
             <th class="feat-h"></th>
-            <th class="party-h">A logo placement</th>
+            <th class="party-h">Sponsor a party</th>
             <th class="moment-h">A branded party moment</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="feat-c">Placement</td>
-            <td class="party-c">Your logo shares space with everything else on the flyer.</td>
-            <td class="moment-c">Your brand owns the experience — the ride, the content, every rider touchpoint.</td>
+            <td class="feat-c">Sponsorship</td>
+            <td class="party-c">You share logo placement with the party's other sponsors.</td>
+            <td class="moment-c">You're our primary sponsor — the experience is built around your brand.</td>
           </tr>
           <tr>
-            <td class="feat-c">Timing</td>
-            <td class="party-c">Tied to one date on one promo cycle.</td>
-            <td class="moment-c">Activate on any big night — parties happen every weekend.</td>
+            <td class="feat-c">Audience pool</td>
+            <td class="party-c">The party's attendees and past partygoers.</td>
+            <td class="moment-c">All of that, plus our network of partygoers, DJs, tastemakers, media, and creatives.</td>
           </tr>
           <tr>
-            <td class="feat-c">Audience</td>
-            <td class="party-c">Reaches the people already coming.</td>
-            <td class="moment-c">Reaches our wider network of partygoers, DJs, tastemakers, and creatives too.</td>
+            <td class="feat-c">The focus</td>
+            <td class="party-c">The spotlight's on the party, and your brand rides along.</td>
+            <td class="moment-c">The spotlight's on the experience your brand is curating for that party — usually something unique, with multiple touchpoints and rich placement.</td>
+          </tr>
+          <tr>
+            <td class="feat-c">Frequency</td>
+            <td class="party-c">A truly great night doesn't come around every weekend, and you can't be sure the one with the most buzz is the one you backed.</td>
+            <td class="moment-c">You own a weekend on your terms — the moment happens regardless of what else is on.</td>
+          </tr>
+          <tr>
+            <td class="feat-c">Access &amp; inventory</td>
+            <td class="party-c">Whatever placement the party includes in the deal.</td>
+            <td class="moment-c">Free-access touchpoints for members, plus slots for media folks and DJs — a large media inventory pool to work with.</td>
           </tr>
         </tbody>
       </table>
@@ -272,10 +295,11 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:36px 48px;display:flex
   <p style="max-width:720px;font-size:16px;font-weight:300;line-height:1.85;color:rgba(240,237,232,.55);margin-bottom:20px;">The people who move with us aren't a random crowd. They're the tastemakers, media folks, creatives, DJs, and the partygoers and ravers who actually set the tone for what nightlife looks like. When we reach them, your brand reaches the people other people follow.</p>
   <p style="max-width:720px;font-size:16px;font-weight:300;line-height:1.85;color:rgba(240,237,232,.55);margin-bottom:36px;">And we reach them everywhere we live — our general content, our followers, our newsletter list, and a tracked website audience we can keep speaking to long after the night ends.</p>
 
-  <div class="reach-grid">
-    <div class="reach-card"><div class="reach-v">197K</div><div class="reach-k">views in 30 days</div></div>
-    <div class="reach-card"><div class="reach-v">107K</div><div class="reach-k">accounts reached</div></div>
-    <div class="reach-card"><div class="reach-v">93%</div><div class="reach-k">beyond our own followers</div></div>
+  <div class="reach-grid reach-5">
+    <div class="reach-card"><div class="reach-v">197K</div><div class="reach-k">avg monthly impressions</div></div>
+    <div class="reach-card"><div class="reach-v">107K</div><div class="reach-k">unique accounts reached</div></div>
+    <div class="reach-card"><div class="reach-v">10.6K</div><div class="reach-k">website visits, incl. our playlists &amp; campaigns</div></div>
+    <div class="reach-card"><div class="reach-v">Pixel</div><div class="reach-k">tracked, retargetable audience in our category</div></div>
     <div class="reach-card"><div class="reach-v">700+</div><div class="reach-k">newsletter subscribers</div></div>
   </div>
 
@@ -289,20 +313,21 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:36px 48px;display:flex
   <p style="max-width:720px;font-size:16px;font-weight:300;line-height:1.85;color:rgba(240,237,232,.55);margin-bottom:16px;">Pregame is the warm-up to the night, done properly. We shortlist a few people heading to the same party from the same side of town, send a premium ride to pick them up, and turn the journey into the first part of the experience — drinks in the car, a short photo stop at a nice backdrop, and content captured along the way before they're dropped at the door.</p>
   <p style="max-width:720px;font-size:16px;font-weight:300;line-height:1.85;color:rgba(240,237,232,.55);margin-bottom:32px;">For a sponsor, the whole ride becomes your moment — the car, the drinks, the photos, the story. It's your brand woven into a night people were already excited for, not an ad they scroll past.</p>
 
-  <div class="pregame-image-wrap">
-    <img src="pregame_img_1.jpg" alt="Riders arriving at a party during a Pregame with AfroCue activation" loading="lazy" />
-    <div class="pregame-image-overlay"></div>
-    <div class="pregame-image-label">Pregame with AfroCue</div>
-  </div>
-
-  <h3 style="font-family:'Aesthet Nova',sans-serif;font-weight:500;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--silver);margin:44px 0 14px;">The first one — with Onburd</h3>
+  <h3 style="font-family:'Aesthet Nova',sans-serif;font-weight:500;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--silver);margin:8px 0 14px;">The first one — with Onburd</h3>
   <p style="max-width:720px;font-size:16px;font-weight:300;line-height:1.85;color:rgba(240,237,232,.55);margin-bottom:28px;">Our first sponsor, Onburd, activated Pregame with us. Here's what that one night did.</p>
 
-  <div class="results-stats">
-    <div class="stat-card"><div class="stat-value">400+</div><div class="stat-key">sign-ups</div></div>
-    <div class="stat-card"><div class="stat-value">2,000+</div><div class="stat-key">landing page views</div></div>
-    <div class="stat-card"><div class="stat-value">900+</div><div class="stat-key">engagements</div></div>
-    <div class="stat-card"><div class="stat-value">107K</div><div class="stat-key">accounts reached</div></div>
+  <div class="pregame-split">
+    <div class="pregame-image-wrap">
+      <img src="pregame_img_1.jpg" alt="Riders arriving at a party during a Pregame with AfroCue activation" loading="lazy" />
+      <div class="pregame-image-overlay"></div>
+      <div class="pregame-image-label">Pregame with AfroCue</div>
+    </div>
+    <ul class="metric-list">
+      <li><span class="ml-v">400+</span><span class="ml-k">sign-ups</span></li>
+      <li><span class="ml-v">2,000+</span><span class="ml-k">landing page views</span></li>
+      <li><span class="ml-v">900+</span><span class="ml-k">engagements</span></li>
+      <li><span class="ml-v">107K</span><span class="ml-k">accounts reached</span></li>
+    </ul>
   </div>
 
   <h3 style="font-family:'Aesthet Nova',sans-serif;font-weight:500;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--silver);margin:40px 0 16px;">What you get</h3>
@@ -326,29 +351,24 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:36px 48px;display:flex
 
   <div class="pkg-table-wrap">
     <table class="pkg-table">
-      <thead><tr><th></th><th>Standard</th><th>Gold</th><th>Platinum</th></tr></thead>
+      <colgroup><col class="pkg-feat"/><col/><col/><col/></colgroup>
+      <thead><tr><th>Feature</th><th>Standard</th><th>Gold</th><th class="col-plat">Platinum</th></tr></thead>
       <tbody>
-        <tr><td class="tier-name">Luxury ride</td><td>✅</td><td>✅</td><td>✅ (high-end)</td></tr>
-        <tr><td class="tier-name">Drinks & refreshments</td><td>✅</td><td>✅</td><td>✅</td></tr>
-        <tr><td class="tier-name">Lunch stop + content moment</td><td>–</td><td>–</td><td>✅</td></tr>
-        <tr><td class="tier-name">Event-day content</td><td>✅</td><td>✅</td><td>✅</td></tr>
-        <tr><td class="tier-name">All announcement placements</td><td>✅</td><td>✅</td><td>✅</td></tr>
-        <tr><td class="tier-name">Hero content w/ DJ</td><td>–</td><td>✅</td><td>✅</td></tr>
-        <tr><td class="tier-name">Brand collab post with DJ</td><td>–</td><td>✅</td><td>✅</td></tr>
-        <tr><td class="tier-name">Community activation</td><td>–</td><td>✅</td><td>✅</td></tr>
-        <tr><td class="tier-name">Creator collab</td><td>–</td><td>–</td><td>✅</td></tr>
-        <tr><td class="tier-name">In-car ride content</td><td>–</td><td>–</td><td>✅</td></tr>
-        <tr><td class="tier-name">Post-event recap</td><td>–</td><td>–</td><td>✅</td></tr>
-        <tr><td class="tier-name">Newsletter (700+ subs)</td><td>–</td><td>✅</td><td>✅</td></tr>
-        <tr><td class="tier-name">Paid promotion</td><td>Awareness + traffic ads</td><td>Amplification ads</td><td>Reach + traffic + signups</td></tr>
+        <tr><td class="tier-name">Luxury ride</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes col-plat-cell">✓</td></tr>
+        <tr><td class="tier-name">Drinks &amp; refreshments</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes col-plat-cell">✓</td></tr>
+        <tr><td class="tier-name">Event-day content</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes col-plat-cell">✓</td></tr>
+        <tr><td class="tier-name">All announcement placements</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes col-plat-cell">✓</td></tr>
+        <tr><td class="tier-name">Hero content w/ DJ</td><td class="no">–</td><td class="yes">✓</td><td class="yes col-plat-cell">✓</td></tr>
+        <tr><td class="tier-name">Brand collab post w/ DJ</td><td class="no">–</td><td class="yes">✓</td><td class="yes col-plat-cell">✓</td></tr>
+        <tr><td class="tier-name">Community activation</td><td class="no">–</td><td class="yes">✓</td><td class="yes col-plat-cell">✓</td></tr>
+        <tr><td class="tier-name">Newsletter (700+ subs)</td><td class="no">–</td><td class="yes">✓</td><td class="yes col-plat-cell">✓</td></tr>
+        <tr><td class="tier-name">Lunch stop + content moment</td><td class="no">–</td><td class="no">–</td><td class="yes col-plat-cell">✓</td></tr>
+        <tr><td class="tier-name">Creator collab</td><td class="no">–</td><td class="no">–</td><td class="yes col-plat-cell">✓</td></tr>
+        <tr><td class="tier-name">In-car ride content</td><td class="no">–</td><td class="no">–</td><td class="yes col-plat-cell">✓</td></tr>
+        <tr><td class="tier-name">Post-event recap</td><td class="no">–</td><td class="no">–</td><td class="yes col-plat-cell">✓</td></tr>
+        <tr><td class="tier-name">Paid promotion</td><td>Awareness</td><td>Amplify</td><td class="col-plat-cell">Full funnel</td></tr>
       </tbody>
     </table>
-  </div>
-
-  <div class="pkg-cards">
-    <div class="pkg-card"><h3>Standard</h3><ul><li>Luxury ride</li><li>Drinks & refreshments</li><li>Event-day content</li><li>All announcement placements</li><li>Awareness + traffic ads</li><li class="na">Lunch stop + content moment</li><li class="na">Hero content w/ DJ</li><li class="na">Brand collab post with DJ</li><li class="na">Community activation</li><li class="na">Creator collab</li><li class="na">In-car ride content</li><li class="na">Post-event recap</li><li class="na">Newsletter (700+ subs)</li></ul></div>
-    <div class="pkg-card"><h3>Gold</h3><ul><li>Luxury ride</li><li>Drinks & refreshments</li><li>Event-day content</li><li>All announcement placements</li><li>Hero content w/ DJ</li><li>Brand collab post with DJ</li><li>Community activation</li><li>Newsletter (700+ subs)</li><li>Amplification ads</li><li class="na">Lunch stop + content moment</li><li class="na">Creator collab</li><li class="na">In-car ride content</li><li class="na">Post-event recap</li></ul></div>
-    <div class="pkg-card"><h3>Platinum</h3><ul><li>Luxury ride (high-end)</li><li>Drinks & refreshments</li><li>Lunch stop + content moment</li><li>Event-day content</li><li>All announcement placements</li><li>Hero content w/ DJ</li><li>Brand collab post with DJ</li><li>Community activation</li><li>Creator collab</li><li>In-car ride content</li><li>Post-event recap</li><li>Newsletter (700+ subs)</li><li>Reach + traffic + signups</li></ul></div>
   </div>
 </section>
 
