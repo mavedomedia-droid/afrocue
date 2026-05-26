@@ -170,7 +170,8 @@ section{padding:100px max(48px,calc((100% - 1200px)/2));border-top:1px solid rgb
 .enquiry-form select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;background-color:rgba(255,255,255,.04);padding-right:34px;appearance:none;}
 .enquiry-form select option{background:#1a1a1a;color:var(--white);}
 .hp{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;}
-#formStatus{font-size:14px;font-weight:400;display:none;margin-top:2px;}
+#formStatus{font-size:14px;font-weight:500;display:none;margin-top:8px;padding:14px 16px;border-radius:4px;background:rgba(200,224,0,.06);border:1px solid rgba(200,224,0,.25);color:var(--yellow);line-height:1.5;}
+#formStatus.err{background:rgba(255,80,80,.06);border-color:rgba(255,80,80,.3);color:#ff8a8a;}
 
 /* FOOTER */
 footer{border-top:1px solid rgba(255,255,255,.06);padding:36px max(48px,calc((100% - 1200px)/2));display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;background:var(--dark);}
@@ -448,16 +449,16 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:36px max(48px,calc((10
 
 <script>
 (function () {
-  // 1. Paste your Apps Script Web App /exec URL here:
-  var SCRIPT_URL = 'PASTE_YOUR_/exec_URL_HERE';
+  // 1. Apps Script Web App /exec URL:
+  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbye1E1iPt7idSYZCUz75mPsqCRHF90_NtrOQwSUGLj7tLjbLSNagFNrXH5aRhWfaoPp/exec';
 
   var form   = document.getElementById('enquiryForm');
   var status = document.getElementById('formStatus');
   var btn    = form.querySelector('button[type="submit"]');
 
-  function show(msg, color) {
+  function show(msg, isError) {
     status.textContent = msg;
-    status.style.color = color;
+    status.classList.toggle('err', !!isError);
     status.style.display = 'block';
   }
 
@@ -476,10 +477,10 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:36px max(48px,calc((10
     fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: new FormData(form) })
       .then(function () {
         form.reset();
-        show("Thanks — we'll be in touch shortly.", 'var(--yellow)');
+        show("Thanks — we've got your enquiry. Check your inbox for a confirmation, and we'll be in touch shortly.", false);
       })
       .catch(function () {
-        show('Something went wrong. Email us at afrocueonline@gmail.com.', '#e06');
+        show('Something went wrong. Please email us directly at afrocueonline@gmail.com.', true);
       })
       .finally(function () {
         btn.disabled = false;
