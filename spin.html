@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>AfroCue · spin↻ to win</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="afrocue.js" defer></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    :root {
+      --black:  #0a0a0a;
+      --dark:   #111111;
+      --dark2:  #1a1a1a;
+      --grey:   #555555;
+      --silver: #999999;
+      --off:    #d4d4d0;
+      --white:  #f0ede8;
+      --yellow: #C8E000;
+      --yellow-dark: #9cb300;
+      --yts:    2px 3px 0 rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.06);
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Figtree', sans-serif;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('texture.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .spin-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem 1rem 3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .headline {
+      font-family: 'Aesthet Nova', sans-serif;
+      font-weight: 400;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+    .headline em {
+      font-style: italic;
+      font-weight: 500;
+      color: var(--yellow);
+    }
+
+    .label {
+      font-family: 'Figtree', sans-serif;
+      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--silver);
+      margin: 1.5rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .label::before {
+      content: '';
+      width: 18px;
+      height: 1px;
+      background: var(--silver);
+      flex-shrink: 0;
+    }
+
+    .wheel-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      margin: 1rem 0 2rem;
+      filter: drop-shadow(0 12px 20px rgba(0,0,0,0.6));
+    }
+    canvas {
+      width: 100%;
+      max-width: 340px;
+      height: auto;
+      background: transparent;
+      display: block;
+      margin: 0 auto;
+      border-radius: 50%;
+      transition: filter 0.2s;
+    }
+
+    /* Premium 3D pointer */
+    .pointer {
+      position: absolute;
+      top: -28px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      border-top: 60px solid var(--yellow);
+      filter: drop-shadow(0 6px 0 #5C6800);
+      z-index: 5;
+    }
+    .pointer::after {
+      content: '';
+      position: absolute;
+      top: -68px;
+      left: -20px;
+      width: 40px;
+      height: 40px;
+      background: radial-gradient(circle at 30% 30%, #222, #000);
+      border-radius: 50%;
+      border: 2px solid var(--yellow);
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,255,255,0.3);
+    }
+    .pointer::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      left: -12px;
+      width: 24px;
+      height: 24px;
+      background: radial-gradient(circle, var(--yellow), var(--yellow-dark));
+      border-radius: 50%;
+      box-shadow: inset 0 1px 2px rgba(255,255,255,0.6), 0 1px 2px black;
+      z-index: 2;
+    }
+
+    .spin-btn {
+      display: block;
+      width: 80%;
+      margin: 0.5rem auto 1rem;
+      background: linear-gradient(135deg, var(--yellow), var(--yellow-dark));
+      border: none;
+      border-radius: 60px;
+      color: black;
+      font-family: 'Figtree', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 16px 20px;
+      box-shadow: 0 6px 0 #5C6800, 0 3px 12px rgba(0,0,0,0.3);
+      transition: all 0.08s linear;
+      cursor: pointer;
+    }
+    .spin-btn:active {
+      transform: translateY(3px);
+      box-shadow: 0 3px 0 #5C6800;
+    }
+    .spin-btn:disabled {
+      opacity: 0.5;
+      transform: none;
+      cursor: not-allowed;
+    }
+
+    .spins-left {
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--silver);
+      margin-top: -0.2rem;
+    }
+
+    /* Modal styling (unchanged – already solid) */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0.2s, opacity 0.2s;
+    }
+    .modal-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    .modal-card {
+      background: rgba(17,17,17,0.98);
+      backdrop-filter: blur(10px);
+      width: 100%;
+      max-width: 500px;
+      border-radius: 32px 32px 0 0;
+      border-top: 1px solid rgba(200,224,0,0.3);
+      padding: 1.5rem 1.8rem 2rem;
+      transform: translateY(30px);
+      transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .active .modal-card {
+      transform: translateY(0);
+    }
+    .drag-handle {
+      width: 40px;
+      height: 4px;
+      background: var(--grey);
+      border-radius: 4px;
+      margin: 0 auto 1.5rem;
+    }
+    .coin-icon {
+      width: 88px;
+      height: 88px;
+      background: radial-gradient(circle at 30% 30%, var(--yellow), var(--yellow-dark));
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Aesthet Nova', serif;
+      font-style: italic;
+      font-weight: 900;
+      font-size: 3.5rem;
+      color: black;
+      border: 3px solid black;
+      box-shadow: 0 8px 12px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.4);
+      animation: wobble 0.8s infinite ease;
+    }
+    @keyframes wobble {
+      0%, 100% { transform: rotate(-3deg); }
+      50% { transform: rotate(4deg); }
+    }
+    .modal-headline {
+      font-family: 'Aesthet Nova', sans-serif;
+      font-size: 2rem;
+      text-align: center;
+      color: var(--yellow);
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 5px black;
+    }
+    .modal-sub {
+      font-size: 0.8rem;
+      text-align: center;
+      color: rgba(240,237,232,0.7);
+      margin-bottom: 1.5rem;
+    }
+    .email-input {
+      width: 100%;
+      background: rgba(26,26,26,0.9);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 60px;
+      padding: 14px 20px;
+      color: white;
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      transition: border 0.2s;
+    }
+    .email-input:focus {
+      border-color: var(--yellow);
+      outline: none;
+    }
+    .bank-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--yellow), var(--yellow-dark));
+      border: none;
+      border-radius: 60px;
+      padding: 14px;
+      font-weight: 800;
+      font-size: 0.75rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      box-shadow: 0 3px 0 #5C6800;
+      transition: 0.05s linear;
+      cursor: pointer;
+    }
+    .bank-btn:active {
+      transform: translateY(2px);
+      box-shadow: none;
+    }
+    .modal-footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.2rem;
+      font-size: 0.7rem;
+      color: var(--silver);
+    }
+    .skip-link {
+      color: var(--off);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    /* Balance reveal screen */
+    .reveal-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--black);
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.3s ease;
+    }
+    .reveal-screen.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    .reveal-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      color: var(--silver);
+    }
+    .reveal-eyebrow span {
+      background: rgba(200,224,0,0.2);
+      padding: 0 8px;
+      border-radius: 20px;
+    }
+    .greeting {
+      font-family: 'Aesthet Nova', serif;
+      font-style: italic;
+      font-size: 1rem;
+      margin-top: 1rem;
+      color: var(--off);
+    }
+    .just-banked-pill {
+      background: rgba(200,224,0,0.15);
+      border: 1px solid var(--yellow);
+      border-radius: 40px;
+      padding: 6px 16px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--yellow);
+      margin: 1rem 0;
+      transform: scale(0.9);
+      animation: bouncePop 0.6s ease forwards;
+    }
+    @keyframes bouncePop {
+      0% { transform: scale(0.8); opacity: 0; }
+      70% { transform: scale(1.05); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .big-balance {
+      font-family: 'Aesthet Nova', sans-serif;
+      font-size: 5rem;
+      font-weight: 500;
+      letter-spacing: -4px;
+      color: var(--yellow);
+      line-height: 1;
+      text-shadow: 0 4px 8px black;
+    }
+    .stats-row {
+      display: flex;
+      gap: 2rem;
+      margin: 2rem 0;
+      padding: 0.8rem 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-value {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--yellow);
+    }
+    .stat-label {
+      font-size: 0.6rem;
+      letter-spacing: 1px;
+      color: var(--silver);
+    }
+    .cta-row {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .cta-primary {
+      background: linear-gradient(135deg, var(--yellow), var(--yellow-dark));
+      border: none;
+      padding: 12px 24px;
+      border-radius: 40px;
+      font-weight: bold;
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      box-shadow: 0 3px 0 #5C6800;
+      cursor: pointer;
+    }
+    .cta-primary:active {
+      transform: translateY(2px);
+      box-shadow: none;
+    }
+    .cta-outline {
+      background: transparent;
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      padding: 12px 24px;
+      border-radius: 40px;
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .dot {
+      position: fixed;
+      width: 16px;
+      height: 16px;
+      background: var(--yellow);
+      border-radius: 50%;
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 1;
+      animation: floatSlow 12s infinite alternate ease-in-out;
+    }
+    @keyframes floatSlow {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(30px); }
+    }
+  </style>
+</head>
+<body>
+<div class="spin-container">
+  <div class="headline"><em>spin↻</em> to win.</div>
+  <div class="label">THE WHEEL</div>
+
+  <div class="wheel-wrapper">
+    <canvas id="wheelCanvas" width="600" height="600" style="width:100%; max-width:340px; height:auto"></canvas>
+    <div class="pointer"></div>
+  </div>
+
+  <button class="spin-btn" id="spinBtn">SPIN</button>
+  <div class="spins-left" id="spinsLeftDisplay"></div>
+</div>
+
+<!-- result modal -->
+<div id="resultModal" class="modal-overlay">
+  <div class="modal-card">
+    <div class="drag-handle"></div>
+    <div class="coin-icon">C</div>
+    <div class="modal-headline" id="modalHeadline">+5 CueCoins.</div>
+    <div class="modal-sub" id="modalSub">Drop your email to bank it.</div>
+    <input type="email" id="userEmail" class="email-input" placeholder="your@email.com" autocomplete="email">
+    <button id="bankBtn" class="bank-btn">BANK IT</button>
+    <div class="modal-footer">
+      <span>No email = no coins</span>
+      <span id="skipBtn" class="skip-link">Skip</span>
+    </div>
+  </div>
+</div>
+
+<!-- balance reveal screen -->
+<div id="revealScreen" class="reveal-screen">
+  <div class="reveal-eyebrow"><span>YOUR CUECOINS</span></div>
+  <div class="greeting" id="greetingMsg"></div>
+  <div class="just-banked-pill" id="bankedPill"></div>
+  <div class="big-balance" id="bigBalance">0</div>
+  <div style="font-size:0.65rem; letter-spacing:1px; margin-top:-0.5rem;">CUECOIN BALANCE</div>
+  <div class="stats-row">
+    <div class="stat"><div class="stat-value" id="lifetimeEarned">0</div><div class="stat-label">Lifetime</div></div>
+    <div class="stat"><div class="stat-value" id="totalSpins">0</div><div class="stat-label">Total spins</div></div>
+    <div class="stat"><div class="stat-value" id="streakDays">0</div><div class="stat-label">Streak</div></div>
+  </div>
+  <div class="cta-row">
+    <button id="spinAgainBtn" class="cta-primary">SPIN AGAIN · <span id="remainingAfter">0</span> LEFT</button>
+    <button id="shareBtn" class="cta-outline">SHARE</button>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const SCRIPT_URL = window.AFROCUE_SCRIPT_URL;
+    if (!SCRIPT_URL) console.error('Missing AFROCUE_SCRIPT_URL');
+
+    let canvas = document.getElementById('wheelCanvas');
+    let ctx = canvas.getContext('2d');
+    let wheelSegments = [];
+    let currentRotation = 0;
+    let animating = false;
+    let animFrame = null;
+    let spinDuration = 4000;
+
+    let currentWonSlot = null;
+    let currentEmail = localStorage.getItem('afrocue_email') || '';
+
+    let spinCountToday = parseInt(localStorage.getItem('afrocue_spin_count') || '0');
+    let lastSpinReset = localStorage.getItem('afrocue_spin_reset');
+
+    const spinBtn = document.getElementById('spinBtn');
+    const spinsLeftSpan = document.getElementById('spinsLeftDisplay');
+    const modal = document.getElementById('resultModal');
+    const modalHeadline = document.getElementById('modalHeadline');
+    const modalSub = document.getElementById('modalSub');
+    const userEmailInput = document.getElementById('userEmail');
+    const bankBtn = document.getElementById('bankBtn');
+    const skipBtn = document.getElementById('skipBtn');
+    const revealScreen = document.getElementById('revealScreen');
+    const greetingMsg = document.getElementById('greetingMsg');
+    const bankedPill = document.getElementById('bankedPill');
+    const bigBalanceSpan = document.getElementById('bigBalance');
+    const lifetimeEarnedSpan = document.getElementById('lifetimeEarned');
+    const totalSpinsSpan = document.getElementById('totalSpins');
+    const streakDaysSpan = document.getElementById('streakDays');
+    const remainingAfterSpan = document.getElementById('remainingAfter');
+    const spinAgainBtn = document.getElementById('spinAgainBtn');
+    const shareBtn = document.getElementById('shareBtn');
+
+    function updateLocalSpinLimit() {
+      const now = new Date();
+      const todayStr = now.toISOString().split('T')[0];
+      if (lastSpinReset !== todayStr) {
+        spinCountToday = 0;
+        localStorage.setItem('afrocue_spin_reset', todayStr);
+        localStorage.setItem('afrocue_spin_count', '0');
+        lastSpinReset = todayStr;
+      }
+      const left = Math.max(0, 5 - spinCountToday);
+      spinsLeftSpan.innerText = left > 0 ? `${left} spins left today` : 'No spins left – come back tomorrow';
+      spinBtn.disabled = (left === 0);
+      return left;
+    }
+
+    function incrementLocalSpin() {
+      spinCountToday++;
+      localStorage.setItem('afrocue_spin_count', spinCountToday);
+      updateLocalSpinLimit();
+    }
+
+    // ========== HIGH-QUALITY WHEEL DRAWING ==========
+    function drawWheel() {
+      if (!ctx || !wheelSegments.length) return;
+      const w = canvas.width, h = canvas.height;
+      const centerX = w/2, centerY = h/2;
+      const radius = 260;
+      const angleStep = (Math.PI * 2) / wheelSegments.length;
+      
+      ctx.clearRect(0, 0, w, h);
+      
+      // Draw outer glow / shadow ring
+      ctx.shadowBlur = 0; // reset
+      
+      for (let i = 0; i < wheelSegments.length; i++) {
+        const seg = wheelSegments[i];
+        const start = i * angleStep + currentRotation;
+        const end = start + angleStep;
+        
+        // Segment fill with gradient for depth
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, radius, start, end);
+        ctx.closePath();
+        
+        // Base color
+        let baseColor;
+        if (seg.type === 'prize' || seg.type === 'coin') {
+          baseColor = '#C8E000';
+        } else {
+          baseColor = '#2a2a2a';
+        }
+        
+        // Create radial gradient for 3D effect
+        const grad = ctx.createRadialGradient(centerX - 15, centerY - 15, 20, centerX, centerY, radius);
+        if (seg.type === 'prize' || seg.type === 'coin') {
+          grad.addColorStop(0, '#e6ff33');
+          grad.addColorStop(0.6, '#C8E000');
+          grad.addColorStop(1, '#9cb300');
+        } else {
+          grad.addColorStop(0, '#3a3a3a');
+          grad.addColorStop(0.6, '#1f1f1f');
+          grad.addColorStop(1, '#111111');
+        }
+        ctx.fillStyle = grad;
+        ctx.fill();
+        
+        // Add stroke between segments
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+        
+        // Draw a subtle inner highlight
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, radius - 4, start, end);
+        ctx.lineTo(centerX, centerY);
+        ctx.closePath();
+        ctx.globalAlpha = 0.15;
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+        ctx.globalAlpha = 1;
+        
+        // Text drawing with proper tangential rotation
+        ctx.save();
+        ctx.translate(centerX, centerY);
+        ctx.rotate(start + angleStep/2);
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        const textRadius = radius * 0.68;
+        
+        let fontSize = 14;
+        let fontFamily = '"Aesthet Nova", sans-serif';
+        let textColor = '#000000';
+        if (seg.type === 'prize' || seg.type === 'coin') {
+          fontSize = 14;
+          fontFamily = '"Aesthet Nova", sans-serif';
+          textColor = '#000000';
+          ctx.shadowBlur = 0;
+        } else {
+          fontSize = 12;
+          fontFamily = '"Figtree", sans-serif';
+          textColor = '#e0e0e0';
+          ctx.shadowBlur = 2;
+          ctx.shadowColor = 'black';
+        }
+        ctx.font = `bold ${fontSize}px ${fontFamily}`;
+        ctx.fillStyle = textColor;
+        
+        // Split long labels into two lines? Only for PREGAME RIDE etc.
+        let labelText = seg.label;
+        if (labelText === 'PREGAME RIDE') {
+          ctx.fillText('PREGAME', textRadius, -6);
+          ctx.fillText('RIDE', textRadius, 8);
+        } else if (labelText === 'VIP TABLE') {
+          ctx.fillText('VIP', textRadius, -6);
+          ctx.fillText('TABLE', textRadius, 8);
+        } else if (labelText === 'FREE DRINK') {
+          ctx.fillText('FREE', textRadius, -6);
+          ctx.fillText('DRINK', textRadius, 8);
+        } else {
+          ctx.fillText(labelText, textRadius, 4);
+        }
+        ctx.restore();
+      }
+      
+      // Outer ring with metallic shine
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius + 8, 0, 2*Math.PI);
+      ctx.strokeStyle = '#555';
+      ctx.lineWidth = 4;
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius + 5, 0, 2*Math.PI);
+      ctx.strokeStyle = 'rgba(200,224,0,0.5)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      
+      // Inner ring
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius - 45, 0, 2*Math.PI);
+      ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      
+      // Center hub (3D)
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = 'black';
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, 42, 0, 2*Math.PI);
+      const hubGrad = ctx.createRadialGradient(centerX-10, centerY-10, 5, centerX, centerY, 42);
+      hubGrad.addColorStop(0, '#2a2a2a');
+      hubGrad.addColorStop(1, '#000000');
+      ctx.fillStyle = hubGrad;
+      ctx.fill();
+      ctx.strokeStyle = 'var(--yellow)';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, 30, 0, 2*Math.PI);
+      ctx.fillStyle = '#111';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(200,224,0,0.6)';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+      
+      ctx.fillStyle = 'var(--yellow)';
+      ctx.font = 'bold 14px "Aesthet Nova"';
+      ctx.shadowBlur = 2;
+      ctx.fillText('AFRO', centerX-24, centerY-4);
+      ctx.fillText('CUE', centerX-19, centerY+12);
+      ctx.shadowBlur = 0;
+    }
+
+    function animateToSegment(targetIdx, callback) {
+      if (animating) return;
+      const segmentsCount = wheelSegments.length;
+      const segmentAngle = (Math.PI * 2) / segmentsCount;
+      const targetMidAngle = targetIdx * segmentAngle + segmentAngle/2;
+      const currentAngle = currentRotation % (Math.PI*2);
+      let delta = targetMidAngle - currentAngle;
+      delta = ((delta % (2*Math.PI)) + 2*Math.PI) % (2*Math.PI);
+      const fullRotations = 5 * 2 * Math.PI;
+      const finalRot = currentRotation + fullRotations + delta;
+      const startRot = currentRotation;
+      const duration = spinDuration;
+      const startStamp = performance.now();
+      animating = true;
+      function step(now) {
+        const elapsed = now - startStamp;
+        let t = Math.min(1, elapsed / duration);
+        const ease = t<0.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
+        currentRotation = startRot + (finalRot - startRot) * ease;
+        drawWheel();
+        if (t < 1) {
+          animFrame = requestAnimationFrame(step);
+        } else {
+          currentRotation = finalRot;
+          drawWheel();
+          animating = false;
+          cancelAnimationFrame(animFrame);
+          if (callback) callback();
+        }
+      }
+      animFrame = requestAnimationFrame(step);
+    }
+
+    async function requestSpinPick(email) {
+      const body = new URLSearchParams({ action:'spin_pick', email: email || '' });
+      const res = await fetch(SCRIPT_URL, { method:'POST', body });
+      return res.json();
+    }
+
+    function showWinModal(slot) {
+      currentWonSlot = slot;
+      modalHeadline.innerText = slot.label;
+      if (slot.type === 'coin') {
+        modalSub.innerText = `+${slot.coin_amount} CueCoins banked to your wallet.`;
+        bankBtn.style.display = 'block';
+        userEmailInput.style.display = 'block';
+        document.querySelector('.modal-footer span:first-child').innerText = 'No email = no coins';
+      } else if (slot.type === 'prize') {
+        modalSub.innerText = slot.description || 'Claim your prize below.';
+        bankBtn.style.display = 'block';
+        userEmailInput.style.display = 'block';
+        document.querySelector('.modal-footer span:first-child').innerText = 'Email to claim';
+      } else {
+        modalSub.innerText = 'Better luck next time.';
+        bankBtn.style.display = 'none';
+        userEmailInput.style.display = 'none';
+        document.querySelector('.modal-footer span:first-child').innerText = 'Try again tomorrow';
+      }
+      modal.classList.add('active');
+    }
+
+    async function bankSpin(email, slot, spinNumberToday) {
+      const logPayload = {
+        action: 'spin_log',
+        email: email,
+        slot_landed: slot.slotIndex+1,
+        result_type: slot.type,
+        result_label: slot.label,
+        coin_amount: slot.coin_amount || 0,
+        prize_redeem_url: slot.redeem_url || '',
+        spin_number_today: spinNumberToday,
+        city: 'Lagos'
+      };
+      const res = await fetch(SCRIPT_URL, { method:'POST', body: new URLSearchParams(logPayload) });
+      const data = await res.json();
+      if (data.success) {
+        localStorage.setItem('afrocue_email', email);
+        currentEmail = email;
+        greetingMsg.innerText = data.name ? `Welcome back, ${data.name}.` : 'Welcome to CueCoins.';
+        bankedPill.innerText = `+${slot.coin_amount || 0} just banked`;
+        animateNumber(bigBalanceSpan, data.balance_before, data.balance_after, 1500);
+        lifetimeEarnedSpan.innerText = data.total_earned;
+        totalSpinsSpan.innerText = data.total_spins;
+        streakDaysSpan.innerText = data.streak_days;
+        const left = Math.max(0, 5 - (data.spins_used_today || 0));
+        remainingAfterSpan.innerText = left;
+        modal.classList.remove('active');
+        revealScreen.classList.add('active');
+      } else {
+        alert('Error banking coins: ' + (data.reason || 'unknown'));
+      }
+    }
+
+    function animateNumber(el, start, end, duration) {
+      let startTime = null;
+      function step(now) {
+        if (!startTime) startTime = now;
+        const progress = Math.min(1, (now - startTime) / duration);
+        const val = Math.floor(start + (end - start) * progress);
+        el.innerText = val;
+        if (progress < 1) requestAnimationFrame(step);
+        else el.innerText = end;
+      }
+      requestAnimationFrame(step);
+    }
+
+    async function handleSpin() {
+      if (animating || spinBtn.disabled) return;
+      const eligRes = await fetch(SCRIPT_URL, { method:'POST', body: new URLSearchParams({ action:'spin_eligibility', email: currentEmail }) });
+      const elig = await eligRes.json();
+      if (elig.spins_left_today <= 0) {
+        alert('No spins left today!');
+        updateLocalSpinLimit();
+        return;
+      }
+      const pickRes = await requestSpinPick(currentEmail);
+      if (!pickRes.success) { alert('Error determining outcome'); return; }
+      if (pickRes.fullSlots && Array.isArray(pickRes.fullSlots)) {
+        wheelSegments = pickRes.fullSlots;
+        drawWheel();
+      }
+      const targetIdx = pickRes.slot.slotIndex;
+      incrementLocalSpin();
+      animateToSegment(targetIdx, () => {
+        showWinModal(pickRes.slot);
+      });
+    }
+
+    bankBtn.onclick = async () => {
+      const email = userEmailInput.value.trim().toLowerCase();
+      if (!email && currentWonSlot.type !== 'try-again') {
+        alert('Enter your email to bank coins');
+        return;
+      }
+      if (currentWonSlot.type === 'try-again') {
+        await fetch(SCRIPT_URL, { method:'POST', body: new URLSearchParams({ action:'spin_log', email:'', slot_landed: currentWonSlot.slotIndex+1, result_type:'try-again', banked:'No' }) });
+        modal.classList.remove('active');
+        return;
+      }
+      const spinNum = 5 - (parseInt(spinsLeftSpan.innerText) || 0);
+      await bankSpin(email, currentWonSlot, spinNum);
+    };
+
+    skipBtn.onclick = () => {
+      modal.classList.remove('active');
+    };
+
+    spinAgainBtn.onclick = () => {
+      revealScreen.classList.remove('active');
+      handleSpin();
+    };
+
+    shareBtn.onclick = () => {
+      alert('Share your CueCoins balance! (copy link)');
+    };
+
+    async function initialFetchSlots() {
+      try {
+        const res = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          body: new URLSearchParams({ action: 'spin_slots' })
+        });
+        const data = await res.json();
+        if (data.success && data.slots) {
+          wheelSegments = data.slots;
+          drawWheel();
+        } else {
+          fallbackSlots();
+        }
+      } catch(e) { fallbackSlots(); }
+    }
+
+    function fallbackSlots() {
+      wheelSegments = [
+        { type:'dynamic', label:'try again', coin_amount:0, slotIndex:0 },
+        { type:'dynamic', label:'try again', coin_amount:0, slotIndex:1 },
+        { type:'prize', label:'PREGAME RIDE', coin_amount:0, slotIndex:2 },
+        { type:'coin', label:'+5 CueCoins', coin_amount:5, slotIndex:3 },
+        { type:'prize', label:'VIP TABLE', coin_amount:0, slotIndex:4 },
+        { type:'dynamic', label:'try again', coin_amount:0, slotIndex:5 },
+        { type:'prize', label:'FREE DRINK', coin_amount:0, slotIndex:6 },
+        { type:'coin', label:'+10 CueCoins', coin_amount:10, slotIndex:7 }
+      ];
+      drawWheel();
+    }
+
+    function init() {
+      updateLocalSpinLimit();
+      initialFetchSlots();
+      spinBtn.onclick = handleSpin;
+      for (let i = 0; i < 4; i++) {
+        let d = document.createElement('div');
+        d.className = 'dot';
+        d.style.left = Math.random() * 90 + '%';
+        d.style.bottom = Math.random() * 80 + '%';
+        d.style.animationDelay = Math.random() * 5 + 's';
+        document.body.appendChild(d);
+      }
+    }
+    init();
+  })();
+</script>
+</body>
+</html>
