@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>V6 — An exclusive invite.</title>
+  <meta name="robots" content="noindex"/>
+  <script src="afrocue.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');font-weight:900}
+    @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype');font-weight:500}
+  </style>
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --bg:#0A0A0F;
+      --bg-2:#050507;
+      --ink:#f0ede8;
+      --accent:#4FE3D5;
+      --accent-dim:rgba(79,227,213,0.35);
+      --sand:#C8B68A;
+      --mute:rgba(240,237,232,0.45);
+    }
+    html,body{height:100%;background:var(--bg);color:var(--ink);font-family:'Figtree',sans-serif;overflow-x:hidden;-webkit-text-size-adjust:100%}
+
+    /* ════════════════════════════════════════════════════════════
+       LOGO LOCKUP — used on gate + signal + main page
+       ════════════════════════════════════════════════════════════ */
+    .logo-lockup{display:inline-flex;align-items:center;gap:14px;font-family:'JetBrains Mono',monospace}
+    .logo-lockup img{height:26px;width:auto;display:block;opacity:0.9}
+    .logo-lockup .logo-cross{font-family:'Aesthet Nova',sans-serif;font-weight:500;font-style:italic;color:var(--accent);font-size:14px;opacity:0.8;letter-spacing:0}
+    @media(max-width:600px){.logo-lockup img{height:22px}}
+
+    /* ════════════════════════════════════════════════════════════
+       AUDIO TOGGLE — fixed top-right on main page
+       ════════════════════════════════════════════════════════════ */
+    #audio-toggle{position:fixed;top:18px;right:18px;z-index:100;
+      display:none;align-items:center;gap:8px;
+      padding:9px 14px;
+      background:rgba(10,10,15,0.6);backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      border:1px solid rgba(79,227,213,0.25);border-radius:30px;
+      color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:10px;
+      letter-spacing:0.18em;text-transform:uppercase;
+      cursor:pointer;transition:all 0.2s}
+    #audio-toggle.visible{display:inline-flex}
+    #audio-toggle:hover{border-color:var(--accent);box-shadow:0 0 18px rgba(79,227,213,0.15)}
+    #audio-toggle .at-icon{width:14px;height:14px;display:flex;align-items:center;justify-content:center;color:var(--accent)}
+
+    /* ════════════════════════════════════════════════════════════
+       1) PASSWORD GATE
+       ════════════════════════════════════════════════════════════ */
+    #pw-screen{position:fixed;inset:0;z-index:300;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg);padding:24px;transition:opacity 0.7s ease}
+    #pw-screen.hiding{opacity:0;pointer-events:none}
+    .pw-noise{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:0.6;pointer-events:none}
+    .pw-wrap{position:relative;z-index:1;width:100%;max-width:340px;display:flex;flex-direction:column;align-items:center;gap:0}
+    .pw-logos{margin-bottom:32px}
+    .pw-label{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--mute);margin-bottom:18px}
+    .pw-label::before{content:'> ';color:var(--accent)}
+    .pw-input-wrap{width:100%;position:relative;margin-bottom:12px}
+    .pw-input{width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(79,227,213,0.18);border-radius:4px;padding:16px 20px;color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:15px;text-align:center;letter-spacing:0.18em;outline:none;transition:border-color 0.2s,box-shadow 0.2s;text-transform:uppercase}
+    .pw-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(79,227,213,0.1)}
+    .pw-input::placeholder{letter-spacing:0.1em;text-transform:none;color:rgba(240,237,232,0.2);font-size:12px}
+    .pw-btn{width:100%;padding:16px;background:var(--accent);color:var(--bg);border:none;border-radius:4px;font-family:'Figtree',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;margin-bottom:10px;box-shadow:0 0 28px rgba(79,227,213,0.18)}
+    .pw-btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+    .pw-btn:active{transform:scale(0.99)}
+    .pw-btn.shake{animation:shake 0.4s ease}
+    @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+    .pw-error{font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff6b6b;text-align:center;height:16px;transition:opacity 0.2s}
+    .pw-error.hidden{opacity:0}
+
+    /* ════════════════════════════════════════════════════════════
+       2) SIGNAL INTRO — pulse + audio tap
+       ════════════════════════════════════════════════════════════ */
+    #signal-screen{
+      position:fixed;inset:0;z-index:200;
+      display:none;flex-direction:column;align-items:center;justify-content:center;
+      background:radial-gradient(ellipse at center,#0c1015 0%,var(--bg) 50%,var(--bg-2) 100%);
+      padding:24px;
+      transition:opacity 0.9s ease;
+      overflow:hidden;
+    }
+    #signal-screen.show{display:flex}
+    #signal-screen.hiding{opacity:0;pointer-events:none}
+
+    .sig-logos{margin-bottom:32px;z-index:2;position:relative}
+
+    .sig-grid{position:absolute;inset:0;pointer-events:none;
+      background-image:
+        linear-gradient(rgba(79,227,213,0.03) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(79,227,213,0.03) 1px,transparent 1px);
+      background-size:48px 48px;
+      mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);
+      -webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);
+    }
+    .sig-scan{position:absolute;inset:0;pointer-events:none;
+      background:linear-gradient(180deg,transparent 0%,rgba(79,227,213,0.04) 50%,transparent 100%);
+      animation:scan 6s linear infinite;
+    }
+    @keyframes scan{
+      0%{transform:translateY(-100%)}
+      100%{transform:translateY(100%)}
+    }
+
+    .sig-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.32em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;z-index:2}
+    .sig-eyebrow::before{content:'◉ ';opacity:0.7}
+
+    .sig-headline{
+      font-family:'Aesthet Nova',sans-serif;font-weight:900;
+      font-size:clamp(26px,5vw,42px);
+      line-height:1.1;color:var(--ink);text-align:center;
+      margin-bottom:14px;
+      letter-spacing:-0.01em;
+      z-index:2;position:relative;
+      max-width:560px;
+    }
+    .sig-headline em{
+      font-style:italic;font-weight:500;color:var(--accent);
+      text-shadow:0 0 24px var(--accent-dim);
+    }
+    .sig-sub{
+      font-size:13px;font-weight:300;color:var(--mute);
+      letter-spacing:0.05em;text-align:center;
+      max-width:340px;line-height:1.6;
+      margin-bottom:42px;
+      z-index:2;position:relative;
+    }
+
+    .sig-stage{
+      position:relative;
+      width:min(280px,72vw);
+      height:min(280px,72vw);
+      display:flex;align-items:center;justify-content:center;
+      z-index:2;cursor:pointer;
+      margin-bottom:36px;
+    }
+    .sig-ring{position:absolute;inset:0;border:1.5px solid var(--accent);border-radius:50%;opacity:0;animation:pulse 3s ease-out infinite}
+    .sig-ring:nth-child(2){animation-delay:1s}
+    .sig-ring:nth-child(3){animation-delay:2s}
+    @keyframes pulse{
+      0%{transform:scale(0.18);opacity:0.9;border-width:1.5px}
+      80%{opacity:0.15;border-width:1px}
+      100%{transform:scale(1);opacity:0;border-width:0.5px}
+    }
+
+    .sig-core{
+      position:relative;z-index:5;
+      width:88px;height:88px;border-radius:50%;
+      background:radial-gradient(circle at 35% 30%,#a4ffec 0%,var(--accent) 40%,#1a5b56 100%);
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.3),
+        0 0 30px rgba(79,227,213,0.7),
+        0 0 80px rgba(79,227,213,0.3),
+        inset 0 1px 4px rgba(255,255,255,0.4);
+      display:flex;align-items:center;justify-content:center;
+      animation:corepulse 2.2s ease-in-out infinite;
+    }
+    @keyframes corepulse{
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.06)}
+    }
+    .sig-core-mark{
+      font-family:'Aesthet Nova',sans-serif;font-weight:900;
+      font-size:28px;color:var(--bg);line-height:1;
+      letter-spacing:-0.01em;
+      text-shadow:0 1px 0 rgba(255,255,255,0.3);
+    }
+
+    .sig-stage.opening .sig-ring{animation-duration:1.2s}
+    .sig-stage.opening .sig-core{
+      animation:coreflare 1.2s ease-out forwards;
+    }
+    @keyframes coreflare{
+      0%{transform:scale(1)}
+      40%{transform:scale(1.4);box-shadow:0 0 60px var(--accent),0 0 120px var(--accent)}
+      100%{transform:scale(8);opacity:0}
+    }
+
+    .sig-cta{
+      display:inline-flex;align-items:center;gap:10px;
+      font-family:'JetBrains Mono',monospace;
+      font-size:10px;font-weight:500;letter-spacing:0.22em;
+      text-transform:uppercase;color:rgba(240,237,232,0.55);
+      animation:ctablink 2.2s ease-in-out infinite;
+      z-index:2;position:relative;
+      pointer-events:none;
+    }
+    @keyframes ctablink{0%,100%{opacity:1}50%{opacity:0.45}}
+    .sig-cta-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;box-shadow:0 0 10px var(--accent)}
+
+    /* ════════════════════════════════════════════════════════════
+       3) MAIN INVITE PAGE
+       ════════════════════════════════════════════════════════════ */
+    #page{opacity:0;transition:opacity 1s ease 0.2s;pointer-events:none}
+    #page.visible{opacity:1;pointer-events:all}
+
+    /* Top bar with both logos */
+    .page-topbar{position:absolute;top:0;left:0;right:0;z-index:5;padding:22px 32px;display:flex;align-items:center;justify-content:space-between}
+    .page-topbar .logo-lockup img{height:30px}
+    .topbar-tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(240,237,232,0.55);display:flex;align-items:center;gap:8px}
+    .topbar-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);animation:dot 2s ease-in-out infinite}
+    @media(max-width:600px){
+      .page-topbar{padding:16px 18px}
+      .page-topbar .logo-lockup img{height:24px}
+      .topbar-tag{display:none}
+    }
+
+    .hero{position:relative;overflow:hidden;height:54vw;max-height:520px;min-height:280px;background:var(--bg-2)}
+    .hero-img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:brightness(0.5) saturate(0.85)}
+    .hero-grad{position:absolute;inset:0;background:
+      linear-gradient(to bottom,rgba(10,10,15,0.6) 0%,rgba(10,10,15,0) 35%,rgba(10,10,15,0) 55%,var(--bg) 100%),
+      radial-gradient(ellipse at 70% 30%,rgba(79,227,213,0.08) 0%,transparent 60%)
+    }
+    .hero-overlay-text{position:absolute;bottom:0;left:0;right:0;padding:0 48px 36px;z-index:2}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--accent);flex-shrink:0;box-shadow:0 0 10px var(--accent)}
+    .hero-title{font-family:'Aesthet Nova',sans-serif;font-size:clamp(48px,8vw,96px);font-weight:900;line-height:0.92;letter-spacing:-0.02em;color:var(--ink)}
+    .hero-title span{color:var(--accent);opacity:0.9;display:block;font-style:italic;font-weight:500;font-size:0.28em;letter-spacing:0.04em;margin-top:10px;text-shadow:0 0 18px var(--accent-dim)}
+
+    .card-wrap{max-width:720px;margin:-60px auto 0;position:relative;z-index:3;padding:0 24px 80px}
+    .card{background:#10121A;border:1px solid rgba(79,227,213,0.12);border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.5)}
+
+    .card-top{display:grid;grid-template-columns:240px 1fr;gap:0}
+    .card-flyer{aspect-ratio:4/5;overflow:hidden;background:#0a0d12;flex-shrink:0;position:relative}
+    .card-flyer img{width:100%;height:100%;object-fit:cover;display:block}
+    .card-flyer-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.18);position:absolute;inset:0;text-align:center;padding:20px}
+
+    .card-intro{padding:32px 32px;display:flex;flex-direction:column;justify-content:center;gap:14px;border-left:1px solid rgba(79,227,213,0.08)}
+    .invite-badge{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;background:rgba(79,227,213,0.08);border:1px solid rgba(79,227,213,0.2);padding:5px 10px;border-radius:3px;color:var(--accent);align-self:flex-start}
+    .invite-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;animation:dot 2s ease-in-out infinite;box-shadow:0 0 8px var(--accent)}
+    @keyframes dot{0%,100%{opacity:1}50%{opacity:0.3}}
+
+    .card-intro h2{font-family:'Aesthet Nova',sans-serif;font-size:clamp(22px,3vw,30px);font-weight:900;line-height:1;letter-spacing:-0.01em;color:var(--ink);margin-bottom:2px}
+    .card-intro h2 em{font-style:italic;font-weight:500;color:var(--accent);text-shadow:0 0 14px var(--accent-dim)}
+
+    .event-meta{display:flex;flex-direction:column;gap:9px;margin-top:4px}
+    .meta-row{display:flex;align-items:flex-start;gap:10px;font-size:12.5px;line-height:1.5;color:rgba(240,237,232,0.62)}
+    .meta-row svg{width:13px;height:13px;flex-shrink:0;margin-top:2px;color:var(--accent);opacity:0.85}
+    .meta-row strong{font-weight:500;color:rgba(240,237,232,0.92)}
+
+    .sounds{margin-top:8px;padding-top:14px;border-top:1px dashed rgba(79,227,213,0.12)}
+    .sounds-label{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);margin-bottom:7px}
+    .sounds-label::before{content:'◉ ';color:var(--accent);opacity:0.7}
+    .sounds-list{font-size:13px;line-height:1.6;color:rgba(240,237,232,0.72);font-weight:400}
+    .sounds-list strong{color:var(--ink);font-weight:600}
+
+    .release-note{margin-top:10px;padding:13px 14px;background:rgba(79,227,213,0.05);border-left:2px solid var(--accent);border-radius:0 4px 4px 0;font-size:12.5px;line-height:1.6;color:rgba(240,237,232,0.72)}
+    .release-note strong{color:var(--accent);font-weight:500}
+
+    .card-form{padding:28px;border-top:1px solid rgba(79,227,213,0.08)}
+    .card-form-intro{font-size:13px;line-height:1.7;color:rgba(240,237,232,0.6);margin-bottom:22px;font-weight:300}
+    .card-form-intro strong{color:rgba(240,237,232,0.9);font-weight:500}
+
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+    .field{display:flex;flex-direction:column;gap:6px}
+    .field label{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:rgba(240,237,232,0.4)}
+    .field label::before{content:'> ';color:var(--accent);opacity:0.6}
+    .field input{background:rgba(255,255,255,0.03);border:1px solid rgba(79,227,213,0.15);border-radius:4px;padding:13px 14px;color:var(--ink);font-family:'Figtree',sans-serif;font-size:16px;outline:none;transition:border-color 0.2s,box-shadow 0.2s;width:100%}
+    .field input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(79,227,213,0.1)}
+    .field input::placeholder{color:rgba(240,237,232,0.22)}
+    .field-error{font-family:'JetBrains Mono',monospace;font-size:10px;color:#ff6b6b;margin-top:2px;display:none}
+
+    .submit-btn{width:100%;margin-top:18px;padding:16px;background:var(--accent);color:var(--bg);border:none;border-radius:4px;font-family:'Figtree',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s,transform 0.15s,box-shadow 0.2s;box-shadow:0 0 24px rgba(79,227,213,0.18)}
+    .submit-btn:hover:not(:disabled){filter:brightness(1.08);box-shadow:0 0 36px rgba(79,227,213,0.3)}
+    .submit-btn:active:not(:disabled){transform:scale(0.99)}
+    .submit-btn:disabled{opacity:0.5;cursor:not-allowed}
+    .form-note{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:400;color:rgba(240,237,232,0.28);text-align:center;margin-top:12px;line-height:1.6}
+
+    #success{display:none;padding:54px 28px;text-align:center;border-top:1px solid rgba(79,227,213,0.08)}
+    .success-icon{width:60px;height:60px;border-radius:50%;background:radial-gradient(circle,rgba(79,227,213,0.18) 0%,rgba(79,227,213,0.04) 100%);border:1px solid rgba(79,227,213,0.35);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;box-shadow:0 0 30px rgba(79,227,213,0.2)}
+    #success h3{font-family:'Aesthet Nova',sans-serif;font-size:30px;font-weight:900;color:var(--ink);line-height:1;margin-bottom:14px}
+    #success p{font-size:13px;font-weight:300;color:rgba(240,237,232,0.58);line-height:1.7;max-width:360px;margin:0 auto 8px}
+    #success p.success-name{font-family:'Aesthet Nova',sans-serif;font-size:22px;font-weight:900;color:var(--accent);margin:14px auto 4px;line-height:1;text-shadow:0 0 18px var(--accent-dim)}
+    #success .email-note{margin-top:18px;padding-top:18px;border-top:1px dashed rgba(79,227,213,0.12);font-size:13px;color:rgba(240,237,232,0.6)}
+    #success .email-note strong{color:var(--accent);font-weight:500}
+
+    /* Footer co-brand */
+    .page-footer{padding:30px 24px 60px;text-align:center;border-top:1px solid rgba(79,227,213,0.06)}
+    .page-footer .logo-lockup img{height:24px;opacity:0.55}
+    .page-footer .footer-line{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.24em;text-transform:uppercase;color:rgba(240,237,232,0.3);margin-top:12px}
+
+    @media(max-width:600px){
+      .hero{min-height:240px;height:50vw}
+      .hero-overlay-text{padding:0 20px 22px}
+      .hero-title{font-size:clamp(40px,12vw,64px)}
+      .hero-title span{font-size:0.28em}
+      .card-wrap{margin:-40px auto 0;padding:0 14px 60px}
+      .card-top{grid-template-columns:140px 1fr}
+      .card-intro{padding:20px 18px;gap:10px}
+      .card-intro h2{font-size:19px}
+      .sounds-list{font-size:12px}
+      .release-note{font-size:11.5px;padding:10px 12px}
+      .meta-row{font-size:12px}
+      .card-form{padding:22px 18px}
+      .form-row{grid-template-columns:1fr}
+      .sig-headline{font-size:24px}
+      .sig-sub{font-size:12px;margin-bottom:34px}
+      #audio-toggle{top:12px;right:12px;padding:7px 11px;font-size:9px}
+    }
+    @media(max-width:420px){
+      .card-top{grid-template-columns:120px 1fr}
+      .card-intro{padding:18px 14px}
+      .card-intro h2{font-size:17px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- Audio element (paused by default; plays on tap of signal core) -->
+<audio id="bgAudio" loop preload="auto">
+  <source src="v6-audio.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Floating audio toggle (visible only on main page) -->
+<button id="audio-toggle" onclick="toggleAudio()">
+  <span class="at-icon" id="atIcon">
+    <svg id="atIconOn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+  </span>
+  <span id="atLabel">Audio on</span>
+</button>
+
+<!-- 1) PASSWORD GATE -->
+<div id="pw-screen">
+  <div class="pw-noise"></div>
+  <div class="pw-wrap">
+    <div class="pw-logos logo-lockup">
+      <img src="v6_logo.png" alt="V6"
+        onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:30px;letter-spacing:0.04em;color:#f0ede8\'>V<span style=\\\'color:#4FE3D5\\\'>6</span></span>'"/>
+      <span class="logo-cross">×</span>
+      <img src="logo_afrocue.png" alt="AfroCue"
+        onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:14px;letter-spacing:0.18em;color:#f0ede8\'>AFROCUE</span>'"/>
+    </div>
+    <div class="pw-label" id="pwLabel">Private Invite</div>
+    <div class="pw-input-wrap">
+      <input class="pw-input" id="pwInput" type="text" placeholder="Enter invite code" autocomplete="off" autocorrect="off" spellcheck="false" onkeydown="if(event.key==='Enter')checkPassword()"/>
+    </div>
+    <button class="pw-btn" id="pwBtn" onclick="checkPassword()">Unlock Invite &rarr;</button>
+    <div class="pw-error hidden" id="pwError">That code isn't right. Try again.</div>
+  </div>
+</div>
+
+<!-- 2) SIGNAL INTRO -->
+<div id="signal-screen">
+  <div class="sig-grid"></div>
+  <div class="sig-scan"></div>
+
+  <div class="sig-logos logo-lockup">
+    <img src="v6_logo.png" alt="V6"
+      onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:30px;letter-spacing:0.04em;color:#f0ede8\'>V<span style=\\\'color:#4FE3D5\\\'>6</span></span>'"/>
+    <span class="logo-cross">×</span>
+    <img src="logo_afrocue.png" alt="AfroCue"
+      onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:14px;letter-spacing:0.18em;color:#f0ede8\'>AFROCUE</span>'"/>
+  </div>
+
+  <div class="sig-eyebrow">You're invited</div>
+  <h1 class="sig-headline">An exclusive invite to<br><em>V6 — The Sixth Sense.</em></h1>
+  <p class="sig-sub">Tap to open your invite. Sound on.</p>
+
+  <div class="sig-stage" id="sigStage" onclick="openInvite()">
+    <div class="sig-ring"></div>
+    <div class="sig-ring"></div>
+    <div class="sig-ring"></div>
+    <div class="sig-core">
+      <div class="sig-core-mark">V6</div>
+    </div>
+  </div>
+
+  <div class="sig-cta">
+    <span class="sig-cta-dot"></span>
+    Tap to open
+  </div>
+</div>
+
+<!-- 3) MAIN INVITE PAGE -->
+<div id="page">
+  <div class="page-topbar">
+    <div class="logo-lockup">
+      <img src="v6_logo.png" alt="V6"
+        onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:24px;letter-spacing:0.04em;color:#f0ede8\'>V<span style=\\\'color:#4FE3D5\\\'>6</span></span>'"/>
+      <span class="logo-cross">×</span>
+      <img src="logo_afrocue.png" alt="AfroCue"
+        onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:13px;letter-spacing:0.18em;color:#f0ede8\'>AFROCUE</span>'"/>
+    </div>
+    <div class="topbar-tag">Guest list invite</div>
+  </div>
+
+  <div class="hero">
+    <img class="hero-img" src="v6_hero.jpg" alt="V6 — The Sixth Sense"
+      onerror="this.style.background='linear-gradient(135deg,#0a1820,#0a0a0f,#0c2a2a)';this.removeAttribute('src')"/>
+    <div class="hero-grad"></div>
+    <div class="hero-overlay-text">
+      <div class="hero-eyebrow">An exclusive guest list</div>
+      <div class="hero-title">V6<span>The Sixth Sense · by The Group Collective</span></div>
+    </div>
+  </div>
+
+  <div class="card-wrap">
+    <div class="card">
+      <div class="card-top">
+        <div class="card-flyer">
+          <img src="v6_flyer.jpg" alt="V6 — The Sixth Sense — June 27 — The Country Beach"
+            onerror="this.parentNode.innerHTML='<div class=card-flyer-ph>v6_flyer.jpg<br>(4:5 portrait)</div>'"/>
+        </div>
+        <div class="card-intro">
+          <span class="invite-badge">You're invited</span>
+          <h2>You've been invited to<br><em>V6 — The Sixth Sense</em>.</h2>
+
+          <div class="event-meta">
+            <div class="meta-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span><strong>Saturday, June 27th</strong> · 4PM till sunrise</span>
+            </div>
+            <div class="meta-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span><strong>The Country Beach</strong><br>Okun Mopo, Okun-Ajah Road, Lekki</span>
+            </div>
+          </div>
+
+          <div class="sounds">
+            <div class="sounds-label">Sounds</div>
+            <div class="sounds-list"><strong>Afro electronic</strong> · Gqom · Mara · House · and beyond</div>
+          </div>
+
+          <div class="release-note">
+            <strong>Music you don't just hear. You feel it.</strong> A dance floor guided by instinct. Moments of tension, release, and connection — from sunset into sunrise.
+          </div>
+        </div>
+      </div>
+
+      <div class="card-form" id="formWrap">
+        <p class="card-form-intro">
+          You're on the <strong>private guest list</strong>. Confirm your name and email below and we'll send you everything you need for the night.
+        </p>
+
+        <div class="form-row">
+          <div class="field">
+            <label>Your name</label>
+            <input type="text" id="fname" placeholder="First and last name" autocomplete="name"/>
+            <span class="field-error" id="err-fname">Please enter your name</span>
+          </div>
+          <div class="field">
+            <label>Your email</label>
+            <input type="email" id="femail" placeholder="your@email.com" autocomplete="email" inputmode="email"/>
+            <span class="field-error" id="err-femail">Please enter a valid email</span>
+          </div>
+        </div>
+
+        <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">Claim My Invite</button>
+        <p class="form-note">Limited by design. Entry is intentional.</p>
+      </div>
+
+      <div id="success">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4FE3D5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>You're on the list.</h3>
+        <p>Check your email for the official invite to V6 — The Sixth Sense.</p>
+        <p class="success-name" id="successName"></p>
+        <div class="email-note">
+          You'll see <strong>V6 — June 27</strong> in your inbox shortly. At the gate, mention your name on the guest list.
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <div class="logo-lockup">
+        <img src="v6_logo.png" alt="V6"
+          onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:18px;letter-spacing:0.04em;color:#f0ede8;opacity:0.55\'>V<span style=\\\'color:#4FE3D5\\\'>6</span></span>'"/>
+        <span class="logo-cross">×</span>
+        <img src="logo_afrocue.png" alt="AfroCue"
+          onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:11px;letter-spacing:0.18em;color:#f0ede8;opacity:0.55\'>AFROCUE</span>'"/>
+      </div>
+      <div class="footer-line">Curated by The Group Collective · AfroCue</div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════════════════════════════════
+   ⚠️ DEDICATED GAS URL — UPDATE THIS LINE AFTER DEPLOY ⚠️
+   This is the ONLY URL this page posts to. It overrides afrocue.js.
+   Paste the /exec URL from the standalone guestlist GAS here.
+   (Same GAS as chibyverse-guestlist — they share one backend.)
+   ════════════════════════════════════════════════════════════ */
+var GUESTLIST_SCRIPT_URL = 'PASTE_YOUR_NEW_GAS_URL_HERE/exec';
+
+var PASSWORD      = 'SIXTH SENSE';
+var EVENT_NAME    = 'V6 — The Sixth Sense';
+var EVENT_DATE    = 'June 27, 2026';
+var SUBMIT_SOURCE = 'v6_invite';
+
+/* ════════════════════════════════════════════════════════════
+   AUDIO — plays on signal tap, loops on main page
+   ════════════════════════════════════════════════════════════ */
+var bgAudio    = document.getElementById('bgAudio');
+var audioToggleBtn = document.getElementById('audio-toggle');
+var atLabel    = document.getElementById('atLabel');
+var atIconSpan = document.getElementById('atIcon');
+
+var audioPlaying = false;
+
+function startAudio() {
+  if (!bgAudio) return;
+  bgAudio.volume = 0.55;
+  var playPromise = bgAudio.play();
+  if (playPromise !== undefined) {
+    playPromise.then(function() {
+      audioPlaying = true;
+      updateAudioToggle();
+    }).catch(function(err) {
+      /* Autoplay blocked — silent fail, button still works */
+      audioPlaying = false;
+      updateAudioToggle();
+    });
+  }
+}
+
+function toggleAudio() {
+  if (audioPlaying) {
+    bgAudio.pause();
+    audioPlaying = false;
+  } else {
+    var p = bgAudio.play();
+    if (p !== undefined) p.then(function(){ audioPlaying = true; updateAudioToggle(); }).catch(function(){});
+    audioPlaying = true;
+  }
+  updateAudioToggle();
+}
+
+function updateAudioToggle() {
+  if (!audioToggleBtn) return;
+  atLabel.textContent = audioPlaying ? 'Audio on' : 'Audio off';
+  atIconSpan.innerHTML = audioPlaying
+    ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>'
+    : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
+}
+
+/* ════════════════════════════════════════════════════════════
+   PASSWORD GATE
+   ════════════════════════════════════════════════════════════ */
+function checkPassword() {
+  var val = document.getElementById('pwInput').value.trim().toUpperCase();
+  var err = document.getElementById('pwError');
+  var btn = document.getElementById('pwBtn');
+  if (val === PASSWORD) {
+    err.classList.add('hidden');
+    btn.textContent = '✓  Verified';
+    document.getElementById('pwLabel').textContent = 'Access granted';
+    setTimeout(function() {
+      var screen = document.getElementById('pw-screen');
+      screen.classList.add('hiding');
+      setTimeout(function() {
+        screen.style.display = 'none';
+        document.getElementById('signal-screen').classList.add('show');
+      }, 700);
+    }, 1000);
+  } else {
+    err.classList.remove('hidden');
+    btn.classList.add('shake');
+    setTimeout(function(){ btn.classList.remove('shake'); }, 500);
+    document.getElementById('pwInput').value = '';
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   SIGNAL OPEN — fires audio + animation
+   ════════════════════════════════════════════════════════════ */
+var sigOpened = false;
+function openInvite() {
+  if (sigOpened) return;
+  sigOpened = true;
+
+  /* Start audio inside the user gesture so mobile browsers allow it */
+  startAudio();
+
+  var stage = document.getElementById('sigStage');
+  stage.classList.add('opening');
+
+  setTimeout(function() {
+    var sig = document.getElementById('signal-screen');
+    sig.classList.add('hiding');
+    document.getElementById('page').classList.add('visible');
+    document.getElementById('audio-toggle').classList.add('visible');
+    setTimeout(function() { sig.style.display = 'none'; }, 900);
+  }, 1100);
+}
+
+/* ════════════════════════════════════════════════════════════
+   UTM PARAMS
+   ════════════════════════════════════════════════════════════ */
+function getUtm() {
+  var p = new URLSearchParams(window.location.search);
+  return {
+    source:   p.get('utm_source')   || '',
+    medium:   p.get('utm_medium')   || '',
+    campaign: p.get('utm_campaign') || ''
+  };
+}
+
+/* ════════════════════════════════════════════════════════════
+   SUBMIT — posts directly to the dedicated GAS URL
+   ════════════════════════════════════════════════════════════ */
+function handleSubmit() {
+  var name  = document.getElementById('fname').value.trim();
+  var email = document.getElementById('femail').value.trim();
+
+  document.querySelectorAll('.field-error').forEach(function(e){ e.style.display='none'; });
+
+  var valid = true;
+  if (!name) { document.getElementById('err-fname').style.display='block'; valid=false; }
+  if (!email || email.indexOf('@') === -1 || email.indexOf('.') === -1) {
+    document.getElementById('err-femail').style.display='block'; valid=false;
+  }
+  if (!valid) return;
+
+  var btn = document.getElementById('submitBtn');
+  btn.disabled    = true;
+  btn.textContent = 'Claiming...';
+
+  var utm = getUtm();
+  var data = {
+    source:       SUBMIT_SOURCE,
+    event:        EVENT_NAME,
+    event_date:   EVENT_DATE,
+    name:         name,
+    email:        email,
+    campaign:     EVENT_NAME,
+    password:     PASSWORD,
+    utm_source:   utm.source,
+    utm_medium:   utm.medium,
+    utm_campaign: utm.campaign
+  };
+
+  fetch(GUESTLIST_SCRIPT_URL, {
+    method:  'POST',
+    mode:    'no-cors',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body:    'payload=' + encodeURIComponent(JSON.stringify(data))
+  }).finally(onSuccess);
+
+  try {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'order_created_before_payment',
+      source: SUBMIT_SOURCE,
+      name: name,
+      email: email
+    });
+  } catch (err) {}
+}
+
+function onSuccess() {
+  var name = document.getElementById('fname').value.trim();
+  document.getElementById('successName').textContent = name;
+  document.getElementById('formWrap').style.display = 'none';
+  document.getElementById('success').style.display  = 'block';
+  setTimeout(function() {
+    document.getElementById('success').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 100);
+}
+</script>
+</body>
+</html>
