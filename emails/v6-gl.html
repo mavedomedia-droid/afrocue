@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>You're on the list — V6.</title>
+  <style>
+    body{margin:0;padding:0;background:#0A0A0F;font-family:Arial,sans-serif;-webkit-text-size-adjust:100%;}
+    a{text-decoration:none;}
+    img{border:0;display:block;}
+  </style>
+</head>
+<body style="margin:0;padding:0;background:#0A0A0F;">
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#0A0A0F;">
+<tr><td align="center" style="padding:40px 16px 32px;">
+
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:580px;background:#10121A;border:1px solid rgba(79,227,213,0.12);border-radius:6px;overflow:hidden;">
+
+    <!-- Accent bar — cyan for V6 palette -->
+    <tr><td style="background:#4FE3D5;height:3px;font-size:0;line-height:0;">&nbsp;</td></tr>
+
+    <!-- Header — V6 × AfroCue lockup -->
+    <tr>
+      <td style="padding:32px 44px 28px;border-bottom:1px solid rgba(79,227,213,0.08);background:linear-gradient(135deg,#0c1015 0%,#0A0A0F 100%);">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td align="left" valign="middle">
+              <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="padding-right:14px;" valign="middle">
+                    <img src="https://afrocue.xyz/v6_logo.png" alt="V6" height="32" style="height:32px;width:auto;"/>
+                  </td>
+                  <td style="padding-right:14px;font-family:Georgia,serif;font-style:italic;font-size:14px;color:#4FE3D5;opacity:0.7;" valign="middle">&times;</td>
+                  <td valign="middle">
+                    <a href="https://afrocue.xyz">
+                      <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" height="28" style="height:28px;width:auto;"/>
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td align="right" valign="middle">
+              <a href="https://afrocue.xyz" style="font-size:9px;font-weight:400;letter-spacing:0.08em;color:rgba(240,237,232,0.35);white-space:nowrap;">Visit AfroCue &rarr;</a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- Confirmed banner -->
+    <tr>
+      <td style="background:linear-gradient(90deg,#0d2826,#10121A);padding:14px 44px;border-bottom:1px solid rgba(79,227,213,0.08);">
+        <p style="font-size:9px;font-weight:700;letter-spacing:0.26em;text-transform:uppercase;color:#4FE3D5;margin:0;">&#9679;&nbsp; Guestlist Confirmed</p>
+      </td>
+    </tr>
+
+    <!-- Hero / event title -->
+    <tr>
+      <td style="padding:40px 44px 32px;border-bottom:1px solid rgba(79,227,213,0.08);">
+        <p style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#555555;margin:0 0 12px;">You're on the guestlist</p>
+        <h1 style="font-family:Arial,sans-serif;font-size:36px;font-weight:700;color:#4FE3D5;line-height:1.05;margin:0;letter-spacing:-0.01em;">
+          V6
+        </h1>
+        <p style="font-family:Georgia,serif;font-style:italic;font-size:15px;color:rgba(240,237,232,0.6);margin:6px 0 12px;letter-spacing:0.02em;">
+          The Sixth Sense
+        </p>
+        <p style="font-size:13px;font-weight:400;color:rgba(240,237,232,0.4);margin:0;letter-spacing:0.04em;">
+          By The Group Collective &nbsp;&middot;&nbsp; Saturday, June 27th &nbsp;&middot;&nbsp; The Country Beach
+        </p>
+      </td>
+    </tr>
+
+    <!-- Thank-you intro -->
+    <tr>
+      <td style="padding:36px 44px 28px;">
+        <p style="font-size:14px;line-height:1.9;color:rgba(240,237,232,0.75);margin:0;">
+          Hey <strong style="color:#f0ede8;">{{name}}</strong>, thank you for accepting your special invite to <strong style="color:#f0ede8;">V6 &mdash; The Sixth Sense</strong> on <strong style="color:#f0ede8;">June 27th at The Country Beach</strong>. <strong style="color:#4FE3D5;">This invite is yours.</strong>
+        </p>
+      </td>
+    </tr>
+
+    <!-- Guest details box -->
+    <tr>
+      <td style="padding:0 44px 36px;" align="center">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:380px;">
+          <tr>
+            <td style="background:#0a0d12;border:1px solid rgba(79,227,213,0.18);border-radius:6px;padding:22px 24px;">
+
+              <!-- Name -->
+              <p style="font-size:9px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#666666;margin:0 0 6px;">Name</p>
+              <p style="font-size:17px;font-weight:600;color:#f0ede8;margin:0;letter-spacing:-0.01em;line-height:1.3;">{{name}}</p>
+
+              <!-- Date -->
+              <p style="font-size:9px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#666666;margin:18px 0 6px;">Date</p>
+              <p style="font-size:15px;font-weight:500;color:rgba(240,237,232,0.9);margin:0;line-height:1.3;">Saturday, June 27th &middot; 4PM till sunrise</p>
+
+              <!-- Venue -->
+              <p style="font-size:9px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#666666;margin:18px 0 6px;">Venue</p>
+              <p style="font-size:15px;font-weight:500;color:rgba(240,237,232,0.9);margin:0;line-height:1.4;">
+                The Country Beach<br>
+                <span style="font-size:13px;color:rgba(240,237,232,0.5);font-weight:400;">Okun Mopo, Okun-Ajah Road, Lekki</span>
+              </p>
+
+              <!-- Sounds -->
+              <p style="font-size:9px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#666666;margin:18px 0 6px;">Sounds</p>
+              <p style="font-size:15px;font-weight:500;color:rgba(240,237,232,0.9);margin:0;line-height:1.4;">
+                Afro electronic &middot; Gqom &middot; Mara &middot; House
+              </p>
+
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- Show at door -->
+    <tr>
+      <td style="padding:0 44px 36px;" align="center">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:380px;">
+          <tr>
+            <td style="background:rgba(79,227,213,0.06);border:1px solid rgba(79,227,213,0.2);border-radius:6px;padding:14px 20px;text-align:center;">
+              <p style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#4FE3D5;margin:0;">Show this email at the gate</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- The Sixth Sense note -->
+    <tr>
+      <td style="padding:0 44px 36px;border-top:1px solid rgba(79,227,213,0.08);">
+        <p style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#555555;margin:32px 0 14px;">A word from the curators</p>
+        <p style="font-size:14px;line-height:1.9;color:rgba(240,237,232,0.75);margin:0 0 14px;font-style:italic;font-family:Georgia,serif;">
+          "Music you don't just hear. You feel it."
+        </p>
+        <p style="font-size:14px;line-height:1.9;color:rgba(240,237,232,0.7);margin:0;">
+          V6 is an extended electronic experience &mdash; a multi-phase journey from sunset into sunrise, built around <strong style="color:#4FE3D5;">The Sixth Sense</strong>: feeling over seeing. Come open. Stay aware. Leave transformed.
+        </p>
+      </td>
+    </tr>
+
+    <!-- What to bring -->
+    <tr>
+      <td style="padding:0 44px 40px;border-top:1px solid rgba(79,227,213,0.08);">
+        <p style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#555555;margin:32px 0 14px;">Good to know</p>
+        <p style="font-size:14px;line-height:1.9;color:rgba(240,237,232,0.7);margin:0;">
+          It's a beach. Wear what moves with you. The night runs long &mdash; pace yourself. Entry is intentional, so please don't share this invite.
+        </p>
+      </td>
+    </tr>
+
+    <!-- Sign-off -->
+    <tr>
+      <td style="padding:20px 44px;background:#0a0d12;border-top:1px solid rgba(79,227,213,0.08);">
+        <p style="font-size:11px;line-height:1.7;color:rgba(240,237,232,0.35);margin:0;">
+          See you on the 27th.<br>
+          &mdash; The Group Collective &times; AfroCue
+        </p>
+      </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+      <td style="padding:22px 44px 28px;border-top:1px solid rgba(79,227,213,0.08);background:#0A0A0F;">
+        <a href="https://afrocue.xyz">
+          <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" height="26" style="display:block;height:26px;width:auto;margin-bottom:10px;"/>
+        </a>
+        <p style="font-size:11px;color:#444444;line-height:1.8;margin:0;">
+          Lagos, Nigeria &nbsp;&middot;&nbsp; &copy; 2026 AfroCue<br>
+          <a href="https://afrocue.xyz" style="color:#444444;">afrocue.xyz</a>
+          &nbsp;&middot;&nbsp;
+          <a href="mailto:info@afrocue.xyz" style="color:#444444;">info@afrocue.xyz</a>
+        </p>
+      </td>
+    </tr>
+
+  </table>
+</td></tr>
+</table>
+
+</body>
+</html>
