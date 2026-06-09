@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <title>V6 — The Sixth Sense · Guest List</title>
   <meta name="robots" content="noindex"/>
-  <script src="https://js.paystack.co/v1/inline.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');font-weight:900}
@@ -24,17 +23,13 @@
     }
     html,body{height:100%;background:var(--bg);color:var(--ink);font-family:'Figtree',sans-serif;overflow-x:hidden;-webkit-text-size-adjust:100%}
 
-    /* ════════════════════════════════════════════════════════════
-       LOGO LOCKUP — used on gate + signal + main page
-       ════════════════════════════════════════════════════════════ */
+    /* LOGO LOCKUP */
     .logo-lockup{display:inline-flex;align-items:center;gap:14px;font-family:'JetBrains Mono',monospace}
     .logo-lockup img{height:26px;width:auto;display:block;opacity:0.9}
     .logo-lockup .logo-cross{font-family:'Aesthet Nova',sans-serif;font-weight:500;font-style:italic;color:var(--accent);font-size:14px;opacity:0.8;letter-spacing:0}
     @media(max-width:600px){.logo-lockup img{height:22px}}
 
-    /* ════════════════════════════════════════════════════════════
-       AUDIO TOGGLE — fixed top-right on main page
-       ════════════════════════════════════════════════════════════ */
+    /* AUDIO TOGGLE */
     #audio-toggle{position:fixed;top:18px;right:18px;z-index:100;
       display:none;align-items:center;gap:8px;
       padding:9px 14px;
@@ -48,9 +43,7 @@
     #audio-toggle:hover{border-color:var(--accent);box-shadow:0 0 18px rgba(79,227,213,0.15)}
     #audio-toggle .at-icon{width:14px;height:14px;display:flex;align-items:center;justify-content:center;color:var(--accent)}
 
-    /* ════════════════════════════════════════════════════════════
-       1) PASSWORD GATE
-       ════════════════════════════════════════════════════════════ */
+    /* PASSWORD GATE */
     #pw-screen{position:fixed;inset:0;z-index:300;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg);padding:24px;transition:opacity 0.7s ease}
     #pw-screen.hiding{opacity:0;pointer-events:none}
     .pw-noise{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:0.6;pointer-events:none}
@@ -70,9 +63,7 @@
     .pw-error{font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff6b6b;text-align:center;height:16px;transition:opacity 0.2s}
     .pw-error.hidden{opacity:0}
 
-    /* ════════════════════════════════════════════════════════════
-       2) SIGNAL INTRO — pulse + audio tap
-       ════════════════════════════════════════════════════════════ */
+    /* SIGNAL INTRO */
     #signal-screen{
       position:fixed;inset:0;z-index:200;
       display:none;flex-direction:column;align-items:center;justify-content:center;
@@ -83,9 +74,7 @@
     }
     #signal-screen.show{display:flex}
     #signal-screen.hiding{opacity:0;pointer-events:none}
-
     .sig-logos{margin-bottom:32px;z-index:2;position:relative}
-
     .sig-grid{position:absolute;inset:0;pointer-events:none;
       background-image:
         linear-gradient(rgba(79,227,213,0.03) 1px,transparent 1px),
@@ -102,10 +91,8 @@
       0%{transform:translateY(-100%)}
       100%{transform:translateY(100%)}
     }
-
     .sig-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.32em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;z-index:2}
     .sig-eyebrow::before{content:'◉ ';opacity:0.7}
-
     .sig-headline{
       font-family:'Aesthet Nova',sans-serif;font-weight:900;
       font-size:clamp(26px,5vw,42px);
@@ -126,7 +113,6 @@
       margin-bottom:42px;
       z-index:2;position:relative;
     }
-
     .sig-stage{
       position:relative;
       width:min(280px,72vw);
@@ -143,7 +129,6 @@
       80%{opacity:0.15;border-width:1px}
       100%{transform:scale(1);opacity:0;border-width:0.5px}
     }
-
     .sig-core{
       position:relative;z-index:5;
       width:88px;height:88px;border-radius:50%;
@@ -166,7 +151,6 @@
       letter-spacing:-0.01em;
       text-shadow:0 1px 0 rgba(255,255,255,0.3);
     }
-
     .sig-stage.opening .sig-ring{animation-duration:1.2s}
     .sig-stage.opening .sig-core{
       animation:coreflare 1.2s ease-out forwards;
@@ -176,7 +160,6 @@
       40%{transform:scale(1.4);box-shadow:0 0 60px var(--accent),0 0 120px var(--accent)}
       100%{transform:scale(8);opacity:0}
     }
-
     .sig-cta{
       display:inline-flex;align-items:center;gap:10px;
       font-family:'JetBrains Mono',monospace;
@@ -189,13 +172,9 @@
     @keyframes ctablink{0%,100%{opacity:1}50%{opacity:0.45}}
     .sig-cta-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;box-shadow:0 0 10px var(--accent)}
 
-    /* ════════════════════════════════════════════════════════════
-       3) MAIN INVITE PAGE
-       ════════════════════════════════════════════════════════════ */
+    /* MAIN INVITE PAGE */
     #page{opacity:0;transition:opacity 1s ease 0.2s;pointer-events:none}
     #page.visible{opacity:1;pointer-events:all}
-
-    /* Top bar with both logos */
     .page-topbar{position:absolute;top:0;left:0;right:0;z-index:5;padding:22px 32px;display:flex;align-items:center;justify-content:space-between}
     .page-topbar .logo-lockup img{height:30px}
     .topbar-tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(240,237,232,0.55);display:flex;align-items:center;gap:8px}
@@ -205,7 +184,6 @@
       .page-topbar .logo-lockup img{height:24px}
       .topbar-tag{display:none}
     }
-
     .hero{position:relative;overflow:hidden;height:54vw;max-height:520px;min-height:280px;background:var(--bg-2)}
     .hero-img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:brightness(0.5) saturate(0.85)}
     .hero-grad{position:absolute;inset:0;background:
@@ -220,39 +198,31 @@
 
     .card-wrap{max-width:720px;margin:-60px auto 0;position:relative;z-index:3;padding:0 24px 80px}
     .card{background:#10121A;border:1px solid rgba(79,227,213,0.12);border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.5)}
-
     .card-top{display:grid;grid-template-columns:240px 1fr;gap:0}
     .card-flyer{aspect-ratio:4/5;overflow:hidden;background:#0a0d12;flex-shrink:0;position:relative}
     .card-flyer img{width:100%;height:100%;object-fit:cover;display:block}
     .card-flyer-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.18);position:absolute;inset:0;text-align:center;padding:20px}
-
     .card-intro{padding:32px 32px;display:flex;flex-direction:column;justify-content:center;gap:14px;border-left:1px solid rgba(79,227,213,0.08)}
     .invite-badge{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;background:rgba(79,227,213,0.08);border:1px solid rgba(79,227,213,0.2);padding:5px 10px;border-radius:3px;color:var(--accent);align-self:flex-start}
     .invite-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;animation:dot 2s ease-in-out infinite;box-shadow:0 0 8px var(--accent)}
     @keyframes dot{0%,100%{opacity:1}50%{opacity:0.3}}
-
     .card-intro h2{font-family:'Aesthet Nova',sans-serif;font-size:clamp(22px,3vw,30px);font-weight:900;line-height:1;letter-spacing:-0.01em;color:var(--ink);margin-bottom:2px}
     .card-intro h2 em{font-style:italic;font-weight:500;color:var(--accent);text-shadow:0 0 14px var(--accent-dim)}
-
     .event-meta{display:flex;flex-direction:column;gap:9px;margin-top:4px}
     .meta-row{display:flex;align-items:flex-start;gap:10px;font-size:12.5px;line-height:1.5;color:rgba(240,237,232,0.62)}
     .meta-row svg{width:13px;height:13px;flex-shrink:0;margin-top:2px;color:var(--accent);opacity:0.85}
     .meta-row strong{font-weight:500;color:rgba(240,237,232,0.92)}
-
     .sounds{margin-top:8px;padding-top:14px;border-top:1px dashed rgba(79,227,213,0.12)}
     .sounds-label{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);margin-bottom:7px}
     .sounds-label::before{content:'◉ ';color:var(--accent);opacity:0.7}
     .sounds-list{font-size:13px;line-height:1.6;color:rgba(240,237,232,0.72);font-weight:400}
     .sounds-list strong{color:var(--ink);font-weight:600}
-
     .release-note{margin-top:10px;padding:13px 14px;background:rgba(79,227,213,0.05);border-left:2px solid var(--accent);border-radius:0 4px 4px 0;font-size:12.5px;line-height:1.6;color:rgba(240,237,232,0.72)}
     .release-note strong{color:var(--accent);font-weight:500}
 
     .card-form{padding:28px;border-top:1px solid rgba(79,227,213,0.08)}
     .card-form-intro{font-size:13px;line-height:1.7;color:rgba(240,237,232,0.6);margin-bottom:22px;font-weight:300}
     .card-form-intro strong{color:rgba(240,237,232,0.9);font-weight:500}
-
-    /* NEW: Fee notice box */
     .fee-notice {
       background: rgba(79,227,213,0.06);
       border: 1px solid rgba(79,227,213,0.2);
@@ -285,7 +255,6 @@
       opacity: 0.6;
       margin-top: 3px;
     }
-
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
     .field{display:flex;flex-direction:column;gap:6px}
     .field label{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:rgba(240,237,232,0.4)}
@@ -294,14 +263,11 @@
     .field input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(79,227,213,0.1)}
     .field input::placeholder{color:rgba(240,237,232,0.22)}
     .field-error{font-family:'JetBrains Mono',monospace;font-size:10px;color:#ff6b6b;margin-top:2px;display:none}
-
     .submit-btn{width:100%;margin-top:18px;padding:16px;background:var(--accent);color:var(--bg);border:none;border-radius:4px;font-family:'Figtree',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s,transform 0.15s,box-shadow 0.2s;box-shadow:0 0 24px rgba(79,227,213,0.18)}
     .submit-btn:hover:not(:disabled){filter:brightness(1.08);box-shadow:0 0 36px rgba(79,227,213,0.3)}
     .submit-btn:active:not(:disabled){transform:scale(0.99)}
     .submit-btn:disabled{opacity:0.5;cursor:not-allowed}
     .form-note{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:400;color:rgba(240,237,232,0.28);text-align:center;margin-top:12px;line-height:1.6}
-
-    /* Payment status indicator */
     .payment-status {
       font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
@@ -313,6 +279,7 @@
     }
     .payment-status.processing { background: rgba(255,193,7,0.1); color: #ffc107; display: block; }
     .payment-status.error { background: rgba(255,107,107,0.1); color: #ff6b6b; display: block; }
+    .payment-status.success { background: rgba(79,227,213,0.1); color: #4FE3D5; display: block; }
 
     #success{display:none;padding:54px 28px;text-align:center;border-top:1px solid rgba(79,227,213,0.08)}
     .success-icon{width:60px;height:60px;border-radius:50%;background:radial-gradient(circle,rgba(79,227,213,0.18) 0%,rgba(79,227,213,0.04) 100%);border:1px solid rgba(79,227,213,0.35);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;box-shadow:0 0 30px rgba(79,227,213,0.2)}
@@ -321,8 +288,6 @@
     #success p.success-name{font-family:'Aesthet Nova',sans-serif;font-size:22px;font-weight:900;color:var(--accent);margin:14px auto 4px;line-height:1;text-shadow:0 0 18px var(--accent-dim)}
     #success .email-note{margin-top:18px;padding-top:18px;border-top:1px dashed rgba(79,227,213,0.12);font-size:13px;color:rgba(240,237,232,0.6)}
     #success .email-note strong{color:var(--accent);font-weight:500}
-
-    /* Footer co-brand */
     .page-footer{padding:30px 24px 60px;text-align:center;border-top:1px solid rgba(79,227,213,0.06)}
     .page-footer .logo-lockup img{height:24px;opacity:0.55}
     .page-footer .footer-line{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.24em;text-transform:uppercase;color:rgba(240,237,232,0.3);margin-top:12px}
@@ -355,29 +320,25 @@
 </head>
 <body>
 
-<!-- Audio element (paused by default; plays on tap of signal core) -->
 <audio id="bgAudio" loop preload="auto">
   <source src="v6-audio.mp3" type="audio/mpeg">
 </audio>
 
-<!-- Floating audio toggle (visible only on main page) -->
 <button id="audio-toggle" onclick="toggleAudio()">
   <span class="at-icon" id="atIcon">
-    <svg id="atIconOn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
   </span>
   <span id="atLabel">Audio on</span>
 </button>
 
-<!-- 1) PASSWORD GATE -->
+<!-- PASSWORD GATE -->
 <div id="pw-screen">
   <div class="pw-noise"></div>
   <div class="pw-wrap">
     <div class="pw-logos logo-lockup">
-      <img src="v6_logo.png" alt="V6"
-        onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:30px;letter-spacing:0.04em;color:#f0ede8\'>V<span style=\\\'color:#4FE3D5\\\'>6</span></span>'"/>
+      <img src="v6_logo.png" alt="V6" onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:30px;letter-spacing:0.04em;color:#f0ede8\'>V<span style=\\\'color:#4FE3D5\\\'>6</span></span>'"/>
       <span class="logo-cross">×</span>
-      <img src="logo_afrocue.png" alt="AfroCue"
-        onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:14px;letter-spacing:0.18em;color:#f0ede8\'>AFROCUE</span>'"/>
+      <img src="logo_afrocue.png" alt="AfroCue" onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:14px;letter-spacing:0.18em;color:#f0ede8\'>AFROCUE</span>'"/>
     </div>
     <div class="pw-label" id="pwLabel">Private Invite</div>
     <div class="pw-input-wrap">
@@ -388,23 +349,18 @@
   </div>
 </div>
 
-<!-- 2) SIGNAL INTRO -->
+<!-- SIGNAL INTRO -->
 <div id="signal-screen">
   <div class="sig-grid"></div>
   <div class="sig-scan"></div>
-
   <div class="sig-logos logo-lockup">
-    <img src="v6_logo.png" alt="V6"
-      onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:30px;letter-spacing:0.04em;color:#f0ede8\'>V<span style=\\\'color:#4FE3D5\\\'>6</span></span>'"/>
+    <img src="v6_logo.png" alt="V6" onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:30px;letter-spacing:0.04em;color:#f0ede8\'>V<span style=\\\'color:#4FE3D5\\\'>6</span></span>'"/>
     <span class="logo-cross">×</span>
-    <img src="logo_afrocue.png" alt="AfroCue"
-      onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:14px;letter-spacing:0.18em;color:#f0ede8\'>AFROCUE</span>'"/>
+    <img src="logo_afrocue.png" alt="AfroCue" onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:14px;letter-spacing:0.18em;color:#f0ede8\'>AFROCUE</span>'"/>
   </div>
-
   <div class="sig-eyebrow">You're invited</div>
   <h1 class="sig-headline">An exclusive invite to<br><em>V6 — The Sixth Sense.</em></h1>
   <p class="sig-sub">Tap to open your invite. Sound on.</p>
-
   <div class="sig-stage" id="sigStage" onclick="openInvite()">
     <div class="sig-ring"></div>
     <div class="sig-ring"></div>
@@ -413,29 +369,25 @@
       <div class="sig-core-mark">V6</div>
     </div>
   </div>
-
   <div class="sig-cta">
     <span class="sig-cta-dot"></span>
     Tap to open
   </div>
 </div>
 
-<!-- 3) MAIN INVITE PAGE -->
+<!-- MAIN INVITE PAGE -->
 <div id="page">
   <div class="page-topbar">
     <div class="logo-lockup">
-      <img src="v6_logo.png" alt="V6"
-        onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:24px;letter-spacing:0.04em;color:#f0ede8\'>V<span style=\\\'color:#4FE3D5\\\'>6</span></span>'"/>
+      <img src="v6_logo.png" alt="V6" onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:24px;letter-spacing:0.04em;color:#f0ede8\'>V<span style=\\\'color:#4FE3D5\\\'>6</span></span>'"/>
       <span class="logo-cross">×</span>
-      <img src="logo_afrocue.png" alt="AfroCue"
-        onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:13px;letter-spacing:0.18em;color:#f0ede8\'>AFROCUE</span>'"/>
+      <img src="logo_afrocue.png" alt="AfroCue" onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:13px;letter-spacing:0.18em;color:#f0ede8\'>AFROCUE</span>'"/>
     </div>
     <div class="topbar-tag">Guest list invite</div>
   </div>
 
   <div class="hero">
-    <img class="hero-img" src="v6_hero.jpg" alt="V6 — The Sixth Sense"
-      onerror="this.style.background='linear-gradient(135deg,#0a1820,#0a0a0f,#0c2a2a)';this.removeAttribute('src')"/>
+    <img class="hero-img" src="v6_hero.jpg" alt="V6 — The Sixth Sense" onerror="this.style.background='linear-gradient(135deg,#0a1820,#0a0a0f,#0c2a2a)';this.removeAttribute('src')"/>
     <div class="hero-grad"></div>
     <div class="hero-overlay-text">
       <div class="hero-eyebrow">An exclusive guest list</div>
@@ -447,13 +399,11 @@
     <div class="card">
       <div class="card-top">
         <div class="card-flyer">
-          <img src="v6_flyer.jpg" alt="V6 — The Sixth Sense — June 27 — The Country Beach"
-            onerror="this.parentNode.innerHTML='<div class=card-flyer-ph>v6_flyer.jpg<br>(4:5 portrait)</div>'"/>
+          <img src="v6_flyer.jpg" alt="V6 — The Sixth Sense — June 27 — The Country Beach" onerror="this.parentNode.innerHTML='<div class=card-flyer-ph>v6_flyer.jpg<br>(4:5 portrait)</div>'"/>
         </div>
         <div class="card-intro">
           <span class="invite-badge">You're invited</span>
           <h2>You've been invited to<br><em>V6 — The Sixth Sense</em>.</h2>
-
           <div class="event-meta">
             <div class="meta-row">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -464,12 +414,10 @@
               <span><strong>The Country Beach</strong><br>Okun Mopo, Okun-Ajah Road, Lekki</span>
             </div>
           </div>
-
           <div class="sounds">
             <div class="sounds-label">Sounds</div>
             <div class="sounds-list"><strong>Afro electronic</strong> · Gqom · Mara · House · and beyond</div>
           </div>
-
           <div class="release-note">
             <strong>Music you don't just hear. You feel it.</strong> A dance floor guided by instinct. Moments of tension, release, and connection — from sunset into sunrise.
           </div>
@@ -481,7 +429,6 @@
           You're on the <strong>private guest list</strong>. Confirm your details below to secure your spot.
         </p>
 
-        <!-- NEW: Fee notice / paywall description -->
         <div class="fee-notice">
           <div class="fee-amount">₦4,000</div>
           <div class="fee-desc">
@@ -507,7 +454,7 @@
         
         <div id="paymentStatus" class="payment-status"></div>
         
-        <p class="form-note">Payment secured by Paystack · You'll receive an email confirmation</p>
+        <p class="form-note">Secure payment · You'll receive email confirmation</p>
       </div>
 
       <div id="success">
@@ -525,11 +472,9 @@
 
     <div class="page-footer">
       <div class="logo-lockup">
-        <img src="v6_logo.png" alt="V6"
-          onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:18px;letter-spacing:0.04em;color:#f0ede8;opacity:0.55\'>V<span style=\\\'color:#4FE3D5\\\'>6</span></span>'"/>
+        <img src="v6_logo.png" alt="V6" onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:18px;letter-spacing:0.04em;color:#f0ede8;opacity:0.55\'>V<span style=\\\'color:#4FE3D5\\\'>6</span></span>'"/>
         <span class="logo-cross">×</span>
-        <img src="logo_afrocue.png" alt="AfroCue"
-          onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:11px;letter-spacing:0.18em;color:#f0ede8;opacity:0.55\'>AFROCUE</span>'"/>
+        <img src="logo_afrocue.png" alt="AfroCue" onerror="this.outerHTML='<span style=\'font-family:Aesthet Nova,sans-serif;font-weight:900;font-size:11px;letter-spacing:0.18em;color:#f0ede8;opacity:0.55\'>AFROCUE</span>'"/>
       </div>
       <div class="footer-line">Curated by The Group Collective · AfroCue</div>
     </div>
@@ -538,30 +483,18 @@
 
 <script>
 /* ════════════════════════════════════════════════════════════
-   PAYMENT CONFIGURATION — UPDATE THESE VALUES
+   CONFIGURATION — NO PAYSTACK KEYS! Just your GAS URL.
    ════════════════════════════════════════════════════════════ */
-var PAYSTACK_PUBLIC_KEY = 'pk_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'; // ← REPLACE WITH YOUR LIVE KEY
-// var PAYSTACK_PUBLIC_KEY = 'pk_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'; // use test key for testing
-
-var AMOUNT_KOPECKS = 400000; // 4,000 NGN (in kobo/pesewas)
-var AMOUNT_NGN = 4000;
-var CURRENCY = 'NGN';
-
-/* Backend URL — Your Google Apps Script endpoint that handles webhooks and saves to sheets */
-var BACKEND_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbz5s6lNRXS1sN0FsPBYbXqVkKTRyo2fdJ6JzYHnM9zgVCh88PyJcEfmh4lNBoJfOvDJ/exec';
-
-var PASSWORD      = 'SIXTH SENSE';
-var EVENT_NAME    = 'V6 — The Sixth Sense';
-var EVENT_DATE    = 'June 27, 2026';
+var BACKEND_URL = 'https://script.google.com/macros/s/AKfycbz5s6lNRXS1sN0FsPBYbXqVkKTRyo2fdJ6JzYHnM9zgVCh88PyJcEfmh4lNBoJfOvDJ/exec';
+var PASSWORD = 'SIXTH SENSE';
 
 /* ════════════════════════════════════════════════════════════
-   AUDIO — plays on signal tap, loops on main page
+   AUDIO FUNCTIONS
    ════════════════════════════════════════════════════════════ */
-var bgAudio    = document.getElementById('bgAudio');
+var bgAudio = document.getElementById('bgAudio');
 var audioToggleBtn = document.getElementById('audio-toggle');
-var atLabel    = document.getElementById('atLabel');
+var atLabel = document.getElementById('atLabel');
 var atIconSpan = document.getElementById('atIcon');
-
 var audioPlaying = false;
 
 function startAudio() {
@@ -627,7 +560,7 @@ function checkPassword() {
 }
 
 /* ════════════════════════════════════════════════════════════
-   SIGNAL OPEN — fires audio + animation
+   SIGNAL OPEN
    ════════════════════════════════════════════════════════════ */
 var sigOpened = false;
 function openInvite() {
@@ -648,71 +581,17 @@ function openInvite() {
 }
 
 /* ════════════════════════════════════════════════════════════
-   CHECK FOR PAYMENT REFERENCE ON PAGE LOAD
-   ════════════════════════════════════════════════════════════ */
-function checkPaymentReturn() {
-  var urlParams = new URLSearchParams(window.location.search);
-  var reference = urlParams.get('reference');
-  var trxref = urlParams.get('trxref');
-  var paymentRef = reference || trxref;
-  
-  if (paymentRef) {
-    // Payment returned from Paystack - verify with backend
-    verifyPaymentWithBackend(paymentRef);
-  }
-}
-
-function verifyPaymentWithBackend(reference) {
-  var statusDiv = document.getElementById('paymentStatus');
-  statusDiv.className = 'payment-status processing';
-  statusDiv.innerHTML = '✓ Verifying your payment...';
-  
-  fetch(BACKEND_WEBHOOK_URL + '?action=verify&reference=' + encodeURIComponent(reference), {
-    method: 'GET'
-  })
-  .then(function(res) { return res.json(); })
-  .then(function(data) {
-    if (data.status === 'success') {
-      // Payment verified, show success
-      showSuccessAfterPayment(data.name, data.email);
-    } else {
-      statusDiv.className = 'payment-status error';
-      statusDiv.innerHTML = '⚠️ ' + (data.message || 'Payment verification failed. Please contact support.');
-    }
-  })
-  .catch(function(err) {
-    statusDiv.className = 'payment-status error';
-    statusDiv.innerHTML = '⚠️ Could not verify payment. Check your email for confirmation or contact support.';
-  });
-}
-
-function showSuccessAfterPayment(name, email) {
-  document.getElementById('successName').textContent = name || document.getElementById('fname').value.trim();
-  document.getElementById('formWrap').style.display = 'none';
-  document.getElementById('success').style.display = 'block';
-  setTimeout(function() {
-    document.getElementById('success').scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, 100);
-  
-  // Clean URL (remove payment params)
-  if (window.history && window.history.replaceState) {
-    var cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-    window.history.replaceState({}, document.title, cleanUrl);
-  }
-}
-
-/* ════════════════════════════════════════════════════════════
-   PAYMENT HANDLER — Paystack inline
+   PAYMENT HANDLER — Calls GAS, NO KEYS in HTML!
    ════════════════════════════════════════════════════════════ */
 function handlePayment() {
   var name = document.getElementById('fname').value.trim();
   var email = document.getElementById('femail').value.trim();
   
-  // Reset error displays
   document.querySelectorAll('.field-error').forEach(function(e){ e.style.display = 'none'; });
   var statusDiv = document.getElementById('paymentStatus');
   statusDiv.className = '';
   statusDiv.innerHTML = '';
+  statusDiv.style.display = 'none';
   
   var valid = true;
   if (!name) { document.getElementById('err-fname').style.display = 'block'; valid = false; }
@@ -721,105 +600,77 @@ function handlePayment() {
   }
   if (!valid) return;
   
-  // Disable button and show processing state
   var btn = document.getElementById('submitBtn');
   btn.disabled = true;
-  btn.textContent = 'Redirecting to Paystack...';
+  btn.textContent = 'Creating secure payment...';
+  statusDiv.style.display = 'block';
   statusDiv.className = 'payment-status processing';
-  statusDiv.innerHTML = 'Opening secure payment window...';
+  statusDiv.innerHTML = 'Connecting to Paystack...';
   
-  // Generate unique reference for this transaction
-  var transactionRef = 'V6_' + Date.now() + '_' + Math.random().toString(36).substr(2, 8);
+  // Store name for success page
+  localStorage.setItem('v6_guest_name', name);
   
-  // Initialize Paystack payment
-  var handler = PaystackPop.setup({
-    key: PAYSTACK_PUBLIC_KEY,
-    email: email,
-    amount: AMOUNT_KOPECKS,
-    currency: CURRENCY,
-    ref: transactionRef,
-    metadata: {
-      custom_fields: [
-        { display_name: "Guest Name", variable_name: "guest_name", value: name },
-        { display_name: "Event", variable_name: "event", value: EVENT_NAME },
-        { display_name: "Event Date", variable_name: "event_date", value: EVENT_DATE }
-      ]
-    },
-    callback: function(response) {
-      // Payment completed on Paystack side
-      statusDiv.innerHTML = '✓ Payment successful! Verifying with event team...';
-      
-      // Send to backend for processing
-      processSuccessfulPayment({
-        reference: response.reference,
-        transaction: response.transaction,
-        status: response.status,
-        name: name,
-        email: email,
-        amount: AMOUNT_NGN
-      });
-    },
-    onClose: function() {
-      // User closed the modal without paying
-      btn.disabled = false;
-      btn.textContent = 'Pay ₦4,000 & Confirm Invite';
-      statusDiv.className = 'payment-status error';
-      statusDiv.innerHTML = 'Payment was cancelled. You can try again.';
-      
-      // Reset after 5 seconds
-      setTimeout(function() {
-        if (statusDiv.className === 'payment-status error') {
-          statusDiv.className = '';
-          statusDiv.innerHTML = '';
-        }
-      }, 5000);
-    }
-  });
-  
-  handler.openIframe();
-}
-
-function processSuccessfulPayment(paymentData) {
-  var statusDiv = document.getElementById('paymentStatus');
-  statusDiv.innerHTML = 'Saving your spot on the guest list...';
-  
-  // Send to backend for Google Sheets storage and email
-  fetch(BACKEND_WEBHOOK_URL, {
+  // Call GAS to create payment (NO KEYS sent from browser)
+  fetch(BACKEND_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      action: 'payment_success',
-      reference: paymentData.reference,
-      name: paymentData.name,
-      email: paymentData.email,
-      amount: paymentData.amount,
-      event: EVENT_NAME,
-      event_date: EVENT_DATE,
-      payment_status: 'paid'
+      action: 'create_payment',
+      name: name,
+      email: email
     })
   })
   .then(function(res) { return res.json(); })
   .then(function(data) {
-    if (data.status === 'success') {
-      showSuccessAfterPayment(paymentData.name, paymentData.email);
+    if (data.success && data.authorization_url) {
+      // Redirect to Paystack checkout page
+      window.location.href = data.authorization_url;
     } else {
-      // Still show success but log error — data was saved via webhook anyway
-      showSuccessAfterPayment(paymentData.name, paymentData.email);
-      console.warn('Backend notification issue:', data.message);
+      btn.disabled = false;
+      btn.textContent = 'Pay ₦4,000 & Confirm Invite';
+      statusDiv.className = 'payment-status error';
+      statusDiv.innerHTML = data.error || 'Could not start payment. Please try again.';
+      setTimeout(function() {
+        if (statusDiv.className === 'payment-status error') {
+          statusDiv.style.display = 'none';
+        }
+      }, 5000);
     }
   })
   .catch(function(err) {
-    // Still show success — the webhook will handle the actual save
-    showSuccessAfterPayment(paymentData.name, paymentData.email);
-    console.error('Could not notify backend:', err);
+    btn.disabled = false;
+    btn.textContent = 'Pay ₦4,000 & Confirm Invite';
+    statusDiv.className = 'payment-status error';
+    statusDiv.innerHTML = 'Network error. Please try again.';
+    console.error('Payment error:', err);
+    setTimeout(function() {
+      if (statusDiv.className === 'payment-status error') {
+        statusDiv.style.display = 'none';
+      }
+    }, 5000);
   });
 }
 
 /* ════════════════════════════════════════════════════════════
-   INIT — check for payment return on load
+   CHECK FOR PAYMENT SUCCESS ON PAGE LOAD
    ════════════════════════════════════════════════════════════ */
+function checkPaymentSuccess() {
+  var urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('payment') === 'success') {
+    var name = localStorage.getItem('v6_guest_name') || '';
+    document.getElementById('successName').textContent = name;
+    document.getElementById('formWrap').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+    
+    if (window.history && window.history.replaceState) {
+      var cleanUrl = window.location.pathname;
+      window.history.replaceState({}, document.title, cleanUrl);
+    }
+  }
+}
+
 window.addEventListener('DOMContentLoaded', function() {
-  checkPaymentReturn();
+  checkPaymentSuccess();
 });
 </script>
 </body>
