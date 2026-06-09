@@ -430,12 +430,12 @@
         </p>
 
         <div class="fee-notice">
-          <div class="fee-amount">₦4,000</div>
-          <div class="fee-desc">
-            Mandatory beach access fee collected by venue
-            <small>(paid directly to The Country Beach)</small>
-          </div>
-        </div>
+  <div class="fee-amount">₦4,150</div>
+  <div class="fee-desc">
+    Mandatory beach access fee
+    <small>₦4,000 venue access + ₦150 processing fee</small>
+  </div>
+</div>
 
         <div class="form-row">
           <div class="field">
@@ -450,7 +450,7 @@
           </div>
         </div>
 
-        <button class="submit-btn" id="submitBtn" onclick="handlePayment()">Pay ₦4,000 & Confirm Invite</button>
+        <button class="submit-btn" id="submitBtn" onclick="handlePayment()">Pay ₦4,150 & Confirm Invite</button>
         
         <div id="paymentStatus" class="payment-status"></div>
         
@@ -626,7 +626,7 @@ function handlePayment() {
       window.location.href = data.authorization_url;
     } else {
       btn.disabled = false;
-      btn.textContent = 'Pay ₦4,000 & Confirm Invite';
+      btn.textContent = 'Pay ₦4,150 & Confirm Invite';
       statusDiv.className = 'payment-status error';
       statusDiv.innerHTML = data.error || 'Could not start payment. Please try again.';
       setTimeout(function() {
