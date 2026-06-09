@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-  <title>V6 — An exclusive invite.</title>
+  <title>V6 — The Sixth Sense · Guest List</title>
   <meta name="robots" content="noindex"/>
-  <script src="afrocue.js"></script>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');font-weight:900}
@@ -252,6 +252,40 @@
     .card-form-intro{font-size:13px;line-height:1.7;color:rgba(240,237,232,0.6);margin-bottom:22px;font-weight:300}
     .card-form-intro strong{color:rgba(240,237,232,0.9);font-weight:500}
 
+    /* NEW: Fee notice box */
+    .fee-notice {
+      background: rgba(79,227,213,0.06);
+      border: 1px solid rgba(79,227,213,0.2);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .fee-amount {
+      font-family: 'Aesthet Nova', sans-serif;
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .fee-desc {
+      font-size: 12px;
+      line-height: 1.5;
+      color: rgba(240,237,232,0.7);
+      flex: 1;
+    }
+    .fee-desc small {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      display: block;
+      opacity: 0.6;
+      margin-top: 3px;
+    }
+
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
     .field{display:flex;flex-direction:column;gap:6px}
     .field label{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:rgba(240,237,232,0.4)}
@@ -266,6 +300,19 @@
     .submit-btn:active:not(:disabled){transform:scale(0.99)}
     .submit-btn:disabled{opacity:0.5;cursor:not-allowed}
     .form-note{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:400;color:rgba(240,237,232,0.28);text-align:center;margin-top:12px;line-height:1.6}
+
+    /* Payment status indicator */
+    .payment-status {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-align: center;
+      margin-top: 14px;
+      padding: 10px;
+      border-radius: 4px;
+      display: none;
+    }
+    .payment-status.processing { background: rgba(255,193,7,0.1); color: #ffc107; display: block; }
+    .payment-status.error { background: rgba(255,107,107,0.1); color: #ff6b6b; display: block; }
 
     #success{display:none;padding:54px 28px;text-align:center;border-top:1px solid rgba(79,227,213,0.08)}
     .success-icon{width:60px;height:60px;border-radius:50%;background:radial-gradient(circle,rgba(79,227,213,0.18) 0%,rgba(79,227,213,0.04) 100%);border:1px solid rgba(79,227,213,0.35);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;box-shadow:0 0 30px rgba(79,227,213,0.2)}
@@ -294,6 +341,7 @@
       .meta-row{font-size:12px}
       .card-form{padding:22px 18px}
       .form-row{grid-template-columns:1fr}
+      .fee-notice { flex-direction: column; text-align: center; }
       .sig-headline{font-size:24px}
       .sig-sub{font-size:12px;margin-bottom:34px}
       #audio-toggle{top:12px;right:12px;padding:7px 11px;font-size:9px}
@@ -430,8 +478,17 @@
 
       <div class="card-form" id="formWrap">
         <p class="card-form-intro">
-          You're on the <strong>private guest list</strong>. Confirm your name and email below and we'll send you everything you need for the night.
+          You're on the <strong>private guest list</strong>. Confirm your details below to secure your spot.
         </p>
+
+        <!-- NEW: Fee notice / paywall description -->
+        <div class="fee-notice">
+          <div class="fee-amount">₦4,000</div>
+          <div class="fee-desc">
+            Mandatory beach access fee collected by venue
+            <small>(paid directly to The Country Beach)</small>
+          </div>
+        </div>
 
         <div class="form-row">
           <div class="field">
@@ -446,8 +503,11 @@
           </div>
         </div>
 
-        <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">Claim My Invite</button>
-        <p class="form-note">DO NOT SHARE.</p>
+        <button class="submit-btn" id="submitBtn" onclick="handlePayment()">Pay ₦4,000 & Confirm Invite</button>
+        
+        <div id="paymentStatus" class="payment-status"></div>
+        
+        <p class="form-note">Payment secured by Paystack · You'll receive an email confirmation</p>
       </div>
 
       <div id="success">
@@ -455,10 +515,10 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="#4FE3D5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
         <h3>You're on the list.</h3>
-        <p>Check your email for the official invite to V6 — The Sixth Sense.</p>
+        <p>Your beach access fee has been confirmed. You'll receive an email with your invite and gate instructions.</p>
         <p class="success-name" id="successName"></p>
         <div class="email-note">
-          You'll see <strong>V6 — June 27</strong> in your inbox shortly. At the gate, mention your name on the guest list.
+          Check your inbox for <strong>V6 — The Sixth Sense</strong>. At the gate, present your ID — your name will be on the paid guest list.
         </div>
       </div>
     </div>
@@ -478,17 +538,21 @@
 
 <script>
 /* ════════════════════════════════════════════════════════════
-   ⚠️ DEDICATED GAS URL — UPDATE THIS LINE AFTER DEPLOY ⚠️
-   This is the ONLY URL this page posts to. It overrides afrocue.js.
-   Paste the /exec URL from the standalone guestlist GAS here.
-   (Same GAS as chibyverse-guestlist — they share one backend.)
+   PAYMENT CONFIGURATION — UPDATE THESE VALUES
    ════════════════════════════════════════════════════════════ */
-var GUESTLIST_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwHG7r4U-22EzjFCw2N0yFzDVNjPWr6Q_uPMk6-LyBjjfM4Edd6tB8RwdRp-bbX-lKY/exec';
+var PAYSTACK_PUBLIC_KEY = 'pk_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'; // ← REPLACE WITH YOUR LIVE KEY
+// var PAYSTACK_PUBLIC_KEY = 'pk_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'; // use test key for testing
+
+var AMOUNT_KOPECKS = 400000; // 4,000 NGN (in kobo/pesewas)
+var AMOUNT_NGN = 4000;
+var CURRENCY = 'NGN';
+
+/* Backend URL — Your Google Apps Script endpoint that handles webhooks and saves to sheets */
+var BACKEND_WEBHOOK_URL = 'https://script.google.com/macros/s/YOUR_GAS_DEPLOYMENT_ID/exec';
 
 var PASSWORD      = 'SIXTH SENSE';
 var EVENT_NAME    = 'V6 — The Sixth Sense';
 var EVENT_DATE    = 'June 27, 2026';
-var SUBMIT_SOURCE = 'v6_invite';
 
 /* ════════════════════════════════════════════════════════════
    AUDIO — plays on signal tap, loops on main page
@@ -509,7 +573,6 @@ function startAudio() {
       audioPlaying = true;
       updateAudioToggle();
     }).catch(function(err) {
-      /* Autoplay blocked — silent fail, button still works */
       audioPlaying = false;
       updateAudioToggle();
     });
@@ -570,8 +633,6 @@ var sigOpened = false;
 function openInvite() {
   if (sigOpened) return;
   sigOpened = true;
-
-  /* Start audio inside the user gesture so mobile browsers allow it */
   startAudio();
 
   var stage = document.getElementById('sigStage');
@@ -587,78 +648,179 @@ function openInvite() {
 }
 
 /* ════════════════════════════════════════════════════════════
-   UTM PARAMS
+   CHECK FOR PAYMENT REFERENCE ON PAGE LOAD
    ════════════════════════════════════════════════════════════ */
-function getUtm() {
-  var p = new URLSearchParams(window.location.search);
-  return {
-    source:   p.get('utm_source')   || '',
-    medium:   p.get('utm_medium')   || '',
-    campaign: p.get('utm_campaign') || ''
-  };
-}
-
-/* ════════════════════════════════════════════════════════════
-   SUBMIT — posts directly to the dedicated GAS URL
-   ════════════════════════════════════════════════════════════ */
-function handleSubmit() {
-  var name  = document.getElementById('fname').value.trim();
-  var email = document.getElementById('femail').value.trim();
-
-  document.querySelectorAll('.field-error').forEach(function(e){ e.style.display='none'; });
-
-  var valid = true;
-  if (!name) { document.getElementById('err-fname').style.display='block'; valid=false; }
-  if (!email || email.indexOf('@') === -1 || email.indexOf('.') === -1) {
-    document.getElementById('err-femail').style.display='block'; valid=false;
+function checkPaymentReturn() {
+  var urlParams = new URLSearchParams(window.location.search);
+  var reference = urlParams.get('reference');
+  var trxref = urlParams.get('trxref');
+  var paymentRef = reference || trxref;
+  
+  if (paymentRef) {
+    // Payment returned from Paystack - verify with backend
+    verifyPaymentWithBackend(paymentRef);
   }
-  if (!valid) return;
-
-  var btn = document.getElementById('submitBtn');
-  btn.disabled    = true;
-  btn.textContent = 'Claiming...';
-
-  var utm = getUtm();
-  var data = {
-    source:       SUBMIT_SOURCE,
-    event:        EVENT_NAME,
-    event_date:   EVENT_DATE,
-    name:         name,
-    email:        email,
-    campaign:     EVENT_NAME,
-    password:     PASSWORD,
-    utm_source:   utm.source,
-    utm_medium:   utm.medium,
-    utm_campaign: utm.campaign
-  };
-
-  fetch(GUESTLIST_SCRIPT_URL, {
-    method:  'POST',
-    mode:    'no-cors',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body:    'payload=' + encodeURIComponent(JSON.stringify(data))
-  }).finally(onSuccess);
-
-  try {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'order_created_before_payment',
-      source: SUBMIT_SOURCE,
-      name: name,
-      email: email
-    });
-  } catch (err) {}
 }
 
-function onSuccess() {
-  var name = document.getElementById('fname').value.trim();
-  document.getElementById('successName').textContent = name;
+function verifyPaymentWithBackend(reference) {
+  var statusDiv = document.getElementById('paymentStatus');
+  statusDiv.className = 'payment-status processing';
+  statusDiv.innerHTML = '✓ Verifying your payment...';
+  
+  fetch(BACKEND_WEBHOOK_URL + '?action=verify&reference=' + encodeURIComponent(reference), {
+    method: 'GET'
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(data) {
+    if (data.status === 'success') {
+      // Payment verified, show success
+      showSuccessAfterPayment(data.name, data.email);
+    } else {
+      statusDiv.className = 'payment-status error';
+      statusDiv.innerHTML = '⚠️ ' + (data.message || 'Payment verification failed. Please contact support.');
+    }
+  })
+  .catch(function(err) {
+    statusDiv.className = 'payment-status error';
+    statusDiv.innerHTML = '⚠️ Could not verify payment. Check your email for confirmation or contact support.';
+  });
+}
+
+function showSuccessAfterPayment(name, email) {
+  document.getElementById('successName').textContent = name || document.getElementById('fname').value.trim();
   document.getElementById('formWrap').style.display = 'none';
-  document.getElementById('success').style.display  = 'block';
+  document.getElementById('success').style.display = 'block';
   setTimeout(function() {
     document.getElementById('success').scrollIntoView({ behavior: 'smooth', block: 'center' });
   }, 100);
+  
+  // Clean URL (remove payment params)
+  if (window.history && window.history.replaceState) {
+    var cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    window.history.replaceState({}, document.title, cleanUrl);
+  }
 }
+
+/* ════════════════════════════════════════════════════════════
+   PAYMENT HANDLER — Paystack inline
+   ════════════════════════════════════════════════════════════ */
+function handlePayment() {
+  var name = document.getElementById('fname').value.trim();
+  var email = document.getElementById('femail').value.trim();
+  
+  // Reset error displays
+  document.querySelectorAll('.field-error').forEach(function(e){ e.style.display = 'none'; });
+  var statusDiv = document.getElementById('paymentStatus');
+  statusDiv.className = '';
+  statusDiv.innerHTML = '';
+  
+  var valid = true;
+  if (!name) { document.getElementById('err-fname').style.display = 'block'; valid = false; }
+  if (!email || email.indexOf('@') === -1 || email.indexOf('.') === -1) {
+    document.getElementById('err-femail').style.display = 'block'; valid = false;
+  }
+  if (!valid) return;
+  
+  // Disable button and show processing state
+  var btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Redirecting to Paystack...';
+  statusDiv.className = 'payment-status processing';
+  statusDiv.innerHTML = 'Opening secure payment window...';
+  
+  // Generate unique reference for this transaction
+  var transactionRef = 'V6_' + Date.now() + '_' + Math.random().toString(36).substr(2, 8);
+  
+  // Initialize Paystack payment
+  var handler = PaystackPop.setup({
+    key: PAYSTACK_PUBLIC_KEY,
+    email: email,
+    amount: AMOUNT_KOPECKS,
+    currency: CURRENCY,
+    ref: transactionRef,
+    metadata: {
+      custom_fields: [
+        { display_name: "Guest Name", variable_name: "guest_name", value: name },
+        { display_name: "Event", variable_name: "event", value: EVENT_NAME },
+        { display_name: "Event Date", variable_name: "event_date", value: EVENT_DATE }
+      ]
+    },
+    callback: function(response) {
+      // Payment completed on Paystack side
+      statusDiv.innerHTML = '✓ Payment successful! Verifying with event team...';
+      
+      // Send to backend for processing
+      processSuccessfulPayment({
+        reference: response.reference,
+        transaction: response.transaction,
+        status: response.status,
+        name: name,
+        email: email,
+        amount: AMOUNT_NGN
+      });
+    },
+    onClose: function() {
+      // User closed the modal without paying
+      btn.disabled = false;
+      btn.textContent = 'Pay ₦4,000 & Confirm Invite';
+      statusDiv.className = 'payment-status error';
+      statusDiv.innerHTML = 'Payment was cancelled. You can try again.';
+      
+      // Reset after 5 seconds
+      setTimeout(function() {
+        if (statusDiv.className === 'payment-status error') {
+          statusDiv.className = '';
+          statusDiv.innerHTML = '';
+        }
+      }, 5000);
+    }
+  });
+  
+  handler.openIframe();
+}
+
+function processSuccessfulPayment(paymentData) {
+  var statusDiv = document.getElementById('paymentStatus');
+  statusDiv.innerHTML = 'Saving your spot on the guest list...';
+  
+  // Send to backend for Google Sheets storage and email
+  fetch(BACKEND_WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      action: 'payment_success',
+      reference: paymentData.reference,
+      name: paymentData.name,
+      email: paymentData.email,
+      amount: paymentData.amount,
+      event: EVENT_NAME,
+      event_date: EVENT_DATE,
+      payment_status: 'paid'
+    })
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(data) {
+    if (data.status === 'success') {
+      showSuccessAfterPayment(paymentData.name, paymentData.email);
+    } else {
+      // Still show success but log error — data was saved via webhook anyway
+      showSuccessAfterPayment(paymentData.name, paymentData.email);
+      console.warn('Backend notification issue:', data.message);
+    }
+  })
+  .catch(function(err) {
+    // Still show success — the webhook will handle the actual save
+    showSuccessAfterPayment(paymentData.name, paymentData.email);
+    console.error('Could not notify backend:', err);
+  });
+}
+
+/* ════════════════════════════════════════════════════════════
+   INIT — check for payment return on load
+   ════════════════════════════════════════════════════════════ */
+window.addEventListener('DOMContentLoaded', function() {
+  checkPaymentReturn();
+});
 </script>
 </body>
 </html>
