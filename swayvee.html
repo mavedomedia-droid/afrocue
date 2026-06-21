@@ -860,13 +860,15 @@
                 }, 800);
             });
 
+            // UPDATED: Both streaming buttons now fire the single custom event
             spotifyBtn.addEventListener('click', () => {
-                pushEvent('stream_click', { platform: 'Spotify' });
+                pushEvent('playlist_spotify_click', { platform: 'Spotify' });
             });
             appleBtn.addEventListener('click', () => {
-                pushEvent('stream_click', { platform: 'Apple Music' });
+                pushEvent('playlist_spotify_click', { platform: 'Apple Music' });
             });
 
+            // Init first track (no autoplay)
             audio.src = currentTrack.src;
             audio.load();
             nowPlayingTitle.textContent = currentTrack.name;
