@@ -8,7 +8,6 @@
     <meta name="theme-color" content="#0b0a07">
     <link rel="canonical" href="https://afrocue.xyz/srs">
 
-    <!-- Open Graph -->
     <meta property="og:title" content="Swayvee — SRS">
     <meta property="og:description" content="Swavey Riddim / Sexxy. Out now. Select a track to preview, then stream.">
     <meta property="og:image" content="https://afrocue.xyz/srs/swayvee_art.jpg">
@@ -18,7 +17,6 @@
     <meta property="og:type" content="music.album">
     <meta property="og:site_name" content="AfroCue">
 
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Swayvee — SRS">
     <meta name="twitter:description" content="Swavey Riddim / Sexxy. Select a track to listen, then stream on Spotify.">
@@ -65,7 +63,6 @@
             --border-light: #2c2820;
             --border-active: #c4943a;
             --spotify-green: #1DB954;
-            --apple-red: #FC3C44;
             --radius: 14px;
             --radius-lg: 20px;
             --radius-full: 9999px;
@@ -143,14 +140,8 @@
         }
 
         @keyframes heroFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(18px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .artwork-container {
@@ -166,14 +157,8 @@
         }
 
         @keyframes artworkReveal {
-            from {
-                opacity: 0;
-                transform: scale(0.94);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.94); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .artwork-container::after {
@@ -199,15 +184,8 @@
         }
 
         @keyframes glowPulse {
-            0%,
-            100% {
-                opacity: 0.3;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.55;
-                transform: scale(1.05);
-            }
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.55; transform: scale(1.05); }
         }
 
         .artwork-img {
@@ -252,14 +230,8 @@
         }
 
         @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .divider {
@@ -284,7 +256,7 @@
             opacity: 0.6;
         }
 
-        /* ─── TRACK SELECTOR (the beam) ─── */
+        /* ─── TRACK SELECTOR ─── */
         .track-selector-section {
             width: 100%;
             animation: fadeUp 0.7s 0.6s ease-out both;
@@ -299,7 +271,6 @@
             letter-spacing: 0.14em;
             text-transform: uppercase;
             color: var(--text-tertiary);
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -320,65 +291,38 @@
         }
 
         @keyframes beamScan {
-            0% {
-                opacity: 0;
-                transform: translateX(-30%);
-            }
-            20% {
-                opacity: 0.8;
-            }
-            80% {
-                opacity: 0.8;
-                transform: translateX(30%);
-            }
-            100% {
-                opacity: 0;
-                transform: translateX(30%);
-            }
+            0% { opacity: 0; transform: translateX(-30%); }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.8; transform: translateX(30%); }
+            100% { opacity: 0; transform: translateX(30%); }
         }
 
         .track-selector {
             display: flex;
             gap: 10px;
             width: 100%;
-            position: relative;
         }
 
         .track-option {
             flex: 1;
-            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 18px 16px;
             border-radius: var(--radius);
             cursor: pointer;
-            text-align: center;
-            font-weight: 500;
-            font-size: 0.95rem;
-            letter-spacing: 0.02em;
-            color: var(--text-secondary);
             background: var(--surface);
             border: 1px solid var(--border);
             transition: all var(--transition-smooth), transform 0.2s ease;
             user-select: none;
-            -webkit-user-select: none;
             outline: none;
             position: relative;
-            overflow: hidden;
-        }
-
-        .track-option::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            background: radial-gradient(circle at center, var(--accent-glow) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity var(--transition-smooth);
-            pointer-events: none;
         }
 
         .track-option:hover {
             background: var(--surface-hover);
             border-color: var(--border-light);
-            color: var(--text);
             transform: translateY(-1px);
         }
 
@@ -389,59 +333,104 @@
         .track-option.active {
             background: var(--surface-elevated);
             border-color: var(--border-active);
-            color: var(--text-bright);
-            font-weight: 600;
-            box-shadow: 0 0 24px var(--accent-glow), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+            box-shadow: 0 0 24px var(--accent-glow);
             z-index: 1;
         }
 
-        .track-option.active::before {
-            opacity: 1;
+        /* Play / Pause icon inside track button */
+        .track-icon {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
-        .track-option .track-index {
+        .icon-play {
+            width: 0;
+            height: 0;
+            border-left: 16px solid var(--text-secondary);
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            transition: all var(--transition-smooth);
+            animation: pulsePlay 2s infinite ease-in-out;
+        }
+
+        @keyframes pulsePlay {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.12); opacity: 1; }
+        }
+
+        .track-option.active .icon-play,
+        .track-option.playing .icon-play {
+            animation: none;
+        }
+
+        .icon-pause {
+            display: none;
+            width: 16px;
+            height: 16px;
+            position: relative;
+        }
+
+        .icon-pause::before,
+        .icon-pause::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 5px;
+            height: 16px;
+            background: var(--text-bright);
+            border-radius: 2px;
+        }
+        .icon-pause::before { left: 0; }
+        .icon-pause::after { right: 0; }
+
+        .track-option.playing .icon-play {
+            display: none;
+        }
+        .track-option.playing .icon-pause {
             display: block;
+        }
+
+        .track-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .track-index {
             font-size: 0.65rem;
             font-weight: 500;
             letter-spacing: 0.12em;
             text-transform: uppercase;
             color: var(--text-tertiary);
-            margin-bottom: 4px;
+            margin-bottom: 2px;
+        }
+
+        .track-label {
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+            color: var(--text-secondary);
             transition: color var(--transition-smooth);
         }
 
-        .track-option.active .track-index {
-            color: var(--accent);
+        .track-option.active .track-label {
+            color: var(--text-bright);
+            font-weight: 600;
         }
 
-        .pause-dot {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--accent);
-            opacity: 0;
-            transition: opacity 0.25s ease;
-            box-shadow: 0 0 12px var(--accent-glow-strong);
-            pointer-events: none;
-        }
-
-        .track-option.active.playing .pause-dot {
-            opacity: 1;
-        }
-
-        /* ─── PLAYER INFO (mini) ─── */
+        /* ─── NOW PLAYING + EQUALIZER ─── */
         .player-status {
             width: 100%;
             margin-top: 20px;
-            text-align: center;
-            animation: fadeUp 0.7s 0.7s ease-out both;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
+            animation: fadeUp 0.7s 0.7s ease-out both;
         }
 
         .now-playing-label {
@@ -456,7 +445,35 @@
             font-weight: 600;
             font-size: 1.2rem;
             color: var(--text-bright);
-            transition: all 0.25s ease;
+        }
+
+        .equalizer {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 14px;
+            margin-left: 4px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .equalizer.active {
+            opacity: 1;
+        }
+
+        .bar {
+            width: 3px;
+            background: var(--accent);
+            border-radius: 1px;
+            animation: eq 1.2s ease-in-out infinite;
+        }
+        .bar:nth-child(1) { height: 8px; animation-delay: 0s; }
+        .bar:nth-child(2) { height: 14px; animation-delay: 0.2s; }
+        .bar:nth-child(3) { height: 5px; animation-delay: 0.4s; }
+        .bar:nth-child(4) { height: 10px; animation-delay: 0.6s; }
+
+        @keyframes eq {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(0.4); }
         }
 
         .progress-mini {
@@ -470,19 +487,17 @@
 
         .progress-bar-bg {
             flex: 1;
-            height: 3px;
+            height: 4px;
             background: var(--border);
             border-radius: 2px;
             overflow: hidden;
         }
-
         .progress-bar-fill {
             height: 100%;
             background: var(--accent);
             width: 0%;
             transition: width 0.1s linear;
         }
-
         .time-mini {
             font-size: 0.65rem;
             color: var(--text-tertiary);
@@ -490,7 +505,7 @@
             text-align: right;
         }
 
-        /* ─── STREAMING BUTTONS ─── */
+        /* ─── STREAMING ─── */
         .streaming-section {
             width: 100%;
             margin-top: 28px;
@@ -518,21 +533,14 @@
             border: none;
             transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.2s;
             box-shadow: 0 4px 24px rgba(29, 185, 84, 0.3);
-            position: relative;
-            overflow: hidden;
             -webkit-tap-highlight-color: transparent;
         }
-
         .spotify-btn:hover {
             background: #1ed760;
             box-shadow: 0 8px 30px rgba(29, 185, 84, 0.5);
             transform: translateY(-2px);
         }
-
-        .spotify-btn:active {
-            transform: scale(0.96);
-            transition: transform 0.1s;
-        }
+        .spotify-btn:active { transform: scale(0.96); }
 
         .apple-btn {
             display: flex;
@@ -549,20 +557,14 @@
             font-size: 0.9rem;
             letter-spacing: 0.03em;
             text-decoration: none;
-            cursor: pointer;
             transition: background 0.2s, border-color 0.2s, transform 0.2s;
-            -webkit-tap-highlight-color: transparent;
         }
-
         .apple-btn:hover {
             background: var(--surface-hover);
             border-color: var(--border-light);
             transform: translateY(-1px);
         }
-
-        .apple-btn:active {
-            transform: scale(0.96);
-        }
+        .apple-btn:active { transform: scale(0.96); }
 
         .footer-note {
             margin-top: 32px;
@@ -572,29 +574,20 @@
             animation: fadeUp 0.7s 1s ease-out both;
         }
 
-        /* Responsive */
         @media (max-width: 380px) {
-            .track-option {
-                padding: 14px 8px;
-                font-size: 0.8rem;
-            }
-            .spotify-btn {
-                padding: 15px 20px;
-                font-size: 0.9rem;
-            }
+            .track-option { padding: 14px 10px; gap: 8px; }
+            .track-label { font-size: 0.8rem; }
         }
     </style>
 </head>
 <body>
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <main class="page">
-        <!-- HERO -->
         <section class="hero">
             <div class="artwork-container">
                 <div class="artwork-glow"></div>
-                <img class="artwork-img" src="swayvee_art.jpg" alt="Swayvee — SRS artwork" loading="eager">
+                <img class="artwork-img" src="swayvee_art.jpg" alt="Swayvee — SRS artwork">
             </div>
             <p class="artist-name">Swayvee</p>
             <h1 class="release-title">SRS</h1>
@@ -603,31 +596,42 @@
 
         <div class="divider"></div>
 
-        <!-- TRACK SELECTOR with "SELECT ONE" beam -->
         <section class="track-selector-section">
             <div class="selector-hint">
                 <span>SELECT ONE</span>
                 <span style="font-size:1.1em;color:var(--accent);">◈</span>
             </div>
             <div class="selector-beam"></div>
-            <div class="track-selector" role="radiogroup" aria-label="Select a track to preview">
+            <div class="track-selector">
                 <button class="track-option active" data-track="swavey-riddim" data-name="Swavey Riddim" data-src="swavey-riddim-preview.mp3">
-                    <span class="track-index">Track 1</span>
-                    <span>Swavey Riddim</span>
-                    <span class="pause-dot"></span>
+                    <span class="track-icon">
+                        <span class="icon-play"></span>
+                        <span class="icon-pause"></span>
+                    </span>
+                    <span class="track-info">
+                        <span class="track-index">Track 1</span>
+                        <span class="track-label">Swavey Riddim</span>
+                    </span>
                 </button>
                 <button class="track-option" data-track="sexxy" data-name="Sexxy" data-src="sexxy-preview.mp3">
-                    <span class="track-index">Track 2</span>
-                    <span>Sexxy</span>
-                    <span class="pause-dot"></span>
+                    <span class="track-icon">
+                        <span class="icon-play"></span>
+                        <span class="icon-pause"></span>
+                    </span>
+                    <span class="track-info">
+                        <span class="track-index">Track 2</span>
+                        <span class="track-label">Sexxy</span>
+                    </span>
                 </button>
             </div>
         </section>
 
-        <!-- MINI PLAYER STATUS -->
         <div class="player-status">
             <span class="now-playing-label">NOW PLAYING</span>
             <span class="now-playing-track" id="nowPlayingTitle">Swavey Riddim</span>
+            <div class="equalizer" id="equalizer">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </div>
         </div>
         <div class="progress-mini">
             <div class="progress-bar-bg">
@@ -636,10 +640,8 @@
             <span class="time-mini" id="timeDisplay">0:00</span>
         </div>
 
-        <!-- HIDDEN AUDIO -->
         <audio id="audioPlayer" preload="auto"></audio>
 
-        <!-- STREAMING BUTTONS (Spotify primary, Apple secondary) -->
         <section class="streaming-section">
             <a class="spotify-btn" id="spotifyLink" href="https://open.spotify.com/album/3LplDdBx54QBby9Nv0b4BD?si=Z_VM_CtnReGUZfUwUbKKgg" target="_blank" rel="noopener noreferrer">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
@@ -661,18 +663,14 @@
             const nowPlayingTitle = document.getElementById('nowPlayingTitle');
             const progressFill = document.getElementById('progressFill');
             const timeDisplay = document.getElementById('timeDisplay');
+            const equalizer = document.getElementById('equalizer');
             const spotifyBtn = document.getElementById('spotifyLink');
             const appleBtn = document.getElementById('appleLink');
 
-            let currentTrack = {
-                id: 'swavey-riddim',
-                name: 'Swavey Riddim',
-                src: 'swavey-riddim-preview.mp3'
-            };
+            let currentTrack = { id: 'swavey-riddim', name: 'Swavey Riddim', src: 'swavey-riddim-preview.mp3' };
             let isPlaying = false;
             let hasActivated = false;
 
-            // GTM helper
             function pushEvent(name, data) {
                 window.dataLayer = window.dataLayer || [];
                 window.dataLayer.push({ event: name, ...data });
@@ -692,12 +690,21 @@
                 timeDisplay.textContent = formatTime(audio.currentTime);
             }
 
+            function setPlayingState(state) {
+                isPlaying = state;
+                const activeBtn = document.querySelector('.track-option.active');
+                if (activeBtn) {
+                    if (state) activeBtn.classList.add('playing');
+                    else activeBtn.classList.remove('playing');
+                }
+                if (state) equalizer.classList.add('active');
+                else equalizer.classList.remove('active');
+            }
+
             function loadAndPlay(trackId, trackName, src) {
                 if (currentTrack.id === trackId && isPlaying) return;
 
-                if (isPlaying) {
-                    audio.pause();
-                }
+                if (isPlaying) audio.pause();
 
                 currentTrack = { id: trackId, name: trackName, src: src };
                 audio.src = src;
@@ -709,67 +716,42 @@
 
                 trackOptions.forEach(btn => {
                     btn.classList.remove('active', 'playing');
-                    if (btn.dataset.track === trackId) {
-                        btn.classList.add('active');
-                    }
+                    if (btn.dataset.track === trackId) btn.classList.add('active');
                 });
 
-                const playPromise = audio.play();
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        setIsPlaying(true);
-                        pushEvent('preview_play', { track: trackName });
-                    }).catch(err => {
-                        console.warn('Autoplay prevented:', err);
-                        setIsPlaying(false);
-                    });
-                }
+                audio.play().then(() => {
+                    setPlayingState(true);
+                    pushEvent('preview_play', { track: trackName });
+                }).catch(() => setPlayingState(false));
 
                 if (!hasActivated) {
                     hasActivated = true;
-                    spotifyBtn.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease';
-                    spotifyBtn.style.transform = 'scale(1.02)';
+                    spotifyBtn.style.transform = 'scale(1.03)';
                     spotifyBtn.style.boxShadow = '0 8px 36px rgba(29,185,84,0.6)';
-                    setTimeout(() => {
-                        spotifyBtn.style.transform = 'scale(1)';
-                    }, 400);
-                }
-            }
-
-            function setIsPlaying(state) {
-                isPlaying = state;
-                const activeBtn = document.querySelector('.track-option.active');
-                if (activeBtn) {
-                    if (state) {
-                        activeBtn.classList.add('playing');
-                    } else {
-                        activeBtn.classList.remove('playing');
-                    }
+                    setTimeout(() => { spotifyBtn.style.transform = 'scale(1)'; }, 400);
                 }
             }
 
             function togglePlayPause() {
                 if (isPlaying) {
                     audio.pause();
-                    setIsPlaying(false);
+                    setPlayingState(false);
                     pushEvent('preview_pause', { track: currentTrack.name });
                 } else {
                     audio.play().then(() => {
-                        setIsPlaying(true);
+                        setPlayingState(true);
                         pushEvent('preview_play', { track: currentTrack.name });
                     }).catch(() => {});
                 }
             }
 
             trackOptions.forEach(btn => {
-                btn.addEventListener('click', (e) => {
+                btn.addEventListener('click', () => {
                     const trackId = btn.dataset.track;
                     const trackName = btn.dataset.name;
                     const src = btn.dataset.src;
-
-                    if (currentTrack.id === trackId) {
-                        togglePlayPause();
-                    } else {
+                    if (currentTrack.id === trackId) togglePlayPause();
+                    else {
                         loadAndPlay(trackId, trackName, src);
                         pushEvent('track_switch', { track: trackName });
                     }
@@ -779,7 +761,7 @@
             audio.addEventListener('timeupdate', updateProgress);
             audio.addEventListener('loadedmetadata', updateProgress);
             audio.addEventListener('ended', () => {
-                setIsPlaying(false);
+                setPlayingState(false);
                 progressFill.style.width = '100%';
                 timeDisplay.textContent = formatTime(audio.duration || 0);
                 pushEvent('preview_complete', { track: currentTrack.name });
@@ -790,17 +772,14 @@
                 }, 800);
             });
 
-            spotifyBtn.addEventListener('click', () => {
-                pushEvent('stream_click', { platform: 'Spotify' });
-            });
-            appleBtn.addEventListener('click', () => {
-                pushEvent('stream_click', { platform: 'Apple Music' });
-            });
+            spotifyBtn.addEventListener('click', () => pushEvent('stream_click', { platform: 'Spotify' }));
+            appleBtn.addEventListener('click', () => pushEvent('stream_click', { platform: 'Apple Music' }));
 
-            // Prepare first track without autoplay
+            // Init with first track (no autoplay)
             audio.src = currentTrack.src;
             audio.load();
             nowPlayingTitle.textContent = currentTrack.name;
+            document.querySelector('.track-option[data-track="swavey-riddim"]').classList.add('active');
         })();
     </script>
 </body>
