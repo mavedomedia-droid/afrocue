@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Swayvee — SRS | Swavey Riddim / Sexxy</title>
+    <meta name="description" content="SRS by Swayvee. Featuring Swavey Riddim and Sexxy. Stream on Spotify or Apple Music now.">
+    <meta name="theme-color" content="#0b0a07">
+    <link rel="canonical" href="https://afrocue.xyz/srs">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Swayvee — SRS">
+    <meta property="og:description" content="Swavey Riddim / Sexxy. Out now. Select a track to preview, then stream.">
+    <meta property="og:image" content="https://afrocue.xyz/srs/swayvee_art.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    <meta property="og:url" content="https://afrocue.xyz/srs">
+    <meta property="og:type" content="music.album">
+    <meta property="og:site_name" content="AfroCue">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Swayvee — SRS">
+    <meta name="twitter:description" content="Swavey Riddim / Sexxy. Select a track to listen, then stream on Spotify.">
+    <meta name="twitter:image" content="https://afrocue.xyz/srs/swayvee_art.jpg">
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WB5HQGFV');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0b0a07;
+            --surface: #161410;
+            --surface-elevated: #1c1914;
+            --surface-hover: #221e17;
+            --accent: #c4943a;
+            --accent-bright: #d4a84d;
+            --accent-glow: rgba(196, 148, 58, 0.25);
+            --accent-glow-strong: rgba(196, 148, 58, 0.5);
+            --text: #f0ece4;
+            --text-bright: #faf7f1;
+            --text-secondary: #9e988c;
+            --text-tertiary: #6b655b;
+            --text-muted: #4a4540;
+            --border: #221f19;
+            --border-light: #2c2820;
+            --border-active: #c4943a;
+            --spotify-green: #1DB954;
+            --apple-red: #FC3C44;
+            --radius: 14px;
+            --radius-lg: 20px;
+            --radius-full: 9999px;
+            --shadow-artwork: 0 24px 80px rgba(0, 0, 0, 0.7), 0 8px 32px rgba(196, 148, 58, 0.08);
+            --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-display: 'Playfair Display', 'Georgia', serif;
+            --font-body: 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            background: var(--bg);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+            background-image:
+                radial-gradient(ellipse at 50% 8%, rgba(196, 148, 58, 0.06) 0%, transparent 55%),
+                radial-gradient(ellipse at 50% 30%, rgba(160, 120, 50, 0.03) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+            background-size: 180px 180px;
+        }
+
+        .page {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 520px;
+            padding: 28px 20px 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            text-align: center;
+            animation: heroFadeIn 0.9s ease-out both;
+        }
+
+        @keyframes heroFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .artwork-container {
+            position: relative;
+            width: 100%;
+            max-width: 360px;
+            aspect-ratio: 1 / 1;
+            margin-bottom: 24px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-artwork);
+            animation: artworkReveal 1s 0.15s ease-out both;
+        }
+
+        @keyframes artworkReveal {
+            from {
+                opacity: 0;
+                transform: scale(0.94);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .artwork-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .artwork-glow {
+            position: absolute;
+            inset: -30px;
+            border-radius: 50%;
+            background: var(--accent-glow);
+            filter: blur(50px);
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 0;
+            animation: glowPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.55;
+                transform: scale(1.05);
+            }
+        }
+
+        .artwork-img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.4s ease;
+        }
+
+        .artist-name {
+            font-weight: 500;
+            font-size: 0.8rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            animation: fadeUp 0.7s 0.3s ease-out both;
+        }
+
+        .release-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(4rem, 10vw, 6.5rem);
+            letter-spacing: -0.02em;
+            line-height: 0.9;
+            color: var(--text-bright);
+            margin-bottom: 8px;
+            animation: fadeUp 0.7s 0.4s ease-out both;
+            text-shadow: 0 2px 40px rgba(196, 148, 58, 0.2);
+        }
+
+        .release-subtitle {
+            font-weight: 400;
+            font-size: 1rem;
+            letter-spacing: 0.04em;
+            color: var(--text-secondary);
+            font-style: italic;
+            animation: fadeUp 0.7s 0.5s ease-out both;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .divider {
+            width: 48px;
+            height: 1px;
+            background: var(--border-light);
+            margin: 28px auto;
+            animation: fadeUp 0.7s 0.55s ease-out both;
+            position: relative;
+        }
+
+        .divider::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0.6;
+        }
+
+        /* ─── TRACK SELECTOR (the beam) ─── */
+        .track-selector-section {
+            width: 100%;
+            animation: fadeUp 0.7s 0.6s ease-out both;
+            position: relative;
+        }
+
+        .selector-hint {
+            text-align: center;
+            margin-bottom: 12px;
+            font-weight: 500;
+            font-size: 0.7rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .selector-beam {
+            position: absolute;
+            top: calc(50% - 2px);
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            pointer-events: none;
+            z-index: -1;
+            animation: beamScan 2.5s ease-in-out infinite;
+        }
+
+        @keyframes beamScan {
+            0% {
+                opacity: 0;
+                transform: translateX(-30%);
+            }
+            20% {
+                opacity: 0.8;
+            }
+            80% {
+                opacity: 0.8;
+                transform: translateX(30%);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(30%);
+            }
+        }
+
+        .track-selector {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            position: relative;
+        }
+
+        .track-option {
+            flex: 1;
+            padding: 18px 20px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            text-align: center;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+            color: var(--text-secondary);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            transition: all var(--transition-smooth), transform 0.2s ease;
+            user-select: none;
+            -webkit-user-select: none;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .track-option::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(circle at center, var(--accent-glow) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+            pointer-events: none;
+        }
+
+        .track-option:hover {
+            background: var(--surface-hover);
+            border-color: var(--border-light);
+            color: var(--text);
+            transform: translateY(-1px);
+        }
+
+        .track-option:active {
+            transform: scale(0.97);
+        }
+
+        .track-option.active {
+            background: var(--surface-elevated);
+            border-color: var(--border-active);
+            color: var(--text-bright);
+            font-weight: 600;
+            box-shadow: 0 0 24px var(--accent-glow), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+            z-index: 1;
+        }
+
+        .track-option.active::before {
+            opacity: 1;
+        }
+
+        .track-option .track-index {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            margin-bottom: 4px;
+            transition: color var(--transition-smooth);
+        }
+
+        .track-option.active .track-index {
+            color: var(--accent);
+        }
+
+        .pause-dot {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            box-shadow: 0 0 12px var(--accent-glow-strong);
+            pointer-events: none;
+        }
+
+        .track-option.active.playing .pause-dot {
+            opacity: 1;
+        }
+
+        /* ─── PLAYER INFO (mini) ─── */
+        .player-status {
+            width: 100%;
+            margin-top: 20px;
+            text-align: center;
+            animation: fadeUp 0.7s 0.7s ease-out both;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .now-playing-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+        }
+
+        .now-playing-track {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--text-bright);
+            transition: all 0.25s ease;
+        }
+
+        .progress-mini {
+            width: 100%;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: fadeUp 0.7s 0.8s ease-out both;
+        }
+
+        .progress-bar-bg {
+            flex: 1;
+            height: 3px;
+            background: var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .time-mini {
+            font-size: 0.65rem;
+            color: var(--text-tertiary);
+            min-width: 32px;
+            text-align: right;
+        }
+
+        /* ─── STREAMING BUTTONS ─── */
+        .streaming-section {
+            width: 100%;
+            margin-top: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            animation: fadeUp 0.7s 0.9s ease-out both;
+        }
+
+        .spotify-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 17px 28px;
+            border-radius: var(--radius-full);
+            background: var(--spotify-green);
+            color: #000;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.03em;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.2s;
+            box-shadow: 0 4px 24px rgba(29, 185, 84, 0.3);
+            position: relative;
+            overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .spotify-btn:hover {
+            background: #1ed760;
+            box-shadow: 0 8px 30px rgba(29, 185, 84, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .spotify-btn:active {
+            transform: scale(0.96);
+            transition: transform 0.1s;
+        }
+
+        .apple-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: var(--radius-full);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.03em;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .apple-btn:hover {
+            background: var(--surface-hover);
+            border-color: var(--border-light);
+            transform: translateY(-1px);
+        }
+
+        .apple-btn:active {
+            transform: scale(0.96);
+        }
+
+        .footer-note {
+            margin-top: 32px;
+            font-size: 0.7rem;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            animation: fadeUp 0.7s 1s ease-out both;
+        }
+
+        /* Responsive */
+        @media (max-width: 380px) {
+            .track-option {
+                padding: 14px 8px;
+                font-size: 0.8rem;
+            }
+            .spotify-btn {
+                padding: 15px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <main class="page">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="artwork-container">
+                <div class="artwork-glow"></div>
+                <img class="artwork-img" src="swayvee_art.jpg" alt="Swayvee — SRS artwork" loading="eager">
+            </div>
+            <p class="artist-name">Swayvee</p>
+            <h1 class="release-title">SRS</h1>
+            <p class="release-subtitle">Swavey Riddim / Sexxy</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- TRACK SELECTOR with "SELECT ONE" beam -->
+        <section class="track-selector-section">
+            <div class="selector-hint">
+                <span>SELECT ONE</span>
+                <span style="font-size:1.1em;color:var(--accent);">◈</span>
+            </div>
+            <div class="selector-beam"></div>
+            <div class="track-selector" role="radiogroup" aria-label="Select a track to preview">
+                <button class="track-option active" data-track="swavey-riddim" data-name="Swavey Riddim" data-src="swavey-riddim-preview.mp3">
+                    <span class="track-index">Track 1</span>
+                    <span>Swavey Riddim</span>
+                    <span class="pause-dot"></span>
+                </button>
+                <button class="track-option" data-track="sexxy" data-name="Sexxy" data-src="sexxy-preview.mp3">
+                    <span class="track-index">Track 2</span>
+                    <span>Sexxy</span>
+                    <span class="pause-dot"></span>
+                </button>
+            </div>
+        </section>
+
+        <!-- MINI PLAYER STATUS -->
+        <div class="player-status">
+            <span class="now-playing-label">NOW PLAYING</span>
+            <span class="now-playing-track" id="nowPlayingTitle">Swavey Riddim</span>
+        </div>
+        <div class="progress-mini">
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+            </div>
+            <span class="time-mini" id="timeDisplay">0:00</span>
+        </div>
+
+        <!-- HIDDEN AUDIO -->
+        <audio id="audioPlayer" preload="auto"></audio>
+
+        <!-- STREAMING BUTTONS (Spotify primary, Apple secondary) -->
+        <section class="streaming-section">
+            <a class="spotify-btn" id="spotifyLink" href="https://open.spotify.com/album/3LplDdBx54QBby9Nv0b4BD?si=Z_VM_CtnReGUZfUwUbKKgg" target="_blank" rel="noopener noreferrer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                STREAM ON SPOTIFY
+            </a>
+            <a class="apple-btn" id="appleLink" href="https://music.apple.com/ng/album/swavey-riddim-sexxy-single/6772544356" target="_blank" rel="noopener noreferrer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                Apple Music
+            </a>
+        </section>
+
+        <p class="footer-note">◆ AfroCue ◆</p>
+    </main>
+
+    <script>
+        (function() {
+            const audio = document.getElementById('audioPlayer');
+            const trackOptions = document.querySelectorAll('.track-option');
+            const nowPlayingTitle = document.getElementById('nowPlayingTitle');
+            const progressFill = document.getElementById('progressFill');
+            const timeDisplay = document.getElementById('timeDisplay');
+            const spotifyBtn = document.getElementById('spotifyLink');
+            const appleBtn = document.getElementById('appleLink');
+
+            let currentTrack = {
+                id: 'swavey-riddim',
+                name: 'Swavey Riddim',
+                src: 'swavey-riddim-preview.mp3'
+            };
+            let isPlaying = false;
+            let hasActivated = false;
+
+            // GTM helper
+            function pushEvent(name, data) {
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({ event: name, ...data });
+            }
+
+            function formatTime(sec) {
+                if (isNaN(sec) || !isFinite(sec)) return '0:00';
+                const m = Math.floor(sec / 60);
+                const s = Math.floor(sec % 60);
+                return m + ':' + (s < 10 ? '0' : '') + s;
+            }
+
+            function updateProgress() {
+                if (!audio.duration || !isFinite(audio.duration)) return;
+                const pct = (audio.currentTime / audio.duration) * 100;
+                progressFill.style.width = pct + '%';
+                timeDisplay.textContent = formatTime(audio.currentTime);
+            }
+
+            function loadAndPlay(trackId, trackName, src) {
+                if (currentTrack.id === trackId && isPlaying) return;
+
+                if (isPlaying) {
+                    audio.pause();
+                }
+
+                currentTrack = { id: trackId, name: trackName, src: src };
+                audio.src = src;
+                audio.load();
+
+                nowPlayingTitle.textContent = trackName;
+                progressFill.style.width = '0%';
+                timeDisplay.textContent = '0:00';
+
+                trackOptions.forEach(btn => {
+                    btn.classList.remove('active', 'playing');
+                    if (btn.dataset.track === trackId) {
+                        btn.classList.add('active');
+                    }
+                });
+
+                const playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        setIsPlaying(true);
+                        pushEvent('preview_play', { track: trackName });
+                    }).catch(err => {
+                        console.warn('Autoplay prevented:', err);
+                        setIsPlaying(false);
+                    });
+                }
+
+                if (!hasActivated) {
+                    hasActivated = true;
+                    spotifyBtn.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease';
+                    spotifyBtn.style.transform = 'scale(1.02)';
+                    spotifyBtn.style.boxShadow = '0 8px 36px rgba(29,185,84,0.6)';
+                    setTimeout(() => {
+                        spotifyBtn.style.transform = 'scale(1)';
+                    }, 400);
+                }
+            }
+
+            function setIsPlaying(state) {
+                isPlaying = state;
+                const activeBtn = document.querySelector('.track-option.active');
+                if (activeBtn) {
+                    if (state) {
+                        activeBtn.classList.add('playing');
+                    } else {
+                        activeBtn.classList.remove('playing');
+                    }
+                }
+            }
+
+            function togglePlayPause() {
+                if (isPlaying) {
+                    audio.pause();
+                    setIsPlaying(false);
+                    pushEvent('preview_pause', { track: currentTrack.name });
+                } else {
+                    audio.play().then(() => {
+                        setIsPlaying(true);
+                        pushEvent('preview_play', { track: currentTrack.name });
+                    }).catch(() => {});
+                }
+            }
+
+            trackOptions.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const trackId = btn.dataset.track;
+                    const trackName = btn.dataset.name;
+                    const src = btn.dataset.src;
+
+                    if (currentTrack.id === trackId) {
+                        togglePlayPause();
+                    } else {
+                        loadAndPlay(trackId, trackName, src);
+                        pushEvent('track_switch', { track: trackName });
+                    }
+                });
+            });
+
+            audio.addEventListener('timeupdate', updateProgress);
+            audio.addEventListener('loadedmetadata', updateProgress);
+            audio.addEventListener('ended', () => {
+                setIsPlaying(false);
+                progressFill.style.width = '100%';
+                timeDisplay.textContent = formatTime(audio.duration || 0);
+                pushEvent('preview_complete', { track: currentTrack.name });
+                setTimeout(() => {
+                    audio.currentTime = 0;
+                    progressFill.style.width = '0%';
+                    timeDisplay.textContent = '0:00';
+                }, 800);
+            });
+
+            spotifyBtn.addEventListener('click', () => {
+                pushEvent('stream_click', { platform: 'Spotify' });
+            });
+            appleBtn.addEventListener('click', () => {
+                pushEvent('stream_click', { platform: 'Apple Music' });
+            });
+
+            // Prepare first track without autoplay
+            audio.src = currentTrack.src;
+            audio.load();
+            nowPlayingTitle.textContent = currentTrack.name;
+        })();
+    </script>
+</body>
+</html>
