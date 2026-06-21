@@ -580,20 +580,26 @@
             justify-content: center;
             gap: 6px;
             font-size: 0.65rem;
-            letter-spacing: 0.05em;
             color: var(--text-muted);
             animation: fadeUp 0.6s 0.8s ease-out both;
+            opacity: 0.65;
+        }
+
+        .footer-logo {
+            height: 18px;
+            width: auto;
             opacity: 0.7;
+            transition: opacity 0.2s;
         }
 
-        .footer-brand span {
-            font-weight: 500;
+        .footer-logo:hover {
+            opacity: 1;
+        }
+
+        .made-by {
+            letter-spacing: 0.04em;
+            font-weight: 400;
             color: var(--text-tertiary);
-        }
-
-        .footer-diamond {
-            font-size: 0.5rem;
-            color: var(--accent);
         }
 
         /* Responsive fine‑tuning */
@@ -623,7 +629,6 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <main class="page">
-        <!-- HERO: large artwork, OUT NOW, artist, title, clean -->
         <section class="hero">
             <div class="artwork-container">
                 <div class="artwork-glow"></div>
@@ -636,7 +641,6 @@
 
         <div class="divider"></div>
 
-        <!-- TRACK SELECTOR: “SELECT ONE” with beam, play icons inside buttons -->
         <section class="track-selector-section">
             <div class="selector-hint">
                 <span>SELECT ONE</span>
@@ -667,7 +671,6 @@
             </div>
         </section>
 
-        <!-- NOW PLAYING + EQUALIZER -->
         <div class="player-status">
             <span class="now-playing-label">NOW PLAYING</span>
             <span class="now-playing-track" id="nowPlayingTitle">Swavey Riddim</span>
@@ -684,7 +687,6 @@
 
         <audio id="audioPlayer" preload="auto"></audio>
 
-        <!-- STREAMING BUTTONS (Spotify primary) -->
         <section class="streaming-section">
             <a class="spotify-btn" id="spotifyLink" href="https://open.spotify.com/album/3LplDdBx54QBby9Nv0b4BD?si=Z_VM_CtnReGUZfUwUbKKgg" target="_blank" rel="noopener noreferrer" aria-label="Stream on Spotify">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
@@ -696,11 +698,9 @@
             </a>
         </section>
 
-        <!-- FOOTER: Made by AfroCue -->
         <div class="footer-brand">
-            <span class="footer-diamond">◆</span>
-            <span>Made by AfroCue</span>
-            <span class="footer-diamond">◆</span>
+            <span class="made-by">Made by</span>
+            <img src="logo_afrocue.svg" alt="AfroCue" class="footer-logo">
         </div>
     </main>
 
@@ -792,7 +792,6 @@
                 }
             }
 
-            // Track button click – custom GTM event
             trackOptions.forEach(btn => {
                 btn.addEventListener('click', () => {
                     const trackId = btn.dataset.track;
@@ -827,7 +826,6 @@
                 }, 800);
             });
 
-            // Hyperlink clicks – custom GTM event
             spotifyBtn.addEventListener('click', () => {
                 pushEvent('stream_click', { platform: 'Spotify' });
             });
@@ -835,7 +833,6 @@
                 pushEvent('stream_click', { platform: 'Apple Music' });
             });
 
-            // Init first track (no autoplay)
             audio.src = currentTrack.src;
             audio.load();
             nowPlayingTitle.textContent = currentTrack.name;
