@@ -34,8 +34,7 @@
                 j = d.createElement(s),
                 dl = l != 'dataLayer' ? '&l=' + l : '';
             j.async = true;
-            j.src =
-                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-WB5HQGFV');
     </script>
@@ -63,10 +62,10 @@
             --border-light: #2c2820;
             --border-active: #c4943a;
             --spotify-green: #1DB954;
-            --radius: 14px;
-            --radius-lg: 20px;
+            --radius: 12px;
+            --radius-lg: 18px;
             --radius-full: 9999px;
-            --shadow-artwork: 0 24px 80px rgba(0, 0, 0, 0.7), 0 8px 32px rgba(196, 148, 58, 0.08);
+            --shadow-artwork: 0 20px 60px rgba(0, 0, 0, 0.7), 0 6px 24px rgba(196, 148, 58, 0.08);
             --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             --font-display: 'Playfair Display', 'Georgia', serif;
@@ -97,12 +96,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            line-height: 1.5;
+            line-height: 1.4;
             overflow-x: hidden;
             -webkit-tap-highlight-color: transparent;
             background-image:
-                radial-gradient(ellipse at 50% 8%, rgba(196, 148, 58, 0.06) 0%, transparent 55%),
-                radial-gradient(ellipse at 50% 30%, rgba(160, 120, 50, 0.03) 0%, transparent 50%);
+                radial-gradient(ellipse at 50% 6%, rgba(196, 148, 58, 0.07) 0%, transparent 55%),
+                radial-gradient(ellipse at 50% 28%, rgba(160, 120, 50, 0.03) 0%, transparent 50%);
             background-attachment: fixed;
         }
 
@@ -121,39 +120,39 @@
             position: relative;
             z-index: 1;
             width: 100%;
-            max-width: 520px;
-            padding: 28px 20px 48px;
+            max-width: 500px;
+            padding: 18px 18px 36px;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 0;
         }
 
-        /* ─── HERO ─── */
+        /* ─── HERO (clean, compact) ─── */
         .hero {
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 100%;
             text-align: center;
-            animation: heroFadeIn 0.9s ease-out both;
+            animation: heroFadeIn 0.7s ease-out both;
         }
 
         @keyframes heroFadeIn {
-            from { opacity: 0; transform: translateY(18px); }
+            from { opacity: 0; transform: translateY(14px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .artwork-container {
             position: relative;
             width: 100%;
-            max-width: 360px;
+            max-width: 320px;
             aspect-ratio: 1 / 1;
-            margin-bottom: 24px;
+            margin-bottom: 14px;
             border-radius: var(--radius-lg);
             overflow: hidden;
             box-shadow: var(--shadow-artwork);
-            animation: artworkReveal 1s 0.15s ease-out both;
+            animation: artworkReveal 0.8s 0.1s ease-out both;
         }
 
         @keyframes artworkReveal {
@@ -173,19 +172,19 @@
 
         .artwork-glow {
             position: absolute;
-            inset: -30px;
+            inset: -24px;
             border-radius: 50%;
             background: var(--accent-glow);
-            filter: blur(50px);
-            opacity: 0.4;
+            filter: blur(40px);
+            opacity: 0.35;
             pointer-events: none;
             z-index: 0;
             animation: glowPulse 4s ease-in-out infinite;
         }
 
         @keyframes glowPulse {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.55; transform: scale(1.05); }
+            0%, 100% { opacity: 0.25; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.04); }
         }
 
         .artwork-img {
@@ -195,51 +194,51 @@
             object-fit: cover;
             position: relative;
             z-index: 1;
-            transition: transform 0.4s ease;
+        }
+
+        .out-now-badge {
+            font-weight: 600;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 4px;
+            animation: fadeUp 0.6s 0.25s ease-out both;
         }
 
         .artist-name {
             font-weight: 500;
-            font-size: 0.8rem;
-            letter-spacing: 0.18em;
+            font-size: 0.75rem;
+            letter-spacing: 0.16em;
             text-transform: uppercase;
             color: var(--text-secondary);
-            margin-bottom: 10px;
-            animation: fadeUp 0.7s 0.3s ease-out both;
+            margin-bottom: 2px;
+            animation: fadeUp 0.6s 0.3s ease-out both;
         }
 
         .release-title {
             font-family: var(--font-display);
             font-weight: 700;
-            font-size: clamp(4rem, 10vw, 6.5rem);
+            font-size: 2.8rem;
             letter-spacing: -0.02em;
-            line-height: 0.9;
+            line-height: 0.95;
             color: var(--text-bright);
-            margin-bottom: 8px;
-            animation: fadeUp 0.7s 0.4s ease-out both;
-            text-shadow: 0 2px 40px rgba(196, 148, 58, 0.2);
-        }
-
-        .release-subtitle {
-            font-weight: 400;
-            font-size: 1rem;
-            letter-spacing: 0.04em;
-            color: var(--text-secondary);
-            font-style: italic;
-            animation: fadeUp 0.7s 0.5s ease-out both;
+            margin-bottom: 0;
+            animation: fadeUp 0.6s 0.35s ease-out both;
+            text-shadow: 0 2px 28px rgba(196, 148, 58, 0.18);
         }
 
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .divider {
-            width: 48px;
+            width: 36px;
             height: 1px;
             background: var(--border-light);
-            margin: 28px auto;
-            animation: fadeUp 0.7s 0.55s ease-out both;
+            margin: 12px auto;
+            animation: fadeUp 0.6s 0.5s ease-out both;
             position: relative;
         }
 
@@ -249,40 +248,40 @@
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            width: 6px;
-            height: 6px;
+            width: 5px;
+            height: 5px;
             border-radius: 50%;
             background: var(--accent);
-            opacity: 0.6;
+            opacity: 0.5;
         }
 
         /* ─── TRACK SELECTOR ─── */
         .track-selector-section {
             width: 100%;
-            animation: fadeUp 0.7s 0.6s ease-out both;
+            animation: fadeUp 0.6s 0.6s ease-out both;
             position: relative;
         }
 
         .selector-hint {
             text-align: center;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             font-weight: 500;
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             letter-spacing: 0.14em;
             text-transform: uppercase;
             color: var(--text-tertiary);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .selector-beam {
             position: absolute;
-            top: calc(50% - 2px);
+            top: calc(50% - 1px);
             left: 0;
             right: 0;
-            height: 2px;
+            height: 1.5px;
             background: linear-gradient(90deg, transparent, var(--accent), transparent);
             opacity: 0;
             pointer-events: none;
@@ -292,14 +291,14 @@
 
         @keyframes beamScan {
             0% { opacity: 0; transform: translateX(-30%); }
-            20% { opacity: 0.8; }
-            80% { opacity: 0.8; transform: translateX(30%); }
+            20% { opacity: 0.7; }
+            80% { opacity: 0.7; transform: translateX(30%); }
             100% { opacity: 0; transform: translateX(30%); }
         }
 
         .track-selector {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             width: 100%;
         }
 
@@ -308,8 +307,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            padding: 18px 16px;
+            gap: 10px;
+            padding: 14px 12px;
             border-radius: var(--radius);
             cursor: pointer;
             background: var(--surface);
@@ -333,14 +332,17 @@
         .track-option.active {
             background: var(--surface-elevated);
             border-color: var(--border-active);
-            box-shadow: 0 0 24px var(--accent-glow);
+            box-shadow: 0 0 20px var(--accent-glow);
             z-index: 1;
         }
 
-        /* Play / Pause icon inside track button */
+        .track-option.playing {
+            box-shadow: 0 0 28px var(--accent-glow-strong);
+        }
+
         .track-icon {
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -350,27 +352,28 @@
         .icon-play {
             width: 0;
             height: 0;
-            border-left: 16px solid var(--text-secondary);
-            border-top: 10px solid transparent;
-            border-bottom: 10px solid transparent;
+            border-left: 14px solid var(--text-secondary);
+            border-top: 9px solid transparent;
+            border-bottom: 9px solid transparent;
             transition: all var(--transition-smooth);
             animation: pulsePlay 2s infinite ease-in-out;
         }
 
         @keyframes pulsePlay {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.12); opacity: 1; }
+            0%, 100% { transform: scale(1); opacity: 0.75; }
+            50% { transform: scale(1.14); opacity: 1; }
         }
 
         .track-option.active .icon-play,
         .track-option.playing .icon-play {
             animation: none;
+            border-left-color: var(--text-bright);
         }
 
         .icon-pause {
             display: none;
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             position: relative;
         }
 
@@ -379,8 +382,8 @@
             content: '';
             position: absolute;
             top: 0;
-            width: 5px;
-            height: 16px;
+            width: 4px;
+            height: 14px;
             background: var(--text-bright);
             border-radius: 2px;
         }
@@ -398,23 +401,25 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            min-width: 0;
         }
 
         .track-index {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             font-weight: 500;
-            letter-spacing: 0.12em;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
             color: var(--text-tertiary);
-            margin-bottom: 2px;
+            margin-bottom: 1px;
         }
 
         .track-label {
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             letter-spacing: 0.02em;
             color: var(--text-secondary);
             transition: color var(--transition-smooth);
+            white-space: nowrap;
         }
 
         .track-option.active .track-label {
@@ -425,16 +430,16 @@
         /* ─── NOW PLAYING + EQUALIZER ─── */
         .player-status {
             width: 100%;
-            margin-top: 20px;
+            margin-top: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            animation: fadeUp 0.7s 0.7s ease-out both;
+            gap: 8px;
+            animation: fadeUp 0.6s 0.65s ease-out both;
         }
 
         .now-playing-label {
-            font-size: 0.7rem;
+            font-size: 0.62rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
             color: var(--text-tertiary);
@@ -443,7 +448,7 @@
         .now-playing-track {
             font-family: var(--font-display);
             font-weight: 600;
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--text-bright);
         }
 
@@ -451,8 +456,8 @@
             display: flex;
             align-items: flex-end;
             gap: 2px;
-            height: 14px;
-            margin-left: 4px;
+            height: 12px;
+            margin-left: 2px;
             opacity: 0;
             transition: opacity 0.3s;
         }
@@ -464,30 +469,30 @@
             width: 3px;
             background: var(--accent);
             border-radius: 1px;
-            animation: eq 1.2s ease-in-out infinite;
+            animation: eq 1s ease-in-out infinite;
         }
-        .bar:nth-child(1) { height: 8px; animation-delay: 0s; }
-        .bar:nth-child(2) { height: 14px; animation-delay: 0.2s; }
-        .bar:nth-child(3) { height: 5px; animation-delay: 0.4s; }
-        .bar:nth-child(4) { height: 10px; animation-delay: 0.6s; }
+        .bar:nth-child(1) { height: 6px; animation-delay: 0s; }
+        .bar:nth-child(2) { height: 12px; animation-delay: 0.15s; }
+        .bar:nth-child(3) { height: 4px; animation-delay: 0.3s; }
+        .bar:nth-child(4) { height: 9px; animation-delay: 0.45s; }
 
         @keyframes eq {
             0%, 100% { transform: scaleY(1); }
-            50% { transform: scaleY(0.4); }
+            50% { transform: scaleY(0.35); }
         }
 
         .progress-mini {
             width: 100%;
-            margin-top: 8px;
+            margin-top: 6px;
             display: flex;
             align-items: center;
             gap: 8px;
-            animation: fadeUp 0.7s 0.8s ease-out both;
+            animation: fadeUp 0.6s 0.7s ease-out both;
         }
 
         .progress-bar-bg {
             flex: 1;
-            height: 4px;
+            height: 3px;
             background: var(--border);
             border-radius: 2px;
             overflow: hidden;
@@ -499,20 +504,20 @@
             transition: width 0.1s linear;
         }
         .time-mini {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             color: var(--text-tertiary);
-            min-width: 32px;
+            min-width: 28px;
             text-align: right;
         }
 
         /* ─── STREAMING ─── */
         .streaming-section {
             width: 100%;
-            margin-top: 28px;
+            margin-top: 18px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            animation: fadeUp 0.7s 0.9s ease-out both;
+            gap: 8px;
+            animation: fadeUp 0.6s 0.75s ease-out both;
         }
 
         .spotify-btn {
@@ -521,26 +526,26 @@
             justify-content: center;
             gap: 10px;
             width: 100%;
-            padding: 17px 28px;
+            padding: 15px 24px;
             border-radius: var(--radius-full);
             background: var(--spotify-green);
             color: #000;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.95rem;
             letter-spacing: 0.03em;
             text-decoration: none;
             cursor: pointer;
             border: none;
             transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.2s;
-            box-shadow: 0 4px 24px rgba(29, 185, 84, 0.3);
+            box-shadow: 0 4px 20px rgba(29, 185, 84, 0.3);
             -webkit-tap-highlight-color: transparent;
         }
         .spotify-btn:hover {
             background: #1ed760;
-            box-shadow: 0 8px 30px rgba(29, 185, 84, 0.5);
-            transform: translateY(-2px);
+            box-shadow: 0 6px 26px rgba(29, 185, 84, 0.5);
+            transform: translateY(-1px);
         }
-        .spotify-btn:active { transform: scale(0.96); }
+        .spotify-btn:active { transform: scale(0.97); }
 
         .apple-btn {
             display: flex;
@@ -548,13 +553,13 @@
             justify-content: center;
             gap: 8px;
             width: 100%;
-            padding: 14px 20px;
+            padding: 12px 18px;
             border-radius: var(--radius-full);
             background: var(--surface);
             border: 1px solid var(--border);
             color: var(--text);
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.82rem;
             letter-spacing: 0.03em;
             text-decoration: none;
             transition: background 0.2s, border-color 0.2s, transform 0.2s;
@@ -564,19 +569,36 @@
             border-color: var(--border-light);
             transform: translateY(-1px);
         }
-        .apple-btn:active { transform: scale(0.96); }
+        .apple-btn:active { transform: scale(0.97); }
 
         .footer-note {
-            margin-top: 32px;
-            font-size: 0.7rem;
+            margin-top: 20px;
+            font-size: 0.6rem;
             letter-spacing: 0.06em;
             color: var(--text-muted);
-            animation: fadeUp 0.7s 1s ease-out both;
+            animation: fadeUp 0.6s 0.8s ease-out both;
         }
 
+        /* Responsive fine‑tuning */
         @media (max-width: 380px) {
-            .track-option { padding: 14px 10px; gap: 8px; }
-            .track-label { font-size: 0.8rem; }
+            .page { padding: 14px 12px 28px; }
+            .artwork-container { max-width: 260px; margin-bottom: 10px; }
+            .release-title { font-size: 2.2rem; }
+            .track-option { padding: 12px 8px; gap: 6px; }
+            .track-label { font-size: 0.75rem; }
+            .track-icon { width: 22px; height: 22px; }
+            .icon-play { border-left-width: 11px; border-top-width: 7px; border-bottom-width: 7px; }
+            .spotify-btn { padding: 13px 18px; font-size: 0.85rem; }
+            .apple-btn { padding: 10px 14px; font-size: 0.75rem; }
+            .player-status { margin-top: 8px; }
+            .streaming-section { margin-top: 14px; }
+            .divider { margin: 10px auto; }
+            .selector-hint { margin-bottom: 6px; font-size: 0.62rem; }
+        }
+
+        @media (min-width: 420px) and (max-width: 500px) {
+            .artwork-container { max-width: 340px; }
+            .release-title { font-size: 3.2rem; }
         }
     </style>
 </head>
@@ -584,26 +606,28 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <main class="page">
+        <!-- HERO: large artwork, OUT NOW, artist, title, no extra text -->
         <section class="hero">
             <div class="artwork-container">
                 <div class="artwork-glow"></div>
-                <img class="artwork-img" src="swayvee_art.jpg" alt="Swayvee — SRS artwork">
+                <img class="artwork-img" src="swayvee_art.jpg" alt="Swayvee — SRS artwork" loading="eager">
             </div>
+            <p class="out-now-badge">✦ OUT NOW ✦</p>
             <p class="artist-name">Swayvee</p>
             <h1 class="release-title">SRS</h1>
-            <p class="release-subtitle">Swavey Riddim / Sexxy</p>
         </section>
 
         <div class="divider"></div>
 
+        <!-- TRACK SELECTOR: “SELECT ONE” with beam, play icons inside buttons -->
         <section class="track-selector-section">
             <div class="selector-hint">
                 <span>SELECT ONE</span>
-                <span style="font-size:1.1em;color:var(--accent);">◈</span>
+                <span style="font-size:1em;color:var(--accent);">◈</span>
             </div>
             <div class="selector-beam"></div>
             <div class="track-selector">
-                <button class="track-option active" data-track="swavey-riddim" data-name="Swavey Riddim" data-src="swavey-riddim-preview.mp3">
+                <button class="track-option active" data-track="swavey-riddim" data-name="Swavey Riddim" data-src="swavey-riddim-preview.mp3" aria-label="Play Swavey Riddim preview">
                     <span class="track-icon">
                         <span class="icon-play"></span>
                         <span class="icon-pause"></span>
@@ -613,7 +637,7 @@
                         <span class="track-label">Swavey Riddim</span>
                     </span>
                 </button>
-                <button class="track-option" data-track="sexxy" data-name="Sexxy" data-src="sexxy-preview.mp3">
+                <button class="track-option" data-track="sexxy" data-name="Sexxy" data-src="sexxy-preview.mp3" aria-label="Play Sexxy preview">
                     <span class="track-icon">
                         <span class="icon-play"></span>
                         <span class="icon-pause"></span>
@@ -626,6 +650,7 @@
             </div>
         </section>
 
+        <!-- NOW PLAYING + EQUALIZER -->
         <div class="player-status">
             <span class="now-playing-label">NOW PLAYING</span>
             <span class="now-playing-track" id="nowPlayingTitle">Swavey Riddim</span>
@@ -642,13 +667,14 @@
 
         <audio id="audioPlayer" preload="auto"></audio>
 
+        <!-- STREAMING BUTTONS (Spotify primary) -->
         <section class="streaming-section">
-            <a class="spotify-btn" id="spotifyLink" href="https://open.spotify.com/album/3LplDdBx54QBby9Nv0b4BD?si=Z_VM_CtnReGUZfUwUbKKgg" target="_blank" rel="noopener noreferrer">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            <a class="spotify-btn" id="spotifyLink" href="https://open.spotify.com/album/3LplDdBx54QBby9Nv0b4BD?si=Z_VM_CtnReGUZfUwUbKKgg" target="_blank" rel="noopener noreferrer" aria-label="Stream on Spotify">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
                 STREAM ON SPOTIFY
             </a>
-            <a class="apple-btn" id="appleLink" href="https://music.apple.com/ng/album/swavey-riddim-sexxy-single/6772544356" target="_blank" rel="noopener noreferrer">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            <a class="apple-btn" id="appleLink" href="https://music.apple.com/ng/album/swavey-riddim-sexxy-single/6772544356" target="_blank" rel="noopener noreferrer" aria-label="Open in Apple Music">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                 Apple Music
             </a>
         </section>
@@ -703,7 +729,6 @@
 
             function loadAndPlay(trackId, trackName, src) {
                 if (currentTrack.id === trackId && isPlaying) return;
-
                 if (isPlaying) audio.pause();
 
                 currentTrack = { id: trackId, name: trackName, src: src };
@@ -727,7 +752,7 @@
                 if (!hasActivated) {
                     hasActivated = true;
                     spotifyBtn.style.transform = 'scale(1.03)';
-                    spotifyBtn.style.boxShadow = '0 8px 36px rgba(29,185,84,0.6)';
+                    spotifyBtn.style.boxShadow = '0 6px 28px rgba(29,185,84,0.55)';
                     setTimeout(() => { spotifyBtn.style.transform = 'scale(1)'; }, 400);
                 }
             }
@@ -745,13 +770,21 @@
                 }
             }
 
+            // Track button click – custom GTM event
             trackOptions.forEach(btn => {
                 btn.addEventListener('click', () => {
                     const trackId = btn.dataset.track;
                     const trackName = btn.dataset.name;
                     const src = btn.dataset.src;
-                    if (currentTrack.id === trackId) togglePlayPause();
-                    else {
+
+                    pushEvent('track_button_click', {
+                        track: trackName,
+                        action: currentTrack.id === trackId ? (isPlaying ? 'pause' : 'play') : 'switch'
+                    });
+
+                    if (currentTrack.id === trackId) {
+                        togglePlayPause();
+                    } else {
                         loadAndPlay(trackId, trackName, src);
                         pushEvent('track_switch', { track: trackName });
                     }
@@ -772,10 +805,15 @@
                 }, 800);
             });
 
-            spotifyBtn.addEventListener('click', () => pushEvent('stream_click', { platform: 'Spotify' }));
-            appleBtn.addEventListener('click', () => pushEvent('stream_click', { platform: 'Apple Music' }));
+            // Hyperlink clicks – custom GTM event
+            spotifyBtn.addEventListener('click', () => {
+                pushEvent('stream_click', { platform: 'Spotify' });
+            });
+            appleBtn.addEventListener('click', () => {
+                pushEvent('stream_click', { platform: 'Apple Music' });
+            });
 
-            // Init with first track (no autoplay)
+            // Init first track (no autoplay)
             audio.src = currentTrack.src;
             audio.load();
             nowPlayingTitle.textContent = currentTrack.name;
@@ -783,4 +821,4 @@
         })();
     </script>
 </body>
-</html>
+</html>s
