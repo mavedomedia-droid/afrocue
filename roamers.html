@@ -33,40 +33,92 @@
     /* ── MAIN WRAPPER ── */
     .wrap { position:relative; z-index:3; max-width:680px; margin:0 auto; padding:64px 32px 80px; text-align:center; }
 
-    /* ── HERO (redesigned) ── */
-    .roamers-hero { margin-bottom:40px; }
-    .hero-flex {
-      display:flex; align-items:center; gap:32px; flex-wrap:wrap;
-      justify-content:center; margin-bottom:20px;
-    }
-    .hero-text {
-      flex:1 1 50%; min-width:280px; text-align:left;
-      display:flex; flex-direction:column; justify-content:center;
-    }
-    .hero-text .small-line {
-      font-family:'Aesthet Nova',sans-serif; font-weight:500;
-      font-size: clamp(18px, 3vw, 28px); line-height:1;
-      color: var(--white); margin-bottom:0;
-      text-shadow: 1px 2px 0px rgba(0,0,0,0.9);
-    }
-    .hero-text .big-line {
-      font-family:'Aesthet Nova',sans-serif; font-weight:900;
-      font-size: clamp(64px, 10vw, 120px); line-height:0.85;
-      color: var(--yellow); text-shadow: var(--yts);
-      margin-bottom:0;
-    }
-    .hero-sub {
-      font-size:15px; font-weight:300; line-height:1.65;
-      color:rgba(240,237,232,0.65); max-width:420px; margin-top:16px;
-    }
-    .hero-img {
-      flex:0 0 240px;
-      width:240px; height:auto; aspect-ratio:4/5;
-      border-radius:16px; overflow:hidden;
-      border:1px solid rgba(255,255,255,0.12);
-      box-shadow:0 20px 40px rgba(0,0,0,0.5);
-    }
-    .hero-img img { width:100%; height:100%; object-fit:cover; display:block; }
+    /* ── HERO (redesigned, no overlap) ── */
+.hero-flex {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.hero-text {
+  flex: 1 1 55%;          /* takes more space, image won't crush it */
+  min-width: 280px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-text .small-line {
+  font-family: 'Aesthet Nova', sans-serif;
+  font-weight: 500;
+  font-size: clamp(16px, 2.5vw, 22px);
+  line-height: 1;
+  color: var(--white);
+  margin-bottom: 0;
+  text-shadow: 1px 2px 0px rgba(0,0,0,0.9);
+}
+
+.hero-text .big-line {
+  font-family: 'Aesthet Nova', sans-serif;
+  font-weight: 900;
+  font-size: clamp(48px, 8vw, 80px);   /* smaller max, still huge */
+  line-height: 0.85;
+  color: var(--yellow);
+  text-shadow: var(--yts);
+  margin-bottom: 0;
+}
+
+.hero-sub {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.65;
+  color: rgba(240,237,232,0.65);
+  max-width: 420px;
+  margin-top: 16px;
+}
+
+.hero-img {
+  flex: 0 0 auto;
+  width: 240px;
+  height: auto;
+  aspect-ratio: 4/5;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.hero-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── MOBILE (below 640px) ── */
+@media (max-width: 640px) {
+  .hero-flex {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .hero-text {
+    text-align: center;
+    flex: 1 1 auto;
+  }
+  .hero-text .small-line {
+    font-size: clamp(16px, 6vw, 20px);
+  }
+  .hero-text .big-line {
+    font-size: clamp(40px, 12vw, 56px);
+  }
+  .hero-img {
+    width: 180px;
+  }
+}
 
     /* ── QUIZ CARD (centred) ── */
     .quiz-card {
@@ -545,7 +597,7 @@
   }
 
   // ── ⚡️ SET YOUR APPS SCRIPT DEPLOYMENT URL BELOW ──
-  window.AFROCUE_SCRIPT_URL = 'YOUR_SCRIPT_URL_HERE';  // ← Replace with your actual GAS URL
+  window.AFROCUE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyZvFHnm9JpFtMzWbMCvzSCTNw7TJN4mjCui-SgQbfF2lnko4-eJ72JHgRB-G2Jw36O/exec';  // ← Replace with your actual GAS URL
 
 </script>
 
