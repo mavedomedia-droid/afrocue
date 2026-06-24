@@ -42,40 +42,48 @@
     /* ── MAIN WRAPPER ── */
     .wrap { position:relative; z-index:3; max-width:680px; margin:0 auto; padding:64px 32px 80px; text-align:center; }
 
-    /* ── HERO (FIXED FOR MOBILE, NO OVERLAP) ── */
+    /* ── HERO (TEXT LEFT, IMAGE RIGHT) ── */
     .roamers-hero { margin-bottom:40px; }
     .hero-flex {
-      display:flex; align-items:center; gap:32px; flex-wrap:wrap;
-      justify-content:center; margin-bottom:20px;
+      display:flex; align-items:center; gap:20px;
+      flex-wrap:nowrap;
+      justify-content:space-between;
+      margin-bottom:20px;
     }
     .hero-text {
-      flex:1 1 55%; min-width:280px; text-align:left;
-      display:flex; flex-direction:column; justify-content:center;
+      flex:1 1 auto; min-width:0; text-align:left;
     }
     .hero-text .small-line {
       font-family:'Aesthet Nova',sans-serif; font-weight:500;
-      font-size: clamp(16px, 2.5vw, 22px); line-height:1;
+      font-size: clamp(14px, 2.5vw, 22px); line-height:1;
       color: var(--white); margin-bottom:0;
       text-shadow: 1px 2px 0px rgba(0,0,0,0.9);
     }
     .hero-text .big-line {
       font-family:'Aesthet Nova',sans-serif; font-weight:900;
-      font-size: clamp(48px, 8vw, 80px); line-height:0.85;
+      font-size: clamp(42px, 8vw, 80px); line-height:0.85;
       color: var(--yellow); text-shadow: var(--yts);
       margin-bottom:0;
     }
     .hero-sub {
-      font-size:15px; font-weight:300; line-height:1.65;
-      color:rgba(240,237,232,0.65); max-width:420px; margin-top:16px;
+      font-size:14px; font-weight:300; line-height:1.6;
+      color:rgba(240,237,232,0.65); margin-top:12px;
+      display:block; max-width:100%;
     }
     .hero-img {
       flex:0 0 auto;
-      width:240px; height:auto; aspect-ratio:4/5;
-      border-radius:16px; overflow:hidden;
+      width: clamp(100px, 25vw, 240px);
+      aspect-ratio:4/5; border-radius:16px; overflow:hidden;
       border:1px solid rgba(255,255,255,0.12);
       box-shadow:0 20px 40px rgba(0,0,0,0.5);
     }
     .hero-img img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    @media (max-width: 480px) {
+      .hero-text .small-line { font-size: 14px; }
+      .hero-text .big-line { font-size: 38px; }
+      .hero-img { width: 100px; }
+    }
 
     /* ── QUIZ CARD ── */
     .quiz-card {
@@ -92,8 +100,6 @@
     .step.active { display:block; }
     @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
 
-    .step-divider { width:40px; height:1px; background:rgba(255,255,255,0.08); margin:24px auto 20px; }
-
     .step-label { font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:rgba(200,224,0,0.35); margin-bottom:12px; }
     .step-q { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(20px, 4vw, 26px); color:var(--white); line-height:1.1; margin-bottom:16px; }
     .step-hint { font-size:14px; font-weight:300; color:rgba(240,237,232,0.5); line-height:1.6; margin-bottom:24px; }
@@ -109,7 +115,6 @@
     .opt.selected .opt-check { border-color:var(--white); background:var(--white); }
     .opt.selected .opt-check::after { content:''; width:10px; height:6px; border-left:2px solid var(--black); border-bottom:2px solid var(--black); transform:rotate(-45deg); margin-top:-2px; }
     .opt-text { font-size:15px; font-weight:500; color:var(--white); }
-    .opt-sub { font-size:12px; font-weight:300; color:rgba(240,237,232,0.45); margin-top:3px; }
 
     .multi-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
     .multi-opt { border:1.5px solid rgba(255,255,255,0.08); border-radius:10px; padding:14px 12px; cursor:pointer; background:rgba(255,255,255,0.03); display:flex; align-items:center; gap:10px; transition:all 0.15s; text-align:left; }
@@ -126,8 +131,6 @@
     .btn-primary:hover { background:rgba(255,255,255,0.9); }
     .btn-block { display:block; width:100%; max-width:320px; margin:20px auto 0; }
     .btn:disabled { opacity:0.4; cursor:not-allowed; }
-    .back-btn { background:none; border:none; cursor:pointer; font-family:'Figtree',sans-serif; font-size:12px; color:rgba(255,255,255,0.28); padding:0; margin-top:20px; display:inline-flex; align-items:center; gap:5px; transition:color 0.2s; }
-    .back-btn:hover { color:rgba(255,255,255,0.55); }
 
     .end-card { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:36px 28px; margin:24px 0; }
     .end-card h3 { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:28px; color:var(--white); margin-bottom:12px; }
@@ -137,7 +140,6 @@
     .field label { display:block; font-size:10px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:6px; }
     .field input { width:100%; padding:13px 14px; border:1.5px solid rgba(255,255,255,0.1); border-radius:8px; background:rgba(255,255,255,0.04); color:var(--white); font-family:'Figtree',sans-serif; font-size:16px; outline:none; transition:border-color 0.2s; }
     .field input:focus { border-color:rgba(255,255,255,0.35); }
-    .field input::placeholder { color:var(--grey); }
 
     .checkbox-row { display:flex; align-items:center; gap:8px; cursor:pointer; margin-bottom:12px; }
     .checkbox-row input { width:auto; margin-right:6px; }
@@ -145,7 +147,6 @@
     .ty-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:40px 32px; text-align:center; }
     .ty-title { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(36px, 8vw, 56px); color:var(--white); margin-bottom:12px; }
 
-    /* ── SECTIONS ── */
     .info-section { margin-top:80px; text-align:left; }
     .section-h { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(44px, 8vw, 72px); line-height:0.9; color:var(--yellow); text-shadow: var(--yts); margin-bottom:28px; }
     .section-body { font-size:16px; font-weight:300; line-height:1.85; color:rgba(240,237,232,0.6); margin-bottom:40px; }
@@ -158,26 +159,66 @@
     .icon-card .emoji { font-size:36px; margin-bottom:10px; }
     .icon-card h4 { font-size:14px; font-weight:600; color:var(--white); line-height:1.3; }
 
-    .why-cards { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-    .why-card { background:rgba(20,20,20,0.7); border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:24px; color:var(--white); }
-    .why-card h4 { font-size:16px; font-weight:600; margin-bottom:8px; }
-    .why-card p { font-size:13px; color:rgba(240,237,232,0.5); line-height:1.6; }
+    /* ── HOW IT WORKS (horizontal cards) ── */
+    .how-grid { display:flex; justify-content:space-between; align-items:flex-start; gap:0; margin-top:40px; position:relative; }
+    .how-grid::before {
+      content:''; position:absolute; top:30px; left:40px; right:40px;
+      height:1px; background:rgba(255,255,255,0.1); z-index:0;
+    }
+    .how-step { flex:1; max-width:140px; text-align:center; position:relative; z-index:1; }
+    .how-step-num {
+      width:32px; height:32px; border-radius:50%;
+      background:var(--dark); border:1px solid rgba(255,255,255,0.15);
+      display:flex; align-items:center; justify-content:center;
+      margin:0 auto 14px;
+      font-family:'Aesthet Nova',sans-serif; font-weight:900;
+      font-size:14px; color:var(--yellow);
+    }
+    .how-step-title { font-size:13px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--white); margin-bottom:6px; }
+    .how-step-desc { font-size:12px; font-weight:300; color:rgba(240,237,232,0.45); line-height:1.6; }
+
+    /* ── WHAT WE'RE LOOKING FOR (quote cards) ── */
+    .looking-card {
+      background:rgba(20,20,20,0.6); border-left:2px solid var(--yellow);
+      padding:24px 20px; border-radius:0 12px 12px 0;
+      margin-bottom:16px; text-align:left;
+    }
+    .looking-card p { font-size:18px; font-weight:400; color:var(--white); line-height:1.4; }
+
+    /* ── WHAT ROAMERS GET (simplified cards) ── */
+    .get-cards { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .get-card {
+      background:rgba(20,20,20,0.7); border:1px solid rgba(255,255,255,0.06);
+      border-radius:14px; padding:24px; color:var(--white);
+    }
+    .get-card h4 { font-size:16px; font-weight:600; margin-bottom:6px; }
+    .get-card p { font-size:13px; color:rgba(240,237,232,0.5); line-height:1.6; }
+
+    /* ── SELECTION PANEL ── */
+    .selection-panel {
+      background:rgba(20,20,20,0.7); border:1px solid rgba(255,255,255,0.08);
+      border-radius:16px; padding:32px 28px; margin:80px 0 0;
+      position:relative; text-align:left;
+    }
+    .selection-panel::before {
+      content:''; position:absolute; top:0; left:0; right:0;
+      height:2px; background: var(--yellow); border-radius: 0;
+    }
+    .selection-panel h3 { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:22px; color:var(--white); margin-bottom:12px; }
+    .selection-panel p { font-size:14px; font-weight:300; color:rgba(240,237,232,0.6); line-height:1.8; }
 
     .subtle-note { font-size:12px; color:rgba(255,255,255,0.35); margin-top:24px; text-align:center; }
-
     .full-width-cta { margin-top:80px; padding:64px 0; text-align:center; border-top:1px solid rgba(255,255,255,0.06); border-bottom:1px solid rgba(255,255,255,0.06); }
 
     @media (max-width:640px) {
-      .wrap { padding:48px 20px 64px; }
-      .hero-flex { flex-direction:column; gap:20px; }
-      .hero-text { text-align:center; flex:1 1 auto; }
-      .hero-text .small-line { font-size: clamp(16px, 6vw, 20px); }
-      .hero-text .big-line { font-size: clamp(40px, 12vw, 56px); }
-      .hero-img { width:180px; }
+      .wrap { padding:40px 20px 64px; }
       .quiz-card { padding:24px 16px; max-width:100%; }
       .multi-grid { grid-template-columns:1fr; }
       .icon-cards { grid-template-columns:1fr 1fr; }
-      .why-cards { grid-template-columns:1fr; }
+      .how-grid { flex-wrap:wrap; gap:20px; }
+      .how-grid::before { display:none; }
+      .how-step { max-width:100%; flex:1 1 100%; }
+      .get-cards { grid-template-columns:1fr; }
     }
   </style>
 </head>
@@ -311,7 +352,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <!-- ROAMERS APPLICATION (qualified) -->
+      <!-- RESULT + APPLICATION FORM -->
       <div class="step" id="result">
         <div class="step-label">Result</div>
         <div class="step-q">You Might Be A Roamer.</div>
@@ -349,6 +390,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p style="font-size:11px; color:var(--grey); margin-top:12px;">We'll reach out if you're selected.</p>
       </div>
 
+      <!-- THANK YOU -->
       <div class="step" id="thankyou">
         <div class="ty-card">
           <div class="ty-title">Profile<br>Submitted.</div>
@@ -367,9 +409,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       Roamers are Lagos nightlife regulars selected each month — not for their followings, simply because they are present. They already go out. They discover DJs. They experience the culture. Roamers gives them a way to document it.
     </div>
     <div class="img-block">
-      <!-- If this image doesn't show, ensure the file is named roamers_who.jpg (all lowercase) and placed in the same folder as this HTML -->
       <img src="roamers_who.jpg" alt="Lagos nightlife crowd"/>
       <div class="img-block-overlay"></div>
+    </div>
+  </div>
+
+  <!-- ========== HOW IT WORKS ========== -->
+  <div class="info-section" style="margin-top:80px;">
+    <div class="section-h">How It<br>Works</div>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-step-num">1</div>
+        <div class="how-step-title">Apply</div>
+        <div class="how-step-desc">Take the quiz and complete your profile.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">2</div>
+        <div class="how-step-title">Get Selected</div>
+        <div class="how-step-desc">A small number of applicants are chosen each month.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">3</div>
+        <div class="how-step-title">Go Out</div>
+        <div class="how-step-desc">Keep doing what you already do. Experience the music. Experience the room.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">4</div>
+        <div class="how-step-title">Share Moments</div>
+        <div class="how-step-desc">Tell us what stood out. The DJ. The crowd. The experience.</div>
+      </div>
     </div>
   </div>
 
@@ -385,20 +453,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
-  <!-- ========== WHY JOIN ========== -->
+  <!-- ========== WHAT WE'RE LOOKING FOR ========== -->
   <div class="info-section" style="margin-top:80px;">
-    <div class="section-h">Why Join?</div>
-    <div class="section-body">
-      AfroCue sits at the intersection of DJs, nightlife, dance music and culture. Opportunities occasionally become available to Roamers.
+    <div class="section-h">What We're<br>Looking For</div>
+    <div class="looking-card"><p>People who genuinely enjoy the experience.</p></div>
+    <div class="looking-card"><p>People who notice when a room comes alive.</p></div>
+    <div class="looking-card"><p>People who remember the DJ that moved them most.</p></div>
+    <div class="looking-card"><p>People who stay present in the moment.</p></div>
+    <div class="looking-card"><p>People who are already part of the culture.</p></div>
+  </div>
+
+  <!-- ========== WHAT ROAMERS GET ========== -->
+  <div class="info-section" style="margin-top:80px;">
+    <div class="section-h">What Roamers<br>Get</div>
+    <div class="get-cards">
+      <div class="get-card">
+        <h4>ACCESS</h4>
+        <p>Event invitations and opportunities.</p>
+      </div>
+      <div class="get-card">
+        <h4>RECOGNITION</h4>
+        <p>Features across AfroCue platforms.</p>
+      </div>
+      <div class="get-card">
+        <h4>INFLUENCE</h4>
+        <p>Help surface the moments shaping the culture.</p>
+      </div>
+      <div class="get-card">
+        <h4>COMMUNITY</h4>
+        <p>Join a network of people who are genuinely outside.</p>
+      </div>
     </div>
-    <div class="why-cards">
-      <div class="why-card"><h4>🎟️ Event Invitations</h4><p>Access to events you already want to attend.</p></div>
-      <div class="why-card"><h4>🔓 Access Opportunities</h4><p>Occasional passes or list placements.</p></div>
-      <div class="why-card"><h4>📡 Priority Information</h4><p>Early heads‑up on upcoming events.</p></div>
-      <div class="why-card"><h4>✨ Creative Projects</h4><p>Collaborate on content or campaigns.</p></div>
-      <div class="why-card"><h4>📸 Features Across AfroCue</h4><p>Your perspective, amplified.</p></div>
-    </div>
-    <p class="subtle-note">Slots, invitations and opportunities vary month to month and cannot be guaranteed.</p>
   </div>
 
   <!-- ========== WHAT DO ROAMERS DO ========== -->
@@ -413,6 +498,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <img src="roamers_what.jpg" alt="Nightlife moments"/>
       <div class="img-block-overlay"></div>
     </div>
+  </div>
+
+  <!-- ========== SELECTION PANEL ========== -->
+  <div class="selection-panel">
+    <h3>Selection</h3>
+    <p>Roamers is intentionally small.<br>Not everyone who qualifies will be selected.<br>Each month we review applications and choose a limited number of people to join the cohort.<br>Selection is based on participation, consistency and fit.</p>
   </div>
 
   <!-- ========== FINAL CTA ========== -->
@@ -487,7 +578,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (q3Value === 'No') goTo('end-no'); else goTo('result');
   }
 
-  // ── NON‑QUALIFIER SIGNUP (with GTM push) ──
+  // ── NON‑QUALIFIER SIGNUP (GTM push) ──
   function toggleSignupBtn(prefix) {
     const name = document.getElementById(prefix + '-name').value.trim();
     const email = document.getElementById(prefix + '-email').value.trim();
@@ -504,11 +595,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     const data = { type: 'roamers_signup', name, email };
 
-    // GTM event
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: 'roamers_signup',
-      signup_type: prefix,   // 'few', 'none', 'no'
+      signup_type: prefix,
       name: name,
       email: email
     });
@@ -523,7 +613,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   }
 
-  // ── ROAMERS APPLICATION (with GTM push) ──
+  // ── ROAMERS APPLICATION (GTM push) ──
   function checkForm() {
     const valid = document.getElementById('name').value.trim()
       && document.getElementById('ig').value.trim()
@@ -550,7 +640,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       portfolio: document.getElementById('portfolio').value
     };
 
-    // GTM event
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: 'roamers_application',
@@ -576,7 +665,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   // ⚡️ SET YOUR APPS SCRIPT DEPLOYMENT URL BELOW
-  window.AFROCUE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyZvFHnm9JpFtMzWbMCvzSCTNw7TJN4mjCui-SgQbfF2lnko4-eJ72JHgRB-G2Jw36O/exec';  // ← Replace with your actual GAS URL
+  window.AFROCUE_SCRIPT_URL = 'YOUR_SCRIPT_URL_HERE';  // ← Replace with your actual GAS URL
 
 </script>
 
