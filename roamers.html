@@ -12,280 +12,125 @@
   <style>
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
-    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-.otf') format('opentype'); font-weight: 400; }
-    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthetet-Nova-Light.otf') format('opentype'); font-weight: 300; }
-
     :root {
       --black:  #0a0a0a;
       --dark:   #111111;
-      --dark2:  #1c1c1c;
-      --mid:    #2e2e2e;
       --grey:   #555555;
       --silver: #999999;
-      --off:    #d4d4d0;
       --white:  #f0ede8;
       --yellow: #C8E000;
       --yts:    2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.06);
     }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--black); color:var(--white); font-family:'Figtree',sans-serif; min-height:100vh; overflow-x:hidden; }
 
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--black);
-      color: var(--white);
-      font-family: 'Figtree', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+    .bg-image { position:fixed; inset:0; z-index:0; background-image:url('roamers_bg.jpg'); background-size:cover; background-position:center 30%; opacity:0.18; pointer-events:none; }
+    .bg-scrim { position:fixed; inset:0; z-index:1; background:rgba(10,10,10,0.65); pointer-events:none; }
+    .bg-texture { position:fixed; inset:0; z-index:2; background-image:url('texture.jpg'); background-size:cover; opacity:0.45; pointer-events:none; }
 
-    /* ── FIXED BACKGROUNDS ── */
-    .bg-image {
-      position: fixed; inset: 0; z-index: 0;
-      background-image: url('hero_dj.jpg');
-      background-size: cover; background-position: center 30%;
-      opacity: 0.18; pointer-events: none;
-    }
-    .bg-scrim {
-      position: fixed; inset: 0; z-index: 1;
-      background: rgba(10,10,10,0.65); pointer-events: none;
-    }
-    .bg-texture {
-      position: fixed; inset: 0; z-index: 2;
-      background-image: url('texture.jpg');
-      background-size: cover; opacity: 0.45; pointer-events: none;
-    }
+    .wrap { position:relative; z-index:3; max-width:680px; margin:0 auto; padding:64px 32px 80px; text-align:center; }
 
-    /* ── MAIN WRAPPER ── */
-    .wrap {
-      position: relative; z-index: 3;
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 64px 32px 80px;
-      text-align: center;
-    }
+    .roamers-hero { margin-bottom:60px; }
+    .hero-flex { display:flex; align-items:center; gap:32px; flex-wrap:wrap; justify-content:center; margin-bottom:20px; }
+    .hero-text { flex:1; min-width:280px; text-align:left; }
+    .hero-text h1 { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(52px, 10vw, 96px); line-height:0.9; color:var(--yellow); text-shadow: var(--yts); margin-bottom:12px; }
+    .hero-sub { font-size:15px; font-weight:300; line-height:1.65; color:rgba(240,237,232,0.65); max-width:420px; }
+    .hero-img { width:220px; height:auto; aspect-ratio:4/5; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,0.12); box-shadow:0 20px 40px rgba(0,0,0,0.5); flex-shrink:0; }
+    .hero-img img { width:100%; height:100%; object-fit:cover; display:block; }
 
-    /* ── HERO / QUIZ SECTION ── */
-    .roamers-hero {
-      margin-bottom: 60px;
-    }
-    .roamers-hero h1 {
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: clamp(52px, 10vw, 96px);
-      line-height: 0.9; color: var(--yellow); text-shadow: var(--yts);
-      margin-bottom: 20px;
-    }
-    .roamers-sub {
-      font-size: 18px; font-weight: 300;
-      line-height: 1.7; color: rgba(240,237,232,0.65);
-      max-width: 520px; margin: 0 auto 40px;
-    }
+    .quiz-card { max-width:520px; margin:24px auto 0; background:rgba(20,20,20,0.8); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:32px 28px 36px; box-shadow:0 24px 64px rgba(0,0,0,0.6); position:relative; overflow:hidden; }
+    .quiz-card::before { content:''; position:absolute; inset:0; background-image:url('texture.jpg'); background-size:cover; opacity:0.12; pointer-events:none; z-index:0; }
+    .quiz-card > * { position:relative; z-index:1; }
 
-    /* ── QUIZ CARD ── */
-    .quiz-card {
-      background: rgba(20,20,20,0.8);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 20px;
-      padding: 36px 32px 40px;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.6);
-      position: relative;
-      overflow: hidden;
-    }
-    .quiz-card::before {
-      content: ''; position: absolute; inset: 0;
-      background-image: url('texture.jpg'); background-size: cover;
-      opacity: 0.12; pointer-events: none; z-index: 0;
-    }
-    .quiz-card > * { position: relative; z-index: 1; }
+    .step { display:none; animation:fadeUp 0.4s ease both; }
+    .step.active { display:block; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
 
-    /* ── STEP TRANSITIONS ── */
-    .step { display: none; animation: fadeUp 0.4s ease both; }
-    .step.active { display: block; }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    .step-divider { width:40px; height:1px; background:rgba(255,255,255,0.08); margin:24px auto 20px; }
 
-    /* ── TYPOGRAPHY ── */
-    .step-label {
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(200,224,0,0.45); margin-bottom: 14px;
-    }
-    .step-q {
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: clamp(28px, 6vw, 46px);
-      color: var(--white); line-height: 0.95; margin-bottom: 20px;
-    }
-    .step-hint {
-      font-size: 15px; font-weight: 300;
-      color: rgba(240,237,232,0.5); line-height: 1.65; margin-bottom: 28px;
-    }
+    .step-label { font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:rgba(200,224,0,0.35); margin-bottom:12px; }
+    .step-q { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(20px, 4vw, 26px); color:var(--white); line-height:1.1; margin-bottom:16px; }
+    .step-hint { font-size:14px; font-weight:300; color:rgba(240,237,232,0.5); line-height:1.6; margin-bottom:24px; }
 
-    /* ── OPTIONS (radio / multi) ── */
-    .opts { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
-    .opt {
-      border: 1.5px solid rgba(255,255,255,0.1);
-      border-radius: 12px; padding: 16px 18px;
-      cursor: pointer; background: rgba(255,255,255,0.03);
-      font-family: 'Figtree', sans-serif;
-      transition: border-color 0.15s, background 0.15s;
-      text-align: left; display: flex; align-items: center; gap: 14px;
-    }
-    .opt:hover { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.05); }
-    .opt.selected { border-color: var(--yellow); background: rgba(200,224,0,0.06); }
-    .opt-radio, .opt-check {
-      width: 20px; height: 20px; border-radius: 50%;
-      border: 1.5px solid rgba(255,255,255,0.25);
-      flex-shrink: 0; display: flex; align-items: center; justify-content: center;
-      transition: all 0.15s;
-    }
-    .opt.selected .opt-radio { border-color: var(--yellow); background: var(--yellow); }
-    .opt.selected .opt-radio::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--black); }
-    .opt-check { border-radius: 6px; }
-    .opt.selected .opt-check { border-color: var(--yellow); background: var(--yellow); }
-    .opt.selected .opt-check::after {
-      content: ''; width: 10px; height: 6px;
-      border-left: 2px solid var(--black); border-bottom: 2px solid var(--black);
-      transform: rotate(-45deg); margin-top: -2px;
-    }
-    .opt-text { font-size: 16px; font-weight: 500; color: var(--white); }
-    .opt-sub { font-size: 13px; font-weight: 300; color: rgba(240,237,232,0.45); margin-top: 3px; }
+    .opts { display:flex; flex-direction:column; gap:10px; margin-top:8px; }
+    .opt { border:1.5px solid rgba(255,255,255,0.1); border-radius:12px; padding:14px 16px; cursor:pointer; background:rgba(255,255,255,0.03); display:flex; align-items:center; gap:14px; transition: border-color 0.15s, background 0.15s; text-align:left; }
+    .opt:hover { border-color:rgba(255,255,255,0.25); background:rgba(255,255,255,0.05); }
+    .opt.selected { border-color:var(--white); background:rgba(255,255,255,0.04); }
+    .opt-radio, .opt-check { width:20px; height:20px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.25); flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all 0.15s; }
+    .opt.selected .opt-radio { border-color:var(--white); background:var(--white); }
+    .opt.selected .opt-radio::after { content:''; width:8px; height:8px; border-radius:50%; background:var(--black); }
+    .opt-check { border-radius:6px; }
+    .opt.selected .opt-check { border-color:var(--white); background:var(--white); }
+    .opt.selected .opt-check::after { content:''; width:10px; height:6px; border-left:2px solid var(--black); border-bottom:2px solid var(--black); transform:rotate(-45deg); margin-top:-2px; }
+    .opt-text { font-size:15px; font-weight:500; color:var(--white); }
+    .opt-sub { font-size:12px; font-weight:300; color:rgba(240,237,232,0.45); margin-top:3px; }
 
-    /* ── MULTI SELECT GRID ── */
-    .multi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .multi-opt {
-      border: 1.5px solid rgba(255,255,255,0.08);
-      border-radius: 10px; padding: 14px 12px;
-      cursor: pointer; background: rgba(255,255,255,0.03);
-      text-align: left; transition: all 0.15s;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .multi-opt:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); }
-    .multi-opt.selected { border-color: var(--yellow); background: rgba(200,224,0,0.06); }
-    .multi-opt .check-box {
-      width: 18px; height: 18px; border-radius: 5px;
-      border: 1.5px solid rgba(255,255,255,0.2); flex-shrink: 0;
-      transition: all 0.15s;
-    }
-    .multi-opt.selected .check-box { border-color: var(--yellow); background: var(--yellow); }
-    .multi-opt.selected .check-box::after {
-      content: ''; display: block; width: 10px; height: 5px;
-      border-left: 2px solid var(--black); border-bottom: 2px solid var(--black);
-      transform: rotate(-45deg); margin: 3px auto 0;
-    }
-    .multi-opt-text { font-size: 14px; font-weight: 500; color: var(--white); }
+    .multi-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .multi-opt { border:1.5px solid rgba(255,255,255,0.08); border-radius:10px; padding:14px 12px; cursor:pointer; background:rgba(255,255,255,0.03); display:flex; align-items:center; gap:10px; transition:all 0.15s; text-align:left; }
+    .multi-opt:hover { border-color:rgba(255,255,255,0.2); background:rgba(255,255,255,0.05); }
+    .multi-opt.selected { border-color:var(--white); background:rgba(255,255,255,0.04); }
+    .check-box { width:18px; height:18px; border-radius:5px; border:1.5px solid rgba(255,255,255,0.2); flex-shrink:0; transition:all 0.15s; }
+    .multi-opt.selected .check-box { border-color:var(--white); background:var(--white); }
+    .multi-opt.selected .check-box::after { content:''; display:block; width:10px; height:5px; border-left:2px solid var(--black); border-bottom:2px solid var(--black); transform:rotate(-45deg); margin:3px auto 0; }
+    .multi-opt-text { font-size:14px; font-weight:500; color:var(--white); }
 
-    /* ── BUTTONS ── */
-    .btn {
-      display: inline-block; font-family: 'Figtree', sans-serif;
-      font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 16px 32px; border-radius: 6px; border: none; cursor: pointer;
-      transition: all 0.2s; text-decoration: none; white-space: nowrap;
-    }
-    .btn-yellow { color: var(--black); background: var(--yellow); }
-    .btn-yellow:hover { opacity: 0.88; }
-    .btn-ghost { color: var(--silver); background: transparent; border: 1px solid rgba(255,255,255,0.18); font-weight: 500; }
-    .btn-ghost:hover { border-color: var(--white); color: var(--white); }
-    .btn-block { display: block; width: 100%; max-width: 360px; margin: 20px auto 0; }
-    .btn:disabled { opacity: 0.45; cursor: not-allowed; }
-    .back-btn {
-      background: none; border: none; cursor: pointer; font-family: 'Figtree', sans-serif;
-      font-size: 12px; color: rgba(255,255,255,0.28); padding: 0; margin-top: 20px;
-      display: inline-flex; align-items: center; gap: 5px; transition: color 0.2s;
-    }
-    .back-btn:hover { color: rgba(255,255,255,0.55); }
+    .btn { display:inline-block; font-family:'Figtree',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:14px 28px; border-radius:6px; border:1.5px solid rgba(255,255,255,0.2); cursor:pointer; transition:all 0.2s; text-decoration:none; white-space:nowrap; background:transparent; color:var(--white); }
+    .btn:hover { border-color:var(--white); background:rgba(255,255,255,0.06); }
+    .btn-primary { background:var(--white); color:var(--black); border-color:var(--white); }
+    .btn-primary:hover { background:rgba(255,255,255,0.9); }
+    .btn-block { display:block; width:100%; max-width:320px; margin:20px auto 0; }
+    .btn:disabled { opacity:0.4; cursor:not-allowed; }
+    .back-btn { background:none; border:none; cursor:pointer; font-family:'Figtree',sans-serif; font-size:12px; color:rgba(255,255,255,0.28); padding:0; margin-top:20px; display:inline-flex; align-items:center; gap:5px; transition:color 0.2s; }
+    .back-btn:hover { color:rgba(255,255,255,0.55); }
 
-    /* ── END STEP ── */
-    .end-card {
-      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 14px; padding: 36px 28px; margin: 24px 0;
-    }
-    .end-card h3 {
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: 28px; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 12px;
-    }
+    .end-card { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:36px 28px; margin:24px 0; }
+    .end-card h3 { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:28px; color:var(--white); margin-bottom:12px; }
+    .signup-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:28px 24px; margin:20px 0; }
+    .signup-card h4 { font-size:16px; font-weight:600; color:var(--white); margin-bottom:16px; }
+    .field { margin-bottom:12px; text-align:left; }
+    .field label { display:block; font-size:10px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:6px; }
+    .field input { width:100%; padding:13px 14px; border:1.5px solid rgba(255,255,255,0.1); border-radius:8px; background:rgba(255,255,255,0.04); color:var(--white); font-family:'Figtree',sans-serif; font-size:16px; outline:none; transition:border-color 0.2s; }
+    .field input:focus { border-color:rgba(255,255,255,0.35); }
+    .field input::placeholder { color:var(--grey); }
 
-    /* ── FORM ── */
-    .form-fields { text-align: left; margin-top: 24px; }
-    .field { margin-bottom: 16px; }
-    .field label {
-      display: block; font-size: 10px; font-weight: 600;
-      letter-spacing: 0.16em; text-transform: uppercase;
-      color: rgba(255,255,255,0.35); margin-bottom: 6px;
-    }
-    .field input, .field select {
-      width: 100%; padding: 13px 14px;
-      border: 1.5px solid rgba(255,255,255,0.1);
-      border-radius: 8px; background: rgba(255,255,255,0.04);
-      color: var(--white); font-family: 'Figtree', sans-serif;
-      font-size: 16px; outline: none; transition: border-color 0.2s;
-    }
-    .field input:focus, .field select:focus { border-color: rgba(200,224,0,0.35); }
-    .field input::placeholder { color: var(--grey); }
-    .checkbox-row { display: flex; align-items: center; gap: 8px; cursor: pointer; margin-bottom: 12px; }
-    .checkbox-row input { width: auto; margin-right: 6px; }
+    .checkbox-row { display:flex; align-items:center; gap:8px; cursor:pointer; margin-bottom:12px; }
+    .checkbox-row input { width:auto; margin-right:6px; }
 
-    /* ── THANK YOU ── */
-    .ty-card {
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 14px; padding: 40px 32px; text-align: center;
-    }
-    .ty-title {
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: clamp(36px, 8vw, 56px); color: var(--yellow); text-shadow: var(--yts);
-      margin-bottom: 12px;
-    }
+    .ty-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:40px 32px; text-align:center; }
+    .ty-title { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(36px, 8vw, 56px); color:var(--white); margin-bottom:12px; }
 
-    /* ── SECTIONS BELOW QUIZ ── */
-    .info-section { margin-top: 80px; text-align: left; }
-    .section-h {
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: clamp(44px, 8vw, 72px); line-height: 0.9;
-      color: var(--yellow); text-shadow: var(--yts); margin-bottom: 28px;
-    }
-    .section-body { font-size: 16px; font-weight: 300; line-height: 1.85; color: rgba(240,237,232,0.6); margin-bottom: 40px; }
-    .img-block {
-      border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08);
-      margin-bottom: 32px; aspect-ratio: 3/2; position: relative;
-      background: var(--dark2);
-    }
-    .img-block img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .img-block-overlay {
-      position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.5) 0%, transparent 60%);
-    }
+    /* ── SECTIONS ── */
+    .info-section { margin-top:80px; text-align:left; }
+    .section-h { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(44px, 8vw, 72px); line-height:0.9; color:var(--yellow); text-shadow: var(--yts); margin-bottom:28px; }
+    .section-body { font-size:16px; font-weight:300; line-height:1.85; color:rgba(240,237,232,0.6); margin-bottom:40px; }
+    .img-block { border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); margin-bottom:32px; aspect-ratio:3/2; position:relative; background:var(--dark); }
+    .img-block img { width:100%; height:100%; object-fit:cover; display:block; }
+    .img-block-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,10,0.5) 0%, transparent 60%); }
 
-    .icon-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .icon-card {
-      background: rgba(20,20,20,0.7); backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.08); border-radius: 16px;
-      padding: 28px 24px; text-align: center;
-    }
-    .icon-card .emoji { font-size: 42px; margin-bottom: 12px; }
-    .icon-card h4 { font-size: 16px; font-weight: 600; margin-bottom: 8px; color: var(--white); }
-    .icon-card p { font-size: 14px; color: rgba(240,237,232,0.55); line-height: 1.6; }
+    .icon-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+    .icon-card { background:rgba(20,20,20,0.7); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:20px 16px; text-align:center; }
+    .icon-card .emoji { font-size:36px; margin-bottom:10px; }
+    .icon-card h4 { font-size:14px; font-weight:600; color:var(--white); line-height:1.3; }
 
-    .why-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .why-card {
-      background: rgba(20,20,20,0.7); border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 14px; padding: 24px;
-    }
-    .why-card h4 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
-    .why-card p { font-size: 13px; color: rgba(240,237,232,0.5); line-height: 1.6; }
+    .why-cards { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .why-card { background:rgba(20,20,20,0.7); border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:24px; color:var(--white); }
+    .why-card h4 { font-size:16px; font-weight:600; margin-bottom:8px; }
+    .why-card p { font-size:13px; color:rgba(240,237,232,0.5); line-height:1.6; }
 
-    .subtle-note { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 24px; text-align: center; }
+    .subtle-note { font-size:12px; color:rgba(255,255,255,0.35); margin-top:24px; text-align:center; }
 
-    .full-width-cta {
-      margin-top: 80px; padding: 64px 0; text-align: center;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
+    .full-width-cta { margin-top:80px; padding:64px 0; text-align:center; border-top:1px solid rgba(255,255,255,0.06); border-bottom:1px solid rgba(255,255,255,0.06); }
 
-    @media (max-width: 640px) {
-      .wrap { padding: 48px 20px 64px; }
-      .quiz-card { padding: 28px 20px; }
-      .multi-grid { grid-template-columns: 1fr; }
-      .icon-cards, .why-cards { grid-template-columns: 1fr; }
+    @media (max-width:640px) {
+      .wrap { padding:48px 20px 64px; }
+      .hero-flex { flex-direction:column; gap:20px; }
+      .hero-text { text-align:center; }
+      .hero-img { width:180px; }
+      .quiz-card { padding:24px 16px; max-width:100%; }
+      .multi-grid { grid-template-columns:1fr; }
+      .icon-cards { grid-template-columns:1fr 1fr; }
+      .why-cards { grid-template-columns:1fr; }
     }
   </style>
 </head>
@@ -299,23 +144,25 @@
 
   <!-- ========== HERO + QUIZ ========== -->
   <section class="roamers-hero" id="quizTop">
-    <h1>Are You A<br>Roamer?</h1>
-    <p class="roamers-sub">
-      Every month, we select a small number of Lagos nightlife regulars for Roamers.<br>
-      People who are already outside. People who already experience the culture.<br>
-      Let's see if you qualify.
-    </p>
+    <div class="hero-flex">
+      <div class="hero-text">
+        <h1>Are You A<br>Roamer?</h1>
+        <p class="hero-sub">A small group of Lagos nightlife regulars selected each month. People already outside. Let's see if you qualify.</p>
+      </div>
+      <div class="hero-img">
+        <img src="roamers_hero_thumb.jpg" alt="Lagos nightlife"/>
+      </div>
+    </div>
 
     <div class="quiz-card" id="quizCard">
-      <!-- STEPS -->
-      <!-- Step 0: Welcome / Start -->
+      <!-- START -->
       <div class="step active" id="step-start">
         <div class="step-label">Roamers</div>
         <div class="step-q">A few quick questions.</div>
-        <button class="btn btn-yellow btn-block" onclick="goTo('q1')">Start The Quiz →</button>
+        <button class="btn btn-primary btn-block" onclick="goTo('q1')">Start The Quiz →</button>
       </div>
 
-      <!-- Q1: how many events? -->
+      <!-- Q1 -->
       <div class="step" id="q1">
         <div class="step-label">Question 1 / 3</div>
         <div class="step-q">How many parties, raves or nightlife events have you attended in the last 30 days?</div>
@@ -325,10 +172,10 @@
           <button class="opt" onclick="selectRadio('q1','4-5',this)"><span class="opt-radio"></span> <span class="opt-text">4–5</span></button>
           <button class="opt" onclick="selectRadio('q1','6+',this)"><span class="opt-radio"></span> <span class="opt-text">6+</span></button>
         </div>
-        <button class="btn btn-yellow btn-block" onclick="nextQ1()" disabled id="q1next">Continue</button>
+        <button class="btn btn-primary btn-block" onclick="nextQ1()" disabled id="q1next">Continue</button>
       </div>
 
-      <!-- Q2: multi-select events -->
+      <!-- Q2 -->
       <div class="step" id="q2">
         <div class="step-label">Question 2 / 3</div>
         <div class="step-q">Which of these events have you attended in the last 30 days?</div>
@@ -343,10 +190,10 @@
           <button class="multi-opt" data-val="Other" onclick="toggleMulti(this)"><span class="check-box"></span><span class="multi-opt-text">Other</span></button>
           <button class="multi-opt" data-val="None Of These" data-none="true" onclick="handleNone(this)"><span class="check-box"></span><span class="multi-opt-text">None Of These</span></button>
         </div>
-        <button class="btn btn-yellow btn-block" onclick="nextQ2()" disabled id="q2next">Continue</button>
+        <button class="btn btn-primary btn-block" onclick="nextQ2()" disabled id="q2next">Continue</button>
       </div>
 
-      <!-- Q3: interest -->
+      <!-- Q3 -->
       <div class="step" id="q3">
         <div class="step-label">Question 3 / 3</div>
         <div class="step-q">Would you be interested in a one‑month trial as a Roamer?</div>
@@ -355,46 +202,81 @@
           <button class="opt" onclick="selectRadio('q3','Maybe',this)"><span class="opt-radio"></span> <span class="opt-text">Maybe</span></button>
           <button class="opt" onclick="selectRadio('q3','No',this)"><span class="opt-radio"></span> <span class="opt-text">No</span></button>
         </div>
-        <button class="btn btn-yellow btn-block" onclick="nextQ3()" disabled id="q3next">Continue</button>
+        <button class="btn btn-primary btn-block" onclick="nextQ3()" disabled id="q3next">Continue</button>
       </div>
 
-      <!-- END STATES -->
+      <!-- END STATES + SIGNUP FORMS -->
       <div class="step" id="end-few">
         <div class="end-card">
           <h3>You're probably not a Roamer yet.</h3>
-          <p style="color:rgba(240,237,232,0.6); margin:20px 0;">Maybe next month.</p>
-          <button class="btn btn-ghost" onclick="location.reload()">Maybe Next Month</button>
+          <p style="color:rgba(240,237,232,0.6); margin:20px 0;">Maybe next month. In the meantime, stay connected.</p>
+        </div>
+        <div class="signup-card" id="signup-few-card">
+          <h4>Get AfroCue updates</h4>
+          <div class="field"><input type="text" id="few-name" placeholder="Your name" oninput="toggleSignupBtn('few')"/></div>
+          <div class="field"><input type="email" id="few-email" placeholder="your@email.com" oninput="toggleSignupBtn('few')"/></div>
+          <button class="btn btn-primary btn-block" id="few-submit" disabled onclick="submitSignup('few')">Sign Up →</button>
+        </div>
+        <div id="few-ty" style="display:none;" class="ty-card">
+          <div class="ty-title">Thanks!</div>
+          <p style="color:rgba(240,237,232,0.6);">We'll be in touch.</p>
         </div>
       </div>
+
       <div class="step" id="end-none">
         <div class="end-card">
           <h3>You might be outside, but we're looking for people actively participating in the scene.</h3>
-          <p style="color:rgba(240,237,232,0.5); margin-top:20px;">That's okay.</p>
+          <p style="color:rgba(240,237,232,0.5); margin-top:20px;">That's okay. Keep in touch.</p>
+        </div>
+        <div class="signup-card" id="signup-none-card">
+          <h4>Get AfroCue updates</h4>
+          <div class="field"><input type="text" id="none-name" placeholder="Your name" oninput="toggleSignupBtn('none')"/></div>
+          <div class="field"><input type="email" id="none-email" placeholder="your@email.com" oninput="toggleSignupBtn('none')"/></div>
+          <button class="btn btn-primary btn-block" id="none-submit" disabled onclick="submitSignup('none')">Sign Up →</button>
+        </div>
+        <div id="none-ty" style="display:none;" class="ty-card">
+          <div class="ty-title">Thanks!</div>
+          <p style="color:rgba(240,237,232,0.6);">We'll be in touch.</p>
         </div>
       </div>
+
       <div class="step" id="end-no">
         <div class="end-card">
           <h3>No worries.</h3>
           <p style="color:rgba(240,237,232,0.5);">You can always apply another month.</p>
         </div>
+        <div class="signup-card" id="signup-no-card">
+          <h4>Stay connected</h4>
+          <div class="field"><input type="text" id="no-name" placeholder="Your name" oninput="toggleSignupBtn('no')"/></div>
+          <div class="field"><input type="email" id="no-email" placeholder="your@email.com" oninput="toggleSignupBtn('no')"/></div>
+          <button class="btn btn-primary btn-block" id="no-submit" disabled onclick="submitSignup('no')">Sign Up →</button>
+        </div>
+        <div id="no-ty" style="display:none;" class="ty-card">
+          <div class="ty-title">Thanks!</div>
+          <p style="color:rgba(240,237,232,0.6);">We'll be in touch.</p>
+        </div>
       </div>
 
-      <!-- RESULT + FORM -->
+      <!-- ROAMERS APPLICATION (qualified) -->
       <div class="step" id="result">
         <div class="step-label">Result</div>
         <div class="step-q">You Might Be A Roamer.</div>
-        <p class="step-hint">Based on your answers, you appear to qualify for consideration for the July Roamers cohort. Complete your profile below.</p>
+        <p class="step-hint">Based on your answers, you appear to qualify for consideration. Complete your profile below.</p>
 
         <div class="form-fields">
           <div class="field"><label>Full Name</label><input type="text" id="name" placeholder="Your full name" oninput="checkForm()"/></div>
-          <div class="field"><label>Instagram Handle</label><input type="text" id="ig" placeholder="@yourhandle" oninput="checkForm()"/></div>
+          <div class="field"><label>Instagram Handle</label>
+            <div class="ig-wrap" style="position:relative;">
+              <span style="position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--grey); font-size:16px; pointer-events:none;">@</span>
+              <input type="text" id="ig" placeholder="yourhandle" style="padding-left:32px;" oninput="checkForm()"/>
+            </div>
+          </div>
           <div class="field"><label>Email Address</label><input type="email" id="email" placeholder="you@example.com" oninput="checkForm()"/></div>
-          <div class="field"><label>Phone Number</label><input type="tel" id="phone" placeholder="080..." oninput="checkForm()"/></div>
+          <div class="field"><label>WhatsApp Number</label><input type="tel" id="phone" placeholder="080..." oninput="checkForm()"/></div>
           <div class="field"><label>Area of Lagos</label><input type="text" id="area" placeholder="e.g. Lekki, VI, Ikeja" oninput="checkForm()"/></div>
         </div>
 
-        <!-- Optional Creator section -->
-        <div style="margin-top: 20px; text-align: left;">
+        <div style="margin-top:20px; text-align:left;">
           <label class="checkbox-row" onclick="toggleCreator()">
             <input type="checkbox" id="creatorCheck"/> <span style="font-size:14px; color:rgba(255,255,255,0.7);">I am also a creator (optional)</span>
           </label>
@@ -405,106 +287,101 @@
                 <option>Photographer</option><option>Videographer</option><option>Designer</option><option>TikTok Creator</option><option>Instagram Creator</option><option>Writer</option><option>Other</option>
               </select>
             </div>
-            <div class="field"><label>Portfolio Link (Optional)</label><input type="url" id="portfolio" placeholder="https://"/></div>
+            <div class="field"><label>Creator Page Link (Optional)</label><input type="url" id="portfolio" placeholder="https://"/></div>
           </div>
         </div>
 
-        <button class="btn btn-yellow btn-block" id="submitBtn" disabled onclick="submitApplication()">Complete Profile →</button>
+        <button class="btn btn-primary btn-block" id="submitBtn" disabled onclick="submitApplication()">Complete Profile →</button>
         <p style="font-size:11px; color:var(--grey); margin-top:12px;">We'll reach out if you're selected.</p>
       </div>
 
-      <!-- Thank You -->
       <div class="step" id="thankyou">
         <div class="ty-card">
           <div class="ty-title">Profile<br>Submitted.</div>
-          <p style="font-size:15px; font-weight:300; color:rgba(240,237,232,0.55); margin:20px 0 28px;">We'll be in touch if a slot opens for July. In the meantime, keep experiencing the culture.</p>
-          <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-yellow">Follow AfroCue</a>
+          <p style="font-size:15px; font-weight:300; color:rgba(240,237,232,0.55); margin:20px 0 28px;">We'll be in touch if a slot opens. In the meantime, keep experiencing the culture.</p>
+          <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-primary">Follow AfroCue</a>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- ========== EXPLANATORY SECTIONS ========== -->
+  <!-- ========== WHO IS A ROAMER ========== -->
   <div class="info-section">
     <div class="section-h">Who Is A<br>Roamer?</div>
     <div class="section-body">
-      Roamers are a small group of Lagos nightlife regulars selected each month.<br>
-      Not because they have large followings. Simply because they are present.<br>
-      They already go out. They already discover new DJs. They already experience the culture.<br>
-      Roamers simply gives them a way to contribute to documenting it.
+      Roamers are Lagos nightlife regulars selected each month — not for their followings, simply because they are present. They already go out. They discover DJs. They experience the culture. Roamers gives them a way to document it.
     </div>
     <div class="img-block">
-      <img src="audience_partygoers.jpg" alt="Lagos nightlife"/>
+      <img src="roamers_who.jpg" alt="Lagos nightlife crowd"/>
       <div class="img-block-overlay"></div>
     </div>
   </div>
 
+  <!-- ========== YOU MIGHT BE A ROAMER IF... ========== -->
   <div class="info-section" style="margin-top:80px;">
     <div class="section-h">You Might Be A<br>Roamer If...</div>
     <div class="icon-cards">
       <div class="icon-card">
         <div class="emoji">🪩</div>
-        <h4>You attend at least two Lagos parties, nightlife events or raves most months.</h4>
+        <h4>You attend at least two parties most months.</h4>
       </div>
       <div class="icon-card">
         <div class="emoji">🎛️</div>
-        <h4>You know some of the local and international DJs shaping the scene.</h4>
+        <h4>You know the DJs shaping the scene.</h4>
       </div>
       <div class="icon-card">
         <div class="emoji">📱</div>
-        <h4>You occasionally capture moments on your phone, no matter how raw.</h4>
+        <h4>You capture moments on your phone.</h4>
       </div>
       <div class="icon-card">
         <div class="emoji">🔥</div>
-        <h4>You can tell which DJ moved the floor the most.</h4>
+        <h4>You can tell who moved the floor.</h4>
       </div>
-      <div class="icon-card" style="grid-column: span 2;">
+      <div class="icon-card">
         <div class="emoji">💫</div>
-        <h4>You genuinely enjoy experiencing the party itself.</h4>
+        <h4>You genuinely enjoy the party itself.</h4>
       </div>
     </div>
   </div>
 
+  <!-- ========== WHY JOIN ========== -->
   <div class="info-section" style="margin-top:80px;">
     <div class="section-h">Why Join?</div>
     <div class="section-body">
-      AfroCue sits at the intersection of DJs, nightlife, dance music and culture.<br>
-      Throughout the month, opportunities occasionally become available to Roamers.
+      AfroCue sits at the intersection of DJs, nightlife, dance music and culture. Opportunities occasionally become available to Roamers.
     </div>
     <div class="why-cards">
-      <div class="why-card"><h4>🎟️ Event Invitations</h4><p>Access to select events you already want to attend.</p></div>
-      <div class="why-card"><h4>🔓 Event Access Opportunities</h4><p>Occasional passes or list placements.</p></div>
+      <div class="why-card"><h4>🎟️ Event Invitations</h4><p>Access to events you already want to attend.</p></div>
+      <div class="why-card"><h4>🔓 Access Opportunities</h4><p>Occasional passes or list placements.</p></div>
       <div class="why-card"><h4>📡 Priority Information</h4><p>Early heads‑up on upcoming events.</p></div>
-      <div class="why-card"><h4>✨ Creative & Cultural Projects</h4><p>Collaborate on content or campaigns.</p></div>
-      <div class="why-card"><h4>📸 Features Across AfroCue Channels</h4><p>Your perspective, amplified.</p></div>
+      <div class="why-card"><h4>✨ Creative Projects</h4><p>Collaborate on content or campaigns.</p></div>
+      <div class="why-card"><h4>📸 Features Across AfroCue</h4><p>Your perspective, amplified.</p></div>
     </div>
     <p class="subtle-note">Slots, invitations and opportunities vary month to month and cannot be guaranteed.</p>
   </div>
 
+  <!-- ========== WHAT DO ROAMERS DO ========== -->
   <div class="info-section" style="margin-top:80px;">
     <div class="section-h">What Do Roamers<br>Actually Do?</div>
     <div class="section-body">
-      Nothing dramatically different. You continue doing what you already do.<br>
-      Go out. Experience the music. Discover moments.<br>
-      Occasionally tell us how it went. Share moments you captured on your phone.<br>
-      The experience comes first. The best way to contribute is to actually be present.<br>
-      Roamers are not observers standing outside the culture. They're people actively living it.
+      You keep doing what you already do. Go out. Experience the music. Discover moments.<br>
+      Occasionally tell us how it went. Share moments from your phone.<br>
+      The experience comes first. Roamers live the culture — not observe from outside.
     </div>
     <div class="img-block">
-      <img src="audience_creatives.jpg" alt="Nightlife moments"/>
+      <img src="roamers_what.jpg" alt="Nightlife moments"/>
       <div class="img-block-overlay"></div>
     </div>
   </div>
 
-  <!-- FINAL CTA -->
+  <!-- ========== FINAL CTA ========== -->
   <div class="full-width-cta">
     <div class="section-h" style="font-size:clamp(40px,10vw,72px); margin-bottom:24px;">July Cohort<br>Applications Open</div>
     <p style="font-size:16px; color:rgba(240,237,232,0.55); margin-bottom:32px;">A small number of applicants will be selected. Think you qualify?</p>
-    <button class="btn btn-yellow" onclick="scrollToQuiz()">Start The Quiz</button>
+    <button class="btn btn-primary" onclick="scrollToQuiz()">Start The Quiz</button>
   </div>
 
-  <!-- FOOTER -->
   <div style="text-align:center; padding:48px 0 24px; border-top:1px solid rgba(255,255,255,0.06); margin-top:40px;">
     <p style="font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--grey);">Powered by AfroCue — Creatively Documenting Culture</p>
   </div>
@@ -512,58 +389,37 @@
 </main>
 
 <script>
-  // State
-  let answers = {};
   let currentStep = 'step-start';
   let q1Value = null, q2Selected = new Set(), q3Value = null;
-  let formValid = false;
 
   function goTo(id) {
     document.getElementById(currentStep).classList.remove('active');
     document.getElementById(id).classList.add('active');
     currentStep = id;
-    window.scrollTo({ top: document.getElementById('quizCard').offsetTop - 20, behavior: 'smooth' });
+    const card = document.getElementById('quizCard');
+    if (card) window.scrollTo({ top: card.offsetTop - 20, behavior: 'smooth' });
   }
 
-  // Radio selection helper
   function selectRadio(group, value, btn) {
     const container = btn.parentElement;
     container.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
     btn.classList.add('selected');
-    if (group === 'q1') {
-      q1Value = value;
-      document.getElementById('q1next').disabled = false;
-    } else if (group === 'q3') {
-      q3Value = value;
-      document.getElementById('q3next').disabled = false;
-    }
+    if (group === 'q1') { q1Value = value; document.getElementById('q1next').disabled = false; }
+    else if (group === 'q3') { q3Value = value; document.getElementById('q3next').disabled = false; }
   }
 
-  function nextQ1() {
-    if (!q1Value) return;
-    if (q1Value === '0-1') goTo('end-few');
-    else goTo('q2');
-  }
+  function nextQ1() { if (q1Value === '0-1') goTo('end-few'); else goTo('q2'); }
 
-  // Multi‑select with exclusive "None Of These"
   function toggleMulti(btn) {
     const val = btn.getAttribute('data-val');
-    if (btn.classList.contains('selected')) {
-      btn.classList.remove('selected');
-      q2Selected.delete(val);
-    } else {
-      // If "None Of These" is being selected, clear others
+    if (btn.classList.contains('selected')) { btn.classList.remove('selected'); q2Selected.delete(val); }
+    else {
       if (btn.dataset.none === 'true') {
         document.querySelectorAll('#q2grid .multi-opt').forEach(o => o.classList.remove('selected'));
-        q2Selected.clear();
-        q2Selected.add('None Of These');
+        q2Selected.clear(); q2Selected.add('None Of These');
       } else {
-        // Deselect "None Of These" if it was selected
         const noneBtn = document.querySelector('[data-none="true"]');
-        if (noneBtn) {
-          noneBtn.classList.remove('selected');
-          q2Selected.delete('None Of These');
-        }
+        if (noneBtn) { noneBtn.classList.remove('selected'); q2Selected.delete('None Of These'); }
         q2Selected.add(val);
       }
       btn.classList.add('selected');
@@ -572,53 +428,73 @@
   }
 
   function handleNone(btn) {
-    // same logic: toggle "None Of These" exclusively
-    if (btn.classList.contains('selected')) {
-      btn.classList.remove('selected');
-      q2Selected.delete('None Of These');
-    } else {
+    if (btn.classList.contains('selected')) { btn.classList.remove('selected'); q2Selected.delete('None Of These'); }
+    else {
       document.querySelectorAll('#q2grid .multi-opt').forEach(o => o.classList.remove('selected'));
-      q2Selected.clear();
-      q2Selected.add('None Of These');
-      btn.classList.add('selected');
+      q2Selected.clear(); q2Selected.add('None Of These'); btn.classList.add('selected');
     }
     document.getElementById('q2next').disabled = q2Selected.size === 0;
   }
 
   function nextQ2() {
-    if (q2Selected.has('None Of These') && q2Selected.size === 1) {
-      goTo('end-none');
-      return;
-    }
-    goTo('q3');
+    if (q2Selected.has('None Of These') && q2Selected.size === 1) goTo('end-none');
+    else goTo('q3');
   }
 
   function nextQ3() {
-    if (q3Value === 'No') goTo('end-no');
-    else goTo('result');
+    if (q3Value === 'No') goTo('end-no'); else goTo('result');
   }
 
-  // Form validation
+  // Signup forms (for non‑qualifiers)
+  function toggleSignupBtn(prefix) {
+    const name = document.getElementById(prefix + '-name').value.trim();
+    const email = document.getElementById(prefix + '-email').value.trim();
+    document.getElementById(prefix + '-submit').disabled = !(name && email);
+  }
+
+  function submitSignup(prefix) {
+    const name = document.getElementById(prefix + '-name').value.trim();
+    const email = document.getElementById(prefix + '-email').value.trim();
+    if (!name || !email) return;
+
+    const btn = document.getElementById(prefix + '-submit');
+    btn.disabled = true; btn.textContent = 'Submitting…';
+
+    const data = {
+      type: 'roamers_signup',
+      name: name,
+      email: email
+    };
+
+    fetch(window.AFROCUE_SCRIPT_URL || '', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: { 'Content-Type': 'text/plain' }
+    }).catch(e => {}).finally(() => {
+      document.getElementById('signup-' + prefix + '-card').style.display = 'none';
+      document.getElementById(prefix + '-ty').style.display = 'block';
+    });
+  }
+
+  // Roamers application
   function checkForm() {
-    const name = document.getElementById('name').value.trim();
-    const ig = document.getElementById('ig').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const area = document.getElementById('area').value.trim();
-    document.getElementById('submitBtn').disabled = !(name && ig && email && phone && area);
+    const valid = document.getElementById('name').value.trim()
+      && document.getElementById('ig').value.trim()
+      && document.getElementById('email').value.trim()
+      && document.getElementById('phone').value.trim()
+      && document.getElementById('area').value.trim();
+    document.getElementById('submitBtn').disabled = !valid;
   }
 
   function toggleCreator() {
-    const check = document.getElementById('creatorCheck');
-    document.getElementById('creatorFields').style.display = check.checked ? 'block' : 'none';
+    document.getElementById('creatorFields').style.display = document.getElementById('creatorCheck').checked ? 'block' : 'none';
   }
 
   function submitApplication() {
-    // In production, send to Google Apps Script endpoint defined in afrocue.js (window.AFROCUE_SCRIPT_URL)
     const data = {
       type: 'roamers_application',
       name: document.getElementById('name').value.trim(),
-      ig: document.getElementById('ig').value.trim(),
+      ig: '@' + document.getElementById('ig').value.trim(),
       email: document.getElementById('email').value.trim(),
       phone: document.getElementById('phone').value.trim(),
       area: document.getElementById('area').value.trim(),
@@ -626,20 +502,19 @@
       creatorType: document.getElementById('creatorType').value,
       portfolio: document.getElementById('portfolio').value
     };
-    try {
-      if (window.AFROCUE_SCRIPT_URL) {
-        fetch(window.AFROCUE_SCRIPT_URL, {
-          method: 'POST',
-          body: JSON.stringify(data),
-          headers: { 'Content-Type': 'text/plain' }
-        }).catch(e => console.log(e));
-      }
-    } catch(e) {}
+
+    if (window.AFROCUE_SCRIPT_URL) {
+      fetch(window.AFROCUE_SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'text/plain' }
+      }).catch(e => {});
+    }
     goTo('thankyou');
   }
 
   function scrollToQuiz() {
-    document.getElementById('quizTop').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('quizTop').scrollIntoView({ behavior:'smooth' });
   }
 </script>
 
