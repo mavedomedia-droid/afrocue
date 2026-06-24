@@ -25,21 +25,57 @@
     html { scroll-behavior:smooth; }
     body { background:var(--black); color:var(--white); font-family:'Figtree',sans-serif; min-height:100vh; overflow-x:hidden; }
 
+    /* ── FIXED BACKGROUNDS ── */
     .bg-image { position:fixed; inset:0; z-index:0; background-image:url('roamers_bg.jpg'); background-size:cover; background-position:center 30%; opacity:0.18; pointer-events:none; }
     .bg-scrim { position:fixed; inset:0; z-index:1; background:rgba(10,10,10,0.65); pointer-events:none; }
     .bg-texture { position:fixed; inset:0; z-index:2; background-image:url('texture.jpg'); background-size:cover; opacity:0.45; pointer-events:none; }
 
+    /* ── MAIN WRAPPER ── */
     .wrap { position:relative; z-index:3; max-width:680px; margin:0 auto; padding:64px 32px 80px; text-align:center; }
 
-    .roamers-hero { margin-bottom:60px; }
-    .hero-flex { display:flex; align-items:center; gap:32px; flex-wrap:wrap; justify-content:center; margin-bottom:20px; }
-    .hero-text { flex:1; min-width:280px; text-align:left; }
-    .hero-text h1 { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(52px, 10vw, 96px); line-height:0.9; color:var(--yellow); text-shadow: var(--yts); margin-bottom:12px; }
-    .hero-sub { font-size:15px; font-weight:300; line-height:1.65; color:rgba(240,237,232,0.65); max-width:420px; }
-    .hero-img { width:220px; height:auto; aspect-ratio:4/5; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,0.12); box-shadow:0 20px 40px rgba(0,0,0,0.5); flex-shrink:0; }
+    /* ── HERO (redesigned) ── */
+    .roamers-hero { margin-bottom:40px; }
+    .hero-flex {
+      display:flex; align-items:center; gap:32px; flex-wrap:wrap;
+      justify-content:center; margin-bottom:20px;
+    }
+    .hero-text {
+      flex:1 1 50%; min-width:280px; text-align:left;
+      display:flex; flex-direction:column; justify-content:center;
+    }
+    .hero-text .small-line {
+      font-family:'Aesthet Nova',sans-serif; font-weight:500;
+      font-size: clamp(18px, 3vw, 28px); line-height:1;
+      color: var(--white); margin-bottom:0;
+      text-shadow: 1px 2px 0px rgba(0,0,0,0.9);
+    }
+    .hero-text .big-line {
+      font-family:'Aesthet Nova',sans-serif; font-weight:900;
+      font-size: clamp(64px, 10vw, 120px); line-height:0.85;
+      color: var(--yellow); text-shadow: var(--yts);
+      margin-bottom:0;
+    }
+    .hero-sub {
+      font-size:15px; font-weight:300; line-height:1.65;
+      color:rgba(240,237,232,0.65); max-width:420px; margin-top:16px;
+    }
+    .hero-img {
+      flex:0 0 240px;
+      width:240px; height:auto; aspect-ratio:4/5;
+      border-radius:16px; overflow:hidden;
+      border:1px solid rgba(255,255,255,0.12);
+      box-shadow:0 20px 40px rgba(0,0,0,0.5);
+    }
     .hero-img img { width:100%; height:100%; object-fit:cover; display:block; }
 
-    .quiz-card { max-width:520px; margin:24px auto 0; background:rgba(20,20,20,0.8); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:32px 28px 36px; box-shadow:0 24px 64px rgba(0,0,0,0.6); position:relative; overflow:hidden; }
+    /* ── QUIZ CARD (centred) ── */
+    .quiz-card {
+      max-width:520px; margin:0 auto;
+      background:rgba(20,20,20,0.8); backdrop-filter:blur(20px);
+      border:1px solid rgba(255,255,255,0.1); border-radius:20px;
+      padding:32px 28px 36px; box-shadow:0 24px 64px rgba(0,0,0,0.6);
+      position:relative; overflow:hidden;
+    }
     .quiz-card::before { content:''; position:absolute; inset:0; background-image:url('texture.jpg'); background-size:cover; opacity:0.12; pointer-events:none; z-index:0; }
     .quiz-card > * { position:relative; z-index:1; }
 
@@ -100,7 +136,7 @@
     .ty-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:40px 32px; text-align:center; }
     .ty-title { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(36px, 8vw, 56px); color:var(--white); margin-bottom:12px; }
 
-    /* ── SECTIONS ── */
+    /* ── SECTIONS (unchanged) ── */
     .info-section { margin-top:80px; text-align:left; }
     .section-h { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(44px, 8vw, 72px); line-height:0.9; color:var(--yellow); text-shadow: var(--yts); margin-bottom:28px; }
     .section-body { font-size:16px; font-weight:300; line-height:1.85; color:rgba(240,237,232,0.6); margin-bottom:40px; }
@@ -126,7 +162,7 @@
       .wrap { padding:48px 20px 64px; }
       .hero-flex { flex-direction:column; gap:20px; }
       .hero-text { text-align:center; }
-      .hero-img { width:180px; }
+      .hero-img { width:180px; flex:0 0 auto; }
       .quiz-card { padding:24px 16px; max-width:100%; }
       .multi-grid { grid-template-columns:1fr; }
       .icon-cards { grid-template-columns:1fr 1fr; }
@@ -142,11 +178,12 @@
 
 <main class="wrap" id="roamersPage">
 
-  <!-- ========== HERO + QUIZ ========== -->
+  <!-- ========== HERO + QUIZ CARD ========== -->
   <section class="roamers-hero" id="quizTop">
     <div class="hero-flex">
       <div class="hero-text">
-        <h1>Are You A<br>Roamer?</h1>
+        <div class="small-line">Are you a</div>
+        <div class="big-line">ROAMER?</div>
         <p class="hero-sub">A small group of Lagos nightlife regulars selected each month. People already outside. Let's see if you qualify.</p>
       </div>
       <div class="hero-img">
@@ -155,6 +192,7 @@
     </div>
 
     <div class="quiz-card" id="quizCard">
+
       <!-- START -->
       <div class="step active" id="step-start">
         <div class="step-label">Roamers</div>
@@ -205,7 +243,7 @@
         <button class="btn btn-primary btn-block" onclick="nextQ3()" disabled id="q3next">Continue</button>
       </div>
 
-      <!-- END STATES + SIGNUP FORMS -->
+      <!-- END: FEW EVENTS -->
       <div class="step" id="end-few">
         <div class="end-card">
           <h3>You're probably not a Roamer yet.</h3>
@@ -223,6 +261,7 @@
         </div>
       </div>
 
+      <!-- END: NONE OF THESE -->
       <div class="step" id="end-none">
         <div class="end-card">
           <h3>You might be outside, but we're looking for people actively participating in the scene.</h3>
@@ -240,6 +279,7 @@
         </div>
       </div>
 
+      <!-- END: NOT INTERESTED -->
       <div class="step" id="end-no">
         <div class="end-card">
           <h3>No worries.</h3>
@@ -257,7 +297,7 @@
         </div>
       </div>
 
-      <!-- ROAMERS APPLICATION (qualified) -->
+      <!-- RESULT + APPLICATION FORM -->
       <div class="step" id="result">
         <div class="step-label">Result</div>
         <div class="step-q">You Might Be A Roamer.</div>
@@ -295,6 +335,7 @@
         <p style="font-size:11px; color:var(--grey); margin-top:12px;">We'll reach out if you're selected.</p>
       </div>
 
+      <!-- THANK YOU -->
       <div class="step" id="thankyou">
         <div class="ty-card">
           <div class="ty-title">Profile<br>Submitted.</div>
@@ -322,26 +363,11 @@
   <div class="info-section" style="margin-top:80px;">
     <div class="section-h">You Might Be A<br>Roamer If...</div>
     <div class="icon-cards">
-      <div class="icon-card">
-        <div class="emoji">🪩</div>
-        <h4>You attend at least two parties most months.</h4>
-      </div>
-      <div class="icon-card">
-        <div class="emoji">🎛️</div>
-        <h4>You know the DJs shaping the scene.</h4>
-      </div>
-      <div class="icon-card">
-        <div class="emoji">📱</div>
-        <h4>You capture moments on your phone.</h4>
-      </div>
-      <div class="icon-card">
-        <div class="emoji">🔥</div>
-        <h4>You can tell who moved the floor.</h4>
-      </div>
-      <div class="icon-card">
-        <div class="emoji">💫</div>
-        <h4>You genuinely enjoy the party itself.</h4>
-      </div>
+      <div class="icon-card"><div class="emoji">🪩</div><h4>You attend at least two parties most months.</h4></div>
+      <div class="icon-card"><div class="emoji">🎛️</div><h4>You know the DJs shaping the scene.</h4></div>
+      <div class="icon-card"><div class="emoji">📱</div><h4>You capture moments on your phone.</h4></div>
+      <div class="icon-card"><div class="emoji">🔥</div><h4>You can tell who moved the floor.</h4></div>
+      <div class="icon-card"><div class="emoji">💫</div><h4>You genuinely enjoy the party itself.</h4></div>
     </div>
   </div>
 
@@ -389,9 +415,11 @@
 </main>
 
 <script>
+  // ── STATE ──
   let currentStep = 'step-start';
   let q1Value = null, q2Selected = new Set(), q3Value = null;
 
+  // ── NAVIGATION ──
   function goTo(id) {
     document.getElementById(currentStep).classList.remove('active');
     document.getElementById(id).classList.add('active');
@@ -400,6 +428,7 @@
     if (card) window.scrollTo({ top: card.offsetTop - 20, behavior: 'smooth' });
   }
 
+  // ── RADIO SELECTION ──
   function selectRadio(group, value, btn) {
     const container = btn.parentElement;
     container.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
@@ -410,10 +439,12 @@
 
   function nextQ1() { if (q1Value === '0-1') goTo('end-few'); else goTo('q2'); }
 
+  // ── MULTI SELECT (EXCLUSIVE NONE) ──
   function toggleMulti(btn) {
     const val = btn.getAttribute('data-val');
-    if (btn.classList.contains('selected')) { btn.classList.remove('selected'); q2Selected.delete(val); }
-    else {
+    if (btn.classList.contains('selected')) {
+      btn.classList.remove('selected'); q2Selected.delete(val);
+    } else {
       if (btn.dataset.none === 'true') {
         document.querySelectorAll('#q2grid .multi-opt').forEach(o => o.classList.remove('selected'));
         q2Selected.clear(); q2Selected.add('None Of These');
@@ -445,7 +476,7 @@
     if (q3Value === 'No') goTo('end-no'); else goTo('result');
   }
 
-  // Signup forms (for non‑qualifiers)
+  // ── NON‑QUALIFIER SIGNUP ──
   function toggleSignupBtn(prefix) {
     const name = document.getElementById(prefix + '-name').value.trim();
     const email = document.getElementById(prefix + '-email').value.trim();
@@ -460,13 +491,9 @@
     const btn = document.getElementById(prefix + '-submit');
     btn.disabled = true; btn.textContent = 'Submitting…';
 
-    const data = {
-      type: 'roamers_signup',
-      name: name,
-      email: email
-    };
+    const data = { type: 'roamers_signup', name, email };
 
-    fetch(window.AFROCUE_SCRIPT_URL || '', {
+    fetch(window.AFROCUE_SCRIPT_URL, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: { 'Content-Type': 'text/plain' }
@@ -476,7 +503,7 @@
     });
   }
 
-  // Roamers application
+  // ── ROAMERS APPLICATION ──
   function checkForm() {
     const valid = document.getElementById('name').value.trim()
       && document.getElementById('ig').value.trim()
@@ -513,12 +540,13 @@
     goTo('thankyou');
   }
 
-    function scrollToQuiz() {
+  function scrollToQuiz() {
     document.getElementById('quizTop').scrollIntoView({ behavior:'smooth' });
   }
 
-  // 👇 Add this line with your actual Apps Script deployment URL
-  window.AFROCUE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyZvFHnm9JpFtMzWbMCvzSCTNw7TJN4mjCui-SgQbfF2lnko4-eJ72JHgRB-G2Jw36O/exec';
+  // ── ⚡️ SET YOUR APPS SCRIPT DEPLOYMENT URL BELOW ──
+  window.AFROCUE_SCRIPT_URL = 'YOUR_SCRIPT_URL_HERE';  // ← Replace with your actual GAS URL
+
 </script>
 
 </body>
