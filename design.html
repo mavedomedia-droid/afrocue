@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roamers – July Cohort</title>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Aesthet Nova';
+      src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');
+      font-weight: 900;
+    }
+    @font-face {
+      font-family: 'Aesthet Nova';
+      src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype');
+      font-weight: 500;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0a0a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Figtree', sans-serif;
+    }
+
+    .creative {
+      width: 1080px;
+      height: 1080px;
+      position: relative;
+      overflow: hidden;
+      background-color: #0a0a0a; /* fallback */
+    }
+
+    /* Layer 0: Background image */
+    .bg-image {
+      position: absolute;
+      inset: 0;
+      background-image: url('roamers_ad_bg.jpg');
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+    }
+
+    /* Layer 1: Dark overlay */
+    .overlay-dark {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.25);
+      z-index: 1;
+    }
+
+    /* Layer 2: Texture overlay */
+    .overlay-texture {
+      position: absolute;
+      inset: 0;
+      background-image: url('texture.jpg');
+      background-size: cover;
+      opacity: 0.15;
+      mix-blend-mode: soft-light;
+      z-index: 2;
+    }
+
+    /* Layer 3: Bottom vignette */
+    .vignette {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.92) 0%,
+        rgba(0,0,0,0.75) 25%,
+        rgba(0,0,0,0.3) 55%,
+        transparent 100%
+      );
+    }
+
+    /* Content container */
+    .content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 4;
+      padding: 60px 80px 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      color: #f0ede8;
+    }
+
+    /* Headline */
+    .headline-small {
+      font-family: 'Aesthet Nova', sans-serif;
+      font-weight: 500;
+      font-size: 60px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: #f0ede8;
+      text-shadow: 2px 3px 0 rgba(0,0,0,0.9);
+      margin-bottom: 5px;
+    }
+
+    .headline-big {
+      font-family: 'Aesthet Nova', sans-serif;
+      font-weight: 900;
+      font-size: 140px;
+      line-height: 0.85;
+      color: #C8E000;
+      text-shadow: 3px 4px 0 rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.1);
+      margin-bottom: 20px;
+      letter-spacing: -0.03em;
+    }
+
+    .subhead {
+      font-family: 'Figtree', sans-serif;
+      font-weight: 300;
+      font-size: 24px;
+      color: rgba(240,237,232,0.75);
+      margin-bottom: 28px;
+      letter-spacing: 0.02em;
+      max-width: 700px;
+    }
+
+    /* Section title */
+    .section-title {
+      font-family: 'Figtree', sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 18px;
+    }
+
+    /* Capsules container */
+    .capsules {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .pill {
+      font-family: 'Figtree', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      color: #f0ede8;
+      border: 1px solid rgba(240,237,232,0.35);
+      border-radius: 999px;
+      padding: 10px 22px;
+      white-space: nowrap;
+      background: transparent;
+      backdrop-filter: blur(2px);
+    }
+
+    .qualifier {
+      font-family: 'Figtree', sans-serif;
+      font-weight: 300;
+      font-size: 18px;
+      color: rgba(240,237,232,0.6);
+      margin-bottom: 30px;
+    }
+
+    /* CTA button */
+    .cta {
+      display: inline-block;
+      background: #C8E000;
+      color: #0a0a0a;
+      font-family: 'Figtree', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 18px 48px;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      transition: opacity 0.2s;
+      cursor: default; /* static creative, no hover but fine */
+    }
+
+    .cta:hover {
+      opacity: 0.9; /* for those who view in browser */
+    }
+
+    /* Bottom branding */
+    .branding {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 60px;
+      pointer-events: none;
+    }
+
+    .brand-left {
+      font-family: 'Aesthet Nova', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(240,237,232,0.6);
+    }
+
+    .brand-right {
+      font-family: 'Figtree', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      letter-spacing: 0.08em;
+      color: rgba(240,237,232,0.45);
+    }
+  </style>
+</head>
+<body>
+  <div class="creative">
+    <div class="bg-image"></div>
+    <div class="overlay-dark"></div>
+    <div class="overlay-texture"></div>
+    <div class="vignette"></div>
+
+    <div class="content">
+      <div class="headline-small">ARE YOU A</div>
+      <div class="headline-big">ROAMER?</div>
+      <div class="subhead">Applications for the July Cohort are now open.</div>
+
+      <div class="section-title">Been to any of these recently?</div>
+
+      <div class="capsules">
+        <span class="pill">Monochroma XII</span>
+        <span class="pill">Element House</span>
+        <span class="pill">South Social</span>
+        <span class="pill">Group Therapy</span>
+        <span class="pill">Rooftop House</span>
+        <span class="pill">Amapiano District</span>
+        <span class="pill">V6</span>
+        <span class="pill">Kultur People</span>
+      </div>
+
+      <div class="qualifier">You might already qualify.</div>
+
+      <a href="https://afrocue.xyz/roamers" class="cta">JOIN THE JULY COHORT</a>
+    </div>
+
+    <div class="branding">
+      <span class="brand-left">AfroCue</span>
+      <span class="brand-right">afrocue.xyz/roamers</span>
+    </div>
+  </div>
+</body>
+</html>
