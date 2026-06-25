@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Accept Your Roamers Spot — AfroCue</title>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
+  <!-- End Google Tag Manager -->
+
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ── Base & Fonts ── */
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
+    :root {
+      --black:  #0a0a0a;
+      --dark:   #111111;
+      --grey:   #555555;
+      --white:  #f0ede8;
+      --yellow: #C8E000;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Figtree', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ── Full‑page background layers ── */
+    .bg-image {
+      position: fixed; inset: 0; z-index: 0;
+      background-image: url('roamers_who.jpg');
+      background-size: cover; background-position: center;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .bg-scrim {
+      position: fixed; inset: 0; z-index: 1;
+      background: rgba(10,10,10,0.55);
+      pointer-events: none;
+    }
+    .bg-texture {
+      position: fixed; inset: 0; z-index: 2;
+      background-image: url('texture.jpg');
+      background-size: cover; opacity: 0.45;
+      pointer-events: none;
+    }
+
+    /* ── Content wrapper ── */
+    .wrap {
+      position: relative; z-index: 3;
+      max-width: 520px; width: 100%;
+      padding: 64px 24px 48px;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: rgba(20,20,20,0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 0 0 40px 0;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before { display: none; }
+
+    /* Logo area */
+    .card-logo {
+      padding: 36px 0 12px 0;
+      display: flex;
+      justify-content: center;
+    }
+    .card-logo img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+
+    h1 {
+      font-family: 'Aesthet Nova', sans-serif;
+      font-weight: 900;
+      font-size: clamp(36px, 6vw, 52px);
+      color: var(--yellow);
+      margin: 0 0 4px 0;
+      line-height: 1.1;
+      text-shadow: 2px 3px 0px rgba(0,0,0,0.9);
+    }
+    .subhead {
+      font-size: 16px;
+      color: rgba(240,237,232,0.7);
+      margin-bottom: 28px;
+      padding: 0 28px;
+    }
+
+    /* ── Profile details ── */
+    .profile-section {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 0 28px 20px;
+      text-align: left;
+    }
+    .profile-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .profile-row:last-child { border-bottom: none; }
+    .profile-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #888;
+      width: 80px;
+    }
+    .profile-value {
+      font-size: 16px;
+      color: #f0ede8;
+      flex: 1;
+    }
+    .edit-link {
+      font-size: 12px;
+      color: var(--yellow);
+      cursor: pointer;
+      background: none;
+      border: none;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* Editable fields (hidden by default) */
+    .form-group {
+      margin-bottom: 14px;
+      text-align: left;
+      display: none;
+    }
+    label {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 6px;
+    }
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.04);
+      color: var(--white);
+      font-family: 'Figtree', sans-serif;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus { border-color: rgba(200,224,0,0.4); }
+    input::placeholder { color: #555; }
+
+    /* ── Tiles (simplified) ── */
+    .tiles-section {
+      margin: 0 28px 24px;
+      text-align: left;
+    }
+    .tile {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .tile-icon {
+      font-size: 20px;
+      line-height: 1;
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+    .tile-content h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #f0ede8;
+      margin: 0 0 2px;
+    }
+    .tile-content p {
+      font-size: 13px;
+      line-height: 1.5;
+      color: rgba(240,237,232,0.65);
+      margin: 0;
+    }
+
+    /* Top 5 example – compact, centred text */
+    .top5-example {
+      margin: 20px 28px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      flex-wrap: wrap;
+    }
+    .top5-img {
+      width: 120px;
+      height: auto;
+      aspect-ratio: 4/5;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #1a1a1a;
+      margin: 0 auto;
+    }
+    .top5-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .top5-caption {
+      flex: 1;
+      min-width: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .top5-caption h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #f0ede8;
+      margin: 0 0 4px;
+      line-height: 1.2;
+    }
+    .top5-caption p {
+      font-size: 12px;
+      line-height: 1.5;
+      color: rgba(240,237,232,0.65);
+      margin: 0;
+    }
+
+    /* ── White CTA button ── */
+    .btn-white {
+      display: block;
+      width: calc(100% - 56px);
+      margin: 16px auto 0;
+      padding: 16px;
+      border-radius: 10px;
+      border: none;
+      font-family: 'Figtree', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+      color: #0a0a0a;
+      background: var(--white);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    .btn-white:hover {
+      background: rgba(255,255,255,0.9);
+    }
+    .btn-white:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .status-message {
+      margin-top: 16px;
+      font-size: 14px;
+      color: #888;
+      min-height: 20px;
+      padding: 0 28px;
+    }
+
+    .card-footer {
+      margin-top: 24px;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+
+    @media (max-width: 480px) {
+      .top5-example {
+        flex-direction: column;
+        align-items: center;
+      }
+      .top5-img {
+        width: 100%;
+        max-width: 160px;
+      }
+      .top5-caption {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="bg-image"></div>
+<div class="bg-scrim"></div>
+<div class="bg-texture"></div>
+
+<div class="wrap">
+  <div class="card" id="card">
+
+    <!-- AfroCue logo -->
+    <div class="card-logo">
+      <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" />
+    </div>
+
+    <h1>You're In.</h1>
+    <p class="subhead">Welcome to <span id="cohort-name">Roamers</span></p>
+
+    <!-- Profile display / edit -->
+    <div class="profile-section" id="profile-display">
+      <div class="profile-row">
+        <span class="profile-label">Name</span>
+        <span class="profile-value" id="display-name">-</span>
+      </div>
+      <div class="profile-row">
+        <span class="profile-label">Handle</span>
+        <span class="profile-value" id="display-ig">-</span>
+      </div>
+      <div class="profile-row">
+        <span class="profile-label">Phone</span>
+        <span class="profile-value" id="display-phone">-</span>
+      </div>
+      <div class="profile-row">
+        <span class="profile-label">Area</span>
+        <span class="profile-value" id="display-area">-</span>
+      </div>
+      <div class="profile-row">
+        <span class="profile-label"></span>
+        <button class="edit-link" onclick="toggleEdit()">Edit Details</button>
+      </div>
+    </div>
+
+    <!-- Editable fields (hidden initially) -->
+    <div id="edit-fields" style="display:none; padding: 0 28px;">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" id="name" placeholder="Your name"/>
+      </div>
+      <div class="form-group">
+        <label>Instagram / X / TikTok</label>
+        <div style="position:relative;">
+          <span style="position:absolute; left:14px; top:50%; transform:translateY(-50%); color:#555; font-size:16px;">@</span>
+          <input type="text" id="ig" placeholder="yourhandle" style="padding-left:32px;"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Phone (WhatsApp)</label>
+        <input type="tel" id="phone" placeholder="080..."/>
+      </div>
+      <div class="form-group">
+        <label>Area of Lagos</label>
+        <input type="text" id="area" placeholder="e.g. Lekki, VI, Ikeja"/>
+      </div>
+      <button class="btn-white" style="width:100%; margin:0 0 16px; background:transparent; color:#f0ede8; border:1px solid rgba(255,255,255,0.3);" onclick="saveProfile()">Save Changes</button>
+    </div>
+
+    <!-- Simple tiles -->
+    <div class="tiles-section">
+      <div class="tile">
+        <div class="tile-icon">🎧</div>
+        <div class="tile-content">
+          <h4>Experience the party first</h4>
+          <p>Be present. Feel the music. No pressure to do anything — just enjoy the night.</p>
+        </div>
+      </div>
+      <div class="tile">
+        <div class="tile-icon">📝</div>
+        <div class="tile-content">
+          <h4>Quick feedback</h4>
+          <p>After the party, we'll ask a few simple questions — best DJ, best moment. Short and easy.</p>
+        </div>
+      </div>
+      <div class="tile">
+        <div class="tile-icon">📸</div>
+        <div class="tile-content">
+          <h4>Share a moment (when it happens)</h4>
+          <p>If you catch a high moment where the DJ is killing it and the crowd is moving, post a short video on your story and tag <strong>@afro.cue</strong>. We may repost it, and you keep the credit. If the clip is really good, it might feature in our Weekly Top 5 or other content. Don't force it — one or two videos is plenty.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top 5 example – compact -->
+    <div class="top5-example">
+      <div class="top5-img">
+        <img src="roamers_top5_sample.jpg" alt="Top 5 example" />
+      </div>
+      <div class="top5-caption">
+        <h4>Weekly Top 5</h4>
+        <p>A great clip from your story could become a spotlight for a DJ — it helps us document the people moving the dance floor.</p>
+      </div>
+    </div>
+
+    <!-- Creative collaborations tile -->
+    <div class="tiles-section" style="margin-top: 0;">
+      <div class="tile">
+        <div class="tile-icon">✨</div>
+        <div class="tile-content">
+          <h4>Creative collaborations</h4>
+          <p>Occasionally, fun new projects pop up that need Roamers. When they do, we'll share the details and any benefits that come with them.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- White join button -->
+    <button class="btn-white" id="accept-btn" onclick="acceptInvite()">Join WhatsApp Group</button>
+    <div class="status-message" id="status"></div>
+    <div class="card-footer">AfroCue — Creatively Documenting Culture</div>
+  </div>
+</div>
+
+  <script>
+    // ── SINGLE APPS SCRIPT ENDPOINT ──
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyZvFHnm9JpFtMzWbMCvzSCTNw7TJN4mjCui-SgQbfF2lnko4-eJ72JHgRB-G2Jw36O/exec';   // ← replace with your actual Web App URL
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const email = urlParams.get('email');
+    let originalData = {};
+
+    // GTM page view
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+      event: 'page_view',
+      page_type: 'roamers_accept',
+      email: email
+    });
+
+    async function loadData() {
+      if (!email) {
+        document.getElementById('status').textContent = 'Missing email parameter. Please use the link from your email.';
+        return;
+      }
+      try {
+        const res = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify({ action: 'getUserData', email: email }),
+          headers: { 'Content-Type': 'text/plain' }
+        });
+        const data = await res.json();
+        if (data.error) {
+          document.getElementById('status').textContent = 'Could not load your data. Please contact us.';
+          return;
+        }
+        originalData = data;
+        document.getElementById('display-name').textContent = data['Name'] || '-';
+        document.getElementById('display-ig').textContent = data['Instagram Handle'] || '-';
+        document.getElementById('display-phone').textContent = data['Phone'] || '-';
+        document.getElementById('display-area').textContent = data['Area'] || '-';
+        document.getElementById('cohort-name').textContent = data['Cohort Month'] || 'Roamers';
+
+        // Pre‑fill edit fields
+        document.getElementById('name').value = data['Name'] || '';
+        document.getElementById('ig').value = (data['Instagram Handle'] || '').replace('@','');
+        document.getElementById('phone').value = data['Phone'] || '';
+        document.getElementById('area').value = data['Area'] || '';
+      } catch (e) {
+        document.getElementById('status').textContent = 'Error loading profile. Please try again.';
+      }
+    }
+
+    function toggleEdit() {
+      document.getElementById('edit-fields').style.display = 'block';
+    }
+
+    async function saveProfile() {
+      const updatedData = {
+        action: 'updateProfile',
+        email: email,
+        name: document.getElementById('name').value.trim(),
+        ig: '@' + document.getElementById('ig').value.trim().replace(/^@/,''),
+        phone: document.getElementById('phone').value.trim(),
+        area: document.getElementById('area').value.trim()
+      };
+      try {
+        const res = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify(updatedData),
+          headers: { 'Content-Type': 'text/plain' }
+        });
+        const result = await res.json();
+        if (result.result === 'success') {
+          document.getElementById('display-name').textContent = updatedData.name;
+          document.getElementById('display-ig').textContent = updatedData.ig;
+          document.getElementById('display-phone').textContent = updatedData.phone;
+          document.getElementById('display-area').textContent = updatedData.area;
+          document.getElementById('edit-fields').style.display = 'none';
+          document.getElementById('status').textContent = 'Profile updated.';
+        } else {
+          throw new Error('Update failed');
+        }
+      } catch (e) {
+        document.getElementById('status').textContent = 'Could not save changes.';
+      }
+    }
+
+    async function acceptInvite() {
+      const btn = document.getElementById('accept-btn');
+      btn.disabled = true; btn.textContent = 'Joining…';
+
+      window.dataLayer.push({
+        event: 'roamers_acceptance',
+        email: email,
+        cohort: document.getElementById('cohort-name').textContent || 'unknown'
+      });
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify({ action: 'acceptInvite', email: email }),
+          headers: { 'Content-Type': 'text/plain' }
+        });
+        window.location.href = 'https://chat.whatsapp.com/IEeRe7PWcN627hO4uuNQ6m';
+      } catch (e) {
+        document.getElementById('status').textContent = 'Something went wrong. Please try again.';
+        btn.disabled = false; btn.textContent = 'Join WhatsApp Group';
+      }
+    }
+
+    loadData();
+  </script>
+</body>
+</html>
