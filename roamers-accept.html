@@ -109,7 +109,7 @@
       padding: 0 28px;
     }
 
-    /* ── Profile details ── */
+    /* ── Profile section (read‑only) ── */
     .profile-section {
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.06);
@@ -146,13 +146,26 @@
       border: none;
       text-transform: uppercase;
       letter-spacing: 0.06em;
+      margin-top: 8px;
     }
 
-    /* Editable fields (hidden by default) */
+    /* ── Editable fields (hidden by default via container) ── */
+    #edit-fields {
+      display: none;
+      padding: 0 28px 20px;
+      margin: 0 28px 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      text-align: left;
+    }
+    #edit-fields.visible {
+      display: block;
+    }
     .form-group {
       margin-bottom: 14px;
       text-align: left;
-      display: none;
+      /* display is controlled by parent visibility, so no display:none here */
     }
     label {
       display: block;
@@ -340,11 +353,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h1>You're In.</h1>
     <p class="subhead">Welcome to <span id="cohort-name">Roamers</span></p>
 
-    <!-- Profile display / edit -->
+    <!-- Profile display (read‑only) -->
     <div class="profile-section" id="profile-display">
       <div class="profile-row">
         <span class="profile-label">Name</span>
         <span class="profile-value" id="display-name">-</span>
+      </div>
+      <div class="profile-row">
+        <span class="profile-label">Email</span>
+        <span class="profile-value" id="display-email">-</span>
       </div>
       <div class="profile-row">
         <span class="profile-label">Handle</span>
@@ -358,20 +375,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="profile-label">Area</span>
         <span class="profile-value" id="display-area">-</span>
       </div>
-      <div class="profile-row">
-        <span class="profile-label"></span>
-        <button class="edit-link" onclick="toggleEdit()">Edit Details</button>
-      </div>
+      <button class="edit-link" onclick="toggleEdit()">Edit Details</button>
     </div>
 
-    <!-- Editable fields (hidden initially) -->
-    <div id="edit-fields" style="display:none; padding: 0 28px;">
+    <!-- Editable fields (hidden by default) -->
+    <div id="edit-fields">
       <div class="form-group">
         <label>Name</label>
         <input type="text" id="name" placeholder="Your name"/>
       </div>
       <div class="form-group">
-        <label>Instagram / X / TikTok</label>
+        <label>Handle</label>
         <div style="position:relative;">
           <span style="position:absolute; left:14px; top:50%; transform:translateY(-50%); color:#555; font-size:16px;">@</span>
           <input type="text" id="ig" placeholder="yourhandle" style="padding-left:32px;"/>
@@ -444,11 +458,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <script>
     // ── SINGLE APPS SCRIPT ENDPOINT ──
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyZvFHnm9JpFtMzWbMCvzSCTNw7TJN4mjCui-SgQbfF2lnko4-eJ72JHgRB-G2Jw36O/exec';   // ← replace with your actual Web App URL
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwn-ApK8fm0SMygkWQzqVuilOjOIUmaHpzlMa9O6gfEc8oZYNDnt_JAYKH7ihjFYHvp/exec';   // ← replace with your actual Web App URL
 
     const urlParams = new URLSearchParams(window.location.search);
     const email = urlParams.get('email');
     let originalData = {};
+
+    // Mask email for display
+    function maskEmail(email) {
+      if (!email) return '';
+      const [name, domain] = email.split('@');
+      if (!domain) return email; // fallback
+      if (name.length <= 2) return name[0] + '***@' + domain;
+      return name[0] + '***' + name[name.length - 1] + '@' + domain;
+    }
 
     // GTM page view
     window.dataLayer = window.dataLayer || [];
@@ -463,6 +486,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         document.getElementById('status').textContent = 'Missing email parameter. Please use the link from your email.';
         return;
       }
+
+      // Show masked email immediately
+      document.getElementById('display-email').textContent = maskEmail(email);
+
       try {
         const res = await fetch(SCRIPT_URL, {
           method: 'POST',
@@ -492,7 +519,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
 
     function toggleEdit() {
-      document.getElementById('edit-fields').style.display = 'block';
+      const editFields = document.getElementById('edit-fields');
+      const profileDisplay = document.getElementById('profile-display');
+      if (editFields.classList.contains('visible')) {
+        // hide edit, show profile
+        editFields.classList.remove('visible');
+        profileDisplay.style.display = 'block';
+      } else {
+        editFields.classList.add('visible');
+        profileDisplay.style.display = 'none';
+      }
     }
 
     async function saveProfile() {
@@ -516,7 +552,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           document.getElementById('display-ig').textContent = updatedData.ig;
           document.getElementById('display-phone').textContent = updatedData.phone;
           document.getElementById('display-area').textContent = updatedData.area;
-          document.getElementById('edit-fields').style.display = 'none';
+          // Switch back to display mode
+          document.getElementById('edit-fields').classList.remove('visible');
+          document.getElementById('profile-display').style.display = 'block';
           document.getElementById('status').textContent = 'Profile updated.';
         } else {
           throw new Error('Update failed');
