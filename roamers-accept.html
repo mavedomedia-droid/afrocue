@@ -461,7 +461,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <script>
     // ── SINGLE APPS SCRIPT ENDPOINT ──
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwn-ApK8fm0SMygkWQzqVuilOjOIUmaHpzlMa9O6gfEc8oZYNDnt_JAYKH7ihjFYHvp/exec';   // ← replace with your actual Web App URL
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwn-ApK8fm0SMygkWQzqVuilOjOIUmaHpzlMa9O6gfEc8oZYNDnt_JAYKH7ihjFYHvp/exec';
 
     const urlParams = new URLSearchParams(window.location.search);
     const email = urlParams.get('email');
@@ -505,15 +505,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           return;
         }
         originalData = data;
+
+        // ✅ Corrected keys to match sheet column "Instagram"
         document.getElementById('display-name').textContent = data['Name'] || '-';
-        document.getElementById('display-ig').textContent = data['Instagram Handle'] || '-';
+        document.getElementById('display-ig').textContent = data['Instagram'] || '-';
         document.getElementById('display-phone').textContent = data['Phone'] || '-';
         document.getElementById('display-area').textContent = data['Area'] || '-';
         document.getElementById('cohort-name').textContent = data['Cohort Month'] || 'Roamers';
 
         // Pre‑fill edit fields
         document.getElementById('name').value = data['Name'] || '';
-        document.getElementById('ig').value = (data['Instagram Handle'] || '').replace('@','');
+        document.getElementById('ig').value = (data['Instagram'] || '').replace('@','');
         document.getElementById('phone').value = data['Phone'] || '';
         document.getElementById('area').value = data['Area'] || '';
       } catch (e) {
