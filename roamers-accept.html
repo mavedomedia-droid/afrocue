@@ -165,7 +165,6 @@
     .form-group {
       margin-bottom: 14px;
       text-align: left;
-      /* display is controlled by parent visibility, so no display:none here */
     }
     label {
       display: block;
@@ -222,7 +221,10 @@
       font-size: 13px;
       line-height: 1.5;
       color: rgba(240,237,232,0.65);
-      margin: 0;
+      margin: 0 0 6px;
+    }
+    .tile-content p:last-child {
+      margin-bottom: 0;
     }
 
     /* Top 5 example – compact, centred text */
@@ -422,7 +424,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="tile-icon">📸</div>
         <div class="tile-content">
           <h4>Share a moment (when it happens)</h4>
-          <p>If you catch a high moment where the DJ is killing it and the crowd is moving, post a short video on your story and tag <strong>@afro.cue</strong>. We may repost it, and you keep the credit. If the clip is really good, it might feature in our Weekly Top 5 or other content. Don't force it — one or two videos is plenty.</p>
+          <p>If you catch a high moment where the DJ is killing it and the crowd is moving, post a short video on your story and tag <strong>@afro.cue</strong>. We may repost it straight from your story.</p>
+          <p>Also, it might feature in our Weekly Top 5 or other content. But remember, be present first. 1-2 videos is plenty.</p>
         </div>
       </div>
     </div>
@@ -434,7 +437,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="top5-caption">
         <h4>Weekly Top 5</h4>
-        <p>A great clip from your story could become a spotlight for a DJ — it helps us document the people moving the dance floor.</p>
+        <p>Short video of a DJ moment — it helps us document the people moving the dance floor from the POV of present people, not media perspective.</p>
       </div>
     </div>
 
@@ -468,7 +471,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     function maskEmail(email) {
       if (!email) return '';
       const [name, domain] = email.split('@');
-      if (!domain) return email; // fallback
+      if (!domain) return email;
       if (name.length <= 2) return name[0] + '***@' + domain;
       return name[0] + '***' + name[name.length - 1] + '@' + domain;
     }
@@ -522,7 +525,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const editFields = document.getElementById('edit-fields');
       const profileDisplay = document.getElementById('profile-display');
       if (editFields.classList.contains('visible')) {
-        // hide edit, show profile
         editFields.classList.remove('visible');
         profileDisplay.style.display = 'block';
       } else {
