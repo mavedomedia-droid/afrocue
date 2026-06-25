@@ -10,54 +10,62 @@
     img { border:0; display:block; }
   </style>
 </head>
-<body style="margin:0;padding:0;background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);">
+<body style="margin:0;padding:0;background: linear-gradient(160deg, #0e0e0e 0%, #141414 100%);">
 
 <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background: transparent;">
 <tr><td align="center" style="padding:48px 16px 40px;">
 
-  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:520px;background:#111111;border:1px solid rgba(255,255,255,0.06);border-radius:10px;overflow:hidden;">
-
-    <!-- Accent bar -->
-    <tr><td style="background: linear-gradient(90deg, #C8E000, #E5D000);height:4px;font-size:0;line-height:0;">&nbsp;</td></tr>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:520px;background: rgba(18,18,18,0.95); border:1px solid rgba(255,255,255,0.06); border-radius:12px; overflow:hidden;">
 
     <!-- Header -->
     <tr>
-      <td style="padding:32px 40px 24px;border-bottom:1px solid rgba(255,255,255,0.05);">
-        <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" height="36" style="height:36px;width:auto;"/>
+      <td style="padding:36px 40px 20px;">
+        <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" height="36" style="height:36px; width:auto;"/>
       </td>
     </tr>
 
-    <!-- Personal greeting -->
+    <!-- Greeting -->
     <tr>
-      <td style="padding:36px 40px 28px;">
-        <p style="font-size:16px;color:#f0ede8;margin:0 0 8px;font-weight:500;">Hi {{name}},</p>
-        <p style="font-size:15px;line-height:1.7;color:rgba(240,237,232,0.75);margin:0;">
-          Thank you for your interest in being a Roamer.<br>
-          We're extending this invitation for the month of <strong style="color:#C8E000;">{{cohort}}</strong>.
+      <td style="padding:0 40px 24px;">
+        <p style="font-size:16px; color:#f0ede8; margin:0 0 6px; font-weight:500;">Hi {{name}},</p>
+        <p style="font-size:15px; line-height:1.6; color:rgba(240,237,232,0.7); margin:0;">
+          Thank you for your interest in being a Roamer.
         </p>
       </td>
     </tr>
 
-    <!-- CTA Button (white) -->
+    <!-- Invitation block (distinct section) -->
     <tr>
-      <td style="padding:0 40px 32px;" align="center">
+      <td style="padding:24px 40px; margin:0 40px; background: rgba(200,224,0,0.05); border:1px solid rgba(200,224,0,0.12); border-radius:8px;">
+        <p style="font-size:15px; line-height:1.6; color:rgba(240,237,232,0.85); margin:0 0 6px;">
+          You've been invited to join the <strong style="color:#C8E000;">{{cohort}}</strong> cohort.
+        </p>
+        <p style="font-size:14px; line-height:1.5; color:rgba(240,237,232,0.6); margin:0;">
+          Click below to claim your spot and see what it entails.
+        </p>
+      </td>
+    </tr>
+
+    <!-- CTA Button (clean, modest radius) -->
+    <tr>
+      <td style="padding:28px 40px 32px;" align="center">
         <a href="https://afrocue.xyz/roamers-accept.html?email={{email}}" 
-           style="display:inline-block; background:#ffffff; color:#0a0a0a; padding:16px 38px; border-radius:8px; font-weight:700; font-size:14px; text-transform:uppercase; letter-spacing:0.12em; text-decoration:none; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
+           style="display:inline-block; background: linear-gradient(135deg, #ffffff, #f2f2f2); color:#0a0a0a; padding:14px 34px; border-radius:8px; font-weight:600; font-size:14px; text-transform:uppercase; letter-spacing:0.1em; text-decoration:none; box-shadow: 0 2px 8px rgba(0,0,0,0.4);">
           Claim Your Spot
         </a>
       </td>
     </tr>
 
-    <!-- Top 5 image + subtle caption -->
+    <!-- Subtle separator & Top 5 hint -->
     <tr>
-      <td style="padding:0 40px 32px; border-top:1px solid rgba(255,255,255,0.05);">
+      <td style="padding:0 40px 28px; border-top:1px solid rgba(255,255,255,0.05);">
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
           <tr>
-            <td width="100" style="padding-right:16px; vertical-align:middle;">
-              <img src="https://afrocue.xyz/roamers_top5_sample2.jpg" alt="Weekly Top 5" width="100" style="width:100px;height:auto;display:block;border-radius:6px;"/>
+            <td width="80" style="padding-right:14px; vertical-align:middle;">
+              <img src="https://afrocue.xyz/roamers_top5_sample.jpg" alt="Weekly Top 5" width="80" style="width:80px; height:auto; display:block; border-radius:6px;"/>
             </td>
             <td style="vertical-align:middle;">
-              <p style="font-size:13px;line-height:1.5;color:rgba(240,237,232,0.55);margin:0;">
+              <p style="font-size:13px; line-height:1.5; color:rgba(240,237,232,0.5); margin:0;">
                 Weekly Top 5 — featuring party moments from DJs.
               </p>
             </td>
@@ -66,10 +74,10 @@
       </td>
     </tr>
 
-    <!-- Footer note -->
+    <!-- Sign off -->
     <tr>
-      <td style="padding:20px 40px;background:#0d0d0d;border-top:1px solid rgba(255,255,255,0.05);">
-        <p style="font-size:11px;line-height:1.7;color:rgba(240,237,232,0.3);margin:0;">
+      <td style="padding:20px 40px; background: rgba(0,0,0,0.15); border-top:1px solid rgba(255,255,255,0.04);">
+        <p style="font-size:11px; line-height:1.6; color:rgba(240,237,232,0.25); margin:0;">
           See you on the floor.<br>
           &mdash; AfroCue
         </p>
@@ -78,11 +86,11 @@
 
     <!-- Footer -->
     <tr>
-      <td style="padding:20px 40px 24px;border-top:1px solid rgba(255,255,255,0.05);background:#0a0a0a;">
-        <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" height="24" style="display:block;height:24px;width:auto;margin-bottom:8px;"/>
-        <p style="font-size:10px;color:#444444;line-height:1.8;margin:0;">
+      <td style="padding:20px 40px 24px; background: rgba(0,0,0,0.25); border-top:1px solid rgba(255,255,255,0.04);">
+        <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" height="22" style="display:block; height:22px; width:auto; margin-bottom:8px;"/>
+        <p style="font-size:10px; color:#444; line-height:1.6; margin:0;">
           Lagos, Nigeria &nbsp;&middot;&nbsp; &copy; 2026 AfroCue<br>
-          <a href="https://afrocue.xyz" style="color:#444444;">afrocue.xyz</a>
+          <a href="https://afrocue.xyz" style="color:#444;">afrocue.xyz</a>
         </p>
       </td>
     </tr>
