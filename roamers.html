@@ -19,16 +19,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
+    /* same base styles as before (unchanged) */
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
     :root {
-      --black:  #0a0a0a;
-      --dark:   #111111;
-      --grey:   #555555;
-      --silver: #999999;
-      --white:  #f0ede8;
-      --yellow: #C8E000;
-      --yts:    2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.06);
+      --black:  #0a0a0a; --dark: #111111; --grey: #555555; --silver: #999999;
+      --white:  #f0ede8; --yellow: #C8E000;
+      --yts: 2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.06);
     }
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior:smooth; }
@@ -40,19 +37,11 @@
 
     .wrap { position:relative; z-index:3; max-width:680px; margin:0 auto; padding:0 32px 80px; text-align:center; }
 
-    /* Header Banner */
-    .header-banner {
-      position:relative; padding:64px 24px 48px; margin-bottom:32px;
-      background:rgba(0,0,0,0.3); border-radius:0 0 20px 20px; overflow:hidden;
-    }
-    .header-banner::before {
-      content:''; position:absolute; inset:0; background-image:url('texture.jpg');
-      background-size:cover; opacity:0.8; z-index:0;
-    }
+    .header-banner { position:relative; padding:64px 24px 48px; margin-bottom:32px; background:rgba(0,0,0,0.3); border-radius:0 0 20px 20px; overflow:hidden; }
+    .header-banner::before { content:''; position:absolute; inset:0; background-image:url('texture.jpg'); background-size:cover; opacity:0.8; z-index:0; }
     .header-banner > * { position:relative; z-index:1; }
     .banner-logo img { height:48px; width:auto; display:block; margin:0 auto 16px; }
 
-    /* Hero */
     .roamers-hero { margin-bottom:40px; }
     .hero-flex { display:flex; align-items:center; gap:24px; flex-wrap:nowrap; margin-bottom:20px; }
     .hero-text { flex:2 1 0%; min-width:0; text-align:left; }
@@ -68,14 +57,7 @@
       .hero-img { max-width:33.33%; }
     }
 
-    /* Quiz Card */
-    .quiz-card {
-      max-width:520px; margin:0 auto;
-      background:rgba(20,20,20,0.8); backdrop-filter:blur(20px);
-      border:1px solid rgba(255,255,255,0.1); border-radius:20px;
-      padding:32px 28px 36px; box-shadow:0 24px 64px rgba(0,0,0,0.6);
-      position:relative; overflow:visible;
-    }
+    .quiz-card { max-width:520px; margin:0 auto; background:rgba(20,20,20,0.8); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:32px 28px 36px; box-shadow:0 24px 64px rgba(0,0,0,0.6); position:relative; overflow:visible; }
     .quiz-card::before { content:''; position:absolute; inset:0; background-image:url('texture.jpg'); background-size:cover; opacity:0.12; pointer-events:none; z-index:0; border-radius:inherit; }
     .quiz-card > * { position:relative; z-index:1; }
 
@@ -87,9 +69,7 @@
     .step-q { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(20px,4vw,26px); color:var(--white); line-height:1.1; margin-bottom:16px; }
     .step-hint { font-size:14px; font-weight:300; color:rgba(240,237,232,0.5); line-height:1.6; margin-bottom:24px; }
 
-    /* Single column options */
     .opts { display:flex; flex-direction:column; gap:10px; margin-top:8px; }
-    /* 2-column grid for Q1 */
     .opts-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px; }
 
     .opt { border:1.5px solid rgba(255,255,255,0.1); border-radius:12px; padding:14px 16px; cursor:pointer; background:rgba(255,255,255,0.03); display:flex; align-items:center; gap:14px; transition:border-color 0.15s,background 0.15s; text-align:left; }
@@ -157,7 +137,6 @@
     .opp-tile h4 { font-size:16px; font-weight:600; margin-bottom:6px; }
     .opp-tile p { font-size:13px; color:rgba(240,237,232,0.5); line-height:1.6; }
 
-    /* One More Thing spill */
     .one-more-thing { position:relative; margin:28px 0 20px; text-align:left; }
     .moment-scroll { display:flex; gap:10px; overflow-x:auto; padding-bottom:8px; scroll-snap-type:x mandatory; margin:0 -28px; padding-left:28px; padding-right:28px; }
     .moment-item { flex:0 0 auto; width:160px; aspect-ratio:4/5; border-radius:8px; overflow:hidden; scroll-snap-align:start; box-shadow:0 8px 20px rgba(0,0,0,0.6); }
@@ -215,115 +194,73 @@
       <div class="step active" id="step-start">
         <div class="step-label">Roamers</div>
         <div class="step-q">Ready to find out?</div>
-        <button class="btn btn-primary btn-block" onclick="goTo('q1')">Start The Quiz →</button>
+        <button class="btn btn-primary btn-block" onclick="goTo('q-parties')">Start The Quiz →</button>
       </div>
 
-      <!-- Q1 – 2-column grid -->
-      <div class="step" id="q1">
-        <div class="step-label">Question 1 / 3</div>
-        <div class="step-q">Been out lately? How many parties in the last month?</div>
-        <div class="opts-grid">
-          <button class="opt" onclick="selectRadio('q1','0-1',this)"><span class="opt-radio"></span> <span class="opt-text">0–1</span></button>
-          <button class="opt" onclick="selectRadio('q1','2-3',this)"><span class="opt-radio"></span> <span class="opt-text">2–3</span></button>
-          <button class="opt" onclick="selectRadio('q1','4-5',this)"><span class="opt-radio"></span> <span class="opt-text">4–5</span></button>
-          <button class="opt" onclick="selectRadio('q1','6+',this)"><span class="opt-radio"></span> <span class="opt-text">6+</span></button>
+      <!-- SINGLE QUESTION: party selection -->
+      <div class="step" id="q-parties">
+        <div class="step-label">Question</div>
+        <div class="step-q">Which of these events have you been to in the last 60 days?</div>
+        <div class="multi-grid" id="partyGrid">
+          <button class="multi-opt" data-val="Monochroma" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Monochroma</span></button>
+          <button class="multi-opt" data-val="Even in the Day" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Even in the Day</span></button>
+          <button class="multi-opt" data-val="Amapiano District" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Amapiano District</span></button>
+          <button class="multi-opt" data-val="PM2AM" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">PM2AM</span></button>
+          <button class="multi-opt" data-val="Element House" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Element House</span></button>
+          <button class="multi-opt" data-val="Group Therapy" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Group Therapy</span></button>
+          <button class="multi-opt" data-val="Sunday Service" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Sunday Service</span></button>
+          <button class="multi-opt" data-val="V6 Group Collective" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">V6 Group Collective</span></button>
+          <button class="multi-opt" data-val="Tempo Lagos" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Tempo Lagos</span></button>
+          <button class="multi-opt" data-val="Other" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Other</span></button>
+          <button class="multi-opt" data-val="None of the above" data-none="true" onclick="toggleNone(this)"><span class="check-box"></span><span class="multi-opt-text">None of the above</span></button>
         </div>
-        <button class="btn btn-primary btn-block" onclick="nextQ1()" disabled id="q1next">Continue</button>
-      </div>
-
-      <!-- Q2 – multi-select grid (unchanged event list) -->
-      <div class="step" id="q2">
-        <div class="step-label">Question 2 / 3</div>
-        <div class="step-q">Spotted at any of these recently?</div>
-        <div class="multi-grid" id="q2grid">
-          <button class="multi-opt" data-val="Monochroma XII" onclick="toggleMulti(this)"><span class="check-box"></span><span class="multi-opt-text">Monochroma XII</span></button>
-          <button class="multi-opt" data-val="Element House" onclick="toggleMulti(this)"><span class="check-box"></span><span class="multi-opt-text">Element House</span></button>
-          <button class="multi-opt" data-val="Rooftop House Lagos" onclick="toggleMulti(this)"><span class="check-box"></span><span class="multi-opt-text">Rooftop House Lagos</span></button>
-          <button class="multi-opt" data-val="Group Therapy" onclick="toggleMulti(this)"><span class="check-box"></span><span class="multi-opt-text">Group Therapy</span></button>
-          <button class="multi-opt" data-val="South Social" onclick="toggleMulti(this)"><span class="check-box"></span><span class="multi-opt-text">South Social</span></button>
-          <button class="multi-opt" data-val="Amapiano District" onclick="toggleMulti(this)"><span class="check-box"></span><span class="multi-opt-text">Amapiano District</span></button>
-          <button class="multi-opt" data-val="V6" onclick="toggleMulti(this)"><span class="check-box"></span><span class="multi-opt-text">V6</span></button>
-          <button class="multi-opt" data-val="Other" onclick="toggleMulti(this)"><span class="check-box"></span><span class="multi-opt-text">Other</span></button>
-          <button class="multi-opt" data-val="None Of These" data-none="true" onclick="handleNone(this)"><span class="check-box"></span><span class="multi-opt-text">None Of These</span></button>
+        <div id="otherPartyWrap" style="display:none; margin-top:12px; text-align:left;">
+          <input type="text" id="otherPartyInput" placeholder="Which party?" style="width:100%; padding:12px; border-radius:8px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); color:white;" oninput="document.getElementById('partyNextBtn').disabled = false;"/>
         </div>
-        <button class="btn btn-primary btn-block" onclick="nextQ2()" disabled id="q2next">Continue</button>
+        <button class="btn btn-primary btn-block" id="partyNextBtn" disabled onclick="handlePartySelection()">Continue</button>
       </div>
 
-      <!-- Q3 – shorter, more personality -->
-      <div class="step" id="q3">
-        <div class="step-label">Question 3 / 3</div>
+      <!-- NOTIFICATION OPT-IN (only for qualified paths) -->
+      <div class="step" id="q-notify">
+        <div class="step-label">One last thing</div>
         <div class="step-q">Would you like to be notified when roamer opportunities arise?</div>
         <div class="opts">
-          <button class="opt" onclick="selectRadio('q3','Yes',this)"><span class="opt-radio"></span> <span class="opt-text">Yes</span></button>
-          <button class="opt" onclick="selectRadio('q3','Maybe',this)"><span class="opt-radio"></span> <span class="opt-text">Maybe</span></button>
-          <button class="opt" onclick="selectRadio('q3','No',this)"><span class="opt-radio"></span> <span class="opt-text">No</span></button>
+          <button class="opt" onclick="selectRadio('notify','Yes',this)"><span class="opt-radio"></span> <span class="opt-text">Yes</span></button>
+          <button class="opt" onclick="selectRadio('notify','Maybe',this)"><span class="opt-radio"></span> <span class="opt-text">Maybe</span></button>
+          <button class="opt" onclick="selectRadio('notify','No',this)"><span class="opt-radio"></span> <span class="opt-text">No</span></button>
         </div>
-        <button class="btn btn-primary btn-block" onclick="nextQ3()" disabled id="q3next">Continue</button>
+        <button class="btn btn-primary btn-block" onclick="goTo('result')" disabled id="notifyNext">Continue</button>
       </div>
 
-      <!-- END STATES + SIGNUP FORMS (unchanged) -->
-      <div class="step" id="end-few">
-        <div class="end-card">
-          <h3>You're probably not a Roamer yet.</h3>
-          <p style="color:rgba(240,237,232,0.6); margin:20px 0;">Maybe next month. In the meantime, stay connected.</p>
-        </div>
-        <div class="signup-card" id="signup-few-card">
-          <h4>Get AfroCue updates</h4>
-          <div class="field"><input type="text" id="few-name" placeholder="Your name" oninput="toggleSignupBtn('few')"/></div>
-          <div class="field"><input type="email" id="few-email" placeholder="your@email.com" oninput="toggleSignupBtn('few')"/></div>
-          <button class="btn btn-primary btn-block" id="few-submit" disabled onclick="submitSignup('few')">Sign Up →</button>
-        </div>
-        <div id="few-ty" style="display:none;" class="ty-card">
-          <div class="ty-title">Thanks!</div>
-          <p style="color:rgba(240,237,232,0.6);">We'll be in touch.</p>
-        </div>
-      </div>
-
-      <div class="step" id="end-none">
-        <div class="end-card">
-          <h3>You might be outside, but we're looking for people actively participating in the scene.</h3>
-          <p style="color:rgba(240,237,232,0.5); margin-top:20px;">That's okay. Keep in touch.</p>
-        </div>
-        <div class="signup-card" id="signup-none-card">
-          <h4>Get AfroCue updates</h4>
-          <div class="field"><input type="text" id="none-name" placeholder="Your name" oninput="toggleSignupBtn('none')"/></div>
-          <div class="field"><input type="email" id="none-email" placeholder="your@email.com" oninput="toggleSignupBtn('none')"/></div>
-          <button class="btn btn-primary btn-block" id="none-submit" disabled onclick="submitSignup('none')">Sign Up →</button>
-        </div>
-        <div id="none-ty" style="display:none;" class="ty-card">
-          <div class="ty-title">Thanks!</div>
-          <p style="color:rgba(240,237,232,0.6);">We'll be in touch.</p>
+      <!-- SIMPLE SIGNUP (for None of the above) -->
+      <div class="step" id="simple-signup">
+        <div class="step-label">Stay connected</div>
+        <div class="step-q">Drop your details.</div>
+        <p class="step-hint">We'll keep you in the loop.</p>
+        <div class="signup-card">
+          <div class="field"><label>Name</label><input type="text" id="simple-name" placeholder="Your name" oninput="toggleSimpleBtn()"/></div>
+          <div class="field"><label>Instagram Handle</label>
+            <div style="position:relative;">
+              <span style="position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--grey); font-size:16px;">@</span>
+              <input type="text" id="simple-ig" placeholder="yourhandle" style="padding-left:32px;" oninput="toggleSimpleBtn()"/>
+            </div>
+          </div>
+          <div class="field"><label>Email Address</label><input type="email" id="simple-email" placeholder="you@example.com" oninput="toggleSimpleBtn()"/></div>
+          <button class="btn btn-primary btn-block" id="simple-submit" disabled onclick="submitSimpleSignup()">Sign Up →</button>
         </div>
       </div>
 
-      <div class="step" id="end-no">
-        <div class="end-card">
-          <h3>No worries.</h3>
-          <p style="color:rgba(240,237,232,0.5);">You can always apply another month.</p>
-        </div>
-        <div class="signup-card" id="signup-no-card">
-          <h4>Stay connected</h4>
-          <div class="field"><input type="text" id="no-name" placeholder="Your name" oninput="toggleSignupBtn('no')"/></div>
-          <div class="field"><input type="email" id="no-email" placeholder="your@email.com" oninput="toggleSignupBtn('no')"/></div>
-          <button class="btn btn-primary btn-block" id="no-submit" disabled onclick="submitSignup('no')">Sign Up →</button>
-        </div>
-        <div id="no-ty" style="display:none;" class="ty-card">
-          <div class="ty-title">Thanks!</div>
-          <p style="color:rgba(240,237,232,0.6);">We'll be in touch.</p>
-        </div>
-      </div>
-
-      <!-- RESULT (Almost done) -->
+      <!-- RESULT + FULL APPLICATION (roamers_maybe / roamers_application) -->
       <div class="step" id="result">
-        <div class="step-label">Result</div>
-        <div class="step-q">Almost done.</div>
-        <p class="step-hint">Just a few details and you're in the network.</p>
+        <div class="step-label">Almost done</div>
+        <div class="step-q" id="result-title">You're a Roamer.</div>
+        <p class="step-hint" id="result-hint">Complete your details to join the network.</p>
 
         <div class="form-fields">
           <div class="field"><label>Name</label><input type="text" id="name" placeholder="Name / Moniker" oninput="checkForm()"/></div>
           <div class="field"><label>IG/Tiktok/X Handle</label>
-            <div class="ig-wrap" style="position:relative;">
-              <span style="position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--grey); font-size:16px; pointer-events:none;">@</span>
+            <div style="position:relative;">
+              <span style="position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--grey); font-size:16px;">@</span>
               <input type="text" id="ig" placeholder="yourhandle" style="padding-left:32px;" oninput="checkForm()"/>
             </div>
           </div>
@@ -347,13 +284,13 @@
           </div>
         </div>
 
-        <!-- One More Thing -->
+        <!-- One More Thing (only for these paths) -->
         <div class="one-more-thing">
           <p style="color:rgba(240,237,232,0.55); margin-bottom:12px;">The experience always comes first, but if you're the type to take a video or two on a night out, feel free to post on your story and tag us <strong>@afro.cue</strong>.</p>
           <div class="moment-scroll">
-            <div class="moment-item"><img src="moment1.jpg" alt="DJ moment"></div>
-            <div class="moment-item"><img src="moment2.jpg" alt="DJ moment"></div>
-            <div class="moment-item"><img src="moment3.jpg" alt="DJ moment"></div>
+            <div class="moment-item"><img src="roamers_top5_sample3.jpg" alt="DJ moment"></div>
+            <div class="moment-item"><img src="roamers_top5_sample2.jpg" alt="DJ moment"></div>
+            <div class="moment-item"><img src="roamers_top5_sample1.jpg" alt="DJ moment"></div>
           </div>
         </div>
 
@@ -361,11 +298,11 @@
         <p style="font-size:11px; color:var(--grey); margin-top:12px;">We'll reach out if you're selected.</p>
       </div>
 
-      <!-- THANK YOU -->
+      <!-- THANK YOU (shared) -->
       <div class="step" id="thankyou">
         <div class="ty-card">
           <div class="ty-title">Profile<br>Submitted.</div>
-          <p style="font-size:15px; font-weight:300; color:rgba(240,237,232,0.55); margin:20px 0 28px;">We'll be in touch if a slot opens. In the meantime, keep experiencing the culture.</p>
+          <p id="ty-message" style="font-size:15px; font-weight:300; color:rgba(240,237,232,0.55); margin:20px 0 28px;">We'll be in touch if a slot opens. In the meantime, keep experiencing the culture.</p>
           <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-primary">Follow AfroCue</a>
         </div>
       </div>
@@ -379,27 +316,13 @@
     <div class="section-body">
       Roamers are people who live experiences in Lagos through parties and raves. In being present, your perspective is everything and as we document culture, we occasionally request your contribution in: simple surveys, tagging us in party and DJ moments you can find, and occasionally contributing on creative engagements that often come with benefits.
     </div>
-
     <p style="font-size:15px; font-weight:400; color:rgba(240,237,232,0.8); margin-bottom:20px;">From time to time, we will notify you if any opportunities come up for contribution beyond just tagging us on your stories. These may include:</p>
     <div class="opp-tiles">
-      <div class="opp-tile">
-        <h4>ACCESS</h4>
-        <p>Both regular and VIP, when we have them.</p>
-      </div>
-      <div class="opp-tile">
-        <h4>FEATURES</h4>
-        <p>Your video might feature in our content — we'll give credit as much as we can.</p>
-      </div>
-      <div class="opp-tile">
-        <h4>BRANDED MOMENTS</h4>
-        <p>Initiatives like our Pregame series and Pregame Homies (coming soon). <a href="https://www.instagram.com/p/DYIDS-cCdKS/" target="_blank" style="color:var(--yellow); text-decoration:underline;">See example</a></p>
-      </div>
-      <div class="opp-tile">
-        <h4>CREATOR OPPORTUNITIES</h4>
-        <p>Occasionally, paid or collaborative projects for creators in the network.</p>
-      </div>
+      <div class="opp-tile"><h4>ACCESS</h4><p>Both regular and VIP, when we have them.</p></div>
+      <div class="opp-tile"><h4>FEATURES</h4><p>Your video might feature in our content — we'll give credit as much as we can.</p></div>
+      <div class="opp-tile"><h4>BRANDED MOMENTS</h4><p>Initiatives like our Pregame series and Pregame Homies (coming soon). <a href="https://www.instagram.com/p/DYIDS-cCdKS/" target="_blank" style="color:var(--yellow); text-decoration:underline;">See example</a></p></div>
+      <div class="opp-tile"><h4>CREATOR OPPORTUNITIES</h4><p>Occasionally, paid or collaborative projects for creators in the network.</p></div>
     </div>
-
     <div class="img-block">
       <img src="roamers_who.jpg" alt="Lagos nightlife crowd"/>
       <div class="img-block-overlay"></div>
@@ -410,34 +333,10 @@
   <div class="info-section" style="margin-top:80px;">
     <div class="section-h">How It<br>Works</div>
     <div class="how-grid">
-      <div class="how-step">
-        <div class="how-step-num">1</div>
-        <div class="how-step-content">
-          <div class="how-step-title">Sign up</div>
-          <div class="how-step-desc">Take the quiz and see if you're a Roamer.</div>
-        </div>
-      </div>
-      <div class="how-step">
-        <div class="how-step-num">2</div>
-        <div class="how-step-content">
-          <div class="how-step-title">Go out</div>
-          <div class="how-step-desc">Keep going to the parties and raves you love.</div>
-        </div>
-      </div>
-      <div class="how-step">
-        <div class="how-step-num">3</div>
-        <div class="how-step-content">
-          <div class="how-step-title">Share moments</div>
-          <div class="how-step-desc">If you catch a great DJ clip, post it and tag us. Completely optional.</div>
-        </div>
-      </div>
-      <div class="how-step">
-        <div class="how-step-num">4</div>
-        <div class="how-step-content">
-          <div class="how-step-title">Be on the lookout</div>
-          <div class="how-step-desc">We'll reach out by email if we have tickets, accesses, or any fun initiatives.</div>
-        </div>
-      </div>
+      <div class="how-step"><div class="how-step-num">1</div><div class="how-step-content"><div class="how-step-title">Sign up</div><div class="how-step-desc">Take the quiz and see if you're a Roamer.</div></div></div>
+      <div class="how-step"><div class="how-step-num">2</div><div class="how-step-content"><div class="how-step-title">Go out</div><div class="how-step-desc">Keep going to the parties and raves you love.</div></div></div>
+      <div class="how-step"><div class="how-step-num">3</div><div class="how-step-content"><div class="how-step-title">Share moments</div><div class="how-step-desc">If you catch a great DJ clip, post it and tag us. Completely optional.</div></div></div>
+      <div class="how-step"><div class="how-step-num">4</div><div class="how-step-content"><div class="how-step-title">Be on the lookout</div><div class="how-step-desc">We'll reach out by email if we have tickets, accesses, or any fun initiatives.</div></div></div>
     </div>
   </div>
 
@@ -483,8 +382,11 @@
 
 <script>
   let currentStep = 'step-start';
-  let q1Value = null, q2Selected = new Set(), q3Value = null;
+  let selectedParties = new Set();      // stores party names (excluding "None of the above")
+  let noneSelected = false;
+  let notifyValue = null;
 
+  // ── Navigation ──
   function goTo(id) {
     document.getElementById(currentStep).classList.remove('active');
     document.getElementById(id).classList.add('active');
@@ -493,86 +395,137 @@
     if (card) window.scrollTo({ top: card.offsetTop - 20, behavior: 'smooth' });
   }
 
+  // ── Party selection handlers ──
+  function toggleParty(btn) {
+    const val = btn.getAttribute('data-val');
+    if (val === 'Other') {
+      // toggle Other separately
+      btn.classList.toggle('selected');
+      if (btn.classList.contains('selected')) {
+        selectedParties.add('Other');
+      } else {
+        selectedParties.delete('Other');
+      }
+    } else {
+      // normal party
+      if (btn.classList.contains('selected')) {
+        btn.classList.remove('selected');
+        selectedParties.delete(val);
+      } else {
+        // if "None of the above" is active, remove it
+        if (noneSelected) {
+          document.querySelector('[data-none="true"]').classList.remove('selected');
+          noneSelected = false;
+          document.getElementById('otherPartyWrap').style.display = 'none';
+        }
+        btn.classList.add('selected');
+        selectedParties.add(val);
+      }
+    }
+    updatePartyNextButton();
+  }
+
+  function toggleNone(btn) {
+    if (btn.classList.contains('selected')) {
+      btn.classList.remove('selected');
+      noneSelected = false;
+      document.getElementById('otherPartyWrap').style.display = 'none';
+      // re-enable all other buttons
+      document.querySelectorAll('#partyGrid .multi-opt:not([data-none="true"])').forEach(b => {
+        b.classList.remove('selected');
+      });
+      selectedParties.clear();
+    } else {
+      // clear all other selections
+      document.querySelectorAll('#partyGrid .multi-opt:not([data-none="true"])').forEach(b => {
+        b.classList.remove('selected');
+      });
+      selectedParties.clear();
+      btn.classList.add('selected');
+      noneSelected = true;
+      document.getElementById('otherPartyWrap').style.display = 'block';
+    }
+    updatePartyNextButton();
+  }
+
+  function updatePartyNextButton() {
+    const btn = document.getElementById('partyNextBtn');
+    if (noneSelected) {
+      btn.disabled = false; // they can proceed with just None
+    } else {
+      btn.disabled = selectedParties.size === 0;
+    }
+  }
+
+  // ── Handle party selection and route ──
+  function handlePartySelection() {
+    if (noneSelected) {
+      // None of the above → simple signup
+      goTo('simple-signup');
+    } else {
+      const count = selectedParties.size;
+      // store the selected parties (including "Other" if present) for later
+      // We'll attach to window for submission
+      window._roamersSelectedParties = Array.from(selectedParties);
+      if (count === 1) {
+        // roamers_maybe path – go to notification then result
+        window._roamersType = 'roamers_maybe';
+        goTo('q-notify');
+      } else {
+        // roamers_application path
+        window._roamersType = 'roamers_application';
+        goTo('q-notify');
+      }
+    }
+  }
+
+  // ── Notification opt‑in ──
   function selectRadio(group, value, btn) {
     const container = btn.parentElement;
     container.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
     btn.classList.add('selected');
-    if (group === 'q1') { q1Value = value; document.getElementById('q1next').disabled = false; }
-    else if (group === 'q3') { q3Value = value; document.getElementById('q3next').disabled = false; }
-  }
-
-  function nextQ1() { if (q1Value === '0-1') goTo('end-few'); else goTo('q2'); }
-
-  function toggleMulti(btn) {
-    const val = btn.getAttribute('data-val');
-    if (btn.classList.contains('selected')) {
-      btn.classList.remove('selected'); q2Selected.delete(val);
-    } else {
-      if (btn.dataset.none === 'true') {
-        document.querySelectorAll('#q2grid .multi-opt').forEach(o => o.classList.remove('selected'));
-        q2Selected.clear(); q2Selected.add('None Of These');
-      } else {
-        const noneBtn = document.querySelector('[data-none="true"]');
-        if (noneBtn) { noneBtn.classList.remove('selected'); q2Selected.delete('None Of These'); }
-        q2Selected.add(val);
-      }
-      btn.classList.add('selected');
+    if (group === 'notify') {
+      notifyValue = value;
+      document.getElementById('notifyNext').disabled = false;
     }
-    document.getElementById('q2next').disabled = q2Selected.size === 0;
   }
 
-  function handleNone(btn) {
-    if (btn.classList.contains('selected')) { btn.classList.remove('selected'); q2Selected.delete('None Of These'); }
-    else {
-      document.querySelectorAll('#q2grid .multi-opt').forEach(o => o.classList.remove('selected'));
-      q2Selected.clear(); q2Selected.add('None Of These'); btn.classList.add('selected');
-    }
-    document.getElementById('q2next').disabled = q2Selected.size === 0;
+  // ── Simple signup (None of the above) ──
+  function toggleSimpleBtn() {
+    const n = document.getElementById('simple-name').value.trim();
+    const ig = document.getElementById('simple-ig').value.trim();
+    const em = document.getElementById('simple-email').value.trim();
+    document.getElementById('simple-submit').disabled = !(n && ig && em);
   }
 
-  function nextQ2() {
-    if (q2Selected.has('None Of These') && q2Selected.size === 1) goTo('end-none');
-    else goTo('q3');
-  }
+  function submitSimpleSignup() {
+    const name = document.getElementById('simple-name').value.trim();
+    const ig = '@' + document.getElementById('simple-ig').value.trim().replace(/^@/, '');
+    const email = document.getElementById('simple-email').value.trim();
+    const otherParty = document.getElementById('otherPartyInput')?.value.trim() || '';
 
-  function nextQ3() {
-    if (q3Value === 'No') goTo('end-no'); else goTo('result');
-  }
-
-  function toggleSignupBtn(prefix) {
-    const name = document.getElementById(prefix + '-name').value.trim();
-    const email = document.getElementById(prefix + '-email').value.trim();
-    document.getElementById(prefix + '-submit').disabled = !(name && email);
-  }
-
-  function submitSignup(prefix) {
-    const name = document.getElementById(prefix + '-name').value.trim();
-    const email = document.getElementById(prefix + '-email').value.trim();
-    if (!name || !email) return;
-
-    const btn = document.getElementById(prefix + '-submit');
-    btn.disabled = true; btn.textContent = 'Submitting…';
-
-    const data = { type: 'roamers_signup', name, email };
+    const data = {
+      type: 'roamers_signup',
+      name: name,
+      ig: ig,
+      email: email,
+      otherParty: otherParty
+    };
 
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'roamers_signup',
-      signup_type: prefix,
-      name: name,
-      email: email
-    });
+    window.dataLayer.push({ event: 'roamers_signup', name, email });
 
     fetch(window.AFROCUE_SCRIPT_URL, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: { 'Content-Type': 'text/plain' }
     }).catch(e => {}).finally(() => {
-      document.getElementById('signup-' + prefix + '-card').style.display = 'none';
-      document.getElementById(prefix + '-ty').style.display = 'block';
+      document.getElementById('ty-message').textContent = 'Thanks for signing up. We\'ll keep you in the loop.';
+      goTo('thankyou');
     });
   }
 
+  // ── Full application form (roamers_maybe / roamers_application) ──
   function checkForm() {
     const valid = document.getElementById('name').value.trim()
       && document.getElementById('ig').value.trim()
@@ -588,20 +541,22 @@
 
   function submitApplication() {
     const data = {
-      type: 'roamers_application',
+      type: window._roamersType,   // roamers_maybe or roamers_application
       name: document.getElementById('name').value.trim(),
-      ig: '@' + document.getElementById('ig').value.trim(),
+      ig: '@' + document.getElementById('ig').value.trim().replace(/^@/, ''),
       email: document.getElementById('email').value.trim(),
       phone: document.getElementById('phone').value.trim(),
       area: document.getElementById('area').value.trim(),
       isCreator: document.getElementById('creatorCheck').checked,
       creatorType: document.getElementById('creatorType').value,
-      portfolio: document.getElementById('portfolio').value
+      portfolio: document.getElementById('portfolio').value,
+      parties: window._roamersSelectedParties,
+      notify: notifyValue
     };
 
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
-      event: 'roamers_application',
+      event: data.type,
       name: data.name,
       email: data.email,
       ig: data.ig,
@@ -616,6 +571,7 @@
         headers: { 'Content-Type': 'text/plain' }
       }).catch(e => {});
     }
+    document.getElementById('ty-message').textContent = 'We\'ll be in touch if a slot opens. In the meantime, keep experiencing the culture.';
     goTo('thankyou');
   }
 
