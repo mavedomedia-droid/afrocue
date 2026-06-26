@@ -6,7 +6,7 @@
   <title>Roamers — AfroCue</title>
   <link rel="icon" type="image/png" href="favicon.png"/>
   <link rel="apple-touch-icon" href="favicon.png"/>
-  <meta name="description" content="Are you actually outside? Apply to become a Roamer — a selected Lagos nightlife regular."/>
+  <meta name="description" content="Are you actually outside? Apply to become a Roamer — a Lagos nightlife regular."/>
 
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -19,11 +19,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    /* Same base as before, but quiz card overflow changed to visible for the result step */
-    /* All other styles unchanged unless noted */
-    /* ... (full CSS from previous version) ... */
-    /* I'll include the full CSS again for completeness, but it's identical except for .quiz-card overflow and one-more-thing adjustments. */
-    
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
     :root {
@@ -43,46 +38,61 @@
     .bg-scrim { position:fixed; inset:0; z-index:1; background:rgba(10,10,10,0.65); pointer-events:none; }
     .bg-texture { position:fixed; inset:0; z-index:2; background-image:url('texture.jpg'); background-size:cover; opacity:0.45; pointer-events:none; }
 
-    .wrap { position:relative; z-index:3; max-width:680px; margin:0 auto; padding:64px 32px 80px; text-align:center; }
+    .wrap { position:relative; z-index:3; max-width:680px; margin:0 auto; padding:0 32px 80px; text-align:center; }
 
+    /* Header Banner */
+    .header-banner {
+      position:relative; padding:64px 24px 48px; margin-bottom:32px;
+      background:rgba(0,0,0,0.3); border-radius:0 0 20px 20px; overflow:hidden;
+    }
+    .header-banner::before {
+      content:''; position:absolute; inset:0; background-image:url('texture.jpg');
+      background-size:cover; opacity:0.8; z-index:0;
+    }
+    .header-banner > * { position:relative; z-index:1; }
+    .banner-logo img { height:48px; width:auto; display:block; margin:0 auto 16px; }
+
+    /* Hero */
     .roamers-hero { margin-bottom:40px; }
     .hero-flex { display:flex; align-items:center; gap:24px; flex-wrap:nowrap; margin-bottom:20px; }
     .hero-text { flex:2 1 0%; min-width:0; text-align:left; }
-    .hero-text .small-line { font-family:'Aesthet Nova',sans-serif; font-weight:500; font-size: clamp(16px, 2.5vw, 24px); line-height:1; color: var(--white); margin-bottom:0; text-shadow: 1px 2px 0px rgba(0,0,0,0.9); }
-    .hero-text .big-line { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size: clamp(48px, 8vw, 88px); line-height:0.85; color: var(--yellow); text-shadow: var(--yts); margin-bottom:0; }
+    .hero-text .small-line { font-family:'Aesthet Nova',sans-serif; font-weight:500; font-size:clamp(16px,2.5vw,24px); line-height:1; color:var(--white); margin-bottom:0; text-shadow:1px 2px 0px rgba(0,0,0,0.9); }
+    .hero-text .big-line { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(48px,8vw,88px); line-height:0.85; color:var(--yellow); text-shadow:var(--yts); margin-bottom:0; }
     .hero-sub { font-size:15px; font-weight:300; line-height:1.6; color:rgba(240,237,232,0.65); margin-top:14px; display:block; max-width:100%; }
     .hero-img { flex:1 1 0%; max-width:33.33%; aspect-ratio:4/5; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,0.12); box-shadow:0 20px 40px rgba(0,0,0,0.5); }
     .hero-img img { width:100%; height:100%; object-fit:cover; display:block; }
 
-    @media (max-width: 480px) {
-      .hero-text .small-line { font-size: 15px; }
-      .hero-text .big-line { font-size: 40px; }
-      .hero-img { max-width: 33.33%; }
+    @media (max-width:480px) {
+      .hero-text .small-line { font-size:15px; }
+      .hero-text .big-line { font-size:40px; }
+      .hero-img { max-width:33.33%; }
     }
 
-    /* Quiz card – remove overflow hidden to allow image spill */
+    /* Quiz Card */
     .quiz-card {
       max-width:520px; margin:0 auto;
       background:rgba(20,20,20,0.8); backdrop-filter:blur(20px);
       border:1px solid rgba(255,255,255,0.1); border-radius:20px;
       padding:32px 28px 36px; box-shadow:0 24px 64px rgba(0,0,0,0.6);
-      position:relative;
-      /* OVERFLOW VISIBLE so that the moment images can break out */
-      overflow: visible;
+      position:relative; overflow:visible;
     }
-    .quiz-card::before { content:''; position:absolute; inset:0; background-image:url('texture.jpg'); background-size:cover; opacity:0.12; pointer-events:none; z-index:0; border-radius: inherit; }
+    .quiz-card::before { content:''; position:absolute; inset:0; background-image:url('texture.jpg'); background-size:cover; opacity:0.12; pointer-events:none; z-index:0; border-radius:inherit; }
     .quiz-card > * { position:relative; z-index:1; }
 
     .step { display:none; animation:fadeUp 0.4s ease both; }
     .step.active { display:block; }
-    @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(12px);} to{opacity:1;transform:translateY(0);} }
 
     .step-label { font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:rgba(200,224,0,0.35); margin-bottom:12px; }
-    .step-q { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(20px, 4vw, 26px); color:var(--white); line-height:1.1; margin-bottom:16px; }
+    .step-q { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(20px,4vw,26px); color:var(--white); line-height:1.1; margin-bottom:16px; }
     .step-hint { font-size:14px; font-weight:300; color:rgba(240,237,232,0.5); line-height:1.6; margin-bottom:24px; }
 
+    /* Single column options */
     .opts { display:flex; flex-direction:column; gap:10px; margin-top:8px; }
-    .opt { border:1.5px solid rgba(255,255,255,0.1); border-radius:12px; padding:14px 16px; cursor:pointer; background:rgba(255,255,255,0.03); display:flex; align-items:center; gap:14px; transition: border-color 0.15s, background 0.15s; text-align:left; }
+    /* 2-column grid for Q1 */
+    .opts-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px; }
+
+    .opt { border:1.5px solid rgba(255,255,255,0.1); border-radius:12px; padding:14px 16px; cursor:pointer; background:rgba(255,255,255,0.03); display:flex; align-items:center; gap:14px; transition:border-color 0.15s,background 0.15s; text-align:left; }
     .opt:hover { border-color:rgba(255,255,255,0.25); background:rgba(255,255,255,0.05); }
     .opt.selected { border-color:var(--white); background:rgba(255,255,255,0.04); }
     .opt-radio, .opt-check { width:20px; height:20px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.25); flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all 0.15s; }
@@ -122,10 +132,10 @@
     .checkbox-row input { width:auto; margin-right:6px; }
 
     .ty-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:40px 32px; text-align:center; }
-    .ty-title { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(36px, 8vw, 56px); color:var(--white); margin-bottom:12px; }
+    .ty-title { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(36px,8vw,56px); color:var(--white); margin-bottom:12px; }
 
     .info-section { margin-top:80px; text-align:left; }
-    .section-h { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(44px, 8vw, 72px); line-height:0.9; color:var(--yellow); text-shadow: var(--yts); margin-bottom:28px; }
+    .section-h { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(44px,8vw,72px); line-height:0.9; color:var(--yellow); text-shadow:var(--yts); margin-bottom:28px; }
     .section-body { font-size:16px; font-weight:300; line-height:1.85; color:rgba(240,237,232,0.6); margin-bottom:40px; }
     .img-block { border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); margin-bottom:32px; aspect-ratio:3/2; position:relative; background:var(--dark); }
     .img-block img { width:100%; height:100%; object-fit:cover; display:block; }
@@ -142,73 +152,38 @@
     .icon-card .emoji { font-size:36px; margin-bottom:10px; }
     .icon-card h4 { font-size:14px; font-weight:600; color:var(--white); line-height:1.3; }
 
-    .get-cards { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-    .get-card { background:rgba(20,20,20,0.7); border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:24px; color:var(--white); }
-    .get-card h4 { font-size:16px; font-weight:600; margin-bottom:6px; }
-    .get-card p { font-size:13px; color:rgba(240,237,232,0.5); line-height:1.6; }
+    .opp-tiles { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:40px; }
+    .opp-tile { background:rgba(20,20,20,0.7); border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:24px; color:var(--white); }
+    .opp-tile h4 { font-size:16px; font-weight:600; margin-bottom:6px; }
+    .opp-tile p { font-size:13px; color:rgba(240,237,232,0.5); line-height:1.6; }
 
-    .selection-memo { background:rgba(255,255,255,0.03); border-left:3px solid var(--yellow); border-radius:0 12px 12px 0; padding:24px 20px; margin-top:80px; text-align:left; font-style:italic; }
-    .selection-memo h3 { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:18px; color:var(--white); margin-bottom:12px; font-style:normal; }
-    .selection-memo p { font-size:14px; font-weight:300; color:rgba(240,237,232,0.6); line-height:1.8; }
+    /* One More Thing spill */
+    .one-more-thing { position:relative; margin:28px 0 20px; text-align:left; }
+    .moment-scroll { display:flex; gap:10px; overflow-x:auto; padding-bottom:8px; scroll-snap-type:x mandatory; margin:0 -28px; padding-left:28px; padding-right:28px; }
+    .moment-item { flex:0 0 auto; width:160px; aspect-ratio:4/5; border-radius:8px; overflow:hidden; scroll-snap-align:start; box-shadow:0 8px 20px rgba(0,0,0,0.6); }
+    .moment-item:first-child { margin-left:-12px; }
+    .moment-item:last-child { margin-right:-12px; }
+    .moment-item img { width:100%; height:100%; object-fit:cover; display:block; }
 
-    .subtle-note { font-size:12px; color:rgba(255,255,255,0.35); margin-top:24px; text-align:center; }
+    .inbox-note { display:flex; align-items:center; justify-content:center; gap:10px; margin-top:60px; font-size:14px; color:rgba(240,237,232,0.5); }
+    .inbox-note span { font-size:18px; }
+
     .full-width-cta { margin-top:80px; padding:64px 0; text-align:center; border-top:1px solid rgba(255,255,255,0.06); border-bottom:1px solid rgba(255,255,255,0.06); }
 
-    /* New: One More Thing with spill effect */
-    .one-more-thing {
-      position: relative;
-      margin: 28px 0 20px;
-      text-align: left;
-    }
-    .moment-scroll {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 8px;
-      scroll-snap-type: x mandatory;
-      margin: 0 -28px;                /* spills beyond card padding */
-      padding-left: 28px;
-      padding-right: 28px;
-    }
-    .moment-item {
-      flex: 0 0 auto;
-      width: 160px;
-      aspect-ratio: 4/5;
-      border-radius: 8px;
-      overflow: hidden;
-      scroll-snap-align: start;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-      transition: transform 0.2s ease;
-    }
-    .moment-item:first-child {
-      margin-left: -12px;   /* slight cut into left edge */
-    }
-    .moment-item:last-child {
-      margin-right: -12px;  /* slight cut into right edge */
-    }
-    .moment-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
     @media (max-width:640px) {
-      .wrap { padding:40px 20px 64px; }
+      .wrap { padding:0 20px 64px; }
+      .header-banner { padding:48px 20px 36px; }
       .quiz-card { padding:24px 16px; max-width:100%; }
       .multi-grid { grid-template-columns:1fr; }
       .icon-cards { grid-template-columns:1fr 1fr; }
       .how-grid { grid-template-columns:1fr; gap:16px; }
-      .get-cards { grid-template-columns:1fr; }
+      .opp-tiles { grid-template-columns:1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="bg-image"></div>
 <div class="bg-scrim"></div>
@@ -216,13 +191,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <main class="wrap" id="roamersPage">
 
-  <!-- Hero + Quiz (unchanged) -->
+  <div class="header-banner">
+    <div class="banner-logo">
+      <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" />
+    </div>
+  </div>
+
   <section class="roamers-hero" id="quizTop">
     <div class="hero-flex">
       <div class="hero-text">
         <div class="small-line">Are you a</div>
         <div class="big-line">ROAMER?</div>
-        <p class="hero-sub">A small group of Lagos nightlife regulars selected each month. People already outside. Let's see if you qualify.</p>
+        <p class="hero-sub">A small, always‑on network of Lagos nightlife regulars. People already outside. Let's see if you qualify.</p>
       </div>
       <div class="hero-img">
         <img src="roamers_hero_thumb.jpg" alt="Lagos nightlife"/>
@@ -234,15 +214,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- START -->
       <div class="step active" id="step-start">
         <div class="step-label">Roamers</div>
-        <div class="step-q">A few quick questions.</div>
+        <div class="step-q">Ready to find out?</div>
         <button class="btn btn-primary btn-block" onclick="goTo('q1')">Start The Quiz →</button>
       </div>
 
-      <!-- Q1 -->
+      <!-- Q1 – 2-column grid -->
       <div class="step" id="q1">
         <div class="step-label">Question 1 / 3</div>
-        <div class="step-q">How many parties, raves or nightlife events have you attended in the last 30 days?</div>
-        <div class="opts">
+        <div class="step-q">Been out lately? How many parties in the last month?</div>
+        <div class="opts-grid">
           <button class="opt" onclick="selectRadio('q1','0-1',this)"><span class="opt-radio"></span> <span class="opt-text">0–1</span></button>
           <button class="opt" onclick="selectRadio('q1','2-3',this)"><span class="opt-radio"></span> <span class="opt-text">2–3</span></button>
           <button class="opt" onclick="selectRadio('q1','4-5',this)"><span class="opt-radio"></span> <span class="opt-text">4–5</span></button>
@@ -251,10 +231,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <button class="btn btn-primary btn-block" onclick="nextQ1()" disabled id="q1next">Continue</button>
       </div>
 
-      <!-- Q2 -->
+      <!-- Q2 – multi-select grid (unchanged event list) -->
       <div class="step" id="q2">
         <div class="step-label">Question 2 / 3</div>
-        <div class="step-q">Which of these events have you attended in the last 30 days?</div>
+        <div class="step-q">Spotted at any of these recently?</div>
         <div class="multi-grid" id="q2grid">
           <button class="multi-opt" data-val="Monochroma XII" onclick="toggleMulti(this)"><span class="check-box"></span><span class="multi-opt-text">Monochroma XII</span></button>
           <button class="multi-opt" data-val="Element House" onclick="toggleMulti(this)"><span class="check-box"></span><span class="multi-opt-text">Element House</span></button>
@@ -269,10 +249,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <button class="btn btn-primary btn-block" onclick="nextQ2()" disabled id="q2next">Continue</button>
       </div>
 
-      <!-- Q3 (newsletter opt‑in) -->
+      <!-- Q3 – shorter, more personality -->
       <div class="step" id="q3">
         <div class="step-label">Question 3 / 3</div>
-        <div class="step-q">If the opportunity arises, would you like to be notified about Roamers (creative collabs, access, content) via email?</div>
+        <div class="step-q">Would you like to be notified when roamer opportunities arise?</div>
         <div class="opts">
           <button class="opt" onclick="selectRadio('q3','Yes',this)"><span class="opt-radio"></span> <span class="opt-text">Yes</span></button>
           <button class="opt" onclick="selectRadio('q3','Maybe',this)"><span class="opt-radio"></span> <span class="opt-text">Maybe</span></button>
@@ -281,7 +261,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <button class="btn btn-primary btn-block" onclick="nextQ3()" disabled id="q3next">Continue</button>
       </div>
 
-      <!-- END STATES -->
+      <!-- END STATES + SIGNUP FORMS (unchanged) -->
       <div class="step" id="end-few">
         <div class="end-card">
           <h3>You're probably not a Roamer yet.</h3>
@@ -333,13 +313,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <!-- RESULT (reordered) -->
+      <!-- RESULT (Almost done) -->
       <div class="step" id="result">
         <div class="step-label">Result</div>
-        <div class="step-q">You may qualify.</div>
-        <p class="step-hint">Complete your details below. We'll notify you if opportunities come up.</p>
+        <div class="step-q">Almost done.</div>
+        <p class="step-hint">Just a few details and you're in the network.</p>
 
-        <!-- Form fields FIRST -->
         <div class="form-fields">
           <div class="field"><label>Name</label><input type="text" id="name" placeholder="Name / Moniker" oninput="checkForm()"/></div>
           <div class="field"><label>IG/Tiktok/X Handle</label>
@@ -353,7 +332,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="field"><label>Area of Lagos</label><input type="text" id="area" placeholder="e.g. Lekki, VI, Ikeja" oninput="checkForm()"/></div>
         </div>
 
-        <!-- Creator checkbox (small) -->
         <div style="margin-top:10px; text-align:left;">
           <label class="checkbox-row" onclick="toggleCreator()">
             <input type="checkbox" id="creatorCheck"/> <span style="font-size:14px; color:rgba(255,255,255,0.7);">I am also a creator (optional)</span>
@@ -369,28 +347,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
 
-        <!-- ONE MORE THING (images spill) -->
+        <!-- One More Thing -->
         <div class="one-more-thing">
-          <p style="color:rgba(240,237,232,0.55); margin-bottom:12px;">One more thing.</p>
+          <p style="color:rgba(240,237,232,0.55); margin-bottom:12px;">The experience always comes first, but if you're the type to take a video or two on a night out, feel free to post on your story and tag us <strong>@afro.cue</strong>.</p>
           <div class="moment-scroll">
             <div class="moment-item"><img src="moment1.jpg" alt="DJ moment"></div>
             <div class="moment-item"><img src="moment2.jpg" alt="DJ moment"></div>
             <div class="moment-item"><img src="moment3.jpg" alt="DJ moment"></div>
           </div>
-          <p style="font-size:14px; line-height:1.6; color:rgba(240,237,232,0.7); margin-top:8px;">
-            The experience comes first. But if you happen to catch a DJ moment on video, it can help us document the culture.
-          </p>
-          <p style="font-size:13px; color:rgba(240,237,232,0.5);">
-            See our <a href="https://instagram.com/afro.cue" target="_blank" style="color:var(--yellow); text-decoration:underline;">Weekly Top 5</a> for how we tell those stories.
-          </p>
         </div>
 
-        <!-- Complete Profile button after everything -->
         <button class="btn btn-primary btn-block" id="submitBtn" disabled onclick="submitApplication()">Complete Profile →</button>
         <p style="font-size:11px; color:var(--grey); margin-top:12px;">We'll reach out if you're selected.</p>
       </div>
 
-      <!-- THANK YOU (unchanged) -->
+      <!-- THANK YOU -->
       <div class="step" id="thankyou">
         <div class="ty-card">
           <div class="ty-title">Profile<br>Submitted.</div>
@@ -402,15 +373,115 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- (All remaining sections unchanged – Who Is A Roamer, How It Works, etc.) -->
-  <!-- For brevity, I'm omitting them here but they are identical to previous full version. Please include the full sections as in the last complete code. -->
-  <!-- In the actual file, the entire page content continues exactly as before. -->
+  <!-- ═══════════ WHO IS A ROAMER ═══════════ -->
+  <div class="info-section">
+    <div class="section-h">Who Is A<br>Roamer?</div>
+    <div class="section-body">
+      Roamers are people who live experiences in Lagos through parties and raves. In being present, your perspective is everything and as we document culture, we occasionally request your contribution in: simple surveys, tagging us in party and DJ moments you can find, and occasionally contributing on creative engagements that often come with benefits.
+    </div>
+
+    <p style="font-size:15px; font-weight:400; color:rgba(240,237,232,0.8); margin-bottom:20px;">From time to time, we will notify you if any opportunities come up for contribution beyond just tagging us on your stories. These may include:</p>
+    <div class="opp-tiles">
+      <div class="opp-tile">
+        <h4>ACCESS</h4>
+        <p>Both regular and VIP, when we have them.</p>
+      </div>
+      <div class="opp-tile">
+        <h4>FEATURES</h4>
+        <p>Your video might feature in our content — we'll give credit as much as we can.</p>
+      </div>
+      <div class="opp-tile">
+        <h4>BRANDED MOMENTS</h4>
+        <p>Initiatives like our Pregame series and Pregame Homies (coming soon). <a href="https://www.instagram.com/p/DYIDS-cCdKS/" target="_blank" style="color:var(--yellow); text-decoration:underline;">See example</a></p>
+      </div>
+      <div class="opp-tile">
+        <h4>CREATOR OPPORTUNITIES</h4>
+        <p>Occasionally, paid or collaborative projects for creators in the network.</p>
+      </div>
+    </div>
+
+    <div class="img-block">
+      <img src="roamers_who.jpg" alt="Lagos nightlife crowd"/>
+      <div class="img-block-overlay"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ HOW IT WORKS ═══════════ -->
+  <div class="info-section" style="margin-top:80px;">
+    <div class="section-h">How It<br>Works</div>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-step-num">1</div>
+        <div class="how-step-content">
+          <div class="how-step-title">Sign up</div>
+          <div class="how-step-desc">Take the quiz and see if you're a Roamer.</div>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">2</div>
+        <div class="how-step-content">
+          <div class="how-step-title">Go out</div>
+          <div class="how-step-desc">Keep going to the parties and raves you love.</div>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">3</div>
+        <div class="how-step-content">
+          <div class="how-step-title">Share moments</div>
+          <div class="how-step-desc">If you catch a great DJ clip, post it and tag us. Completely optional.</div>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">4</div>
+        <div class="how-step-content">
+          <div class="how-step-title">Be on the lookout</div>
+          <div class="how-step-desc">We'll reach out by email if we have tickets, accesses, or any fun initiatives.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ YOU MIGHT BE A ROAMER IF... ═══════════ -->
+  <div class="info-section" style="margin-top:80px;">
+    <div class="section-h">You Might Be A<br>Roamer If...</div>
+    <div class="icon-cards">
+      <div class="icon-card"><div class="emoji">🪩</div><h4>You're about the experience first. You show up to be present.</h4></div>
+      <div class="icon-card"><div class="emoji">🎛️</div><h4>You know the DJs shaping the scene.</h4></div>
+      <div class="icon-card"><div class="emoji">📱</div><h4>You capture moments, or you don't. No pressure.</h4></div>
+      <div class="icon-card"><div class="emoji">🔥</div><h4>You can tell who moved the room.</h4></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ WHAT DO ROAMERS ACTUALLY DO ═══════════ -->
+  <div class="info-section" style="margin-top:80px;">
+    <div class="section-h">What Do Roamers<br>Actually Do?</div>
+    <div class="section-body">
+      You experience first. When it matters, you help us document the culture — a quick survey, a tagged clip, or a creative project. All optional, always credit where due.
+    </div>
+    <div class="img-block">
+      <img src="roamers_what.jpg" alt="Nightlife moments"/>
+      <div class="img-block-overlay"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ INBOX NOTE ═══════════ -->
+  <div class="inbox-note">
+    <span>✉️</span> We'll reach out by email — keep an eye on your inbox.
+  </div>
+
+  <!-- ═══════════ FINAL CTA ═══════════ -->
+  <div class="full-width-cta">
+    <div class="section-h" style="font-size:clamp(40px,10vw,72px); margin-bottom:24px;">Think you're a<br>Roamer?</div>
+    <button class="btn btn-primary" onclick="scrollToQuiz()">Start The Quiz</button>
+  </div>
+
+  <div style="text-align:center; padding:48px 0 24px; border-top:1px solid rgba(255,255,255,0.06); margin-top:40px;">
+    <p style="font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--grey);">Powered by AfroCue — Creatively Documenting Culture</p>
+  </div>
 
 </main>
 
 <script>
-  // Same JavaScript as before, unchanged (just the `nextQ3` function sends to `result`)
-  // I'll include the script block for completeness.
   let currentStep = 'step-start';
   let q1Value = null, q2Selected = new Set(), q3Value = null;
 
@@ -552,7 +623,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('quizTop').scrollIntoView({ behavior:'smooth' });
   }
 
-  window.AFROCUE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyZvFHnm9JpFtMzWbMCvzSCTNw7TJN4mjCui-SgQbfF2lnko4-eJ72JHgRB-G2Jw36O/exec';
+  window.AFROCUE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyZvFHnm9JpFtMzWbMCvzSCTNw7TJN4mjCui-SgQbfF2lnko4-eJ72JHgRB-G2Jw36O/exec'; // ← Replace with your GAS URL
 </script>
 
 </body>
