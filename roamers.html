@@ -19,7 +19,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    /* same base styles as before (unchanged) */
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
     :root {
@@ -37,10 +36,22 @@
 
     .wrap { position:relative; z-index:3; max-width:680px; margin:0 auto; padding:0 32px 80px; text-align:center; }
 
-    .header-banner { position:relative; padding:64px 24px 48px; margin-bottom:32px; background:rgba(0,0,0,0.3); border-radius:0 0 20px 20px; overflow:hidden; }
-    .header-banner::before { content:''; position:absolute; inset:0; background-image:url('texture.jpg'); background-size:cover; opacity:0.8; z-index:0; }
-    .header-banner > * { position:relative; z-index:1; }
-    .banner-logo img { height:48px; width:auto; display:block; margin:0 auto 16px; }
+    /* ── Thin textured header banner ── */
+    .header-banner {
+      position: relative;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('texture.jpg');
+      background-size: cover;
+      border-radius: 0 0 12px 12px;
+      overflow: hidden;
+    }
+    .banner-logo img {
+      height: 32px;       /* smaller logo */
+      width: auto;
+      display: block;
+      margin: 0 auto;
+    }
 
     .roamers-hero { margin-bottom:40px; }
     .hero-flex { display:flex; align-items:center; gap:24px; flex-wrap:nowrap; margin-bottom:20px; }
@@ -57,6 +68,7 @@
       .hero-img { max-width:33.33%; }
     }
 
+    /* Quiz Card */
     .quiz-card { max-width:520px; margin:0 auto; background:rgba(20,20,20,0.8); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:32px 28px 36px; box-shadow:0 24px 64px rgba(0,0,0,0.6); position:relative; overflow:visible; }
     .quiz-card::before { content:''; position:absolute; inset:0; background-image:url('texture.jpg'); background-size:cover; opacity:0.12; pointer-events:none; z-index:0; border-radius:inherit; }
     .quiz-card > * { position:relative; z-index:1; }
@@ -70,18 +82,12 @@
     .step-hint { font-size:14px; font-weight:300; color:rgba(240,237,232,0.5); line-height:1.6; margin-bottom:24px; }
 
     .opts { display:flex; flex-direction:column; gap:10px; margin-top:8px; }
-    .opts-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px; }
-
     .opt { border:1.5px solid rgba(255,255,255,0.1); border-radius:12px; padding:14px 16px; cursor:pointer; background:rgba(255,255,255,0.03); display:flex; align-items:center; gap:14px; transition:border-color 0.15s,background 0.15s; text-align:left; }
     .opt:hover { border-color:rgba(255,255,255,0.25); background:rgba(255,255,255,0.05); }
     .opt.selected { border-color:var(--white); background:rgba(255,255,255,0.04); }
-    .opt-radio, .opt-check { width:20px; height:20px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.25); flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all 0.15s; }
+    .opt-radio { width:20px; height:20px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.25); flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all 0.15s; }
     .opt.selected .opt-radio { border-color:var(--white); background:var(--white); }
     .opt.selected .opt-radio::after { content:''; width:8px; height:8px; border-radius:50%; background:var(--black); }
-    .opt-check { border-radius:6px; }
-    .opt.selected .opt-check { border-color:var(--white); background:var(--white); }
-    .opt.selected .opt-check::after { content:''; width:10px; height:6px; border-left:2px solid var(--black); border-bottom:2px solid var(--black); transform:rotate(-45deg); margin-top:-2px; }
-    .opt-text { font-size:15px; font-weight:500; color:var(--white); }
 
     .multi-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
     .multi-opt { border:1.5px solid rgba(255,255,255,0.08); border-radius:10px; padding:14px 12px; cursor:pointer; background:rgba(255,255,255,0.03); display:flex; align-items:center; gap:10px; transition:all 0.15s; text-align:left; }
@@ -91,6 +97,9 @@
     .multi-opt.selected .check-box { border-color:var(--white); background:var(--white); }
     .multi-opt.selected .check-box::after { content:''; display:block; width:10px; height:5px; border-left:2px solid var(--black); border-bottom:2px solid var(--black); transform:rotate(-45deg); margin:3px auto 0; }
     .multi-opt-text { font-size:14px; font-weight:500; color:var(--white); }
+
+    .custom-party-input { margin-top:12px; text-align:left; display:none; }
+    .custom-party-input input { width:100%; padding:12px; border-radius:8px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); color:white; font-family:'Figtree',sans-serif; font-size:16px; outline:none; }
 
     .btn { display:inline-block; font-family:'Figtree',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:14px 28px; border-radius:6px; border:1.5px solid rgba(255,255,255,0.2); cursor:pointer; transition:all 0.2s; text-decoration:none; white-space:nowrap; background:transparent; color:var(--white); }
     .btn:hover { border-color:var(--white); background:rgba(255,255,255,0.06); }
@@ -151,9 +160,8 @@
 
     @media (max-width:640px) {
       .wrap { padding:0 20px 64px; }
-      .header-banner { padding:48px 20px 36px; }
+      .header-banner { padding:16px 20px; }
       .quiz-card { padding:24px 16px; max-width:100%; }
-      .multi-grid { grid-template-columns:1fr; }
       .icon-cards { grid-template-columns:1fr 1fr; }
       .how-grid { grid-template-columns:1fr; gap:16px; }
       .opp-tiles { grid-template-columns:1fr; }
@@ -170,6 +178,7 @@
 
 <main class="wrap" id="roamersPage">
 
+  <!-- Thin textured banner with small logo -->
   <div class="header-banner">
     <div class="banner-logo">
       <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" />
@@ -197,7 +206,7 @@
         <button class="btn btn-primary btn-block" onclick="goTo('q-parties')">Start The Quiz →</button>
       </div>
 
-      <!-- SINGLE QUESTION: party selection -->
+      <!-- PARTY SELECTION (multi‑select + None/Other) -->
       <div class="step" id="q-parties">
         <div class="step-label">Question</div>
         <div class="step-q">Which of these events have you been to in the last 60 days?</div>
@@ -211,16 +220,15 @@
           <button class="multi-opt" data-val="Sunday Service" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Sunday Service</span></button>
           <button class="multi-opt" data-val="V6 Group Collective" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">V6 Group Collective</span></button>
           <button class="multi-opt" data-val="Tempo Lagos" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Tempo Lagos</span></button>
-          <button class="multi-opt" data-val="Other" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Other</span></button>
-          <button class="multi-opt" data-val="None of the above" data-none="true" onclick="toggleNone(this)"><span class="check-box"></span><span class="multi-opt-text">None of the above</span></button>
+          <button class="multi-opt" data-val="None/Other" data-none="true" onclick="toggleNone(this)"><span class="check-box"></span><span class="multi-opt-text">None of the above / Other</span></button>
         </div>
-        <div id="otherPartyWrap" style="display:none; margin-top:12px; text-align:left;">
-          <input type="text" id="otherPartyInput" placeholder="Which party?" style="width:100%; padding:12px; border-radius:8px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); color:white;" oninput="document.getElementById('partyNextBtn').disabled = false;"/>
+        <div id="otherPartyWrap" class="custom-party-input">
+          <input type="text" id="otherPartyInput" placeholder="Which party?" oninput="updateNoneNext()"/>
         </div>
         <button class="btn btn-primary btn-block" id="partyNextBtn" disabled onclick="handlePartySelection()">Continue</button>
       </div>
 
-      <!-- NOTIFICATION OPT-IN (only for qualified paths) -->
+      <!-- NOTIFICATION OPT‑IN (qualified paths) -->
       <div class="step" id="q-notify">
         <div class="step-label">One last thing</div>
         <div class="step-q">Would you like to be notified when roamer opportunities arise?</div>
@@ -232,7 +240,7 @@
         <button class="btn btn-primary btn-block" onclick="goTo('result')" disabled id="notifyNext">Continue</button>
       </div>
 
-      <!-- SIMPLE SIGNUP (for None of the above) -->
+      <!-- SIMPLE SIGNUP (None/Other) -->
       <div class="step" id="simple-signup">
         <div class="step-label">Stay connected</div>
         <div class="step-q">Drop your details.</div>
@@ -250,11 +258,11 @@
         </div>
       </div>
 
-      <!-- RESULT + FULL APPLICATION (roamers_maybe / roamers_application) -->
+      <!-- RESULT + FULL APPLICATION (roamers_maybe or roamers_application) -->
       <div class="step" id="result">
         <div class="step-label">Almost done</div>
-        <div class="step-q" id="result-title">You're a Roamer.</div>
-        <p class="step-hint" id="result-hint">Complete your details to join the network.</p>
+        <div class="step-q">You're a Roamer.</div>
+        <p class="step-hint">Complete your details to join the network.</p>
 
         <div class="form-fields">
           <div class="field"><label>Name</label><input type="text" id="name" placeholder="Name / Moniker" oninput="checkForm()"/></div>
@@ -284,25 +292,25 @@
           </div>
         </div>
 
-        <!-- One More Thing (only for these paths) -->
+        <!-- One More Thing with updated image names -->
         <div class="one-more-thing">
           <p style="color:rgba(240,237,232,0.55); margin-bottom:12px;">The experience always comes first, but if you're the type to take a video or two on a night out, feel free to post on your story and tag us <strong>@afro.cue</strong>.</p>
           <div class="moment-scroll">
             <div class="moment-item"><img src="roamers_top5_sample3.jpg" alt="DJ moment"></div>
             <div class="moment-item"><img src="roamers_top5_sample2.jpg" alt="DJ moment"></div>
-            <div class="moment-item"><img src="roamers_top5_sample1.jpg" alt="DJ moment"></div>
+            <div class="moment-item"><img src="roamers_top5_sample.jpg" alt="DJ moment"></div>
           </div>
         </div>
 
         <button class="btn btn-primary btn-block" id="submitBtn" disabled onclick="submitApplication()">Complete Profile →</button>
-        <p style="font-size:11px; color:var(--grey); margin-top:12px;">We'll reach out if you're selected.</p>
+        <p style="font-size:11px; color:var(--grey); margin-top:12px;">We'll reach out when opportunities arise.</p>
       </div>
 
-      <!-- THANK YOU (shared) -->
+      <!-- THANK YOU -->
       <div class="step" id="thankyou">
         <div class="ty-card">
           <div class="ty-title">Profile<br>Submitted.</div>
-          <p id="ty-message" style="font-size:15px; font-weight:300; color:rgba(240,237,232,0.55); margin:20px 0 28px;">We'll be in touch if a slot opens. In the meantime, keep experiencing the culture.</p>
+          <p id="ty-message" style="font-size:15px; font-weight:300; color:rgba(240,237,232,0.55); margin:20px 0 28px;">We'll be in touch when opportunities arise. In the meantime, keep experiencing the culture.</p>
           <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-primary">Follow AfroCue</a>
         </div>
       </div>
@@ -314,7 +322,12 @@
   <div class="info-section">
     <div class="section-h">Who Is A<br>Roamer?</div>
     <div class="section-body">
-      Roamers are people who live experiences in Lagos through parties and raves. In being present, your perspective is everything and as we document culture, we occasionally request your contribution in: simple surveys, tagging us in party and DJ moments you can find, and occasionally contributing on creative engagements that often come with benefits.
+      Roamers are people who live experiences in Lagos through parties and raves. In being present, your perspective is everything and as we document culture, we occasionally request your contribution in:
+      <ul style="margin-top:10px; padding-left:20px; color:rgba(240,237,232,0.7); font-size:15px; line-height:1.8;">
+        <li>simple surveys,</li>
+        <li>tagging us in party and DJ moments you can find, and</li>
+        <li>occasionally contributing on creative engagements that often come with benefits.</li>
+      </ul>
     </div>
     <p style="font-size:15px; font-weight:400; color:rgba(240,237,232,0.8); margin-bottom:20px;">From time to time, we will notify you if any opportunities come up for contribution beyond just tagging us on your stories. These may include:</p>
     <div class="opp-tiles">
@@ -382,11 +395,10 @@
 
 <script>
   let currentStep = 'step-start';
-  let selectedParties = new Set();      // stores party names (excluding "None of the above")
+  let selectedParties = new Set();
   let noneSelected = false;
   let notifyValue = null;
 
-  // ── Navigation ──
   function goTo(id) {
     document.getElementById(currentStep).classList.remove('active');
     document.getElementById(id).classList.add('active');
@@ -395,32 +407,23 @@
     if (card) window.scrollTo({ top: card.offsetTop - 20, behavior: 'smooth' });
   }
 
-  // ── Party selection handlers ──
+  // Multi‑select party toggling
   function toggleParty(btn) {
     const val = btn.getAttribute('data-val');
-    if (val === 'Other') {
-      // toggle Other separately
-      btn.classList.toggle('selected');
-      if (btn.classList.contains('selected')) {
-        selectedParties.add('Other');
-      } else {
-        selectedParties.delete('Other');
-      }
+    if (btn.classList.contains('selected')) {
+      btn.classList.remove('selected');
+      selectedParties.delete(val);
     } else {
-      // normal party
-      if (btn.classList.contains('selected')) {
-        btn.classList.remove('selected');
-        selectedParties.delete(val);
-      } else {
-        // if "None of the above" is active, remove it
-        if (noneSelected) {
-          document.querySelector('[data-none="true"]').classList.remove('selected');
-          noneSelected = false;
-          document.getElementById('otherPartyWrap').style.display = 'none';
-        }
-        btn.classList.add('selected');
-        selectedParties.add(val);
+      // deselect None/Other if any real party chosen
+      if (noneSelected) {
+        const noneBtn = document.querySelector('[data-none="true"]');
+        noneBtn.classList.remove('selected');
+        noneSelected = false;
+        document.getElementById('otherPartyWrap').style.display = 'none';
+        document.getElementById('otherPartyInput').value = '';
       }
+      btn.classList.add('selected');
+      selectedParties.add(val);
     }
     updatePartyNextButton();
   }
@@ -430,20 +433,15 @@
       btn.classList.remove('selected');
       noneSelected = false;
       document.getElementById('otherPartyWrap').style.display = 'none';
-      // re-enable all other buttons
-      document.querySelectorAll('#partyGrid .multi-opt:not([data-none="true"])').forEach(b => {
-        b.classList.remove('selected');
-      });
-      selectedParties.clear();
+      document.getElementById('otherPartyInput').value = '';
     } else {
       // clear all other selections
-      document.querySelectorAll('#partyGrid .multi-opt:not([data-none="true"])').forEach(b => {
-        b.classList.remove('selected');
-      });
+      document.querySelectorAll('#partyGrid .multi-opt:not([data-none="true"])').forEach(b => b.classList.remove('selected'));
       selectedParties.clear();
       btn.classList.add('selected');
       noneSelected = true;
       document.getElementById('otherPartyWrap').style.display = 'block';
+      document.getElementById('otherPartyInput').focus();
     }
     updatePartyNextButton();
   }
@@ -451,35 +449,36 @@
   function updatePartyNextButton() {
     const btn = document.getElementById('partyNextBtn');
     if (noneSelected) {
-      btn.disabled = false; // they can proceed with just None
+      btn.disabled = !document.getElementById('otherPartyInput').value.trim();
     } else {
       btn.disabled = selectedParties.size === 0;
     }
   }
 
-  // ── Handle party selection and route ──
-  function handlePartySelection() {
+  function updateNoneNext() {
     if (noneSelected) {
-      // None of the above → simple signup
-      goTo('simple-signup');
-    } else {
-      const count = selectedParties.size;
-      // store the selected parties (including "Other" if present) for later
-      // We'll attach to window for submission
-      window._roamersSelectedParties = Array.from(selectedParties);
-      if (count === 1) {
-        // roamers_maybe path – go to notification then result
-        window._roamersType = 'roamers_maybe';
-        goTo('q-notify');
-      } else {
-        // roamers_application path
-        window._roamersType = 'roamers_application';
-        goTo('q-notify');
-      }
+      document.getElementById('partyNextBtn').disabled = !document.getElementById('otherPartyInput').value.trim();
     }
   }
 
-  // ── Notification opt‑in ──
+  // Routing after party selection
+  function handlePartySelection() {
+    if (noneSelected) {
+      window._roamersType = 'roamers_signup';
+      goTo('simple-signup');
+    } else {
+      const count = selectedParties.size;
+      window._selectedParties = Array.from(selectedParties);
+      if (count === 1) {
+        window._roamersType = 'roamers_maybe';
+      } else {
+        window._roamersType = 'roamers_application';
+      }
+      goTo('q-notify');
+    }
+  }
+
+  // Notification opt‑in
   function selectRadio(group, value, btn) {
     const container = btn.parentElement;
     container.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
@@ -490,7 +489,7 @@
     }
   }
 
-  // ── Simple signup (None of the above) ──
+  // Simple signup (None/Other)
   function toggleSimpleBtn() {
     const n = document.getElementById('simple-name').value.trim();
     const ig = document.getElementById('simple-ig').value.trim();
@@ -525,7 +524,7 @@
     });
   }
 
-  // ── Full application form (roamers_maybe / roamers_application) ──
+  // Full application form (roamers_maybe / roamers_application)
   function checkForm() {
     const valid = document.getElementById('name').value.trim()
       && document.getElementById('ig').value.trim()
@@ -541,7 +540,7 @@
 
   function submitApplication() {
     const data = {
-      type: window._roamersType,   // roamers_maybe or roamers_application
+      type: window._roamersType,    // roamers_maybe or roamers_application
       name: document.getElementById('name').value.trim(),
       ig: '@' + document.getElementById('ig').value.trim().replace(/^@/, ''),
       email: document.getElementById('email').value.trim(),
@@ -550,7 +549,7 @@
       isCreator: document.getElementById('creatorCheck').checked,
       creatorType: document.getElementById('creatorType').value,
       portfolio: document.getElementById('portfolio').value,
-      parties: window._roamersSelectedParties,
+      parties: window._selectedParties,
       notify: notifyValue
     };
 
@@ -571,7 +570,6 @@
         headers: { 'Content-Type': 'text/plain' }
       }).catch(e => {});
     }
-    document.getElementById('ty-message').textContent = 'We\'ll be in touch if a slot opens. In the meantime, keep experiencing the culture.';
     goTo('thankyou');
   }
 
