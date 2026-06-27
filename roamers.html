@@ -3,130 +3,582 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Thanks for signing up — AfroCue</title>
+  <title>Roamers — AfroCue</title>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="apple-touch-icon" href="favicon.png"/>
+  <meta name="description" content="Are you actually outside? Apply to become a Roamer — a Lagos nightlife regular."/>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
+  <!-- End Google Tag Manager -->
+
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    body { margin:0; padding:0; background:#0a0a0a; font-family:Arial,sans-serif; -webkit-text-size-adjust:100%; }
-    a { text-decoration:none; }
-    img { border:0; display:block; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
+    :root {
+      --black:  #0a0a0a; --dark: #111111; --grey: #555555; --silver: #999999;
+      --white:  #f0ede8; --yellow: #C8E000;
+      --yts: 2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.06);
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--black); color:var(--white); font-family:'Figtree',sans-serif; min-height:100vh; overflow-x:hidden; }
+
+    .bg-image { position:fixed; inset:0; z-index:0; background-image:url('roamers_bg.jpg'); background-size:cover; background-position:center 30%; opacity:0.18; pointer-events:none; }
+    .bg-scrim { position:fixed; inset:0; z-index:1; background:rgba(10,10,10,0.65); pointer-events:none; }
+    .bg-texture { position:fixed; inset:0; z-index:2; background-image:url('texture.jpg'); background-size:cover; opacity:0.45; pointer-events:none; }
+
+    .wrap { position:relative; z-index:3; max-width:680px; margin:0 auto; padding:0 32px 80px; text-align:center; }
+
+    /* ── Thin textured header banner ── */
+    .header-banner {
+      position: relative;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('texture.jpg');
+      background-size: cover;
+      border-radius: 0 0 12px 12px;
+      overflow: hidden;
+    }
+    .banner-logo img {
+      height: 32px;       /* smaller logo */
+      width: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .roamers-hero { margin-bottom:40px; }
+    .hero-flex { display:flex; align-items:center; gap:24px; flex-wrap:nowrap; margin-bottom:20px; }
+    .hero-text { flex:2 1 0%; min-width:0; text-align:left; }
+    .hero-text .small-line { font-family:'Aesthet Nova',sans-serif; font-weight:500; font-size:clamp(16px,2.5vw,24px); line-height:1; color:var(--white); margin-bottom:0; text-shadow:1px 2px 0px rgba(0,0,0,0.9); }
+    .hero-text .big-line { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(48px,8vw,88px); line-height:0.85; color:var(--yellow); text-shadow:var(--yts); margin-bottom:0; }
+    .hero-sub { font-size:15px; font-weight:300; line-height:1.6; color:rgba(240,237,232,0.65); margin-top:14px; display:block; max-width:100%; }
+    .hero-img { flex:1 1 0%; max-width:33.33%; aspect-ratio:4/5; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,0.12); box-shadow:0 20px 40px rgba(0,0,0,0.5); }
+    .hero-img img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    @media (max-width:480px) {
+      .hero-text .small-line { font-size:15px; }
+      .hero-text .big-line { font-size:40px; }
+      .hero-img { max-width:33.33%; }
+    }
+
+    /* Quiz Card */
+    .quiz-card { max-width:520px; margin:0 auto; background:rgba(20,20,20,0.8); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:32px 28px 36px; box-shadow:0 24px 64px rgba(0,0,0,0.6); position:relative; overflow:visible; }
+    .quiz-card::before { content:''; position:absolute; inset:0; background-image:url('texture.jpg'); background-size:cover; opacity:0.12; pointer-events:none; z-index:0; border-radius:inherit; }
+    .quiz-card > * { position:relative; z-index:1; }
+
+    .step { display:none; animation:fadeUp 0.4s ease both; }
+    .step.active { display:block; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(12px);} to{opacity:1;transform:translateY(0);} }
+
+    .step-label { font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:rgba(200,224,0,0.35); margin-bottom:12px; }
+    .step-q { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(20px,4vw,26px); color:var(--white); line-height:1.1; margin-bottom:16px; }
+    .step-hint { font-size:14px; font-weight:300; color:rgba(240,237,232,0.5); line-height:1.6; margin-bottom:24px; }
+
+    .opts { display:flex; flex-direction:column; gap:10px; margin-top:8px; }
+    .opt { border:1.5px solid rgba(255,255,255,0.1); border-radius:12px; padding:14px 16px; cursor:pointer; background:rgba(255,255,255,0.03); display:flex; align-items:center; gap:14px; transition:border-color 0.15s,background 0.15s; text-align:left; }
+    .opt:hover { border-color:rgba(255,255,255,0.25); background:rgba(255,255,255,0.05); }
+    .opt.selected { border-color:var(--white); background:rgba(255,255,255,0.04); }
+    .opt-radio { width:20px; height:20px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.25); flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all 0.15s; }
+    .opt.selected .opt-radio { border-color:var(--white); background:var(--white); }
+    .opt.selected .opt-radio::after { content:''; width:8px; height:8px; border-radius:50%; background:var(--black); }
+
+    .multi-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .multi-opt { border:1.5px solid rgba(255,255,255,0.08); border-radius:10px; padding:14px 12px; cursor:pointer; background:rgba(255,255,255,0.03); display:flex; align-items:center; gap:10px; transition:all 0.15s; text-align:left; }
+    .multi-opt:hover { border-color:rgba(255,255,255,0.2); background:rgba(255,255,255,0.05); }
+    .multi-opt.selected { border-color:var(--white); background:rgba(255,255,255,0.04); }
+    .check-box { width:18px; height:18px; border-radius:5px; border:1.5px solid rgba(255,255,255,0.2); flex-shrink:0; transition:all 0.15s; }
+    .multi-opt.selected .check-box { border-color:var(--white); background:var(--white); }
+    .multi-opt.selected .check-box::after { content:''; display:block; width:10px; height:5px; border-left:2px solid var(--black); border-bottom:2px solid var(--black); transform:rotate(-45deg); margin:3px auto 0; }
+    .multi-opt-text { font-size:14px; font-weight:500; color:var(--white); }
+
+    .custom-party-input { margin-top:12px; text-align:left; display:none; }
+    .custom-party-input input { width:100%; padding:12px; border-radius:8px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); color:white; font-family:'Figtree',sans-serif; font-size:16px; outline:none; }
+
+    .btn { display:inline-block; font-family:'Figtree',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:14px 28px; border-radius:6px; border:1.5px solid rgba(255,255,255,0.2); cursor:pointer; transition:all 0.2s; text-decoration:none; white-space:nowrap; background:transparent; color:var(--white); }
+    .btn:hover { border-color:var(--white); background:rgba(255,255,255,0.06); }
+    .btn-primary { background:var(--white); color:var(--black); border-color:var(--white); }
+    .btn-primary:hover { background:rgba(255,255,255,0.9); }
+    .btn-block { display:block; width:100%; max-width:320px; margin:20px auto 0; }
+    .btn:disabled { opacity:0.4; cursor:not-allowed; }
+
+    .end-card { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:36px 28px; margin:24px 0; }
+    .end-card h3 { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:28px; color:var(--white); margin-bottom:12px; }
+    .signup-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:28px 24px; margin:20px 0; }
+    .signup-card h4 { font-size:16px; font-weight:600; color:var(--white); margin-bottom:16px; }
+    .field { margin-bottom:12px; text-align:left; }
+    .field label { display:block; font-size:10px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:6px; }
+    .field input { width:100%; padding:13px 14px; border:1.5px solid rgba(255,255,255,0.1); border-radius:8px; background:rgba(255,255,255,0.04); color:var(--white); font-family:'Figtree',sans-serif; font-size:16px; outline:none; transition:border-color 0.2s; }
+    .field input:focus { border-color:rgba(255,255,255,0.35); }
+
+    .checkbox-row { display:flex; align-items:center; gap:8px; cursor:pointer; margin-bottom:12px; }
+    .checkbox-row input { width:auto; margin-right:6px; }
+
+    .ty-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:40px 32px; text-align:center; }
+    .ty-title { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(36px,8vw,56px); color:var(--white); margin-bottom:12px; }
+
+    .info-section { margin-top:80px; text-align:left; }
+    .section-h { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(44px,8vw,72px); line-height:0.9; color:var(--yellow); text-shadow:var(--yts); margin-bottom:28px; }
+    .section-body { font-size:16px; font-weight:300; line-height:1.85; color:rgba(240,237,232,0.6); margin-bottom:40px; }
+    .img-block { border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); margin-bottom:32px; aspect-ratio:3/2; position:relative; background:var(--dark); }
+    .img-block img { width:100%; height:100%; object-fit:cover; display:block; }
+    .img-block-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,10,0.5) 0%, transparent 60%); }
+
+    .how-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px 16px; margin-top:40px; }
+    .how-step { display:flex; align-items:flex-start; gap:12px; text-align:left; }
+    .how-step-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; background:var(--dark); border:1px solid rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:13px; color:var(--yellow); }
+    .how-step-title { font-size:13px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--white); margin-bottom:4px; }
+    .how-step-desc { font-size:12px; font-weight:300; color:rgba(240,237,232,0.45); line-height:1.6; }
+
+    .icon-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+    .icon-card { background:rgba(20,20,20,0.7); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:20px 16px; text-align:center; }
+    .icon-card .emoji { font-size:36px; margin-bottom:10px; }
+    .icon-card h4 { font-size:14px; font-weight:600; color:var(--white); line-height:1.3; }
+
+    .opp-tiles { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:40px; }
+    .opp-tile { background:rgba(20,20,20,0.7); border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:24px; color:var(--white); }
+    .opp-tile h4 { font-size:16px; font-weight:600; margin-bottom:6px; }
+    .opp-tile p { font-size:13px; color:rgba(240,237,232,0.5); line-height:1.6; }
+
+    .one-more-thing { position:relative; margin:28px 0 20px; text-align:left; }
+    .moment-scroll { display:flex; gap:10px; overflow-x:auto; padding-bottom:8px; scroll-snap-type:x mandatory; margin:0 -28px; padding-left:28px; padding-right:28px; }
+    .moment-item { flex:0 0 auto; width:160px; aspect-ratio:4/5; border-radius:8px; overflow:hidden; scroll-snap-align:start; box-shadow:0 8px 20px rgba(0,0,0,0.6); }
+    .moment-item:first-child { margin-left:-12px; }
+    .moment-item:last-child { margin-right:-12px; }
+    .moment-item img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    .inbox-note { display:flex; align-items:center; justify-content:center; gap:10px; margin-top:60px; font-size:14px; color:rgba(240,237,232,0.5); }
+    .inbox-note span { font-size:18px; }
+
+    .full-width-cta { margin-top:80px; padding:64px 0; text-align:center; border-top:1px solid rgba(255,255,255,0.06); border-bottom:1px solid rgba(255,255,255,0.06); }
+
+    @media (max-width:640px) {
+      .wrap { padding:0 20px 64px; }
+      .header-banner { padding:16px 20px; }
+      .quiz-card { padding:24px 16px; max-width:100%; }
+      .icon-cards { grid-template-columns:1fr 1fr; }
+      .how-grid { grid-template-columns:1fr; gap:16px; }
+      .opp-tiles { grid-template-columns:1fr; }
+    }
   </style>
 </head>
-<body style="margin:0;padding:0;background: linear-gradient(160deg, #0e0e0e 0%, #141414 100%);">
+<body>
 
-<!-- Preview text (shows in inbox) -->
-<div style="display:none; font-size:1px; color:#0a0a0a; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden;">
-  It's simple — be present, go out like you do, and tag @afro.cue if you get any set momentss. No pressure.
-</div>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background: transparent;">
-<tr><td align="center" style="padding:48px 16px 40px;">
+<div class="bg-image"></div>
+<div class="bg-scrim"></div>
+<div class="bg-texture"></div>
 
-  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:520px;background: rgba(18,18,18,0.95); border:1px solid rgba(255,255,255,0.06); border-radius:10px; overflow:hidden;">
+<main class="wrap" id="roamersPage">
 
-    <!-- Header -->
-    <tr>
-      <td style="padding:32px 40px 20px;">
-        <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" height="32" style="height:32px; width:auto;"/>
-      </td>
-    </tr>
+  <!-- Thin textured banner with small logo -->
+  <div class="header-banner">
+    <div class="banner-logo">
+      <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" />
+    </div>
+  </div>
 
-    <!-- Greeting & core message -->
-    <tr>
-      <td style="padding:0 40px 20px;">
-        <p style="font-size:16px; color:#f0ede8; margin:0 0 6px; font-weight:500;">Hi {{name}},</p>
-        <p style="font-size:14px; line-height:1.7; color:rgba(240,237,232,0.8); margin:0;">
-          Thanks for signing up to be a Roamer.
-        </p>
-        <p style="font-size:14px; line-height:1.7; color:rgba(240,237,232,0.7); margin:8px 0 0;">
-          It's simple — be present, go out like you do, and occasionally, if you capture a great DJ moment, post on your story and tag <strong style="color:#C8E000;">@afro.cue</strong>. No pressure.
-        </p>
-      </td>
-    </tr>
+  <section class="roamers-hero" id="quizTop">
+    <div class="hero-flex">
+      <div class="hero-text">
+        <div class="small-line">Are you a</div>
+        <div class="big-line">ROAMER?</div>
+        <p class="hero-sub">A small, always‑on network of Lagos nightlife regulars. People already outside. Let's see if you qualify.</p>
+      </div>
+      <div class="hero-img">
+        <img src="roamers_hero_thumb.jpg" alt="Lagos nightlife"/>
+      </div>
+    </div>
 
-    <!-- What you get (when available) -->
-    <tr>
-      <td style="padding:0 40px 20px; border-top:1px solid rgba(255,255,255,0.05);">
-        <p style="font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:#555; margin:20px 0 12px;">When available</p>
-        <table width="100%" cellpadding="0" cellspacing="0" border="0">
-          <tr>
-            <td width="48%" style="padding:0 2% 10px 0;" valign="top">
-              <p style="font-size:13px; color:#f0ede8; margin:0 0 2px; font-weight:600;">🎟️ Access</p>
-              <p style="font-size:12px; color:rgba(240,237,232,0.5); margin:0;">Event invitations, regular &amp; VIP.</p>
-            </td>
-            <td width="48%" style="padding:0 0 10px 2%;" valign="top">
-              <p style="font-size:13px; color:#f0ede8; margin:0 0 2px; font-weight:600;">✨ Features</p>
-              <p style="font-size:12px; color:rgba(240,237,232,0.5); margin:0;">, with credit.</p>
-            </td>
-          </tr>
-          <tr>
-            <td width="48%" style="padding:0 2% 0 0;" valign="top">
-              <p style="font-size:13px; color:#f0ede8; margin:0 0 2px; font-weight:600;">🚀 Branded moments</p>
-              <p style="font-size:12px; color:rgba(240,237,232,0.5); margin:0;">Pregame series &amp; upcoming projects.</p>
-            </td>
-            <td width="48%" style="padding:0 0 0 2%;" valign="top">
-              <p style="font-size:13px; color:#f0ede8; margin:0 0 2px; font-weight:600;">🎨 Creator opps</p>
-              <p style="font-size:12px; color:rgba(240,237,232,0.5); margin:0;">Paid or collaborative projects.</p>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
+    <div class="quiz-card" id="quizCard">
 
-    <!-- DJ video / image row -->
-    <tr>
-      <td style="padding:0 40px 24px; border-top:1px solid rgba(255,255,255,0.05);">
-        <p style="font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:#555; margin:20px 0 12px;">DJ Moments</p>
-        <table width="100%" cellpadding="0" cellspacing="0" border="0">
-          <tr>
-            <td width="32%" style="padding:0 2% 0 0;"><img src="https://afrocue.xyz/roamers_top5_sample22.jpg" width="100%" style="border-radius:6px; display:block;" alt="DJ moment"></td>
-            <td width="32%" style="padding:0 2% 0 2%;"><img src="https://afrocue.xyz/roamers_top5_sample2.jpg" width="100%" style="border-radius:6px; display:block;" alt="DJ moment"></td>
-            <td width="32%" style="padding:0 0 0 2%;"><img src="https://afrocue.xyz/roamers_top5_sample3.jpg" width="100%" style="border-radius:6px; display:block;" alt="DJ moment"></td>
-          </tr>
-        </table>
-        <p style="font-size:12px; color:rgba(240,237,232,0.5); margin:8px 0 0; line-height:1.5;">These clips help us spotlight DJs in our Weekly Top 5 — a series documenting Lagos dance music from the inside.</p>
-      </td>
-    </tr>
+      <!-- START -->
+      <div class="step active" id="step-start">
+        <div class="step-label">Roamers</div>
+        <div class="step-q">Ready to find out?</div>
+        <button class="btn btn-primary btn-block" onclick="goTo('q-parties')">Start The Quiz →</button>
+      </div>
 
-    <!-- Stay tuned -->
-    <tr>
-      <td style="padding:0 40px 24px; border-top:1px solid rgba(255,255,255,0.05);">
-        <p style="font-size:13px; line-height:1.6; color:rgba(240,237,232,0.7); margin:20px 0 0;">
-          We'll reach out by email whenever opportunities to contribute come up.
-        </p>
-      </td>
-    </tr>
+      <!-- PARTY SELECTION (multi‑select + None/Other) -->
+      <div class="step" id="q-parties">
+        <div class="step-label">Question</div>
+        <div class="step-q">Which of these events have you been to in the last 60 days?</div>
+        <div class="multi-grid" id="partyGrid">
+          <button class="multi-opt" data-val="Monochroma" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Monochroma</span></button>
+          <button class="multi-opt" data-val="Even in the Day" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Even in the Day</span></button>
+          <button class="multi-opt" data-val="Amapiano District" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Amapiano District</span></button>
+          <button class="multi-opt" data-val="PM2AM" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">PM2AM</span></button>
+          <button class="multi-opt" data-val="Element House" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Element House</span></button>
+          <button class="multi-opt" data-val="Group Therapy" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Group Therapy</span></button>
+          <button class="multi-opt" data-val="Sunday Service" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Sunday Service</span></button>
+          <button class="multi-opt" data-val="V6 Group Collective" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">V6 Group Collective</span></button>
+          <button class="multi-opt" data-val="Tempo Lagos" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Tempo Lagos</span></button>
+          <button class="multi-opt" data-val="None/Other" data-none="true" onclick="toggleNone(this)"><span class="check-box"></span><span class="multi-opt-text">None of the above / Other</span></button>
+        </div>
+        <div id="otherPartyWrap" class="custom-party-input">
+          <input type="text" id="otherPartyInput" placeholder="Which party?" oninput="updateNoneNext()"/>
+        </div>
+        <button class="btn btn-primary btn-block" id="partyNextBtn" disabled onclick="handlePartySelection()">Continue</button>
+      </div>
 
-    <!-- CTA -->
-    <tr>
-      <td style="padding:0 40px 36px;" align="center">
-        <a href="https://instagram.com/afro.cue" 
-           style="display:inline-block; background: #ffffff; color:#0a0a0a; padding:12px 30px; border-radius:6px; font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; box-shadow: 0 2px 8px rgba(0,0,0,0.4);">
-          Follow on Instagram
-        </a>
-      </td>
-    </tr>
+      <!-- NOTIFICATION OPT‑IN (qualified paths) -->
+      <div class="step" id="q-notify">
+        <div class="step-label">One last thing</div>
+        <div class="step-q">Would you like to be notified when roamer opportunities arise?</div>
+        <div class="opts">
+          <button class="opt" onclick="selectRadio('notify','Yes',this)"><span class="opt-radio"></span> <span class="opt-text">Yes</span></button>
+          <button class="opt" onclick="selectRadio('notify','Maybe',this)"><span class="opt-radio"></span> <span class="opt-text">Maybe</span></button>
+          <button class="opt" onclick="selectRadio('notify','No',this)"><span class="opt-radio"></span> <span class="opt-text">No</span></button>
+        </div>
+        <button class="btn btn-primary btn-block" onclick="goTo('result')" disabled id="notifyNext">Continue</button>
+      </div>
 
-    <!-- Footer -->
-    <tr>
-      <td style="padding:16px 40px; background: rgba(0,0,0,0.2); border-top:1px solid rgba(255,255,255,0.04);">
-        <p style="font-size:10px; color:rgba(240,237,232,0.3); margin:0;">
-          See you on the floor.<br>&mdash; AfroCue
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td style="padding:16px 40px 20px; background: rgba(0,0,0,0.3);">
-        <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" height="20" style="height:20px; width:auto; margin-bottom:6px;"/>
-        <p style="font-size:9px; color:#444; line-height:1.6; margin:0;">
-          Lagos, Nigeria &nbsp;&middot;&nbsp; &copy; 2026 AfroCue<br>
-          <a href="https://afrocue.xyz" style="color:#444;">afrocue.xyz</a>
-        </p>
-      </td>
-    </tr>
+      <!-- SIMPLE SIGNUP (None/Other) -->
+      <div class="step" id="simple-signup">
+        <div class="step-label">Stay connected</div>
+        <div class="step-q">Drop your details.</div>
+        <p class="step-hint">We'll keep you in the loop.</p>
+        <div class="signup-card">
+          <div class="field"><label>Name</label><input type="text" id="simple-name" placeholder="Your name" oninput="toggleSimpleBtn()"/></div>
+          <div class="field"><label>Instagram Handle</label>
+            <div style="position:relative;">
+              <span style="position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--grey); font-size:16px;">@</span>
+              <input type="text" id="simple-ig" placeholder="yourhandle" style="padding-left:32px;" oninput="toggleSimpleBtn()"/>
+            </div>
+          </div>
+          <div class="field"><label>Email Address</label><input type="email" id="simple-email" placeholder="you@example.com" oninput="toggleSimpleBtn()"/></div>
+          <button class="btn btn-primary btn-block" id="simple-submit" disabled onclick="submitSimpleSignup()">Sign Up →</button>
+        </div>
+      </div>
 
-  </table>
+      <!-- RESULT + FULL APPLICATION (roamers_maybe or roamers_application) -->
+      <div class="step" id="result">
+        <div class="step-label">Almost done</div>
+        <div class="step-q">You're a Roamer.</div>
+        <p class="step-hint">Complete your details to join the network.</p>
 
-</td></tr>
-</table>
+        <div class="form-fields">
+          <div class="field"><label>Name</label><input type="text" id="name" placeholder="Name / Moniker" oninput="checkForm()"/></div>
+          <div class="field"><label>IG/Tiktok/X Handle</label>
+            <div style="position:relative;">
+              <span style="position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--grey); font-size:16px;">@</span>
+              <input type="text" id="ig" placeholder="yourhandle" style="padding-left:32px;" oninput="checkForm()"/>
+            </div>
+          </div>
+          <div class="field"><label>Email Address</label><input type="email" id="email" placeholder="you@example.com" oninput="checkForm()"/></div>
+          <div class="field"><label>WhatsApp Number</label><input type="tel" id="phone" placeholder="080..." oninput="checkForm()"/></div>
+          <div class="field"><label>Area of Lagos</label><input type="text" id="area" placeholder="e.g. Lekki, VI, Ikeja" oninput="checkForm()"/></div>
+        </div>
+
+        <div style="margin-top:10px; text-align:left;">
+          <label class="checkbox-row" onclick="toggleCreator()">
+            <input type="checkbox" id="creatorCheck"/> <span style="font-size:14px; color:rgba(255,255,255,0.7);">I am also a creator (optional)</span>
+          </label>
+          <div id="creatorFields" style="display:none;">
+            <div class="field"><label>Creator Type</label>
+              <select id="creatorType" style="width:100%; padding:13px; background:rgba(255,255,255,0.04); border:1.5px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-family:Figtree; outline:none;">
+                <option value="">Select</option>
+                <option>Photographer</option><option>Videographer</option><option>Designer</option><option>TikTok Creator</option><option>Instagram Creator</option><option>Writer</option><option>Other</option>
+              </select>
+            </div>
+            <div class="field"><label>Creator Page Link (Optional)</label><input type="url" id="portfolio" placeholder="https://"/></div>
+          </div>
+        </div>
+
+        <!-- One More Thing with updated image names -->
+        <div class="one-more-thing">
+          <p style="color:rgba(240,237,232,0.55); margin-bottom:12px;">The experience always comes first, but if you're the type to take a video or two on a night out, feel free to post on your story and tag us <strong>@afro.cue</strong>.</p>
+          <div class="moment-scroll">
+            <div class="moment-item"><img src="roamers_top5_sample3.jpg" alt="DJ moment"></div>
+            <div class="moment-item"><img src="roamers_top5_sample2.jpg" alt="DJ moment"></div>
+            <div class="moment-item"><img src="roamers_top5_sample.jpg" alt="DJ moment"></div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-block" id="submitBtn" disabled onclick="submitApplication()">Complete Profile →</button>
+        <p style="font-size:11px; color:var(--grey); margin-top:12px;">We'll reach out when opportunities arise.</p>
+      </div>
+
+      <!-- THANK YOU -->
+      <div class="step" id="thankyou">
+        <div class="ty-card">
+          <div class="ty-title">Profile<br>Submitted.</div>
+          <p id="ty-message" style="font-size:15px; font-weight:300; color:rgba(240,237,232,0.55); margin:20px 0 28px;">We'll be in touch when opportunities arise. In the meantime, keep experiencing the culture.</p>
+          <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-primary">Follow AfroCue</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ WHO IS A ROAMER ═══════════ -->
+  <div class="info-section">
+    <div class="section-h">Who Is A<br>Roamer?</div>
+    <div class="section-body">
+      Roamers are people who live experiences in Lagos through parties and raves. In being present, your perspective is everything and as we document culture, we occasionally request your contribution in:
+      <ul style="margin-top:10px; padding-left:20px; color:rgba(240,237,232,0.7); font-size:15px; line-height:1.8;">
+        <li>simple surveys,</li>
+        <li>tagging us in party and DJ moments you can find, and</li>
+        <li>occasionally contributing on creative engagements that often come with benefits.</li>
+      </ul>
+    </div>
+    <p style="font-size:15px; font-weight:400; color:rgba(240,237,232,0.8); margin-bottom:20px;">From time to time, we will notify you if any opportunities come up for contribution beyond just tagging us on your stories. These may include:</p>
+    <div class="opp-tiles">
+      <div class="opp-tile"><h4>ACCESS</h4><p>Both regular and VIP, when we have them.</p></div>
+      <div class="opp-tile"><h4>FEATURES</h4><p>Your video might feature in our content — we'll give credit as much as we can.</p></div>
+      <div class="opp-tile"><h4>BRANDED MOMENTS</h4><p>Initiatives like our Pregame series and Pregame Homies (coming soon). <a href="https://www.instagram.com/p/DYIDS-cCdKS/" target="_blank" style="color:var(--yellow); text-decoration:underline;">See example</a></p></div>
+      <div class="opp-tile"><h4>CREATOR OPPORTUNITIES</h4><p>Occasionally, paid or collaborative projects for creators in the network.</p></div>
+    </div>
+    <div class="img-block">
+      <img src="roamers_who.jpg" alt="Lagos nightlife crowd"/>
+      <div class="img-block-overlay"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ HOW IT WORKS ═══════════ -->
+  <div class="info-section" style="margin-top:80px;">
+    <div class="section-h">How It<br>Works</div>
+    <div class="how-grid">
+      <div class="how-step"><div class="how-step-num">1</div><div class="how-step-content"><div class="how-step-title">Sign up</div><div class="how-step-desc">Take the quiz and see if you're a Roamer.</div></div></div>
+      <div class="how-step"><div class="how-step-num">2</div><div class="how-step-content"><div class="how-step-title">Go out</div><div class="how-step-desc">Keep going to the parties and raves you love.</div></div></div>
+      <div class="how-step"><div class="how-step-num">3</div><div class="how-step-content"><div class="how-step-title">Share moments</div><div class="how-step-desc">If you catch a great DJ clip, post it and tag us. Completely optional.</div></div></div>
+      <div class="how-step"><div class="how-step-num">4</div><div class="how-step-content"><div class="how-step-title">Be on the lookout</div><div class="how-step-desc">We'll reach out by email if we have tickets, accesses, or any fun initiatives.</div></div></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ YOU MIGHT BE A ROAMER IF... ═══════════ -->
+  <div class="info-section" style="margin-top:80px;">
+    <div class="section-h">You Might Be A<br>Roamer If...</div>
+    <div class="icon-cards">
+      <div class="icon-card"><div class="emoji">🪩</div><h4>You're about the experience first. You show up to be present.</h4></div>
+      <div class="icon-card"><div class="emoji">🎛️</div><h4>You know the DJs shaping the scene.</h4></div>
+      <div class="icon-card"><div class="emoji">📱</div><h4>You capture moments, or you don't. No pressure.</h4></div>
+      <div class="icon-card"><div class="emoji">🔥</div><h4>You can tell who moved the room.</h4></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ WHAT DO ROAMERS ACTUALLY DO ═══════════ -->
+  <div class="info-section" style="margin-top:80px;">
+    <div class="section-h">What Do Roamers<br>Actually Do?</div>
+    <div class="section-body">
+      You experience first. When it matters, you help us document the culture — a quick survey, a tagged clip, or a creative project. All optional, always credit where due.
+    </div>
+    <div class="img-block">
+      <img src="roamers_what.jpg" alt="Nightlife moments"/>
+      <div class="img-block-overlay"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ INBOX NOTE ═══════════ -->
+  <div class="inbox-note">
+    <span>✉️</span> We'll reach out by email — keep an eye on your inbox.
+  </div>
+
+  <!-- ═══════════ FINAL CTA ═══════════ -->
+  <div class="full-width-cta">
+    <div class="section-h" style="font-size:clamp(40px,10vw,72px); margin-bottom:24px;">Think you're a<br>Roamer?</div>
+    <button class="btn btn-primary" onclick="scrollToQuiz()">Start The Quiz</button>
+  </div>
+
+  <div style="text-align:center; padding:48px 0 24px; border-top:1px solid rgba(255,255,255,0.06); margin-top:40px;">
+    <p style="font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--grey);">Powered by AfroCue — Creatively Documenting Culture</p>
+  </div>
+
+</main>
+
+<script>
+  let currentStep = 'step-start';
+  let selectedParties = new Set();
+  let noneSelected = false;
+  let notifyValue = null;
+
+  function goTo(id) {
+    document.getElementById(currentStep).classList.remove('active');
+    document.getElementById(id).classList.add('active');
+    currentStep = id;
+    const card = document.getElementById('quizCard');
+    if (card) window.scrollTo({ top: card.offsetTop - 20, behavior: 'smooth' });
+  }
+
+  // Multi‑select party toggling
+  function toggleParty(btn) {
+    const val = btn.getAttribute('data-val');
+    if (btn.classList.contains('selected')) {
+      btn.classList.remove('selected');
+      selectedParties.delete(val);
+    } else {
+      // deselect None/Other if any real party chosen
+      if (noneSelected) {
+        const noneBtn = document.querySelector('[data-none="true"]');
+        noneBtn.classList.remove('selected');
+        noneSelected = false;
+        document.getElementById('otherPartyWrap').style.display = 'none';
+        document.getElementById('otherPartyInput').value = '';
+      }
+      btn.classList.add('selected');
+      selectedParties.add(val);
+    }
+    updatePartyNextButton();
+  }
+
+  function toggleNone(btn) {
+    if (btn.classList.contains('selected')) {
+      btn.classList.remove('selected');
+      noneSelected = false;
+      document.getElementById('otherPartyWrap').style.display = 'none';
+      document.getElementById('otherPartyInput').value = '';
+    } else {
+      // clear all other selections
+      document.querySelectorAll('#partyGrid .multi-opt:not([data-none="true"])').forEach(b => b.classList.remove('selected'));
+      selectedParties.clear();
+      btn.classList.add('selected');
+      noneSelected = true;
+      document.getElementById('otherPartyWrap').style.display = 'block';
+      document.getElementById('otherPartyInput').focus();
+    }
+    updatePartyNextButton();
+  }
+
+  function updatePartyNextButton() {
+    const btn = document.getElementById('partyNextBtn');
+    if (noneSelected) {
+      btn.disabled = !document.getElementById('otherPartyInput').value.trim();
+    } else {
+      btn.disabled = selectedParties.size === 0;
+    }
+  }
+
+  function updateNoneNext() {
+    if (noneSelected) {
+      document.getElementById('partyNextBtn').disabled = !document.getElementById('otherPartyInput').value.trim();
+    }
+  }
+
+  // Routing after party selection
+  function handlePartySelection() {
+    if (noneSelected) {
+      window._roamersType = 'roamers_signup';
+      goTo('simple-signup');
+    } else {
+      const count = selectedParties.size;
+      window._selectedParties = Array.from(selectedParties);
+      if (count === 1) {
+        window._roamersType = 'roamers_maybe';
+      } else {
+        window._roamersType = 'roamers_application';
+      }
+      goTo('q-notify');
+    }
+  }
+
+  // Notification opt‑in
+  function selectRadio(group, value, btn) {
+    const container = btn.parentElement;
+    container.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+    btn.classList.add('selected');
+    if (group === 'notify') {
+      notifyValue = value;
+      document.getElementById('notifyNext').disabled = false;
+    }
+  }
+
+  // Simple signup (None/Other)
+  function toggleSimpleBtn() {
+    const n = document.getElementById('simple-name').value.trim();
+    const ig = document.getElementById('simple-ig').value.trim();
+    const em = document.getElementById('simple-email').value.trim();
+    document.getElementById('simple-submit').disabled = !(n && ig && em);
+  }
+
+  function submitSimpleSignup() {
+    const name = document.getElementById('simple-name').value.trim();
+    const ig = '@' + document.getElementById('simple-ig').value.trim().replace(/^@/, '');
+    const email = document.getElementById('simple-email').value.trim();
+    const otherParty = document.getElementById('otherPartyInput')?.value.trim() || '';
+
+    const data = {
+      type: 'roamers_signup',
+      name: name,
+      ig: ig,
+      email: email,
+      otherParty: otherParty
+    };
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'roamers_signup', name, email });
+
+    fetch(window.AFROCUE_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: { 'Content-Type': 'text/plain' }
+    }).catch(e => {}).finally(() => {
+      document.getElementById('ty-message').textContent = 'Thanks for signing up. We\'ll keep you in the loop.';
+      goTo('thankyou');
+    });
+  }
+
+  // Full application form (roamers_maybe / roamers_application)
+  function checkForm() {
+    const valid = document.getElementById('name').value.trim()
+      && document.getElementById('ig').value.trim()
+      && document.getElementById('email').value.trim()
+      && document.getElementById('phone').value.trim()
+      && document.getElementById('area').value.trim();
+    document.getElementById('submitBtn').disabled = !valid;
+  }
+
+  function toggleCreator() {
+    document.getElementById('creatorFields').style.display = document.getElementById('creatorCheck').checked ? 'block' : 'none';
+  }
+
+  function submitApplication() {
+    const data = {
+      type: window._roamersType,    // roamers_maybe or roamers_application
+      name: document.getElementById('name').value.trim(),
+      ig: '@' + document.getElementById('ig').value.trim().replace(/^@/, ''),
+      email: document.getElementById('email').value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      area: document.getElementById('area').value.trim(),
+      isCreator: document.getElementById('creatorCheck').checked,
+      creatorType: document.getElementById('creatorType').value,
+      portfolio: document.getElementById('portfolio').value,
+      parties: window._selectedParties,
+      notify: notifyValue
+    };
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: data.type,
+      name: data.name,
+      email: data.email,
+      ig: data.ig,
+      area: data.area,
+      is_creator: data.isCreator
+    });
+
+    if (window.AFROCUE_SCRIPT_URL) {
+      fetch(window.AFROCUE_SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'text/plain' }
+      }).catch(e => {});
+    }
+    goTo('thankyou');
+  }
+
+  function scrollToQuiz() {
+    document.getElementById('quizTop').scrollIntoView({ behavior:'smooth' });
+  }
+
+  window.AFROCUE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyZvFHnm9JpFtMzWbMCvzSCTNw7TJN4mjCui-SgQbfF2lnko4-eJ72JHgRB-G2Jw36O/exec'; // ← Replace with your GAS URL
+</script>
 
 </body>
 </html>
