@@ -3,26 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Roamers – July Cohort</title>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Are You A Roamer? – AfroCue</title>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* ── FONTS ── */
     @font-face {
       font-family: 'Aesthet Nova';
       src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');
-      font-weight: 750;
+      font-weight: 900;
     }
     @font-face {
       font-family: 'Aesthet Nova';
       src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype');
-      font-weight: 300;
+      font-weight: 500;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    /* ── BASE ── */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background: #0a0a0a;
       display: flex;
@@ -34,31 +31,28 @@
 
     .creative {
       width: 1080px;
-      height: 1080px;
+      height: 1920px;
       position: relative;
       overflow: hidden;
       background-color: #0a0a0a;
+      color: #f0ede8;
     }
 
-    /* Layer 0: Background image – now using roamers_bg.jpg */
+    /* ── BACKGROUND LAYERS ── */
     .bg-image {
       position: absolute;
       inset: 0;
-      background-image: url('roamers_who.jpg');
+      background-image: url('roamers_ad_bg.jpg');
       background-size: cover;
       background-position: center;
       z-index: 0;
     }
-
-    /* Layer 1: Dark overlay */
     .overlay-dark {
       position: absolute;
       inset: 0;
       background: rgba(0,0,0,0.25);
       z-index: 1;
     }
-
-    /* Layer 2: Texture overlay */
     .overlay-texture {
       position: absolute;
       inset: 0;
@@ -68,8 +62,6 @@
       mix-blend-mode: soft-light;
       z-index: 2;
     }
-
-    /* Layer 3: Bottom vignette */
     .vignette {
       position: absolute;
       inset: 0;
@@ -77,152 +69,108 @@
       background: linear-gradient(
         to top,
         rgba(0,0,0,0.92) 0%,
-        rgba(0,0,0,0.75) 25%,
-        rgba(0,0,0,0.3) 55%,
+        rgba(0,0,0,0.75) 20%,
+        rgba(0,0,0,0.35) 45%,
+        rgba(0,0,0,0.1) 70%,
         transparent 100%
       );
     }
 
-    /* Content container */
+    /* ── CONTENT CONTAINER ── */
     .content {
       position: absolute;
-      bottom: 0;
+      bottom: 120px;
       left: 0;
       right: 0;
       z-index: 4;
-      padding: 60px 80px 50px;
+      padding: 0 100px;
+      text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-      color: #f0ede8;
     }
 
-    /* Headline */
+    /* ── TYPOGRAPHY ── */
     .headline-small {
       font-family: 'Aesthet Nova', sans-serif;
       font-weight: 500;
-      font-size: 60px;
+      font-size: 70px;
       line-height: 1;
-      letter-spacing: -0.02em;
       color: #f0ede8;
       text-shadow: 2px 3px 0 rgba(0,0,0,0.9);
-      margin-bottom: 5px;
+      margin-bottom: 10px;
     }
-
     .headline-big {
       font-family: 'Aesthet Nova', sans-serif;
       font-weight: 900;
-      font-size: 140px;
+      font-size: 180px;
       line-height: 0.85;
       color: #C8E000;
-      text-shadow: 3px 4px 0 rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.1);
-      margin-bottom: 20px;
-      letter-spacing: -0.03em;
+      text-shadow: 4px 5px 0 rgba(0,0,0,0.9), 0 0 30px rgba(200,224,0,0.1);
+      margin-bottom: 40px;
+      letter-spacing: -0.02em;
     }
-
-    .subhead {
+    .supporting-text {
       font-family: 'Figtree', sans-serif;
-      font-weight: 300;
-      font-size: 24px;
-      color: rgba(240,237,232,0.75);
-      margin-bottom: 28px;
+      font-weight: 400;
+      font-size: 36px;
+      color: rgba(240,237,232,0.8);
+      margin-bottom: 50px;
       letter-spacing: 0.02em;
-      max-width: 700px;
     }
 
-    /* Section title */
-    .section-title {
-      font-family: 'Figtree', sans-serif;
-      font-weight: 500;
-      font-size: 18px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 18px;
-    }
-
-    /* Capsules container */
-    .capsules {
+    /* ── PARTY CHIPS ── */
+    .chips-grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 12px;
-      margin-bottom: 22px;
+      gap: 20px;
+      margin-bottom: 60px;
     }
-
-    .pill {
+    .chip {
       font-family: 'Figtree', sans-serif;
       font-weight: 500;
-      font-size: 16px;
+      font-size: 28px;
       color: #f0ede8;
-      border: 1px solid rgba(240,237,232,0.35);
+      border: 1.5px solid rgba(240,237,232,0.35);
       border-radius: 999px;
-      padding: 10px 22px;
+      padding: 16px 40px;
       white-space: nowrap;
       background: transparent;
       backdrop-filter: blur(2px);
     }
 
-    .qualifier {
+    .closing-copy {
       font-family: 'Figtree', sans-serif;
-      font-weight: 300;
-      font-size: 18px;
-      color: rgba(240,237,232,0.6);
-      margin-bottom: 30px;
+      font-weight: 400;
+      font-size: 36px;
+      color: rgba(240,237,232,0.7);
+      margin-bottom: 40px;
     }
 
-    /* CTA button */
-    .cta {
+    /* ── CTA BUTTON ── */
+    .cta-button {
       display: inline-block;
       background: #C8E000;
       color: #0a0a0a;
       font-family: 'Figtree', sans-serif;
       font-weight: 700;
-      font-size: 20px;
-      letter-spacing: 0.1em;
+      font-size: 36px;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 18px 48px;
-      border-radius: 8px;
+      padding: 30px 70px;
+      border-radius: 16px;
       text-decoration: none;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-      transition: opacity 0.2s;
-      cursor: default;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+      margin-bottom: 30px;
     }
 
-    .cta:hover {
-      opacity: 0.9;
-    }
-
-    /* Bottom branding */
-    .branding {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 5;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 30px 60px;
-      pointer-events: none;
-    }
-
-    .brand-left {
-      font-family: 'Aesthet Nova', sans-serif;
-      font-weight: 900;
-      font-size: 22px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(240,237,232,0.6);
-    }
-
-    .brand-right {
+    .url-line {
       font-family: 'Figtree', sans-serif;
       font-weight: 400;
-      font-size: 16px;
-      letter-spacing: 0.08em;
+      font-size: 28px;
       color: rgba(240,237,232,0.45);
+      letter-spacing: 0.04em;
     }
   </style>
 </head>
@@ -236,25 +184,25 @@
     <div class="content">
       <div class="headline-small">ARE YOU A</div>
       <div class="headline-big">ROAMER?</div>
+      <div class="supporting-text">Where have you been lately?</div>
 
-      <div class="section-title">Been to any of these recently?</div>
-
-      <div class="capsules">
-        <span class="pill">Monochroma XII</span>
-        <span class="pill">Element House</span>
-        <span class="pill">South Social</span>
-        <span class="pill">Group Therapy</span>
-        <span class="pill">Rooftop House</span>
-        <span class="pill">Amapiano District</span>
+      <div class="chips-grid">
+        <span class="chip">Monochroma</span>
+        <span class="chip">South Social</span>
+        <span class="chip">Element House</span>
+        <span class="chip">Amapiano District</span>
+        <span class="chip">Group Therapy</span>
+        <span class="chip">PM2AM</span>
+        <span class="chip">Even in the Day</span>
+        <span class="chip">Sunday Service</span>
+        <span class="chip">V6</span>
+        <span class="chip">Tempo Lagos</span>
       </div>
 
-      <div class="qualifier">You might already qualify.</div>
+      <div class="closing-copy">You might already be one.</div>
 
-      <a href="https://afrocue.xyz/roamers" class="cta">APPLY FOR JULY</a>
-    </div>
-
-    <div class="branding">
-      <span class="brand-right">afrocue.xyz/roamers</span>
+      <a href="https://afrocue.xyz/roamers" class="cta-button">TAKE THE 30-SECOND QUIZ</a>
+      <div class="url-line">afrocue.xyz/roamers</div>
     </div>
   </div>
 </body>
