@@ -121,13 +121,17 @@
             opacity: 0.8;
         }
 
+        /* Hero image — 4:5 Instagram ratio */
         .event-image {
             position: relative;
             margin-top: 20px;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            aspect-ratio: 16 / 10;
+            aspect-ratio: 4 / 5;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .event-image img {
             width: 100%;
@@ -246,7 +250,6 @@
             gap: 12px;
             margin-top: 12px;
         }
-        /* Poster cards for Demi & Alli */
         .poster-card {
             background: rgba(20,20,20,0.7);
             border: 1px solid rgba(255,255,255,0.08);
@@ -270,7 +273,6 @@
             text-align: center;
         }
 
-        /* Text tile for other DJs */
         .artist-text-tile {
             background: rgba(20,20,20,0.7);
             backdrop-filter: blur(10px);
@@ -428,6 +430,7 @@
         @media (max-width: 480px) {
             .wyw-main { font-size: 32px; gap: 4px; }
             .floating-cta { bottom: 16px; padding: 8px 20px; font-size: 11px; }
+            .event-image { max-width: 100%; }
         }
     </style>
 </head>
@@ -500,27 +503,22 @@
                     <div class="reason-content">
                         <h4>The Lineup</h4>
                         <div class="lineup-grid">
-                            <!-- Tim - text only -->
                             <div class="artist-text-tile">
                                 <h5>TIM</h5>
                                 <p>Bringing energy early on.</p>
                             </div>
-                            <!-- Hillary - text only -->
                             <div class="artist-text-tile">
                                 <h5>HILLARY</h5>
                                 <p>Selections that set the tone.</p>
                             </div>
-                            <!-- Demi Andre - poster -->
                             <div class="poster-card">
                                 <img src="/wyw/poster_demi.jpg" alt="Demi Andre" onerror="this.style.background='#333'; this.style.minHeight='140px'">
                                 <div class="poster-name">DEMI ANDRE</div>
                             </div>
-                            <!-- Finding Alli - poster -->
                             <div class="poster-card">
                                 <img src="/wyw/poster_finding_alli.jpg" alt="Finding Alli" onerror="this.style.background='#333'; this.style.minHeight='140px'">
                                 <div class="poster-name">FINDING ALLI</div>
                             </div>
-                            <!-- Flava.Wav B2B DTPB - text only -->
                             <div class="artist-text-tile">
                                 <h5>FLAVA.WAV B2B DTPB</h5>
                                 <p>A back‑to‑back session built for the floor.</p>
@@ -554,7 +552,7 @@
             <p style="font-size:14px; color:rgba(240,237,232,0.7); margin-bottom: 12px;">
                 A comfortable car picks you up with a small group, drinks for the ride, and drops you off at No Breaks.
             </p>
-            <img src="pregame_ride.jpg" alt="AfroCue Pre‑Game ride" class="pregame-img" onerror="this.style.display='none'">
+            <img src="/wyw/pregame_ride.jpg" alt="AfroCue Pre‑Game ride" class="pregame-img" onerror="this.style.display='none'">
             <div class="benefit-chips">
                 <span class="chip">Pickup from your area</span>
                 <span class="chip">2–3 other guests</span>
