@@ -6,16 +6,16 @@
     <title>No Breaks · Worth Your Weekend · AfroCue</title>
     <meta name="description" content="W●Y●W: AfroCue recommends No Breaks by Demi Andre this July 25th at Scotch Bonnet, VI. Get the details and a chance at the Pre‑Game ride.">
     <meta name="theme-color" content="#0a0a0a">
-    <link rel="canonical" href="https://afrocue.xyz/wyw/nobreaks">
+    <link rel="canonical" href="https://afrocue.xyz/wyw/no-breaks">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://afrocue.xyz/wyw/nobreaks">
+    <meta property="og:url" content="https://afrocue.xyz/wyw/no-breaks">
     <meta property="og:title" content="No Breaks · Worth Your Weekend · AfroCue">
     <meta property="og:description" content="The Extended Sets. Demi Andre curates a night of Afro House, Afro Tech, Amapiano & more. If good music is reason enough, this one's worth your weekend.">
-    <meta property="og:image" content="https://afrocue.xyz/nobreaks_hero.jpg">
+    <meta property="og:image" content="https://afrocue.xyz/wyw/nobreaks_hero.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="No Breaks · Worth Your Weekend · AfroCue">
     <meta name="twitter:description" content="AfroCue recommends No Breaks by Demi Andre this Saturday. Extended sets, Vi location, and a Pre‑Game ride.">
-    <meta name="twitter:image" content="https://afrocue.xyz/nobreaks_hero.jpg">
+    <meta name="twitter:image" content="https://afrocue.xyz/wyw/nobreaks_hero.jpg">
 
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -239,12 +239,14 @@
             margin: 0;
         }
 
-        .posters-grid {
+        /* Lineup grid */
+        .lineup-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 12px;
-            margin-top: 8px;
+            margin-top: 12px;
         }
+        /* Poster cards for Demi & Alli */
         .poster-card {
             background: rgba(20,20,20,0.7);
             border: 1px solid rgba(255,255,255,0.08);
@@ -266,6 +268,33 @@
             font-size: 14px;
             color: var(--white);
             text-align: center;
+        }
+
+        /* Text tile for other DJs */
+        .artist-text-tile {
+            background: rgba(20,20,20,0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 120px;
+        }
+        .artist-text-tile h5 {
+            font-family: 'Aesthet Nova', sans-serif;
+            font-weight: 900;
+            font-size: 16px;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+        .artist-text-tile p {
+            font-size: 12px;
+            font-weight: 300;
+            color: rgba(240,237,232,0.45);
+            line-height: 1.4;
         }
 
         .pregame-img {
@@ -309,7 +338,7 @@
             color: rgba(240,237,232,0.8);
         }
 
-        /* ---- FLOATING CTA (subtle, appears on scroll) ---- */
+        /* Floating CTA */
         .floating-cta {
             position: fixed;
             bottom: 24px;
@@ -341,6 +370,7 @@
             color: var(--white);
         }
 
+        /* Modal */
         .modal-overlay {
             position: fixed; inset: 0; background: rgba(10,10,10,0.85);
             backdrop-filter: blur(8px); z-index: 1000;
@@ -406,7 +436,6 @@
 
     <div class="bg-texture"></div>
 
-    <!-- Floating subtle CTA -->
     <button class="floating-cta" id="floatingCta" onclick="openModal()">Send Details</button>
 
     <main class="wrap">
@@ -470,26 +499,31 @@
                     <div class="reason-icon">🎧</div>
                     <div class="reason-content">
                         <h4>The Lineup</h4>
-                        <div class="posters-grid">
-                            <div class="poster-card">
-                                <img src="poster_tim.jpg" alt="Tim" onerror="this.style.background='#333'; this.style.minHeight='140px'">
-                                <div class="poster-name">TIM</div>
+                        <div class="lineup-grid">
+                            <!-- Tim - text only -->
+                            <div class="artist-text-tile">
+                                <h5>TIM</h5>
+                                <p>Bringing energy early on.</p>
                             </div>
-                            <div class="poster-card">
-                                <img src="poster_hillary.jpg" alt="Hillary" onerror="this.style.background='#333'; this.style.minHeight='140px'">
-                                <div class="poster-name">HILLARY</div>
+                            <!-- Hillary - text only -->
+                            <div class="artist-text-tile">
+                                <h5>HILLARY</h5>
+                                <p>Selections that set the tone.</p>
                             </div>
+                            <!-- Demi Andre - poster -->
                             <div class="poster-card">
                                 <img src="poster_demi.jpg" alt="Demi Andre" onerror="this.style.background='#333'; this.style.minHeight='140px'">
                                 <div class="poster-name">DEMI ANDRE</div>
                             </div>
+                            <!-- Finding Alli - poster -->
                             <div class="poster-card">
                                 <img src="poster_finding_alli.jpg" alt="Finding Alli" onerror="this.style.background='#333'; this.style.minHeight='140px'">
                                 <div class="poster-name">FINDING ALLI</div>
                             </div>
-                            <div class="poster-card">
-                                <img src="poster_flava_wav.jpg" alt="Flava.Wav B2B DTPB" onerror="this.style.background='#333'; this.style.minHeight='140px'">
-                                <div class="poster-name">FLAVA.WAV B2B DTPB</div>
+                            <!-- Flava.Wav B2B DTPB - text only -->
+                            <div class="artist-text-tile">
+                                <h5>FLAVA.WAV B2B DTPB</h5>
+                                <p>A back‑to‑back session built for the floor.</p>
                             </div>
                         </div>
                     </div>
@@ -528,7 +562,7 @@
                 <span class="chip">Direct drop‑off</span>
             </div>
             <p style="font-size:12px; color:rgba(240,237,232,0.5); margin-top: 12px;">
-                Limited slots. Only available to ticket holders.
+                Limited slots. Only available to ticket holders – buy your tickets early to stand a higher chance.
             </p>
             <button class="cta-btn" style="margin-top:16px;" onclick="openModal()">I'M INTERESTED</button>
         </section>
@@ -585,7 +619,6 @@
     </div>
 
     <script>
-        // Floating CTA scroll behaviour
         window.addEventListener('scroll', function() {
             const floating = document.getElementById('floatingCta');
             if (window.scrollY > 400) {
@@ -643,7 +676,7 @@
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({ event: 'afrocue_signup', ...payload });
 
-            const endpoint = 'https://your-webhook-url.com/submit'; // ⬅️ Replace with your endpoint
+            const endpoint = 'https://your-webhook-url.com/submit'; // ⬅️ Replace with your Apps Script URL
             fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
                 .catch(err => console.log('Submission error (expected if endpoint not set):', err));
 
