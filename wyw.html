@@ -709,7 +709,7 @@
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({ event: 'afrocue_signup', ...payload });
 
-            const endpoint = 'https://your-webhook-url.com/submit'; // ⬅️ Replace with your Apps Script URL
+            const endpoint = 'https://script.google.com/macros/s/AKfycbw3zCSSWM2xsh0MG1Tl4ghcTwhjL1JItOiiHkSq6cMlEyNUdy4sP9V2wezTydTZA_pC/exec'; // ⬅️ Replace with your Apps Script URL
             fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(payload) })
                 .catch(err => console.log('Submission error (expected if endpoint not set):', err))
                 .finally(() => {
