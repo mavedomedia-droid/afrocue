@@ -3,101 +3,206 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>No Breaks – Your Details Inside</title>
+  <meta name="color-scheme" content="dark light"/>
+  <meta name="supported-color-schemes" content="dark light"/>
+  <title>NO BREAKS · You're in.</title>
   <style>
-    body { margin:0; padding:0; background:#0a0a0a; font-family:Arial,sans-serif; -webkit-text-size-adjust:100%; }
+    body { margin:0; padding:0; background:#0a0a0a; font-family:Arial,Helvetica,sans-serif; -webkit-text-size-adjust:100%; }
     a { text-decoration:none; }
     img { border:0; display:block; }
+    @media only screen and (max-width:520px) {
+      .wordmark { font-size:44px !important; line-height:0.88 !important; }
+      .tile-td { display:block !important; width:100% !important; padding:6px 0 !important; }
+    }
   </style>
 </head>
 <body style="margin:0;padding:0;background: linear-gradient(160deg, #0e0e0e 0%, #141414 100%);">
 
-<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background: transparent;">
-<tr><td align="center" style="padding:48px 16px 40px;">
+<!-- Preheader -->
+<div style="display:none;font-size:1px;color:#0a0a0a;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;">
+  You asked. Here it is. Fri Jul 25. Scotch Bonnet, VI. Doors 10 PM.
+</div>
 
-  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:520px;background: rgba(18,18,18,0.95); border:1px solid rgba(255,255,255,0.06); border-radius:10px; overflow:hidden;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr><td align="center" style="padding:32px 16px 40px;">
 
-    <!-- Header -->
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:520px;background:rgba(18,18,18,0.95);border:1px solid rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;">
+
+    <!-- Header: logo -->
     <tr>
-      <td style="padding:32px 40px 20px;">
-        <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" height="32" style="height:32px; width:auto;"/>
+      <td style="padding:24px 32px 0;">
+        <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" height="22" style="height:22px;width:auto;"/>
       </td>
     </tr>
 
-    <!-- Greeting -->
+    <!-- Eyebrow + Recommended Party -->
     <tr>
-      <td style="padding:0 40px 20px;">
-        <p style="font-size:16px; color:#f0ede8; margin:0 0 6px; font-weight:500;">Hey {{name}},</p>
-        <p style="font-size:14px; line-height:1.7; color:rgba(240,237,232,0.8); margin:0;">
-          Thanks for requesting the details. Here's everything you need for the night.
+      <td align="left" style="padding:20px 32px 24px;">
+        <p style="font-size:10px;letter-spacing:0.14em;color:#C8E000;margin:0 0 14px;font-weight:700;text-transform:uppercase;font-family:Arial,Helvetica,sans-serif;">
+          W&middot;Y&middot;W &nbsp;/&nbsp; Worth Your Weekend
+        </p>
+        <p style="font-size:10px;letter-spacing:0.2em;color:#666;margin:0 0 8px;font-weight:600;text-transform:uppercase;">
+          Recommended Party
+        </p>
+        <h1 style="font-family:'Arial Black',Arial,sans-serif;font-size:44px;line-height:0.9;color:#f0ede8;margin:0 0 6px;font-weight:900;letter-spacing:-0.02em;">
+          No Breaks
+        </h1>
+        <p style="font-size:16px;color:rgba(240,237,232,0.6);margin:0 0 20px;font-weight:400;">
+          by Demi Andre
+        </p>
+        <p style="font-size:15px;color:#f0ede8;margin:0 0 4px;font-weight:600;">
+          Hey {{name}},
+        </p>
+        <p style="font-size:14px;line-height:1.6;color:rgba(240,237,232,0.7);margin:0;">
+          Thanks for your interest in No Breaks. Here's what you need to know.
         </p>
       </td>
     </tr>
 
-    <!-- Event details section -->
+    <!-- FLIER (visual anchor) -->
     <tr>
-      <td style="padding:0 40px 20px; border-top:1px solid rgba(255,255,255,0.05);">
-        <p style="font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:#555; margin:20px 0 12px;">The details</p>
+      <td style="padding:0 20px 20px;">
+        <img src="https://afrocue.xyz/wyw/nobreaks_hero.jpg" alt="NO BREAKS · Fri Jul 25" width="480" style="width:100%;max-width:480px;height:auto;display:block;border-radius:10px;box-shadow:0 12px 32px rgba(0,0,0,0.5);"/>
+      </td>
+    </tr>
+
+    <!-- Save the flier line -->
+    <tr>
+      <td align="center" style="padding:0 40px 24px;">
+        <p style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,237,232,0.4);margin:0;font-weight:500;">
+          Save it. Send it to your people.
+        </p>
+      </td>
+    </tr>
+
+    <!-- WHEN + WHERE TILES -->
+    <tr>
+      <td style="padding:0 24px 8px;">
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
           <tr>
-            <td style="padding-bottom:12px;">
-              <p style="font-size:15px; color:#f0ede8; margin:0 0 2px; font-weight:600;">📅 Friday, July 25 · 10 PM</p>
-              <p style="font-size:14px; color:rgba(240,237,232,0.7); margin:0;">📍 Scotch Bonnet Restaurant<br>1713 Chartered Bank Close, Victoria Island, Lagos</p>
+            <td class="tile-td" width="50%" valign="top" style="padding:6px 4px 6px 0;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;">
+                <tr><td style="padding:16px 18px;">
+                  <p style="font-size:9px;letter-spacing:0.18em;color:#666;margin:0 0 8px;text-transform:uppercase;font-weight:700;">When</p>
+                  <p style="font-size:16px;color:#f0ede8;margin:0 0 3px;font-weight:700;">Fri, Jul 25</p>
+                  <p style="font-size:12px;color:rgba(240,237,232,0.55);margin:0;">Doors 10 PM</p>
+                </td></tr>
+              </table>
             </td>
-          </tr>
-          <tr>
-            <td style="padding-bottom:12px;">
-              <p style="font-size:14px; color:#f0ede8; margin:0 0 2px; font-weight:600;">🎵 Afro House · Afro Tech · Amapiano · 3‑Step · Afrobeat</p>
-              <p style="font-size:13px; color:rgba(240,237,232,0.5); margin:0;">🎧 Tim, Hillary, Demi Andre, Finding Alli, Flava.Wav B2B DTPB</p>
+            <td class="tile-td" width="50%" valign="top" style="padding:6px 0 6px 4px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;">
+                <tr><td style="padding:16px 18px;">
+                  <p style="font-size:9px;letter-spacing:0.18em;color:#666;margin:0 0 8px;text-transform:uppercase;font-weight:700;">Where</p>
+                  <p style="font-size:16px;color:#f0ede8;margin:0 0 3px;font-weight:700;">Scotch Bonnet</p>
+                  <p style="font-size:12px;color:rgba(240,237,232,0.55);margin:0 0 10px;">Chartered Bank Cl, VI</p>
+                  <a href="https://maps.google.com/?q=Scotch+Bonnet+Restaurant+Chartered+Bank+Close+Victoria+Island+Lagos" style="font-size:10px;color:#C8E000;letter-spacing:0.06em;text-transform:uppercase;font-weight:700;">Open in maps &rarr;</a>
+                </td></tr>
+              </table>
             </td>
           </tr>
         </table>
       </td>
     </tr>
 
-    <!-- Ticket button -->
+    <!-- SOUND PILLS -->
     <tr>
-      <td style="padding:0 40px 24px;" align="center">
-        <a href="https://selar.com/44787qy387?utm_source=afrocue&utm_medium=email&utm_content=wyw" 
-           style="display:inline-block; background: #ffffff; color:#0a0a0a; padding:14px 32px; border-radius:6px; font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; box-shadow: 0 2px 8px rgba(0,0,0,0.4);">
-          🎟️ BUY TICKETS
-        </a>
+      <td style="padding:16px 32px 8px;">
+        <p style="font-size:9px;letter-spacing:0.18em;color:#666;margin:0 0 12px;text-transform:uppercase;font-weight:700;">Sounds</p>
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td style="padding:2px 4px 2px 0;">
+              <table cellpadding="0" cellspacing="0" border="0"><tr><td style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:100px;padding:5px 11px;font-size:11px;color:#f0ede8;font-weight:600;">Afro House</td></tr></table>
+            </td>
+            <td style="padding:2px 4px;">
+              <table cellpadding="0" cellspacing="0" border="0"><tr><td style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:100px;padding:5px 11px;font-size:11px;color:#f0ede8;font-weight:600;">Afro Tech</td></tr></table>
+            </td>
+            <td style="padding:2px 4px;">
+              <table cellpadding="0" cellspacing="0" border="0"><tr><td style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:100px;padding:5px 11px;font-size:11px;color:#f0ede8;font-weight:600;">Amapiano</td></tr></table>
+            </td>
+            <td style="padding:2px 4px;">
+              <table cellpadding="0" cellspacing="0" border="0"><tr><td style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:100px;padding:5px 11px;font-size:11px;color:#f0ede8;font-weight:600;">3&#8209;Step</td></tr></table>
+            </td>
+            <td style="padding:2px 0 2px 4px;">
+              <table cellpadding="0" cellspacing="0" border="0"><tr><td style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:100px;padding:5px 11px;font-size:11px;color:#f0ede8;font-weight:600;">Afrobeat</td></tr></table>
+            </td>
+          </tr>
+        </table>
       </td>
     </tr>
 
-    <!-- Pre‑Game message (conditional) -->
+    <!-- LINEUP -->
     <tr>
-      <td style="padding:0 40px 24px; border-top:1px solid rgba(255,255,255,0.05);">
-        <p style="font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:#555; margin:20px 0 12px;">AfroCue Pre‑Game</p>
-        <p style="font-size:14px; line-height:1.7; color:rgba(240,237,232,0.7); margin:0;">
-          {{pregame_message}}
+      <td style="padding:16px 32px 8px;">
+        <p style="font-size:9px;letter-spacing:0.18em;color:#666;margin:0 0 12px;text-transform:uppercase;font-weight:700;">Lineup</p>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr><td style="padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><p style="font-size:15px;color:#f0ede8;margin:0;font-weight:600;">Tim</p></td></tr>
+          <tr><td style="padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><p style="font-size:15px;color:#f0ede8;margin:0;font-weight:600;">Hillary</p></td></tr>
+          <tr><td style="padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><p style="font-size:15px;color:#f0ede8;margin:0;font-weight:600;">Demi Andre</p></td></tr>
+          <tr><td style="padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><p style="font-size:15px;color:#f0ede8;margin:0;font-weight:600;">Finding Alli</p></td></tr>
+          <tr><td style="padding:7px 0;"><p style="font-size:15px;color:#f0ede8;margin:0;font-weight:600;">Flava.Wav <span style="color:rgba(240,237,232,0.4);font-weight:400;font-size:12px;">b2b</span> DTPB</p></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- PRE-GAME (dynamic block filled by GAS) -->
+    <tr>
+      <td style="padding:24px 32px 0;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:rgba(200,224,0,0.05);border:1px solid rgba(200,224,0,0.15);border-radius:8px;">
+          <tr><td style="padding:16px 18px;">
+            <p style="font-size:10px;letter-spacing:0.18em;color:#C8E000;margin:0 0 8px;text-transform:uppercase;font-weight:700;">AfroCue Pre&#8209;Game</p>
+            <p style="font-size:13px;line-height:1.6;color:rgba(240,237,232,0.75);margin:0;">
+              {{pregame_message}}
+            </p>
+          </td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- BRIDGE LINE + CTA -->
+    <tr>
+      <td align="center" style="padding:28px 32px 24px;">
+        <p style="font-size:13px;color:rgba(240,237,232,0.65);margin:0 0 4px;line-height:1.5;">
+          Ticket holders get first shot at Pre&#8209;Game slots.
+        </p>
+        <p style="font-size:14px;color:#f0ede8;margin:0 0 20px;font-weight:600;">
+          Lock yours in.
+        </p>
+        <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;">
+          <tr>
+            <td align="center" style="background:#C8E000;border-radius:6px;">
+              <a href="https://selar.com/44787qy387?utm_source=afrocue&utm_medium=email&utm_campaign=nobreaks&utm_content=wyw_confirm" style="display:inline-block;background:#C8E000;color:#0a0a0a;padding:16px 32px;border-radius:6px;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:0.08em;text-decoration:none;">
+                Buy tickets &middot; &#8358;4,000
+              </a>
+            </td>
+          </tr>
+        </table>
+        <p style="font-size:10px;letter-spacing:0.06em;color:rgba(240,237,232,0.4);margin:12px 0 0;">
+          Goes up at the door
         </p>
       </td>
     </tr>
 
-    <!-- Stay tuned -->
+    <!-- Sign off -->
     <tr>
-      <td style="padding:0 40px 24px; border-top:1px solid rgba(255,255,255,0.05);">
-        <p style="font-size:13px; line-height:1.6; color:rgba(240,237,232,0.7); margin:20px 0 0;">
-          See you on the 25th.
+      <td style="padding:20px 32px 28px;border-top:1px solid rgba(255,255,255,0.05);">
+        <p style="font-size:14px;line-height:1.6;color:rgba(240,237,232,0.75);margin:0;font-weight:500;">
+          On the 25th.
         </p>
       </td>
     </tr>
 
     <!-- Footer -->
     <tr>
-      <td style="padding:16px 40px; background: rgba(0,0,0,0.2); border-top:1px solid rgba(255,255,255,0.04);">
-        <p style="font-size:10px; color:rgba(240,237,232,0.3); margin:0;">
-          &mdash; AfroCue
+      <td style="padding:18px 32px 22px;background:rgba(0,0,0,0.3);">
+        <p style="font-size:10px;color:#555;line-height:1.7;margin:0 0 4px;">
+          Forward this to someone who moves.
         </p>
-      </td>
-    </tr>
-    <tr>
-      <td style="padding:16px 40px 20px; background: rgba(0,0,0,0.3);">
-        <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" height="20" style="height:20px; width:auto; margin-bottom:6px;"/>
-        <p style="font-size:9px; color:#444; line-height:1.6; margin:0;">
-          Lagos, Nigeria &nbsp;&middot;&nbsp; &copy; 2025 AfroCue<br>
-          <a href="https://afrocue.xyz" style="color:#444;">afrocue.xyz</a>
+        <p style="font-size:10px;color:#666;line-height:1.7;margin:0;">
+          <a href="https://instagram.com/afrocue.xyz" style="color:#888;">@afrocue.xyz</a> &nbsp;&middot;&nbsp;
+          <a href="https://afrocue.xyz" style="color:#888;">afrocue.xyz</a>
+        </p>
+        <p style="font-size:9px;color:#333;line-height:1.6;margin:8px 0 0;">
+          Lagos, Nigeria &middot; &copy; 2025 AfroCue
         </p>
       </td>
     </tr>
