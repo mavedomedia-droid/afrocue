@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>No Breaks · Worth Your Weekend · AfroCue</title>
-    <meta name="description" content="W●Y●W: AfroCue recommends No Breaks by Demi Andre this July 25th at Scotch Bonnet, VI. Get the details and a chance at the Pre‑Game ride.">
+    <meta name="description" content="W·Y·W: AfroCue recommends No Breaks by Demi Andre this July 25th at Scotch Bonnet, VI. Get the details and a chance at the Pre-Game ride.">
     <meta name="theme-color" content="#0a0a0a">
     <link rel="canonical" href="https://afrocue.xyz/wyw/no-breaks">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://afrocue.xyz/wyw/no-breaks">
     <meta property="og:title" content="No Breaks · Worth Your Weekend · AfroCue">
-    <meta property="og:description" content="The Extended Sets. Demi Andre curates a night of Afro House, Afro Tech, Amapiano & more. If good music is reason enough, this one's worth your weekend.">
+    <meta property="og:description" content="The Extended Sets. Demi Andre curates a night of Afro House, Afro Tech, Amapiano and more. If good music is reason enough, this one's worth your weekend.">
     <meta property="og:image" content="https://afrocue.xyz/wyw/nobreaks_hero.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="No Breaks · Worth Your Weekend · AfroCue">
-    <meta name="twitter:description" content="AfroCue recommends No Breaks by Demi Andre this Saturday. Extended sets, Vi location, and a Pre‑Game ride.">
+    <meta name="twitter:description" content="AfroCue recommends No Breaks by Demi Andre this Saturday. Extended sets, VI location, and a Pre-Game ride.">
     <meta name="twitter:image" content="https://afrocue.xyz/wyw/nobreaks_hero.jpg">
 
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -23,7 +23,7 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         @font-face {
             font-family: 'Aesthet Nova';
@@ -42,6 +42,7 @@
             --silver: #999999;
             --white: #f0ede8;
             --yellow: #C8E000;
+            --mono: 'JetBrains Mono', monospace;
             --yts: 2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.06);
         }
         *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -67,18 +68,19 @@
         }
 
         .header-banner {
-            position: relative; padding: 16px 20px; margin-bottom: 0;
+            position: relative; padding: 14px 20px; margin-bottom: 0;
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('texture.jpg');
             background-size: cover; border-radius: 0 0 8px 8px; overflow: hidden;
         }
-        .banner-logo img { height: 32px; width: auto; display: block; margin: 0 auto; }
+        .banner-logo img { height: 26px; width: auto; display: block; margin: 0 auto; }
 
+        /* W·Y·W bar — letters dominant, dots small and subtle */
         .wyw-bar {
             background: rgba(0,0,0,0.8);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 10px;
-            padding: 16px 20px;
-            margin: 24px 0 0;
+            padding: 14px 20px 12px;
+            margin: 16px 0 0;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -87,49 +89,54 @@
         .wyw-main {
             font-family: 'Aesthet Nova', sans-serif;
             font-weight: 900;
-            font-size: 42px;
-            letter-spacing: 4px;
+            font-size: 44px;
+            letter-spacing: 1px;
             line-height: 1;
             color: var(--yellow);
             text-shadow: 2px 2px 0 rgba(0,0,0,0.9);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 2px;
         }
         .wyw-dot {
-            font-size: 28px;
-            line-height: 1;
-            color: var(--white);
-            text-shadow: none;
             font-family: 'Figtree', sans-serif;
-            font-weight: 300;
+            font-size: 14px;
+            line-height: 1;
+            font-weight: 700;
+            color: rgba(240,237,232,0.55);
+            text-shadow: none;
+            transform: translateY(-8px);
+            display: inline-block;
+            padding: 0 3px;
         }
         .wyw-sub {
-            font-size: 13px;
+            font-family: var(--mono);
+            font-size: 11px;
             font-weight: 500;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: rgba(240,237,232,0.8);
-            margin-top: 4px;
+            color: rgba(240,237,232,0.7);
+            margin-top: 6px;
         }
         .wyw-url {
-            font-size: 11px;
+            font-family: var(--mono);
+            font-size: 10px;
             font-weight: 400;
             color: var(--silver);
-            letter-spacing: 0.08em;
-            margin-top: 4px;
-            opacity: 0.8;
+            letter-spacing: 0.06em;
+            margin-top: 3px;
+            opacity: 0.5;
         }
 
-        /* Hero image — 4:5 Instagram ratio */
+        /* Hero image — 4:5 Instagram ratio, capped */
         .event-image {
             position: relative;
-            margin-top: 20px;
+            margin-top: 16px;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
             aspect-ratio: 4 / 5;
-            max-width: 400px;
+            max-width: 360px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -141,40 +148,49 @@
         }
 
         .event-title {
-            margin-top: 24px;
+            margin-top: 20px;
             font-family: 'Aesthet Nova', sans-serif;
             font-weight: 900;
-            font-size: clamp(44px, 8vw, 72px);
+            font-size: clamp(36px, 6.5vw, 54px);
             line-height: 0.9;
+            letter-spacing: -0.02em;
             color: var(--white);
             text-shadow: var(--yts);
         }
         .event-sub {
-            font-size: 18px;
-            font-weight: 300;
+            font-size: 15px;
+            font-weight: 400;
             color: rgba(240,237,232,0.7);
             margin-top: 8px;
+            letter-spacing: 0.01em;
         }
         .event-date {
-            font-size: 14px;
-            font-weight: 400;
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 500;
             color: var(--silver);
-            letter-spacing: 0.05em;
-            margin-top: 6px;
+            letter-spacing: 0.12em;
+            margin-top: 10px;
+            text-transform: uppercase;
         }
 
         .reco-line {
-            font-size: 16px;
-            font-weight: 300;
+            font-size: 14px;
+            font-weight: 400;
             color: rgba(240,237,232,0.6);
-            margin: 16px 0 8px;
-            line-height: 1.5;
+            margin: 18px auto 6px;
+            line-height: 1.55;
+            max-width: 440px;
         }
 
         .pregame-tease {
-            font-size: 13px;
-            color: rgba(200,224,0,0.8);
-            margin-bottom: 20px;
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(200,224,0,0.85);
+            margin-bottom: 18px;
         }
 
         .cta-btn {
@@ -182,7 +198,7 @@
             background: var(--white);
             color: var(--black);
             font-family: 'Figtree', sans-serif;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 13px;
             letter-spacing: 0.08em;
             text-transform: uppercase;
@@ -190,17 +206,18 @@
             border-radius: 6px;
             border: none;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: background 0.2s, transform 0.15s;
             text-decoration: none;
             white-space: nowrap;
         }
-        .cta-btn:hover { background: rgba(255,255,255,0.9); }
+        .cta-btn:hover { background: rgba(255,255,255,0.92); transform: translateY(-1px); }
 
         .section-head {
             font-family: 'Aesthet Nova', sans-serif;
             font-weight: 900;
             font-size: clamp(28px, 6vw, 44px);
             line-height: 0.9;
+            letter-spacing: -0.02em;
             color: var(--yellow);
             text-shadow: var(--yts);
             margin-bottom: 20px;
@@ -210,7 +227,7 @@
         .reason-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 16px;
+            gap: 12px;
             margin-bottom: 32px;
         }
         .reason-card {
@@ -218,15 +235,16 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 10px;
-            padding: 16px;
+            padding: 16px 18px;
             text-align: left;
             display: flex;
             align-items: flex-start;
-            gap: 12px;
+            gap: 14px;
         }
         .reason-icon {
-            font-size: 24px;
+            font-size: 22px;
             flex-shrink: 0;
+            filter: saturate(0.85);
         }
         .reason-content h4 {
             font-family: 'Aesthet Nova', sans-serif;
@@ -237,17 +255,21 @@
         }
         .reason-content p {
             font-size: 13px;
-            font-weight: 300;
-            line-height: 1.5;
-            color: rgba(240,237,232,0.55);
+            font-weight: 400;
+            line-height: 1.55;
+            color: rgba(240,237,232,0.6);
             margin: 0;
+        }
+        .reason-content p strong {
+            color: var(--white);
+            font-weight: 600;
         }
 
         /* Lineup grid */
         .lineup-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 12px;
+            gap: 10px;
             margin-top: 12px;
         }
         .poster-card {
@@ -268,35 +290,39 @@
             padding: 10px;
             font-family: 'Aesthet Nova', sans-serif;
             font-weight: 900;
-            font-size: 14px;
+            font-size: 13px;
+            letter-spacing: 0.02em;
             color: var(--white);
             text-align: center;
         }
 
         .artist-text-tile {
-            background: rgba(20,20,20,0.7);
+            background: rgba(20,20,20,0.6);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.06);
             border-radius: 8px;
-            padding: 16px;
+            padding: 14px;
             text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            min-height: 120px;
+            min-height: 110px;
         }
         .artist-text-tile h5 {
             font-family: 'Aesthet Nova', sans-serif;
             font-weight: 900;
-            font-size: 16px;
+            font-size: 15px;
             color: var(--white);
-            margin-bottom: 4px;
+            margin-bottom: 5px;
+            line-height: 1.05;
         }
         .artist-text-tile p {
-            font-size: 12px;
-            font-weight: 300;
-            color: rgba(240,237,232,0.45);
-            line-height: 1.4;
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(200,224,0,0.7);
         }
 
         .pregame-img {
@@ -316,9 +342,10 @@
             margin: 40px 0;
         }
         .pregame-eyebrow {
+            font-family: var(--mono);
             font-size: 10px;
             font-weight: 600;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.22em;
             text-transform: uppercase;
             color: var(--yellow);
             margin-bottom: 8px;
@@ -327,6 +354,7 @@
             font-family: 'Aesthet Nova', sans-serif;
             font-weight: 900;
             font-size: 22px;
+            letter-spacing: -0.01em;
             color: var(--white);
             margin-bottom: 8px;
         }
@@ -335,8 +363,9 @@
             background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 999px;
-            padding: 6px 14px;
-            font-size: 12px;
+            padding: 6px 12px;
+            font-size: 11px;
+            font-weight: 500;
             color: rgba(240,237,232,0.8);
         }
 
@@ -391,12 +420,12 @@
         .modal-close { position: absolute; top: 14px; right: 14px; background: none; border: none; color: var(--silver); font-size: 22px; cursor: pointer; }
 
         .form-field { margin-bottom: 14px; text-align: left; }
-        .form-field label { display: block; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(240,237,232,0.45); margin-bottom: 4px; }
+        .form-field label { display: block; font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(240,237,232,0.5); margin-bottom: 5px; }
         .form-field input { width: 100%; padding: 12px 14px; border: 1.5px solid rgba(255,255,255,0.1); border-radius: 8px; background: rgba(255,255,255,0.04); color: var(--white); font-family: 'Figtree', sans-serif; font-size: 15px; outline: none; }
         .form-field input:focus { border-color: rgba(255,255,255,0.35); }
 
-        .toggle-row { display: flex; align-items: center; justify-content: space-between; margin: 16px 0; text-align: left; }
-        .toggle-label { font-size: 14px; font-weight: 500; color: var(--white); }
+        .toggle-row { display: flex; align-items: center; justify-content: space-between; margin: 16px 0; text-align: left; gap: 14px; }
+        .toggle-label { font-size: 14px; font-weight: 600; color: var(--white); }
         .toggle-desc { font-size: 11px; color: var(--silver); margin-top: 2px; }
         .toggle-switch { position: relative; width: 46px; height: 26px; flex-shrink: 0; }
         .toggle-switch input { opacity: 0; width: 0; height: 0; }
@@ -409,8 +438,9 @@
 
         .hidden-area { display: none; }
         .hidden-area.visible { display: block; }
-        .submit-btn { display: block; width: 100%; padding: 14px; font-family: 'Figtree', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; background: var(--white); color: var(--black); border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
-        .submit-btn:hover { background: rgba(255,255,255,0.9); }
+        .submit-btn { display: block; width: 100%; padding: 14px; font-family: 'Figtree', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; background: var(--white); color: var(--black); border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
+        .submit-btn:hover { background: rgba(255,255,255,0.92); }
+        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
         .confirmation { display: none; text-align: center; }
         .confirmation.active { display: block; }
@@ -419,8 +449,11 @@
         .buy-ticket-link {
             display: inline-block;
             margin-top: 16px;
+            font-family: var(--mono);
             font-weight: 600;
-            font-size: 14px;
+            font-size: 12px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
             color: var(--yellow);
             text-decoration: underline;
             transition: opacity 0.2s;
@@ -428,7 +461,8 @@
         .buy-ticket-link:hover { opacity: 0.8; }
 
         @media (max-width: 480px) {
-            .wyw-main { font-size: 32px; gap: 4px; }
+            .wyw-main { font-size: 36px; }
+            .wyw-dot { font-size: 12px; transform: translateY(-7px); padding: 0 2px; }
             .floating-cta { bottom: 16px; padding: 8px 20px; font-size: 11px; }
             .event-image { max-width: 100%; }
         }
@@ -449,10 +483,8 @@
         </div>
 
         <div class="wyw-bar">
-            <div class="wyw-main">
-                W<span class="wyw-dot">●</span>Y<span class="wyw-dot">●</span>W
-            </div>
-            <div class="wyw-sub">worth your weekend</div>
+            <div class="wyw-main">W<span class="wyw-dot">·</span>Y<span class="wyw-dot">·</span>W</div>
+            <div class="wyw-sub">Worth Your Weekend</div>
             <div class="wyw-url">afrocue.xyz/wyw</div>
         </div>
 
@@ -462,16 +494,16 @@
 
         <h1 class="event-title">NO BREAKS</h1>
         <p class="event-sub">The Extended Sets · Curated by Demi Andre</p>
-        <p class="event-date">JULY 25 · 10 PM · SCOTCH BONNET RESTAURANT · VI</p>
+        <p class="event-date">Jul 25 · 10 PM · Scotch Bonnet · VI</p>
 
         <p class="reco-line">
             If good music is enough reason to leave the house, this one's worth your weekend.
         </p>
         <p class="pregame-tease">
-            🚗 AfroCue Pre‑Game ride available — limited slots.
+            Pre-Game ride available · limited slots
         </p>
 
-        <button class="cta-btn" onclick="openModal()">SEND ME THE DETAILS</button>
+        <button class="cta-btn" onclick="openModal()">Send me the details</button>
 
         <section style="margin-top: 48px;">
             <h2 class="section-head">WHY THIS ONE?</h2>
@@ -480,22 +512,22 @@
                     <div class="reason-icon">🕒</div>
                     <div class="reason-content">
                         <h4>The Timing</h4>
-                        <p>July 25th — a comfortable weekend with room for good music.</p>
+                        <p>July 25th. Comfortable weekend with room for good music.</p>
                     </div>
                 </div>
                 <div class="reason-card">
                     <div class="reason-icon">⏳</div>
                     <div class="reason-content">
                         <h4>The Extended Sets</h4>
-                        <p>DJs get time to build a journey. Longer sets, fewer interruptions.</p>
+                        <p>Longer sets. Fewer resets. DJs get room to build.</p>
                     </div>
                 </div>
                 <div class="reason-card">
                     <div class="reason-icon">🎵</div>
                     <div class="reason-content">
                         <h4>The Music</h4>
-                        <p><strong>Afro House · Afro Tech · Amapiano · 3‑Step · Afrobeat</strong><br>
-                        A night that moves across different corners of African dance music.</p>
+                        <p><strong>Afro House · Afro Tech · Amapiano · 3-Step · Afrobeat.</strong><br>
+                        A night that moves across African dance music.</p>
                     </div>
                 </div>
                 <div class="reason-card">
@@ -505,11 +537,11 @@
                         <div class="lineup-grid">
                             <div class="artist-text-tile">
                                 <h5>TIM</h5>
-                                <p>Bringing energy early on.</p>
+                                <p>Opens</p>
                             </div>
                             <div class="artist-text-tile">
                                 <h5>HILLARY</h5>
-                                <p>Selections that set the tone.</p>
+                                <p>Sets the tone</p>
                             </div>
                             <div class="poster-card">
                                 <img src="/wyw/poster_demi.jpg" alt="Demi Andre" onerror="this.style.background='#333'; this.style.minHeight='140px'">
@@ -520,8 +552,8 @@
                                 <div class="poster-name">FINDING ALLI</div>
                             </div>
                             <div class="artist-text-tile">
-                                <h5>FLAVA.WAV B2B DTPB</h5>
-                                <p>A back‑to‑back session built for the floor.</p>
+                                <h5>FLAVA.WAV<br>B2B DTPB</h5>
+                                <p>Closes</p>
                             </div>
                         </div>
                     </div>
@@ -530,47 +562,45 @@
                     <div class="reason-icon">📍</div>
                     <div class="reason-content">
                         <h4>The Location</h4>
-                        <p><strong>Scotch Bonnet Restaurant</strong><br>
-                        1713 Chartered Bank Close, Victoria Island.<br>
-                        Well placed whether you're coming from the Island or the Mainland.</p>
+                        <p><strong>Scotch Bonnet Restaurant.</strong> 1713 Chartered Bank Close, VI. Reachable from Island or Mainland.</p>
                     </div>
                 </div>
                 <div class="reason-card">
                     <div class="reason-icon">🏠</div>
                     <div class="reason-content">
                         <h4>The Room</h4>
-                        <p>Two editions in, No Breaks is finding its people. This third one is a good time to see what the room is becoming.</p>
+                        <p>Two editions in. No Breaks is finding its people. Third one is a good time to see what the room is becoming.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="pregame-section">
-            <div class="pregame-eyebrow">AFROCUE PRE‑GAME</div>
+            <div class="pregame-eyebrow">AfroCue Pre-Game</div>
             <div class="pregame-title">Interested in Pregame by AfroCue?</div>
-            <p style="font-size:16px; font-weight:500; color:var(--white); margin-bottom: 8px;">The party starts at your door.</p>
-            <p style="font-size:14px; color:rgba(240,237,232,0.7); margin-bottom: 12px;">
-                A comfortable car picks you up with a small group, drinks for the ride, and drops you off at No Breaks.
+            <p style="font-size:15px; font-weight:500; color:var(--white); margin-bottom: 6px;">The party starts at your door.</p>
+            <p style="font-size:13px; color:rgba(240,237,232,0.65); margin-bottom: 12px; line-height:1.55;">
+                Car pulls up. Small group. Drinks in the ride. Drops you at the door.
             </p>
-            <img src="/wyw/pregame_ride.jpg" alt="AfroCue Pre‑Game ride" class="pregame-img" onerror="this.style.display='none'">
+            <img src="/wyw/pregame_ride.jpg" alt="AfroCue Pre-Game ride" class="pregame-img" onerror="this.style.display='none'">
             <div class="benefit-chips">
                 <span class="chip">Pickup from your area</span>
                 <span class="chip">2–3 other guests</span>
                 <span class="chip">Drinks in the car</span>
-                <span class="chip">Direct drop‑off</span>
+                <span class="chip">Direct drop-off</span>
             </div>
-            <p style="font-size:12px; color:rgba(240,237,232,0.5); margin-top: 12px;">
-                Limited slots. Only available to ticket holders – buy your tickets early to stand a higher chance.
+            <p style="font-size:11px; color:rgba(240,237,232,0.5); margin-top: 12px;">
+                Limited slots. Ticket holders only. Grab your ticket early for a better shot.
             </p>
-            <button class="cta-btn" style="margin-top:16px;" onclick="openModal()">I'M INTERESTED</button>
+            <button class="cta-btn" style="margin-top:16px;" onclick="openModal()">I'm interested</button>
         </section>
 
         <div style="margin:40px 0; text-align:center;">
-            <p style="font-size:15px; color:rgba(240,237,232,0.8);">Sounds like your kind of night?</p>
-            <p style="font-size:13px; color:rgba(240,237,232,0.5); margin-bottom: 16px;">
-                Leave your details and we'll send you everything you need. You can also throw your name in for the Pre‑Game ride.
+            <p style="font-size:15px; color:rgba(240,237,232,0.85); font-weight:500;">Sounds like your night?</p>
+            <p style="font-size:13px; color:rgba(240,237,232,0.5); margin-bottom: 18px; line-height:1.5;">
+                Leave your details. Everything you need lands in your inbox. Optionally: throw your name in for the Pre-Game ride.
             </p>
-            <button class="cta-btn" onclick="openModal()">SEND ME THE DETAILS</button>
+            <button class="cta-btn" onclick="openModal()">Send me the details</button>
         </div>
     </main>
 
@@ -579,15 +609,16 @@
         <div class="modal-card">
             <button class="modal-close" onclick="closeModal()">&times;</button>
             <div id="formContainer">
-                <h3 style="font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:22px;margin-bottom:20px;color:var(--white);">No Breaks – Info Request</h3>
-                <div class="form-field"><label>Name</label><input type="text" id="name" placeholder="Your first name is enough" required></div>
-                <div class="form-field"><label>Instagram Handle</label><input type="text" id="instagram" placeholder="@yourhandle"></div>
-                <div class="form-field"><label>Email address</label><input type="email" id="email" placeholder="you@email.com" required></div>
+                <p style="font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--yellow); margin-bottom:6px;">No Breaks · Info request</p>
+                <h3 style="font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:22px;margin-bottom:20px;color:var(--white);line-height:1.05;">Let's get you the details.</h3>
+                <div class="form-field"><label>Name</label><input type="text" id="name" placeholder="First name is enough" required></div>
+                <div class="form-field"><label>Instagram</label><input type="text" id="instagram" placeholder="@yourhandle"></div>
+                <div class="form-field"><label>Email</label><input type="email" id="email" placeholder="you@email.com" required></div>
 
                 <div class="toggle-row">
                     <div>
-                        <div class="toggle-label">Join the Pre‑Game ride?</div>
-                        <div class="toggle-desc">Limited slots – we'll let you know if you get one.</div>
+                        <div class="toggle-label">Join the Pre-Game ride?</div>
+                        <div class="toggle-desc">Limited slots. We confirm separately.</div>
                     </div>
                     <label class="toggle-switch glow" id="toggleWrapper">
                         <input type="checkbox" id="pregameToggle" onchange="handleToggle()">
@@ -596,19 +627,19 @@
                 </div>
 
                 <div id="areaField" class="hidden-area">
-                    <div class="form-field"><label>What area would you be coming from?</label><input type="text" id="pickupArea" placeholder="e.g. Yaba, Lekki, Ikeja"></div>
-                    <p style="font-size:11px; color:rgba(240,237,232,0.4); margin-bottom: 12px;">Pre‑Game covers the ride, not entry. You'll still need your own ticket.</p>
+                    <div class="form-field"><label>Pickup area</label><input type="text" id="pickupArea" placeholder="e.g. Yaba, Lekki, Ikeja"></div>
+                    <p style="font-size:11px; color:rgba(240,237,232,0.4); margin-bottom: 12px;">Pre-Game covers the ride. Ticket is separate.</p>
                 </div>
 
-                <button class="submit-btn" id="submitBtn" onclick="submitForm()">SEND ME THE DETAILS</button>
+                <button class="submit-btn" id="submitBtn" onclick="submitForm()">Send me the details</button>
             </div>
 
             <div id="confirmation" class="confirmation">
                 <div class="ty-title">You're in.</div>
-                <p style="font-size:14px; color:rgba(240,237,232,0.6); margin:12px 0;">We'll send the No Breaks details to your email.</p>
-                <p id="pregameConfirmMsg" style="font-size:13px; color:rgba(200,224,0,0.8);"></p>
+                <p style="font-size:14px; color:rgba(240,237,232,0.6); margin:12px 0;">Details will land in your inbox shortly.</p>
+                <p id="pregameConfirmMsg" style="font-size:13px; color:rgba(200,224,0,0.85);"></p>
                 <a href="https://selar.com/44787qy387?utm_source=afrocue&utm_medium=media&utm_content=wyw" target="_blank" rel="noopener noreferrer" class="buy-ticket-link">
-                    🎟️ Proceed to buy tickets
+                    Buy your ticket &rarr;
                 </a>
                 <br>
                 <button class="cta-btn" style="margin-top:20px;" onclick="closeModal()">Close</button>
@@ -643,11 +674,11 @@
 
             if (toggle.checked) {
                 areaField.classList.add('visible');
-                submitBtn.textContent = 'SEND DETAILS + ENTER PRE‑GAME';
+                submitBtn.textContent = 'Send details + Enter Pre-Game';
                 toggleWrapper.classList.remove('glow');
             } else {
                 areaField.classList.remove('visible');
-                submitBtn.textContent = 'SEND ME THE DETAILS';
+                submitBtn.textContent = 'Send me the details';
                 toggleWrapper.classList.add('glow');
                 document.getElementById('pickupArea').value = '';
             }
@@ -659,6 +690,7 @@
             const instagram = document.getElementById('instagram').value.trim();
             const pregame = document.getElementById('pregameToggle').checked;
             const pickupArea = pregame ? document.getElementById('pickupArea').value.trim() : '';
+            const btn = document.getElementById('submitBtn');
 
             if (!name || !email) { alert('Please fill in your name and email.'); return; }
             if (!email.includes('@')) { alert('Please enter a valid email address.'); return; }
@@ -671,21 +703,26 @@
                 pickup_area: pickupArea
             };
 
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({ event: 'afrocue_signup', ...payload });
 
             const endpoint = 'https://your-webhook-url.com/submit'; // ⬅️ Replace with your Apps Script URL
-            fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-                .catch(err => console.log('Submission error (expected if endpoint not set):', err));
-
-            document.getElementById('formContainer').style.display = 'none';
-            document.getElementById('confirmation').classList.add('active');
-            if (pregame) {
-                document.getElementById('pregameConfirmMsg').textContent =
-                    "We've also noted your interest in the AfroCue Pre‑Game ride. Slots are limited, so we'll let you know separately if you get one.";
-            } else {
-                document.getElementById('pregameConfirmMsg').textContent = '';
-            }
+            fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(payload) })
+                .catch(err => console.log('Submission error (expected if endpoint not set):', err))
+                .finally(() => {
+                    btn.disabled = false;
+                    document.getElementById('formContainer').style.display = 'none';
+                    document.getElementById('confirmation').classList.add('active');
+                    if (pregame) {
+                        document.getElementById('pregameConfirmMsg').textContent =
+                            "Pre-Game interest noted. Slots are limited. We'll confirm separately if you get one.";
+                    } else {
+                        document.getElementById('pregameConfirmMsg').textContent = '';
+                    }
+                });
         }
 
         document.getElementById('signupModal').addEventListener('click', function(e) {
