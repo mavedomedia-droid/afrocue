@@ -1150,7 +1150,7 @@
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({ event: 'afrocue_signup', ...payload });
 
-            const endpoint = 'https://script.google.com/macros/s/AKfycbzsrDissl9qWRCpcBVRS0in9YeYQVmSTqmPqu2_RTgdpLWcsK1yY5wPGRWYCZsx7oow/exec';
+            const endpoint = 'https://script.google.com/macros/s/AKfycbzJjUDu7WlCjbmerWs-G8az5AntLIlEDzwxX6y_K4DrDLt3sw_McpXSjJye0jc0VurX/exec';
             fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(payload) })
                 .catch(err => console.log('Submission error (expected if endpoint not set):', err))
                 .finally(() => {
