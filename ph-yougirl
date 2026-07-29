@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>YOU GIRL — PH · SOLOCELO | AfroCue</title>
+  <meta name="description" content="Listen to YOU GIRL by PH and SOLOCELO on Spotify. Curated by AfroCue." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="canonical" href="https://afrocue.xyz/track/you-girl" />
+  <meta property="og:type" content="music.song" />
+  <meta property="og:url" content="https://afrocue.xyz/track/you-girl" />
+  <meta property="og:title" content="YOU GIRL — PH · SOLOCELO | AfroCue" />
+  <meta property="og:description" content="Vocals that carry the whole room. Listen on Spotify." />
+  <meta property="og:image" content="https://afrocue.xyz/you_girl_cover.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="YOU GIRL — PH · SOLOCELO | AfroCue" />
+  <meta name="twitter:description" content="Vocals that carry the whole room. Listen on Spotify." />
+  <meta name="twitter:image" content="https://afrocue.xyz/you_girl_cover.jpg" />
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    @font-face {
+      font-family: 'Aesthet Nova';
+      src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');
+      font-weight: 900;
+    }
+    @font-face {
+      font-family: 'Aesthet Nova';
+      src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype');
+      font-weight: 500;
+    }
+    :root {
+      --black: #0a0a0a;
+      --dark: #121212;
+      --white: #ffffff;
+      --silver: #b3b3b3;
+      --yellow: #C8E000;
+      --spotify: #1DB954;
+      --spotify-hover: #1ed760;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Figtree', sans-serif;
+      min-height:100vh; min-height:100dvh;
+      display:flex; align-items:center; justify-content:center;
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+    .bg-texture {
+      position:fixed; inset:0; z-index:0;
+      background-image:url('texture.jpg');
+      background-size:cover; opacity:0.45; pointer-events:none;
+    }
+    .card {
+      position:relative; z-index:3;
+      background: rgba(20,20,20,0.85); backdrop-filter:blur(20px);
+      border:1px solid rgba(255,255,255,0.1); border-radius:24px;
+      padding:36px 32px; max-width:400px; width:90%;
+      display:flex; flex-direction:column; align-items:center;
+      box-shadow:0 30px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.05);
+      text-align:center;
+      transition: transform 0.2s;
+    }
+    .logo {
+      height:28px; width:auto; opacity:0.85; margin-bottom:24px;
+    }
+    .cover {
+      width:220px; height:220px; border-radius:8px;
+      object-fit:cover; display:block;
+      box-shadow:0 16px 40px rgba(0,0,0,0.6);
+      margin-bottom:20px;
+      transition: transform 0.3s ease, box-shadow 0.3s;
+    }
+    .cover:hover {
+      transform: scale(1.02);
+      box-shadow:0 24px 48px rgba(29,185,84,0.25);
+    }
+    .track-title {
+      font-size:28px; font-weight:800; letter-spacing:-0.02em;
+      margin-bottom:4px; line-height:1.1;
+    }
+    .track-artist {
+      font-size:16px; font-weight:500; color:var(--silver);
+      margin-bottom:20px;
+    }
+    /* Spotify‑style action icons row */
+    .action-row {
+      display:flex; align-items:center; justify-content:center;
+      gap:24px; margin-bottom:24px;
+    }
+    .action-icon {
+      background:none; border:none; color:var(--silver);
+      cursor:pointer; padding:4px;
+      transition: color 0.15s, transform 0.15s;
+    }
+    .action-icon:hover { color:var(--white); transform:scale(1.1); }
+    .action-icon:active { transform:scale(0.92); }
+    .action-icon svg { width:26px; height:26px; display:block; }
+    /* Green play button with pulse */
+    .spotify-btn {
+      display:inline-flex; align-items:center; gap:10px;
+      background:var(--spotify); color:var(--black);
+      padding:16px 36px; border-radius:999px;
+      font-size:16px; font-weight:700; letter-spacing:0.04em;
+      text-decoration:none;
+      transition:background 0.15s, transform 0.15s, box-shadow 0.15s;
+      box-shadow:0 8px 24px rgba(29,185,84,0.35);
+      position:relative;
+    }
+    .spotify-btn:hover { background:var(--spotify-hover); transform:translateY(-2px); box-shadow:0 12px 28px rgba(29,185,84,0.5); }
+    .spotify-btn:active { transform:scale(0.97); }
+    .spotify-btn svg { width:20px; height:20px; fill:currentColor; }
+    /* Subtle ring animation */
+    .spotify-btn::before {
+      content:''; position:absolute; inset:-6px;
+      border-radius:999px; border:2px solid var(--spotify);
+      opacity:0; animation: pulseRing 2.4s ease-out infinite;
+      pointer-events:none;
+    }
+    @keyframes pulseRing {
+      0% { opacity:0.4; transform:scale(0.95); }
+      50% { opacity:0; transform:scale(1.1); }
+      100% { opacity:0; transform:scale(1.1); }
+    }
+    .footer-line {
+      margin-top:28px; font-size:11px; color:var(--silver);
+      opacity:0.6; display:flex; align-items:center; gap:6px;
+    }
+    .footer-line::before, .footer-line::after {
+      content:''; flex:1; height:1px; background:rgba(255,255,255,0.1);
+    }
+    @media (max-width:420px) {
+      .card { padding:28px 20px; }
+      .cover { width:200px; height:200px; }
+      .track-title { font-size:24px; }
+      .action-row { gap:20px; }
+    }
+  </style>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <div class="bg-texture"></div>
+
+  <div class="card">
+    <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" class="logo" />
+
+    <img src="you_girl_cover.jpg" alt="YOU GIRL cover" class="cover"
+         onerror="this.style.background='#222'; this.style.minHeight='220px';" />
+
+    <h1 class="track-title">YOU GIRL</h1>
+    <p class="track-artist">PH & SOLOCELO</p>
+
+    <!-- Action icons row -->
+    <div class="action-row">
+      <button class="action-icon" onclick="openTrack('save')" aria-label="Save to Spotify">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.18L12 21z"/></svg>
+      </button>
+      <button class="action-icon" onclick="openTrack('download')" aria-label="Download">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8 12 12 16 16 12"/><line x1="12" y1="8" x2="12" y2="16"/></svg>
+      </button>
+      <button class="action-icon" onclick="shareTrack()" aria-label="Share">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      </button>
+    </div>
+
+    <!-- Main CTA -->
+    <a href="https://open.spotify.com/track/10lbjfwQSqkIPmaVzCatLO?si=08b2d641f2b74c1b"
+       target="_blank" rel="noopener noreferrer"
+       class="spotify-btn" id="spotifyLink">
+      <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.301.421-1.021.599-1.561.3z"/></svg>
+      Listen on Spotify
+    </a>
+
+    <div class="footer-line">Curated by AfroCue</div>
+  </div>
+
+  <script>
+    var SPOTIFY_TRACK_ID = '10lbjfwQSqkIPmaVzCatLO';
+    var SPOTIFY_TRACK_URL = 'https://open.spotify.com/track/' + SPOTIFY_TRACK_ID + '?si=08b2d641f2b74c1b';
+
+    function openTrack(source) {
+      // GTM custom event
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'track_spotify_click',
+        track_name: 'YOU GIRL',
+        track_id: SPOTIFY_TRACK_ID,
+        click_source: source || 'action_icon'
+      });
+      window.open(SPOTIFY_TRACK_URL, '_blank');
+    }
+
+    function shareTrack() {
+      // GTM event
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'track_share_click',
+        track_name: 'YOU GIRL',
+        track_id: SPOTIFY_TRACK_ID
+      });
+      if (navigator.share) {
+        navigator.share({
+          title: 'YOU GIRL - PH · SOLOCELO',
+          text: 'Listen to YOU GIRL on Spotify.',
+          url: SPOTIFY_TRACK_URL
+        }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(SPOTIFY_TRACK_URL);
+        alert('Spotify link copied!');
+      }
+    }
+
+    // Main button click also fires GTM event (additional to the href)
+    document.getElementById('spotifyLink').addEventListener('click', function(e) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'track_spotify_click',
+        track_name: 'YOU GIRL',
+        track_id: SPOTIFY_TRACK_ID,
+        click_source: 'main_button'
+      });
+    });
+  </script>
+</body>
+</html>
