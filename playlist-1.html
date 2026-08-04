@@ -32,11 +32,8 @@
 
   <style>
     /* ════════════════════════════════════════════════════════════
-       AfroCue × Spotify-style Playlist Landing
+       AfroCue × Spotify-style Playlist Landing — Naija Party Starters
        URL: afrocue.xyz/playlist-1
-       Mimics the Spotify mobile playlist screen.
-       Desktop: centered phone-frame card.
-       Mobile: full-bleed, near-native feel.
        ════════════════════════════════════════════════════════════ */
 
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
@@ -44,19 +41,16 @@
 
     :root {
       --black:    #0a0a0a;
-      --dark:     #121212;        /* Spotify's true bg */
+      --dark:     #121212;
       --dark2:    #1c1c1c;
       --mid:      #2e2e2e;
       --grey:     #555555;
-      --silver:   #b3b3b3;        /* Spotify secondary text */
+      --silver:   #b3b3b3;
       --off:      #d4d4d0;
       --white:    #ffffff;
-      --yellow:   #C8E000;        /* AfroCue accent */
-      --spotify:  #1DB954;        /* Spotify green */
+      --yellow:   #C8E000;
+      --spotify:  #1DB954;
       --spotify-hover: #1ed760;
-      /* Red drawn from the playlist artwork — used in the hero gradient */
-      --art-red:  #8b1a1a;
-      --art-red-deep: #4a0d0d;
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -73,9 +67,6 @@
     a { color: inherit; text-decoration: none; }
     button { font-family: inherit; cursor: pointer; }
 
-    /* ═══ PAGE LAYOUT ═══
-       Desktop: phone-shaped frame, centered on a dark stage.
-       Mobile: frame fills the viewport. */
     .stage {
       min-height: 100vh;
       min-height: 100dvh;
@@ -84,8 +75,8 @@
       justify-content: center;
       padding: 32px 24px;
       background:
-        radial-gradient(circle at 30% 20%, rgba(139,26,26,0.18) 0%, transparent 50%),
-        radial-gradient(circle at 70% 80%, rgba(200,224,0,0.04) 0%, transparent 50%),
+        radial-gradient(circle at 30% 20%, rgba(139,26,26,0.12) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(200,224,0,0.03) 0%, transparent 50%),
         var(--black);
     }
     .frame {
@@ -96,113 +87,200 @@
       overflow: hidden;
       box-shadow:
         0 0 0 1px rgba(255,255,255,0.04),
-        0 40px 100px rgba(0,0,0,0.6),
-        0 0 80px rgba(139,26,26,0.15);
+        0 40px 100px rgba(0,0,0,0.6);
       position: relative;
     }
 
-    /* ═══ FAKE STATUS BAR (desktop only — mobile has the real one) ═══ */
+    /* ═══ FAKE STATUS BAR ═══ */
     .status-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 14px 24px 8px;
-      background: linear-gradient(to bottom, var(--art-red) 0%, transparent 100%);
+      background: transparent;
       font-size: 15px;
       font-weight: 600;
       color: var(--white);
       letter-spacing: -0.01em;
-      position: relative;
-      z-index: 5;
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      z-index: 10;
     }
-    .status-bar-icons {
-      display: flex; align-items: center; gap: 6px;
-    }
-    .status-bar-icons svg { display: block; }
+    .status-bar-icons { display: flex; align-items: center; gap: 6px; }
 
-    /* ═══ TOP CHROME — back arrow, title (appears on scroll), more ═══ */
+    /* ═══ TOP CHROME ═══ */
     .top-chrome {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 6px 16px 12px;
-      background: linear-gradient(to bottom, rgba(139,26,26,0.6) 0%, transparent 100%);
-      position: relative;
-      z-index: 4;
+      background: transparent;
+      position: absolute;
+      top: 24px; left: 0; right: 0;
+      z-index: 10;
     }
     .chrome-btn {
       width: 36px; height: 36px;
       border-radius: 50%;
-      background: rgba(0,0,0,0.4);
+      background: rgba(0,0,0,0.5);
       border: none;
       color: var(--white);
       display: flex; align-items: center; justify-content: center;
       transition: background 0.15s;
     }
-    .chrome-btn:hover, .chrome-btn:active { background: rgba(0,0,0,0.7); }
+    .chrome-btn:hover, .chrome-btn:active { background: rgba(0,0,0,0.75); }
     .chrome-btn svg { width: 22px; height: 22px; }
 
-    /* ═══ HERO — artwork + meta ═══ */
-    .hero {
+    /* ════════════════════════════════════════════════════════════
+       NEW CINEMATIC HERO — horizontal layout, background image
+       ════════════════════════════════════════════════════════════ */
+    .hero-bg-wrapper {
       position: relative;
-      padding: 12px 24px 24px;
-      background: linear-gradient(to bottom,
-        var(--art-red) 0%,
-        rgba(74,13,13,0.85) 50%,
-        var(--dark) 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    /* Subtle noise / atmosphere over the hero */
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image:
-        radial-gradient(circle at 50% 0%, rgba(255,80,80,0.18) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .hero > * { position: relative; z-index: 1; }
-
-    .artwork {
-      width: 200px;
-      height: 200px;
-      border-radius: 6px;
+      width: 100%;
+      min-height: 28vh;
+      max-height: 35vh;
+      aspect-ratio: 16 / 4;
       overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 6px 16px rgba(0,0,0,0.5);
-      margin-bottom: 22px;
+      animation: heroZoomIn 1.2s ease-out both;
+    }
+    @keyframes heroZoomIn {
+      from { transform: scale(1.06); }
+      to   { transform: scale(1); }
+    }
+
+    /* The separate background image — change via JS variable */
+    .hero-bg-image {
+      position: absolute;
+      inset: 0;
+      background-image: var(--hero-bg-url, url('hero_bg_default.jpg'));
+      background-size: cover;
+      background-position: center;
+      transition: background-image 0.6s ease;
+      z-index: 0;
+    }
+
+    /* Dark overlay for text readability */
+    .hero-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.1) 0%,
+        rgba(0,0,0,0.35) 40%,
+        rgba(0,0,0,0.7) 100%
+      );
+      z-index: 1;
+    }
+
+    /* Soft vignette */
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      box-shadow: inset 0 0 80px 30px rgba(0,0,0,0.5);
+    }
+
+    /* Content row: cover + text */
+    .hero-content-row {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* Playlist cover — bottom-left */
+    .hero-cover {
+      width: 100px;
+      height: 100px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.65), 0 2px 8px rgba(0,0,0,0.4);
+      flex-shrink: 0;
       background: var(--dark2);
     }
-    .artwork img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
-    .playlist-title {
+    /* Text block beside cover */
+    .hero-text-block {
+      flex: 1;
+      min-width: 0;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 3px;
+      /* Subtle blur backdrop for readability */
+      background: rgba(0,0,0,0.25);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin-left: -4px;
+    }
+
+    .hero-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--spotify);
+      margin-bottom: 2px;
+      display: block;
+    }
+
+    .hero-title {
       font-family: 'Figtree', sans-serif;
-      font-size: 28px;
+      font-size: clamp(18px, 4.5vw, 22px);
       font-weight: 800;
       letter-spacing: -0.02em;
-      line-height: 1.1;
-      margin-bottom: 8px;
+      line-height: 1.08;
       color: var(--white);
-    }
-    .playlist-subtitle {
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--silver);
-      line-height: 1.4;
-      margin-bottom: 16px;
-      max-width: 300px;
+      margin-bottom: 1px;
     }
 
-    /* Creator row — AfroCue logo dot + name */
-    .creator-row {
+    .hero-subtitle {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--silver);
+      line-height: 1.35;
+      margin-bottom: 0;
+      max-width: 220px;
+    }
+
+    .hero-description {
+      font-size: 11px;
+      font-weight: 300;
+      color: rgba(240,237,232,0.55);
+      line-height: 1.35;
+      max-width: 240px;
+      display: none; /* hidden on smallest screens, visible when space allows */
+    }
+
+    /* Creator + meta inline below text */
+    .hero-meta-row {
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 14px;
+      flex-wrap: wrap;
+      margin-top: 4px;
     }
-    .creator-logo {
-      width: 24px; height: 24px;
+    .hero-creator {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-creator-logo {
+      width: 20px; height: 20px;
       border-radius: 4px;
       background: var(--black);
       display: flex; align-items: center; justify-content: center;
@@ -210,43 +288,42 @@
       flex-shrink: 0;
       border: 1px solid rgba(255,255,255,0.08);
     }
-    .creator-logo img { width: 100%; height: 100%; object-fit: cover; }
-    /* Logo fallback — AfroCue barcode-style mark */
-    .creator-logo-fallback {
+    .hero-creator-logo img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-creator-logo-fallback {
       width: 100%; height: 100%;
       background: var(--black);
       display: flex; align-items: center; justify-content: center;
       font-family: 'Aesthet Nova', sans-serif;
       font-weight: 900;
-      font-size: 8px;
+      font-size: 7px;
       color: var(--yellow);
       letter-spacing: -0.05em;
     }
-    .creator-name {
-      font-size: 14px;
+    .hero-creator-name {
+      font-size: 12px;
       font-weight: 700;
       color: var(--white);
       letter-spacing: -0.01em;
     }
-
-    .meta-line {
-      font-size: 13px;
-      color: var(--silver);
-      margin-bottom: 18px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+    .hero-meta-dot {
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: var(--silver);
+      flex-shrink: 0;
     }
-    .meta-line svg { opacity: 0.7; }
-    .meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--silver); }
+    .hero-meta-text {
+      font-size: 11px;
+      color: var(--silver);
+    }
 
-    /* ═══ ACTION ROW — Spotify-style icons + big play ═══ */
+    /* ═══ ACTION ROW — unchanged ═══ */
     .action-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      padding: 4px 4px 8px;
+      padding: 14px 16px 10px;
+      background: var(--dark);
     }
     .action-icons {
       display: flex;
@@ -265,7 +342,6 @@
     .action-icon svg { display: block; width: 24px; height: 24px; }
     .action-icon.saved { color: var(--spotify); }
 
-    /* The big green play button — this is the actual CTA */
     .play-btn {
       width: 56px; height: 56px;
       border-radius: 50%;
@@ -281,7 +357,6 @@
     .play-btn:hover { background: var(--spotify-hover); transform: scale(1.05); }
     .play-btn:active { transform: scale(0.96); }
     .play-btn svg { width: 26px; height: 26px; }
-    /* Pulse ring drawing attention to the CTA */
     .play-btn::before {
       content: '';
       position: absolute; inset: -6px;
@@ -296,24 +371,23 @@
       100% { opacity: 0; transform: scale(1.25); }
     }
 
-    /* ═══ CTA FRAMING TEXT — sits just below action row ═══
-       Subtle. Tells the user what tapping play does without breaking the illusion. */
     .cta-hint {
       width: 100%;
       text-align: center;
       font-size: 11px;
       color: var(--silver);
-      margin: 14px 0 4px;
+      padding: 0 16px 6px;
       letter-spacing: 0.02em;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
       opacity: 0.7;
+      background: var(--dark);
     }
     .cta-hint svg { width: 12px; height: 12px; flex-shrink: 0; }
 
-    /* ═══ TRACKLIST ═══ */
+    /* ═══ TRACKLIST — unchanged ═══ */
     .tracklist {
       background: var(--dark);
       padding: 8px 0 20px;
@@ -344,7 +418,6 @@
       padding: 2px;
       line-height: 1.05;
     }
-    /* Each track art is a generated colored block with the title initial — feels like real album art */
     .track-art.a1 { background: linear-gradient(135deg, #1a1a1a 0%, #000 100%); color: #fff; }
     .track-art.a2 { background: linear-gradient(135deg, #f5b800 0%, #b87800 100%); color: #2a1d00; }
     .track-art.a3 { background: linear-gradient(135deg, #4a4a4a 0%, #1a1a1a 100%); color: #ddd; }
@@ -397,8 +470,7 @@
     }
     .track-more svg { width: 18px; height: 18px; display: block; }
 
-    /* ═══ BOTTOM CTA — appears below the tracklist ═══
-       Adds a second clear path to Spotify without breaking the visual illusion. */
+    /* ═══ BOTTOM CTA — unchanged ═══ */
     .bottom-cta {
       padding: 16px 20px 28px;
       background: var(--dark);
@@ -430,17 +502,14 @@
     .spotify-btn:active { transform: scale(0.97); }
     .spotify-btn svg { width: 18px; height: 18px; }
 
-    /* Tiny AfroCue brand footer — subtle attribution */
+    /* ═══ BRAND FOOTER — unchanged ═══ */
     .brand-footer {
       padding: 14px 20px 22px;
       text-align: center;
       background: var(--dark);
       border-top: 1px solid rgba(255,255,255,0.03);
     }
-    .brand-footer-logo {
-      display: inline-block;
-      margin-bottom: 8px;
-    }
+    .brand-footer-logo { display: inline-block; margin-bottom: 8px; }
     .brand-footer-logo img {
       height: 28px;
       width: auto;
@@ -457,7 +526,7 @@
     .brand-footer-text a { color: var(--silver); }
     .brand-footer-text a:hover { color: var(--white); }
 
-    /* ═══ MOBILE — full-bleed, no frame ═══ */
+    /* ═══ MOBILE ═══ */
     @media (max-width: 500px) {
       .stage {
         padding: 0;
@@ -471,29 +540,52 @@
         min-height: 100vh;
         min-height: 100dvh;
       }
-      .status-bar {
-        /* On mobile the real status bar covers it — hide ours to avoid double bar */
-        display: none;
-      }
+      .status-bar { display: none; }
       .top-chrome {
         padding-top: max(16px, env(safe-area-inset-top));
+        top: 0;
       }
-      .artwork {
-        width: 240px;
-        height: 240px;
+      .hero-bg-wrapper {
+        min-height: 30vh;
+        max-height: 34vh;
+        aspect-ratio: auto;
       }
-      .playlist-title {
-        font-size: 26px;
+      .hero-cover {
+        width: 90px;
+        height: 90px;
+      }
+      .hero-text-block {
+        padding: 8px 12px;
+        gap: 2px;
+      }
+      .hero-title {
+        font-size: 18px;
+      }
+      .hero-subtitle {
+        font-size: 11px;
+      }
+      .hero-description {
+        display: block;
+        font-size: 10px;
+        max-width: 200px;
+      }
+      .hero-meta-text {
+        font-size: 10px;
+      }
+      .hero-creator-name {
+        font-size: 11px;
       }
       .brand-footer {
         padding-bottom: max(24px, env(safe-area-inset-bottom));
       }
     }
 
-    /* Even smaller phones */
     @media (max-width: 360px) {
-      .artwork { width: 200px; height: 200px; }
-      .playlist-title { font-size: 24px; }
+      .hero-cover { width: 80px; height: 80px; }
+      .hero-title { font-size: 16px; }
+      .hero-subtitle { font-size: 10px; }
+      .hero-description { display: none; }
+      .hero-text-block { padding: 6px 10px; }
       .action-icons { gap: 14px; }
       .play-btn { width: 50px; height: 50px; }
     }
@@ -506,93 +598,96 @@
 <div class="stage">
   <div class="frame">
 
-    <!-- FAKE STATUS BAR (hidden on real mobile) -->
-    <div class="status-bar">
-      <span>9:41</span>
-      <div class="status-bar-icons">
-        <!-- signal -->
-        <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0"  y="7"  width="3" height="4" rx="0.5"/><rect x="4.5" y="5"  width="3" height="6" rx="0.5"/><rect x="9"  y="3"  width="3" height="8" rx="0.5"/><rect x="13.5" y="0" width="3" height="11" rx="0.5"/></svg>
-        <!-- wifi -->
-        <svg width="15" height="11" viewBox="0 0 15 11" fill="currentColor"><path d="M7.5 0C4.7 0 2.1 1 .1 2.7L7.5 11l7.4-8.3C12.9 1 10.3 0 7.5 0z"/></svg>
-        <!-- battery -->
-        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2.5" stroke="currentColor" stroke-opacity="0.5"/><rect x="2" y="2" width="18" height="8" rx="1" fill="currentColor"/><rect x="22.5" y="4" width="1.5" height="4" rx="0.5" fill="currentColor" fill-opacity="0.5"/></svg>
-      </div>
-    </div>
+    <!-- ═══════════════ NEW CINEMATIC HERO ═══════════════ -->
+    <div class="hero-bg-wrapper">
+      <!-- Background image (separate from cover, change via --hero-bg-url) -->
+      <div class="hero-bg-image" id="heroBgImage"></div>
+      <!-- Dark overlay -->
+      <div class="hero-bg-overlay"></div>
+      <!-- Vignette -->
+      <div class="hero-vignette"></div>
 
-    <!-- TOP CHROME — back / more -->
-    <div class="top-chrome">
-      <button class="chrome-btn" onclick="window.history.length > 1 ? window.history.back() : window.location.href='index.html'" aria-label="Back">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
-      <button class="chrome-btn" onclick="openOnSpotify('top_more')" aria-label="More">
-        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
-      </button>
-    </div>
-
-    <!-- HERO — artwork + meta -->
-    <div class="hero">
-      <div class="artwork">
-        <img src="playlist_naija_party_starters.jpg" alt="Naija Party Starters playlist cover"
-             onerror="this.style.display='none'"/>
-      </div>
-
-      <h1 class="playlist-title">Naija Party Starters</h1>
-      <p class="playlist-subtitle">Music that moves Nigerian dance floors</p>
-
-      <!-- Creator: AfroCue with logo -->
-      <a href="index.html" class="creator-row">
-        <div class="creator-logo">
-          <img src="logo_afrocue.png" alt="AfroCue"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
-          <div class="creator-logo-fallback" style="display:none;">AC</div>
-        </div>
-        <span class="creator-name">AfroCue</span>
-      </a>
-
-      <!-- Save count + duration -->
-      <div class="meta-line">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
-        <span><span id="saveCount">2,847</span> saves</span>
-        <span class="meta-dot"></span>
-        <span>2h 57m</span>
-      </div>
-
-      <!-- ACTION ROW: save, download, share, shuffle  →  big PLAY -->
-      <div class="action-row">
-        <div class="action-icons">
-          <!-- Save / heart (toggleable, but the real click handler routes to Spotify) -->
-          <button class="action-icon" id="saveBtn" onclick="toggleSave()" aria-label="Save">
-            <svg id="saveIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4a5 5 0 0 0-4 2 5 5 0 0 0-9 3c0 5 5 8 9 12 4-4 9-7 9-12a5 5 0 0 0-5-5z"/></svg>
-          </button>
-          <!-- Download -->
-          <button class="action-icon" onclick="openOnSpotify('download_icon')" aria-label="Download">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8 12 12 16 16 12"/><line x1="12" y1="8" x2="12" y2="16"/></svg>
-          </button>
-          <!-- Share -->
-          <button class="action-icon" onclick="sharePlaylist()" aria-label="Share">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-          </button>
-        </div>
-
-        <!-- Shuffle + Play together (Spotify pattern) -->
-        <div class="action-icons">
-          <button class="action-icon" onclick="openOnSpotify('shuffle')" aria-label="Shuffle">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
-          </button>
-          <button class="play-btn" onclick="openOnSpotify('play_button')" aria-label="Play playlist on Spotify">
-            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
-          </button>
+      <!-- Status bar overlayed -->
+      <div class="status-bar">
+        <span>9:41</span>
+        <div class="status-bar-icons">
+          <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="0.5"/><rect x="4.5" y="5" width="3" height="6" rx="0.5"/><rect x="9" y="3" width="3" height="8" rx="0.5"/><rect x="13.5" y="0" width="3" height="11" rx="0.5"/></svg>
+          <svg width="15" height="11" viewBox="0 0 15 11" fill="currentColor"><path d="M7.5 0C4.7 0 2.1 1 .1 2.7L7.5 11l7.4-8.3C12.9 1 10.3 0 7.5 0z"/></svg>
+          <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2.5" stroke="currentColor" stroke-opacity="0.5"/><rect x="2" y="2" width="18" height="8" rx="1" fill="currentColor"/><rect x="22.5" y="4" width="1.5" height="4" rx="0.5" fill="currentColor" fill-opacity="0.5"/></svg>
         </div>
       </div>
 
-      <!-- Hint -->
-      <div class="cta-hint">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.301.421-1.021.599-1.561.3z"/></svg>
-        Tap play to open in Spotify
+      <!-- Top chrome overlayed -->
+      <div class="top-chrome">
+        <button class="chrome-btn" onclick="window.history.length > 1 ? window.history.back() : window.location.href='index.html'" aria-label="Back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="chrome-btn" onclick="openOnSpotify('top_more')" aria-label="More">
+          <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+        </button>
+      </div>
+
+      <!-- Content row: cover + text -->
+      <div class="hero-content-row">
+        <!-- Playlist cover (existing, repositioned) -->
+        <div class="hero-cover">
+          <img src="playlist_naija_party_starters.jpg" alt="Naija Party Starters playlist cover"
+               onerror="this.style.display='none'"/>
+        </div>
+
+        <!-- Text block -->
+        <div class="hero-text-block">
+          <span class="hero-label">Playlist</span>
+          <h1 class="hero-title">Naija Party Starters</h1>
+          <p class="hero-subtitle">Music that moves Nigerian dance floors</p>
+          <p class="hero-description">Songs from Nigerian dance floors. Tracks by Nigerian DJs. Music partygoers love.</p>
+          <div class="hero-meta-row">
+            <div class="hero-creator">
+              <div class="hero-creator-logo">
+                <img src="logo_afrocue.png" alt="AfroCue"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+                <div class="hero-creator-logo-fallback" style="display:none;">AC</div>
+              </div>
+              <span class="hero-creator-name">AfroCue</span>
+            </div>
+            <span class="hero-meta-dot"></span>
+            <span class="hero-meta-text">2,847 saves</span>
+            <span class="hero-meta-dot"></span>
+            <span class="hero-meta-text">2h 57m</span>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- TRACKLIST -->
+    <!-- ═══════════════ ACTION ROW — unchanged ═══════════════ -->
+    <div class="action-row">
+      <div class="action-icons">
+        <button class="action-icon" id="saveBtn" onclick="toggleSave()" aria-label="Save">
+          <svg id="saveIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4a5 5 0 0 0-4 2 5 5 0 0 0-9 3c0 5 5 8 9 12 4-4 9-7 9-12a5 5 0 0 0-5-5z"/></svg>
+        </button>
+        <button class="action-icon" onclick="openOnSpotify('download_icon')" aria-label="Download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8 12 12 16 16 12"/><line x1="12" y1="8" x2="12" y2="16"/></svg>
+        </button>
+        <button class="action-icon" onclick="sharePlaylist()" aria-label="Share">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </button>
+      </div>
+      <div class="action-icons">
+        <button class="action-icon" onclick="openOnSpotify('shuffle')" aria-label="Shuffle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+        </button>
+        <button class="play-btn" onclick="openOnSpotify('play_button')" aria-label="Play playlist on Spotify">
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="cta-hint">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.301.421-1.021.599-1.561.3z"/></svg>
+      Tap play to open in Spotify
+    </div>
+
+    <!-- ═══════════════ TRACKLIST — unchanged ═══════════════ -->
     <div class="tracklist">
       <div class="track" onclick="openOnSpotify('track_1')">
         <div class="track-art a1">AWOAMENAKASO</div>
@@ -705,7 +800,7 @@
       </div>
     </div>
 
-    <!-- BOTTOM CTA -->
+    <!-- ═══════════════ BOTTOM CTA — unchanged ═══════════════ -->
     <div class="bottom-cta">
       <p class="bottom-cta-text">
         Listen to the full playlist on <strong>Spotify</strong>.<br>
@@ -717,7 +812,7 @@
       </button>
     </div>
 
-    <!-- BRAND FOOTER -->
+    <!-- ═══════════════ BRAND FOOTER — unchanged ═══════════════ -->
     <div class="brand-footer">
       <a href="index.html" class="brand-footer-logo">
         <img src="logo_afrocue.png" alt="AfroCue"
@@ -733,27 +828,24 @@
 
 <script>
   /* ════════════════════════════════════════════════════════════
-     SPOTIFY DEEP LINK — replace SPOTIFY_PLAYLIST_ID with the
-     actual playlist ID from your Spotify URL.
-     A Spotify playlist URL looks like:
-        https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M
-     The bit after /playlist/ is the ID.
+     CONFIGURATION — change these variables per playlist
      ════════════════════════════════════════════════════════════ */
   var SPOTIFY_PLAYLIST_ID = '7Ehj5mLXwdW4Eu56rTwU4b';
-  var SPOTIFY_APP_URI = 'spotify:playlist:' + SPOTIFY_PLAYLIST_ID;
-  /* Full share URL with si/pi params preserved — Spotify uses these for attribution tracking */
   var SPOTIFY_WEB_URL = 'https://open.spotify.com/playlist/' + SPOTIFY_PLAYLIST_ID + '?si=71DGmtlqR-ee6B00xNQkXA&pi=_Y3XbUIcRUO7j';
 
-  /* Open Spotify. On mobile, open.spotify.com is a universal link — iOS/Android
-     route it to the Spotify app if installed, browser if not.
-     Optional `source` param identifies which UI element was clicked, useful
-     for breaking down CTR in GA4/Meta. */
+  /* ─── DYNAMIC HERO BACKGROUND ───
+     Change this URL to swap the hero image.
+     Use a high‑quality Nigerian nightlife photo:
+     crowded dance floor, Lagos rave, DJ, disco lights, etc.
+     Leave empty or point to a placeholder until you're ready. */
+  var HERO_BACKGROUND_IMAGE = 'hero_bg_default.jpg';
+  // Apply to the CSS variable so it can be changed dynamically
+  document.getElementById('heroBgImage').style.setProperty('--hero-bg-url', 'url(' + HERO_BACKGROUND_IMAGE + ')');
+  // Also set directly as fallback
+  document.getElementById('heroBgImage').style.backgroundImage = 'url(' + HERO_BACKGROUND_IMAGE + ')';
+
+  /* ─── Spotify deep link ─── */
   function openOnSpotify(source) {
-    /* ════════════════════════════════════════════════════════════
-       GTM TRIGGER — event name: playlist_spotify_click
-       Set up a Custom Event trigger in GTM matching this name to
-       fire Meta Pixel / GA4 / any conversion tag for ad attribution.
-       ════════════════════════════════════════════════════════════ */
     try {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
@@ -763,18 +855,17 @@
         click_source: source || 'unknown',
         destination_url: SPOTIFY_WEB_URL
       });
-    } catch (err) { /* swallow — never block the redirect on tracking */ }
+    } catch (err) {}
 
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) {
-      /* Same tab on mobile so app deep-link takes over cleanly */
       window.location.href = SPOTIFY_WEB_URL;
     } else {
       window.open(SPOTIFY_WEB_URL, '_blank', 'noopener');
     }
   }
 
-  /* ─── Toggle "save" heart — purely visual, then routes to Spotify ─── */
+  /* ─── Toggle save heart ─── */
   var saved = false;
   function toggleSave() {
     saved = !saved;
@@ -783,7 +874,6 @@
     if (saved) {
       btn.classList.add('saved');
       icon.innerHTML = '<path d="M12 21l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.18L12 21z" fill="currentColor" stroke="none"/>';
-      /* After a tiny visual confirmation, route to Spotify so they can really save it */
       setTimeout(function() { openOnSpotify('save_heart'); }, 500);
     } else {
       btn.classList.remove('saved');
@@ -791,8 +881,7 @@
     }
   }
 
-  /* ─── Native share if available, else copy link ───
-     Separate GTM event — share is a different conversion intent than play. */
+  /* ─── Native share ─── */
   function sharePlaylist() {
     try {
       window.dataLayer = window.dataLayer || [];
@@ -809,7 +898,6 @@
         url: SPOTIFY_WEB_URL
       }).catch(function(){});
     } else {
-      /* Copy fallback */
       var tmp = document.createElement('input');
       tmp.value = SPOTIFY_WEB_URL;
       document.body.appendChild(tmp);
