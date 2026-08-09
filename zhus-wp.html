@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Zhus JDO — Wahala Pikin</title>
+    <meta name="description" content="Wahala Pikin, the new album from Zhus JDO. Stream on Spotify or Apple Music.">
+    <meta name="theme-color" content="#0a0708">
+    <link rel="canonical" href="https://afrocue.xyz/wahala-pikin">
+
+    <meta property="og:title" content="Zhus JDO — Wahala Pikin">
+    <meta property="og:description" content="The new album. Out now. Watch the teaser, then stream.">
+    <meta property="og:image" content="https://afrocue.xyz/wahala-pikin/zhus_art.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    <meta property="og:url" content="https://afrocue.xyz/wahala-pikin">
+    <meta property="og:type" content="music.album">
+    <meta property="og:site_name" content="AfroCue">
+    <meta property="og:video" content="https://afrocue.xyz/wahala-pikin/zhus-wahala-teaser.mp4">
+    <meta property="og:video:type" content="video/mp4">
+    <meta property="og:video:width" content="1280">
+    <meta property="og:video:height" content="720">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Zhus JDO — Wahala Pikin">
+    <meta name="twitter:description" content="The new album. Out now. Watch the teaser, then stream.">
+    <meta name="twitter:image" content="https://afrocue.xyz/wahala-pikin/zhus_art.jpg">
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WB5HQGFV');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0708;
+            --surface: #141010;
+            --surface-elevated: #1b1515;
+            --surface-hover: #221919;
+            --accent: #d81f2a;
+            --accent-bright: #f0323d;
+            --accent-deep: #a01018;
+            --accent-glow: rgba(216, 31, 42, 0.28);
+            --accent-glow-strong: rgba(216, 31, 42, 0.55);
+            --silver: #e6e6ea;
+            --text: #ece8e8;
+            --text-bright: #fbf8f8;
+            --text-secondary: #9c9494;
+            --text-tertiary: #6a6060;
+            --text-muted: #443c3c;
+            --border: #241a1a;
+            --border-light: #382828;
+            --border-active: #d81f2a;
+            --spotify-green: #1DB954;
+            --radius: 12px;
+            --radius-lg: 18px;
+            --radius-full: 9999px;
+            --clip-angular: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+            --shadow-artwork: 0 18px 48px rgba(0, 0, 0, 0.8), 0 5px 20px rgba(216, 31, 42, 0.1);
+            --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-display: 'Oswald', 'Arial Narrow', sans-serif;
+            --font-body: 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            background: var(--bg);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.4;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+            background-image:
+                radial-gradient(ellipse at 50% 2%, rgba(216, 31, 42, 0.1) 0%, transparent 48%),
+                radial-gradient(ellipse at 50% 26%, rgba(120, 14, 20, 0.05) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+            background-size: 180px 180px;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: -20%;
+            left: -10%;
+            width: 60%;
+            height: 140%;
+            pointer-events: none;
+            z-index: 0;
+            background: linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.03) 45%, rgba(255,255,255,0.05) 50%, transparent 60%);
+            transform: rotate(4deg);
+        }
+
+        .page {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 560px;
+            padding: 12px 16px 36px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        /* ─── VIDEO HERO ─── */
+        .video-hero {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-artwork);
+            margin-bottom: 16px;
+            background: #000;
+            animation: heroFadeIn 0.7s ease-out both;
+        }
+
+        @keyframes heroFadeIn {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .video-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .video-hero-glow {
+            position: absolute;
+            inset: -20px;
+            background: var(--accent-glow);
+            filter: blur(48px);
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+            animation: glowPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.22; }
+            50% { opacity: 0.42; }
+        }
+
+        .hero-poster {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .hero-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        .hero-video.ready { opacity: 1; }
+
+        .hero-texture {
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            background-image: url('texture.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+        }
+
+        .hero-scrim {
+            position: absolute;
+            inset: 0;
+            z-index: 4;
+            background: linear-gradient(to bottom, transparent 55%, rgba(10,7,8,0.5) 100%);
+            pointer-events: none;
+        }
+
+        /* ─── TAG & YOUTUBE BUTTON ─── */
+        .hero-live {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            z-index: 6;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 10px;
+            border-radius: var(--radius-full);
+            background: rgba(10, 7, 8, 0.65);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            font-size: 0.56rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--text-bright);
+            white-space: nowrap;
+        }
+        .hero-live .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-bright);
+            box-shadow: 0 0 8px var(--accent-bright);
+            animation: livePulse 1.6s ease-in-out infinite;
+        }
+        @keyframes livePulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.7); }
+        }
+
+        .yt-btn {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            z-index: 6;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 10px;
+            border-radius: var(--radius-full);
+            background: rgba(10, 7, 8, 0.65);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.15);
+            font-size: 0.56rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-bright);
+            text-decoration: none;
+            transition: background 0.2s, border-color 0.2s;
+            animation: ytPulse 2.4s ease-in-out infinite;
+        }
+        .yt-btn:hover {
+            background: rgba(216,31,42,0.75);
+            border-color: var(--accent-bright);
+        }
+        .yt-btn svg { width: 13px; height: 13px; fill: currentColor; }
+        @keyframes ytPulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        /* ─── FLOATING AUDIO PROMPT (initial, then shrinks) ─── */
+        .audio-prompt {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform: translate(-50%, 50%);
+            z-index: 7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            pointer-events: auto;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .audio-prompt.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, 50%) scale(0.8);
+        }
+        .audio-prompt-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.6);
+            background: rgba(216,31,42,0.85);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 24px var(--accent-glow-strong);
+            animation: audioPromptPulse 2s ease-in-out infinite;
+            transition: background 0.2s;
+        }
+        .audio-prompt-btn:hover { background: var(--accent-bright); }
+        .audio-prompt-btn svg { width: 26px; height: 26px; fill: currentColor; }
+        @keyframes audioPromptPulse {
+            0%, 100% { box-shadow: 0 0 12px var(--accent-glow); }
+            50% { box-shadow: 0 0 32px var(--accent-glow-strong); }
+        }
+        .audio-prompt-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-bright);
+            background: rgba(0,0,0,0.5);
+            padding: 4px 12px;
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Corner mute toggle (after audio activated) */
+        .hero-mute {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            z-index: 6;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            background: rgba(10, 7, 8, 0.65);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: var(--text-bright);
+            transition: background 0.2s, transform 0.2s;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .hero-mute.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .hero-mute:hover { background: rgba(216,31,42,0.75); }
+        .hero-mute:active { transform: scale(0.92); }
+        .hero-mute .icon-unmuted { display: none; }
+        .hero-mute.unmuted .icon-muted { display: none; }
+        .hero-mute.unmuted .icon-unmuted { display: block; }
+
+        /* ─── ARTWORK + TEXT ROW ─── */
+        .release-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+            animation: fadeUp 0.6s 0.2s ease-out both;
+            margin-bottom: 18px;
+        }
+
+        .artwork-block {
+            position: relative;
+            flex-shrink: 0;
+            width: 48%;
+            max-width: 220px;
+            aspect-ratio: 1 / 1;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-artwork);
+        }
+        .artwork-block::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            pointer-events: none;
+            z-index: 3;
+        }
+        .artwork-img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+        }
+        .artwork-texture {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background-image: url('texture.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.12;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+        }
+        .sparkle {
+            position: absolute;
+            z-index: 4;
+            pointer-events: none;
+            color: var(--silver);
+            opacity: 0;
+            animation: twinkle 3.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 4px rgba(255,255,255,0.8));
+        }
+        .sparkle.s1 { top: 30%; left: 30%; font-size: 12px; animation-delay: 0.3s; }
+        .sparkle.s2 { top: 44%; left: 64%; font-size: 15px; animation-delay: 1.4s; }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.6) rotate(0deg); }
+            50% { opacity: 0.9; transform: scale(1) rotate(45deg); }
+        }
+
+        .text-block {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            min-width: 0;
+            flex: 1;
+        }
+        .out-now-badge {
+            font-weight: 700;
+            font-size: 0.68rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+        .artist-name {
+            font-weight: 500;
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        .title-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .release-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 2.8rem;
+            letter-spacing: 0.01em;
+            line-height: 0.9;
+            text-transform: uppercase;
+            color: var(--accent);
+            text-shadow: 0 2px 24px rgba(216, 31, 42, 0.3);
+            font-style: italic;
+        }
+        .album-badge {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            background: rgba(216,31,42,0.12);
+            padding: 3px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        /* Audio wave indicator beside title (visible when audio is playing) */
+        .audio-wave {
+            display: none;
+            align-items: flex-end;
+            gap: 2px;
+            height: 20px;
+            margin-left: 6px;
+        }
+        .audio-wave.active { display: flex; }
+        .wave-bar {
+            width: 3px;
+            background: var(--accent-bright);
+            border-radius: 1px;
+            animation: wave 0.9s ease-in-out infinite;
+        }
+        .wave-bar:nth-child(1) { height: 8px; animation-delay: 0s; }
+        .wave-bar:nth-child(2) { height: 16px; animation-delay: 0.15s; }
+        .wave-bar:nth-child(3) { height: 6px; animation-delay: 0.3s; }
+        .wave-bar:nth-child(4) { height: 13px; animation-delay: 0.45s; }
+        @keyframes wave {
+            0%, 100% { transform: scaleY(0.5); }
+            50% { transform: scaleY(1); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .divider {
+            width: 40px;
+            height: 1px;
+            background: var(--border-light);
+            margin: 0 auto 20px;
+            animation: fadeUp 0.6s 0.4s ease-out both;
+            position: relative;
+        }
+        .divider::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            width: 5px;
+            height: 5px;
+            background: var(--accent);
+            opacity: 0.7;
+        }
+
+        /* ─── STREAMING ─── */
+        .streaming-section {
+            width: 100%;
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            animation: fadeUp 0.6s 0.5s ease-out both;
+        }
+        .spotify-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px 24px;
+            clip-path: var(--clip-angular);
+            background: var(--spotify-green);
+            color: #000;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.03em;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.2s;
+            box-shadow: 0 4px 20px rgba(29, 185, 84, 0.3);
+        }
+        .spotify-btn:hover {
+            background: #1ed760;
+            box-shadow: 0 6px 26px rgba(29, 185, 84, 0.5);
+            transform: translateY(-1px);
+        }
+        .spotify-btn:active { transform: scale(0.98); }
+        .apple-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 13px 18px;
+            clip-path: var(--clip-angular);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.82rem;
+            letter-spacing: 0.03em;
+            text-decoration: none;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+        }
+        .apple-btn:hover {
+            background: var(--surface-hover);
+            border-color: var(--border-light);
+            transform: translateY(-1px);
+        }
+        .apple-btn:active { transform: scale(0.98); }
+        .share-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px 18px;
+            border-radius: var(--radius-full);
+            background: transparent;
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.78rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+            margin-top: 2px;
+        }
+        .share-btn:hover {
+            background: var(--surface);
+            color: var(--text-bright);
+            border-color: var(--accent);
+        }
+        .share-btn:active { transform: scale(0.98); }
+
+        /* ─── FOOTER ─── */
+        .footer-brand {
+            width: 100%;
+            margin-top: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            animation: fadeUp 0.6s 0.7s ease-out both;
+            opacity: 0.65;
+        }
+        .footer-brand a {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 6px;
+        }
+        .footer-logo-img {
+            height: 18px;
+            width: auto;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        .footer-logo-img:hover { opacity: 1; }
+        .footer-logo-fallback {
+            display: none;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--accent);
+            letter-spacing: 0.05em;
+        }
+        .footer-madeby {
+            color: var(--text-tertiary);
+            letter-spacing: 0.04em;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 400px) {
+            .page { padding: 10px 12px 32px; }
+            .release-row { gap: 12px; }
+            .artwork-block { width: 50%; }
+            .release-title { font-size: 2.2rem; }
+            .album-badge { font-size: 0.6rem; }
+            .spotify-btn { padding: 14px 18px; font-size: 0.85rem; }
+            .apple-btn { padding: 11px 14px; font-size: 0.75rem; }
+        }
+
+        @media (max-width: 320px) {
+            .release-row { flex-direction: column; text-align: center; gap: 14px; }
+            .artwork-block { width: 70%; }
+            .text-block { align-items: center; text-align: center; }
+            .title-row { justify-content: center; }
+        }
+
+        @media (min-width: 560px) {
+            .release-title { font-size: 3.2rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-video { display: none; }
+            .sparkle, .video-hero-glow, .wave-bar { animation: none; }
+        }
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <main class="page">
+        <!-- 16:9 video hero -->
+        <section class="video-hero" id="videoHero">
+            <div class="video-hero-glow"></div>
+            <img class="hero-poster" src="zhus-teaser-poster.jpg" alt="Zhus JDO — Wahala Pikin teaser">
+            <video class="hero-video" id="heroVideo" src="zhus-wahala-teaser.mp4" poster="zhus-teaser-poster.jpg"
+                muted loop playsinline autoplay preload="auto"></video>
+            <div class="hero-texture"></div>
+            <div class="hero-scrim"></div>
+
+            <div class="hero-live"><span class="dot"></span>Opium Amapiano Video</div>
+
+            <a href="https://www.youtube.com/watch?v=EesuKRr5QtA" target="_blank" rel="noopener noreferrer" class="yt-btn" aria-label="Full video on YouTube">
+                <svg viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                Full video
+            </a>
+
+            <!-- Floating audio prompt (initial) -->
+            <div class="audio-prompt" id="audioPrompt">
+                <button class="audio-prompt-btn" id="audioPromptBtn" aria-label="Click for audio">
+                    <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                </button>
+                <span class="audio-prompt-label">Tap for Audio</span>
+            </div>
+
+            <!-- Corner mute toggle (hidden initially) -->
+            <button class="hero-mute" id="muteBtn" aria-label="Mute video">
+                <svg class="icon-muted" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+                <svg class="icon-unmuted" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+            </button>
+        </section>
+
+        <!-- artwork + text -->
+        <section class="release-row">
+            <div class="artwork-block">
+                <img class="artwork-img" src="zhus_art.jpg" alt="Zhus JDO — Wahala Pikin artwork" loading="eager">
+                <div class="artwork-texture"></div>
+                <span class="sparkle s1">✦</span>
+                <span class="sparkle s2">✦</span>
+            </div>
+            <div class="text-block">
+                <p class="out-now-badge">✦ OUT NOW ✦</p>
+                <p class="artist-name">Zhus JDO</p>
+                <div class="title-row">
+                    <h1 class="release-title">Wahala Pikin</h1>
+                    <span class="album-badge">THE ALBUM</span>
+                    <!-- Audio wave indicator (initially hidden) -->
+                    <div class="audio-wave" id="audioWave">
+                        <span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="streaming-section">
+            <a class="spotify-btn" id="spotifyLink" href="https://open.spotify.com/album/3DVSsOwiOvKGN6t639kjy4?si=ys5Q_8RCT0muBSEs6gAxOA" target="_blank" rel="noopener noreferrer" aria-label="Stream on Spotify">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                STREAM ON SPOTIFY
+            </a>
+            <a class="apple-btn" id="appleLink" href="https://music.apple.com/album/PLACEHOLDER" target="_blank" rel="noopener noreferrer" aria-label="Open in Apple Music">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                Apple Music
+            </a>
+            <button class="share-btn" id="shareBtn" aria-label="Share">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                Share
+            </button>
+        </section>
+
+        <div class="footer-brand">
+            <a href="https://afrocue.xyz" target="_blank" rel="noopener noreferrer">
+                <span class="footer-madeby">Made by</span>
+                <img src="logo_afrocue.png" alt="AfroCue" class="footer-logo-img"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                <span class="footer-logo-fallback">AfroCue</span>
+            </a>
+        </div>
+    </main>
+
+    <script>
+        (function() {
+            const heroVideo = document.getElementById('heroVideo');
+            const muteBtn = document.getElementById('muteBtn');
+            const audioPrompt = document.getElementById('audioPrompt');
+            const audioPromptBtn = document.getElementById('audioPromptBtn');
+            const audioWave = document.getElementById('audioWave');
+            const spotifyBtn = document.getElementById('spotifyLink');
+            const appleBtn = document.getElementById('appleLink');
+            const shareBtn = document.getElementById('shareBtn');
+            const shareLabel = shareBtn.childNodes[shareBtn.childNodes.length - 1];
+
+            let audioActivated = false;
+
+            function pushEvent(name, data) {
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({ event: name, ...(data || {}) });
+            }
+
+            heroVideo.addEventListener('canplay', () => heroVideo.classList.add('ready'));
+            heroVideo.addEventListener('error', () => heroVideo.classList.remove('ready'));
+
+            // Activate audio on the floating prompt click
+            function activateAudio() {
+                if (audioActivated) return;
+                audioActivated = true;
+                heroVideo.muted = false;
+                // Hide the floating prompt, show the corner mute toggle
+                audioPrompt.classList.add('hidden');
+                muteBtn.classList.add('visible', 'unmuted');
+                // Show the audio wave next to the title
+                audioWave.classList.add('active');
+                pushEvent('teaser_unmute', {});
+            }
+
+            audioPromptBtn.addEventListener('click', activateAudio);
+
+            // Mute toggle (corner button)
+            muteBtn.addEventListener('click', () => {
+                heroVideo.muted = !heroVideo.muted;
+                if (heroVideo.muted) {
+                    muteBtn.classList.remove('unmuted');
+                    audioWave.classList.remove('active');
+                    pushEvent('teaser_mute', {});
+                } else {
+                    muteBtn.classList.add('unmuted');
+                    audioWave.classList.add('active');
+                    pushEvent('teaser_unmute', {});
+                }
+            });
+
+            spotifyBtn.addEventListener('click', () => pushEvent('playlist_spotify_click', { platform: 'Spotify' }));
+            appleBtn.addEventListener('click', () => pushEvent('playlist_spotify_click', { platform: 'Apple Music' }));
+
+            shareBtn.addEventListener('click', async () => {
+                pushEvent('share_click', {});
+                const shareData = {
+                    title: 'Zhus JDO Wahala Pikin',
+                    text: 'Wahala Pikin, the new album from Zhus JDO. Out now.',
+                    url: 'https://afrocue.xyz/wahala-pikin'
+                };
+                if (navigator.share) {
+                    try { await navigator.share(shareData); } catch (e) {}
+                } else {
+                    try {
+                        await navigator.clipboard.writeText(shareData.url);
+                        if (shareLabel) {
+                            shareLabel.textContent = ' Link copied';
+                            setTimeout(() => { shareLabel.textContent = ' Share'; }, 1800);
+                        }
+                    } catch (e) {}
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
