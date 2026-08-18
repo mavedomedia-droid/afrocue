@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AfroCue — DJs, Raves &amp; Dance Music in Nigeria</title>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="apple-touch-icon" href="favicon.png"/>
+  <meta name="description" content="We follow the DJs, the parties and raves they play at, and the music they play from afrohouse, amapiano, 3step and afrobeats. AfroCue is Nigeria's nightlife and dance music media platform."/>
+  <meta name="keywords" content="DJs, raves, amapiano, afrohouse, afrobeats, 3step, dance music, Lagos, Nigeria, nightlife, parties, rave culture, DJ culture, entertainment, media"/>
+  <link rel="canonical" href="https://afrocue.xyz/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://afrocue.xyz/"/>
+  <meta property="og:title" content="AfroCue — DJs, Raves &amp; Dance Music in Nigeria"/>
+  <meta property="og:description" content="We follow the DJs, the parties and raves they play at, and the music they play from afrohouse, amapiano, 3step and afrobeats. AfroCue is Nigeria's nightlife and dance music media platform."/>
+  <meta property="og:image" content="https://afrocue.xyz/hero_dj.jpg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@afrocue_"/>
+  <meta name="twitter:title" content="AfroCue — DJs, Raves &amp; Dance Music in Nigeria"/>
+  <meta name="twitter:description" content="We follow the DJs, the parties and raves they play at, and the music they play from afrohouse, amapiano, 3step and afrobeats. AfroCue is Nigeria's nightlife and dance music media platform."/>
+  <meta name="twitter:image" content="https://afrocue.xyz/hero_dj.jpg"/>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Central Config (replace with your GAS URL) -->
+  <script src="afrocue-config.js"></script>
+
+  <style>
+    /* ════════════════════════════════════════════════════════════
+       ORIGINAL STYLES (unchanged) + new simple additions at bottom
+       ════════════════════════════════════════════════════════════ */
+
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-.otf') format('opentype'); font-weight: 400; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthetet-Nova-Light.otf') format('opentype'); font-weight: 300; }
+
+    :root {
+      --black:  #0a0a0a;
+      --dark:   #111111;
+      --dark2:  #1c1c1c;
+      --mid:    #2e2e2e;
+      --grey:   #555555;
+      --silver: #999999;
+      --off:    #d4d4d0;
+      --white:  #f0ede8;
+      --yellow: #C8E000;
+      --pink:   #FF3DCC;
+      --spotify: #1DB954;
+      --yts:    2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.06);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: 'Figtree', sans-serif; overflow-x: hidden; }
+    .yh { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; color: var(--yellow); text-shadow: var(--yts); line-height: 0.92; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(10,10,10,0.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 48px; width: auto; display: block; }
+    .nav-logo-fallback { display: none; font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 17px; color: var(--yellow); letter-spacing: 0.08em; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--silver); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); background: var(--white); padding: 10px 20px; border-radius: 2px; text-decoration: none; transition: background 0.2s; white-space: nowrap; }
+    .nav-cta:hover { background: var(--off); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh; position: relative;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      padding: 80px 48px 72px; overflow: hidden;
+    }
+    .hero-img-slot { position: absolute; inset: 0; width: 100%; overflow: hidden; z-index: 0; }
+    .hero-img-slot img { width: 100%; height: 100%; object-fit: cover; object-position: center 65%; opacity: 0.6; display: block; }
+    .hero-img-credit { position: absolute; bottom: 80px; right: 24px; font-size: 10px; letter-spacing: 0.1em; color: rgba(240,237,232,0.3); text-transform: uppercase; z-index: 4; writing-mode: vertical-rl; }
+    .hero-texture { position: absolute; inset: 0; z-index: 1; background-image: url('texture.jpg'); background-size: cover; background-position: center; opacity: 0.3; pointer-events: none; }
+    .hero-overlay { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.65) 40%, rgba(10,10,10,0.3) 70%, rgba(10,10,10,0.1) 100%); }
+    .hero-content { position: relative; z-index: 3; max-width: 720px; width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; }
+    .hero-eyebrow { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 20px; }
+    .hero-eyebrow-line { width: 36px; height: 1px; background: var(--silver); flex-shrink: 0; }
+    .hero-eyebrow span { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); }
+    .hero h1 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(58px, 9.5vw, 140px); line-height: 0.9; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 28px; }
+    .hero h1 .outline { -webkit-text-stroke: 1.5px var(--yellow); color: transparent; text-shadow: none; }
+    .hero-desc { font-size: 15px; font-weight: 300; line-height: 1.75; color: rgba(240,237,232,0.58); max-width: 480px; margin-bottom: 36px; text-align: center; }
+    .hero-actions { display: flex; gap: 12px; align-items: center; justify-content: center; flex-wrap: nowrap; }
+    .btn-ig { display: inline-flex; align-items: center; gap: 8px; font-family: 'Figtree', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); background: var(--white); padding: 13px 22px; border-radius: 2px; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+    .btn-ig:hover { background: var(--off); }
+    .btn-ig svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* ── BUTTONS ── */
+    .btn { display: inline-block; font-family: 'Figtree', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 13px 26px; border-radius: 2px; text-decoration: none; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+    .btn-white { color: var(--black); background: var(--white); }
+    .btn-white:hover { background: var(--off); }
+    .btn-ghost { color: var(--silver); background: transparent; border: 1px solid rgba(255,255,255,0.18); font-weight: 500; }
+    .btn-ghost:hover { border-color: var(--white); color: var(--white); }
+    .btn-yellow { color: var(--black); background: var(--yellow); }
+    .btn-yellow:hover { opacity: 0.88; }
+
+    /* ── SECTIONS ── */
+    section { padding: 100px 48px; }
+    .section-texture { position: relative; }
+    .section-texture::before { content: ''; position: absolute; inset: 0; background-image: url('texture.jpg'); background-size: cover; opacity: 0.05; pointer-events: none; z-index: 0; }
+    .section-texture > * { position: relative; z-index: 1; }
+    .label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .label::before { content: ''; width: 18px; height: 1px; background: var(--silver); flex-shrink: 0; }
+
+    /* ── ABOUT ── (original, unchanged) */
+    #about { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
+    .about-grid { display: grid; grid-template-columns: 5fr 4fr; grid-template-rows: auto auto; gap: 0 72px; align-items: start; max-width: 1200px; }
+    .about-top    { grid-column: 1; grid-row: 1; padding-bottom: 24px; }
+    .about-bottom { grid-column: 1; grid-row: 2; }
+    .about-video-col { grid-column: 2; grid-row: 1 / span 2; }
+    .about-h { font-size: clamp(48px, 6.5vw, 92px); margin-bottom: 0; }
+    .about-h .dim { color: rgba(200,224,0,0.2); text-shadow: none; }
+    .about-body { font-size: 15px; font-weight: 300; line-height: 1.85; color: rgba(240,237,232,0.55); margin-bottom: 32px; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.06); margin-top: 0; }
+    .stat { background: var(--dark); padding: 24px 20px; }
+    .stat-val { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 30px; color: var(--yellow); text-shadow: var(--yts); line-height: 1; margin-bottom: 4px; }
+    .stat-key { font-size: 10px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); }
+    .about-video-wrap { width: 100%; aspect-ratio: 4/5; border-radius: 4px; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,0.06); background: var(--dark2); }
+    .about-video-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .about-video-fallback { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; background-image: url('about_editorial.jpg'); background-size: cover; background-position: center; }
+    .about-video-fallback::before { content: ''; position: absolute; inset: 0; background: rgba(10,10,10,0.5); }
+    .img-label { position: relative; z-index: 1; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); }
+
+    /* ── CONTENT SLIDER ── */
+    #content { position: relative; border-top: 1px solid rgba(255,255,255,0.06); overflow: hidden; background: var(--black); padding: 64px 48px; }
+    .content-bg { position: absolute; inset: 0; z-index: 0; background-size: cover; background-position: center; filter: blur(48px) saturate(0.7); transform: scale(1.12); opacity: 0; transition: opacity 0.7s ease; }
+    .content-bg.loaded { opacity: 1; }
+    .content-bg-overlay { position: absolute; inset: 0; z-index: 1; background: rgba(10,10,10,0.80); }
+    #content > *:not(.content-bg):not(.content-bg-overlay) { position: relative; z-index: 2; }
+    .content-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; gap: 24px; flex-wrap: wrap; }
+    .content-h { font-size: clamp(44px, 5.5vw, 80px); }
+    .slide-nav { display: flex; gap: 8px; align-items: center; padding-top: 6px; flex-shrink: 0; }
+    .slide-btn { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; background: transparent; color: var(--silver); cursor: pointer; font-size: 15px; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, color 0.2s; }
+    .slide-btn:hover { border-color: var(--yellow); color: var(--yellow); }
+    .slides-wrap { position: relative; }
+    .slide { display: none; }
+    .slide.active { display: grid; grid-template-columns: 5fr 6fr; gap: 36px; align-items: center; animation: fadeUp 0.4s ease; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .slide-img-box { aspect-ratio: 4/5; border-radius: 6px; overflow: hidden; position: relative; border: none; background: transparent; flex-shrink: 0; }
+    .slide-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .slide-text { padding: 0; }
+    .slide-series { font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--grey); margin-bottom: 14px; }
+    .slide-text h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(32px, 3.5vw, 56px); line-height: 0.9; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 12px; }
+    .slide-text p { font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.5); margin-bottom: 20px; }
+    .slide-counter { font-size: 10px; letter-spacing: 0.12em; color: var(--grey); margin-top: 16px; }
+    .slide-counter span { color: var(--yellow); }
+
+    /* ── PARTIES STRIP ── */
+    #parties-strip { border-top: 1px solid rgba(255,255,255,0.06); background: var(--black); }
+    .ps-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; gap: 16px; flex-wrap: wrap; }
+    .ps-left .ps-h { font-size: clamp(36px,5vw,64px); margin-bottom: 0; }
+    .ps-left .ps-sub { font-size: 13px; font-weight: 300; color: rgba(240,237,232,0.4); margin-top: 10px; max-width: 380px; line-height: 1.65; }
+    .ps-see-all { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); text-decoration: none; border: 1px solid rgba(255,255,255,0.12); padding: 10px 18px; border-radius: 2px; white-space: nowrap; transition: all 0.2s; flex-shrink: 0; align-self: flex-end; }
+    .ps-see-all:hover { border-color: var(--yellow); color: var(--yellow); }
+    .ps-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; }
+    .ps-card { position: relative; aspect-ratio: 3/4; overflow: hidden; cursor: pointer; background: var(--dark2); transition: transform 0.3s ease; }
+    .ps-card:hover { transform: scale(1.01); z-index: 2; }
+    .ps-card-bg { position: absolute; inset: -16px; z-index: 0; background-size: cover; background-position: center; filter: blur(20px) saturate(0.6) brightness(0.4); transform: scale(1.1); }
+    .ps-card-img { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .ps-card:hover .ps-card-img { transform: scale(1.04); }
+    .ps-card-grad { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.35) 50%, rgba(10,10,10,0.05) 100%); }
+    .ps-card-content { position: absolute; bottom: 0; left: 0; right: 0; z-index: 3; padding: 18px 16px 16px; }
+    .ps-card-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 8px; }
+    .ps-tag { font-size: 8px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 7px; border-radius: 2px; border: 1px solid rgba(200,224,0,0.3); color: rgba(200,224,0,0.8); }
+    .ps-card-name { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(18px,2vw,26px); color: var(--yellow); text-shadow: var(--yts); line-height: 0.95; margin-bottom: 5px; }
+    .ps-card-city { font-size: 10px; font-weight: 300; color: rgba(240,237,232,0.38); }
+    .ps-cta-bar { margin-top: 2px; background: var(--dark); border: 1px solid rgba(255,255,255,0.06); padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .ps-cta-label { font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--silver); margin-bottom: 4px; }
+    .ps-cta-text { font-size: 13px; font-weight: 300; color: rgba(240,237,232,0.4); }
+    .ps-cta-btn { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); background: var(--yellow); padding: 12px 22px; border-radius: 2px; text-decoration: none; white-space: nowrap; transition: opacity 0.2s; flex-shrink: 0; }
+    .ps-cta-btn:hover { opacity: 0.88; }
+    .ps-loading { padding: 60px 0; text-align: center; color: var(--grey); font-size: 13px; font-weight: 300; }
+
+    /* ── INCOMING PARTY ── */
+    #incoming { display: none; position: relative; overflow: hidden; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    #incoming.visible { display: block; }
+    .inc-bg { position: absolute; inset: -20px; z-index: 0; background-size: cover; background-position: center; filter: blur(28px) brightness(0.35) saturate(0.6); transform: scale(1.1); }
+    .inc-texture { position: absolute; inset: 0; z-index: 1; background-image: url('texture.jpg'); background-size: cover; opacity: 0.08; pointer-events: none; }
+    .inc-grad { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to right, rgba(10,10,10,0.1) 0%, rgba(10,10,10,0.45) 33%, rgba(10,10,10,0.88) 52%, rgba(10,10,10,0.96) 100%); }
+    .inc-inner { position: relative; z-index: 3; display: grid; grid-template-columns: 1fr 2fr; height: 240px; }
+    .inc-flyer-wrap { position: relative; overflow: hidden; height: 100%; }
+    .inc-flyer-img { position: absolute; top: 12px; bottom: 12px; left: 50%; transform: translateX(-50%) rotate(1deg); width: auto; height: calc(100% - 24px); aspect-ratio: 3/4; object-fit: cover; border-radius: 5px; display: block; box-shadow: 0 8px 40px rgba(0,0,0,0.95); }
+    .inc-text { display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 28px 40px 28px 36px; overflow: visible; min-width: 0; }
+    .inc-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 8px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--black); background: var(--yellow); padding: 4px 10px; border-radius: 2px; align-self: flex-start; margin-bottom: 4px; }
+    .inc-name { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(32px,3.8vw,56px); color: var(--yellow); text-shadow: var(--yts); line-height: 0.9; }
+    .inc-date { font-size: 11px; font-weight: 400; color: rgba(240,237,232,0.4); letter-spacing: 0.06em; }
+    .inc-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .inc-tag { font-size: 8px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; border: 1px solid rgba(200,224,0,0.25); color: rgba(200,224,0,0.7); }
+    .inc-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); background: var(--yellow); padding: 13px 24px; border-radius: 2px; text-decoration: none; transition: opacity 0.2s; align-self: flex-start; margin-top: 4px; white-space: nowrap; flex-shrink: 0; }
+    .inc-btn:hover { opacity: 0.85; }
+
+    /* ── JOIN SECTION ── */
+    #join { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
+    .join-grid { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 0 64px; align-items: start; max-width: 1100px; }
+    .join-divider { width: 1px; background: rgba(255,255,255,0.08); align-self: stretch; }
+    .join-h { font-size: clamp(44px, 5.5vw, 72px); margin-bottom: 16px; }
+    .join-body { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.5); margin-bottom: 28px; }
+    .join-newsletter-form { display: flex; flex-direction: column; gap: 10px; }
+    .join-newsletter-form input { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 2px; padding: 14px 16px; color: var(--white); font-family: 'Figtree', sans-serif; font-size: 16px; outline: none; transition: border-color 0.2s; width: 100%; }
+    .join-newsletter-form input::placeholder { color: var(--grey); }
+    .join-newsletter-form input:focus { border-color: rgba(255,255,255,0.35); }
+
+    /* ── SIGNUP MODAL ── */
+    .signup-modal-wrap { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(10,10,10,0.92); backdrop-filter: blur(16px); align-items: center; justify-content: center; padding: 24px; }
+    .signup-modal-wrap.open { display: flex; }
+    .signup-modal { background: var(--dark); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; max-width: 540px; width: 100%; padding: 48px 44px; position: relative; max-height: 90vh; overflow-y: auto; }
+    .signup-modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--silver); font-size: 18px; cursor: pointer; transition: color 0.2s; padding: 4px 8px; }
+    .signup-modal-close:hover { color: var(--white); }
+    .signup-modal-form { display: flex; flex-direction: column; gap: 12px; }
+    .signup-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .signup-field { display: flex; flex-direction: column; gap: 6px; }
+    .signup-field label { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--silver); }
+    .signup-field input, .signup-field select { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; padding: 13px 14px; color: var(--white); font-family: 'Figtree', sans-serif; font-size: 16px; outline: none; transition: border-color 0.2s; width: 100%; appearance: none; }
+    .signup-field input:focus, .signup-field select:focus { border-color: rgba(200,224,0,0.4); }
+    .signup-field input::placeholder { color: var(--grey); }
+    .signup-field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 13px center; background-color: rgba(255,255,255,0.05); padding-right: 34px; cursor: pointer; }
+    .signup-field select option { background: #1a1a1a; }
+
+    /* ── DJ RADAR SECTION ── */
+    #dj-radar { border-top: 1px solid rgba(255,255,255,0.06); background: var(--dark); }
+    .dj-radar-inner { max-width: 1200px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .dj-radar-left { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; }
+    .dj-radar-title { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(44px, 6vw, 88px); line-height: 0.9; color: var(--yellow); text-shadow: var(--yts); }
+    .dj-radar-outline { -webkit-text-stroke: 1.5px var(--yellow); color: transparent; text-shadow: none; display: block; }
+    .dj-radar-btn { display: inline-block; font-family: 'Figtree', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--yellow); background: transparent; border: 1.5px solid var(--yellow); padding: 14px 32px; border-radius: 2px; text-decoration: none; white-space: nowrap; transition: background 0.2s, color 0.2s; }
+    .dj-radar-btn:hover { background: var(--yellow); color: var(--black); }
+    .dj-radar-video-wrap { position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 2/1; border: 1px solid rgba(255,255,255,0.12); background: var(--dark2); }
+    .dj-radar-video-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .dj-radar-texture { position: absolute; inset: 0; z-index: 1; background-image: url('texture.jpg'); background-size: cover; background-position: center; opacity: 0.45; pointer-events: none; border-radius: 12px; }
+    .dj-radar-controls { position: absolute; bottom: 12px; right: 12px; z-index: 2; display: flex; gap: 6px; }
+    .dj-radar-ctrl { width: 30px; height: 30px; border-radius: 4px; background: rgba(10,10,10,0.65); border: 1px solid rgba(255,255,255,0.15); color: var(--white); font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+    .dj-radar-ctrl:hover { background: rgba(10,10,10,0.9); }
+    .btn-join-dj { display: inline-block; font-family: 'Figtree', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--yellow); background: transparent; border: 1.5px solid rgba(200,224,0,0.5); padding: 13px 26px; border-radius: 2px; text-decoration: none; white-space: nowrap; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+    .btn-join-dj:hover { border-color: var(--yellow); background: rgba(200,224,0,0.06); }
+
+    /* ═══ NEW SECTIONS (simple, added after parties) ═══ */
+
+    /* Discover Our Playlists */
+    #playlists { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 64px 48px; }
+    .playlists-inner { max-width: 1200px; margin: 0 auto; }
+    .playlists-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; }
+    .playlists-h { font-size: clamp(40px, 5vw, 64px); margin-bottom: 0; }
+    .playlists-scroll { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 8px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: var(--mid) transparent; }
+    .playlists-scroll::-webkit-scrollbar { height: 4px; }
+    .playlists-scroll::-webkit-scrollbar-track { background: transparent; }
+    .playlists-scroll::-webkit-scrollbar-thumb { background: var(--mid); border-radius: 2px; }
+    .playlist-card { flex: 0 0 220px; background: var(--black); border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; text-decoration: none; transition: transform 0.2s, border-color 0.2s; scroll-snap-align: start; }
+    .playlist-card:hover { transform: translateY(-4px); border-color: rgba(200,224,0,0.3); }
+    .playlist-card-img { aspect-ratio: 1 / 1; overflow: hidden; background: var(--dark2); }
+    .playlist-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+    .playlist-card:hover .playlist-card-img img { transform: scale(1.05); }
+    .playlist-card-body { padding: 14px 16px 16px; }
+    .playlist-card-tag { display: inline-block; font-size: 8px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--spotify); margin-bottom: 6px; }
+    .playlist-card-title { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 18px; color: var(--yellow); text-shadow: var(--yts); line-height: 0.95; margin-bottom: 6px; }
+    .playlist-card-desc { font-size: 11px; font-weight: 300; color: rgba(240,237,232,0.5); line-height: 1.5; margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .playlist-card-cta { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--silver); transition: color 0.2s; }
+    .playlist-card:hover .playlist-card-cta { color: var(--yellow); }
+
+    /* Featured DJ Spotlight (simple) */
+    #featured-dj { border-top: 1px solid rgba(255,255,255,0.06); background: var(--black); }
+    .featured-dj-inner { max-width: 1200px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .featured-dj-left { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+    .featured-dj-title { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(40px, 6vw, 80px); line-height: 0.9; color: var(--yellow); text-shadow: var(--yts); }
+    .featured-dj-quote { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.6); }
+    .featured-dj-right { position: relative; overflow: hidden; border-radius: 4px; aspect-ratio: 4/5; }
+    .featured-dj-right img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+    .featured-dj-right:hover img { transform: scale(1.03); }
+
+    /* Editorial Teasers (simple) */
+    #editorial { border-top: 1px solid rgba(255,255,255,0.06); background: var(--dark); }
+    .editorial-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
+    .editorial-h { font-size: clamp(40px, 5vw, 64px); }
+    .editorial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .editorial-card { background: var(--dark2); border: 1px solid rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; transition: transform 0.2s, border-color 0.2s; }
+    .editorial-card:hover { transform: translateY(-4px); border-color: rgba(200,224,0,0.3); }
+    .editorial-img { aspect-ratio: 16/9; overflow: hidden; background: var(--mid); }
+    .editorial-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+    .editorial-card:hover .editorial-img img { transform: scale(1.05); }
+    .editorial-body { padding: 16px 18px 20px; }
+    .editorial-cat { font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--grey); margin-bottom: 6px; }
+    .editorial-title { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 20px; color: var(--yellow); text-shadow: var(--yts); line-height: 1.1; margin-bottom: 8px; }
+    .editorial-excerpt { font-size: 12px; font-weight: 300; color: rgba(240,237,232,0.5); line-height: 1.6; }
+
+    /* Community Callout (simple) */
+    #community { border-top: 1px solid rgba(255,255,255,0.06); background: var(--black); padding: 64px 48px; }
+    .community-inner { max-width: 700px; margin: 0 auto; text-align: center; }
+    .community-h { font-size: clamp(36px, 5vw, 64px); margin-bottom: 16px; }
+    .community-text { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.5); margin-bottom: 28px; }
+    .community-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+
+    /* Partners (simple) */
+    #partners { border-top: 1px solid rgba(255,255,255,0.06); background: var(--dark); padding: 64px 48px; }
+    .partners-inner { max-width: 1100px; margin: 0 auto; }
+    .partners-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
+    .partner-logo { height: 36px; width: auto; opacity: 0.4; transition: opacity 0.2s; }
+    .partner-logo:hover { opacity: 0.8; }
+
+    /* Countdown (simple) */
+    #countdown { border-top: 1px solid rgba(255,255,255,0.06); background: var(--black); padding: 80px 48px; }
+    .countdown-inner { max-width: 700px; margin: 0 auto; text-align: center; }
+    .countdown-label { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-bottom: 12px; }
+    .countdown-event { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(36px, 5vw, 60px); color: var(--yellow); text-shadow: var(--yts); margin-bottom: 24px; }
+    .countdown-timer { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .countdown-timer div { background: var(--dark2); border-radius: 8px; padding: 16px 20px; min-width: 80px; }
+    .countdown-timer span { display: block; font-size: 10px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); }
+    .countdown-timer div span:first-child { font-size: 40px; font-weight: 600; color: var(--white); }
+
+    /* FAQ (simple) */
+    #faq { border-top: 1px solid rgba(255,255,255,0.06); background: var(--dark); }
+    .faq-inner { max-width: 700px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .faq-question { padding: 16px 0; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .faq-question:hover { color: var(--yellow); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; color: rgba(240,237,232,0.6); }
+    .faq-answer p { font-size: 13px; font-weight: 300; line-height: 1.8; padding-bottom: 16px; }
+    .faq-item.open .faq-answer { max-height: 300px; }
+
+    /* Press Mentions (simple) */
+    #press { border-top: 1px solid rgba(255,255,255,0.06); background: var(--black); padding: 64px 48px; }
+    .press-inner { max-width: 1100px; margin: 0 auto; }
+    .press-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+    .press-logo { height: 40px; width: auto; opacity: 0.4; transition: opacity 0.2s; }
+    .press-logo:hover { opacity: 0.8; }
+
+    /* ── YOUTUBE ── */
+    #youtube { border-top: 1px solid rgba(255,255,255,0.06); position: relative; background: var(--dark); }
+    #youtube::before { content: ''; position: absolute; inset: 0; background-image: url('texture.jpg'); background-size: cover; opacity: 0.06; pointer-events: none; }
+    .yt-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: center; max-width: 1200px; }
+    .yt-left { display: flex; flex-direction: column; justify-content: center; }
+    .yt-h { font-size: clamp(36px, 4.5vw, 64px); margin-bottom: 10px; line-height: 0.92; }
+    .yt-artist { font-size: 13px; font-weight: 300; color: rgba(240,237,232,0.45); margin-bottom: 32px; letter-spacing: 0.04em; }
+    .yt-watch-btn { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); background: var(--yellow); padding: 14px 26px; border-radius: 2px; text-decoration: none; transition: opacity 0.2s; align-self: flex-start; }
+    .yt-watch-btn:hover { opacity: 0.88; }
+    .yt-watch-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .yt-right { position: relative; }
+    .yt-embed-wrap { position: relative; width: 100%; padding-bottom: 56.25%; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: var(--dark2); box-shadow: 0 24px 64px rgba(0,0,0,0.6); }
+    .yt-embed-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; border-radius: 16px; }
+
+    /* ── AUDIENCE ── */
+    #audience { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
+    .audience-top { max-width: 580px; margin-bottom: 48px; }
+    .audience-h { font-size: clamp(48px, 6.5vw, 92px); margin-bottom: 16px; }
+    .audience-body { font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.5); }
+    .audience-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .aud-card { position: relative; border-radius: 5px; overflow: hidden; aspect-ratio: 4/3; border: 1px solid rgba(255,255,255,0.07); }
+    .aud-card-bg { position: absolute; inset: 0; background: var(--dark2); display: flex; align-items: center; justify-content: center; }
+    .aud-card-bg::before { content: ''; position: absolute; inset: 0; background-image: url('texture.jpg'); background-size: cover; opacity: 0.25; }
+    .aud-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; z-index: 1; }
+    .aud-card:hover img { transform: scale(1.05); }
+    .aud-card-emoji { font-size: 48px; opacity: 0.15; position: relative; z-index: 0; }
+    .aud-card-tint { position: absolute; inset: 0; background: rgba(10,10,10,0.35); z-index: 2; }
+    .aud-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.2) 50%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 18px 16px; z-index: 3; }
+    .aud-card-title { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 20px; color: var(--yellow); text-shadow: var(--yts); line-height: 1; margin-bottom: 3px; }
+    .aud-card-desc { font-size: 11px; font-weight: 300; color: rgba(240,237,232,0.55); line-height: 1.45; }
+
+    /* ── FOLLOW ── */
+    #follow { border-top: 1px solid rgba(255,255,255,0.06); }
+    .follow-h { font-size: clamp(48px, 6.5vw, 92px); margin-bottom: 44px; }
+    .follow-ig-card { background: var(--dark); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; padding: 32px 40px; display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; text-decoration: none; transition: border-color 0.25s; max-width: 1100px; margin-bottom: 20px; }
+    .follow-ig-card:hover { border-color: rgba(255,255,255,0.2); }
+    .follow-ig-info h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 34px; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 3px; }
+    .follow-ig-info p { font-size: 12px; color: var(--grey); font-weight: 300; }
+    .social-row { display: flex; gap: 8px; flex-wrap: wrap; max-width: 1100px; }
+    .social-chip { border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; padding: 11px 18px; font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--silver); text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+    .social-chip:hover { border-color: var(--yellow); color: var(--yellow); }
+
+    /* ── WHATSAPP CHANNEL ── */
+    #whatsapp-channel { background:#111111; border-top:1px solid rgba(255,255,255,0.06); position:relative; overflow:hidden; padding:52px 48px; }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 64px 48px 48px; display: flex; flex-direction: column; align-items: center; gap: 28px; background: var(--dark); text-align: center; }
+    .footer-brand { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .footer-brand img { height: 72px; width: auto; display: block; }
+    .footer-brand p { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); }
+    .footer-links { display: flex; gap: 22px; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-email a { font-size: 11px; color: var(--grey); text-decoration: none; transition: color 0.2s; }
+    .footer-email a:hover { color: var(--white); }
+
+    /* ═══ MOBILE OVERRIDES (original + new sections) ═══ */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 0 20px; min-height: 0; height: 70vh; }
+      .hero-img-slot { display: block; position: absolute; inset: 0; width: 100%; max-width: 100%; height: 100%; }
+      .hero-img-slot img { opacity: 0.75; object-position: center 30%; width: 100%; height: 100%; object-fit: cover; }
+      .hero-texture { opacity: 0.3; }
+      .hero-overlay { background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.75) 35%, rgba(10,10,10,0.35) 65%, rgba(10,10,10,0.08) 100%); }
+      .hero-img-credit { display: none; }
+      .hero-content { max-width: 100%; padding-bottom: 0; }
+      .hero h1 { font-size: clamp(48px, 13vw, 72px); line-height: 0.9; }
+      .hero h1 .outline { -webkit-text-stroke-width: 1px; }
+      .hero-desc { max-width: 100%; font-size: 14px; }
+      .hero-actions { flex-wrap: wrap; gap: 10px; }
+      .hero-actions .btn, .hero-actions .btn-ig { flex: 1; min-width: 130px; text-align: center; justify-content: center; }
+
+      section { padding: 64px 20px; }
+
+      /* About section — original mobile rules */
+      .about-grid { display: flex; flex-direction: column; }
+      .about-top { order: 1; margin-bottom: 20px; }
+      .about-video-col { order: 2; margin-bottom: 28px; }
+      .about-bottom { order: 3; }
+      .about-video-wrap { aspect-ratio: 4/5; }
+
+      .slide.active { grid-template-columns: 1fr; gap: 28px; }
+      .slide-img-box { aspect-ratio: 4/5; width: 100%; max-width: 340px; margin: 0 auto; }
+
+      .newsletter-inner { grid-template-columns: 1fr; gap: 36px; }
+      .dj-grid { grid-template-columns: 1fr; gap: 36px; }
+      .adv-header { grid-template-columns: 1fr; gap: 20px; }
+      .adv-grid { grid-template-columns: 1fr; }
+      .audience-cards { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .follow-ig-card { padding: 24px 20px; }
+      footer { padding: 48px 20px 36px; flex-direction: column; align-items: center; gap: 20px; }
+      #youtube { padding: 64px 20px; }
+      .yt-inner { grid-template-columns: 1fr; gap: 36px; }
+      .yt-h { font-size: clamp(32px,10vw,52px); }
+
+      /* New sections mobile */
+      .playlists-scroll { padding-bottom: 4px; }
+      .playlist-card { flex: 0 0 180px; }
+      .featured-dj-inner { grid-template-columns: 1fr; gap: 40px; }
+      .editorial-grid { grid-template-columns: 1fr; }
+      .countdown-timer { gap: 8px; }
+      .countdown-timer div { padding: 12px 8px; min-width: 60px; }
+      .countdown-timer div span:first-child { font-size: 28px; }
+      #partners .partners-grid, #press .press-grid { gap: 12px; }
+    }
+    @media (max-width: 420px) {
+      .hero h1 { font-size: clamp(40px, 12vw, 58px); }
+      .audience-cards { grid-template-columns: 1fr 1fr; }
+      .playlist-card { flex: 0 0 160px; }
+    }
+  </style>
+</head>
+<body>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- NAV (unchanged) -->
+<nav>
+  <a class="nav-logo" href="#">
+    <img src="logo_afrocue.png" alt="AfroCue"
+      onerror="this.style.display='none'; document.querySelector('.nav-logo-fallback').style.display='block'"/>
+    <span class="nav-logo-fallback">afro.cue</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="parties.html">Parties</a></li>
+    <li><a href="#content">Content</a></li>
+    <li><a href="#playlists">Playlists</a></li>
+    <li><a href="#advertise">Get Featured</a></li>
+  </ul>
+  <a href="#join" class="nav-cta">Sign Up</a>
+</nav>
+
+<!-- HERO (unchanged) -->
+<div class="hero">
+  <div class="hero-img-slot">
+    <img src="hero_dj.jpg" alt="Aniko at Rampa Lagos"/>
+  </div>
+  <div class="hero-texture"></div>
+  <div class="hero-overlay"></div>
+  <span class="hero-img-credit">Aniko · Rampa Lagos</span>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span>Lagos Nightlife &amp; Dance Music</span>
+    </div>
+    <h1>Creatively<br><span class="outline">Documenting</span><br>Culture.</h1>
+    <p class="hero-desc">We spotlight the DJs, the raves and parties they play at, and the music — from afrohouse to amapiano and our own afrobeats — shaping Nigeria's dance floor.</p>
+    <div class="hero-actions">
+      <a href="https://instagram.com/afro.cue" target="_blank" class="btn-ig">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+        Follow Us
+      </a>
+      <a href="#about" class="btn btn-ghost">Learn More</a>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT (unchanged) -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-top">
+      <div class="label">About AfroCue</div>
+      <h2 class="yh about-h">Where<br><span class="dim">Culture</span><br>Lives.</h2>
+    </div>
+    <div class="about-video-col">
+      <div class="label" style="margin-bottom:14px;">Media</div>
+      <div class="about-video-wrap">
+        <video src="about_video.mp4" autoplay muted loop playsinline
+          onerror="this.style.display='none'">
+        </video>
+        <div class="about-video-fallback" id="videoFallback" style="display:none;">
+          <span class="img-label">about_video.mp4</span>
+          <span class="img-label" style="opacity:0.4;">1080 × 1350px</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-bottom">
+      <p class="about-body">
+        AfroCue is our attempt to creatively document and advance the dance music culture and nightlife scene — spotlighting the DJs who power it, the raves and parties they play at, and the music that moves the dance floor. From amapiano and afrohouse to 3step and afrobeats, we champion Nigerian nightlife culture.
+      </p>
+      <div class="about-stats">
+        <div class="stat"><div class="stat-val">DJs</div><div class="stat-key">We spotlight</div></div>
+        <div class="stat"><div class="stat-val">Parties</div><div class="stat-key">We document</div></div>
+        <div class="stat"><div class="stat-val">Music</div><div class="stat-key">We follow</div></div>
+        <div class="stat"><div class="stat-val">Culture</div><div class="stat-key">We advance</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT SLIDER (unchanged) -->
+<section id="content">
+  <div class="content-bg" id="contentBg"></div>
+  <div class="content-bg-overlay"></div>
+  <div class="content-header">
+    <div>
+      <div class="label">Featured Content</div>
+      <h2 class="yh content-h">Our<br>Content.</h2>
+    </div>
+    <div class="slide-nav">
+      <button class="slide-btn" onclick="prevSlide()">&#8592;</button>
+      <button class="slide-btn" onclick="nextSlide()">&#8594;</button>
+    </div>
+  </div>
+  <div class="slides-wrap">
+    <div class="slide active" data-img="content_weekly_top5.jpeg">
+      <div class="slide-img-box">
+        <img src="content_weekly_top5.jpeg" alt="AfroCue Weekly Top 5"/>
+      </div>
+      <div class="slide-text">
+        <div class="slide-series">Weekly Series</div>
+        <h3>Weekly Top 5</h3>
+        <p>Every week, we spotlight DJs from upcoming parties and events — not to rank them, but to spotlight the people shaping the dance floor.</p>
+        <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram</a>
+        <div class="slide-counter"><span>01</span> / 04</div>
+      </div>
+    </div>
+    <div class="slide" data-img="content_monthly_recap.jpeg">
+      <div class="slide-img-box">
+        <img src="content_monthly_recap.jpeg" alt="AfroCue Monthly Recap"/>
+      </div>
+      <div class="slide-text">
+        <div class="slide-series">Monthly Series</div>
+        <h3>Monthly Recap</h3>
+        <p>A recap of moments, DJs, and parties that defined the month in nightlife and dance music culture.</p>
+        <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram</a>
+        <div class="slide-counter"><span>02</span> / 04</div>
+      </div>
+    </div>
+    <div class="slide" data-img="content_set_moments.jpeg">
+      <div class="slide-img-box">
+        <img src="content_set_moments.jpeg" alt="Set Moments"/>
+      </div>
+      <div class="slide-text">
+        <div class="slide-series">Ongoing Series</div>
+        <h3>Set Moments</h3>
+        <p>Short moments from DJ sets that capture the energy of the dance floor and spotlight the DJ behind the moment.</p>
+        <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram</a>
+        <div class="slide-counter"><span>03</span> / 04</div>
+      </div>
+    </div>
+    <div class="slide" data-img="content_creative_events.jpeg">
+      <div class="slide-img-box">
+        <img src="content_creative_events.jpeg" alt="Event Content"/>
+      </div>
+      <div class="slide-text">
+        <div class="slide-series">Event Content</div>
+        <h3>Event Content</h3>
+        <p>We convey narratives through culture-aware perspectives — documenting events and the energy around them the way they actually feel.</p>
+        <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram</a>
+        <div class="slide-counter"><span>04</span> / 04</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTIES STRIP (unchanged) -->
+<section id="parties-strip">
+  <div class="ps-header">
+    <div class="ps-left">
+      <div class="label">Party Directory</div>
+      <div class="ps-h yh">What's On.</div>
+      <div class="ps-sub">Raves, events and nights worth knowing — documented by AfroCue.</div>
+    </div>
+    <a href="parties.html" class="ps-see-all">See all parties &rarr;</a>
+  </div>
+  <div class="ps-grid" id="psGrid">
+    <div class="ps-loading">Loading parties...</div>
+  </div>
+  <div class="ps-cta-bar">
+    <div>
+      <div class="ps-cta-label">Is your party on here?</div>
+      <div class="ps-cta-text">Get your event in front of Lagos's nightlife audience.</div>
+    </div>
+    <a href="list-party.html" class="ps-cta-btn">List Your Party &rarr;</a>
+  </div>
+</section>
+
+<!-- INCOMING PARTY (unchanged) -->
+<section id="incoming">
+  <div class="inc-bg" id="incBg"></div>
+  <div class="inc-texture"></div>
+  <div class="inc-grad"></div>
+  <div class="inc-inner">
+    <div class="inc-flyer-wrap" id="incFlyerWrap">
+      <img class="inc-flyer-img" id="incFlyerImg" src="" alt=""/>
+    </div>
+    <div class="inc-text">
+      <span class="inc-badge">&#9733; Featured</span>
+      <div class="inc-eyebrow"></div>
+      <div class="inc-name" id="incName"></div>
+      <div class="inc-date" id="incDate"></div>
+      <div class="inc-tags" id="incTags"></div>
+      <div class="inc-desc" id="incDesc"></div>
+      <a class="inc-btn" id="incBtn" href="parties.html">Buy Tickets</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NEW SECTIONS START HERE ═══ -->
+
+<!-- DISCOVER OUR PLAYLISTS -->
+<section id="playlists">
+  <div class="playlists-inner">
+    <div class="playlists-header">
+      <div>
+        <div class="label">Discover Our Playlists</div>
+        <h2 class="yh playlists-h">The<br>Soundtrack.</h2>
+      </div>
+      <a href="playlists.html" class="ps-see-all">All playlists &rarr;</a>
+    </div>
+    <div class="playlists-scroll">
+      <a href="playlist-1.html" class="playlist-card">
+        <div class="playlist-card-img">
+          <img src="playlist_naija_party_starters.jpg" alt="Naija Party Starters cover"/>
+        </div>
+        <div class="playlist-card-body">
+          <span class="playlist-card-tag">Spotify</span>
+          <h3 class="playlist-card-title">Naija Party Starters</h3>
+          <p class="playlist-card-desc">Music that moves Nigerian dance floors — updated weekly.</p>
+          <span class="playlist-card-cta">Listen now →</span>
+        </div>
+      </a>
+      <!-- Duplicate this card for more playlists -->
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED DJ SPOTLIGHT -->
+<section id="featured-dj">
+  <div class="featured-dj-inner">
+    <div class="featured-dj-left">
+      <div class="label">DJ Spotlight</div>
+      <h2 class="featured-dj-title">Meet<br>Your<br>DJ.</h2>
+      <p class="featured-dj-quote">"The dancefloor is a canvas. I just paint with sound."</p>
+      <span class="featured-dj-name">— Smeez</span>
+      <a href="https://instagram.com/smeez" target="_blank" class="btn btn-ghost">Follow</a>
+    </div>
+    <div class="featured-dj-right">
+      <img src="featured_dj_smeez.jpg" alt="DJ Smeez"/>
+    </div>
+  </div>
+</section>
+
+<!-- DJ RADAR SECTION (existing, moved here to keep flow) -->
+<section id="dj-radar">
+  <div class="dj-radar-inner">
+    <div class="dj-radar-left">
+      <div class="label">Are You a DJ?</div>
+      <h2 class="dj-radar-title">Get on our<br><span class="dj-radar-outline">DJ Radar.</span></h2>
+      <a href="dj.html" class="dj-radar-btn">Sign Up as a DJ</a>
+    </div>
+    <div class="dj-radar-video-wrap">
+      <video id="djRadarVid" src="dj_radar_banner.mp4" loop playsinline></video>
+      <div class="dj-radar-texture"></div>
+      <div class="dj-radar-controls">
+        <button class="dj-radar-ctrl" id="djPlayBtn" onclick="toggleDJPlay()">&#9654;</button>
+        <button class="dj-radar-ctrl" id="djMuteBtn" onclick="toggleDJMute()">&#128266;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN + NEWSLETTER -->
+<section id="join">
+  <div class="join-grid">
+    <div class="join-media">
+      <div class="label">Join AfroCue</div>
+      <h2 class="yh join-h">Are you a<br>creative or<br>in media?</h2>
+      <p class="join-body">Managers, event executives, brand managers, photographers, videographers, journalists — anyone working in and around Nigeria's dance music scene. Sign up and stay connected.</p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:4px;">
+        <button class="btn btn-white" onclick="openSignupModal()">Sign Up</button>
+        <a href="#dj-radar" class="btn-join-dj">Or Join as DJ</a>
+      </div>
+    </div>
+    <div class="join-divider"></div>
+    <div class="join-newsletter">
+      <div class="label" style="color: rgba(240,237,232,0.3);">Or</div>
+      <h2 class="yh join-h" style="font-size: clamp(28px, 3.5vw, 48px);">Get the<br>updates.</h2>
+      <p class="join-body">DJs · Parties · Music · Culture</p>
+      <form class="join-newsletter-form" onsubmit="handleNewsletter(event)">
+        <input type="text" name="nl_name" placeholder="Your name" required/>
+        <input type="email" name="nl_email" placeholder="your@email.com" required/>
+        <button type="submit" class="btn btn-yellow">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNUP MODAL -->
+<div class="signup-modal-wrap" id="signupModal">
+  <div class="signup-modal">
+    <button class="signup-modal-close" onclick="closeSignupModal()">&#x2715;</button>
+    <div class="label" style="margin-bottom:12px;">Join AfroCue</div>
+    <h2 class="yh" style="font-size: clamp(36px, 5vw, 56px); margin-bottom: 20px; line-height:0.9;">Sign up<br>to AfroCue.</h2>
+    <p style="font-size:14px; font-weight:300; color:rgba(240,237,232,0.55); margin-bottom:28px; line-height:1.75;">Tell us who you are. We'll reach out and keep you connected to what's happening.</p>
+    <form class="signup-modal-form" onsubmit="handleSignup(event)">
+      <div class="signup-row">
+        <div class="signup-field">
+          <label>Name</label>
+          <input type="text" name="su_name" placeholder="Your name" required/>
+        </div>
+        <div class="signup-field">
+          <label>Email</label>
+          <input type="email" name="su_email" placeholder="your@email.com" required/>
+        </div>
+      </div>
+      <div class="signup-field">
+        <label>What do you do?</label>
+        <select name="su_role">
+          <option value="" disabled selected>Select your role</option>
+          <option>DJ</option>
+          <option>Manager</option>
+          <option>Event Executive</option>
+          <option>Brand Manager</option>
+          <option>Creative / Content</option>
+          <option>Journalist / Media</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="signup-field">
+        <label>Instagram — optional</label>
+        <div style="position:relative;">
+          <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--grey);font-size:14px;pointer-events:none;">@</span>
+          <input type="text" name="su_ig" placeholder="yourhandle" style="padding-left:30px;"/>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-yellow" style="width:100%;padding:16px;font-size:13px;margin-top:8px;">Sign Up</button>
+      <p style="font-size:11px;color:var(--grey);text-align:center;margin-top:10px;">By signing up you agree to be contacted by AfroCue.</p>
+    </form>
+    <div class="signup-success" id="signupSuccess" style="display:none;text-align:center;padding:32px 0;">
+      <div class="yh" style="font-size:clamp(36px,5vw,52px);margin-bottom:12px;">You're in.</div>
+      <p style="font-size:14px;font-weight:300;color:rgba(240,237,232,0.55);">We'll be in touch.</p>
+    </div>
+  </div>
+</div>
+
+<!-- EDITORIAL TEASERS -->
+<section id="editorial">
+  <div class="editorial-header">
+    <div>
+      <div class="label">Editorial</div>
+      <h2 class="yh editorial-h">Latest<br>Stories.</h2>
+    </div>
+    <a href="#" class="ps-see-all">View all →</a>
+  </div>
+  <div class="editorial-grid">
+    <div class="editorial-card">
+      <div class="editorial-img">
+        <img src="editorial_1.jpg" alt="Interview"/>
+      </div>
+      <div class="editorial-body">
+        <div class="editorial-cat">Interview</div>
+        <div class="editorial-title">Smeez on Lagos</div>
+        <p class="editorial-excerpt">The DJ opens up about his creative process and the future of amapiano.</p>
+      </div>
+    </div>
+    <div class="editorial-card">
+      <div class="editorial-img">
+        <img src="editorial_2.jpg" alt="Culture"/>
+      </div>
+      <div class="editorial-body">
+        <div class="editorial-cat">Culture</div>
+        <div class="editorial-title">Rave Review: Rampa</div>
+        <p class="editorial-excerpt">Inside one of Lagos's most iconic underground parties.</p>
+      </div>
+    </div>
+    <div class="editorial-card">
+      <div class="editorial-img">
+        <img src="editorial_3.jpg" alt="Music"/>
+      </div>
+      <div class="editorial-body">
+        <div class="editorial-cat">Music</div>
+        <div class="editorial-title">The Rise of 3step</div>
+        <p class="editorial-excerpt">How Nigerian producers are shaping a new sound.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY CALLOUT -->
+<section id="community">
+  <div class="community-inner">
+    <h2 class="yh community-h">Tag us<br>in your<br>party pics.</h2>
+    <p class="community-text">We feature the best user content every week. Use <strong>#AfroCue</strong> or tag <strong>@afro.cue</strong> for a chance to be spotlighted.</p>
+    <div class="community-tags">
+      <a href="https://instagram.com/afro.cue" target="_blank" class="social-chip">@afro.cue</a>
+      <a href="https://instagram.com/explore/tags/afrocue" target="_blank" class="social-chip">#AfroCue</a>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section id="partners">
+  <div class="partners-inner">
+    <div class="label" style="justify-content:center;">Partners</div>
+    <div class="partners-grid">
+      <img src="partner_1.png" alt="Partner 1" class="partner-logo"/>
+      <img src="partner_2.png" alt="Partner 2" class="partner-logo"/>
+      <img src="partner_3.png" alt="Partner 3" class="partner-logo"/>
+      <img src="partner_4.png" alt="Partner 4" class="partner-logo"/>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section id="countdown">
+  <div class="countdown-inner">
+    <div class="countdown-label">Next Major Event</div>
+    <div class="countdown-event">AfroCue Rave</div>
+    <div class="countdown-timer" id="countdownTimer">
+      <div><span id="days">00</span><span>Days</span></div>
+      <div><span id="hours">00</span><span>Hours</span></div>
+      <div><span id="minutes">00</span><span>Mins</span></div>
+      <div><span id="seconds">00</span><span>Secs</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-inner">
+    <div class="label" style="justify-content:center;">FAQ</div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-question">What is AfroCue? <span>+</span></div>
+      <div class="faq-answer"><p>AfroCue is a media platform spotlighting DJs, parties, and dance music culture in Nigeria and beyond.</p></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-question">How can I get my DJ spotlighted? <span>+</span></div>
+      <div class="faq-answer"><p>Fill out the DJ signup form and we'll review your profile. You can also tag us in your sets.</p></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-question">Can you film my event? <span>+</span></div>
+      <div class="faq-answer"><p>Yes! We offer event documentation. Contact us at the email below for details.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESS MENTIONS -->
+<section id="press">
+  <div class="press-inner">
+    <div class="label" style="justify-content:center;">As Featured In</div>
+    <div class="press-grid">
+      <img src="press_1.png" alt="Press 1" class="press-logo"/>
+      <img src="press_2.png" alt="Press 2" class="press-logo"/>
+      <img src="press_3.png" alt="Press 3" class="press-logo"/>
+    </div>
+  </div>
+</section>
+
+<!-- GET FEATURED (existing) -->
+<section id="advertise">
+  <div class="adv-header">
+    <div>
+      <div class="label">Work With Us</div>
+      <h2 class="yh adv-h">Get<br>Featured.</h2>
+    </div>
+    <p class="adv-intro">We work with DJs, events, and brands to create culture-driven content and connect them with the right audience.</p>
+  </div>
+  <div class="adv-grid">
+    <!-- cards as before -->
+  </div>
+  <div class="adv-cta">
+    <a href="mailto:hello@afrocue.xyz" class="btn btn-white">Get In Touch</a>
+    <p class="adv-email"><a href="mailto:hello@afrocue.xyz">hello@afrocue.xyz</a></p>
+  </div>
+</section>
+
+<!-- AUDIENCE (existing) -->
+<section id="audience">
+  <div class="audience-top">
+    <div class="label">Our Audience</div>
+    <h2 class="yh audience-h">Who We<br>Reach.</h2>
+    <p class="audience-body">AfroCue speaks to the people who go out, listen to DJs, discover music, and shape nightlife culture.</p>
+  </div>
+  <div class="audience-cards">
+    <!-- cards -->
+  </div>
+</section>
+
+<!-- FOLLOW (existing) -->
+<section id="follow">
+  <div class="label">Follow AfroCue</div>
+  <h2 class="yh follow-h">Find<br>Us.</h2>
+  <a href="https://instagram.com/afro.cue" target="_blank" class="follow-ig-card">
+    <div class="follow-ig-info">
+      <h3>@afro.cue</h3>
+      <p>Instagram — our main platform</p>
+    </div>
+    <div class="btn btn-white" style="pointer-events:none;">Follow on Instagram</div>
+  </a>
+  <div class="social-row">
+    <a href="https://twitter.com/afrocue_" target="_blank" class="social-chip">X / Twitter — @afrocue_</a>
+    <a href="https://tiktok.com/@afro.cue" target="_blank" class="social-chip">TikTok — @afro.cue</a>
+    <a href="https://youtube.com/@AfroCue" target="_blank" class="social-chip">YouTube</a>
+    <a href="https://open.spotify.com" target="_blank" class="social-chip">Spotify</a>
+  </div>
+</section>
+
+<!-- WHATSAPP CHANNEL (existing) -->
+<section id="whatsapp-channel" style="background:#111111;border-top:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;padding:52px 48px;">
+  <!-- content same as before -->
+</section>
+
+<!-- FEATURED YOUTUBE SET (existing) -->
+<section id="youtube">
+  <div class="yt-inner">
+    <div class="yt-left">
+      <div class="label">Featured Set</div>
+      <h2 class="yh yt-h">Yanos Theory.</h2>
+      <p class="yt-artist">Smeez &amp; D3AN — Prep Session</p>
+      <a href="https://www.youtube.com/watch?v=Ebrtzg0cJXM" target="_blank" rel="noopener" class="yt-watch-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-2.75 12 12 0 0 0-8.45 0A4.83 4.83 0 0 1 3.6 6.69 46.29 46.29 0 0 0 3 12a46.29 46.29 0 0 0 .6 5.31 4.83 4.83 0 0 1 3.77 2.75 12 12 0 0 0 8.45 0 4.83 4.83 0 0 1 3.77-2.75A46.29 46.29 0 0 0 21 12a46.29 46.29 0 0 0-.41-5.31zM10 15V9l5 3-5 3z"/></svg>
+        Watch on YouTube
+      </a>
+    </div>
+    <div class="yt-right">
+      <div class="yt-embed-wrap">
+        <iframe src="https://www.youtube.com/embed/Ebrtzg0cJXM?si=RST1dLRLpXVBwdDs" title="Smeez & D3AN — Yanos Theory Prep Session" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a href="#" style="text-decoration:none;">
+      <img src="logo_afrocue.png" alt="AfroCue"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+      <span style="display:none;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:48px;letter-spacing:0.08em;color:var(--yellow);">AfroCue</span>
+    </a>
+    <p>Creatively Documenting Culture</p>
+  </div>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#content">Content</a>
+    <a href="dj.html">DJ Signup</a>
+    <a href="#advertise">Get Featured</a>
+    <a href="#playlists">Playlists</a>
+  </div>
+  <div class="footer-email"><a href="mailto:hello@afrocue.xyz">hello@afrocue.xyz</a></div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="afrocue.js"></script>
+<script>
+  // Content slider
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  function showSlide(index) {
+    slides.forEach((s, i) => {
+      s.classList.remove('active');
+      if (i === index) s.classList.add('active');
+    });
+    currentSlide = index;
+    const bg = document.querySelector('.content-bg');
+    const img = slides[index].dataset.img;
+    if (img) bg.style.backgroundImage = `url(${img})`;
+    bg.classList.add('loaded');
+  }
+  function nextSlide() { showSlide((currentSlide + 1) % slides.length); }
+  function prevSlide() { showSlide((currentSlide - 1 + slides.length) % slides.length); }
+  showSlide(0);
+
+  // DJ Radar video controls
+  var djRadarVid = document.getElementById('djRadarVid');
+  if (djRadarVid) {
+    djRadarVid.pause();
+    djRadarVid.muted = true;
+    document.getElementById('djPlayBtn').innerHTML = '&#9654;';
+    document.getElementById('djMuteBtn').innerHTML = '&#128266;';
+  }
+  function toggleDJPlay() {
+    if (djRadarVid.paused) { djRadarVid.play(); document.getElementById('djPlayBtn').innerHTML = '&#10074;&#10074;'; }
+    else { djRadarVid.pause(); document.getElementById('djPlayBtn').innerHTML = '&#9654;'; }
+  }
+  function toggleDJMute() {
+    djRadarVid.muted = !djRadarVid.muted;
+    document.getElementById('djMuteBtn').innerHTML = djRadarVid.muted ? '&#128266;' : '&#128263;';
+  }
+
+  // Parties strip loading (placeholder — replace with CSV fetch if needed)
+  function loadIndexParties() {
+    document.getElementById('psGrid').innerHTML = '<div class="ps-loading"><a href="parties.html" style="color:var(--yellow);text-decoration:none;">Browse all parties &rarr;</a></div>';
+  }
+  loadIndexParties();
+
+  // Newsletter and signup modal handlers (placeholder)
+  function handleNewsletter(e) {
+    e.preventDefault();
+    alert('Newsletter subscribed! (placeholder)');
+  }
+  function openSignupModal() {
+    document.getElementById('signupModal').classList.add('open');
+  }
+  function closeSignupModal() {
+    document.getElementById('signupModal').classList.remove('open');
+  }
+  function handleSignup(e) {
+    e.preventDefault();
+    document.getElementById('signupSuccess').style.display = 'block';
+    document.querySelector('.signup-modal-form').style.display = 'none';
+  }
+
+  // Countdown timer (set your target date)
+  const targetDate = new Date('2026-12-31T00:00:00');
+  function updateCountdown() {
+    const now = new Date();
+    const diff = targetDate - now;
+    if (diff <= 0) {
+      document.getElementById('days').textContent = '00';
+      document.getElementById('hours').textContent = '00';
+      document.getElementById('minutes').textContent = '00';
+      document.getElementById('seconds').textContent = '00';
+      return;
+    }
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const seconds = Math.floor((diff % (1000*60)) / 1000);
+    document.getElementById('days').textContent = String(days).padStart(2,'0');
+    document.getElementById('hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('minutes').textContent = String(minutes).padStart(2,'0');
+    document.getElementById('seconds').textContent = String(seconds).padStart(2,'0');
+  }
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
+</body>
+</html>
