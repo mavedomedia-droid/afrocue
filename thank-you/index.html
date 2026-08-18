@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Welcome to AfroCue</title>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="apple-touch-icon" href="favicon.png"/>
+  <meta name="description" content="Welcome to AfroCue. Stay in touch with our content as we document Lagos and Nigeria DJ culture, dance music and more."/>
+  <link rel="canonical" href="https://afrocue.xyz/thank-you"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://afrocue.xyz/thank-you"/>
+  <meta property="og:title" content="Welcome to AfroCue"/>
+  <meta property="og:description" content="Stay in touch with our content as we document Lagos and Nigeria DJ culture, dance music and more."/>
+  <meta property="og:image" content="https://afrocue.xyz/hero_dj.jpg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@afrocue_"/>
+  <meta name="twitter:title" content="Welcome to AfroCue"/>
+  <meta name="twitter:description" content="Stay in touch with our content as we document Lagos and Nigeria DJ culture, dance music and more."/>
+  <meta name="twitter:image" content="https://afrocue.xyz/hero_dj.jpg"/>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
+    :root {
+      --black:  #0a0a0a;
+      --dark:   #111111;
+      --dark2:  #1c1c1c;
+      --mid:    #2e2e2e;
+      --grey:   #555555;
+      --silver: #999999;
+      --off:    #d4d4d0;
+      --white:  #f0ede8;
+      --yellow: #C8E000;
+      --yts:    2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.06);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--black); color:var(--white); font-family:'Figtree',sans-serif; overflow-x:hidden; }
+    .yh { font-family:'Aesthet Nova',sans-serif; font-weight:900; color:var(--yellow); text-shadow:var(--yts); line-height:0.92; }
+
+    /* NAV */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:900;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px 48px;
+      background:rgba(10,10,10,0.92); backdrop-filter:blur(20px);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+    }
+    .nav-logo { display:flex; align-items:center; text-decoration:none; }
+    .nav-logo img { height:48px; width:auto; display:block; }
+    .nav-logo-fallback { display:none; font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:17px; color:var(--yellow); letter-spacing:0.08em; }
+    .nav-links { display:flex; gap:28px; list-style:none; }
+    .nav-links a { font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--silver); text-decoration:none; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--white); }
+    .nav-cta { font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--black); background:var(--white); padding:10px 20px; border-radius:2px; text-decoration:none; transition:background 0.2s; white-space:nowrap; }
+    .nav-cta:hover { background:var(--off); }
+
+    /* HERO */
+    .hero {
+      min-height:80vh; display:flex; flex-direction:column; justify-content:center; align-items:center;
+      position:relative; padding:120px 48px 80px; overflow:hidden; text-align:center;
+    }
+    .hero-bg { position:absolute; inset:0; z-index:0; }
+    .hero-bg img { width:100%; height:100%; object-fit:cover; object-position:center 30%; opacity:0.35; display:block; }
+    .hero-texture { position:absolute; inset:0; z-index:1; background-image:url('texture.jpg'); background-size:cover; opacity:0.35; pointer-events:none; }
+    .hero-overlay { position:absolute; inset:0; z-index:2; background:linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.6) 50%, rgba(10,10,10,0.2) 100%); }
+    .hero-content { position:relative; z-index:3; max-width:720px; width:100%; }
+    .checkmark {
+      width:80px; height:80px; border-radius:50%;
+      background:var(--yellow); margin:0 auto 28px;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .checkmark svg { width:36px; height:36px; stroke:var(--black); stroke-width:3; }
+    h1 {
+      font-family:'Aesthet Nova',sans-serif; font-weight:900;
+      font-size:clamp(48px, 10vw, 100px); line-height:0.9;
+      color:var(--yellow); text-shadow:var(--yts); margin-bottom:20px;
+    }
+    .hero-sub { font-size:16px; font-weight:300; line-height:1.8; color:rgba(240,237,232,0.7); max-width:480px; margin:0 auto 36px; }
+
+    .btn-row { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:8px; }
+    .btn { display:inline-block; font-family:'Figtree',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:14px 30px; border-radius:2px; text-decoration:none; border:none; cursor:pointer; transition:all 0.2s; white-space:nowrap; }
+    .btn-primary { color:var(--black); background:var(--yellow); }
+    .btn-primary:hover { opacity:0.85; }
+    .btn-secondary { color:var(--silver); background:transparent; border:1px solid rgba(255,255,255,0.18); }
+    .btn-secondary:hover { border-color:var(--white); color:var(--white); }
+    .next-step-label { font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--grey); margin-top:24px; }
+
+    /* DISCOVER LINE */
+    .discover-line {
+      border-top:1px solid rgba(255,255,255,0.06);
+      background:var(--dark);
+      padding:64px 48px;
+      text-align:center;
+    }
+    .discover-line p {
+      font-size:clamp(20px, 3vw, 28px);
+      font-weight:300;
+      line-height:1.5;
+      color:rgba(240,237,232,0.6);
+      max-width:640px;
+      margin:0 auto;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top:1px solid rgba(255,255,255,0.06);
+      padding:40px 48px;
+      display:flex; flex-direction:column; align-items:center; gap:20px;
+      background:var(--dark); text-align:center;
+    }
+    .footer-brand img { height:48px; width:auto; display:block; }
+    .footer-links { display:flex; gap:22px; flex-wrap:wrap; justify-content:center; }
+    .footer-links a { font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--grey); text-decoration:none; transition:color 0.2s; }
+    .footer-links a:hover { color:var(--white); }
+    .footer-email a { font-size:11px; color:var(--grey); text-decoration:none; }
+    .footer-email a:hover { color:var(--white); }
+
+    @media (max-width:768px) {
+      nav { padding:14px 20px; }
+      .nav-links { display:none; }
+      .hero { padding:100px 20px 60px; }
+      .btn-row { flex-direction:column; align-items:center; }
+      .btn { width:100%; max-width:280px; text-align:center; }
+      .discover-line { padding:48px 20px; }
+      footer { padding:32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="logo_afrocue.png" alt="AfroCue"
+      onerror="this.style.display='none'; document.querySelector('.nav-logo-fallback').style.display='block'"/>
+    <span class="nav-logo-fallback">afro.cue</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="parties.html">Parties</a></li>
+    <li><a href="index.html#content">Content</a></li>
+    <li><a href="index.html#playlists">Playlists</a></li>
+  </ul>
+  <a href="index.html#join" class="nav-cta">Sign Up</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"><img src="hero_dj.jpg" alt="AfroCue DJ"/></div>
+  <div class="hero-texture"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="checkmark">
+      <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+    <h1>Welcome<br>to AfroCue.</h1>
+    <p class="hero-sub">Stay in touch with our content as we document Lagos and Nigeria DJ culture, dance music, and more.</p>
+
+    <!-- Primary: Follow Instagram -->
+    <div class="btn-row">
+      <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-primary">Follow @afro.cue</a>
+    </div>
+
+    <!-- Secondary / Next step: WhatsApp -->
+    <div class="next-step-label">Next step</div>
+    <div class="btn-row">
+      <a href="https://whatsapp.com/channel/0029Vb74IjxGufJ0irS1uq0u" target="_blank" class="btn btn-secondary">Join WhatsApp Channel</a>
+    </div>
+  </div>
+</div>
+
+<!-- DISCOVER LINE -->
+<div class="discover-line">
+  <p>Discover DJs, parties, dance music and Nigeria nightlife with AfroCue.</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a href="index.html"><img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none'"></a>
+  </div>
+  <div class="footer-links">
+    <a href="index.html#about">About</a>
+    <a href="index.html#content">Content</a>
+    <a href="dj.html">DJ Signup</a>
+    <a href="index.html#playlists">Playlists</a>
+  </div>
+  <div class="footer-email"><a href="mailto:hello@afrocue.xyz">hello@afrocue.xyz</a></div>
+</footer>
+
+</body>
+</html>
