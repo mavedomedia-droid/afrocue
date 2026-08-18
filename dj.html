@@ -46,6 +46,9 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+  <!-- Central Config -->
+  <script src="afrocue-config.js"></script>
+
   <style>
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
@@ -226,7 +229,7 @@
 
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<!-- SUCCESS OVERLAY -->
+<!-- SUCCESS OVERLAY (kept for fallback, but not used with redirect) -->
 <div class="success-overlay" id="successOverlay">
   <div class="success-card">
     <h2>You're on<br>the radar.</h2>
@@ -436,10 +439,9 @@
     <a href="index.html#content">Content</a>
     <a href="pregame.html">Pregame</a>
   </div>
-  <div class="footer-email"><a href="/cdn-cgi/l/email-protection#d0b9beb6bf90b1b6a2bfb3a5b5fea8a9aa"><span class="__cf_email__" data-cfemail="573e3931381736312538342232792f2e2d">[email&#160;protected]</span></a></div>
+  <div class="footer-email"><a href="mailto:hello@afrocue.xyz">hello@afrocue.xyz</a></div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="afrocue.js"></script>
 <script>
   /* Primary genre — single select */
   function selectPrimary(el) {
@@ -491,7 +493,7 @@
     btn.disabled = true;
 
     var data = {
-      source:           'dj_signup',
+      source:           'dj',
       name:             form.name.value.trim(),
       email:            form.email.value.trim(),
       dj_name:          form.dj_name.value.trim(),
@@ -506,12 +508,9 @@
       newsletter:       djNewsletterChecked ? 'Yes' : 'No'
     };
 
-    var SCRIPT_URL = window.AFROCUE_SCRIPT_URL || 'YOUR_GAS_SCRIPT_URL_HERE';
-    if (SCRIPT_URL === 'YOUR_GAS_SCRIPT_URL_HERE') {
-      console.warn('SCRIPT_URL not set');
-      document.getElementById('successOverlay').classList.add('show');
-      return;
-    }
+    var SCRIPT_URL = window.AFROCUE_CONFIG && window.AFROCUE_CONFIG.scriptUrl
+      ? window.AFROCUE_CONFIG.scriptUrl
+      : 'https://script.google.com/macros/s/AKfycbwk0SvCWpKSr-hxsh_TPZiCCh2QTT8uXanQWiDl2qRCLqw1_wkNWLdNUs3LhYGqTl-O/exec';
 
     fetch(SCRIPT_URL, {
       method: 'POST',
@@ -519,10 +518,8 @@
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     }).finally(function() {
-      btn.textContent = 'Get on the Radar';
-      btn.disabled = false;
-      document.getElementById('successOverlay').classList.add('show');
-      document.body.style.overflow = 'hidden';
+      // Redirect to DJ thank you page
+      window.location.href = '/thank-you/dj/';
     });
   }
 </script>
