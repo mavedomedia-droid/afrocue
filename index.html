@@ -29,8 +29,8 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Central Config (replace with your GAS URL) -->
-  <script src="/config.js"></script>
+  <!-- Central Config -->
+  <script src="/config"></script>
 
   <style>
     /* ════════════════════════════════════════════════════════════
@@ -102,7 +102,7 @@
     .btn-ig:hover { background: var(--off); }
     .btn-ig svg { width: 14px; height: 14px; flex-shrink: 0; }
 
-    /* ── BUTTONS ── */
+    /* buttons etc. (existing) */
     .btn { display: inline-block; font-family: 'Figtree', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 13px 26px; border-radius: 2px; text-decoration: none; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
     .btn-white { color: var(--black); background: var(--white); }
     .btn-white:hover { background: var(--off); }
@@ -1111,11 +1111,31 @@
 
   loadIndexParties();
 
-  /* ── NEWSLETTER / SIGNUP (placeholders, use config later) ── */
+  /* ── FORM HANDLERS ── */
+  function getScriptUrl() {
+    return (window.AFROCUE_CONFIG && window.AFROCUE_CONFIG.scriptUrl)
+      ? window.AFROCUE_CONFIG.scriptUrl
+      : 'https://script.google.com/macros/s/AKfycbwk0SvCWpKSr-hxsh_TPZiCCh2QTT8uXanQWiDl2qRCLqw1_wkNWLdNUs3LhYGqTl-O/exec';
+  }
+
   function handleNewsletter(e) {
     e.preventDefault();
-    alert('Newsletter subscribed! (placeholder)');
+    var form = e.target;
+    var data = {
+      source: 'newsletter',
+      name: form.nl_name.value.trim(),
+      email: form.nl_email.value.trim()
+    };
+    fetch(getScriptUrl(), {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).finally(function() {
+      window.location.href = '/thank-you/';
+    });
   }
+
   function openSignupModal() {
     document.getElementById('signupModal').classList.add('open');
   }
@@ -1124,8 +1144,22 @@
   }
   function handleSignup(e) {
     e.preventDefault();
-    document.getElementById('signupSuccess').style.display = 'block';
-    document.querySelector('.signup-modal-form').style.display = 'none';
+    var form = e.target;
+    var data = {
+      source: 'join',
+      name: form.su_name.value.trim(),
+      email: form.su_email.value.trim(),
+      role: form.su_role.value,
+      instagram: form.su_ig.value.trim()
+    };
+    fetch(getScriptUrl(), {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).finally(function() {
+      window.location.href = '/thank-you/';
+    });
   }
 </script>
 </body>
