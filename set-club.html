@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-  <title>AfroCue Set Club — A third space for the sets.</title>
+  <title>AfroCue Set Club — A third space for DJ sets.</title>
   <link rel="icon" type="image/png" href="favicon.png"/>
   <link rel="apple-touch-icon" href="favicon.png"/>
   <meta name="description" content="AfroCue Set Club — a third space for experiencing, discovering and reliving the DJ sets that shaped Nigerian dance music culture."/>
   <link rel="canonical" href="https://afrocue.xyz/sets-club"/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://afrocue.xyz/sets-club"/>
-  <meta property="og:title" content="AfroCue Set Club"/>
+  <meta property="og:title" content="AfroCue Set Club — A third space for DJ sets."/>
   <meta property="og:description" content="Some DJ sets deserve to be watched together. Join the first edition."/>
   <meta property="og:image" content="https://afrocue.xyz/setsclub_hero.jpg"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:site" content="@afrocue_"/>
-  <meta name="twitter:title" content="AfroCue Set Club"/>
+  <meta name="twitter:title" content="AfroCue Set Club — A third space for DJ sets."/>
   <meta name="twitter:description" content="Some DJ sets deserve to be watched together. Join the first edition."/>
   <meta name="twitter:image" content="https://afrocue.xyz/setsclub_hero.jpg"/>
 
@@ -26,7 +26,7 @@
   })(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
 
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="/config"></script>
+  <script src="/config.js"></script>
 
   <style>
     /* ── AfroCue Set Club — Final Styles ── */
@@ -586,7 +586,7 @@
 
 <section class="intro-section">
   <div class="eyebrow">AfroCue Set Club</div>
-  <div class="intro-line">A third space<br>for the sets.</div>
+  <div class="intro-line">A third space<br>for DJ sets.</div>
   <p class="description">
     Set Club is a focused space for experiencing and reliving the DJ sets that shaped Nigerian dance music culture.
   </p>
@@ -805,7 +805,7 @@
   async function searchYouTube(query) {
     const scriptUrl = (window.AFROCUE_CONFIG && window.AFROCUE_CONFIG.scriptUrl)
       ? window.AFROCUE_CONFIG.scriptUrl
-      : 'https://script.google.com/macros/s/AKfycbwk0SvCWpKSr-hxsh_TPZiCCh2QTT8uXanQWiDl2qRCLqw1_wkNWLdNUs3LhYGqTl-O/exec';
+      : 'https://script.google.com/macros/s/AKfycbwZdf0cfRG3wI0fKe5SFW6OH57X3iwjkpTfsMg5ZIR2F8757fY7Jo8xfOZm3WiUEcWg/exec';
     try {
       const response = await fetch(`${scriptUrl}?action=searchYouTube&q=${encodeURIComponent(query)}`);
       const data = await response.json();
@@ -1015,7 +1015,7 @@
 
     const scriptUrl = (window.AFROCUE_CONFIG && window.AFROCUE_CONFIG.scriptUrl)
       ? window.AFROCUE_CONFIG.scriptUrl
-      : 'https://script.google.com/macros/s/AKfycbwk0SvCWpKSr-hxsh_TPZiCCh2QTT8uXanQWiDl2qRCLqw1_wkNWLdNUs3LhYGqTl-O/exec';
+      : 'https://script.google.com/macros/s/AKfycbwZdf0cfRG3wI0fKe5SFW6OH57X3iwjkpTfsMg5ZIR2F8757fY7Jo8xfOZm3WiUEcWg/exec';
 
     try {
       await fetch(scriptUrl, {
