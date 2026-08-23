@@ -156,7 +156,7 @@
     /* ── PHOTO CREDIT OVERLAY ── */
     .player-credit {
       position: absolute;
-      bottom: 52px;          /* sits above the player controls */
+      bottom: 52px;
       left: 16px;
       z-index: 3;
       display: flex;
@@ -231,16 +231,39 @@
       text-align: left;
     }
     .concept-column {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 6px;
-      padding: 20px;
+      background-size: cover;
+      background-position: center;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .concept-column:hover {
+      border-color: rgba(200,224,0,0.3);
+      transform: translateY(-2px);
+    }
+    .concept-column::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.72);
+      z-index: 0;
+    }
+    .concept-column strong,
+    .concept-column ul {
+      position: relative;
+      z-index: 1;
     }
     .concept-column strong {
       display: block;
-      font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--yellow);
-      margin-bottom: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 10px;
     }
     .concept-column ul {
       list-style: none;
@@ -248,8 +271,11 @@
       margin: 0;
     }
     .concept-column li {
-      font-size: 13px; font-weight: 300; line-height: 1.6; color: rgba(240,237,232,0.6);
-      margin-bottom: 4px;
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: rgba(240,237,232,0.75);
+      margin-bottom: 6px;
       display: flex;
       gap: 8px;
     }
@@ -275,6 +301,26 @@
     }
     .rotation-header p {
       font-size: 14px; font-weight: 300; color: rgba(240,237,232,0.55);
+    }
+    .rotation-refresh {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 16px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--silver);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 8px 14px;
+      border-radius: 3px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .rotation-refresh:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
     }
     .rotation-grid {
       display: grid;
@@ -331,8 +377,26 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
       padding: 80px 48px;
     }
-    .quiz-inner { max-width: 800px; margin: 0 auto; }
-    .progress-row { display: flex; align-items: center; gap: 12px; margin-bottom: 40px; }
+    .quiz-inner {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .quiz-box {
+      background: var(--dark2);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 36px 32px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .quiz-box-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 16px;
+    }
+    .progress-row { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; }
     .progress-step { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--grey); }
     .progress-step.active { color: var(--white); }
     .progress-bar-bg { flex: 1; height: 2px; background: rgba(255,255,255,0.1); border-radius: 1px; overflow: hidden; }
@@ -513,6 +577,13 @@
     .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
     .footer-links a { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); transition: color 0.2s; }
     .footer-links a:hover { color: var(--white); }
+    .footer-powered {
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-top: 14px;
+    }
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
@@ -525,6 +596,7 @@
       .concept-columns { grid-template-columns: 1fr; }
       .option-grid { grid-template-columns: 1fr; }
       .quiz-section { padding: 64px 20px; }
+      .quiz-box { padding: 28px 20px; }
       .rotation-grid { grid-template-columns: 1fr 1fr; }
       .setclub001-icons { gap: 16px; }
     }
@@ -600,7 +672,7 @@
     Some moments end when the night does. Others live on in the sets we replay, share and return to.
   </p>
   <div class="concept-columns">
-    <div class="concept-column">
+    <div class="concept-column" style="background-image: url('roamers_what.jpg');">
       <strong>Digitally</strong>
       <ul>
         <li>Content and clips</li>
@@ -609,7 +681,7 @@
         <li>Conversations around sets</li>
       </ul>
     </div>
-    <div class="concept-column">
+    <div class="concept-column" style="background-image: url('roamers_top5_sample.jpg');">
       <strong>Physically</strong>
       <ul>
         <li>Picture a book club, but for DJ sets</li>
@@ -627,6 +699,10 @@
       <div class="label">From the scenes</div>
       <h2 class="yh">Sets worth revisiting.</h2>
       <p>Pulled from the parties and platforms we're always watching.</p>
+      <button class="rotation-refresh" onclick="loadRotation()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        Refresh
+      </button>
     </div>
     <div class="rotation-grid" id="rotationGrid">
       <div style="grid-column: 1/-1; text-align:center; color: var(--grey); padding: 40px 0;">
@@ -638,117 +714,110 @@
 
 <section class="quiz-section" id="quiz">
   <div class="quiz-inner">
-    <div class="progress-row">
-      <span class="progress-step active" id="stepLabel">01 / 04</span>
-      <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill" style="width: 25%;"></div></div>
-      <span class="progress-step">04 / 04</span>
-    </div>
+    <div class="quiz-box">
+      <div class="quiz-box-label">Set Club Sign‑up</div>
 
-    <div class="quiz-step active" id="step1">
-      <h2>What kind of sets do you like?</h2>
-      <p class="step-copy">Pick all that apply.</p>
-      <div class="option-grid" id="setTypes">
-        <div class="option-pill" data-value="Rave Sets" onclick="toggleMulti(this)">
-          <span class="check"></span>
-          <span class="opt-text"><span class="opt-main">Rave Sets</span><span class="opt-examples">Afro House, Freestyle, GQOM</span></span>
-        </div>
-        <div class="option-pill" data-value="Amapiano Sets" onclick="toggleMulti(this)">
-          <span class="check"></span>
-          <span class="opt-text"><span class="opt-main">Amapiano Sets</span><span class="opt-examples">Amapiano, Private School</span></span>
-        </div>
-        <div class="option-pill" data-value="House Sets" onclick="toggleMulti(this)">
-          <span class="check"></span>
-          <span class="opt-text"><span class="opt-main">House Sets</span><span class="opt-examples">Deep House, Tech House</span></span>
-        </div>
-        <div class="option-pill" data-value="Afrobeats Sets" onclick="toggleMulti(this)">
-          <span class="check"></span>
-          <span class="opt-text"><span class="opt-main">Afrobeats Sets</span></span>
-        </div>
-        <div class="option-pill" data-value="Experimental" onclick="toggleMulti(this)">
-          <span class="check"></span>
-          <span class="opt-text"><span class="opt-main">Experimental</span></span>
-        </div>
-        <div class="option-pill" data-value="Other" onclick="toggleMulti(this)">
-          <span class="check"></span>
-          <span class="opt-text"><span class="opt-main">Other</span></span>
-        </div>
-      </div>
-      <div class="other-input" id="otherGenreWrap">
-        <input type="text" id="otherGenre" placeholder="Tell us what you listen to..." />
+      <div class="progress-row">
+        <span class="progress-step active" id="stepLabel">01 / 04</span>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill" style="width: 25%;"></div></div>
+        <span class="progress-step">04 / 04</span>
       </div>
 
-      <button class="btn-outline" style="margin-top: 30px; width:100%;" onclick="goToStep(2)">Continue</button>
-    </div>
-
-    <div class="quiz-step" id="step2">
-      <h2>Where do you mostly experience sets IRL?</h2>
-      <p class="step-copy">Pick all that apply.</p>
-      <div class="option-grid" id="setEnvironments">
-        <div class="option-pill" data-value="Raves" onclick="toggleMulti(this)">
-          <span class="check"></span>
-          <span class="opt-text"><span class="opt-main">Raves</span><span class="opt-examples">Monochroma, Group Therapy</span></span>
+      <div class="quiz-step active" id="step1">
+        <h2>What kind of sets do you like?</h2>
+        <p class="step-copy">Pick all that apply.</p>
+        <div class="option-grid" id="setTypes">
+          <div class="option-pill" data-value="Rave Sets" onclick="toggleMulti(this)">
+            <span class="check"></span>
+            <span class="opt-text"><span class="opt-main">Rave Sets</span><span class="opt-examples">Afro House, Freestyle, GQOM</span></span>
+          </div>
+          <div class="option-pill" data-value="Amapiano Sets" onclick="toggleMulti(this)">
+            <span class="check"></span>
+            <span class="opt-text"><span class="opt-main">Amapiano Sets</span><span class="opt-examples">Amapiano, Private School</span></span>
+          </div>
+          <div class="option-pill" data-value="House Sets" onclick="toggleMulti(this)">
+            <span class="check"></span>
+            <span class="opt-text"><span class="opt-main">House Sets</span><span class="opt-examples">Deep House, Tech House</span></span>
+          </div>
+          <div class="option-pill" data-value="Afrobeats Sets" onclick="toggleMulti(this)">
+            <span class="check"></span>
+            <span class="opt-text"><span class="opt-main">Afrobeats Sets</span></span>
+          </div>
+          <div class="option-pill" data-value="Other" onclick="toggleMulti(this)">
+            <span class="check"></span>
+            <span class="opt-text"><span class="opt-main">Other</span></span>
+          </div>
         </div>
-        <div class="option-pill" data-value="Clubs" onclick="toggleMulti(this)">
-          <span class="check"></span>
-          <span class="opt-text"><span class="opt-main">Clubs</span><span class="opt-examples">Formal, BOHO</span></span>
+        <div class="other-input" id="otherGenreWrap">
+          <input type="text" id="otherGenre" placeholder="Tell us what you listen to..." />
         </div>
-        <div class="option-pill" data-value="Festivals" onclick="toggleMulti(this)">
-          <span class="check"></span>
-          <span class="opt-text"><span class="opt-main">Festivals</span><span class="opt-examples">Dance Eko</span></span>
-        </div>
-        <div class="option-pill" data-value="Parties" onclick="toggleMulti(this)">
-          <span class="check"></span>
-          <span class="opt-text"><span class="opt-main">Parties</span><span class="opt-examples">South Social, PM2AM, LITB</span></span>
-        </div>
+        <button class="btn-outline" style="margin-top: 30px; width:100%;" onclick="goToStep(2)">Continue</button>
       </div>
 
-      <button class="btn-outline" style="margin-top: 30px; width:100%;" onclick="goToStep(3)">Continue</button>
-    </div>
-
-    <div class="quiz-step" id="step3">
-      <h2>Recommend a DJ set(s) from YouTube we should be watching.</h2>
-      <p class="step-copy">Search YouTube and add up to 5 sets. No pressure.</p>
-
-      <div class="search-box">
-        <input type="text" id="setSearch" placeholder="Search for a DJ, set, venue or event..." autocomplete="off"/>
+      <div class="quiz-step" id="step2">
+        <h2>Where do you mostly experience sets IRL?</h2>
+        <p class="step-copy">Pick all that apply.</p>
+        <div class="option-grid" id="setEnvironments">
+          <div class="option-pill" data-value="Raves" onclick="toggleMulti(this)">
+            <span class="check"></span>
+            <span class="opt-text"><span class="opt-main">Raves</span><span class="opt-examples">Monochroma, Group Therapy</span></span>
+          </div>
+          <div class="option-pill" data-value="Clubs" onclick="toggleMulti(this)">
+            <span class="check"></span>
+            <span class="opt-text"><span class="opt-main">Clubs</span><span class="opt-examples">Formal, BOHO</span></span>
+          </div>
+          <div class="option-pill" data-value="Festivals" onclick="toggleMulti(this)">
+            <span class="check"></span>
+            <span class="opt-text"><span class="opt-main">Festivals</span><span class="opt-examples">Dance Eko</span></span>
+          </div>
+          <div class="option-pill" data-value="Parties" onclick="toggleMulti(this)">
+            <span class="check"></span>
+            <span class="opt-text"><span class="opt-main">Parties</span><span class="opt-examples">South Social, PM2AM, LITB</span></span>
+          </div>
+        </div>
+        <button class="btn-outline" style="margin-top: 30px; width:100%;" onclick="goToStep(3)">Continue</button>
       </div>
-      <div class="results-container" id="resultsContainer"></div>
 
-      <div class="selected-sets-container" id="selectedSetsContainer"></div>
-
-      <button class="btn-outline" style="margin-top: 20px; width:100%;" onclick="goToStep(4)">Continue</button>
-    </div>
-
-    <div class="quiz-step" id="step4">
-      <h2>Come watch with us.</h2>
-      <p class="step-copy">Tell us a little about yourself.</p>
-
-      <form class="signup-form" id="setClubForm" onsubmit="submitSetClub(event)">
-        <input type="text" name="first_name" placeholder="First Name" required/>
-        <input type="email" name="email" placeholder="Email" required/>
-        <div class="prefix-wrap">
-          <input type="text" name="instagram" placeholder="yourhandle" />
+      <div class="quiz-step" id="step3">
+        <h2>Recommend a DJ set(s) from YouTube we should be watching.</h2>
+        <p class="step-copy">Search YouTube and add up to 5 sets. No pressure.</p>
+        <div class="search-box">
+          <input type="text" id="setSearch" placeholder="Search for a DJ, set, venue or event..." autocomplete="off"/>
         </div>
+        <div class="results-container" id="resultsContainer"></div>
+        <div class="selected-sets-container" id="selectedSetsContainer"></div>
+        <button class="btn-outline" style="margin-top: 20px; width:100%;" onclick="goToStep(4)">Continue</button>
+      </div>
 
-        <h2 style="margin-top: 30px;">Which best describes you?</h2>
-        <div class="option-grid" id="audienceCategory">
-          <div class="option-pill" data-value="Attendee / Partygoer" onclick="selectSingle(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Attendee / Partygoer</span></span></div>
-          <div class="option-pill" data-value="DJ" onclick="selectSingle(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">DJ</span></span></div>
-          <div class="option-pill" data-value="Creative" onclick="selectSingle(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Creative</span></span></div>
-          <div class="option-pill" data-value="Event Curator" onclick="selectSingle(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Event Curator</span></span></div>
-          <div class="option-pill" data-value="Producer" onclick="selectSingle(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Producer</span></span></div>
-          <div class="option-pill" data-value="Other" onclick="selectSingle(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Other</span></span></div>
-        </div>
+      <div class="quiz-step" id="step4">
+        <h2>Come watch with us.</h2>
+        <p class="step-copy">Tell us a little about yourself.</p>
+        <form class="signup-form" id="setClubForm" onsubmit="submitSetClub(event)">
+          <input type="text" name="first_name" placeholder="First Name" required/>
+          <input type="email" name="email" placeholder="Email" required/>
+          <div class="prefix-wrap">
+            <input type="text" name="instagram" placeholder="yourhandle" />
+          </div>
 
-        <button type="submit" class="btn-outline full" style="margin-top: 30px;">Sign up</button>
-      </form>
-    </div>
+          <h2 style="margin-top: 30px;">Which best describes you?</h2>
+          <div class="option-grid" id="audienceCategory">
+            <div class="option-pill" data-value="Attendee / Partygoer" onclick="selectSingle(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Attendee / Partygoer</span></span></div>
+            <div class="option-pill" data-value="DJ" onclick="selectSingle(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">DJ</span></span></div>
+            <div class="option-pill" data-value="Creative" onclick="selectSingle(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Creative</span></span></div>
+            <div class="option-pill" data-value="Event Curator" onclick="selectSingle(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Event Curator</span></span></div>
+            <div class="option-pill" data-value="Producer" onclick="selectSingle(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Producer</span></span></div>
+            <div class="option-pill" data-value="Other" onclick="selectSingle(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Other</span></span></div>
+          </div>
+          <button type="submit" class="btn-outline full" style="margin-top: 30px;">Sign up</button>
+        </form>
+      </div>
 
-    <div class="success-state" id="successState">
-      <h2>You're in.</h2>
-      <p>We'll let you know when Set Club 001 is ready.</p>
-      <p style="color: var(--grey); margin-bottom: 24px;">Keep watching.</p>
-      <a href="index.html" class="btn-outline">Back to AfroCue</a>
+      <div class="success-state" id="successState">
+        <h2>You're in.</h2>
+        <p>We'll let you know when Set Club 001 is ready.</p>
+        <p style="color: var(--grey); margin-bottom: 24px;">Keep watching.</p>
+        <a href="sets-club.html" class="btn-outline">Back to Set Club</a>
+      </div>
     </div>
   </div>
 </section>
@@ -798,6 +867,7 @@
     <a href="https://youtube.com/@AfroCue" target="_blank">YouTube</a>
     <a href="https://afrocue.xyz" target="_blank">AfroCue.xyz</a>
   </div>
+  <div class="footer-powered">Powered by AfroCue</div>
 </footer>
 
 <script>
@@ -943,6 +1013,8 @@
     const grid = document.getElementById('rotationGrid');
     if (!grid) return;
 
+    grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; color: var(--grey); padding: 40px 0;">Loading sets…</div>';
+
     const shuffled = [...SCENE_KEYWORDS].sort(() => 0.5 - Math.random());
     const selectedKeywords = shuffled.slice(0, 4);
 
@@ -1024,7 +1096,8 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       });
-      window.location.href = '/thank-you/set-club';
+      const firstName = form.first_name.value.trim() || '';
+      window.location.href = '/thank-you/set-club?name=' + encodeURIComponent(firstName);
     } catch (err) {
       console.error('Submission error', err);
       alert('Something went wrong. Please try again.');
