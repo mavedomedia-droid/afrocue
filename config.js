@@ -1,7 +1,7 @@
 // afrocue-config.js
 window.AFROCUE_CONFIG = {
   // Replace with your deployed Google Apps Script Web App URL
-  scriptUrl: 'https://script.google.com/macros/s/AKfycbxDt8SSQZpGSePoWXMf7oTnkuFzEDLDxqiMaaNZrGM79FGTkMidgCu0JEGV8SI2o5-L/exec',
+  scriptUrl: 'https://script.google.com/macros/s/AKfycbyig-daL1IzzMWLci-jhm8D54xcFxfgc4TJk0AA836SzCR1HxjPg7nwz7r9ilw1wTaC/exec',
 
   // Map form source to sheet tab name.
   // Each form sends a "source" field (e.g. 'newsletter', 'join', 'dj', 'roamers')
