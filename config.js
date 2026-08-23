@@ -1,6 +1,6 @@
 // config.js
 window.AFROCUE_CONFIG = {
-  scriptUrl: 'https://script.google.com/macros/s/AKfycbwZdf0cfRG3wI0fKe5SFW6OH57X3iwjkpTfsMg5ZIR2F8757fY7Jo8xfOZm3WiUEcWg/exec',
+  scriptUrl: 'https://script.google.com/macros/library/d/1Hin1ZeywY1_JWDPMqz2d_kD91ubr6wjwGsJ32tTQuBBuWr0v4wuv3Pw9/4',
 
   sheetBySource: {
     newsletter: 'Users',
