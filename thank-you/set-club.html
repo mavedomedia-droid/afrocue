@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Thanks for signing up — AfroCue Set Club</title>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="apple-touch-icon" href="favicon.png"/>
+  <meta name="description" content="Thanks for signing up. Follow AfroCue on WhatsApp for everything you need."/>
+  <link rel="canonical" href="https://afrocue.xyz/thank-you/set-club"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://afrocue.xyz/thank-you/set-club"/>
+  <meta property="og:title" content="Thanks for signing up — AfroCue Set Club"/>
+  <meta property="og:description" content="Follow AfroCue on WhatsApp for everything you need."/>
+  <meta property="og:image" content="https://afrocue.xyz/setsclub_hero.jpg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@afrocue_"/>
+  <meta name="twitter:title" content="Thanks for signing up — AfroCue Set Club"/>
+  <meta name="twitter:description" content="Follow AfroCue on WhatsApp for everything you need."/>
+  <meta name="twitter:image" content="https://afrocue.xyz/setsclub_hero.jpg"/>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: 'Aesthet Nova';
+      src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');
+      font-weight: 900;
+    }
+    @font-face {
+      font-family: 'Aesthet Nova';
+      src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype');
+      font-weight: 500;
+    }
+
+    :root {
+      --black:  #0a0a0a;
+      --dark:   #111111;
+      --dark2:  #1c1c1c;
+      --mid:    #2e2e2e;
+      --grey:   #555555;
+      --silver: #999999;
+      --off:    #d4d4d0;
+      --white:  #f0ede8;
+      --yellow: #C8E000;
+      --whatsapp: #25D366;
+      --yts:    2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.06);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Figtree', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+    .yh {
+      font-family: 'Aesthet Nova', sans-serif;
+      font-weight: 900;
+      color: var(--yellow);
+      text-shadow: var(--yts);
+      line-height: 0.92;
+    }
+    section { padding: 80px 48px; }
+    .label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--silver);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .label::before {
+      content: '';
+      width: 18px;
+      height: 1px;
+      background: var(--silver);
+      flex-shrink: 0;
+    }
+
+    /* NAV */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .site-nav .logo { display: flex; align-items: center; }
+    .site-nav .logo img { height: 40px; width: auto; display: block; }
+    .logo-fallback { display: none; font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 17px; color: var(--yellow); letter-spacing: 0.08em; }
+    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+    .nav-links a { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--silver); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      text-align: center;
+      padding: 120px 24px 80px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('setsclub_hero.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.15;
+      z-index: 0;
+    }
+    .hero-texture {
+      position: absolute; inset: 0;
+      background-image: url('texture.jpg');
+      background-size: cover;
+      opacity: 0.25;
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      width: 100%;
+    }
+    .checkmark {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+    }
+    .checkmark svg {
+      width: 36px;
+      height: 36px;
+      stroke: var(--black);
+      stroke-width: 3;
+    }
+    h1 {
+      font-family: 'Aesthet Nova', sans-serif;
+      font-weight: 900;
+      font-size: clamp(48px, 10vw, 80px);
+      line-height: 0.9;
+      color: var(--yellow);
+      text-shadow: var(--yts);
+      margin-bottom: 16px;
+    }
+    .hero-sub {
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(240,237,232,0.7);
+      max-width: 480px;
+      margin: 0 auto 32px;
+    }
+
+    .btn-outline {
+      display: inline-block;
+      font-family: 'Figtree', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border-radius: 2px;
+      text-decoration: none;
+      border: 1.5px solid var(--white);
+      color: var(--white);
+      background: transparent;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.08); }
+
+    .whatsapp-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--whatsapp);
+      color: var(--black);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+      margin-bottom: 16px;
+    }
+    .whatsapp-card:hover { opacity: 0.88; }
+    .whatsapp-card svg { width: 20px; height: 20px; fill: currentColor; }
+
+    .social-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .social-chip {
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 2px;
+      padding: 11px 18px;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--silver);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .social-chip:hover { border-color: var(--yellow); color: var(--yellow); }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+      text-decoration: none;
+    }
+    .back-link:hover { color: var(--white); }
+
+    /* FOOTER */
+    .site-footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      background: var(--dark);
+      padding: 40px 48px;
+      text-align: center;
+    }
+    .footer-brand { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 18px; color: var(--yellow); letter-spacing: 0.08em; margin-bottom: 8px; }
+    .footer-tagline { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); margin-bottom: 16px; }
+    .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+    .footer-links a { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+
+    @media (max-width: 768px) {
+      .site-nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      section { padding: 64px 20px; }
+      .hero { padding: 100px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<nav class="site-nav">
+  <a class="logo" href="#">
+    <img src="logo_afrocue.png" alt="AfroCue"
+      onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='block'"/>
+    <span class="logo-fallback">afro.cue</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="sets-club.html">Set Club</a></li>
+    <li><a href="index.html">AfroCue</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-texture"></div>
+  <div class="hero-content">
+    <div class="checkmark">
+      <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+    <h1 id="thanksHeading">Thanks for<br>signing up.</h1>
+    <p class="hero-sub" id="heroSub">Follow AfroCue on WhatsApp for everything you need.</p>
+
+    <!-- WhatsApp CTA -->
+    <a href="https://whatsapp.com/channel/0029Vb74IjxGufJ0irS1uq0u" target="_blank" class="whatsapp-card">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      </svg>
+      Follow AfroCue on WhatsApp
+    </a>
+
+    <!-- Follow AfroCue -->
+    <div class="social-row">
+      <a href="https://instagram.com/afro.cue" target="_blank" class="social-chip">Follow @afro.cue</a>
+      <a href="https://youtube.com/@AfroCue" target="_blank" class="social-chip">Subscribe on YouTube</a>
+    </div>
+
+    <a href="sets-club.html" class="back-link">← Back to Set Club</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-brand">AFROCUE</div>
+  <div class="footer-tagline">Creatively documenting DJs, parties and dance music culture.</div>
+  <div class="footer-links">
+    <a href="https://instagram.com/afro.cue" target="_blank">Instagram</a>
+    <a href="https://youtube.com/@AfroCue" target="_blank">YouTube</a>
+    <a href="https://afrocue.xyz" target="_blank">AfroCue.xyz</a>
+  </div>
+</footer>
+
+<script>
+  // ── Personalise heading with first name from query string ──
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get('name');
+    const heading = document.getElementById('thanksHeading');
+    const sub = document.getElementById('heroSub');
+    if (name && name.trim().length > 0) {
+      heading.innerHTML = `Thanks for<br>signing up ${name.trim()}.`;
+    }
+    // Subtext remains as required
+  })();
+</script>
+
+</body>
+</html>
