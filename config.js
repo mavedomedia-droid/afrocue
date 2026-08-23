@@ -1,20 +1,15 @@
-// afrocue-config.js
+// config.js
 window.AFROCUE_CONFIG = {
-  // Replace with your deployed Google Apps Script Web App URL
   scriptUrl: 'https://script.google.com/macros/s/AKfycbwZdf0cfRG3wI0fKe5SFW6OH57X3iwjkpTfsMg5ZIR2F8757fY7Jo8xfOZm3WiUEcWg/exec',
 
-  // Map form source to sheet tab name.
-  // Each form sends a "source" field (e.g. 'newsletter', 'join', 'dj', 'roamers')
-  // and the script uses this to append to the correct tab.
   sheetBySource: {
     newsletter: 'Users',
     join: 'Users',
     roamers: 'Users',
-    dj: 'DJ'
+    dj: 'DJ',
+    setclub: 'SetClub'
   },
 
-  // Optional column mapping: form field name -> sheet column name.
-  // If your form fields already match the sheet headers, you can omit this.
   columnMap: {
     name: 'Name',
     email: 'Email',
@@ -29,7 +24,6 @@ window.AFROCUE_CONFIG = {
     booking_phone: 'Booking Phone',
     booking_same: 'Booking Same',
     newsletter: 'Newsletter',
-    // Roamers-specific fields
     roamers_type: 'Roamer Type',
     parties: 'Parties',
     notify: 'Notify',
@@ -38,6 +32,12 @@ window.AFROCUE_CONFIG = {
     is_creator: 'Is Creator',
     creator_type: 'Creator Type',
     portfolio: 'Portfolio',
-    other_party: 'Other Party'
+    other_party: 'Other Party',
+    first_name: 'First Name',
+    audience_category: 'Audience Category',
+    set_types: 'Set Types',
+    other_genre: 'Other Genre',
+    set_environments: 'Set Environments',
+    selected_sets: 'Selected Sets'
   }
 };
