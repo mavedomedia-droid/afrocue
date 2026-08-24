@@ -915,42 +915,69 @@
     el.classList.add('selected');
   }
 
+  // Quote-safe escape — covers < > & " ' so titles with apostrophes/quotes
+  // (e.g. "Obi's House") can't break attributes or inline handlers.
   function escapeHtml(str) {
-    const div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
+    return String(str == null ? '' : str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 
   const searchInput = document.getElementById('setSearch');
   const resultsContainer = document.getElementById('resultsContainer');
   const selectedSetsContainer = document.getElementById('selectedSetsContainer');
 
+  // Holds the latest search results so the click handler can read them by index
+  // instead of interpolating title/channel into an onclick string.
+  let currentResults = [];
+  let searchTimer = null;
+
+  // Debounced search — one API call ~350ms after the user stops typing,
+  // instead of one per keystroke.
   searchInput.addEventListener('input', function() {
     const q = this.value.trim();
-    if (q.length >= 2) {
-      searchYouTube(q).then(renderYouTubeResults);
-    } else {
+    clearTimeout(searchTimer);
+    if (q.length < 2) {
       resultsContainer.innerHTML = '';
+      return;
     }
+    searchTimer = setTimeout(() => {
+      resultsContainer.innerHTML = '<div style="color:var(--grey); text-align:center; padding:16px;">Searching…</div>';
+      searchYouTube(q).then(renderYouTubeResults);
+    }, 350);
   });
 
   function renderYouTubeResults(items) {
-    if (!items || items.length === 0) {
+    currentResults = items || [];
+    if (!currentResults.length) {
       resultsContainer.innerHTML = '<div style="color:var(--grey); text-align:center; padding:20px;">No results found.</div>';
       return;
     }
-    resultsContainer.innerHTML = items.map(item => `
-      <div class="result-card">
-        <div class="thumb"><img src="${item.thumbnail}" alt="${escapeHtml(item.title)}"/></div>
+    resultsContainer.innerHTML = currentResults.map((item, i) => `
+      <div class="result-card" data-index="${i}">
+        <div class="thumb"><img src="${escapeHtml(item.thumbnail)}" alt="${escapeHtml(item.title)}"/></div>
         <div class="info">
           <div class="result-title">${escapeHtml(item.title)}</div>
           <div class="result-channel">${escapeHtml(item.channel)}</div>
-          <div class="result-duration">${item.duration || 'YouTube'}</div>
+          <div class="result-duration">${escapeHtml(item.duration || 'YouTube')}</div>
         </div>
-        <button class="add-btn" onclick="addSet('${item.videoId}', '${escapeHtml(item.title)}', '${escapeHtml(item.channel)}', '${item.thumbnail}')">+ Add Set</button>
+        <button class="add-btn" type="button">+ Add Set</button>
       </div>
     `).join('');
   }
+
+  // Delegated click — no inline onclick, so quotes in titles can't break it.
+  resultsContainer.addEventListener('click', function(e) {
+    const btn = e.target.closest('.add-btn');
+    if (!btn) return;
+    const card = btn.closest('.result-card');
+    if (!card) return;
+    const item = currentResults[Number(card.dataset.index)];
+    if (item) addSet(item.videoId, item.title, item.channel, item.thumbnail);
+  });
 
   function addSet(videoId, title, channel, thumb) {
     if (selectedSets.length >= 5) {
@@ -964,6 +991,7 @@
     renderSelectedSets();
     resultsContainer.innerHTML = '';
     searchInput.value = '';
+    currentResults = [];
   }
 
   function removeSet(index) {
@@ -978,12 +1006,12 @@
     }
     selectedSetsContainer.innerHTML = selectedSets.map((set, index) => `
       <div class="selected-set-card">
-        <div class="thumb"><img src="${set.thumb}" alt="${escapeHtml(set.title)}"/></div>
+        <div class="thumb"><img src="${escapeHtml(set.thumb)}" alt="${escapeHtml(set.title)}"/></div>
         <div class="info">
           <div class="selected-title">${escapeHtml(set.title)}</div>
           <div class="selected-channel">${escapeHtml(set.channel)}</div>
         </div>
-        <button class="remove-btn" onclick="removeSet(${index})">×</button>
+        <button class="remove-btn" type="button" onclick="removeSet(${index})">×</button>
       </div>
     `).join('');
   }
@@ -1018,14 +1046,14 @@
     const shuffled = [...SCENE_KEYWORDS].sort(() => 0.5 - Math.random());
     const selectedKeywords = shuffled.slice(0, 4);
 
-    const videos = [];
-    for (const kw of selectedKeywords) {
-      const items = await searchYouTube(kw + ' DJ set');
-      if (items && items.length > 0) {
-        videos.push(items[0]);
-      }
-      if (videos.length >= 4) break;
-    }
+    // Fire all four searches in parallel instead of awaiting them one by one.
+    const settled = await Promise.all(
+      selectedKeywords.map(kw => searchYouTube(kw + ' DJ set').catch(() => []))
+    );
+    const videos = settled
+      .map(items => (items && items.length ? items[0] : null))
+      .filter(Boolean)
+      .slice(0, 4);
 
     if (videos.length === 0) {
       grid.innerHTML = `
@@ -1036,15 +1064,15 @@
       return;
     }
 
-    grid.innerHTML = videos.slice(0, 4).map(set => `
-      <a class="rotation-card" href="https://www.youtube.com/watch?v=${set.videoId}" target="_blank" rel="noopener">
+    grid.innerHTML = videos.map(set => `
+      <a class="rotation-card" href="https://www.youtube.com/watch?v=${encodeURIComponent(set.videoId)}" target="_blank" rel="noopener">
         <div class="rotation-thumb">
-          <img src="${set.thumbnail}" alt="${escapeHtml(set.title)}" loading="lazy"/>
+          <img src="${escapeHtml(set.thumbnail)}" alt="${escapeHtml(set.title)}" loading="lazy"/>
         </div>
         <div class="rotation-body">
           <div class="rotation-title">${escapeHtml(set.title)}</div>
           <div class="rotation-channel">${escapeHtml(set.channel)}</div>
-          <div class="rotation-meta">YouTube${set.duration ? ' · ' + set.duration : ''}</div>
+          <div class="rotation-meta">YouTube${set.duration ? ' · ' + escapeHtml(set.duration) : ''}</div>
           <span class="rotation-watch-btn">Watch Set →</span>
         </div>
       </a>
@@ -1059,6 +1087,16 @@
   async function submitSetClub(e) {
     e.preventDefault();
     const form = e.target;
+
+    function selectedSingleValue(containerId) {
+      const selected = document.querySelector('#' + containerId + ' .option-pill.selected');
+      return selected ? selected.dataset.value : '';
+    }
+    function selectedMultiValues(containerId) {
+      const selected = document.querySelectorAll('#' + containerId + ' .option-pill.selected');
+      return Array.from(selected).map(el => el.dataset.value);
+    }
+
     const data = {
       source: 'setclub',
       first_name: form.first_name.value.trim(),
@@ -1075,15 +1113,6 @@
         url: `https://youtube.com/watch?v=${s.videoId}`
       }))
     };
-
-    function selectedSingleValue(containerId) {
-      const selected = document.querySelector('#' + containerId + ' .option-pill.selected');
-      return selected ? selected.dataset.value : '';
-    }
-    function selectedMultiValues(containerId) {
-      const selected = document.querySelectorAll('#' + containerId + ' .option-pill.selected');
-      return Array.from(selected).map(el => el.dataset.value);
-    }
 
     const scriptUrl = (window.AFROCUE_CONFIG && window.AFROCUE_CONFIG.scriptUrl)
       ? window.AFROCUE_CONFIG.scriptUrl
