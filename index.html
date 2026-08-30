@@ -29,8 +29,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Central Config -->
-  <script src="/config"></script>
+  <!-- Removed <script src="/config"></script> — afrocue.js is loaded at the bottom -->
 
   <style>
     /* ════════════════════════════════════════════════════════════
@@ -959,10 +958,12 @@
     document.getElementById('djMuteBtn').innerHTML = '&#128266;';
   }
   function toggleDJPlay() {
+    if (!djRadarVid) return;
     if (djRadarVid.paused) { djRadarVid.play(); document.getElementById('djPlayBtn').innerHTML = '&#10074;&#10074;'; }
     else { djRadarVid.pause(); document.getElementById('djPlayBtn').innerHTML = '&#9654;'; }
   }
   function toggleDJMute() {
+    if (!djRadarVid) return;
     djRadarVid.muted = !djRadarVid.muted;
     document.getElementById('djMuteBtn').innerHTML = djRadarVid.muted ? '&#128266;' : '&#128263;';
   }
@@ -1129,7 +1130,7 @@
     fetch(getScriptUrl(), {
       method: 'POST',
       mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify(data)
     }).finally(function() {
       window.location.href = '/thank-you/';
@@ -1155,7 +1156,7 @@
     fetch(getScriptUrl(), {
       method: 'POST',
       mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify(data)
     }).finally(function() {
       window.location.href = '/thank-you/';
