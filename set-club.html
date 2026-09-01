@@ -7,9 +7,9 @@
   <link rel="icon" type="image/png" href="favicon.png"/>
   <link rel="apple-touch-icon" href="favicon.png"/>
   <meta name="description" content="AfroCue Set Club — a third space for experiencing, discovering and reliving the DJ sets that shaped Nigerian dance music culture."/>
-  <link rel="canonical" href="https://afrocue.xyz/sets-club"/>
+  <link rel="canonical" href="https://afrocue.xyz/set-club"/>
   <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://afrocue.xyz/sets-club"/>
+  <meta property="og:url" content="https://afrocue.xyz/set-club"/>
   <meta property="og:title" content="AfroCue Set Club — A third space for DJ sets."/>
   <meta property="og:description" content="Some DJ sets deserve to be watched together. Join the first edition."/>
   <meta property="og:image" content="https://afrocue.xyz/setsclub_hero.jpg"/>
@@ -19,17 +19,17 @@
   <meta name="twitter:description" content="Some DJ sets deserve to be watched together. Join the first edition."/>
   <meta name="twitter:image" content="https://afrocue.xyz/setsclub_hero.jpg"/>
 
+  <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
+  <!-- End Google Tag Manager -->
 
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="/config.js"></script>
 
   <style>
-    /* ── AfroCue Set Club — Final Styles ── */
     @font-face {
       font-family: 'Aesthet Nova';
       src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');
@@ -110,10 +110,12 @@
     .nav-links .nav-cta { background: var(--white); color: var(--black); padding: 10px 20px; border-radius: 2px; font-weight: 600; }
     .nav-links .nav-cta:hover { background: var(--off); }
 
-    /* PLAYER */
-    .player-section {
+    /* HERO */
+    .hero-section {
       padding: 140px 48px 20px;
-      display: flex; flex-direction: column; align-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .player-frame {
       width: 100%; max-width: 1000px;
@@ -121,9 +123,7 @@
       border-radius: 12px; overflow: hidden;
       background: #000; position: relative;
       box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 30px 80px rgba(0,0,0,0.6);
-      transition: transform 0.2s ease;
     }
-    .player-frame:hover { transform: scale(1.005); }
     .player-frame img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.92; }
     .player-gradient {
       position: absolute; inset: 0;
@@ -153,266 +153,168 @@
     }
     .play-circle svg { width: 28px; height: 28px; fill: var(--white); }
 
-    /* ── PHOTO CREDIT OVERLAY ── */
-    .player-credit {
-      position: absolute;
-      bottom: 52px;
-      left: 16px;
-      z-index: 3;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      max-width: calc(100% - 32px);
+    .hero-content {
+      text-align: center;
+      max-width: 800px;
+      margin-top: 30px;
     }
-    .player-credit .credit-dj {
-      font-family: 'Aesthet Nova', sans-serif;
-      font-weight: 900;
-      font-size: 18px;
-      line-height: 1;
-      color: var(--white);
-      text-shadow:
-        0 1px 2px rgba(0,0,0,0.8),
-        0 0 6px rgba(0,0,0,0.6),
-        0 0 12px rgba(0,0,0,0.4);
-    }
-    .player-credit .credit-event {
-      font-family: 'Figtree', sans-serif;
-      font-weight: 400;
-      font-size: 12px;
-      letter-spacing: 0.02em;
-      color: var(--white);
-      text-shadow: 0 1px 2px rgba(0,0,0,0.8);
-    }
-
-    /* INTRO */
-    .intro-section {
-      max-width: 900px; margin: 0 auto; text-align: center; padding: 60px 20px 40px;
-    }
-    .intro-section .eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-bottom: 16px; }
-    .intro-section .intro-line {
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: clamp(40px, 8vw, 90px); line-height: 0.9;
-      color: var(--yellow); text-shadow: var(--yts); margin-bottom: 20px;
-    }
-    .intro-section .description {
-      font-size: 15px; font-weight: 300; line-height: 1.8;
-      color: rgba(240,237,232,0.6); max-width: 600px; margin: 0 auto 32px;
-    }
-    .btn-outline {
-      display: inline-block; font-family: 'Figtree', sans-serif;
-      font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 14px 32px; border-radius: 2px; text-decoration: none;
-      border: 1.5px solid var(--white); color: var(--white);
-      background: transparent; transition: all 0.2s; cursor: pointer;
-    }
-    .btn-outline:hover { background: rgba(255,255,255,0.08); }
-    .microcopy { font-size: 11px; color: var(--grey); margin-top: 14px; }
-
-    /* CONCEPT BLOCK */
-    .concept-section {
-      max-width: 900px; margin: 0 auto; text-align: center; padding: 60px 20px 40px;
-    }
-    .concept-heading {
-      font-family: 'Aesthet Nova', sans-serif;
+    .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-bottom: 16px; }
+    .hero-title { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(48px, 9vw, 110px); line-height: 0.9; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 20px; }
+    .hero-subtitle { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.7); max-width: 500px; margin: 0 auto 30px; }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+    .hero-cta {
+      display: inline-block;
+      padding: 16px 32px;
+      border-radius: 2px;
       font-weight: 700;
-      font-size: clamp(28px, 4vw, 36px);
-      line-height: 1.1;
-      color: var(--white);
-      margin-bottom: 16px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 12px;
+      transition: all 0.2s;
+      text-align: center;
     }
-    .concept-description {
-      font-size: 15px; font-weight: 300; line-height: 1.7;
-      color: rgba(240,237,232,0.7);
-      max-width: 620px; margin: 0 auto 30px;
+    .hero-cta.primary { background: var(--white); color: var(--black); }
+    .hero-cta.primary:hover { background: var(--off); }
+    .hero-cta.secondary { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.6); }
+    .hero-cta.secondary:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
+
+    /* WHAT IS SET CLUB */
+    .what-section { max-width: 1200px; margin: 0 auto; text-align: center; padding: 80px 20px; }
+    .what-heading { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(40px, 7vw, 70px); line-height: 0.9; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 16px; }
+    .what-intro { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(240,237,232,0.7); max-width: 600px; margin: 0 auto 40px; }
+    .pillar-tiles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
     }
-    .concept-columns {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
-      max-width: 700px; margin: 0 auto;
-      text-align: left;
-    }
-    .concept-column {
-      background-size: cover;
-      background-position: center;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 8px;
-      padding: 28px 24px;
-      position: relative;
-      overflow: hidden;
+    .pillar-tile {
+      background: var(--dark2);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 32px 24px;
+      text-align: center;
       transition: border-color 0.2s, transform 0.2s;
     }
-    .concept-column:hover {
-      border-color: rgba(200,224,0,0.3);
-      transform: translateY(-2px);
-    }
-    .concept-column::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.72);
-      z-index: 0;
-    }
-    .concept-column strong,
-    .concept-column ul {
-      position: relative;
-      z-index: 1;
-    }
-    .concept-column strong {
-      display: block;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--yellow);
-      margin-bottom: 10px;
-    }
-    .concept-column ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .concept-column li {
-      font-size: 13px;
-      font-weight: 300;
-      line-height: 1.6;
-      color: rgba(240,237,232,0.75);
-      margin-bottom: 6px;
-      display: flex;
-      gap: 8px;
-    }
-    .concept-column li::before {
-      content: '—';
-      color: var(--yellow);
-      flex-shrink: 0;
-    }
+    .pillar-tile:hover { border-color: rgba(200,224,0,0.3); transform: translateY(-4px); }
+    .pillar-icon { font-size: 32px; color: var(--yellow); margin-bottom: 16px; }
+    .pillar-title { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 20px; color: var(--white); margin-bottom: 10px; }
+    .pillar-desc { font-size: 13px; font-weight: 300; line-height: 1.6; color: rgba(240,237,232,0.7); }
 
-    /* FROM THE SCENES */
-    .rotation-section {
+    /* EVENT MODULE */
+    .event-section {
       background: var(--dark);
       border-top: 1px solid rgba(255,255,255,0.06);
       border-bottom: 1px solid rgba(255,255,255,0.06);
       padding: 80px 48px;
+      text-align: center;
     }
-    .rotation-inner { max-width: 1100px; margin: 0 auto; }
-    .rotation-header { text-align: center; margin-bottom: 40px; }
-    .rotation-header .label { justify-content: center; }
-    .rotation-header h2 {
-      font-size: clamp(36px, 6vw, 64px);
-      margin-bottom: 12px;
-    }
-    .rotation-header p {
-      font-size: 14px; font-weight: 300; color: rgba(240,237,232,0.55);
-    }
-    .rotation-refresh {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 16px;
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.2);
-      color: var(--silver);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 8px 14px;
-      border-radius: 3px;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .rotation-refresh:hover {
-      border-color: var(--yellow);
-      color: var(--yellow);
-    }
-    .rotation-grid {
+    .event-inner { max-width: 700px; margin: 0 auto; }
+    .event-label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-bottom: 16px; }
+    .event-title { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(40px, 7vw, 70px); color: var(--yellow); text-shadow: var(--yts); margin-bottom: 8px; }
+    .event-subtitle { font-size: 14px; font-weight: 300; color: rgba(240,237,232,0.6); margin-bottom: 20px; }
+    .event-lineup { font-size: 13px; color: var(--silver); margin-bottom: 30px; }
+    .event-icons {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin: 30px 0;
     }
-    .rotation-card {
+    .event-icon-card {
       background: var(--dark2);
       border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 6px;
-      overflow: hidden;
-      transition: transform 0.2s, border-color 0.2s;
-      text-decoration: none;
-      color: inherit;
+      border-radius: 8px;
+      padding: 20px 8px;
+      text-align: center;
+      transition: border-color 0.2s;
     }
-    .rotation-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(200,224,0,0.3);
-    }
-    .rotation-thumb {
-      aspect-ratio: 16 / 9;
-      overflow: hidden;
-      background: #000;
-    }
-    .rotation-thumb img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.3s;
-    }
-    .rotation-card:hover .rotation-thumb img { transform: scale(1.04); }
-    .rotation-body { padding: 14px 16px 16px; }
-    .rotation-title {
-      font-size: 14px; font-weight: 500; color: var(--white);
-      margin-bottom: 4px;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-    .rotation-channel { font-size: 12px; color: var(--silver); margin-bottom: 6px; }
-    .rotation-meta { font-size: 11px; color: var(--grey); margin-bottom: 10px; }
-    .rotation-watch-btn {
+    .event-icon-card:hover { border-color: rgba(200,224,0,0.3); }
+    .event-icon-card svg { width: 22px; height: 22px; stroke: var(--silver); margin-bottom: 8px; }
+    .event-icon-card .icon-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); }
+    .event-cta {
       display: inline-block;
-      font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+      background: var(--yellow);
+      color: var(--black);
+      padding: 15px 35px;
+      border-radius: 2px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--white);
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 8px 14px;
-      border-radius: 3px;
-      transition: border-color 0.2s, color 0.2s;
+      font-size: 12px;
+      transition: opacity 0.2s;
     }
-    .rotation-watch-btn:hover { border-color: var(--yellow); color: var(--yellow); }
+    .event-cta:hover { opacity: 0.9; }
+    .event-tba { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--grey); margin-top: 20px; }
+
+    /* YOUTUBE SECTION */
+    .sets-section { padding: 80px 48px; }
+    .sets-inner { max-width: 1100px; margin: 0 auto; }
+    .sets-header { text-align: center; margin-bottom: 40px; }
+    .sets-header .label { justify-content: center; }
+    .sets-header h2 { font-size: clamp(36px, 6vw, 64px); margin-bottom: 12px; }
+    .sets-header p { font-size: 14px; font-weight: 300; color: rgba(240,237,232,0.55); }
+    .playlist-embed { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 30px; }
+    .playlist-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+    /* JOIN CTA */
+    .join-section { text-align: center; padding: 80px 20px; }
+    .join-heading { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(40px, 7vw, 70px); color: var(--yellow); text-shadow: var(--yts); margin-bottom: 16px; }
+    .join-sub { font-size: 14px; font-weight: 300; color: rgba(240,237,232,0.6); margin-bottom: 30px; }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(16px);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-container {
+      background: var(--dark2);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      max-width: 600px;
+      width: 100%;
+      padding: 32px 28px;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--silver);
+      font-size: 18px;
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+    .modal-close:hover { color: var(--white); }
 
     /* QUIZ */
-    .quiz-section {
-      background: var(--black);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      padding: 80px 48px;
-    }
-    .quiz-inner {
-      max-width: 820px;
-      margin: 0 auto;
-    }
-    .quiz-box {
-      background: var(--dark2);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      padding: 36px 32px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    }
-    .quiz-box-label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--yellow);
-      margin-bottom: 16px;
-    }
+    .quiz-box-label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--yellow); margin-bottom: 16px; }
     .progress-row { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; }
     .progress-step { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--grey); }
     .progress-step.active { color: var(--white); }
     .progress-bar-bg { flex: 1; height: 2px; background: rgba(255,255,255,0.1); border-radius: 1px; overflow: hidden; }
     .progress-bar-fill { height: 100%; background: var(--yellow); width: 0%; transition: width 0.3s; }
-
     .quiz-step { display: none; animation: fadeUp 0.4s ease; }
     .quiz-step.active { display: block; }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-    .quiz-step h2 { font-size: clamp(28px, 5vw, 44px); margin-bottom: 16px; }
-    .quiz-step .step-copy { font-size: 14px; font-weight: 300; color: rgba(240,237,232,0.55); margin-bottom: 28px; }
-
-    .option-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px; }
+    .quiz-step h2 { font-size: clamp(24px, 4vw, 36px); margin-bottom: 12px; }
+    .quiz-step .step-copy { font-size: 13px; font-weight: 300; color: rgba(240,237,232,0.55); margin-bottom: 20px; }
+    .option-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 20px; }
     .option-pill {
       display: flex; align-items: flex-start; gap: 10px;
-      padding: 14px 16px; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px;
+      padding: 12px 14px; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px;
       cursor: pointer; transition: all 0.2s; font-size: 14px; color: var(--silver);
     }
     .option-pill:hover { border-color: rgba(255,255,255,0.3); color: var(--white); }
@@ -427,7 +329,6 @@
     .option-pill .opt-text { flex: 1; }
     .option-pill .opt-main { display: block; font-size: 14px; font-weight: 500; color: inherit; }
     .option-pill .opt-examples { display: block; font-size: 11px; font-weight: 300; color: var(--silver); margin-top: 2px; }
-
     .other-input { display: none; margin-top: 12px; }
     .other-input.visible { display: block; }
     .other-input input {
@@ -436,57 +337,24 @@
       color: var(--white); font-family: 'Figtree', sans-serif; font-size: 16px; outline: none;
     }
     .other-input input:focus { border-color: rgba(200,224,0,0.4); }
-
-    /* YouTube search inside quiz */
-    .search-box { position: relative; margin-bottom: 16px; }
-    .search-box input {
-      width: 100%; padding: 16px 20px; background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1); border-radius: 4px;
-      color: var(--white); font-family: 'Figtree', sans-serif; font-size: 16px; outline: none;
-      transition: border-color 0.2s;
+    .btn-outline.full { width: 100%; text-align: center; padding: 16px; }
+    .btn-outline {
+      display: inline-block;
+      font-family: 'Figtree', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border-radius: 2px;
+      text-decoration: none;
+      border: 1.5px solid var(--white);
+      color: var(--white);
+      background: transparent;
+      transition: all 0.2s;
+      cursor: pointer;
     }
-    .search-box input:focus { border-color: rgba(200,224,0,0.4); }
-    .results-container { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-    .result-card {
-      display: flex; align-items: center; gap: 14px;
-      background: var(--dark2); border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 6px; padding: 12px; cursor: pointer;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .result-card:hover { border-color: rgba(255,255,255,0.15); }
-    .result-card .thumb { width: 100px; aspect-ratio: 16/9; border-radius: 4px; overflow: hidden; background: #000; flex-shrink: 0; }
-    .result-card .thumb img { width: 100%; height: 100%; object-fit: cover; }
-    .result-card .info { flex: 1; min-width: 0; }
-    .result-card .result-title { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .result-card .result-channel { font-size: 12px; color: var(--silver); margin-bottom: 3px; }
-    .result-card .result-duration { font-size: 11px; color: var(--grey); }
-    .result-card .add-btn {
-      background: var(--white); color: var(--black); border: none; padding: 8px 14px;
-      border-radius: 3px; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-      cursor: pointer; flex-shrink: 0;
-    }
-
-    .selected-sets-container {
-      display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;
-    }
-    .selected-set-card {
-      display: flex; align-items: center; gap: 10px;
-      background: rgba(200,224,0,0.05); border: 1px solid rgba(200,224,0,0.3);
-      border-radius: 6px; padding: 10px 12px;
-      max-width: 100%;
-    }
-    .selected-set-card .thumb { width: 60px; aspect-ratio: 16/9; border-radius: 3px; overflow: hidden; flex-shrink: 0; background: #000; }
-    .selected-set-card .thumb img { width: 100%; height: 100%; object-fit: cover; }
-    .selected-set-card .info { flex: 1; min-width: 0; }
-    .selected-set-card .selected-title { font-size: 12px; font-weight: 600; color: var(--white); margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .selected-set-card .selected-channel { font-size: 11px; color: var(--silver); }
-    .selected-set-card .remove-btn {
-      background: none; border: none; color: var(--silver); cursor: pointer;
-      font-size: 16px; line-height: 1; padding: 2px 4px;
-    }
-    .selected-set-card .remove-btn:hover { color: var(--white); }
-
-    /* Form */
+    .btn-outline:hover { background: rgba(255,255,255,0.08); }
     .signup-form { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; }
     .signup-form input {
       width: 100%; padding: 14px 16px; background: rgba(255,255,255,0.04);
@@ -497,75 +365,30 @@
     .signup-form .prefix-wrap { position: relative; }
     .signup-form .prefix-wrap input { padding-left: 32px; }
     .signup-form .prefix-wrap::before { content: '@'; position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--grey); font-size: 14px; }
-    .btn-outline.full { width: 100%; text-align: center; padding: 16px; }
 
-    .success-state { display: none; text-align: center; padding: 40px 20px; }
-    .success-state.visible { display: block; }
-    .success-state h2 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(40px, 8vw, 72px); color: var(--yellow); text-shadow: var(--yts); margin-bottom: 16px; }
-    .success-state p { font-size: 16px; font-weight: 300; color: rgba(240,237,232,0.7); margin-bottom: 24px; }
+    /* Manual Set Recommendation Step */
+    .set-recs { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .rec-card {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--dark2); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 6px; padding: 12px; cursor: pointer; transition: border-color 0.2s;
+    }
+    .rec-card:hover { border-color: rgba(255,255,255,0.15); }
+    .rec-card.selected { border-color: var(--yellow); }
+    .rec-card .thumb { width: 100px; aspect-ratio: 16/9; border-radius: 4px; overflow: hidden; background: #000; flex-shrink: 0; }
+    .rec-card .thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .rec-card .info { flex: 1; min-width: 0; }
+    .rec-card .rec-title { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .rec-card .rec-channel { font-size: 12px; color: var(--silver); }
+    .rec-card .check {
+      width: 20px; height: 20px; border-radius: 4px; flex-shrink: 0;
+      border: 1.5px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .rec-card.selected .check { border-color: var(--yellow); background: var(--yellow); }
+    .rec-card.selected .check::after { content: '✓'; font-size: 12px; color: var(--black); font-weight: 700; }
 
-    /* SET CLUB 001 */
-    .setclub001-section {
-      max-width: 700px; margin: 0 auto; text-align: center; padding: 80px 20px;
-    }
-    .setclub001-title {
-      font-family: 'Aesthet Nova', sans-serif;
-      font-weight: 900;
-      font-size: clamp(48px, 8vw, 80px);
-      color: var(--yellow); text-shadow: var(--yts);
-      margin-bottom: 8px;
-    }
-    .setclub001-sub {
-      font-size: 12px; font-weight: 600; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--silver);
-      margin-bottom: 20px;
-    }
-    .setclub001-copy {
-      font-size: 15px; font-weight: 300; line-height: 1.8;
-      color: rgba(240,237,232,0.6);
-      max-width: 480px; margin: 0 auto 28px;
-    }
-    .setclub001-icons {
-      display: flex; justify-content: center; gap: 32px; margin-bottom: 28px;
-    }
-    .setclub001-icon {
-      display: flex; flex-direction: column; align-items: center; gap: 6px;
-      font-size: 11px; font-weight: 400; color: var(--silver);
-    }
-    .setclub001-icon svg { width: 24px; height: 24px; stroke: var(--silver); }
-
-    /* ABOUT AFROCUE */
-    .about-afrocue-section {
-      background: var(--dark);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      padding: 80px 48px;
-      text-align: center;
-    }
-    .about-afrocue-inner {
-      max-width: 700px; margin: 0 auto;
-    }
-    .about-afrocue-label {
-      font-size: 10px; font-weight: 600; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--silver);
-      margin-bottom: 12px;
-    }
-    .about-afrocue-copy {
-      font-size: 15px; font-weight: 300; line-height: 1.8;
-      color: rgba(240,237,232,0.6);
-      max-width: 560px; margin: 0 auto 28px;
-    }
-    .about-afrocue-btn {
-      display: inline-block;
-      font-family: 'Figtree', sans-serif;
-      font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 12px 28px; border-radius: 2px;
-      border: 1.5px solid var(--white); color: var(--white);
-      background: transparent; text-decoration: none; transition: all 0.2s;
-    }
-    .about-afrocue-btn:hover { background: rgba(255,255,255,0.08); }
-
-    /* FOOTER */
+    /* Footer */
     .site-footer {
       border-top: 1px solid rgba(255,255,255,0.06);
       background: var(--dark);
@@ -577,229 +400,252 @@
     .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
     .footer-links a { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); transition: color 0.2s; }
     .footer-links a:hover { color: var(--white); }
-    .footer-powered {
-      font-size: 9px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--grey);
-      margin-top: 14px;
-    }
+    .footer-powered { font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); margin-top: 14px; }
 
-    /* RESPONSIVE */
     @media (max-width: 768px) {
       .site-nav { padding: 14px 20px; }
       .nav-links { display: none; }
       section { padding: 64px 20px; }
-      .player-section { padding: 100px 12px 16px; }
+      .hero-section { padding: 100px 12px 16px; }
       .player-frame { max-width: 100%; }
-      .intro-section { padding: 40px 16px 30px; }
-      .concept-columns { grid-template-columns: 1fr; }
+      .hero-content { margin-top: 24px; }
       .option-grid { grid-template-columns: 1fr; }
-      .quiz-section { padding: 64px 20px; }
-      .quiz-box { padding: 28px 20px; }
-      .rotation-grid { grid-template-columns: 1fr 1fr; }
-      .setclub001-icons { gap: 16px; }
+      .modal-container { padding: 24px 20px; border-radius: 20px; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .hero-cta { width: 100%; max-width: 300px; }
+      .pillar-tiles { grid-template-columns: 1fr; }
+      .event-icons { grid-template-columns: repeat(3, 1fr); }
     }
     @media (max-width: 420px) {
-      .player-controls .icon-btn { display: none; }
-      .player-controls .time { font-size: 10px; }
-      .intro-section .intro-line { font-size: 32px; }
-      .rotation-grid { grid-template-columns: 1fr; }
-      .player-credit .credit-dj { font-size: 15px; }
+      .event-icons { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <nav class="site-nav">
+    <a class="logo" href="#">
+      <img src="logo_afrocue.png" alt="AfroCue"
+        onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='block'"/>
+      <span class="logo-fallback">afro.cue</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#what">What is Set Club</a></li>
+      <li><a href="#event">Next Set Club</a></li>
+      <li><a href="#sets">YouTube</a></li>
+      <li><a href="#" onclick="openModal()" class="nav-cta">Join</a></li>
+    </ul>
+  </nav>
 
-<nav class="site-nav">
-  <a class="logo" href="#">
-    <img src="logo_afrocue.png" alt="AfroCue"
-      onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='block'"/>
-    <span class="logo-fallback">afro.cue</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#quiz">Watch</a></li>
-    <li><a href="#rotation">Scenes</a></li>
-    <li><a href="#quiz" class="nav-cta">Sign up</a></li>
-  </ul>
-</nav>
-
-<section class="player-section">
-  <div class="player-frame">
-    <img src="setsclub_hero.jpg" alt="AfroCue Set Club — DJ set" />
-    <div class="player-gradient"></div>
-    <div class="play-overlay">
-      <div class="play-circle">
-        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+  <!-- HERO -->
+  <section class="hero-section" id="top">
+    <div class="player-frame">
+      <img src="setsclub_hero.jpg" alt="AfroCue Set Club — DJ set" />
+      <div class="player-gradient"></div>
+      <div class="play-overlay">
+        <div class="play-circle">
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+        </div>
+      </div>
+      <div class="progress-bar"><div class="progress-filled"></div></div>
+      <div class="player-controls">
+        <span class="time">▶ 00:00 / 01:12:43</span>
+        <div class="spacer"></div>
+        <button class="icon-btn" aria-label="Volume">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="Settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="Fullscreen">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        </button>
+      </div>
+      <div class="player-credit">
+        <div class="credit-dj">Aniko b3b Yosa b3b WEAREALLCHEMICALS</div>
+        <div class="credit-event">Group Therapy — 22nd Dec 2026</div>
       </div>
     </div>
-    <div class="progress-bar"><div class="progress-filled"></div></div>
-    <div class="player-controls">
-      <span class="time">▶ 00:00 / 01:12:43</span>
-      <div class="spacer"></div>
-      <button class="icon-btn" aria-label="Volume">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-      </button>
-      <button class="icon-btn" aria-label="Settings">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-      </button>
-      <button class="icon-btn" aria-label="Fullscreen">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
-      </button>
-    </div>
-    <div class="player-credit">
-      <div class="credit-dj">Aniko b3b Yosa b3b WEAREALLCHEMICALS</div>
-      <div class="credit-event">Group Therapy — 22nd Dec 2026</div>
-    </div>
-  </div>
-</section>
 
-<section class="intro-section">
-  <div class="eyebrow">AfroCue Set Club</div>
-  <div class="intro-line">A third space<br>for DJ sets.</div>
-  <p class="description">
-    Set Club is a focused space for experiencing and reliving the DJ sets that shaped Nigerian dance music culture.
-  </p>
-  <button class="btn-outline" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">Sign up</button>
-  <p class="microcopy">First physical edition — September 2026.</p>
-</section>
-
-<section class="concept-section">
-  <h2 class="concept-heading">The music outlives the room.</h2>
-  <p class="concept-description">
-    Some moments end when the night does. Others live on in the sets we replay, share and return to.
-  </p>
-  <div class="concept-columns">
-    <div class="concept-column" style="background-image: url('roamers_what.jpg');">
-      <strong>Digitally</strong>
-      <ul>
-        <li>Content and clips</li>
-        <li>Short-form storytelling</li>
-        <li>DJ highlights</li>
-        <li>Conversations around sets</li>
-      </ul>
-    </div>
-    <div class="concept-column" style="background-image: url('roamers_top5_sample.jpg');">
-      <strong>Physically</strong>
-      <ul>
-        <li>Picture a book club, but for DJ sets</li>
-        <li>The lineup: set moments from Nigerian dance music culture</li>
-        <li>The DJs are just as good</li>
-        <li>A third space to unwind</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="rotation-section" id="rotation">
-  <div class="rotation-inner">
-    <div class="rotation-header">
-      <div class="label">From the scenes</div>
-      <h2 class="yh">Sets worth revisiting.</h2>
-      <p>Pulled from the parties and platforms we're always watching.</p>
-      <button class="rotation-refresh" onclick="loadRotation()">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-        Refresh
-      </button>
-    </div>
-    <div class="rotation-grid" id="rotationGrid">
-      <div style="grid-column: 1/-1; text-align:center; color: var(--grey); padding: 40px 0;">
-        Loading sets…
+    <div class="hero-content">
+      <div class="hero-eyebrow">AfroCue Set Club</div>
+      <h1 class="hero-title">A third space<br>for DJ sets.</h1>
+      <p class="hero-subtitle">For people who love the sets, the sounds and the moments that make Nigerian dance music what it is.</p>
+      <div class="hero-actions">
+        <a href="https://www.youtube.com/playlist?list=PLItANlSge6dc" target="_blank" rel="noopener" class="hero-cta primary">Watch on YouTube</a>
+        <a href="#" class="hero-cta secondary" onclick="openModal()">Join Set Club</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="quiz-section" id="quiz">
-  <div class="quiz-inner">
-    <div class="quiz-box">
-      <div class="quiz-box-label">Set Club Sign‑up</div>
+  <!-- WHAT IS SET CLUB -->
+  <section class="what-section" id="what">
+    <div class="label" style="justify-content:center;">What is Set Club?</div>
+    <h2 class="what-heading">For people who love DJ sets.</h2>
+    <p class="what-intro">Set Club is a third space for reliving moments in Nigerian dance music culture.</p>
+    <div class="pillar-tiles">
+      <div class="pillar-tile">
+        <div class="pillar-icon">⏪</div>
+        <div class="pillar-title">Revisit</div>
+        <div class="pillar-desc">Relive sets already available on YouTube. The rooms, the selectors, the moments people still talk about.</div>
+      </div>
+      <div class="pillar-tile">
+        <div class="pillar-icon">✨</div>
+        <div class="pillar-title">Discover</div>
+        <div class="pillar-desc">New set drops. Premieres. Recommendations from people who actually listen. The fun side stuff.</div>
+      </div>
+      <div class="pillar-tile">
+        <div class="pillar-icon">🎛️</div>
+        <div class="pillar-title">Experience</div>
+        <div class="pillar-desc">Curated third space — the music lineup is iconic YouTube sets, side attractions, a great time.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENT MODULE -->
+  <section class="event-section" id="event">
+    <div class="event-inner">
+      <div class="event-label">Next Set Club</div>
+      <h2 class="event-title" id="eventTitle">Set Club 001</h2>
+      <div class="event-subtitle" id="eventSubtitle">Date TBA</div>
+      <div class="event-lineup" id="eventLineup"></div>
+
+      <!-- Icon tiles -->
+      <div class="event-icons">
+        <div class="event-icon-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><polygon points="10 4 14 4 16 6 8 6"/><polygon points="12 10 12 14 14 12"/></svg>
+          <div class="icon-label">Big Screen</div>
+        </div>
+        <div class="event-icon-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><path d="M9 9l12-2"/></svg>
+          <div class="icon-label">Great Sound</div>
+        </div>
+        <div class="event-icon-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <div class="icon-label">Good People</div>
+        </div>
+        <div class="event-icon-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.23 5 5 0 0 1 7.08 0A4 4 0 0 1 18 13.87V21H6z"/><line x1="6" y1="17" x2="18" y2="17"/></svg>
+          <div class="icon-label">Refreshments</div>
+        </div>
+        <div class="event-icon-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2h-4l-2 3-2-3H4z"/><circle cx="12" cy="10" r="1"/><circle cx="16" cy="10" r="1"/><circle cx="8" cy="10" r="1"/></svg>
+          <div class="icon-label">Side Attractions</div>
+        </div>
+      </div>
+
+      <a href="#" class="event-cta" id="eventCta" style="display:none;">Get Tickets</a>
+      <div class="event-tba" id="eventTba">TBA</div>
+    </div>
+  </section>
+
+  <!-- YOUTUBE SECTION -->
+  <section class="sets-section" id="sets">
+    <div class="sets-inner">
+      <div class="sets-header">
+        <div class="label" style="justify-content:center;">Set Club on YouTube</div>
+        <h2 class="yh">The official Set Club playlist.</h2>
+        <p>Watch on YouTube.</p>
+      </div>
+      <div class="playlist-embed">
+        <iframe src="https://www.youtube.com/embed/videoseries?list=PLItANlSge6dc" title="AfroCue Set Club Playlist" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOIN CTA -->
+  <section class="join-section">
+    <h2 class="join-heading">Join Set Club.</h2>
+    <p class="join-sub">Get the next announcement first.</p>
+    <a href="#" class="hero-cta primary" onclick="openModal()">Join Set Club</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-brand">AFROCUE</div>
+    <div class="footer-tagline">Creatively documenting DJs, parties and dance music culture.</div>
+    <div class="footer-links">
+      <a href="https://instagram.com/afro.cue" target="_blank">Instagram</a>
+      <a href="https://youtube.com/@AfroCue" target="_blank">YouTube</a>
+      <a href="https://afrocue.xyz" target="_blank">AfroCue.xyz</a>
+    </div>
+    <div class="footer-powered">Powered by AfroCue</div>
+  </footer>
+
+  <!-- MODAL (Quiz) -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-container">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="quiz-box-label">Join Set Club</div>
 
       <div class="progress-row">
-        <span class="progress-step active" id="stepLabel">01 / 04</span>
-        <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill" style="width: 25%;"></div></div>
-        <span class="progress-step">04 / 04</span>
+        <span class="progress-step active" id="stepLabel">01 / 05</span>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill" style="width: 20%;"></div></div>
+        <span class="progress-step">05 / 05</span>
       </div>
 
+      <!-- Step 1: Set Preferences -->
       <div class="quiz-step active" id="step1">
         <h2>What kind of sets do you like?</h2>
         <p class="step-copy">Pick all that apply.</p>
         <div class="option-grid" id="setTypes">
-          <div class="option-pill" data-value="Rave Sets" onclick="toggleMulti(this)">
-            <span class="check"></span>
-            <span class="opt-text"><span class="opt-main">Rave Sets</span><span class="opt-examples">Afro House, Freestyle, GQOM</span></span>
-          </div>
-          <div class="option-pill" data-value="Amapiano Sets" onclick="toggleMulti(this)">
-            <span class="check"></span>
-            <span class="opt-text"><span class="opt-main">Amapiano Sets</span><span class="opt-examples">Amapiano, Private School</span></span>
-          </div>
-          <div class="option-pill" data-value="House Sets" onclick="toggleMulti(this)">
-            <span class="check"></span>
-            <span class="opt-text"><span class="opt-main">House Sets</span><span class="opt-examples">Deep House, Tech House</span></span>
-          </div>
-          <div class="option-pill" data-value="Afrobeats Sets" onclick="toggleMulti(this)">
-            <span class="check"></span>
-            <span class="opt-text"><span class="opt-main">Afrobeats Sets</span></span>
-          </div>
-          <div class="option-pill" data-value="Other" onclick="toggleMulti(this)">
-            <span class="check"></span>
-            <span class="opt-text"><span class="opt-main">Other</span></span>
-          </div>
+          <div class="option-pill" data-value="Rave Sets" onclick="toggleMulti(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Rave Sets</span><span class="opt-examples">Afrohouse, Afrotech, 3Step, GQOM</span></span></div>
+          <div class="option-pill" data-value="Amapiano Sets" onclick="toggleMulti(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Amapiano Sets</span><span class="opt-examples">Amapiano, Private School</span></span></div>
+          <div class="option-pill" data-value="House Sets" onclick="toggleMulti(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">House Sets</span><span class="opt-examples">Deep House, Tech House</span></span></div>
+          <div class="option-pill" data-value="Afrobeats Sets" onclick="toggleMulti(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Afrobeats Sets</span></span></div>
+          <div class="option-pill" data-value="RNB / Hip hop" onclick="toggleMulti(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">RNB / Hip hop</span></span></div>
+          <div class="option-pill" data-value="Other" onclick="toggleMulti(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Other</span></span></div>
         </div>
         <div class="other-input" id="otherGenreWrap">
           <input type="text" id="otherGenre" placeholder="Tell us what you listen to..." />
         </div>
-        <button class="btn-outline" style="margin-top: 30px; width:100%;" onclick="goToStep(2)">Continue</button>
+        <button class="btn-outline" style="margin-top: 20px; width:100%;" onclick="goToStep(2)">Continue</button>
       </div>
 
+      <!-- Step 2: Environment -->
       <div class="quiz-step" id="step2">
-        <h2>Where do you mostly experience sets IRL?</h2>
+        <h2>Where would you typically experience DJ sets?</h2>
         <p class="step-copy">Pick all that apply.</p>
         <div class="option-grid" id="setEnvironments">
-          <div class="option-pill" data-value="Raves" onclick="toggleMulti(this)">
-            <span class="check"></span>
-            <span class="opt-text"><span class="opt-main">Raves</span><span class="opt-examples">Monochroma, Group Therapy</span></span>
-          </div>
-          <div class="option-pill" data-value="Clubs" onclick="toggleMulti(this)">
-            <span class="check"></span>
-            <span class="opt-text"><span class="opt-main">Clubs</span><span class="opt-examples">Formal, BOHO</span></span>
-          </div>
-          <div class="option-pill" data-value="Festivals" onclick="toggleMulti(this)">
-            <span class="check"></span>
-            <span class="opt-text"><span class="opt-main">Festivals</span><span class="opt-examples">Dance Eko</span></span>
-          </div>
-          <div class="option-pill" data-value="Parties" onclick="toggleMulti(this)">
-            <span class="check"></span>
-            <span class="opt-text"><span class="opt-main">Parties</span><span class="opt-examples">South Social, PM2AM, LITB</span></span>
-          </div>
+          <div class="option-pill" data-value="Raves / EDM Events" onclick="toggleMulti(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Raves / EDM Events</span><span class="opt-examples">the underground and high‑energy rooms</span></span></div>
+          <div class="option-pill" data-value="Parties" onclick="toggleMulti(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Parties</span><span class="opt-examples">birthdays, socials, pre‑games</span></span></div>
+          <div class="option-pill" data-value="Clubs" onclick="toggleMulti(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Clubs</span><span class="opt-examples">your go‑to spots for a night out</span></span></div>
+          <div class="option-pill" data-value="Festivals" onclick="toggleMulti(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Festivals</span><span class="opt-examples">multi‑stage, open‑air experiences</span></span></div>
+          <div class="option-pill" data-value="Online" onclick="toggleMulti(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Online</span><span class="opt-examples">YouTube, livestreams, sets at home</span></span></div>
+          <div class="option-pill" data-value="Private events / house parties" onclick="toggleMulti(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Private events / house parties</span><span class="opt-examples">intimate, invite‑only gatherings</span></span></div>
+          <div class="option-pill" data-value="International sets" onclick="toggleMulti(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">International sets</span><span class="opt-examples">sets from travelling, overseas festivals, or European circuits</span></span></div>
         </div>
-        <button class="btn-outline" style="margin-top: 30px; width:100%;" onclick="goToStep(3)">Continue</button>
+        <button class="btn-outline" style="margin-top: 20px; width:100%;" onclick="goToStep(3)">Continue</button>
       </div>
 
+      <!-- Step 3: Frequency -->
       <div class="quiz-step" id="step3">
-        <h2>Recommend a DJ set(s) from YouTube we should be watching.</h2>
-        <p class="step-copy">Search YouTube and add up to 5 sets. No pressure.</p>
-        <div class="search-box">
-          <input type="text" id="setSearch" placeholder="Search for a DJ, set, venue or event..." autocomplete="off"/>
+        <h2>How often do you go out to experiences where DJ sets happen in a month?</h2>
+        <p class="step-copy">Select one.</p>
+        <div class="option-grid" id="frequency">
+          <div class="option-pill" data-value="Rarely / 0" onclick="selectSingle(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Rarely / 0</span></span></div>
+          <div class="option-pill" data-value="1–2 times" onclick="selectSingle(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">1–2 times</span></span></div>
+          <div class="option-pill" data-value="3–4 times" onclick="selectSingle(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">3–4 times</span></span></div>
+          <div class="option-pill" data-value="5+ times" onclick="selectSingle(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">5+ times</span></span></div>
         </div>
-        <div class="results-container" id="resultsContainer"></div>
-        <div class="selected-sets-container" id="selectedSetsContainer"></div>
         <button class="btn-outline" style="margin-top: 20px; width:100%;" onclick="goToStep(4)">Continue</button>
       </div>
 
+      <!-- Step 4: User Details -->
       <div class="quiz-step" id="step4">
-        <h2>Come watch with us.</h2>
+        <h2>Join Set Club</h2>
         <p class="step-copy">Tell us a little about yourself.</p>
-        <form class="signup-form" id="setClubForm" onsubmit="submitSetClub(event)">
-          <input type="text" name="first_name" placeholder="First Name" required/>
-          <input type="email" name="email" placeholder="Email" required/>
+        <form class="signup-form" id="setClubForm" onsubmit="return false;">
+          <input type="text" id="firstName" placeholder="First Name" required/>
+          <input type="email" id="email" placeholder="Email" required/>
           <div class="prefix-wrap">
-            <input type="text" name="instagram" placeholder="yourhandle" />
+            <input type="text" id="instagram" placeholder="yourhandle" />
           </div>
 
-          <h2 style="margin-top: 30px;">Which best describes you?</h2>
+          <h2 style="margin-top: 20px;">Which best describes you?</h2>
           <div class="option-grid" id="audienceCategory">
             <div class="option-pill" data-value="Attendee / Partygoer" onclick="selectSingle(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Attendee / Partygoer</span></span></div>
             <div class="option-pill" data-value="DJ" onclick="selectSingle(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">DJ</span></span></div>
@@ -808,330 +654,233 @@
             <div class="option-pill" data-value="Producer" onclick="selectSingle(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Producer</span></span></div>
             <div class="option-pill" data-value="Other" onclick="selectSingle(this)"><span class="check"></span><span class="opt-text"><span class="opt-main">Other</span></span></div>
           </div>
-          <button type="submit" class="btn-outline full" style="margin-top: 30px;">Sign up</button>
+          <button type="button" class="btn-outline" style="margin-top: 20px; width:100%;" onclick="goToStep(5)">Continue</button>
         </form>
       </div>
 
-      <div class="success-state" id="successState">
-        <h2>You're in.</h2>
-        <p>We'll let you know when Set Club 001 is ready.</p>
-        <p style="color: var(--grey); margin-bottom: 24px;">Keep watching.</p>
-        <a href="sets-club.html" class="btn-outline">Back to Set Club</a>
+      <!-- Step 5: Recommend Sets -->
+      <div class="quiz-step" id="step5">
+        <h2>Recommend a DJ set you think we'll love.</h2>
+        <p class="step-copy">Pick any that interest you, or skip.</p>
+        <div class="set-recs" id="setRecs"></div>
+        <div style="display: flex; gap: 12px; margin-top: 20px;">
+          <button class="btn-outline" style="flex:1;" onclick="submitForm(true)">Skip for now</button>
+          <button class="btn-outline" style="flex:1; background: var(--yellow); color: var(--black); border-color: var(--yellow);" onclick="submitForm(false)">Submit</button>
+        </div>
       </div>
     </div>
   </div>
-</section>
 
-<section class="setclub001-section">
-  <div class="setclub001-title">Set Club 001</div>
-  <div class="setclub001-sub">Coming soon · The first physical Set Club</div>
-  <p class="setclub001-copy">
-    A room, curated DJ sets, the same high‑quality music from the same talented DJs — transformed into a new experience. The same moments, but differently.
-  </p>
-  <div class="setclub001-icons">
-    <div class="setclub001-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><polygon points="10 4 14 4 16 6 8 6"/><polygon points="12 10 12 14 14 12"/></svg>
-      <span>Big screen</span>
-    </div>
-    <div class="setclub001-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      <span>Good people</span>
-    </div>
-    <div class="setclub001-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.23 5 5 0 0 1 7.08 0A4 4 0 0 1 18 13.87V21H6z"/><line x1="6" y1="17" x2="18" y2="17"/></svg>
-      <span>Refreshments</span>
-    </div>
-    <div class="setclub001-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><path d="M9 9l12-2"/></svg>
-      <span>Great sound</span>
-    </div>
-  </div>
-  <button class="btn-outline" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">Get the Invite →</button>
-</section>
-
-<section class="about-afrocue-section">
-  <div class="about-afrocue-inner">
-    <div class="about-afrocue-label">About AfroCue</div>
-    <p class="about-afrocue-copy">
-      AfroCue is Nigerian dance music culture, told through the point of view of the DJs, the parties they play, and the music that moves the dance floor.
-    </p>
-    <a href="index.html" class="about-afrocue-btn">Visit AfroCue →</a>
-  </div>
-</section>
-
-<footer class="site-footer">
-  <div class="footer-brand">AFROCUE</div>
-  <div class="footer-tagline">Creatively documenting DJs, parties and dance music culture.</div>
-  <div class="footer-links">
-    <a href="https://instagram.com/afro.cue" target="_blank">Instagram</a>
-    <a href="https://youtube.com/@AfroCue" target="_blank">YouTube</a>
-    <a href="https://afrocue.xyz" target="_blank">AfroCue.xyz</a>
-  </div>
-  <div class="footer-powered">Powered by AfroCue</div>
-</footer>
-
-<script>
-  // ── YouTube API via GAS proxy ──
-  async function searchYouTube(query) {
-    const scriptUrl = (window.AFROCUE_CONFIG && window.AFROCUE_CONFIG.scriptUrl)
-      ? window.AFROCUE_CONFIG.scriptUrl
-      : 'https://script.google.com/macros/s/AKfycbwZdf0cfRG3wI0fKe5SFW6OH57X3iwjkpTfsMg5ZIR2F8757fY7Jo8xfOZm3WiUEcWg/exec';
-    try {
-      const response = await fetch(`${scriptUrl}?action=searchYouTube&q=${encodeURIComponent(query)}`);
-      const data = await response.json();
-      return data.items || [];
-    } catch (err) {
-      console.error('YouTube search error:', err);
-      return [];
-    }
-  }
-
-  // State
-  let selectedSets = [];
-  let currentStep = 1;
-  const totalSteps = 4;
-
-  function goToStep(step) {
-    currentStep = step;
-    document.querySelectorAll('.quiz-step').forEach(el => el.classList.remove('active'));
-    document.getElementById('step' + step).classList.add('active');
-    document.getElementById('progressFill').style.width = (step / totalSteps * 100) + '%';
-    document.getElementById('stepLabel').textContent = ('0' + step).slice(-2) + ' / 04';
-    document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
-  }
-
-  function toggleMulti(el) {
-    el.classList.toggle('selected');
-    if (el.dataset.value === 'Other' && el.classList.contains('selected')) {
-      document.getElementById('otherGenreWrap').classList.add('visible');
-    } else if (el.dataset.value === 'Other') {
-      document.getElementById('otherGenreWrap').classList.remove('visible');
-    }
-  }
-
-  function selectSingle(el) {
-    const parent = el.parentElement;
-    parent.querySelectorAll('.option-pill').forEach(p => p.classList.remove('selected'));
-    el.classList.add('selected');
-  }
-
-  // Quote-safe escape — covers < > & " ' so titles with apostrophes/quotes
-  // (e.g. "Obi's House") can't break attributes or inline handlers.
-  function escapeHtml(str) {
-    return String(str == null ? '' : str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
-  }
-
-  const searchInput = document.getElementById('setSearch');
-  const resultsContainer = document.getElementById('resultsContainer');
-  const selectedSetsContainer = document.getElementById('selectedSetsContainer');
-
-  // Holds the latest search results so the click handler can read them by index
-  // instead of interpolating title/channel into an onclick string.
-  let currentResults = [];
-  let searchTimer = null;
-
-  // Debounced search — one API call ~350ms after the user stops typing,
-  // instead of one per keystroke.
-  searchInput.addEventListener('input', function() {
-    const q = this.value.trim();
-    clearTimeout(searchTimer);
-    if (q.length < 2) {
-      resultsContainer.innerHTML = '';
-      return;
-    }
-    searchTimer = setTimeout(() => {
-      resultsContainer.innerHTML = '<div style="color:var(--grey); text-align:center; padding:16px;">Searching…</div>';
-      searchYouTube(q).then(renderYouTubeResults);
-    }, 350);
-  });
-
-  function renderYouTubeResults(items) {
-    currentResults = items || [];
-    if (!currentResults.length) {
-      resultsContainer.innerHTML = '<div style="color:var(--grey); text-align:center; padding:20px;">No results found.</div>';
-      return;
-    }
-    resultsContainer.innerHTML = currentResults.map((item, i) => `
-      <div class="result-card" data-index="${i}">
-        <div class="thumb"><img src="${escapeHtml(item.thumbnail)}" alt="${escapeHtml(item.title)}"/></div>
-        <div class="info">
-          <div class="result-title">${escapeHtml(item.title)}</div>
-          <div class="result-channel">${escapeHtml(item.channel)}</div>
-          <div class="result-duration">${escapeHtml(item.duration || 'YouTube')}</div>
-        </div>
-        <button class="add-btn" type="button">+ Add Set</button>
-      </div>
-    `).join('');
-  }
-
-  // Delegated click — no inline onclick, so quotes in titles can't break it.
-  resultsContainer.addEventListener('click', function(e) {
-    const btn = e.target.closest('.add-btn');
-    if (!btn) return;
-    const card = btn.closest('.result-card');
-    if (!card) return;
-    const item = currentResults[Number(card.dataset.index)];
-    if (item) addSet(item.videoId, item.title, item.channel, item.thumbnail);
-  });
-
-  function addSet(videoId, title, channel, thumb) {
-    if (selectedSets.length >= 5) {
-      alert('You can add up to 5 sets.');
-      return;
-    }
-    if (selectedSets.some(s => s.videoId === videoId)) {
-      return;
-    }
-    selectedSets.push({ videoId, title, channel, thumb });
-    renderSelectedSets();
-    resultsContainer.innerHTML = '';
-    searchInput.value = '';
-    currentResults = [];
-  }
-
-  function removeSet(index) {
-    selectedSets.splice(index, 1);
-    renderSelectedSets();
-  }
-
-  function renderSelectedSets() {
-    if (selectedSets.length === 0) {
-      selectedSetsContainer.innerHTML = '';
-      return;
-    }
-    selectedSetsContainer.innerHTML = selectedSets.map((set, index) => `
-      <div class="selected-set-card">
-        <div class="thumb"><img src="${escapeHtml(set.thumb)}" alt="${escapeHtml(set.title)}"/></div>
-        <div class="info">
-          <div class="selected-title">${escapeHtml(set.title)}</div>
-          <div class="selected-channel">${escapeHtml(set.channel)}</div>
-        </div>
-        <button class="remove-btn" type="button" onclick="removeSet(${index})">×</button>
-      </div>
-    `).join('');
-  }
-
-  searchInput.addEventListener('paste', function(e) {
-    const pasted = (e.clipboardData || window.clipboardData).getData('text');
-    if (pasted.includes('youtube.com') || pasted.includes('youtu.be')) {
-      e.preventDefault();
-      const videoId = pasted.includes('v=') ? pasted.split('v=')[1].split('&')[0] : pasted.split('/').pop();
-      if (selectedSets.length >= 5) {
-        alert('You can add up to 5 sets.');
-        return;
-      }
-      selectedSets.push({ videoId, title: 'Pasted YouTube Set', channel: 'YouTube', thumb: 'hero_dj.jpg' });
-      renderSelectedSets();
-      searchInput.value = '';
-    }
-  });
-
-  // ── "From the scenes" rotation ──
-  const SCENE_KEYWORDS = [
-    'Ebony', 'Monochroma', 'Group Therapy', 'Hotel',
-    'Element House', 'Amapiano District', "Obi's House", 'Dance School'
-  ];
-
-  async function loadRotation() {
-    const grid = document.getElementById('rotationGrid');
-    if (!grid) return;
-
-    grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; color: var(--grey); padding: 40px 0;">Loading sets…</div>';
-
-    const shuffled = [...SCENE_KEYWORDS].sort(() => 0.5 - Math.random());
-    const selectedKeywords = shuffled.slice(0, 4);
-
-    // Fire all four searches in parallel instead of awaiting them one by one.
-    const settled = await Promise.all(
-      selectedKeywords.map(kw => searchYouTube(kw + ' DJ set').catch(() => []))
-    );
-    const videos = settled
-      .map(items => (items && items.length ? items[0] : null))
-      .filter(Boolean)
-      .slice(0, 4);
-
-    if (videos.length === 0) {
-      grid.innerHTML = `
-        <div style="grid-column: 1/-1; text-align:center; color: var(--grey); padding: 40px 0;">
-          Couldn't load sets right now. <a href="https://youtube.com/@AfroCue" target="_blank" style="color: var(--yellow); text-decoration: underline;">Explore AfroCue on YouTube →</a>
-        </div>
-      `;
-      return;
-    }
-
-    grid.innerHTML = videos.map(set => `
-      <a class="rotation-card" href="https://www.youtube.com/watch?v=${encodeURIComponent(set.videoId)}" target="_blank" rel="noopener">
-        <div class="rotation-thumb">
-          <img src="${escapeHtml(set.thumbnail)}" alt="${escapeHtml(set.title)}" loading="lazy"/>
-        </div>
-        <div class="rotation-body">
-          <div class="rotation-title">${escapeHtml(set.title)}</div>
-          <div class="rotation-channel">${escapeHtml(set.channel)}</div>
-          <div class="rotation-meta">YouTube${set.duration ? ' · ' + escapeHtml(set.duration) : ''}</div>
-          <span class="rotation-watch-btn">Watch Set →</span>
-        </div>
-      </a>
-    `).join('');
-  }
-
-  window.addEventListener('load', function() {
-    loadRotation();
-  });
-
-  // ── Form submission ──
-  async function submitSetClub(e) {
-    e.preventDefault();
-    const form = e.target;
-
-    function selectedSingleValue(containerId) {
-      const selected = document.querySelector('#' + containerId + ' .option-pill.selected');
-      return selected ? selected.dataset.value : '';
-    }
-    function selectedMultiValues(containerId) {
-      const selected = document.querySelectorAll('#' + containerId + ' .option-pill.selected');
-      return Array.from(selected).map(el => el.dataset.value);
-    }
-
-    const data = {
-      source: 'setclub',
-      first_name: form.first_name.value.trim(),
-      email: form.email.value.trim(),
-      instagram: form.instagram.value.trim(),
-      audience_category: selectedSingleValue('audienceCategory'),
-      set_types: selectedMultiValues('setTypes'),
-      other_genre: document.getElementById('otherGenre').value.trim(),
-      set_environments: selectedMultiValues('setEnvironments'),
-      selected_sets: selectedSets.map(s => ({
-        video_id: s.videoId,
-        title: s.title,
-        channel: s.channel,
-        url: `https://youtube.com/watch?v=${s.videoId}`
-      }))
+  <script>
+    // ─── EVENT CONFIGURATION ──────────────────────────────────────
+    const EVENT_CONFIG = {
+      announced: false,
+      edition: 'Set Club 001',
+      date: '',
+      venue: '',
+      time: '',
+      lineup: '',
+      ticketUrl: '',
+      heroTitle: 'A third space<br>for DJ sets.'
     };
 
-    const scriptUrl = (window.AFROCUE_CONFIG && window.AFROCUE_CONFIG.scriptUrl)
-      ? window.AFROCUE_CONFIG.scriptUrl
-      : 'https://script.google.com/macros/s/AKfycbwZdf0cfRG3wI0fKe5SFW6OH57X3iwjkpTfsMg5ZIR2F8757fY7Jo8xfOZm3WiUEcWg/exec';
+    function applyEventConfig() {
+      const cfg = EVENT_CONFIG;
+      document.getElementById('heroTitle').innerHTML = cfg.heroTitle;
 
-    try {
-      await fetch(scriptUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      const firstName = form.first_name.value.trim() || '';
-      window.location.href = '/thank-you/set-club?name=' + encodeURIComponent(firstName);
-    } catch (err) {
-      console.error('Submission error', err);
-      alert('Something went wrong. Please try again.');
+      const eventTitle = document.getElementById('eventTitle');
+      const eventSubtitle = document.getElementById('eventSubtitle');
+      const eventLineup = document.getElementById('eventLineup');
+      const eventCta = document.getElementById('eventCta');
+      const eventTba = document.getElementById('eventTba');
+
+      eventTitle.textContent = cfg.edition;
+      if (cfg.announced) {
+        eventSubtitle.textContent = [cfg.date, cfg.venue, cfg.time].filter(Boolean).join(' · ');
+        eventLineup.textContent = cfg.lineup || 'Lineup to be announced';
+        eventCta.style.display = 'inline-block';
+        eventCta.href = cfg.ticketUrl || '#';
+        eventCta.textContent = 'Get Tickets';
+        eventTba.style.display = 'none';
+      } else {
+        eventSubtitle.textContent = 'Date TBA';
+        eventLineup.textContent = '';
+        eventCta.style.display = 'none';
+        eventTba.style.display = 'block';
+        eventTba.textContent = 'TBA';
+      }
     }
-  }
-</script>
+
+    // ─── MODAL ────────────────────────────────────────────────────
+    function openModal() {
+      document.getElementById('modalOverlay').classList.add('open');
+      goToStep(1);
+      // Reset selections if needed
+      document.querySelectorAll('.option-pill.selected').forEach(el => el.classList.remove('selected'));
+      document.getElementById('otherGenreWrap').classList.remove('visible');
+      document.getElementById('otherGenre').value = '';
+      // Clear manual set selections
+      selectedSets = [];
+      renderManualSets();
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('open');
+    }
+
+    // ─── QUIZ NAVIGATION ─────────────────────────────────────────
+    let currentStep = 1;
+    const totalSteps = 5;
+
+    function goToStep(step) {
+      currentStep = step;
+      document.querySelectorAll('.quiz-step').forEach(el => el.classList.remove('active'));
+      document.getElementById('step' + step).classList.add('active');
+      document.getElementById('progressFill').style.width = (step / totalSteps * 100) + '%';
+      document.getElementById('stepLabel').textContent = ('0' + step).slice(-2) + ' / 05';
+    }
+
+    // ─── MULTI-SELECT ────────────────────────────────────────────
+    function toggleMulti(el) {
+      el.classList.toggle('selected');
+      if (el.dataset.value === 'Other' && el.classList.contains('selected')) {
+        document.getElementById('otherGenreWrap').classList.add('visible');
+      } else if (el.dataset.value === 'Other') {
+        document.getElementById('otherGenreWrap').classList.remove('visible');
+      }
+    }
+
+    // ─── SINGLE-SELECT ───────────────────────────────────────────
+    function selectSingle(el) {
+      const parent = el.parentElement;
+      parent.querySelectorAll('.option-pill').forEach(p => p.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    // ─── MANUAL SET RECOMMENDATIONS ──────────────────────────────
+    const manualSets = [
+      {
+        videoId: 'VIDEO_ID_1',
+        thumbnail: 'thumbnail1.jpg',
+        title: 'Aniko b3b Yosa b3b WEAREALLCHEMICALS',
+        channel: 'Group Therapy — 22nd Dec 2026'
+      },
+      {
+        videoId: 'VIDEO_ID_2',
+        thumbnail: 'thumbnail2.jpg',
+        title: 'Smeez & D3AN — Yanos Theory',
+        channel: 'Prep Session'
+      },
+      {
+        videoId: 'VIDEO_ID_3',
+        thumbnail: 'thumbnail3.jpg',
+        title: 'Funky QLA — Monochroma',
+        channel: 'Live Set'
+      }
+    ];
+
+    let selectedSets = [];
+
+    function renderManualSets() {
+      const container = document.getElementById('setRecs');
+      container.innerHTML = manualSets.map((set, index) => `
+        <div class="rec-card ${selectedSets.includes(index) ? 'selected' : ''}" onclick="toggleSetSelection(${index})">
+          <div class="thumb"><img src="${set.thumbnail}" alt="${set.title}"/></div>
+          <div class="info">
+            <div class="rec-title">${set.title}</div>
+            <div class="rec-channel">${set.channel}</div>
+          </div>
+          <div class="check"></div>
+        </div>
+      `).join('');
+    }
+
+    function toggleSetSelection(index) {
+      if (selectedSets.includes(index)) {
+        selectedSets = selectedSets.filter(i => i !== index);
+      } else {
+        selectedSets.push(index);
+      }
+      renderManualSets();
+    }
+
+    // ─── FORM SUBMISSION ─────────────────────────────────────────
+    async function submitForm(skip) {
+      // Gather data
+      const firstName = document.getElementById('firstName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const instagram = document.getElementById('instagram').value.trim();
+
+      // Set types
+      const setTypes = Array.from(document.querySelectorAll('#setTypes .option-pill.selected'))
+        .map(el => el.dataset.value);
+      const otherGenre = document.getElementById('otherGenre').value.trim();
+
+      // Environments
+      const environments = Array.from(document.querySelectorAll('#setEnvironments .option-pill.selected'))
+        .map(el => el.dataset.value);
+
+      // Frequency
+      const frequencyEl = document.querySelector('#frequency .option-pill.selected');
+      const frequency = frequencyEl ? frequencyEl.dataset.value : '';
+
+      // Category
+      const categoryEl = document.querySelector('#audienceCategory .option-pill.selected');
+      const category = categoryEl ? categoryEl.dataset.value : '';
+
+      // Selected manual sets
+      const recommendedSets = skip ? [] : selectedSets.map(index => ({
+        video_id: manualSets[index].videoId,
+        title: manualSets[index].title,
+        channel: manualSets[index].channel,
+        url: `https://youtube.com/watch?v=${manualSets[index].videoId}`
+      }));
+
+      const data = {
+        source: 'setclub',
+        first_name: firstName,
+        email: email,
+        instagram: instagram,
+        set_types: setTypes,
+        other_genre: otherGenre,
+        set_environments: environments,
+        frequency: frequency,
+        audience_category: category,
+        selected_sets: recommendedSets
+      };
+
+      const scriptUrl = (window.AFROCUE_CONFIG && window.AFROCUE_CONFIG.scriptUrl)
+        ? window.AFROCUE_CONFIG.scriptUrl
+        : 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec';
+
+      // GTM event
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          'event': 'setClubSubmission',
+          'skipSets': skip
+        });
+      }
+
+      try {
+        await fetch(scriptUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify(data)
+        });
+        // Redirect to thank-you page
+        window.location.href = '/thank-you/set-club?name=' + encodeURIComponent(firstName);
+      } catch (err) {
+        console.error('Submission error', err);
+        alert('Something went wrong. Please try again.');
+      }
+    }
+
+    // ─── INIT ─────────────────────────────────────────────────────
+    window.addEventListener('load', function() {
+      applyEventConfig();
+      renderManualSets();
+    });
+  </script>
 </body>
 </html>
