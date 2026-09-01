@@ -31,7 +31,7 @@
   <script src="afrocue.js"></script>
 
   <style>
-    /* ── AfroCue Set Club — Styles ── */
+    /* ── AfroCue Set Club — Clean Styles ── */
     @font-face {
       font-family: 'Aesthet Nova';
       src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');
@@ -205,7 +205,7 @@
     .hero-cta.secondary { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.6); }
     .hero-cta.secondary:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
 
-    /* WHAT IS SET CLUB (left text, right image with 10% texture overlay) */
+    /* WHAT IS SET CLUB */
     .what-section {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -253,7 +253,7 @@
       pointer-events: none;
     }
 
-    /* PILLAR TILES (compact 3-column on desktop, 2+1 on mobile) */
+    /* PILLAR TILES */
     .pillar-tiles {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -289,7 +289,7 @@
     .pillar-title { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 16px; color: var(--white); margin-bottom: 4px; }
     .pillar-desc { font-size: 11px; font-weight: 300; line-height: 1.4; color: rgba(240,237,232,0.7); }
 
-    /* EVENT MODULE with faint background image + 40% texture */
+    /* EVENT MODULE */
     .event-section {
       position: relative;
       background-size: cover;
@@ -355,7 +355,7 @@
     }
     .event-tba { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--grey); margin-top: 12px; }
 
-    /* YOUTUBE SECTION (left text, right screenshot image) */
+    /* YOUTUBE SECTION */
     .sets-section {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -382,7 +382,7 @@
       border-radius: 6px;
     }
 
-    /* JOIN CTA (more prominent) */
+    /* JOIN CTA */
     .join-section {
       text-align: center;
       padding: 60px 24px;
@@ -407,7 +407,7 @@
       color: var(--black);
     }
 
-    /* ABOUT AFROCUE (left text, right button, background image) */
+    /* ABOUT AFROCUE */
     .about-afrocue-section {
       position: relative;
       background-image: url('hero_dj.jpg');
@@ -479,7 +479,7 @@
     .footer-links a { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); }
     .footer-powered { font-size: 8px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); margin-top: 10px; }
 
-    /* MODAL */
+    /* MODAL & QUIZ */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -521,9 +521,25 @@
       cursor: pointer; font-size: 13px; color: var(--silver);
     }
     .option-pill.selected { border-color: var(--yellow); background: rgba(200,224,0,0.05); color: var(--white); }
-    .option-pill .check { width: 18px; height: 18px; border-radius: 4px; border: 1.5px solid rgba(255,255,255,0.2); }
+    .option-pill .check {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
     .option-pill.selected .check { border-color: var(--yellow); background: var(--yellow); }
-    .option-pill.selected .check::after { content: '✓'; font-size: 12px; color: var(--black); font-weight: 700; }
+    .option-pill.selected .check::after {
+      content: '✓';
+      font-size: 12px;
+      color: var(--black);
+      font-weight: 700;
+      line-height: 1;
+    }
     .other-input { display: none; margin-top: 8px; }
     .other-input.visible { display: block; }
     .other-input input { width: 100%; padding: 10px 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; color: var(--white); font-size: 14px; }
@@ -547,6 +563,31 @@
     .rec-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
     .rec-item { display: flex; align-items: center; justify-content: space-between; background: rgba(200,224,0,0.05); border: 1px solid rgba(200,224,0,0.2); border-radius: 4px; padding: 8px 10px; font-size: 13px; }
     .rec-item .remove-rec { background: none; border: none; color: var(--silver); font-size: 16px; cursor: pointer; }
+
+    /* Loading spinner */
+    .btn-loading {
+      position: relative;
+      pointer-events: none;
+      opacity: 0.7;
+      color: transparent !important;
+    }
+    .btn-loading::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 18px;
+      height: 18px;
+      margin-top: -9px;
+      margin-left: -9px;
+      border: 2px solid rgba(0,0,0,0.3);
+      border-top-color: #0a0a0a;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -636,7 +677,7 @@
     </div>
   </section>
 
-  <!-- WHAT IS SET CLUB (left text, right image with 10% texture overlay) -->
+  <!-- WHAT IS SET CLUB -->
   <section class="what-section" id="what">
     <div class="what-text">
       <div class="label">What is Set Club?</div>
@@ -648,7 +689,7 @@
     </div>
   </section>
 
-  <!-- PILLAR TILES (Explore, Discover, Experience with SVG icons) -->
+  <!-- PILLAR TILES -->
   <div class="pillar-tiles">
     <div class="pillar-tile">
       <div class="pillar-icon">
@@ -673,7 +714,7 @@
     </div>
   </div>
 
-  <!-- EVENT MODULE with faint background image + 40% texture -->
+  <!-- EVENT MODULE -->
   <section class="event-section" id="event">
     <div class="event-inner">
       <div class="event-label">Next Set Club</div>
@@ -706,7 +747,7 @@
     </div>
   </section>
 
-  <!-- YOUTUBE SECTION (left text, right screenshot image) -->
+  <!-- YOUTUBE SECTION -->
   <section class="sets-section" id="sets">
     <div class="sets-text">
       <div class="label">Set Club on YouTube</div>
@@ -718,14 +759,14 @@
     </div>
   </section>
 
-  <!-- JOIN CTA (more prominent) -->
+  <!-- JOIN CTA -->
   <section class="join-section">
     <h2 class="join-heading">Join Set Club.</h2>
     <p class="join-sub">Get the next announcement first.</p>
     <a href="#" class="hero-cta primary" onclick="openModal()">Join Set Club</a>
   </section>
 
-  <!-- ABOUT AFROCUE (left text, right button, background image) -->
+  <!-- ABOUT AFROCUE -->
   <section class="about-afrocue-section">
     <div class="about-afrocue-inner">
       <div class="about-afrocue-text">
@@ -958,17 +999,23 @@
       `).join('');
     }
 
-    // ─── FORM SUBMISSION ─────────────────────────────────────────
+    // ─── FORM SUBMISSION (with loading state) ─────────────────────
     async function submitForm(skip) {
+      const submitBtn = document.querySelector('#step5 .btn-outline:last-child');
+      const skipBtn = document.querySelector('#step5 .btn-outline:first-child');
+
+      if (submitBtn) submitBtn.disabled = true;
+      if (skipBtn) skipBtn.disabled = true;
+
+      const clickedBtn = skip ? skipBtn : submitBtn;
+      if (clickedBtn) clickedBtn.classList.add('btn-loading');
+
       const firstName = document.getElementById('firstName').value.trim();
       const email = document.getElementById('email').value.trim();
       const instagram = document.getElementById('instagram').value.trim();
-
-      const setTypes = Array.from(document.querySelectorAll('#setTypes .option-pill.selected'))
-        .map(el => el.dataset.value);
+      const setTypes = Array.from(document.querySelectorAll('#setTypes .option-pill.selected')).map(el => el.dataset.value);
       const otherGenre = document.getElementById('otherGenre').value.trim();
-      const environments = Array.from(document.querySelectorAll('#setEnvironments .option-pill.selected'))
-        .map(el => el.dataset.value);
+      const environments = Array.from(document.querySelectorAll('#setEnvironments .option-pill.selected')).map(el => el.dataset.value);
       const frequencyEl = document.querySelector('#frequency .option-pill.selected');
       const frequency = frequencyEl ? frequencyEl.dataset.value : '';
       const categoryEl = document.querySelector('#audienceCategory .option-pill.selected');
@@ -988,7 +1035,7 @@
         recommendations: recommendations
       };
 
-      const scriptUrl = getAfroCueScriptUrl(); // from afrocue.js
+      const scriptUrl = getAfroCueScriptUrl();
 
       if (window.dataLayer) {
         window.dataLayer.push({
@@ -1007,6 +1054,8 @@
         window.location.href = '/thank-you/set-club?name=' + encodeURIComponent(firstName);
       } catch (err) {
         console.error('Submission error', err);
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.classList.remove('btn-loading'); }
+        if (skipBtn) { skipBtn.disabled = false; skipBtn.classList.remove('btn-loading'); }
         alert('Something went wrong. Please try again.');
       }
     }
