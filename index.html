@@ -29,7 +29,8 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Removed <script src="/config"></script> — afrocue.js is loaded at the bottom -->
+  <!-- Shared afrocue.js -->
+  <script src="afrocue.js"></script>
 
   <style>
     /* ════════════════════════════════════════════════════════════
@@ -1114,9 +1115,11 @@
 
   /* ── FORM HANDLERS ── */
   function getScriptUrl() {
-    return (window.AFROCUE_CONFIG && window.AFROCUE_CONFIG.scriptUrl)
-      ? window.AFROCUE_CONFIG.scriptUrl
-      : 'https://script.google.com/macros/s/AKfycbwk0SvCWpKSr-hxsh_TPZiCCh2QTT8uXanQWiDl2qRCLqw1_wkNWLdNUs3LhYGqTl-O/exec';
+    // Use shared function from afrocue.js
+    if (typeof getAfroCueScriptUrl === 'function') {
+      return getAfroCueScriptUrl();
+    }
+    return 'https://script.google.com/macros/s/AKfycbwk0SvCWpKSr-hxsh_TPZiCCh2QTT8uXanQWiDl2qRCLqw1_wkNWLdNUs3LhYGqTl-O/exec';
   }
 
   function handleNewsletter(e) {
