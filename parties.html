@@ -4,11 +4,9 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Party Directory — AfroCue</title>
-  <meta name="description" content="The best raves, parties and events in Lagos and Nigeria — South Social, Group Therapy, Amapiano District, DanceEko and more. Documented by AfroCue."/>
-  <meta name="keywords" content="Lagos parties, Lagos raves, Nigeria events, afrohouse parties Lagos, amapiano events Lagos, nightlife Lagos, South Social, Group Therapy, DanceEko, AfroCue"/>
-  <link rel="canonical" href="https://afrocue.xyz/parties.html"/>
+  <meta name="description" content="The best raves, parties and events in Lagos and Nigeria — documented by AfroCue."/>
   <link rel="icon" type="image/png" href="favicon.png"/>
-  <link rel="apple-touch-icon" href="favicon.png"/>
+  <link rel="canonical" href="https://afrocue.xyz/parties.html"/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://afrocue.xyz/parties.html"/>
   <meta property="og:title" content="Party Directory — AfroCue"/>
@@ -20,10 +18,11 @@
   <meta name="twitter:description" content="The best raves, parties and events in Lagos and Nigeria — documented by AfroCue."/>
   <meta name="twitter:image" content="https://afrocue.xyz/hero_dj.jpg"/>
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Party Directory","description":"A curated directory of the best parties, raves and events in Lagos and Nigeria, documented by AfroCue.","url":"https://afrocue.xyz/parties.html","publisher":{"@type":"Organization","name":"AfroCue","url":"https://afrocue.xyz"}}</script>
+  <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- End Google Tag Manager -->
 
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');font-weight:900}
     @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype');font-weight:500}
@@ -61,13 +60,9 @@
     .label::before{content:'';width:18px;height:1px;background:var(--silver);flex-shrink:0}
     .hero h1{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(44px,6vw,88px);line-height:0.9;color:var(--yellow);text-shadow:var(--yts);margin-bottom:16px}
     .hero-desc{font-size:14px;font-weight:300;line-height:1.75;color:rgba(240,237,232,0.5);max-width:400px;margin-bottom:28px}
-    .hero-list-btn{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:12px 22px;border-radius:2px;text-decoration:none;transition:opacity 0.2s}
-    .hero-list-btn:hover{opacity:0.88}
 
     /* FEATURED */
     .featured-col{position:relative;z-index:1;display:flex;flex-direction:column;gap:12px}
-    .featured-col-label{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);display:flex;align-items:center;gap:10px}
-    .featured-col-label::before{content:'';width:18px;height:1px;background:var(--silver);flex-shrink:0}
     .featured-slot{position:relative;width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:var(--dark2);border:1px solid rgba(255,255,255,0.1);cursor:pointer}
     .featured-slot-bg{position:absolute;inset:-20px;z-index:0;background-size:cover;background-position:center;filter:blur(22px) brightness(0.3) saturate(0.5);transform:scale(1.15)}
     .featured-slot-img{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;object-position:center;transition:opacity 0.4s ease}
@@ -115,7 +110,8 @@
     .party-card-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
     .tag{font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:4px 8px;border-radius:2px;border:1px solid rgba(255,255,255,0.15);color:rgba(240,237,232,0.7)}
     .tag.type{border-color:rgba(200,224,0,0.3);color:rgba(200,224,0,0.8)}
-    .party-card-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(22px,2.5vw,32px);color:var(--yellow);text-shadow:var(--yts);line-height:0.95;margin-bottom:8px}
+    .party-card-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(22px,2.5vw,32px);color:var(--yellow);text-shadow:var(--yts);line-height:0.95;margin-bottom:4px}
+    .party-card-ig{font-size:10px;font-weight:400;color:rgba(240,237,232,0.4);margin-bottom:8px;letter-spacing:0.05em}
     .party-card-meta{font-size:11px;font-weight:300;color:rgba(240,237,232,0.45)}
     .party-card-cta{position:absolute;top:14px;left:14px;z-index:6;font-size:9px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:5px 10px;border-radius:2px;opacity:0;transition:opacity 0.2s}
     .party-card:hover .party-card-cta{opacity:1}
@@ -145,7 +141,8 @@
     .modal-hero-logo img{height:28px;width:auto;display:block}
     .modal-body{padding:0 44px 44px}
     .modal-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;padding-top:24px}
-    .modal-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(44px,6vw,80px);color:var(--yellow);text-shadow:var(--yts);line-height:0.92;margin-bottom:10px}
+    .modal-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(44px,6vw,80px);color:var(--yellow);text-shadow:var(--yts);line-height:0.92;margin-bottom:4px}
+    .modal-ig{font-size:13px;font-weight:400;color:rgba(240,237,232,0.5);margin-bottom:8px;letter-spacing:0.05em}
     .modal-city{font-size:12px;font-weight:300;letter-spacing:0.1em;text-transform:uppercase;color:var(--silver);margin-bottom:28px;display:flex;align-items:center;gap:8px}
     .modal-city::before{content:'';width:18px;height:1px;background:var(--grey);flex-shrink:0}
     .modal-desc{font-size:15px;font-weight:300;line-height:1.85;color:rgba(240,237,232,0.6);margin-bottom:36px;max-width:580px}
@@ -181,9 +178,38 @@
     .modal-other-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,0.95) 0%,rgba(10,10,10,0.2) 100%)}
     .modal-other-name{position:absolute;bottom:12px;left:12px;right:12px;z-index:2;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:16px;color:var(--yellow);text-shadow:var(--yts);line-height:1}
 
+    /* NEW: Party Pulse + Latest Posts */
+    .party-pulse { background:#0d0d0d;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:24px;margin-bottom:36px;position:relative;overflow:hidden; }
+    .party-pulse-label { display:flex;align-items:center;gap:8px;font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:16px;position:relative;z-index:2; }
+    .party-pulse-live-dot { width:6px;height:6px;border-radius:50%;background:var(--yellow);animation:pulseDot 1.5s infinite; }
+    @keyframes pulseDot { 0%{transform:scale(1);opacity:1} 50%{transform:scale(1.8);opacity:0.4} 100%{transform:scale(1);opacity:1} }
+    .party-pulse-scan { position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden; }
+    .party-pulse-scan::after { content:'';position:absolute;top:-50%;left:-100%;width:60%;height:200%;background:linear-gradient(90deg,transparent,rgba(200,224,0,0.05),transparent);transform:rotate(25deg);animation:scanMove 3s linear infinite; }
+    @keyframes scanMove { 0%{left:-100%} 100%{left:150%} }
+    .party-pulse-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:16px;position:relative;z-index:2; }
+    .party-pulse-key { display:block;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:#555;margin-bottom:6px; }
+    .party-pulse-value { display:block;font-size:16px;font-weight:500;color:#f0ede8;opacity:0;animation:fadeInValue 0.6s ease forwards; }
+    @keyframes fadeInValue { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
+    .party-pulse-confidence { margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:8px;font-size:10px;position:relative;z-index:2; }
+    .confidence-label { letter-spacing:0.15em;text-transform:uppercase;color:#555; }
+    .confidence-badge { font-weight:600;padding:2px 8px;border-radius:10px;letter-spacing:0.06em; }
+    .confidence-badge.high { background:rgba(200,224,0,0.15);color:#C8E000; }
+    .confidence-badge.medium { background:rgba(255,165,0,0.15);color:#ffa500; }
+    .confidence-badge.low { background:rgba(255,255,255,0.06);color:#777; }
+    .confidence-note { color:rgba(240,237,232,0.35);font-weight:300; }
+
+    .latest-posts { margin-bottom:36px; }
+    .latest-posts-label { font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);margin-bottom:16px; }
+    .latest-posts-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:12px; }
+    .latest-post-card { display:block; text-decoration:none; color:inherit; }
+    .latest-post-thumb { aspect-ratio:1/1;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,0.06); }
+    .latest-post-thumb img { width:100%;height:100%;object-fit:cover;display:block; }
+    .latest-post-caption { font-size:11px;font-weight:400;color:rgba(240,237,232,0.7);line-height:1.5;margin-top:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden; }
+    .latest-post-time { font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#555;margin-top:6px; }
+
     .no-results{padding:80px 0;text-align:center;color:var(--grey);font-size:14px;font-weight:300;display:none}
 
-    /* LIST CTA STRIP */
+    /* LIST CTA */
     .list-cta-strip{background:var(--dark);border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);padding:32px 48px}
     .list-cta-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;max-width:100%}
     .list-cta-label{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);margin-bottom:6px}
@@ -191,7 +217,7 @@
     .list-cta-btn{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:14px 28px;border-radius:2px;text-decoration:none;white-space:nowrap;transition:opacity 0.2s;flex-shrink:0}
     .list-cta-btn:hover{opacity:0.88}
 
-    /* FOOTER — single compact row */
+    /* FOOTER */
     footer{border-top:1px solid rgba(255,255,255,0.06);padding:16px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;background:var(--dark)}
     .footer-logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
     .footer-logo img{height:26px;width:auto;display:block}
@@ -202,8 +228,7 @@
     .footer-email a{font-size:10px;color:var(--grey);text-decoration:none;transition:color 0.2s}
     .footer-email a:hover{color:var(--white)}
 
-
-    /* UPCOMING FEATURED SECTION */
+    /* UPCOMING */
     .upcoming{display:none;position:relative;overflow:hidden;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06)}
     .upcoming.visible{display:block}
     .upcoming-bg{position:absolute;inset:-20px;z-index:0;background-size:cover;background-position:center;filter:blur(28px) brightness(0.35) saturate(0.6);transform:scale(1.1)}
@@ -212,8 +237,6 @@
     .upcoming-inner{position:relative;z-index:3;display:grid;grid-template-columns:1fr 2fr;height:200px;overflow:hidden}
     .upcoming-flyer-wrap{position:relative;overflow:hidden;height:100%}
     .upcoming-flyer-img{position:absolute;top:12px;bottom:12px;left:50%;transform:translateX(-50%) rotate(1deg);width:auto;height:calc(100% - 24px);aspect-ratio:3/4;object-fit:cover;border-radius:5px;display:block;box-shadow:0 8px 40px rgba(0,0,0,0.95)}
-    .upcoming-flyer-placeholder{width:80px;aspect-ratio:3/4;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:3px;display:flex;align-items:center;justify-content:center}
-    .upcoming-flyer-placeholder span{font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey)}
     .upcoming-left{display:flex;flex-direction:column;justify-content:center;gap:7px;padding:24px 36px;overflow:visible;min-width:0}
     .upcoming-badge{display:inline-flex;align-items:center;gap:5px;font-size:8px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:4px 10px;border-radius:2px;align-self:flex-start;margin-bottom:2px}
     .upcoming-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(26px,3.2vw,44px);color:var(--yellow);text-shadow:var(--yts);line-height:0.9}
@@ -227,14 +250,7 @@
     @media(max-width:768px){
       nav{padding:14px 20px}
       .nav-links{display:none}
-
-      /* MOBILE HERO — compact side-by-side: title left, featured card right */
-      .hero{
-        grid-template-columns:1fr 1fr;
-        gap:16px;
-        padding:72px 16px 20px;
-        align-items:center;
-      }
+      .hero{grid-template-columns:1fr 1fr;gap:16px;padding:72px 16px 20px;align-items:center}
       .hero-bg{opacity:0.12}
       .label{margin-bottom:8px;font-size:9px}
       .hero h1{font-size:clamp(28px,8vw,44px);margin-bottom:8px}
@@ -247,31 +263,26 @@
       .featured-name{font-size:12px}
       .featured-label{font-size:6px;padding:2px 4px}
       .featured-slot-content{padding:8px 10px;padding-right:12px}
-      .featured-label{font-size:7px;padding:2px 5px;margin-bottom:4px}
-
-      /* PARTIES SECTION */
       #parties{padding:20px 12px 60px}
       .parties-header{flex-direction:column;gap:12px;margin-bottom:24px}
       .filter-bar{gap:5px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px}
       .filter-bar::-webkit-scrollbar{display:none}
       .filter-select{font-size:10px;padding:7px 22px 7px 9px;flex-shrink:0}
       .parties-grid{grid-template-columns:1fr 1fr;gap:2px}
-
-      /* MOBILE CARD — hide genre tags, show only type tags (max 2) */
       .party-card-tags .tag:not(.type){display:none}
       .party-card-tags .tag.type:nth-child(n+3){display:none}
       .party-card-stats{display:flex}
       .party-card-name{font-size:clamp(16px,5vw,22px);margin-bottom:4px}
+      .party-card-ig{font-size:9px}
       .party-card-meta{font-size:10px}
       .party-card-content{padding:14px 12px 12px}
-
-      /* MODAL */
       .modal-wrap{padding:16px 8px}
       .modal-hero{height:200px}
       .modal-body{padding:0 16px 24px}
       .modal-tags{padding-top:14px;gap:4px}
       .modal-tags .tag{font-size:8px;padding:3px 6px}
       .modal-name{font-size:clamp(28px,9vw,48px);margin-bottom:6px}
+      .modal-ig{font-size:11px}
       .modal-city{margin-bottom:16px;font-size:10px}
       .modal-stats{gap:12px;margin-bottom:14px}
       .modal-desc{font-size:13px;margin-bottom:20px}
@@ -279,20 +290,14 @@
       .modal-flyer{max-width:140px}
       .modal-others{padding:20px 16px}
       .modal-others-grid{grid-template-columns:1fr 1fr 1fr;gap:2px}
-
-      /* UPCOMING */
       .upcoming-inner{height:160px}
       .upcoming-flyer-img{top:8px;bottom:8px;height:calc(100% - 16px)}
       .upcoming-name{font-size:clamp(20px,5.5vw,30px)}
       .upcoming-left{padding:14px 18px;gap:5px}
       .upcoming-btn{padding:10px 16px;font-size:9px}
-
-      /* FOOTER */
       footer{padding:12px 16px;gap:8px;flex-wrap:wrap}
       .footer-links{gap:12px}
       .footer-email{display:none}
-
-      /* LIST CTA */
       .list-cta-strip{padding:24px 16px}
       .list-cta-inner{flex-direction:column;align-items:flex-start;gap:14px}
       .list-cta-btn{width:100%;justify-content:center;padding:12px 20px}
@@ -305,674 +310,806 @@
   </style>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none';document.querySelector('.nav-logo-fallback').style.display='block'"/>
+      <span class="nav-logo-fallback">afro.cue</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="parties.html" class="active">Parties</a></li>
+      <li><a href="dj.html">DJs</a></li>
+    </ul>
+    <a href="list-party.html" class="nav-cta">List Your Party</a>
+  </nav>
 
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="index.html">
-    <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none';document.querySelector('.nav-logo-fallback').style.display='block'"/>
-    <span class="nav-logo-fallback">afro.cue</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="index.html#about">About</a></li>
-    <li><a href="parties.html" class="active">Parties</a></li>
-    <li><a href="dj.html">DJs</a></li>
-  </ul>
-  <a href="list-party.html" class="nav-cta">List Your Party</a>
-</nav>
-
-<!-- MODAL -->
-<div class="modal-wrap" id="partyModal">
-  <button class="modal-close" onclick="closeModal()">&#x2715;</button>
-  <div class="modal">
-    <div class="modal-hero">
-      <div class="modal-hero-bg" id="modalHeroBg"></div>
-      <img class="modal-hero-img" id="modalHeroImg" src="" alt=""/>
-      <div class="modal-hero-texture"></div>
-      <div class="modal-hero-grad"></div>
-      <div class="modal-hero-logo"><img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none'"/></div>
-    </div>
-    <div class="modal-body">
-      <div class="modal-tags" id="modalTags"></div>
-      <div class="modal-name yh" id="modalName"></div>
-      <div class="modal-city" id="modalCity"></div>
-      <div class="modal-stats">
-        <div class="stat-pill">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-          <span id="viewCountNum">—</span> views
-        </div>
-        <button class="like-btn" id="likeBtn" onclick="handleLike()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          <span id="likeCountNum">—</span>
-        </button>
-        <button class="share-btn" id="shareBtn" onclick="handleShare()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-          Share
-        </button>
+  <!-- MODAL -->
+  <div class="modal-wrap" id="partyModal">
+    <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    <div class="modal">
+      <div class="modal-hero">
+        <div class="modal-hero-bg" id="modalHeroBg"></div>
+        <img class="modal-hero-img" id="modalHeroImg" src="" alt=""/>
+        <div class="modal-hero-texture"></div>
+        <div class="modal-hero-grad"></div>
+        <div class="modal-hero-logo"><img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none'"/></div>
       </div>
-      <p class="modal-desc" id="modalDesc"></p>
-      <div class="modal-lower">
-        <div class="modal-flyer" id="modalFlyer">
-          <div class="modal-flyer-placeholder"><span>Flyer coming soon</span></div>
+      <div class="modal-body">
+        <div class="modal-tags" id="modalTags"></div>
+        <div class="modal-name yh" id="modalName"></div>
+        <div class="modal-ig" id="modalIg"></div>
+        <div class="modal-city" id="modalCity"></div>
+        <div class="modal-stats">
+          <div class="stat-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span id="viewCountNum">—</span> views
+          </div>
+          <button class="like-btn" id="likeBtn" onclick="handleLike()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span id="likeCountNum">—</span>
+          </button>
+          <button class="share-btn" id="shareBtn" onclick="handleShare()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            Share
+          </button>
         </div>
-        <div class="modal-right">
+        <p class="modal-desc" id="modalDesc"></p>
+
+        <!-- Party Pulse -->
+        <div class="party-pulse" id="partyPulse">
+          <div class="party-pulse-label">
+            <span class="party-pulse-live-dot"></span> Party Pulse
+          </div>
+          <div class="party-pulse-scan"></div>
+          <div class="party-pulse-grid">
+            <div class="party-pulse-col">
+              <span class="party-pulse-key">Last party</span>
+              <span class="party-pulse-value" id="pulseLastParty">unavailable</span>
+            </div>
+            <div class="party-pulse-col">
+              <span class="party-pulse-key">Next party</span>
+              <span class="party-pulse-value" id="pulseNextParty">unavailable</span>
+            </div>
+            <div class="party-pulse-col">
+              <span class="party-pulse-key">Countdown</span>
+              <span class="party-pulse-value" id="pulseCountdown">unavailable</span>
+            </div>
+          </div>
+          <div class="party-pulse-confidence" id="pulseConfidenceRow" style="display:none;">
+            <span class="confidence-label">Source confidence</span>
+            <span class="confidence-badge" id="confidenceBadge"></span>
+            <span class="confidence-note">Based on recent Instagram posts</span>
+          </div>
+        </div>
+
+        <!-- Latest Posts -->
+        <div class="latest-posts" id="latestPostsSection" style="display:none;">
+          <div class="latest-posts-label" id="latestPostsLabel">Latest from AfroCue</div>
+          <div class="latest-posts-grid" id="latestPostsGrid"></div>
+        </div>
+
+        <div class="modal-lower">
           <div>
-            <div class="modal-cta-label">Find them on</div>
-            <a class="modal-link" id="modalLink" href="#" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-              <span id="modalLinkText">Instagram</span>
-            </a>
+            <div class="modal-cta-label">Last uploaded party flier</div>
+            <div class="modal-flyer" id="modalFlyer">
+              <div class="modal-flyer-placeholder"><span>Flyer coming soon</span></div>
+            </div>
+          </div>
+          <div class="modal-right">
+            <div>
+              <div class="modal-cta-label">Find them on</div>
+              <a class="modal-link" id="modalLink" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                <span id="modalLinkText">Instagram</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- WhatsApp CTA -->
+      <div style="padding:20px 44px;border-top:1px solid rgba(255,255,255,0.06);background:#0d0d0d;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <svg viewBox="0 0 24 24" width="18" height="18" style="flex-shrink:0;" fill="#25D366">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
+          </svg>
+          <div>
+            <div style="font-size:10px;font-weight:600;color:#f0ede8;letter-spacing:0.04em;">Follow AfroCue on WhatsApp</div>
+            <div style="font-size:10px;font-weight:300;color:rgba(240,237,232,0.35);margin-top:2px;">Parties, DJs &amp; drops — unmute for updates</div>
+          </div>
+        </div>
+        <a href="https://whatsapp.com/channel/0029Vb74IjxGufJ0irS1uq0u" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#0a0a0a;text-decoration:none;padding:10px 18px;border-radius:2px;font-family:'Figtree',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;flex-shrink:0;">
+          Follow
+        </a>
+      </div>
+
+      <!-- Other Parties -->
+      <div class="modal-others">
+        <div class="modal-others-label">Other Parties</div>
+        <div class="modal-others-grid" id="modalOthers"></div>
+      </div>
     </div>
-    <div style="padding:20px 44px;border-top:1px solid rgba(255,255,255,0.06);background:#0d0d0d;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
-      <div style="display:flex;align-items:center;gap:12px;">
-        <svg viewBox="0 0 24 24" width="18" height="18" style="flex-shrink:0;" fill="#25D366">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
-        </svg>
-        <div>
-          <div style="font-size:10px;font-weight:600;color:#f0ede8;letter-spacing:0.04em;">Follow AfroCue on WhatsApp</div>
-          <div style="font-size:10px;font-weight:300;color:rgba(240,237,232,0.35);margin-top:2px;">Parties, DJs &amp; drops — unmute for updates</div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-photo" id="heroBg"></div>
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="label">Party Directory</div>
+      <h1>Parties.</h1>
+      <p class="hero-desc">Parties, raves and experiences worth knowing about in Afrobeats, Amapiano, EDM and dance music generally in Lagos and Nigeria.</p>
+    </div>
+    <div class="featured-col">
+      <div class="featured-slot" id="featuredSlot" onclick="openFeaturedModal()">
+        <div class="featured-slot-bg" id="featuredBg"></div>
+        <img class="featured-slot-img" id="featuredImg" src="" alt=""/>
+        <div class="featured-slot-grad"></div>
+        <div class="featured-dots" id="featuredDots"></div>
+        <div class="featured-slot-content">
+          <span class="featured-label">Trending</span>
+          <div class="featured-name" id="featuredName">—</div>
+          <div class="featured-city" id="featuredCity"></div>
+        </div>
+        <div class="featured-flyer" id="featuredFlyer" style="display:none;">
+          <img id="featuredFlyerImg" src="" alt=""/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UPCOMING FEATURED PARTY -->
+  <div class="upcoming" id="upcomingSection">
+    <div class="upcoming-bg" id="upcomingBg"></div>
+    <div class="upcoming-texture"></div>
+    <div class="upcoming-grad"></div>
+    <div class="upcoming-inner">
+      <div class="upcoming-flyer-wrap" id="upcomingFlyerWrap">
+        <img class="upcoming-flyer-img" id="upcomingFlyerImg" src="" alt="" style="visibility:hidden;"/>
+      </div>
+      <div class="upcoming-left">
+        <span class="upcoming-badge">&#9733; Featured</span>
+        <div class="upcoming-name" id="upcomingName"></div>
+        <div class="upcoming-date" id="upcomingDate"></div>
+        <div class="upcoming-tags" id="upcomingTags"></div>
+        <a class="upcoming-btn" id="upcomingBtn" href="#" onclick="openUpcomingModal();return false;">Buy Tickets</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTIES -->
+  <section id="parties">
+    <div class="parties-header">
+      <div class="filter-bar">
+        <select class="filter-select" id="filterCity" onchange="applyFilters()">
+          <option value="">City</option>
+          <optgroup label="Nigeria">
+            <option>Lagos</option><option>Port Harcourt</option><option>Abuja</option>
+            <option>Benin</option><option>Ibadan</option><option>Enugu</option>
+            <option>Calabar</option><option>Warri</option>
+          </optgroup>
+          <optgroup label="West Africa">
+            <option>Accra</option><option>Nairobi</option><option>Johannesburg</option>
+          </optgroup>
+        </select>
+        <select class="filter-select" id="filterTime" onchange="applyFilters()">
+          <option value="">Time</option><option>Day</option><option>Night</option><option>Day &amp; Night</option>
+        </select>
+        <select class="filter-select" id="filterAccess" onchange="applyFilters()">
+          <option value="">Access</option><option>Free</option><option>Ticketed</option><option>RSVP</option><option>Invite Only</option>
+        </select>
+        <select class="filter-select" id="filterSetting" onchange="applyFilters()">
+          <option value="">Setting</option><option>Indoor</option><option>Outdoor</option><option>Both</option>
+        </select>
+        <select class="filter-select" id="filterGenre" onchange="applyFilters()">
+          <option value="">Genre</option><option>Afrobeats</option><option>Afro House</option>
+          <option>Amapiano</option><option>3-Step</option><option>Hip Hop</option>
+          <option>Dancehall</option><option>Electronic</option>
+        </select>
+        <button class="filter-reset" id="filterReset" onclick="resetFilters()">Clear</button>
+      </div>
+    </div>
+    <div class="parties-grid" id="partiesGrid"></div>
+    <div class="no-results" id="noResults">No parties match this filter yet.</div>
+  </section>
+
+  <!-- LIST YOUR PARTY CTA -->
+  <div class="list-cta-strip">
+    <div class="list-cta-inner">
+      <div>
+        <div class="list-cta-label">Is your party on here?</div>
+        <div class="list-cta-text">Get your event in front of Lagos's nightlife audience.</div>
+      </div>
+      <a href="list-party.html" class="list-cta-btn">List Your Party &rarr;</a>
+    </div>
+  </div>
+
+  <!-- WHATSAPP CHANNEL -->
+  <section id="whatsapp-channel" style="background:#111111;border-top:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;padding:52px 48px;">
+    <div style="position:absolute;right:-40px;top:50%;transform:translateY(-50%);opacity:0.055;pointer-events:none;z-index:0;">
+      <svg width="420" height="420" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="0.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+      </svg>
+    </div>
+    <div style="position:relative;z-index:1;max-width:1100px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#25D366;opacity:0.7;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+          <span style="width:14px;height:1px;background:#25D366;display:inline-block;flex-shrink:0;"></span>
+          WhatsApp Channel
+        </div>
+        <div style="font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(28px,4vw,52px);color:#f0ede8;line-height:0.92;text-shadow:2px 3px 0px rgba(0,0,0,0.9);margin-bottom:14px;">
+          Get the updates<br>on <span style="color:#25D366;">WhatsApp.</span>
+        </div>
+        <div style="font-size:12px;font-weight:300;color:rgba(240,237,232,0.35);display:flex;align-items:center;gap:8px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" style="flex-shrink:0;opacity:0.6;">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+          Unmute notifications so you never miss a drop.
         </div>
       </div>
       <a href="https://whatsapp.com/channel/0029Vb74IjxGufJ0irS1uq0u" target="_blank" rel="noopener"
-         style="display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#0a0a0a;text-decoration:none;padding:10px 18px;border-radius:2px;font-family:'Figtree',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;flex-shrink:0;">
-        Follow
+         style="display:inline-flex;align-items:center;gap:14px;background:#25D366;color:#0a0a0a;text-decoration:none;padding:20px 36px;border-radius:3px;font-family:'Figtree',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;flex-shrink:0;"
+         onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+        <svg viewBox="0 0 24 24" width="22" height="22" style="flex-shrink:0;" fill="#0a0a0a">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
+        </svg>
+        Follow on WhatsApp
       </a>
     </div>
-    <div class="modal-others">
-      <div class="modal-others-label">Other Parties</div>
-      <div class="modal-others-grid" id="modalOthers"></div>
-    </div>
-  </div>
-</div>
+  </section>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-photo" id="heroBg"></div>
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <div class="label">Party Directory</div>
-    <h1>Parties.</h1>
-    <p class="hero-desc">Parties, raves and experiences worth knowing about in Afrobeats, Amapiano, EDM and dance music generally in Lagos and Nigeria.</p>
-  </div>
-  <div class="featured-col">
-    <div class="featured-slot" id="featuredSlot" onclick="openFeaturedModal()">
-      <div class="featured-slot-bg" id="featuredBg"></div>
-      <img class="featured-slot-img" id="featuredImg" src="" alt=""/>
-      <div class="featured-slot-grad"></div>
-      <div class="featured-dots" id="featuredDots"></div>
-      <div class="featured-slot-content">
-        <span class="featured-label">Trending</span>
-        <div class="featured-name" id="featuredName">—</div>
-        <div class="featured-city" id="featuredCity"></div>
-      </div>
-      <div class="featured-flyer" id="featuredFlyer" style="display:none;">
-        <img id="featuredFlyerImg" src="" alt=""/>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- UPCOMING FEATURED PARTY -->
-<div class="upcoming" id="upcomingSection">
-  <div class="upcoming-bg" id="upcomingBg"></div>
-  <div class="upcoming-texture"></div>
-  <div class="upcoming-grad"></div>
-  <div class="upcoming-inner">
-    <div class="upcoming-flyer-wrap" id="upcomingFlyerWrap">
-      <img class="upcoming-flyer-img" id="upcomingFlyerImg" src="" alt="" style="visibility:hidden;"/>
-    </div>
-    <div class="upcoming-left">
-      <span class="upcoming-badge">&#9733; Featured</span>
-      <div class="upcoming-name" id="upcomingName"></div>
-      <div class="upcoming-date" id="upcomingDate"></div>
-      <div class="upcoming-tags" id="upcomingTags"></div>
-      <a class="upcoming-btn" id="upcomingBtn" href="#" onclick="openUpcomingModal();return false;">Buy Tickets</a>
-    </div>
-  </div>
-</div>
-
-<!-- PARTIES -->
-<section id="parties">
-  <div class="parties-header">
-    <div class="filter-bar">
-      <select class="filter-select" id="filterCity" onchange="applyFilters()">
-        <option value="">City</option>
-        <optgroup label="Nigeria">
-          <option>Lagos</option><option>Port Harcourt</option><option>Abuja</option>
-          <option>Benin</option><option>Ibadan</option><option>Enugu</option>
-          <option>Calabar</option><option>Warri</option>
-        </optgroup>
-        <optgroup label="West Africa">
-          <option>Accra</option><option>Nairobi</option><option>Johannesburg</option>
-        </optgroup>
-      </select>
-      <select class="filter-select" id="filterTime" onchange="applyFilters()">
-        <option value="">Time</option><option>Day</option><option>Night</option><option>Day &amp; Night</option>
-      </select>
-      <select class="filter-select" id="filterAccess" onchange="applyFilters()">
-        <option value="">Access</option><option>Free</option><option>Ticketed</option><option>RSVP</option><option>Invite Only</option>
-      </select>
-      <select class="filter-select" id="filterSetting" onchange="applyFilters()">
-        <option value="">Setting</option><option>Indoor</option><option>Outdoor</option><option>Both</option>
-      </select>
-      <select class="filter-select" id="filterGenre" onchange="applyFilters()">
-        <option value="">Genre</option><option>Afrobeats</option><option>Afro House</option>
-        <option>Amapiano</option><option>3-Step</option><option>Hip Hop</option>
-        <option>Dancehall</option><option>Electronic</option>
-      </select>
-      <button class="filter-reset" id="filterReset" onclick="resetFilters()">Clear</button>
-    </div>
-  </div>
-  <div class="parties-grid" id="partiesGrid"></div>
-  <div class="no-results" id="noResults">No parties match this filter yet.</div>
-</section>
-
-<!-- LIST YOUR PARTY CTA -->
-<div class="list-cta-strip">
-  <div class="list-cta-inner">
-    <div>
-      <div class="list-cta-label">Is your party on here?</div>
-      <div class="list-cta-text">Get your event in front of Lagos's nightlife audience.</div>
-    </div>
-    <a href="list-party.html" class="list-cta-btn">List Your Party &rarr;</a>
-  </div>
-</div>
-
-<!-- WHATSAPP CHANNEL -->
-<section id="whatsapp-channel" style="background:#111111;border-top:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;padding:52px 48px;">
-  <div style="position:absolute;right:-40px;top:50%;transform:translateY(-50%);opacity:0.055;pointer-events:none;z-index:0;">
-    <svg width="420" height="420" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="0.4" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-      <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-    </svg>
-  </div>
-  <div style="position:relative;z-index:1;max-width:1100px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;">
-    <div style="flex:1;min-width:0;">
-      <div style="font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#25D366;opacity:0.7;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
-        <span style="width:14px;height:1px;background:#25D366;display:inline-block;flex-shrink:0;"></span>
-        WhatsApp Channel
-      </div>
-      <div style="font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(28px,4vw,52px);color:#f0ede8;line-height:0.92;text-shadow:2px 3px 0px rgba(0,0,0,0.9);margin-bottom:14px;">
-        Get the updates<br>on <span style="color:#25D366;">WhatsApp.</span>
-      </div>
-      <div style="font-size:12px;font-weight:300;color:rgba(240,237,232,0.35);display:flex;align-items:center;gap:8px;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" style="flex-shrink:0;opacity:0.6;">
-          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-          <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-        </svg>
-        Unmute notifications so you never miss a drop.
-      </div>
-    </div>
-    <a href="https://whatsapp.com/channel/0029Vb74IjxGufJ0irS1uq0u" target="_blank" rel="noopener"
-       style="display:inline-flex;align-items:center;gap:14px;background:#25D366;color:#0a0a0a;text-decoration:none;padding:20px 36px;border-radius:3px;font-family:'Figtree',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;flex-shrink:0;"
-       onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
-      <svg viewBox="0 0 24 24" width="22" height="22" style="flex-shrink:0;" fill="#0a0a0a">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
-      </svg>
-      Follow on WhatsApp
+  <!-- FOOTER -->
+  <footer>
+    <a class="footer-logo" href="index.html">
+      <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+      <span class="footer-logo-fallback">AfroCue</span>
     </a>
-  </div>
-</section>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="parties.html">Parties</a>
+      <a href="dj.html">DJs</a>
+      <a href="pregame.html">Pregame</a>
+      <a href="list-party.html">List a Party</a>
+    </div>
+    <div class="footer-email"><a href="mailto:hello@afrocue.xyz">hello@afrocue.xyz</a></div>
+  </footer>
 
+  <script>
+    // ─── CONFIG ───────────────────────────────────────────────────────────
+    // Use the published CSV URL of your spreadsheet:
+    var CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRvyoz4kEGuFe1KzMPNFicoRiNEr9-hg-eI-Uv2PjkjT4iJYuEEr4w18As6SxrybQhwqNBsgDlnADII/pub?gid=0&single=true&output=csv';
 
-<!-- FOOTER — single compact row -->
-<footer>
-  <a class="footer-logo" href="index.html">
-    <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
-    <span class="footer-logo-fallback">AfroCue</span>
-  </a>
-  <div class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="parties.html">Parties</a>
-    <a href="dj.html">DJs</a>
-    <a href="pregame.html">Pregame</a>
-    <a href="list-party.html">List a Party</a>
-  </div>
-  <div class="footer-email"><a href="/cdn-cgi/l/email-protection#573e3931381736312538342232792f2e2d"><span class="__cf_email__" data-cfemail="2b42454d446b4a4d5944485e4e05535251">[email&#160;protected]</span></a></div>
-</footer>
+    function getGasUrl(){ return window.AFROCUE_SCRIPT_URL || 'YOUR_GAS_SCRIPT_URL_HERE'; }
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="afrocue.js"></script>
-<script>
+    // ─── HELPERS ──────────────────────────────────────────────────────────
+    function getHandleFromUrl(url) {
+      if (!url || typeof url !== 'string') return '';
+      var match = url.match(/instagram\.com\/([^\/\?]+)/);
+      return match ? '@' + match[1] : '';
+    }
 
-function getGasUrl(){return window.AFROCUE_SCRIPT_URL||'YOUR_GAS_SCRIPT_URL_HERE';}
+    var PARTIES = [];
+    var currentParty = null;
+    var featuredIndex = 0, featuredTimer = null, featuredList = [];
 
-var PARTIES=[];
-var currentParty=null;
-
-/* ── SKELETONS — shown instantly while data loads ── */
-function renderSkeletons(){
-  var grid=document.getElementById('partiesGrid');
-  grid.innerHTML='';
-  for(var i=0;i<6;i++){
-    var card=document.createElement('div');
-    card.className='party-card party-card-skeleton';
-    card.innerHTML='<div class="party-card-grad"></div>'
-      +'<div class="skeleton-shimmer"></div>'
-      +'<div class="party-card-content">'
-      +'<div class="party-card-tags"><span class="skeleton-bar" style="display:inline-block;width:52px;height:18px;"></span></div>'
-      +'<div class="skeleton-bar" style="width:80%;height:28px;margin-bottom:10px;"></div>'
-      +'<div class="skeleton-bar" style="width:50%;height:14px;"></div>'
-      +'</div>';
-    grid.appendChild(card);
-  }
-}
-
-/* ── EMPTY STATE — shown when CSV fails or returns nothing ── */
-function showEmptyState(msg){
-  var grid=document.getElementById('partiesGrid');
-  grid.innerHTML='';
-  var noResults=document.getElementById('noResults');
-  noResults.textContent=msg||'No parties listed yet.';
-  noResults.style.display='block';
-}
-
-/* ── LOAD FROM GOOGLE SHEETS PUBLISHED CSV ── */
-/* Columns: A=id, B=name, C=city, D=time, E=access, F=setting,
-   G=genres, H=description, I=hero_img, J=flyer_img, K=instagram,
-   L=website, M=views, N=likes, O=status, P=contact_email(skip),
-   Q=notes(skip), R=upcoming_flyer, S=upcoming_date, T=featured */
-var CSV_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vSemAPO2lS9b54nmiLq2LUodTRkgBT6ls_iRDUy_Zh6mhIkWf2UsRFvd5zmqfmc-rzeWViOd8rX1LCe/pub?gid=199159856&single=true&output=csv';
-
-function parseCSV(text){
-  var lines=text.trim().split('\n');
-  if(lines.length<2)return{parties:[],featured:null};
-  /* Use header row to locate column indexes dynamically.
-     This handles Google Sheets truncating trailing empty columns. */
-  var headers=splitCSVLine(lines[0]).map(function(h){return h.trim().toLowerCase();});
-  function col(name){var i=headers.indexOf(name);return i>-1?i:-1;}
-  /* Fixed positional cols (always present) */
-  var C_ID=0,C_NAME=1,C_CITY=2,C_TIME=3,C_ACCESS=4,C_SETTING=5;
-  var C_GENRES=6,C_DESC=7,C_HERO=8,C_FLYER=9,C_IG=10,C_WEB=11;
-  var C_VIEWS=12,C_LIKES=13,C_STATUS=14;
-  /* New cols — find by header name, fall back to fixed index */
-  var C_UPCOMING_FLYER = col('upcoming flyer')>-1 ? col('upcoming flyer') : 16;
-  var C_UPCOMING_DATE  = col('upcoming date')>-1  ? col('upcoming date')  : 17;
-  var C_FEATURED       = col('featured')>-1       ? col('featured')       : 18;
-  var parties=[];
-  var featured=null;
-  for(var i=1;i<lines.length;i++){
-    var cols=splitCSVLine(lines[i]);
-    if(!cols[0]||!cols[1])continue;
-    var status=(cols[C_STATUS]||'').trim();
-    var isFeatured=(cols[C_FEATURED]||'').trim().toLowerCase()==='yes';
-    var p={
-      id:             cols[C_ID].trim(),
-      name:           cols[C_NAME].trim(),
-      city:           cols[C_CITY].trim(),
-      time:           cols[C_TIME].trim(),
-      access:         cols[C_ACCESS].trim(),
-      setting:        cols[C_SETTING].trim(),
-      genres:         cols[C_GENRES]?cols[C_GENRES].trim().split(',').map(function(s){return s.trim();}): [],
-      description:    cols[C_DESC].trim(),
-      hero_img:       cols[C_HERO].trim(),
-      flyer_img:      cols[C_FLYER].trim(),
-      instagram:      cols[C_IG].trim(),
-      website:        cols[C_WEB].trim(),
-      views:          parseInt(cols[C_VIEWS])||0,
-      likes:          parseInt(cols[C_LIKES])||0,
-      upcoming_flyer: (cols[C_UPCOMING_FLYER]||'').trim(),
-      upcoming_date:  (cols[C_UPCOMING_DATE]||'').trim(),
-      featured:       isFeatured
-    };
-    if(isFeatured)featured=p;
-    if(status==='Active')parties.push(p);
-  }
-  return{parties:parties,featured:featured};
-}
-
-/* Handles quoted fields with commas inside them */
-function splitCSVLine(line){
-  var cols=[],cur='',inQuote=false;
-  for(var i=0;i<line.length;i++){
-    var c=line[i];
-    if(c==='"'){inQuote=!inQuote;}
-    else if(c===','&&!inQuote){cols.push(cur);cur='';}
-    else{cur+=c;}
-  }
-  cols.push(cur);
-  return cols;
-}
-
-function loadParties(){
-  renderSkeletons();
-  fetch(CSV_URL)
-    .then(function(r){
-      if(!r.ok)throw new Error('HTTP '+r.status);
-      return r.text();
-    })
-    .then(function(text){
-      var result=parseCSV(text);
-      PARTIES=result.parties;
-      renderUpcoming(result.featured);
-      if(PARTIES.length>0){
-        renderCards(getFilters());
-        initFeatured();
-      }else{
-        console.warn('AfroCue: CSV returned no active parties');
-        showEmptyState('No parties listed yet. Check back soon.');
+    // ─── RENDER SKELETON ────────────────────────────────────────────────
+    function renderSkeletons(){
+      var grid = document.getElementById('partiesGrid');
+      grid.innerHTML = '';
+      for(var i=0;i<6;i++){
+        var card = document.createElement('div');
+        card.className = 'party-card party-card-skeleton';
+        card.innerHTML = '<div class="party-card-grad"></div>'
+          +'<div class="skeleton-shimmer"></div>'
+          +'<div class="party-card-content">'
+          +'<div class="party-card-tags"><span class="skeleton-bar" style="display:inline-block;width:52px;height:18px;"></span></div>'
+          +'<div class="skeleton-bar" style="width:80%;height:28px;margin-bottom:6px;"></div>'
+          +'<div class="skeleton-bar" style="width:40%;height:12px;margin-bottom:8px;"></div>'
+          +'<div class="skeleton-bar" style="width:50%;height:14px;"></div>'
+          +'</div>';
+        grid.appendChild(card);
       }
-    })
-    .catch(function(err){
-      console.warn('AfroCue: CSV fetch failed ('+err+')');
-      showEmptyState('Could not load parties right now. Try again shortly.');
-    });
-}
-
-/* ── UPCOMING FEATURED SECTION ── */
-var FEATURED_PARTY=null;
-
-function renderUpcoming(party){
-  var sec=document.getElementById('upcomingSection');
-  if(!party||!party.name){sec.classList.remove('visible');return;}
-  FEATURED_PARTY=party;
-  sec.classList.add('visible');
-  /* wire Buy Tickets to party website if available */
-  var upBtn=document.getElementById('upcomingBtn');
-  if(upBtn){
-    if(party.website&&party.website!==''){
-      upBtn.href=party.website;
-      upBtn.target='_blank';
-      upBtn.onclick=null;
-    }else{
-      upBtn.href='#';
-      upBtn.removeAttribute('target');
-      upBtn.onclick=function(){openUpcomingModal();return false;};
     }
-  }
-  var bg=document.getElementById('upcomingBg');
-  if(party.hero_img)bg.style.backgroundImage="url('"+party.hero_img+"')";
-  document.getElementById('upcomingName').textContent=party.name;
-  var metaTags=[party.time,party.access,party.setting].filter(Boolean);
-  var allTags=metaTags.concat(party.genres||[]);
-  document.getElementById('upcomingTags').innerHTML=allTags.map(function(t){
-    return'<span class="upcoming-tag">'+t+'</span>';
-  }).join('');
-  var dateEl=document.getElementById('upcomingDate');
-  if(party.upcoming_date){
-    var rawDate=party.upcoming_date;
-    var formatted=rawDate;
-    try{
-      var d=new Date(rawDate+' 2026');
-      if(!isNaN(d.getTime())){
-        var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-        var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        formatted=days[d.getDay()]+', '+d.getDate()+' '+months[d.getMonth()];
+
+    function showEmptyState(msg){
+      var grid = document.getElementById('partiesGrid');
+      grid.innerHTML = '';
+      var noResults = document.getElementById('noResults');
+      noResults.textContent = msg || 'No parties listed yet.';
+      noResults.style.display = 'block';
+    }
+
+    // ─── CSV PARSING ─────────────────────────────────────────────────────
+    function splitCSVLine(line) {
+      var cols=[], cur='', inQuote=false;
+      for(var i=0; i<line.length; i++){
+        var c = line[i];
+        if(c === '"'){ inQuote = !inQuote; }
+        else if(c === ',' && !inQuote){ cols.push(cur); cur=''; }
+        else { cur += c; }
       }
-    }catch(ex){}
-    dateEl.textContent=String.fromCodePoint(0x1F4C5)+' '+formatted;
-  }else{
-    dateEl.textContent=party.city;
-  }
-  var flyerImg=document.getElementById('upcomingFlyerImg');
-  var flyerSrc=party.upcoming_flyer||party.flyer_img||'';
-  if(flyerImg){
-    if(flyerSrc){
-      flyerImg.src=flyerSrc;
-      flyerImg.alt=party.name+' flyer';
-      flyerImg.style.visibility='visible';
-      flyerImg.onerror=function(){this.style.visibility='hidden';};
-    }else{
-      flyerImg.style.visibility='hidden';
+      cols.push(cur);
+      return cols;
     }
-  }
-}
 
-function openUpcomingModal(){
-  if(FEATURED_PARTY)openModal(FEATURED_PARTY.id);
-}
+    function parseCSV(text){
+      var lines = text.trim().split('\n');
+      if(lines.length < 2) return { parties: [], featured: null };
+      var headers = splitCSVLine(lines[0]).map(function(h){ return h.trim().toLowerCase(); });
+      function col(name){ var i = headers.indexOf(name); return i > -1 ? i : -1; }
 
-/* ── FILTER HELPERS ── */
-function getFilters(){
-  return{
-    city:   document.getElementById('filterCity').value,
-    time:   document.getElementById('filterTime').value,
-    access: document.getElementById('filterAccess').value,
-    setting:document.getElementById('filterSetting').value,
-    genre:  document.getElementById('filterGenre').value
-  };
-}
+      // Map all columns
+      var C_ID = col('party id');
+      var C_NAME = col('party name');
+      var C_CITY = col('city');
+      var C_TIME = col('time');
+      var C_ACCESS = col('access');
+      var C_SETTING = col('setting');
+      var C_GENRES = col('genres');
+      var C_DESC = col('description');
+      var C_HERO = col('hero image');
+      var C_FLYER = col('flyer image');
+      var C_IG = col('instagram url');        // FIXED: 'instagram url' not 'instagram'
+      var C_WEB = col('website url');         // FIXED: 'website url' not 'website'
+      var C_TICKET = col('ticket url');
+      var C_VIEWS = col('views');
+      var C_LIKES = col('likes');
+      var C_STATUS = col('status');
+      var C_UPCOMING_FLYER = col('upcoming flyer');
+      var C_UPCOMING_DATE = col('upcoming date');
+      var C_FEATURED = col('featured');
+      var C_LATEST_POST_IMAGE = col('latest post image');
+      var C_LATEST_POST_CAPTION = col('latest post caption');
+      var C_LATEST_POST_URL = col('latest post url');
+      var C_LATEST_POST_TIMESTAMP = col('latest post timestamp');
+      var C_LATEST_REEL_URL = col('latest reel url');
+      var C_LATEST_REEL_THUMBNAIL = col('latest reel thumbnail');
+      var C_POST2_IMAGE = col('post 2 image');
+      var C_POST2_CAPTION = col('post 2 caption');
+      var C_POST2_URL = col('post 2 url');
+      var C_POST2_TIMESTAMP = col('post 2 timestamp');
+      var C_POST2_TYPE = col('post 2 type');
+      var C_POST3_IMAGE = col('post 3 image');
+      var C_POST3_CAPTION = col('post 3 caption');
+      var C_POST3_URL = col('post 3 url');
+      var C_POST3_TIMESTAMP = col('post 3 timestamp');
+      var C_POST3_TYPE = col('post 3 type');
+      var C_LAST_PARTY_DATE = col('last party date');
+      var C_NEXT_PARTY_DATE = col('next party date');
+      var C_PULSE_CONFIDENCE = col('pulse confidence');
 
-function partyMatchesFilters(party,filters){
-  if(filters.city&&party.city.toLowerCase().indexOf(filters.city.toLowerCase())===-1)return false;
-  if(filters.time&&party.time!==filters.time)return false;
-  if(filters.access&&party.access!==filters.access)return false;
-  if(filters.setting&&party.setting!==filters.setting)return false;
-  if(filters.genre&&(!party.genres||party.genres.indexOf(filters.genre)===-1))return false;
-  return true;
-}
-
-function applyFilters(){
-  var filters=getFilters();
-  var hasAny=filters.city||filters.time||filters.access||filters.setting||filters.genre;
-  var reset=document.getElementById('filterReset');
-  if(reset)reset.className='filter-reset'+(hasAny?' visible':'');
-  ['filterCity','filterTime','filterAccess','filterSetting','filterGenre'].forEach(function(id){
-    var el=document.getElementById(id);if(el)el.className='filter-select'+(el.value?' has-value':'');
-  });
-  renderCards(filters);
-}
-
-function resetFilters(){
-  ['filterCity','filterTime','filterAccess','filterSetting','filterGenre'].forEach(function(id){
-    var el=document.getElementById(id);if(el){el.value='';el.className='filter-select';}
-  });
-  var reset=document.getElementById('filterReset');if(reset)reset.className='filter-reset';
-  renderCards({});
-}
-
-/* ── RENDER CARDS ── */
-function renderCards(filters){
-  filters=filters||{};
-  var grid=document.getElementById('partiesGrid');
-  var noResults=document.getElementById('noResults');
-  grid.innerHTML='';
-  var visible=PARTIES.filter(function(p){return partyMatchesFilters(p,filters);});
-  if(visible.length===0){noResults.style.display='block';return;}
-  noResults.style.display='none';
-  visible.forEach(function(party){
-    var card=document.createElement('div');
-    card.className='party-card';
-    card.onclick=function(){openModal(party.id);};
-    var metaTags=[party.time,party.access,party.setting].filter(Boolean);
-    var allTags=metaTags.concat(party.genres||[]);
-    var tagHTML=allTags.map(function(t,i){return'<span class="'+(i<metaTags.length?'tag type':'tag')+'">'+t+'</span>';}).join('');
-    var bg=document.createElement('div');bg.className='party-card-bg';
-    if(party.hero_img)bg.style.backgroundImage="url('"+party.hero_img+"')";
-    var img=document.createElement('img');img.className='party-card-img';
-    if(party.hero_img)img.src=party.hero_img;img.alt=party.name;
-    img.onerror=function(){this.style.opacity=0;};
-    var tint=document.createElement('div');tint.className='party-card-tint';
-    var grad=document.createElement('div');grad.className='party-card-grad';
-    var tex=document.createElement('div');tex.className='party-card-texture';
-    var logo=document.createElement('div');logo.className='party-card-logo';
-    var li=document.createElement('img');li.src='logo_afrocue.png';li.alt='AfroCue';
-    li.onerror=function(){this.style.display='none';};logo.appendChild(li);
-    var cta=document.createElement('div');cta.className='party-card-cta';cta.textContent='See More';
-    var content=document.createElement('div');content.className='party-card-content';
-    var views=party.views||0;var likes=party.likes||0;
-    var statsHtml=(views||likes)?'<div class="party-card-stats">'
-      +(views?'<span class="card-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10" height="10"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>'+views+'</span>':'')
-      +(likes?'<span class="card-stat"><svg viewBox="0 0 24 24" fill="currentColor" width="10" height="10"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>'+likes+'</span>':'')
-      +'</div>':'';
-    content.innerHTML='<div class="party-card-tags">'+tagHTML+'</div><div class="party-card-name">'+party.name+'</div><div class="party-card-meta">'+party.city+'</div>'+statsHtml;
-    card.appendChild(bg);card.appendChild(img);card.appendChild(tint);card.appendChild(grad);
-    card.appendChild(tex);card.appendChild(logo);card.appendChild(cta);card.appendChild(content);
-    grid.appendChild(card);
-  });
-  if(!featuredList.length)initFeatured();
-}
-
-/* ── MODAL ── */
-function openModal(id){
-  var party=PARTIES.find(function(p){return p.id===id;});
-  if(!party)return;
-  currentParty=party;
-  document.getElementById('modalHeroBg').style.backgroundImage="url('"+(party.hero_img||'')+"')";
-  var heroImg=document.getElementById('modalHeroImg');
-  heroImg.src=party.hero_img||'';heroImg.alt=party.name;
-  var metaTags=[party.time,party.access,party.setting].filter(Boolean);
-  var allTags=metaTags.concat(party.genres||[]);
-  document.getElementById('modalTags').innerHTML=allTags.map(function(t,i){return'<span class="'+(i<metaTags.length?'tag type':'tag')+'">'+t+'</span>';}).join('');
-  document.getElementById('modalName').textContent=party.name;
-  document.getElementById('modalCity').textContent=party.city;
-  document.getElementById('modalDesc').textContent=party.description;
-  document.getElementById('viewCountNum').textContent=party.views||0;
-  document.getElementById('likeCountNum').textContent=party.likes||0;
-  document.getElementById('likeBtn').className='like-btn'+(sessionStorage.getItem('liked_'+id)?' liked':'');
-  var shareBtn=document.getElementById('shareBtn');
-  shareBtn.className='share-btn';
-  shareBtn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share';
-  var flyerEl=document.getElementById('modalFlyer');
-  flyerEl.innerHTML='';
-  if(party.flyer_img&&party.flyer_img!==''){
-    var fi=document.createElement('img');fi.src=party.flyer_img;fi.alt=party.name+' flyer';
-    fi.onerror=function(){flyerEl.innerHTML='<div class="modal-flyer-placeholder"><span>Flyer coming soon</span></div>';};
-    flyerEl.appendChild(fi);
-  }else{flyerEl.innerHTML='<div class="modal-flyer-placeholder"><span>Flyer coming soon</span></div>';}
-  var linkUrl=party.instagram||party.website||'#';
-  document.getElementById('modalLink').href=linkUrl;
-  document.getElementById('modalLinkText').textContent=linkUrl.indexOf('instagram')>-1?'Instagram':(party.website?'Website':'Instagram');
-  var others=PARTIES.filter(function(p){return p.id!==id;}).slice(0,3);
-  var othersGrid=document.getElementById('modalOthers');othersGrid.innerHTML='';
-  others.forEach(function(op){
-    var el=document.createElement('div');el.className='modal-other-card';
-    el.onclick=function(){openModal(op.id);};
-    var obg=document.createElement('div');obg.className='modal-other-bg';
-    if(op.hero_img)obg.style.backgroundImage="url('"+op.hero_img+"')";
-    var oimg=document.createElement('img');oimg.className='modal-other-img';
-    if(op.hero_img)oimg.src=op.hero_img;oimg.alt=op.name;oimg.onerror=function(){this.style.opacity=0;};
-    var ograd=document.createElement('div');ograd.className='modal-other-grad';
-    var onm=document.createElement('div');onm.className='modal-other-name';onm.textContent=op.name;
-    el.appendChild(obg);el.appendChild(oimg);el.appendChild(ograd);el.appendChild(onm);
-    othersGrid.appendChild(el);
-  });
-  document.title='Discover '+party.name+' on AfroCue';
-  updateMetaTag('og:title','Discover '+party.name+' on AfroCue');
-  updateMetaTag('og:description',party.description.substring(0,160));
-  updateMetaTag('og:image',(party.hero_img&&party.hero_img.indexOf('http')===0)?party.hero_img:'https://afrocue.xyz/hero_dj.jpg');
-  updateMetaTag('twitter:title','Discover '+party.name+' on AfroCue');
-  updateMetaTag('twitter:description',party.description.substring(0,160));
-  history.replaceState(null,'','#'+id);
-  document.getElementById('partyModal').classList.add('open');
-  document.getElementById('partyModal').scrollTop=0;
-  document.body.style.overflow='hidden';
-  incrementStat(id,'view','viewCountNum');
-}
-
-function updateMetaTag(property,content){var el=document.querySelector('meta[property="'+property+'"]');if(el)el.setAttribute('content',content);}
-
-function closeModal(){
-  document.getElementById('partyModal').classList.remove('open');
-  document.body.style.overflow='';
-  document.title='Party Directory — AfroCue';
-  history.replaceState(null,'','parties.html');
-  currentParty=null;
-}
-
-function incrementStat(id,action,displayId){
-  var gasUrl=getGasUrl();if(gasUrl==='YOUR_GAS_SCRIPT_URL_HERE')return;
-  var cbName='afrocueStatCb_'+Date.now();
-  var s=document.createElement('script');
-  window[cbName]=function(data){
-    if(displayId&&data.count!==undefined){var el=document.getElementById(displayId);if(el)el.textContent=data.count;}
-    delete window[cbName];if(s.parentNode)s.parentNode.removeChild(s);
-  };
-  s.src=gasUrl+'?action='+action+'&id='+encodeURIComponent(id)+'&callback='+cbName;
-  document.head.appendChild(s);
-}
-
-function handleLike(){
-  if(!currentParty)return;
-  var key='liked_'+currentParty.id;
-  if(sessionStorage.getItem(key))return;
-  sessionStorage.setItem(key,'1');
-  document.getElementById('likeBtn').classList.add('liked');
-  var cur=parseInt(document.getElementById('likeCountNum').textContent)||0;
-  document.getElementById('likeCountNum').textContent=cur+1;
-  incrementStat(currentParty.id,'like',null);
-}
-
-function handleShare(){
-  if(!currentParty)return;
-  var shareUrl='https://afrocue.xyz/parties.html#'+currentParty.id;
-  var shareTitle='Discover '+currentParty.name+' on AfroCue';
-  var shareText='Discover '+currentParty.name+' on AfroCue — '+currentParty.description.substring(0,100);
-  if(navigator.share){navigator.share({title:shareTitle,text:shareText,url:shareUrl}).catch(function(){});}
-  else{
-    navigator.clipboard.writeText(shareUrl).then(function(){
-      var btn=document.getElementById('shareBtn');
-      btn.className='share-btn copied';
-      btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
-      setTimeout(function(){btn.className='share-btn';btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share';},2500);
-    }).catch(function(){});
-  }
-}
-
-document.getElementById('partyModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
-
-/* Deep link */
-(function(){
-  var hash=window.location.hash.replace('#','');if(!hash)return;
-  var check=setInterval(function(){
-    if(PARTIES.length>0){clearInterval(check);var match=PARTIES.find(function(p){return p.id===hash;});if(match)openModal(match.id);}
-  },100);
-})();
-
-/* ── FEATURED CAROUSEL ── */
-var featuredIndex=0,featuredTimer=null,featuredList=[];
-
-function initFeatured(){
-  if(!PARTIES.length)return;
-  if(!document.getElementById('featuredSlot'))return;
-  featuredList=PARTIES.slice().sort(function(a,b){return(b.views||0)-(a.views||0);}).slice(0,5);
-  var dotsWrap=document.getElementById('featuredDots');dotsWrap.innerHTML='';
-  featuredList.forEach(function(_,i){
-    var d=document.createElement('div');d.className='featured-dot'+(i===0?' active':'');
-    d.onclick=function(e){e.stopPropagation();goFeatured(i);};dotsWrap.appendChild(d);
-  });
-  showFeatured(0);clearInterval(featuredTimer);
-  featuredTimer=setInterval(function(){goFeatured((featuredIndex+1)%featuredList.length);},3500);
-}
-
-function showFeatured(i){
-  var p=featuredList[i];if(!p)return;featuredIndex=i;
-  var img=document.getElementById('featuredImg');
-  var bg=document.getElementById('featuredBg');
-  var nm=document.getElementById('featuredName');
-  var ct=document.getElementById('featuredCity');
-  var flyerImg=document.getElementById('featuredFlyerImg');
-  var flyerWrap=document.getElementById('featuredFlyer');
-  img.style.opacity='0';if(flyerWrap)flyerWrap.style.opacity='0';
-  setTimeout(function(){
-    if(p.hero_img){bg.style.backgroundImage="url('"+p.hero_img+"')";img.src=p.hero_img;}
-    else{bg.style.backgroundImage='';img.src='';}
-    img.alt=p.name;
-    if(flyerImg&&flyerWrap){
-      if(p.flyer_img&&p.flyer_img!==''){flyerImg.src=p.flyer_img;flyerWrap.style.display='block';flyerWrap.style.opacity='1';}
-      else{flyerWrap.style.display='none';}
+      var parties = [];
+      var featured = null;
+      for(var i=1;i<lines.length;i++){
+        var cols = splitCSVLine(lines[i]);
+        if(!cols[0] || !cols[1]) continue;
+        var status = (cols[C_STATUS] || '').trim();
+        var isFeatured = (cols[C_FEATURED] || '').trim().toLowerCase() === 'yes';
+        var p = {
+          id: cols[C_ID].trim(),
+          name: cols[C_NAME].trim(),
+          city: cols[C_CITY].trim(),
+          time: cols[C_TIME].trim(),
+          access: cols[C_ACCESS].trim(),
+          setting: cols[C_SETTING].trim(),
+          genres: cols[C_GENRES] ? cols[C_GENRES].trim().split(',').map(function(s){ return s.trim(); }) : [],
+          description: cols[C_DESC].trim(),
+          hero_img: cols[C_HERO].trim(),
+          flyer_img: cols[C_FLYER].trim(),
+          instagram: cols[C_IG].trim(),      // full URL
+          website: cols[C_WEB].trim(),
+          ticket_url: C_TICKET > -1 ? cols[C_TICKET].trim() : '',
+          views: parseInt(cols[C_VIEWS]) || 0,
+          likes: parseInt(cols[C_LIKES]) || 0,
+          upcoming_flyer: C_UPCOMING_FLYER > -1 ? cols[C_UPCOMING_FLYER].trim() : '',
+          upcoming_date: C_UPCOMING_DATE > -1 ? cols[C_UPCOMING_DATE].trim() : '',
+          featured: isFeatured,
+          latest_post_image: C_LATEST_POST_IMAGE > -1 ? cols[C_LATEST_POST_IMAGE].trim() : '',
+          latest_post_caption: C_LATEST_POST_CAPTION > -1 ? cols[C_LATEST_POST_CAPTION].trim() : '',
+          latest_post_url: C_LATEST_POST_URL > -1 ? cols[C_LATEST_POST_URL].trim() : '',
+          latest_post_timestamp: C_LATEST_POST_TIMESTAMP > -1 ? cols[C_LATEST_POST_TIMESTAMP].trim() : '',
+          latest_reel_url: C_LATEST_REEL_URL > -1 ? cols[C_LATEST_REEL_URL].trim() : '',
+          latest_reel_thumbnail: C_LATEST_REEL_THUMBNAIL > -1 ? cols[C_LATEST_REEL_THUMBNAIL].trim() : '',
+          post2_image: C_POST2_IMAGE > -1 ? cols[C_POST2_IMAGE].trim() : '',
+          post2_caption: C_POST2_CAPTION > -1 ? cols[C_POST2_CAPTION].trim() : '',
+          post2_url: C_POST2_URL > -1 ? cols[C_POST2_URL].trim() : '',
+          post2_timestamp: C_POST2_TIMESTAMP > -1 ? cols[C_POST2_TIMESTAMP].trim() : '',
+          post2_type: C_POST2_TYPE > -1 ? cols[C_POST2_TYPE].trim() : '',
+          post3_image: C_POST3_IMAGE > -1 ? cols[C_POST3_IMAGE].trim() : '',
+          post3_caption: C_POST3_CAPTION > -1 ? cols[C_POST3_CAPTION].trim() : '',
+          post3_url: C_POST3_URL > -1 ? cols[C_POST3_URL].trim() : '',
+          post3_timestamp: C_POST3_TIMESTAMP > -1 ? cols[C_POST3_TIMESTAMP].trim() : '',
+          post3_type: C_POST3_TYPE > -1 ? cols[C_POST3_TYPE].trim() : '',
+          last_party_date: C_LAST_PARTY_DATE > -1 ? cols[C_LAST_PARTY_DATE].trim() : '',
+          next_party_date: C_NEXT_PARTY_DATE > -1 ? cols[C_NEXT_PARTY_DATE].trim() : '',
+          pulse_confidence: C_PULSE_CONFIDENCE > -1 ? cols[C_PULSE_CONFIDENCE].trim() : ''
+        };
+        if(isFeatured) featured = p;
+        if(status === 'Active') parties.push(p);
+      }
+      return { parties: parties, featured: featured };
     }
-    nm.textContent=p.name;ct.textContent=p.city;img.style.opacity='1';
-    var heroBg=document.getElementById('heroBg');if(heroBg&&p.hero_img)heroBg.style.backgroundImage="url('"+p.hero_img+"')";
-  },220);
-  document.querySelectorAll('.featured-dot').forEach(function(d,idx){d.className='featured-dot'+(idx===i?' active':'');});
-}
 
-function goFeatured(i){
-  clearInterval(featuredTimer);showFeatured(i);
-  featuredTimer=setInterval(function(){goFeatured((featuredIndex+1)%featuredList.length);},3500);
-}
+    // ─── LOAD DATA ───────────────────────────────────────────────────────
+    function loadParties(){
+      renderSkeletons();
+      fetch(CSV_URL)
+        .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.text(); })
+        .then(function(text){
+          var result = parseCSV(text);
+          PARTIES = result.parties;
+          renderUpcoming(result.featured);
+          if(PARTIES.length > 0){
+            renderCards(getFilters());
+            initFeatured();
+          } else {
+            showEmptyState('No parties listed yet. Check back soon.');
+          }
+        })
+        .catch(function(err){
+          console.warn('AfroCue: CSV fetch failed ('+err+')');
+          showEmptyState('Could not load parties right now. Try again shortly.');
+        });
+    }
 
-function openFeaturedModal(){var p=featuredList[featuredIndex];if(p)openModal(p.id);}
+    // ─── FILTERS ─────────────────────────────────────────────────────────
+    function getFilters(){
+      return {
+        city: document.getElementById('filterCity').value,
+        time: document.getElementById('filterTime').value,
+        access: document.getElementById('filterAccess').value,
+        setting: document.getElementById('filterSetting').value,
+        genre: document.getElementById('filterGenre').value
+      };
+    }
 
-/* ── BOOT ── */
-loadParties();
+    function partyMatchesFilters(party, filters){
+      if(filters.city && party.city.toLowerCase().indexOf(filters.city.toLowerCase()) === -1) return false;
+      if(filters.time && party.time !== filters.time) return false;
+      if(filters.access && party.access !== filters.access) return false;
+      if(filters.setting && party.setting !== filters.setting) return false;
+      if(filters.genre && (!party.genres || party.genres.map(function(g){ return g.toLowerCase(); }).indexOf(filters.genre.toLowerCase()) === -1)) return false;
+      return true;
+    }
 
-</script>
+    function applyFilters(){
+      var filters = getFilters();
+      var hasAny = filters.city || filters.time || filters.access || filters.setting || filters.genre;
+      var reset = document.getElementById('filterReset');
+      if(reset) reset.className = 'filter-reset' + (hasAny ? ' visible' : '');
+      ['filterCity','filterTime','filterAccess','filterSetting','filterGenre'].forEach(function(id){
+        var el = document.getElementById(id); if(el) el.className = 'filter-select' + (el.value ? ' has-value' : '');
+      });
+      renderCards(filters);
+    }
+
+    function resetFilters(){
+      ['filterCity','filterTime','filterAccess','filterSetting','filterGenre'].forEach(function(id){
+        var el = document.getElementById(id); if(el){ el.value = ''; el.className = 'filter-select'; }
+      });
+      var reset = document.getElementById('filterReset'); if(reset) reset.className = 'filter-reset';
+      renderCards({});
+    }
+
+    // ─── RENDER CARDS ──────────────────────────────────────────────────
+    function renderCards(filters){
+      filters = filters || {};
+      var grid = document.getElementById('partiesGrid');
+      var noResults = document.getElementById('noResults');
+      grid.innerHTML = '';
+      var visible = PARTIES.filter(function(p){ return partyMatchesFilters(p, filters); });
+      if(visible.length === 0){ noResults.style.display = 'block'; return; }
+      noResults.style.display = 'none';
+
+      visible.forEach(function(party){
+        var card = document.createElement('div');
+        card.className = 'party-card';
+        card.onclick = function(){ openModal(party.id); };
+
+        var metaTags = [party.time, party.access, party.setting].filter(Boolean);
+        var allTags = metaTags.concat(party.genres || []);
+        var tagHTML = allTags.map(function(t,i){ return '<span class="'+(i<metaTags.length?'tag type':'tag')+'">'+t+'</span>'; }).join('');
+
+        var bg = document.createElement('div'); bg.className = 'party-card-bg';
+        if(party.hero_img) bg.style.backgroundImage = "url('"+party.hero_img+"')";
+        var img = document.createElement('img'); img.className = 'party-card-img';
+        if(party.hero_img) img.src = party.hero_img; img.alt = party.name;
+        img.onerror = function(){ this.style.opacity = 0; };
+        var tint = document.createElement('div'); tint.className = 'party-card-tint';
+        var grad = document.createElement('div'); grad.className = 'party-card-grad';
+        var tex = document.createElement('div'); tex.className = 'party-card-texture';
+        var logo = document.createElement('div'); logo.className = 'party-card-logo';
+        var li = document.createElement('img'); li.src = 'logo_afrocue.png'; li.alt = 'AfroCue';
+        li.onerror = function(){ this.style.display = 'none'; }; logo.appendChild(li);
+        var cta = document.createElement('div'); cta.className = 'party-card-cta'; cta.textContent = 'See More';
+        var content = document.createElement('div'); content.className = 'party-card-content';
+
+        var handle = getHandleFromUrl(party.instagram);
+        var views = party.views || 0; var likes = party.likes || 0;
+        var statsHtml = (views || likes) ? '<div class="party-card-stats">'
+          + (views ? '<span class="card-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10" height="10"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>'+views+'</span>' : '')
+          + (likes ? '<span class="card-stat"><svg viewBox="0 0 24 24" fill="currentColor" width="10" height="10"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>'+likes+'</span>' : '')
+          + '</div>' : '';
+
+        content.innerHTML = '<div class="party-card-tags">'+tagHTML+'</div>'
+          + '<div class="party-card-name">'+party.name+'</div>'
+          + (handle ? '<div class="party-card-ig">'+handle+'</div>' : '')
+          + '<div class="party-card-meta">'+party.city+'</div>'
+          + statsHtml;
+
+        card.appendChild(bg); card.appendChild(img); card.appendChild(tint); card.appendChild(grad);
+        card.appendChild(tex); card.appendChild(logo); card.appendChild(cta); card.appendChild(content);
+        grid.appendChild(card);
+      });
+      if(!featuredList.length) initFeatured();
+    }
+
+    // ─── FEATURED CAROUSEL ────────────────────────────────────────────
+    function initFeatured(){
+      if(!PARTIES.length) return;
+      if(!document.getElementById('featuredSlot')) return;
+      featuredList = PARTIES.slice().sort(function(a,b){ return (b.views||0) - (a.views||0); }).slice(0,5);
+      var dotsWrap = document.getElementById('featuredDots'); dotsWrap.innerHTML = '';
+      featuredList.forEach(function(_,i){
+        var d = document.createElement('div'); d.className = 'featured-dot'+(i===0?' active':'');
+        d.onclick = function(e){ e.stopPropagation(); goFeatured(i); }; dotsWrap.appendChild(d);
+      });
+      showFeatured(0); clearInterval(featuredTimer);
+      featuredTimer = setInterval(function(){ goFeatured((featuredIndex+1)%featuredList.length); }, 3500);
+    }
+
+    function showFeatured(i){
+      var p = featuredList[i]; if(!p) return; featuredIndex = i;
+      var img = document.getElementById('featuredImg');
+      var bg = document.getElementById('featuredBg');
+      var nm = document.getElementById('featuredName');
+      var ct = document.getElementById('featuredCity');
+      var flyerImg = document.getElementById('featuredFlyerImg');
+      var flyerWrap = document.getElementById('featuredFlyer');
+      img.style.opacity = '0'; if(flyerWrap) flyerWrap.style.opacity = '0';
+      setTimeout(function(){
+        if(p.hero_img){ bg.style.backgroundImage = "url('"+p.hero_img+"')"; img.src = p.hero_img; }
+        else { bg.style.backgroundImage = ''; img.src = ''; }
+        img.alt = p.name;
+        if(flyerImg && flyerWrap){
+          if(p.flyer_img && p.flyer_img !== ''){ flyerImg.src = p.flyer_img; flyerWrap.style.display = 'block'; flyerWrap.style.opacity = '1'; }
+          else { flyerWrap.style.display = 'none'; }
+        }
+        nm.textContent = p.name; ct.textContent = p.city; img.style.opacity = '1';
+        var heroBg = document.getElementById('heroBg'); if(heroBg && p.hero_img) heroBg.style.backgroundImage = "url('"+p.hero_img+"')";
+      }, 220);
+      document.querySelectorAll('.featured-dot').forEach(function(d,idx){ d.className = 'featured-dot'+(idx===i?' active':''); });
+    }
+
+    function goFeatured(i){ clearInterval(featuredTimer); showFeatured(i); featuredTimer = setInterval(function(){ goFeatured((featuredIndex+1)%featuredList.length); }, 3500); }
+    function openFeaturedModal(){ var p = featuredList[featuredIndex]; if(p) openModal(p.id); }
+
+    // ─── UPCOMING ────────────────────────────────────────────────────────
+    var FEATURED_PARTY = null;
+    function renderUpcoming(party){
+      var sec = document.getElementById('upcomingSection');
+      if(!party || !party.name){ sec.classList.remove('visible'); return; }
+      FEATURED_PARTY = party;
+      sec.classList.add('visible');
+      var upBtn = document.getElementById('upcomingBtn');
+      if(upBtn){
+        if(party.ticket_url || party.website){
+          upBtn.href = party.ticket_url || party.website;
+          upBtn.target = '_blank';
+          upBtn.onclick = null;
+        } else {
+          upBtn.href = '#';
+          upBtn.removeAttribute('target');
+          upBtn.onclick = function(){ openUpcomingModal(); return false; };
+        }
+      }
+      var bg = document.getElementById('upcomingBg');
+      if(party.hero_img) bg.style.backgroundImage = "url('"+party.hero_img+"')";
+      document.getElementById('upcomingName').textContent = party.name;
+      var metaTags = [party.time, party.access, party.setting].filter(Boolean);
+      var allTags = metaTags.concat(party.genres || []);
+      document.getElementById('upcomingTags').innerHTML = allTags.map(function(t){ return '<span class="upcoming-tag">'+t+'</span>'; }).join('');
+      var dateEl = document.getElementById('upcomingDate');
+      if(party.upcoming_date){ dateEl.textContent = String.fromCodePoint(0x1F4C5)+' '+party.upcoming_date; }
+      else { dateEl.textContent = party.city; }
+      var flyerImg = document.getElementById('upcomingFlyerImg');
+      var flyerSrc = party.upcoming_flyer || party.flyer_img || '';
+      if(flyerImg){
+        if(flyerSrc){ flyerImg.src = flyerSrc; flyerImg.style.visibility = 'visible'; flyerImg.onerror = function(){ this.style.visibility = 'hidden'; }; }
+        else { flyerImg.style.visibility = 'hidden'; }
+      }
+    }
+    function openUpcomingModal(){ if(FEATURED_PARTY) openModal(FEATURED_PARTY.id); }
+
+    // ─── MODAL ──────────────────────────────────────────────────────────
+    function openModal(id){
+      var party = PARTIES.find(function(p){ return p.id === id; });
+      if(!party) return;
+      currentParty = party;
+      document.getElementById('modalHeroBg').style.backgroundImage = "url('"+(party.hero_img||'')+"')";
+      var heroImg = document.getElementById('modalHeroImg');
+      heroImg.src = party.hero_img || ''; heroImg.alt = party.name;
+
+      var metaTags = [party.time, party.access, party.setting].filter(Boolean);
+      var allTags = metaTags.concat(party.genres || []);
+      document.getElementById('modalTags').innerHTML = allTags.map(function(t,i){ return '<span class="'+(i<metaTags.length?'tag type':'tag')+'">'+t+'</span>'; }).join('');
+      document.getElementById('modalName').textContent = party.name;
+      var handle = getHandleFromUrl(party.instagram);
+      document.getElementById('modalIg').textContent = handle;
+      document.getElementById('modalCity').textContent = party.city;
+      document.getElementById('modalDesc').textContent = party.description;
+      document.getElementById('viewCountNum').textContent = party.views || 0;
+      document.getElementById('likeCountNum').textContent = party.likes || 0;
+      document.getElementById('likeBtn').className = 'like-btn' + (sessionStorage.getItem('liked_'+id) ? ' liked' : '');
+
+      // Party Pulse
+      var pulseLast = document.getElementById('pulseLastParty');
+      var pulseNext = document.getElementById('pulseNextParty');
+      var pulseCount = document.getElementById('pulseCountdown');
+      pulseLast.textContent = party.last_party_date || 'unavailable';
+      pulseNext.textContent = party.next_party_date || 'unavailable';
+      if(party.next_party_date){
+        try{
+          var nextDate = new Date(party.next_party_date);
+          var today = new Date();
+          var diff = Math.ceil((nextDate - today) / (1000*60*60*24));
+          if(diff >= 0) pulseCount.textContent = diff + ' days';
+          else if(diff === -1) pulseCount.textContent = 'Yesterday';
+          else pulseCount.textContent = 'Past';
+        } catch(e){ pulseCount.textContent = 'unavailable'; }
+      } else { pulseCount.textContent = 'unavailable'; }
+      var confRow = document.getElementById('pulseConfidenceRow');
+      var confBadge = document.getElementById('confidenceBadge');
+      if(party.pulse_confidence){
+        confRow.style.display = 'flex';
+        confBadge.textContent = party.pulse_confidence;
+        confBadge.className = 'confidence-badge ' + party.pulse_confidence.toLowerCase();
+      } else { confRow.style.display = 'none'; }
+
+      // Latest Posts
+      var latestSection = document.getElementById('latestPostsSection');
+      var latestGrid = document.getElementById('latestPostsGrid');
+      latestGrid.innerHTML = '';
+      var posts = [];
+      if(party.latest_post_image) posts.push({image: party.latest_post_image, caption: party.latest_post_caption, url: party.latest_post_url, timestamp: party.latest_post_timestamp});
+      if(party.post2_image) posts.push({image: party.post2_image, caption: party.post2_caption, url: party.post2_url, timestamp: party.post2_timestamp});
+      if(party.post3_image) posts.push({image: party.post3_image, caption: party.post3_caption, url: party.post3_url, timestamp: party.post3_timestamp});
+      if(posts.length){
+        latestSection.style.display = 'block';
+        document.getElementById('latestPostsLabel').textContent = 'Latest from ' + party.name;
+        posts.forEach(function(p){
+          var a = document.createElement('a');
+          a.className = 'latest-post-card';
+          a.href = p.url || 'https://instagram.com/afro.cue';
+          a.target = '_blank';
+          a.rel = 'noopener';
+          a.innerHTML = '<div class="latest-post-thumb"><img src="'+p.image+'" alt="Latest post"/></div>'
+            + '<div class="latest-post-caption">'+(p.caption||'')+'</div>'
+            + '<div class="latest-post-time">'+(p.timestamp?formatDate(p.timestamp):'')+'</div>';
+          latestGrid.appendChild(a);
+        });
+      } else { latestSection.style.display = 'none'; }
+
+      // Flyer
+      var flyerEl = document.getElementById('modalFlyer');
+      flyerEl.innerHTML = '';
+      if(party.flyer_img && party.flyer_img !== ''){
+        var fi = document.createElement('img'); fi.src = party.flyer_img; fi.alt = party.name+' flyer';
+        fi.onerror = function(){ flyerEl.innerHTML = '<div class="modal-flyer-placeholder"><span>Flyer coming soon</span></div>'; };
+        flyerEl.appendChild(fi);
+      } else { flyerEl.innerHTML = '<div class="modal-flyer-placeholder"><span>Flyer coming soon</span></div>'; }
+
+      var linkUrl = party.instagram || party.website || '#';
+      document.getElementById('modalLink').href = linkUrl;
+      document.getElementById('modalLinkText').textContent = linkUrl.indexOf('instagram') > -1 ? 'Instagram' : (party.website ? 'Website' : 'Instagram');
+
+      // Others
+      var others = PARTIES.filter(function(p){ return p.id !== id; }).slice(0,3);
+      var othersGrid = document.getElementById('modalOthers'); othersGrid.innerHTML = '';
+      others.forEach(function(op){
+        var el = document.createElement('div'); el.className = 'modal-other-card';
+        el.onclick = function(){ openModal(op.id); };
+        var obg = document.createElement('div'); obg.className = 'modal-other-bg';
+        if(op.hero_img) obg.style.backgroundImage = "url('"+op.hero_img+"')";
+        var oimg = document.createElement('img'); oimg.className = 'modal-other-img';
+        if(op.hero_img) oimg.src = op.hero_img; oimg.alt = op.name; oimg.onerror = function(){ this.style.opacity = 0; };
+        var ograd = document.createElement('div'); ograd.className = 'modal-other-grad';
+        var onm = document.createElement('div'); onm.className = 'modal-other-name'; onm.textContent = op.name;
+        el.appendChild(obg); el.appendChild(oimg); el.appendChild(ograd); el.appendChild(onm);
+        othersGrid.appendChild(el);
+      });
+
+      document.title = 'Discover '+party.name+' on AfroCue';
+      history.replaceState(null, '', '#'+id);
+      document.getElementById('partyModal').classList.add('open');
+      document.getElementById('partyModal').scrollTop = 0;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(){
+      document.getElementById('partyModal').classList.remove('open');
+      document.body.style.overflow = '';
+      document.title = 'Party Directory — AfroCue';
+      history.replaceState(null, '', 'parties.html');
+      currentParty = null;
+    }
+
+    function formatDate(timestamp){
+      try{
+        var d = new Date(timestamp);
+        var now = new Date();
+        var diff = Math.floor((now - d) / (1000*60*60*24));
+        if(diff === 0) return 'Today';
+        if(diff === 1) return 'Yesterday';
+        if(diff < 7) return diff+'d ago';
+        if(diff < 30) return Math.floor(diff/7)+'w ago';
+        return d.toLocaleDateString();
+      } catch(e){ return ''; }
+    }
+
+    // ─── STATS (views/likes) ──────────────────────────────────────────
+    function incrementStat(id, action, displayId){
+      var gasUrl = getGasUrl(); if(gasUrl === 'YOUR_GAS_SCRIPT_URL_HERE') return;
+      var cbName = 'afrocueStatCb_'+Date.now();
+      var s = document.createElement('script');
+      window[cbName] = function(data){
+        if(displayId && data.count !== undefined){ var el = document.getElementById(displayId); if(el) el.textContent = data.count; }
+        delete window[cbName]; if(s.parentNode) s.parentNode.removeChild(s);
+      };
+      s.src = gasUrl + '?action=' + action + '&id=' + encodeURIComponent(id) + '&callback=' + cbName;
+      document.head.appendChild(s);
+    }
+
+    function handleLike(){
+      if(!currentParty) return;
+      var key = 'liked_'+currentParty.id;
+      if(sessionStorage.getItem(key)) return;
+      sessionStorage.setItem(key, '1');
+      document.getElementById('likeBtn').classList.add('liked');
+      var cur = parseInt(document.getElementById('likeCountNum').textContent) || 0;
+      document.getElementById('likeCountNum').textContent = cur + 1;
+      incrementStat(currentParty.id, 'like', null);
+    }
+
+    function handleShare(){
+      if(!currentParty) return;
+      var shareUrl = 'https://afrocue.xyz/parties.html#'+currentParty.id;
+      var shareTitle = 'Discover '+currentParty.name+' on AfroCue';
+      var shareText = 'Discover '+currentParty.name+' on AfroCue — '+currentParty.description.substring(0,100);
+      if(navigator.share){
+        navigator.share({ title: shareTitle, text: shareText, url: shareUrl }).catch(function(){});
+      } else {
+        navigator.clipboard.writeText(shareUrl).then(function(){
+          var btn = document.getElementById('shareBtn');
+          btn.className = 'share-btn copied';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+          setTimeout(function(){ btn.className = 'share-btn'; btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share'; }, 2500);
+        }).catch(function(){});
+      }
+    }
+
+    // ─── MODAL CLOSE EVENTS ────────────────────────────────────────────
+    document.getElementById('partyModal').addEventListener('click', function(e){ if(e.target === this) closeModal(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
+
+    // ─── HASH ROUTING ──────────────────────────────────────────────────
+    (function(){
+      var hash = window.location.hash.replace('#',''); if(!hash) return;
+      var check = setInterval(function(){
+        if(PARTIES.length > 0){ clearInterval(check); var match = PARTIES.find(function(p){ return p.id === hash; }); if(match) openModal(match.id); }
+      }, 100);
+    })();
+
+    // ─── START ──────────────────────────────────────────────────────────
+    loadParties();
+  </script>
 </body>
 </html>
