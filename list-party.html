@@ -18,7 +18,9 @@
   <meta name="twitter:description" content="Submit your Lagos party or event to AfroCue."/>
   <meta name="twitter:image" content="https://afrocue.xyz/hero_dj.jpg"/>
 
+  <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
+  <!-- End Google Tag Manager -->
 
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -109,6 +111,9 @@
     .btn-yellow{color:var(--black);background:var(--yellow);width:100%;padding:16px;font-size:13px;letter-spacing:0.1em}
     .btn-yellow:hover{opacity:0.88}
     .btn-yellow:disabled{opacity:0.4;cursor:not-allowed}
+    .btn-yellow.btn-loading{position:relative;pointer-events:none;color:transparent !important;}
+    .btn-yellow.btn-loading::after{content:'';position:absolute;top:50%;left:50%;width:18px;height:18px;margin-top:-9px;margin-left:-9px;border:2px solid rgba(0,0,0,0.3);border-top-color:var(--black);border-radius:50%;animation:spin 0.6s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
     .form-disclaimer{font-size:10px;color:var(--grey);text-align:center;margin-top:10px;line-height:1.6}
 
     footer{border-top:1px solid rgba(255,255,255,0.06);padding:36px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;background:var(--dark)}
@@ -283,7 +288,7 @@
           <div class="upload-progress" id="heroProgress">Uploading...</div>
           <div class="upload-done" id="heroDone">&#10003; Uploaded</div>
           <div class="upload-error" id="heroError">Upload failed - try again</div>
-          <input type="hidden" name="hero_img" id="heroUrl"/>
+          <input type="hidden" name="hero_image" id="heroUrl"/>
         </div>
 
         <div class="upload-field" style="margin-top:12px;">
@@ -299,19 +304,26 @@
           <div class="upload-progress" id="flyerProgress">Uploading...</div>
           <div class="upload-done" id="flyerDone">&#10003; Uploaded</div>
           <div class="upload-error" id="flyerError">Upload failed - try again</div>
-          <input type="hidden" name="flyer_img" id="flyerUrl"/>
+          <input type="hidden" name="flyer_image" id="flyerUrl"/>
         </div>
 
         <div class="fdivider"></div>
 
         <div class="fsec">Links</div>
+
+        <!-- FIXED: Instagram Handle input (only handle) -->
         <div class="field">
-          <label>Instagram URL</label>
-          <input type="url" name="instagram_url" placeholder="https://instagram.com/yourparty" required/>
+          <label>Instagram Handle</label>
+          <div style="display:flex;align-items:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:2px;padding:0 15px;">
+            <span style="color:var(--grey);font-size:14px;white-space:nowrap;">instagram.com/</span>
+            <input type="text" name="instagram_handle" placeholder="yourhandle" required style="background:transparent;border:none;padding:13px 0 13px 8px;color:var(--white);font-family:'Figtree',sans-serif;font-size:16px;outline:none;width:100%;"/>
+          </div>
+          <span class="field-note">Enter your handle without the @ (e.g., yourparty)</span>
         </div>
+
         <div class="field">
           <label>Website URL - optional</label>
-          <input type="url" name="website_url" placeholder="https://yourparty.com"/>
+          <input type="url" name="website" placeholder="https://yourparty.com"/>
         </div>
 
         <div class="fdivider"></div>
@@ -346,21 +358,23 @@
     <a href="dj.html">DJs</a>
     <a href="index.html">Home</a>
   </div>
-  <div><a href="/cdn-cgi/l/email-protection#d8b9beaab7bbadbdb7b6b4b1b6bd98bfb5b9b1b4f6bbb7b5" style="font-size:11px;color:var(--grey);text-decoration:none;"><span class="__cf_email__" data-cfemail="b2d3d4c0ddd1c7d7dddcdedbdcd7f2d5dfd3dbde9cd1dddf">[email&#160;protected]</span></a></div>
+  <div><a href="/cdn-cgi/l/email-protection#d9b8beaab7bbadbdb7b6b4b1b6bd98bfb5b9b1b4f6bbb7b5" style="font-size:11px;color:var(--grey);text-decoration:none;"><span class="__cf_email__" data-cfemail="b2d3d4c0ddd1c7d7dddcdedbdcd7f2d5dfd3dbde9cd1dddf">[email&#160;protected]</span></a></div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script src="afrocue.js"></script>
 <script>
+// ─── IMGBB API Key ──────────────────────────────────────────────
 var IMGBB_KEY = 'efc0a2cd9cc0a1a9f9f777f4ffe9c665';
 var uploadedUrls = { hero: '', flyer: '' };
 
+// ─── GENRE PILLS ─────────────────────────────────────────────────
 function toggleGenre(el) {
   el.classList.toggle('selected');
   var vals = Array.from(document.querySelectorAll('#genrePills .pill-opt.selected')).map(function(p){ return p.textContent.trim(); });
   document.getElementById('genresVal').value = vals.join(', ');
 }
 
+// ─── CHAR COUNT ──────────────────────────────────────────────────
 function updateCharCount(el) {
   var count = el.value.length;
   var display = document.getElementById('charCount');
@@ -368,6 +382,7 @@ function updateCharCount(el) {
   display.className = 'char-count' + (count > 1000 ? ' over' : count > 800 ? ' warn' : '');
 }
 
+// ─── IMAGE UPLOAD (ImgBB) ───────────────────────────────────────
 function previewAndUpload(input, type) {
   var file = input.files[0];
   if (!file) return;
@@ -396,16 +411,19 @@ function previewAndUpload(input, type) {
     });
 }
 
+// ─── CITY OTHER FIELD ───────────────────────────────────────────
 document.querySelector('select[name="city"]').addEventListener('change', function() {
   var f = document.getElementById('otherCityField');
   if (f) f.style.display = this.value === 'Other' ? 'flex' : 'none';
 });
 
+// ─── FORM SUBMISSION ─────────────────────────────────────────────
 function handlePartySubmit(e) {
   e.preventDefault();
   var form = e.target;
   var btn = document.getElementById('partySubmitBtn');
 
+  // ── Basic validation ──
   if (!form.party_name.value.trim()) { alert('Please enter the party name.'); return; }
   if (!form.city.value.trim()) { alert('Please select a city.'); return; }
   if (!form.time.value) { alert('Please select the time of day.'); return; }
@@ -414,38 +432,59 @@ function handlePartySubmit(e) {
   if (!document.getElementById('genresVal').value) { alert('Please select at least one genre.'); return; }
   var desc = form.description.value.trim();
   if (desc.length < 100) { alert('Description must be at least 100 characters.'); return; }
-  if (!form.instagram_url.value.trim()) { alert('Please add an Instagram URL.'); return; }
+  if (!form.instagram_handle.value.trim()) { alert('Please enter your Instagram handle.'); return; }
   if (!form.contact_email.value.trim()) { alert('Please add your contact email.'); return; }
   if (!uploadedUrls.hero) { alert('Please upload an event photo.'); return; }
 
-  btn.textContent = 'Submitting...';
-  btn.disabled = true;
+  // ── Build Instagram URL from handle ──
+  var igHandle = form.instagram_handle.value.trim();
+  // Remove @ if user added it
+  if (igHandle.startsWith('@')) igHandle = igHandle.substring(1);
+  // Remove trailing slashes or query params
+  igHandle = igHandle.split('/')[0].split('?')[0];
+  var instagramUrl = 'https://instagram.com/' + igHandle;
 
+  // ── City value ──
+  var cityValue = form.city.value === 'Other' ? (form.city_other ? form.city_other.value.trim() : 'Other') : form.city.value;
+
+  // ── Payload (keys match GAS mapField) ──
   var data = {
     source:        'party_submission',
     party_name:    form.party_name.value.trim(),
-    city:          form.city.value === 'Other' ? (form.city_other ? form.city_other.value.trim() : 'Other') : form.city.value,
+    city:          cityValue,
     time:          form.time.value,
     access:        form.access.value,
     setting:       form.setting.value,
     genres:        document.getElementById('genresVal').value,
     description:   desc,
-    hero_img:      uploadedUrls.hero,
-    flyer_img:     uploadedUrls.flyer || '',
-    instagram_url: form.instagram_url.value.trim(),
-    website_url:   form.website_url ? form.website_url.value.trim() : '',
+    hero_image:    uploadedUrls.hero,
+    flyer_image:   uploadedUrls.flyer || '',
+    instagram_url: instagramUrl,  // full URL
+    website:       form.website ? form.website.value.trim() : '',
     contact_email: form.contact_email.value.trim()
   };
 
+  // ── Disable button, show loading ──
+  btn.textContent = 'Submitting...';
+  btn.disabled = true;
+  btn.classList.add('btn-loading');
+
+  // ── Get script URL from afrocue.js ──
   var SCRIPT_URL = window.AFROCUE_SCRIPT_URL || 'YOUR_GAS_SCRIPT_URL_HERE';
 
+  // ── Send to GAS ──
   fetch(SCRIPT_URL, {
     method: 'POST',
     mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
-  }).finally(function() {
-    window.location.href = 'party-thank-you.html';
+  })
+  .catch(function(err) {
+    console.warn('Submission error (expected in no-cors):', err);
+  })
+  .finally(function() {
+    // Redirect to thank-you page
+    window.location.href = '/thank-you/parties';
   });
 }
 </script>
