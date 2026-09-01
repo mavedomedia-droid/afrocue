@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>You're in — AfroCue Set Club</title>
+  <title>You're in — Welcome to Set Club</title>
   <!--[if gte mso 9]>
   <xml>
     <o:OfficeDocumentSettings>
@@ -14,185 +14,211 @@
   </xml>
   <![endif]-->
   <style>
-    /* Reset */
+    /* Fonts */
+    @font-face {
+      font-family: 'Aesthet Nova';
+      src: url('https://afrocue.xyz/fonts/Aesthet-Nova-Black.woff2') format('woff2');
+      font-weight: 900;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Figtree';
+      src: url('https://afrocue.xyz/fonts/Figtree-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-display: swap;
+    }
+
     body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
     table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse; }
     img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
     a { text-decoration: none; color: inherit; }
-    body { margin: 0; padding: 0; width: 100%; background-color: #0a0a0a; }
-    table { border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
-    /* Responsive */
-    @media only screen and (max-width: 480px) {
-      .container { width: 100% !important; }
-      .full-width { width: 100% !important; }
-      .stack { display: block !important; width: 100% !important; }
-      .hide-mobile { display: none !important; }
+    body { margin: 0; padding: 0; width: 100%; background-color: #0a0a0a !important; }
+    .main-table { background-color: #0a0a0a !important; }
+    [data-ogsc] body, [data-ogsc] .main-table { background-color: #0a0a0a !important; }
+    @media (prefers-color-scheme: dark) {
+      body, .main-table { background-color: #0a0a0a !important; }
+      .text-white { color: #f0ede8 !important; }
+      .text-yellow { color: #C8E000 !important; }
+    }
+    /* Animations */
+    @keyframes subtlePulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+      100% { transform: scale(1); }
+    }
+    .pulse {
+      animation: subtlePulse 2.4s infinite;
     }
   </style>
 </head>
-<body style="margin:0; padding:0; background-color:#0a0a0a; font-family: Verdana, Geneva, sans-serif;">
+<body style="margin:0; padding:0; background-color:#0a0a0a; font-family: 'Figtree', Arial, sans-serif;">
+  <center style="width:100%; table-layout:fixed; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; background-color:#0a0a0a;">
+    <div style="display:none; font-size:1px; color:#0a0a0a; line-height:1px; max-height:0px; max-width:0px; opacity:0; overflow:hidden;">
+      You're in, {{first_name}}. Welcome to AfroCue Set Club.
+    </div>
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width:600px; background-color:#0a0a0a; margin:auto;" class="main-table">
+      <tr>
+        <td style="padding:40px 24px;">
 
-  <!-- Outer Background Table -->
-  <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="background-color:#0a0a0a;">
-    <tr>
-      <td align="center" style="padding:40px 16px;">
+          <!-- Header with texture and small logo left, link right -->
+          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-image:url('https://afrocue.xyz/texture.jpg'); background-size:cover; background-position:center; border-radius:8px; overflow:hidden;">
+            <tr>
+              <td align="left" style="padding:20px 24px;">
+                <a href="https://afrocue.xyz" target="_blank">
+                  <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" width="80" style="display:block; width:80px; max-width:100%;" />
+                </a>
+              </td>
+              <td align="right" style="padding:20px 24px;">
+                <a href="https://afrocue.xyz" target="_blank" style="font-size:11px; color:#f0ede8; text-decoration:none; background-color:rgba(0,0,0,0.4); padding:8px 14px; border-radius:4px;">Visit AfroCue →</a>
+              </td>
+            </tr>
+          </table>
 
-        <!-- Main Container -->
-        <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="container" style="max-width: 600px; background-color: #111111; border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; overflow: hidden;">
+          <!-- Hero Image with Play Overlay (pulse animation on play button) -->
+          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-top:24px;">
+            <tr>
+              <td align="center" style="position:relative;">
+                <a href="https://www.youtube.com/playlist?list=PLItANlSge6dc" target="_blank" style="display:block; position:relative;">
+                  <img src="https://afrocue.xyz/setsclub_hero.jpg" alt="Set Club" width="100%" style="display:block; width:100%; max-width:100%; border-radius:8px;" />
+                  <table role="presentation" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); mso-padding-alt:0;" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                      <td align="center" class="pulse" style="background:rgba(0,0,0,0.6); border-radius:50%; width:64px; height:64px; line-height:64px; text-align:center;">
+                        <span style="color:#ffffff; font-size:28px;">▶</span>
+                      </td>
+                    </tr>
+                  </table>
+                </a>
+                <p style="font-size:10px; color:#999999; letter-spacing:1px; text-transform:uppercase; margin:8px 0 0;">Set Club on YouTube</p>
+              </td>
+            </tr>
+          </table>
 
-          <!-- Logo -->
-          <tr>
-            <td align="center" style="padding:32px 32px 24px;">
-              <a href="https://afrocue.xyz" target="_blank">
-                <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" height="32" style="display:block; height:32px; width:auto;" />
-              </a>
-            </td>
-          </tr>
-
-          <!-- AfroCue Set Club Label (above hero) -->
-          <tr>
-            <td align="center" style="padding:0 32px 16px;">
-              <p style="font-family: Verdana, Geneva, sans-serif; font-size:11px; font-weight:bold; letter-spacing:2px; color:#C8E000; margin:0; text-transform:uppercase;">AfroCue Set Club</p>
-            </td>
-          </tr>
-
-          <!-- Hero Image (Clickable to Playlist) -->
-          <tr>
-            <td align="center" style="padding:0 32px 24px;">
-              <a href="https://www.youtube.com/playlist?list=PLItANlSge6dc" target="_blank" style="display:inline-block; position:relative; text-decoration:none;">
-                <img src="https://afrocue.xyz/setsclub_hero.jpg" alt="AfroCue Set Club" width="440" style="display:block; width:440px; max-width:100%; border-radius:8px;" />
-                <!-- Play Overlay -->
-                <table role="presentation" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); mso-padding-alt:0;" cellspacing="0" cellpadding="0" border="0">
+          <!-- Welcome and quote: name bold left, quote centered in a tile -->
+          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+            <tr>
+              <td align="left" style="padding:40px 24px 8px;">
+                <p style="font-size:16px; font-weight:bold; color:rgba(240,237,232,0.8); margin:0;">Welcome, {{first_name}}.</p>
+              </td>
+            </tr>
+            <tr>
+              <td align="center" style="padding:0 24px 24px;">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="background-color:#111111; border:1px solid rgba(200,224,0,0.2); border-radius:8px; padding:16px 20px;">
                   <tr>
-                    <td align="center" style="background:rgba(0,0,0,0.6); border-radius:50%; width:56px; height:56px; line-height:56px; text-align:center;">
-                      <span style="color:#ffffff; font-size:24px;">▶</span>
+                    <td align="center" style="padding:8px 16px;">
+                      <p style="font-size:22px; font-weight:300; font-style:italic; color:#f0ede8; margin:0; white-space:nowrap;">You like DJ sets. We do too.</p>
                     </td>
                   </tr>
                 </table>
-              </a>
-            </td>
-          </tr>
+              </td>
+            </tr>
+          </table>
 
-          <!-- Greeting (left-aligned) -->
-          <tr>
-            <td style="padding:0 32px 12px;">
-              <p style="font-family: Verdana, Geneva, sans-serif; font-size:14px; color:rgba(240,237,232,0.7); margin:0;">
-                Welcome, {{first_name}},
-              </p>
-            </td>
-          </tr>
+          <!-- Body paragraphs with bold important words -->
+          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+            <tr>
+              <td align="left" style="padding:0 24px 16px;">
+                <p style="font-size:16px; line-height:1.8; color:rgba(240,237,232,0.8); margin:0;">
+                  Welcome to Set Club — a third space for people who love DJ sets to experience them <strong style="color:#f0ede8;">differently</strong>.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td align="left" style="padding:0 24px 32px;">
+                <p style="font-size:16px; line-height:1.8; color:rgba(240,237,232,0.8); margin:0;">
+                  There are many moments from talented Nigerian DJs etched in interesting YouTube sets that we’ll explore in <strong style="color:#f0ede8;">fun and engaging ways</strong> — including a <strong style="color:#f0ede8;">live event experience</strong> in a room, <strong style="color:#f0ede8;">small setting</strong> and all.
+                </p>
+              </td>
+            </tr>
+          </table>
 
-          <!-- Bold intro line -->
-          <tr>
-            <td style="padding:0 32px 16px;">
-              <p style="font-family: Verdana, Geneva, sans-serif; font-size:18px; font-weight:bold; color:#f0ede8; margin:0; line-height:1.4;">
-                You like DJ sets. We do too.
-              </p>
-            </td>
-          </tr>
+          <!-- Three Pillars with Icons -->
+          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-bottom:32px;">
+            <tr>
+              <td width="33%" valign="top" style="padding:0 8px 16px; text-align:center;">
+                <p style="font-size:26px; color:#C8E000; margin:0 0 6px;">⏪</p>
+                <p style="font-size:12px; font-weight:bold; letter-spacing:1px; color:#C8E000; text-transform:uppercase; margin:0 0 4px;">Revisit</p>
+                <p style="font-size:13px; line-height:1.5; color:rgba(240,237,232,0.7); margin:0;">Relive sets already on YouTube.</p>
+              </td>
+              <td width="33%" valign="top" style="padding:0 8px 16px; text-align:center;">
+                <p style="font-size:26px; color:#C8E000; margin:0 0 6px;">✨</p>
+                <p style="font-size:12px; font-weight:bold; letter-spacing:1px; color:#C8E000; text-transform:uppercase; margin:0 0 4px;">Discover</p>
+                <p style="font-size:13px; line-height:1.5; color:rgba(240,237,232,0.7); margin:0;">New drops, premieres, recommendations.</p>
+              </td>
+              <td width="33%" valign="top" style="padding:0 8px 16px; text-align:center;">
+                <p style="font-size:26px; color:#C8E000; margin:0 0 6px;">🎛️</p>
+                <p style="font-size:12px; font-weight:bold; letter-spacing:1px; color:#C8E000; text-transform:uppercase; margin:0 0 4px;">Experience</p>
+                <p style="font-size:13px; line-height:1.5; color:rgba(240,237,232,0.7); margin:0;">Curated third space, iconic sets, side attractions.</p>
+              </td>
+            </tr>
+          </table>
 
-          <!-- Main message -->
-          <tr>
-            <td style="padding:0 32px 24px;">
-              <p style="font-family: Verdana, Geneva, sans-serif; font-size:14px; line-height:1.7; color:rgba(240,237,232,0.75); margin:0;">
-                Welcome to Set Club — a third space for people who love the sets, the sounds and the moments that make Nigerian dance music what it is.
-              </p>
-            </td>
-          </tr>
+          <!-- Coming Soon (texture background, bold captivating title) -->
+          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color:#111111; border-top:1px solid rgba(200,224,0,0.15); border-bottom:1px solid rgba(200,224,0,0.15); margin-bottom:40px; background-image:url('https://afrocue.xyz/texture.jpg'); background-size:cover; background-position:center;">
+            <tr>
+              <td align="center" style="padding:32px 20px;">
+                <p style="font-size:12px; font-weight:bold; letter-spacing:2px; color:#C8E000; text-transform:uppercase; margin:0 0 8px;">Coming Soon</p>
+                <p style="font-family: 'Aesthet Nova', Georgia, serif; font-size:36px; font-weight:900; color:#f0ede8; margin:0 0 8px; text-shadow: 0 0 10px rgba(200,224,0,0.4);">Set Club 001</p>
+                <p style="font-size:16px; color:rgba(240,237,232,0.7); margin:0;">Date TBA</p>
+              </td>
+            </tr>
+          </table>
 
-          <!-- Three Pillars -->
-          <tr>
-            <td style="padding:0 32px 24px;">
-              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                <!-- Revisit -->
-                <tr>
-                  <td style="padding:16px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
-                    <p style="font-family: Verdana, Geneva, sans-serif; font-size:11px; font-weight:bold; letter-spacing:2px; color:#C8E000; margin:0 0 4px; text-transform:uppercase;">Revisit</p>
-                    <p style="font-family: Verdana, Geneva, sans-serif; font-size:14px; line-height:1.6; color:rgba(240,237,232,0.7); margin:0;">
-                      Relive sets already available on YouTube. The rooms, the selectors, the moments people still talk about.
-                    </p>
-                  </td>
-                </tr>
-                <!-- Discover -->
-                <tr>
-                  <td style="padding:16px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
-                    <p style="font-family: Verdana, Geneva, sans-serif; font-size:11px; font-weight:bold; letter-spacing:2px; color:#C8E000; margin:0 0 4px; text-transform:uppercase;">Discover</p>
-                    <p style="font-family: Verdana, Geneva, sans-serif; font-size:14px; line-height:1.6; color:rgba(240,237,232,0.7); margin:0;">
-                      New set drops. Premieres. Recommendations from people who actually listen. The fun side stuff.
-                    </p>
-                  </td>
-                </tr>
-                <!-- Experience -->
-                <tr>
-                  <td style="padding:16px 0;">
-                    <p style="font-family: Verdana, Geneva, sans-serif; font-size:11px; font-weight:bold; letter-spacing:2px; color:#C8E000; margin:0 0 4px; text-transform:uppercase;">Experience</p>
-                    <p style="font-family: Verdana, Geneva, sans-serif; font-size:14px; line-height:1.6; color:rgba(240,237,232,0.7); margin:0;">
-                      Curated third space — the music lineup is iconic YouTube sets, side attractions, a great time.
-                    </p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
+          <!-- Primary CTA -->
+          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-bottom:40px;">
+            <tr>
+              <td align="center">
+                <a href="https://www.youtube.com/playlist?list=PLItANlSge6dc" target="_blank" style="display:inline-block; background-color:#C8E000; color:#0a0a0a; text-decoration:none; font-size:14px; font-weight:bold; letter-spacing:1px; padding:14px 28px; border-radius:4px; text-transform:uppercase;">
+                  Watch Set Club on YouTube →
+                </a>
+              </td>
+            </tr>
+          </table>
 
-          <!-- Coming Soon -->
-          <tr>
-            <td align="center" style="padding:24px 32px; background: rgba(200,224,0,0.05); border-top:1px solid rgba(200,224,0,0.12); border-bottom:1px solid rgba(200,224,0,0.12);">
-              <p style="font-family: Verdana, Geneva, sans-serif; font-size:11px; font-weight:bold; letter-spacing:2px; color:#C8E000; margin:0 0 6px; text-transform:uppercase;">Coming Soon</p>
-              <p style="font-family: Verdana, Geneva, sans-serif; font-size:18px; font-weight:bold; color:#f0ede8; margin:0 0 6px;">Set Club 001</p>
-              <p style="font-family: Verdana, Geneva, sans-serif; font-size:14px; line-height:1.5; color:rgba(240,237,232,0.6); margin:0;">Date TBA</p>
-            </td>
-          </tr>
-
-          <!-- YouTube CTA -->
-          <tr>
-            <td align="center" style="padding:32px 32px 16px;">
-              <a href="https://www.youtube.com/playlist?list=PLItANlSge6dc" target="_blank" style="display:inline-block; background-color:#C8E000; color:#0a0a0a; padding:14px 28px; border-radius:8px; font-weight:bold; font-size:13px; text-transform:uppercase; letter-spacing:1px; text-decoration:none; font-family: Verdana, Geneva, sans-serif; box-shadow:0 2px 8px rgba(0,0,0,0.4);">
-                Watch Set Club on YouTube →
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td align="center" style="padding:0 32px 32px;">
-              <p style="font-family: Verdana, Geneva, sans-serif; font-size:12px; color:rgba(240,237,232,0.5); margin:0;">Explore the sets we're watching, saving and coming back to.</p>
-            </td>
-          </tr>
+          <!-- Weekly Top 5 CTA with six7even image -->
+          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-bottom:40px;">
+            <tr>
+              <td align="center" style="padding:24px 24px; background-color:#111111; border-radius:8px; border:1px solid rgba(255,255,255,0.08);">
+                <p style="font-size:12px; font-weight:bold; letter-spacing:2px; color:#C8E000; text-transform:uppercase; margin:0 0 12px;">Check out our recent Weekly Top 5</p>
+                <img src="https://afrocue.xyz/email-assets/six7even.jpg" alt="Weekly Top 5" width="100%" style="display:block; width:100%; max-width:480px; border-radius:6px; margin:0 auto 16px;" />
+                <a href="https://instagram.com/afro.cue" target="_blank" style="display:inline-block; border:1px solid rgba(255,255,255,0.3); color:#f0ede8; text-decoration:none; font-size:12px; font-weight:bold; letter-spacing:1px; padding:12px 24px; border-radius:4px; text-transform:uppercase;">
+                  See more on Instagram
+                </a>
+              </td>
+            </tr>
+          </table>
 
           <!-- Social Links -->
-          <tr>
-            <td align="center" style="padding:20px 32px 30px; border-top:1px solid rgba(255,255,255,0.05);">
-              <p style="font-family: Verdana, Geneva, sans-serif; font-size:11px; font-weight:bold; letter-spacing:2px; color:#777777; margin:16px 0 8px; text-transform:uppercase;">Follow the Club</p>
-              <p style="font-family: Verdana, Geneva, sans-serif; font-size:13px; color:rgba(240,237,232,0.6); margin:0;">
-                <a href="https://instagram.com/afro.cue" target="_blank" style="color:#C8E000; text-decoration:none;">Instagram</a>
-                &nbsp;&middot;&nbsp;
-                <a href="https://youtube.com/@AfroCue" target="_blank" style="color:#C8E000; text-decoration:none;">YouTube</a>
-                &nbsp;&middot;&nbsp;
-                <a href="https://afrocue.xyz" target="_blank" style="color:#C8E000; text-decoration:none;">AfroCue.xyz</a>
-              </p>
-            </td>
-          </tr>
+          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-bottom:40px;">
+            <tr>
+              <td align="center">
+                <p style="font-size:12px; font-weight:bold; letter-spacing:2px; color:#777777; text-transform:uppercase; margin:0 0 16px;">Follow the Club</p>
+                <p style="font-size:14px; color:rgba(240,237,232,0.6); margin:0;">
+                  <a href="https://instagram.com/afro.cue" target="_blank" style="color:#C8E000; text-decoration:none;">Instagram</a>
+                  &nbsp;&nbsp;·&nbsp;&nbsp;
+                  <a href="https://youtube.com/@AfroCue" target="_blank" style="color:#C8E000; text-decoration:none;">YouTube</a>
+                  &nbsp;&nbsp;·&nbsp;&nbsp;
+                  <a href="https://afrocue.xyz" target="_blank" style="color:#C8E000; text-decoration:none;">AfroCue.xyz</a>
+                </p>
+              </td>
+            </tr>
+          </table>
 
           <!-- Footer -->
-          <tr>
-            <td style="padding:20px 32px 24px; border-top:1px solid rgba(200,224,0,0.08); background:#0A0A0A;">
-              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                <tr>
-                  <td align="center">
-                    <p style="font-family: Verdana, Geneva, sans-serif; font-size:10px; color:#555555; line-height:1.6; margin:0;">
-                      Lagos, Nigeria &nbsp;&middot;&nbsp; © 2026 AfroCue<br>
-                      <a href="https://afrocue.xyz" style="color:#555555; text-decoration:none;">afrocue.xyz</a>
-                    </p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
+          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="border-top:1px solid rgba(200,224,0,0.08);">
+            <tr>
+              <td align="center" style="padding:24px 0 0;">
+                <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" width="60" style="display:block; margin:0 auto 8px;">
+                <p style="font-size:10px; color:#555555; line-height:1.6; margin:0;">
+                  Lagos, Nigeria · © 2026 AfroCue<br>
+                  <a href="https://afrocue.xyz" style="color:#555555;">afrocue.xyz</a>
+                </p>
+              </td>
+            </tr>
+          </table>
 
-        </table>
-
-      </td>
-    </tr>
-  </table>
-
+        </td>
+      </tr>
+    </table>
+  </center>
 </body>
 </html>
