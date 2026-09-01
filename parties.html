@@ -24,6 +24,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
+    /* All your CSS exactly as before – unchanged */
     @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');font-weight:900}
     @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype');font-weight:500}
     @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-.otf') format('opentype');font-weight:400}
@@ -178,7 +179,7 @@
     .modal-other-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,0.95) 0%,rgba(10,10,10,0.2) 100%)}
     .modal-other-name{position:absolute;bottom:12px;left:12px;right:12px;z-index:2;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:16px;color:var(--yellow);text-shadow:var(--yts);line-height:1}
 
-    /* NEW: Party Pulse + Latest Posts */
+    /* Party Pulse + Latest Posts */
     .party-pulse { background:#0d0d0d;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:24px;margin-bottom:36px;position:relative;overflow:hidden; }
     .party-pulse-label { display:flex;align-items:center;gap:8px;font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:16px;position:relative;z-index:2; }
     .party-pulse-live-dot { width:6px;height:6px;border-radius:50%;background:var(--yellow);animation:pulseDot 1.5s infinite; }
@@ -582,12 +583,22 @@
     <div class="footer-email"><a href="mailto:hello@afrocue.xyz">hello@afrocue.xyz</a></div>
   </footer>
 
+  <!-- Shared config -->
+  <script src="afrocue.js"></script>
+
+  <!-- Main page script -->
   <script>
     // ─── CONFIG ───────────────────────────────────────────────────────────
-    // Use the published CSV URL of your spreadsheet:
-    var CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRvyoz4kEGuFe1KzMPNFicoRiNEr9-hg-eI-Uv2PjkjT4iJYuEEr4w18As6SxrybQhwqNBsgDlnADII/pub?gid=0&single=true&output=csv';
+    // Get the script URL from the shared config
+    var GAS_WEBAPP_URL = window.AFROCUE_SCRIPT_URL || '';
+    if (!GAS_WEBAPP_URL) {
+      console.warn('AfroCue: AFROCUE_SCRIPT_URL not set in afrocue.js – using fallback (will fail)');
+      // Fallback – you can remove this line once afrocue.js is properly loaded
+      GAS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbyeARt-_vK9lDvdki3hLhQ89wcE1NC3ElHXvdKfbp71w3D0HujWse8DgMe4qnz-aite/exec';
+    }
+    var CSV_URL = GAS_WEBAPP_URL + '?export=csv';
 
-    function getGasUrl(){ return window.AFROCUE_SCRIPT_URL || 'YOUR_GAS_SCRIPT_URL_HERE'; }
+    function getGasUrl(){ return GAS_WEBAPP_URL; }
 
     // ─── HELPERS ──────────────────────────────────────────────────────────
     function getHandleFromUrl(url) {
@@ -627,7 +638,7 @@
       noResults.style.display = 'block';
     }
 
-    // ─── CSV PARSING ─────────────────────────────────────────────────────
+    // ─── CSV PARSING (case‑insensitive column lookup) ──────────────────
     function splitCSVLine(line) {
       var cols=[], cur='', inQuote=false;
       for(var i=0; i<line.length; i++){
@@ -644,9 +655,9 @@
       var lines = text.trim().split('\n');
       if(lines.length < 2) return { parties: [], featured: null };
       var headers = splitCSVLine(lines[0]).map(function(h){ return h.trim().toLowerCase(); });
-      function col(name){ var i = headers.indexOf(name); return i > -1 ? i : -1; }
+      function col(name){ var i = headers.indexOf(name.toLowerCase()); return i > -1 ? i : -1; }
 
-      // Map all columns
+      // All columns – matching your sheet headers
       var C_ID = col('party id');
       var C_NAME = col('party name');
       var C_CITY = col('city');
@@ -657,8 +668,8 @@
       var C_DESC = col('description');
       var C_HERO = col('hero image');
       var C_FLYER = col('flyer image');
-      var C_IG = col('instagram url');        // FIXED: 'instagram url' not 'instagram'
-      var C_WEB = col('website url');         // FIXED: 'website url' not 'website'
+      var C_IG = col('instagram url');
+      var C_WEB = col('website url');
       var C_TICKET = col('ticket url');
       var C_VIEWS = col('views');
       var C_LIKES = col('likes');
@@ -704,7 +715,7 @@
           description: cols[C_DESC].trim(),
           hero_img: cols[C_HERO].trim(),
           flyer_img: cols[C_FLYER].trim(),
-          instagram: cols[C_IG].trim(),      // full URL
+          instagram: cols[C_IG].trim(),
           website: cols[C_WEB].trim(),
           ticket_url: C_TICKET > -1 ? cols[C_TICKET].trim() : '',
           views: parseInt(cols[C_VIEWS]) || 0,
@@ -1057,7 +1068,11 @@
 
     // ─── STATS (views/likes) ──────────────────────────────────────────
     function incrementStat(id, action, displayId){
-      var gasUrl = getGasUrl(); if(gasUrl === 'YOUR_GAS_SCRIPT_URL_HERE') return;
+      var gasUrl = getGasUrl();
+      if (!gasUrl || gasUrl === '') {
+        console.warn('AfroCue: no script URL for stats');
+        return;
+      }
       var cbName = 'afrocueStatCb_'+Date.now();
       var s = document.createElement('script');
       window[cbName] = function(data){
