@@ -360,7 +360,7 @@
     .social-chip:hover { border-color: var(--yellow); color: var(--yellow); }
 
     /* ── WHATSAPP CHANNEL ── */
-    #whatsapp-channel { background:#111111; border-top:1px solid rgba(255,255,255,0.06); position:relative; overflow:hidden; padding:52px 48px; }
+    #whatsapp-channel { background:#111111; border-top:1px solid rgba(255,255,255,0.06); position:relative; overflow:hidden; padding:52px 48px; text-align:center; }
 
     /* ── FOOTER ── */
     footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 64px 48px 48px; display: flex; flex-direction: column; align-items: center; gap: 28px; background: var(--dark); text-align: center; }
@@ -456,7 +456,8 @@
     <li><a href="#playlists">Playlists</a></li>
     <li><a href="#advertise">Get Featured</a></li>
   </ul>
-  <a href="#join" class="nav-cta">Sign Up</a>
+  <!-- Changed from anchor to button that opens modal -->
+  <button class="nav-cta" onclick="openSignupModal()">Sign Up</button>
 </nav>
 
 <!-- HERO -->
@@ -475,15 +476,9 @@
     <h1>Creatively<br><span class="outline">Documenting</span><br>Culture.</h1>
     <p class="hero-desc">We spotlight the DJs, the raves and parties they play at, and the music — from afrohouse to amapiano and our own afrobeats — shaping Nigeria's dance floor.</p>
     <div class="hero-actions">
-      <a href="https://instagram.com/afro.cue" target="_blank" class="btn-ig">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-          <circle cx="12" cy="12" r="4"/>
-          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-        </svg>
-        Follow Us
-      </a>
-      <a href="#about" class="btn btn-ghost">Learn More</a>
+      <!-- Primary CTA opens modal -->
+      <button class="btn-ig" onclick="openSignupModal()">Join AfroCue</button>
+      <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">Follow Us</a>
     </div>
   </div>
 </div>
@@ -884,9 +879,16 @@
   </div>
 </section>
 
-<!-- WHATSAPP CHANNEL -->
-<section id="whatsapp-channel" style="background:#111111;border-top:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;padding:52px 48px;">
-  <!-- keep original content, unchanged -->
+<!-- WHATSAPP CHANNEL (populated) -->
+<section id="whatsapp-channel" style="background:#111111;border-top:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;padding:52px 48px;text-align:center;">
+  <div style="max-width:600px;margin:0 auto;">
+    <div class="label" style="justify-content:center;">WhatsApp Channel</div>
+    <h2 class="yh" style="font-size:clamp(32px,5vw,48px); margin-bottom:12px;">Join the community.</h2>
+    <p style="font-size:14px;font-weight:300;color:rgba(240,237,232,0.6);margin-bottom:24px;">
+      Get the latest updates, party drops, and DJ news directly in your WhatsApp.
+    </p>
+    <a href="https://whatsapp.com/channel/your-channel-link" target="_blank" class="btn btn-yellow" style="font-size:12px;padding:14px 28px;">Join WhatsApp Channel →</a>
+  </div>
 </section>
 
 <!-- FEATURED YOUTUBE SET -->
@@ -969,7 +971,7 @@
     document.getElementById('djMuteBtn').innerHTML = djRadarVid.muted ? '&#128266;' : '&#128263;';
   }
 
-  /* ── PARTY DIRECTORY (restored) ── */
+  /* ── PARTY DIRECTORY ── */
   var INDEX_CSV_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vSemAPO2lS9b54nmiLq2LUodTRkgBT6ls_iRDUy_Zh6mhIkWf2UsRFvd5zmqfmc-rzeWViOd8rX1LCe/pub?gid=199159856&single=true&output=csv';
 
   function splitCSVLine(line){
@@ -1122,33 +1124,44 @@
     return 'https://script.google.com/macros/s/AKfycbwk0SvCWpKSr-hxsh_TPZiCCh2QTT8uXanQWiDl2qRCLqw1_wkNWLdNUs3LhYGqTl-O/exec';
   }
 
-  function handleNewsletter(e) {
-    e.preventDefault();
-    var form = e.target;
-    var data = {
-      source: 'newsletter',
-      name: form.nl_name.value.trim(),
-      email: form.nl_email.value.trim()
-    };
-    fetch(getScriptUrl(), {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify(data)
-    }).finally(function() {
-      window.location.href = '/thank-you/';
-    });
-  }
-
   function openSignupModal() {
     document.getElementById('signupModal').classList.add('open');
   }
   function closeSignupModal() {
     document.getElementById('signupModal').classList.remove('open');
   }
+
+  function handleNewsletter(e) {
+    e.preventDefault();
+    var form = e.target;
+    var btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = 'Subscribing...';
+
+    var data = {
+      source: 'newsletter',
+      name: form.nl_name.value.trim(),
+      email: form.nl_email.value.trim()
+    };
+
+    fetch(getScriptUrl(), {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(data)
+    }).finally(function() {
+      // Replace form with inline success message
+      form.innerHTML = '<p style="color:var(--yellow);font-size:16px;font-weight:500;margin-top:8px;">You are in. We will be in touch.</p>';
+    });
+  }
+
   function handleSignup(e) {
     e.preventDefault();
     var form = e.target;
+    var btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = 'Signing up...';
+
     var data = {
       source: 'join',
       name: form.su_name.value.trim(),
@@ -1156,13 +1169,16 @@
       role: form.su_role.value,
       instagram: form.su_ig.value.trim()
     };
+
     fetch(getScriptUrl(), {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify(data)
     }).finally(function() {
-      window.location.href = '/thank-you/';
+      // Show success inside modal
+      form.style.display = 'none';
+      document.getElementById('signupSuccess').style.display = 'block';
     });
   }
 </script>
