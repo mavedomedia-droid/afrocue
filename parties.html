@@ -24,7 +24,6 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    /* ── Reset & base ── */
     @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');font-weight:900}
     @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype');font-weight:500}
     @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-.otf') format('opentype');font-weight:400}
@@ -163,14 +162,14 @@
     .modal-link{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;background:var(--yellow);border-radius:2px;font-family:'Figtree',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);text-decoration:none;transition:opacity 0.2s;align-self:flex-start}
     .modal-link:hover{opacity:0.88}
     .modal-link svg{width:13px;height:13px;flex-shrink:0}
-    .modal-stats{display:flex;align-items:center;gap:20px;margin-bottom:24px}
+    .modal-stats{display:flex;align-items:center;gap:20px;margin-bottom:24px;flex-wrap:wrap}
     .stat-pill{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:400;color:var(--silver)}
     .stat-pill svg{width:13px;height:13px;opacity:0.6}
-    .like-btn{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--silver);background:transparent;border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:6px 14px;cursor:pointer;transition:all 0.18s;font-family:'Figtree',sans-serif;letter-spacing:0.04em}
+    .like-btn{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--silver);background:transparent;border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:6px 14px;cursor:pointer;transition:all 0.18s;font-family:'Figtree',sans-serif;letter-spacing:0.04em;min-height:36px}
     .like-btn:hover{border-color:var(--yellow);color:var(--yellow)}
     .like-btn.liked{background:rgba(200,224,0,0.1);border-color:var(--yellow);color:var(--yellow)}
     .like-btn svg{width:13px;height:13px}
-    .share-btn{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--silver);background:transparent;border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:6px 14px;cursor:pointer;transition:all 0.18s;font-family:'Figtree',sans-serif;letter-spacing:0.04em}
+    .share-btn{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--silver);background:transparent;border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:6px 14px;cursor:pointer;transition:all 0.18s;font-family:'Figtree',sans-serif;letter-spacing:0.04em;min-height:36px}
     .share-btn:hover{border-color:rgba(255,255,255,0.3);color:var(--white)}
     .share-btn.copied{border-color:#4caf50;color:#4caf50}
     .share-btn svg{width:13px;height:13px}
@@ -197,7 +196,7 @@
     .party-pulse-key { display:block;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:#555;margin-bottom:6px; }
     .party-pulse-value { display:block;font-size:16px;font-weight:500;color:#f0ede8;opacity:0;animation:fadeInValue 0.6s ease forwards; }
     @keyframes fadeInValue { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
-    .party-pulse-confidence { margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:8px;font-size:10px;position:relative;z-index:2; }
+    .party-pulse-confidence { margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:8px;font-size:10px;position:relative;z-index:2;flex-wrap:wrap; }
     .confidence-label { letter-spacing:0.15em;text-transform:uppercase;color:#555; }
     .confidence-badge { font-weight:600;padding:2px 8px;border-radius:10px;letter-spacing:0.06em; }
     .confidence-badge.high { background:rgba(200,224,0,0.15);color:#C8E000; }
@@ -292,7 +291,7 @@
       .modal-name{font-size:clamp(28px,9vw,48px);margin-bottom:6px}
       .modal-ig{font-size:11px}
       .modal-city{margin-bottom:16px;font-size:10px}
-      .modal-stats{gap:12px;margin-bottom:14px}
+      .modal-stats{gap:12px;margin-bottom:14px;flex-wrap:wrap}
       .modal-desc{font-size:13px;margin-bottom:20px}
       .modal-lower{grid-template-columns:1fr;gap:16px}
       .modal-flyer{max-width:140px}
@@ -664,7 +663,6 @@
       var headers = splitCSVLine(lines[0]).map(function(h){ return h.trim().toLowerCase(); });
       function col(name){ var i = headers.indexOf(name.toLowerCase()); return i > -1 ? i : -1; }
 
-      // All columns – matching your sheet headers
       var C_ID = col('party id');
       var C_NAME = col('party name');
       var C_CITY = col('city');
@@ -751,7 +749,7 @@
           pulse_confidence: C_PULSE_CONFIDENCE > -1 ? cols[C_PULSE_CONFIDENCE].trim() : ''
         };
         if(isFeatured) featured = p;
-        if(status === 'Active' || status === '') parties.push(p);  // allow empty status as active
+        if(status === 'Active' || status === '') parties.push(p);
       }
       return { parties: parties, featured: featured };
     }
@@ -874,19 +872,17 @@
       if(!featuredList.length) initFeatured();
     }
 
-    // ─── FEATURED CAROUSEL (Fixed) ──────────────────────────────────
+    // ─── FEATURED CAROUSEL ──────────────────────────────────────────────
     function initFeatured(){
       var slot = document.getElementById('featuredSlot');
       if(!slot) return;
       
-      // Filter parties that have a hero image, then sort by views, take top 5
       featuredList = PARTIES
         .filter(function(p){ return p.hero_img && p.hero_img.trim() !== ''; })
         .slice()
         .sort(function(a,b){ return (b.views||0) - (a.views||0); })
         .slice(0,5);
       
-      // If none with hero, fallback to any party
       if(featuredList.length === 0){
         featuredList = PARTIES.slice().sort(function(a,b){ 
           return (b.views||0) - (a.views||0); 
@@ -929,12 +925,10 @@
       var flyerWrap = document.getElementById('featuredFlyer');
       var heroBg = document.getElementById('heroBg');
       
-      // Fade out
       img.style.opacity = '0';
       if(flyerWrap) flyerWrap.style.opacity = '0';
       
       setTimeout(function(){
-        // Update hero image
         if(p.hero_img && p.hero_img.trim() !== ''){
           bg.style.backgroundImage = "url('" + p.hero_img + "')";
           img.src = p.hero_img;
@@ -971,7 +965,6 @@
         
       }, 220);
       
-      // Update dots
       document.querySelectorAll('.featured-dot').forEach(function(d, idx){
         d.className = 'featured-dot' + (idx === i ? ' active' : '');
       });
@@ -994,7 +987,6 @@
     var FEATURED_PARTY = null;
     function renderUpcoming(party){
       var sec = document.getElementById('upcomingSection');
-      // If no featured party, try to find one with upcoming_flyer or upcoming_date
       if(!party || !party.name){
         var fallback = PARTIES.find(function(p){ 
           return (p.upcoming_flyer && p.upcoming_flyer.trim() !== '') || (p.upcoming_date && p.upcoming_date.trim() !== '');
@@ -1037,10 +1029,43 @@
     }
     function openUpcomingModal(){ if(FEATURED_PARTY) openModal(FEATURED_PARTY.id); }
 
+    // ─── STATS (views/likes) — FIXED ───────────────────────────────────
+    function incrementStat(id, action, displayId) {
+      var gasUrl = getGasUrl();
+      if (!gasUrl) {
+        console.warn('AfroCue: no script URL for stats');
+        return;
+      }
+      
+      var url = gasUrl + '?action=' + action + '&id=' + encodeURIComponent(id);
+      
+      fetch(url, {
+        method: 'GET',
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(function(r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function(data) {
+        if (displayId && data.count !== undefined) {
+          var el = document.getElementById(displayId);
+          if (el) el.textContent = data.count;
+        }
+      })
+      .catch(function(err) {
+        console.warn('AfroCue: stat update failed', err);
+      });
+    }
+
     // ─── MODAL ──────────────────────────────────────────────────────────
     function openModal(id){
       var party = PARTIES.find(function(p){ return p.id === id; });
       if(!party) return;
+      
+      // ─── Count view when modal opens ──────────────────────────
+      incrementStat(id, 'view', null);
+      
       currentParty = party;
       document.getElementById('modalHeroBg').style.backgroundImage = "url('"+(party.hero_img||'')+"')";
       var heroImg = document.getElementById('modalHeroImg');
@@ -1165,23 +1190,7 @@
       } catch(e){ return ''; }
     }
 
-    // ─── STATS (views/likes) ──────────────────────────────────────────
-    function incrementStat(id, action, displayId){
-      var gasUrl = getGasUrl();
-      if (!gasUrl || gasUrl === '') {
-        console.warn('AfroCue: no script URL for stats');
-        return;
-      }
-      var cbName = 'afrocueStatCb_'+Date.now();
-      var s = document.createElement('script');
-      window[cbName] = function(data){
-        if(displayId && data.count !== undefined){ var el = document.getElementById(displayId); if(el) el.textContent = data.count; }
-        delete window[cbName]; if(s.parentNode) s.parentNode.removeChild(s);
-      };
-      s.src = gasUrl + '?action=' + action + '&id=' + encodeURIComponent(id) + '&callback=' + cbName;
-      document.head.appendChild(s);
-    }
-
+    // ─── HANDLE LIKE ────────────────────────────────────────────────────
     function handleLike(){
       if(!currentParty) return;
       var key = 'liked_'+currentParty.id;
