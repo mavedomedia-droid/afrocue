@@ -241,6 +241,7 @@
       align-items: center;
       max-width: 1100px;
       margin: 0 auto;
+      padding-bottom: 20px;
     }
     .what-text .label { margin-bottom: 6px; }
     .what-heading {
@@ -280,14 +281,17 @@
       pointer-events: none;
     }
 
-    /* PILLAR TILES */
+    /* PILLAR TILES — with spacing for event section */
+    .pillar-tiles-wrap {
+      padding: 0 20px;
+      margin-bottom: 60px;
+    }
     .pillar-tiles {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
       max-width: 900px;
-      margin: 30px auto 0;
-      padding: 0 20px;
+      margin: 0 auto;
     }
     .pillar-tile {
       background: var(--dark2);
@@ -316,7 +320,7 @@
     .pillar-title { font-family: 'Aesthet Nova', 'Impact', sans-serif; font-weight: 900; font-size: 16px; color: var(--white); margin-bottom: 4px; }
     .pillar-desc { font-size: 11px; font-weight: 300; line-height: 1.4; color: rgba(240,237,232,0.7); }
 
-    /* ─── EVENT MODULE — FIXED ─── */
+    /* ─── EVENT MODULE — FIXED SPACING ─── */
     .event-section {
       position: relative;
       background-color: var(--dark);
@@ -328,7 +332,7 @@
       text-align: center;
       border-top: 1px solid rgba(255,255,255,0.06);
       border-bottom: 1px solid rgba(255,255,255,0.06);
-      margin-bottom: 0;
+      margin-top: 0;
     }
     /* Gradient overlay that makes it feel like an event card */
     .event-section::before {
@@ -492,12 +496,6 @@
       text-transform: uppercase;
       color: var(--grey);
       margin-top: 12px;
-    }
-    /* Divider line below event section for visual separation */
-    .event-section-divider {
-      height: 1px;
-      background: linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent);
-      margin: 0;
     }
 
     /* YOUTUBE SECTION */
@@ -757,6 +755,12 @@
       to { transform: rotate(360deg); }
     }
 
+    /* ─── SPACER DIVIDER ─── */
+    .section-spacer {
+      height: 40px;
+      background: transparent;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       :root { --section-padding: 40px 16px; }
@@ -788,9 +792,11 @@
         padding: 14px 20px;
       }
       .what-section, .sets-section { grid-template-columns: 1fr; gap: 24px; }
+      .what-section { padding-bottom: 10px; }
       .sets-section { padding-top: 40px; }
       .about-afrocue-inner { flex-direction: column; text-align: center; }
       .about-afrocue-btn { margin-top: 16px; }
+      .pillar-tiles-wrap { padding: 0 16px; margin-bottom: 40px; }
       .pillar-tiles { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
       .pillar-tile:nth-child(3) { grid-column: 1 / -1; max-width: 100%; }
       .event-icons { grid-template-columns: repeat(3, 1fr); }
@@ -800,6 +806,7 @@
       .add-btn { width: auto; }
       .btn-outline { width: 100%; text-align: center; }
       .event-section { padding: 50px 16px 60px; }
+      .section-spacer { height: 30px; }
     }
     @media (max-width: 420px) {
       .event-icons { grid-template-columns: repeat(2, 1fr); }
@@ -807,6 +814,8 @@
       .what-heading, .event-title, .join-heading { font-size: 28px; }
       .option-pill .opt-examples { font-size: 8px; }
       .event-datetime { font-size: 11px; gap: 8px; flex-direction: column; }
+      .pillar-tiles-wrap { margin-bottom: 30px; }
+      .section-spacer { height: 20px; }
     }
   </style>
 </head>
@@ -885,41 +894,46 @@
     </div>
   </section>
 
-  <!-- PILLAR TILES -->
-  <div class="pillar-tiles">
-    <div class="pillar-tile">
-      <div class="pillar-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"/>
-          <polygon points="10 8 16 12 10 16 10 8"/>
-        </svg>
+  <!-- PILLAR TILES — wrapped with bottom spacing -->
+  <div class="pillar-tiles-wrap">
+    <div class="pillar-tiles">
+      <div class="pillar-tile">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polygon points="10 8 16 12 10 16 10 8"/>
+          </svg>
+        </div>
+        <div class="pillar-title">Explore</div>
+        <div class="pillar-desc">Available sets, content engagements, and online watch parties via our YouTube playlist.</div>
       </div>
-      <div class="pillar-title">Explore</div>
-      <div class="pillar-desc">Available sets, content engagements, and online watch parties via our YouTube playlist.</div>
-    </div>
-    <div class="pillar-tile">
-      <div class="pillar-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"/>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        </svg>
+      <div class="pillar-tile">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </div>
+        <div class="pillar-title">Discover</div>
+        <div class="pillar-desc">New drops, premieres, and notifications straight to you.</div>
       </div>
-      <div class="pillar-title">Discover</div>
-      <div class="pillar-desc">New drops, premieres, and notifications straight to you.</div>
-    </div>
-    <div class="pillar-tile">
-      <div class="pillar-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4V7z"/>
-          <line x1="8" y1="12" x2="16" y2="12" stroke-width="1.5" stroke-dasharray="2 2"/>
-        </svg>
+      <div class="pillar-tile">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4V7z"/>
+            <line x1="8" y1="12" x2="16" y2="12" stroke-width="1.5" stroke-dasharray="2 2"/>
+          </svg>
+        </div>
+        <div class="pillar-title">Experience</div>
+        <div class="pillar-desc">Live Set Club events — tasteful curation, side attractions, and a true third space.</div>
       </div>
-      <div class="pillar-title">Experience</div>
-      <div class="pillar-desc">Live Set Club events — tasteful curation, side attractions, and a true third space.</div>
     </div>
   </div>
 
-  <!-- ─── EVENT MODULE — FIXED ─── -->
+  <!-- ─── SPACER between pillar tiles and event section ─── -->
+  <div class="section-spacer"></div>
+
+  <!-- ─── EVENT MODULE ─── -->
   <section class="event-section" id="event">
     <div class="event-inner">
       <div class="event-badge">
@@ -1000,9 +1014,6 @@
       <div class="event-tba" id="eventTba">Date &amp; location — TBA</div>
     </div>
   </section>
-
-  <!-- Subtle divider for visual separation -->
-  <div class="event-section-divider"></div>
 
   <!-- YOUTUBE SECTION -->
   <section class="sets-section" id="sets">
