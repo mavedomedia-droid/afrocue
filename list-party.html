@@ -23,6 +23,7 @@
   <!-- End Google Tag Manager -->
 
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="afrocue.js"></script>
 
   <style>
     @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');font-weight:900}
@@ -33,13 +34,15 @@
     :root{
       --black:#0a0a0a;--dark:#111111;--dark2:#1c1c1c;
       --grey:#555555;--silver:#999999;--off:#d4d4d0;--white:#f0ede8;
-      --yellow:#C8E000;--yts:2px 3px 0px rgba(0,0,0,0.9);
+      --yellow:#C8E000;--red:#ff4444;--green:#4caf50;
+      --yts:2px 3px 0px rgba(0,0,0,0.9);
     }
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{background:var(--black);color:var(--white);font-family:'Figtree',sans-serif;overflow-x:hidden}
     .yh{font-family:'Aesthet Nova',sans-serif;font-weight:900;color:var(--yellow);text-shadow:var(--yts);line-height:0.92}
 
+    /* ─── NAV ─── */
     nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(10,10,10,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06)}
     .nav-logo{display:flex;align-items:center;text-decoration:none}
     .nav-logo img{height:48px;width:auto;display:block}
@@ -48,6 +51,7 @@
     .nav-back::before{content:'←';font-size:14px}
     .nav-back:hover{color:var(--white)}
 
+    /* ─── BANNER ─── */
     .page-banner{position:relative;width:100%;aspect-ratio:21/9;overflow:hidden;background:var(--dark2);margin-top:80px}
     .page-banner-bg{position:absolute;inset:-20px;z-index:0;background-image:url('texture.jpg');background-size:cover;background-position:center;filter:brightness(0.3);transform:scale(1.05)}
     .page-banner-img{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0.5}
@@ -58,6 +62,7 @@
     .page-banner-text .label{margin-bottom:8px}
     .page-banner-text h2{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(32px,4vw,56px);color:var(--yellow);text-shadow:var(--yts);line-height:0.9}
 
+    /* ─── SECTION ─── */
     section{padding:48px 48px 100px}
     .form-layout{display:grid;grid-template-columns:5fr 6fr;gap:80px;align-items:start;max-width:1200px}
     .form-left{position:sticky;top:100px}
@@ -70,32 +75,70 @@
     .approval-notice p{font-size:12px;font-weight:400;line-height:1.75;color:rgba(240,237,232,0.5);margin:0}
     .approval-notice strong{color:var(--white);font-weight:500}
 
+    /* ─── FORM ─── */
     .party-form{display:flex;flex-direction:column;gap:4px}
     .fsec{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--yellow);padding:18px 0 10px}
     .fdivider{height:1px;background:rgba(255,255,255,0.06);margin:8px 0}
     .frow{display:grid;grid-template-columns:1fr 1fr;gap:4px}
-    .field{display:flex;flex-direction:column;gap:6px}
+    .field{display:flex;flex-direction:column;gap:6px;position:relative}
     .field label{font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--silver)}
-    .field input,.field select,.field textarea{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:2px;padding:13px 15px;color:var(--white);font-family:'Figtree',sans-serif;font-size:16px;outline:none;transition:border-color 0.2s,background 0.2s;width:100%;appearance:none;-webkit-appearance:none}
-    .field input:focus,.field select:focus,.field textarea:focus{border-color:rgba(200,224,0,0.35);background:rgba(255,255,255,0.06)}
+    .field input,.field select,.field textarea{
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.09);
+      border-radius:2px;
+      padding:13px 15px;
+      color:var(--white);
+      font-family:'Figtree',sans-serif;
+      font-size:16px;
+      outline:none;
+      transition:border-color 0.2s,background 0.2s;
+      width:100%;
+      appearance:none;-webkit-appearance:none
+    }
+    .field input:focus,.field select:focus,.field textarea:focus{
+      border-color:rgba(200,224,0,0.35);
+      background:rgba(255,255,255,0.06)
+    }
     .field input::placeholder,.field textarea::placeholder{color:var(--grey)}
-    .field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px;cursor:pointer}
+    .field select{
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;background-position:right 13px center;padding-right:34px;cursor:pointer
+    }
     .field select option{background:#1a1a1a;color:var(--white)}
     .field textarea{resize:vertical;min-height:120px;line-height:1.6}
     .field-note{font-size:10px;color:var(--grey);margin-top:2px}
     .char-count{font-size:10px;color:var(--grey);text-align:right;margin-top:2px;transition:color 0.2s}
     .char-count.warn{color:var(--yellow)}
-    .char-count.over{color:#ff4444}
+    .char-count.over{color:var(--red)}
+    .field-error{font-size:10px;color:var(--red);margin-top:2px;display:none}
+    .field-error.visible{display:block}
+    .field.invalid input,.field.invalid select,.field.invalid textarea{border-color:var(--red)}
 
+    /* ─── PILL SELECT ─── */
     .pill-select{display:flex;flex-wrap:wrap;gap:6px}
     .pill-opt{padding:8px 14px;border:1px solid rgba(255,255,255,0.1);border-radius:20px;font-size:12px;font-weight:400;color:var(--silver);cursor:pointer;transition:all 0.18s;user-select:none}
     .pill-opt.selected{background:var(--yellow);border-color:var(--yellow);color:var(--black);font-weight:600}
     .pill-opt:hover:not(.selected){border-color:rgba(255,255,255,0.3);color:var(--white)}
 
+    /* ─── UPLOAD ─── */
     .upload-field{display:flex;flex-direction:column;gap:8px}
     .upload-label{font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--silver)}
-    .upload-box{border:1px dashed rgba(255,255,255,0.15);border-radius:2px;padding:24px 16px;text-align:center;cursor:pointer;transition:border-color 0.2s;position:relative;background:rgba(255,255,255,0.02)}
-    .upload-box:hover{border-color:rgba(200,224,0,0.3)}
+    .upload-box{
+      border:2px dashed rgba(255,255,255,0.12);
+      border-radius:2px;
+      padding:24px 16px;
+      text-align:center;
+      cursor:pointer;
+      transition:border-color 0.2s,background 0.2s;
+      position:relative;
+      background:rgba(255,255,255,0.02);
+      min-height:120px;
+      display:flex;
+      align-items:center;
+      justify-content:center
+    }
+    .upload-box:hover{border-color:rgba(200,224,0,0.3);background:rgba(255,255,255,0.04)}
+    .upload-box.dragover{border-color:var(--yellow);background:rgba(200,224,0,0.06)}
     .upload-box input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
     .upload-box-inner{pointer-events:none}
     .upload-icon{font-size:24px;margin-bottom:8px;opacity:0.3}
@@ -103,9 +146,10 @@
     .upload-text strong{color:var(--silver);font-weight:500}
     .upload-preview{width:100%;max-height:160px;object-fit:cover;border-radius:2px;display:none;margin-top:8px}
     .upload-progress{font-size:11px;color:var(--yellow);margin-top:6px;display:none}
-    .upload-done{font-size:11px;color:#4caf50;margin-top:6px;display:none}
-    .upload-error{font-size:11px;color:#ff4444;margin-top:6px;display:none}
+    .upload-done{font-size:11px;color:var(--green);margin-top:6px;display:none}
+    .upload-error{font-size:11px;color:var(--red);margin-top:6px;display:none}
 
+    /* ─── SUBMIT ─── */
     .submit-wrap{margin-top:20px}
     .btn{display:inline-block;font-family:'Figtree',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:14px 28px;border-radius:2px;text-decoration:none;border:none;cursor:pointer;transition:all 0.2s;white-space:nowrap}
     .btn-yellow{color:var(--black);background:var(--yellow);width:100%;padding:16px;font-size:13px;letter-spacing:0.1em}
@@ -116,11 +160,29 @@
     @keyframes spin{to{transform:rotate(360deg)}}
     .form-disclaimer{font-size:10px;color:var(--grey);text-align:center;margin-top:10px;line-height:1.6}
 
+    /* ─── REVIEW STEP ─── */
+    .review-step{display:none;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:20px;margin-top:16px}
+    .review-step.visible{display:block}
+    .review-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px}
+    .review-row .label{font-weight:400;color:var(--grey)}
+    .review-row .value{font-weight:400;color:var(--white)}
+    .review-actions{display:flex;gap:12px;margin-top:16px}
+    .review-actions .btn{flex:1;text-align:center}
+
+    /* ─── DRAFT RECOVERY ─── */
+    .draft-banner{background:rgba(200,224,0,0.08);border:1px solid rgba(200,224,0,0.15);border-radius:4px;padding:12px 16px;margin-bottom:16px;display:none;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+    .draft-banner.visible{display:flex}
+    .draft-banner p{font-size:12px;color:rgba(240,237,232,0.7);margin:0}
+    .draft-banner button{background:transparent;border:1px solid rgba(200,224,0,0.3);color:var(--yellow);padding:6px 14px;border-radius:2px;font-size:11px;cursor:pointer;font-family:'Figtree',sans-serif;transition:all 0.2s}
+    .draft-banner button:hover{background:rgba(200,224,0,0.1)}
+
+    /* ─── FOOTER ─── */
     footer{border-top:1px solid rgba(255,255,255,0.06);padding:36px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;background:var(--dark)}
     .footer-links{display:flex;gap:22px;flex-wrap:wrap}
     .footer-links a{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey);text-decoration:none;transition:color 0.2s}
     .footer-links a:hover{color:var(--white)}
 
+    /* ─── RESPONSIVE ─── */
     @media(max-width:768px){
       nav{padding:14px 20px}
       .page-banner{aspect-ratio:16/9;margin-top:76px}
@@ -129,7 +191,14 @@
       .form-layout{grid-template-columns:1fr;gap:36px}
       .form-left{position:static}
       .frow{grid-template-columns:1fr}
+      .upload-box{min-height:100px}
       footer{padding:28px 20px;flex-direction:column;align-items:flex-start}
+      .review-row{flex-direction:column;gap:4px}
+      .review-actions{flex-direction:column}
+    }
+    @media(max-width:420px){
+      .page-banner-text h2{font-size:28px}
+      .pill-opt{font-size:10px;padding:6px 10px}
     }
   </style>
 </head>
@@ -169,15 +238,27 @@
     </div>
 
     <div id="formWrap">
-      <form class="party-form" id="partyForm" onsubmit="handlePartySubmit(event)" novalidate>
 
+      <!-- ─── DRAFT RECOVERY BANNER ─── -->
+      <div class="draft-banner" id="draftBanner">
+        <p>🔄 We found a saved draft from <span id="draftTime"></span>.</p>
+        <div>
+          <button onclick="restoreDraft()">Restore Draft</button>
+          <button onclick="clearDraft()" style="border-color:rgba(255,255,255,0.1);color:var(--grey);">Discard</button>
+        </div>
+      </div>
+
+      <form class="party-form" id="partyForm" onsubmit="handleSubmit(event)" novalidate>
+
+        <!-- ─── THE PARTY ─── -->
         <div class="fsec">The Party</div>
         <div class="frow">
-          <div class="field">
+          <div class="field" id="field-party_name">
             <label>Party / Event Name</label>
             <input type="text" name="party_name" placeholder="e.g. South Social" required/>
+            <span class="field-error" id="err-party_name">Please enter the party name.</span>
           </div>
-          <div class="field">
+          <div class="field" id="field-city">
             <label>City</label>
             <select name="city" required>
               <option value="" disabled selected>Select city</option>
@@ -208,11 +289,19 @@
               </optgroup>
               <option value="Other">Other</option>
             </select>
+            <span class="field-error" id="err-city">Please select a city.</span>
           </div>
         </div>
 
+        <!-- ─── OTHER CITY ─── -->
+        <div class="field" id="otherCityField" style="display:none;">
+          <label>Specify City</label>
+          <input type="text" name="city_other" placeholder="e.g. Kigali, Rwanda"/>
+          <span class="field-error" id="err-city_other">Please specify the city.</span>
+        </div>
+
         <div class="frow">
-          <div class="field">
+          <div class="field" id="field-time">
             <label>Time of Day</label>
             <select name="time" required>
               <option value="" disabled selected>Select</option>
@@ -220,8 +309,9 @@
               <option>Night</option>
               <option>Day &amp; Night</option>
             </select>
+            <span class="field-error" id="err-time">Please select a time.</span>
           </div>
-          <div class="field">
+          <div class="field" id="field-access">
             <label>Access Type</label>
             <select name="access" required>
               <option value="" disabled selected>Select</option>
@@ -230,10 +320,11 @@
               <option>RSVP</option>
               <option>Invite Only</option>
             </select>
+            <span class="field-error" id="err-access">Please select an access type.</span>
           </div>
         </div>
 
-        <div class="field">
+        <div class="field" id="field-setting">
           <label>Setting</label>
           <select name="setting" required>
             <option value="" disabled selected>Select</option>
@@ -241,9 +332,10 @@
             <option>Outdoor</option>
             <option>Both</option>
           </select>
+          <span class="field-error" id="err-setting">Please select a setting.</span>
         </div>
 
-        <div class="field">
+        <div class="field" id="field-genres">
           <label>Genres</label>
           <div class="pill-select" id="genrePills">
             <span class="pill-opt" onclick="toggleGenre(this)">Afrobeats</span>
@@ -256,29 +348,27 @@
             <span class="pill-opt" onclick="toggleGenre(this)">Other</span>
           </div>
           <input type="hidden" name="genres" id="genresVal"/>
+          <span class="field-error" id="err-genres">Please select at least one genre.</span>
           <span class="field-note">Select all that apply</span>
         </div>
 
-        <div class="field" id="otherCityField" style="display:none;">
-          <label>Specify City</label>
-          <input type="text" name="city_other" placeholder="e.g. Kigali, Rwanda"/>
-        </div>
-
-        <div class="field">
+        <div class="field" id="field-description">
           <label>Description</label>
           <textarea name="description" id="descTextarea" placeholder="Tell people what this party is about. What makes it different. What to expect." maxlength="1000" oninput="updateCharCount(this)"></textarea>
           <div class="char-count" id="charCount">0 / 1000</div>
+          <span class="field-error" id="err-description">Description must be at least 100 characters.</span>
           <span class="field-note">100 - 1000 characters</span>
         </div>
 
         <div class="fdivider"></div>
 
+        <!-- ─── IMAGES ─── -->
         <div class="fsec">Images</div>
 
         <div class="upload-field">
           <div class="upload-label">Event Photo <span style="font-weight:300;text-transform:none;letter-spacing:0;">- wide shot from the event</span></div>
           <div class="upload-box" id="heroBox">
-            <input type="file" accept="image/*" id="heroFile" onchange="previewAndUpload(this, 'hero')"/>
+            <input type="file" accept="image/*" id="heroFile" onchange="handleFileSelect(this, 'hero')"/>
             <div class="upload-box-inner">
               <div class="upload-icon">&#8593;</div>
               <div class="upload-text"><strong>Click to upload</strong> or drag and drop<br>JPG, PNG - min 1200px wide</div>
@@ -286,15 +376,16 @@
             <img class="upload-preview" id="heroPreview" alt="Preview"/>
           </div>
           <div class="upload-progress" id="heroProgress">Uploading...</div>
-          <div class="upload-done" id="heroDone">&#10003; Uploaded</div>
+          <div class="upload-done" id="heroDone">✓ Uploaded</div>
           <div class="upload-error" id="heroError">Upload failed - try again</div>
+          <span class="field-error" id="err-hero">Please upload an event photo.</span>
           <input type="hidden" name="hero_image" id="heroUrl"/>
         </div>
 
         <div class="upload-field" style="margin-top:12px;">
           <div class="upload-label">Flyer <span style="font-weight:300;text-transform:none;letter-spacing:0;">- portrait ratio preferred</span></div>
           <div class="upload-box" id="flyerBox">
-            <input type="file" accept="image/*" id="flyerFile" onchange="previewAndUpload(this, 'flyer')"/>
+            <input type="file" accept="image/*" id="flyerFile" onchange="handleFileSelect(this, 'flyer')"/>
             <div class="upload-box-inner">
               <div class="upload-icon">&#8593;</div>
               <div class="upload-text"><strong>Click to upload</strong> or drag and drop<br>JPG, PNG</div>
@@ -302,22 +393,23 @@
             <img class="upload-preview" id="flyerPreview" alt="Flyer preview"/>
           </div>
           <div class="upload-progress" id="flyerProgress">Uploading...</div>
-          <div class="upload-done" id="flyerDone">&#10003; Uploaded</div>
+          <div class="upload-done" id="flyerDone">✓ Uploaded</div>
           <div class="upload-error" id="flyerError">Upload failed - try again</div>
           <input type="hidden" name="flyer_image" id="flyerUrl"/>
         </div>
 
         <div class="fdivider"></div>
 
+        <!-- ─── LINKS ─── -->
         <div class="fsec">Links</div>
 
-        <!-- FIXED: Instagram Handle input (only handle) -->
-        <div class="field">
+        <div class="field" id="field-instagram">
           <label>Instagram Handle</label>
           <div style="display:flex;align-items:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:2px;padding:0 15px;">
             <span style="color:var(--grey);font-size:14px;white-space:nowrap;">instagram.com/</span>
             <input type="text" name="instagram_handle" placeholder="yourhandle" required style="background:transparent;border:none;padding:13px 0 13px 8px;color:var(--white);font-family:'Figtree',sans-serif;font-size:16px;outline:none;width:100%;"/>
           </div>
+          <span class="field-error" id="err-instagram">Please enter your Instagram handle.</span>
           <span class="field-note">Enter your handle without the @ (e.g., yourparty)</span>
         </div>
 
@@ -328,14 +420,27 @@
 
         <div class="fdivider"></div>
 
+        <!-- ─── CONTACT ─── -->
         <div class="fsec">Your Contact</div>
-        <div class="field">
+        <div class="field" id="field-email">
           <label>Your Email</label>
           <input type="email" name="contact_email" placeholder="your@email.com" required/>
+          <span class="field-error" id="err-email">Please enter a valid email address.</span>
           <span class="field-note">So we can reach you before publishing. This email will receive your approval notification.</span>
         </div>
 
-        <div class="submit-wrap">
+        <!-- ─── REVIEW STEP ─── -->
+        <div class="review-step" id="reviewStep">
+          <p style="font-size:12px;font-weight:600;color:var(--yellow);margin-bottom:12px;">Review your submission</p>
+          <div id="reviewContent"></div>
+          <div class="review-actions">
+            <button type="button" class="btn" style="background:transparent;border:1px solid rgba(255,255,255,0.15);color:var(--silver);" onclick="hideReview()">Edit</button>
+            <button type="button" class="btn btn-yellow" id="confirmSubmitBtn" onclick="confirmSubmit()">Submit</button>
+          </div>
+        </div>
+
+        <!-- ─── SUBMIT ─── -->
+        <div class="submit-wrap" id="submitWrap">
           <button type="submit" class="btn btn-yellow" id="partySubmitBtn">List My Party</button>
         </div>
         <p class="form-disclaimer">We review all submissions before publishing. Usually within 2-3 days.</p>
@@ -358,23 +463,115 @@
     <a href="dj.html">DJs</a>
     <a href="index.html">Home</a>
   </div>
-  <div><a href="/cdn-cgi/l/email-protection#d9b8beaab7bbadbdb7b6b4b1b6bd98bfb5b9b1b4f6bbb7b5" style="font-size:11px;color:var(--grey);text-decoration:none;"><span class="__cf_email__" data-cfemail="b2d3d4c0ddd1c7d7dddcdedbdcd7f2d5dfd3dbde9cd1dddf">[email&#160;protected]</span></a></div>
+  <div><a href="/cdn-cgi/l/email-protection#ea898f9b868a9c8c86878580878caa8d878b8386c4898587" style="font-size:11px;color:var(--grey);text-decoration:none;"><span class="__cf_email__" data-cfemail="dabb9c88b5b9afbfb5b4b6b3b4bf9abdb7bbb3b6f4b9b5b7">[email&#160;protected]</span></a></div>
 </footer>
 
-<script src="afrocue.js"></script>
 <script>
-// ─── IMGBB API Key ──────────────────────────────────────────────
-var IMGBB_KEY = 'efc0a2cd9cc0a1a9f9f777f4ffe9c665';
+// ─── CONFIG ──────────────────────────────────────────────────────────
+var SCRIPT_URL = getAfroCueScriptUrl(); // from afrocue.js
 var uploadedUrls = { hero: '', flyer: '' };
+var isUploading = { hero: false, flyer: false };
+var formData = {};
+var DRAFT_KEY = 'afrocue_party_draft';
 
-// ─── GENRE PILLS ─────────────────────────────────────────────────
+// ─── DRAFT MANAGEMENT ──────────────────────────────────────────────
+function saveDraft() {
+  var form = document.getElementById('partyForm');
+  var data = {
+    party_name: form.party_name.value,
+    city: form.city.value,
+    city_other: form.city_other ? form.city_other.value : '',
+    time: form.time.value,
+    access: form.access.value,
+    setting: form.setting.value,
+    genres: document.getElementById('genresVal').value,
+    description: form.description.value,
+    instagram_handle: form.instagram_handle.value,
+    website: form.website.value,
+    contact_email: form.contact_email.value,
+    hero_url: uploadedUrls.hero,
+    flyer_url: uploadedUrls.flyer,
+    timestamp: new Date().toISOString()
+  };
+  localStorage.setItem(DRAFT_KEY, JSON.stringify(data));
+}
+
+function checkDraft() {
+  var raw = localStorage.getItem(DRAFT_KEY);
+  if (!raw) return;
+  try {
+    var draft = JSON.parse(raw);
+    var banner = document.getElementById('draftBanner');
+    var time = new Date(draft.timestamp);
+    document.getElementById('draftTime').textContent = time.toLocaleString();
+    banner.classList.add('visible');
+    window._draft = draft;
+  } catch(e) { localStorage.removeItem(DRAFT_KEY); }
+}
+
+function restoreDraft() {
+  var draft = window._draft;
+  if (!draft) return;
+  var form = document.getElementById('partyForm');
+  form.party_name.value = draft.party_name || '';
+  form.city.value = draft.city || '';
+  if (form.city_other) form.city_other.value = draft.city_other || '';
+  form.time.value = draft.time || '';
+  form.access.value = draft.access || '';
+  form.setting.value = draft.setting || '';
+  form.description.value = draft.description || '';
+  form.instagram_handle.value = draft.instagram_handle || '';
+  form.website.value = draft.website || '';
+  form.contact_email.value = draft.contact_email || '';
+  if (draft.genres) {
+    var genres = draft.genres.split(', ');
+    document.querySelectorAll('#genrePills .pill-opt').forEach(function(el) {
+      if (genres.indexOf(el.textContent.trim()) > -1) el.classList.add('selected');
+    });
+    document.getElementById('genresVal').value = draft.genres;
+  }
+  if (draft.hero_url) {
+    uploadedUrls.hero = draft.hero_url;
+    document.getElementById('heroUrl').value = draft.hero_url;
+    document.getElementById('heroPreview').src = draft.hero_url;
+    document.getElementById('heroPreview').style.display = 'block';
+    document.getElementById('heroDone').style.display = 'block';
+  }
+  if (draft.flyer_url) {
+    uploadedUrls.flyer = draft.flyer_url;
+    document.getElementById('flyerUrl').value = draft.flyer_url;
+    document.getElementById('flyerPreview').src = draft.flyer_url;
+    document.getElementById('flyerPreview').style.display = 'block';
+    document.getElementById('flyerDone').style.display = 'block';
+  }
+  if (draft.city === 'Other' && draft.city_other) {
+    document.getElementById('otherCityField').style.display = 'flex';
+  }
+  updateCharCount(form.description);
+  document.getElementById('draftBanner').classList.remove('visible');
+  localStorage.removeItem(DRAFT_KEY);
+}
+
+function clearDraft() {
+  localStorage.removeItem(DRAFT_KEY);
+  document.getElementById('draftBanner').classList.remove('visible');
+}
+
+// ─── AUTO-SAVE ──────────────────────────────────────────────────────
+document.querySelectorAll('#partyForm input, #partyForm select, #partyForm textarea').forEach(function(el) {
+  el.addEventListener('change', saveDraft);
+  el.addEventListener('input', saveDraft);
+});
+
+// ─── GENRE PILLS ────────────────────────────────────────────────────
 function toggleGenre(el) {
   el.classList.toggle('selected');
   var vals = Array.from(document.querySelectorAll('#genrePills .pill-opt.selected')).map(function(p){ return p.textContent.trim(); });
   document.getElementById('genresVal').value = vals.join(', ');
+  saveDraft();
 }
 
-// ─── CHAR COUNT ──────────────────────────────────────────────────
+// ─── CHAR COUNT ─────────────────────────────────────────────────────
 function updateCharCount(el) {
   var count = el.value.length;
   var display = document.getElementById('charCount');
@@ -382,97 +579,266 @@ function updateCharCount(el) {
   display.className = 'char-count' + (count > 1000 ? ' over' : count > 800 ? ' warn' : '');
 }
 
-// ─── IMAGE UPLOAD (ImgBB) ───────────────────────────────────────
-function previewAndUpload(input, type) {
-  var file = input.files[0];
-  if (!file) return;
-  var preview = document.getElementById(type + 'Preview');
-  var reader = new FileReader();
-  reader.onload = function(e) { preview.src = e.target.result; preview.style.display = 'block'; };
-  reader.readAsDataURL(file);
-  document.getElementById(type + 'Progress').style.display = 'block';
-  document.getElementById(type + 'Done').style.display = 'none';
-  document.getElementById(type + 'Error').style.display = 'none';
-  var formData = new FormData();
-  formData.append('image', file);
-  fetch('https://api.imgbb.com/1/upload?key=' + IMGBB_KEY, { method: 'POST', body: formData })
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      if (data.success) {
-        uploadedUrls[type] = data.data.url;
-        document.getElementById(type + 'Url').value = data.data.url;
-        document.getElementById(type + 'Progress').style.display = 'none';
-        document.getElementById(type + 'Done').style.display = 'block';
-      } else { throw new Error('failed'); }
-    })
-    .catch(function() {
-      document.getElementById(type + 'Progress').style.display = 'none';
-      document.getElementById(type + 'Error').style.display = 'block';
-    });
-}
-
-// ─── CITY OTHER FIELD ───────────────────────────────────────────
+// ─── CITY OTHER ─────────────────────────────────────────────────────
 document.querySelector('select[name="city"]').addEventListener('change', function() {
   var f = document.getElementById('otherCityField');
   if (f) f.style.display = this.value === 'Other' ? 'flex' : 'none';
+  saveDraft();
 });
 
-// ─── FORM SUBMISSION ─────────────────────────────────────────────
-function handlePartySubmit(e) {
-  e.preventDefault();
-  var form = e.target;
-  var btn = document.getElementById('partySubmitBtn');
+// ─── DRAG & DROP UPLOAD ────────────────────────────────────────────
+function setupDragDrop(boxId, type) {
+  var box = document.getElementById(boxId);
+  if (!box) return;
+  box.addEventListener('dragover', function(e) {
+    e.preventDefault();
+    this.classList.add('dragover');
+  });
+  box.addEventListener('dragleave', function(e) {
+    e.preventDefault();
+    this.classList.remove('dragover');
+  });
+  box.addEventListener('drop', function(e) {
+    e.preventDefault();
+    this.classList.remove('dragover');
+    var files = e.dataTransfer.files;
+    if (files.length > 0) {
+      var input = document.getElementById(type + 'File');
+      input.files = files;
+      handleFileSelect(input, type);
+    }
+  });
+}
 
-  // ── Basic validation ──
-  if (!form.party_name.value.trim()) { alert('Please enter the party name.'); return; }
-  if (!form.city.value.trim()) { alert('Please select a city.'); return; }
-  if (!form.time.value) { alert('Please select the time of day.'); return; }
-  if (!form.access.value) { alert('Please select the access type.'); return; }
-  if (!form.setting.value) { alert('Please select the setting.'); return; }
-  if (!document.getElementById('genresVal').value) { alert('Please select at least one genre.'); return; }
-  var desc = form.description.value.trim();
-  if (desc.length < 100) { alert('Description must be at least 100 characters.'); return; }
-  if (!form.instagram_handle.value.trim()) { alert('Please enter your Instagram handle.'); return; }
-  if (!form.contact_email.value.trim()) { alert('Please add your contact email.'); return; }
-  if (!uploadedUrls.hero) { alert('Please upload an event photo.'); return; }
+// ─── FILE UPLOAD ────────────────────────────────────────────────────
+function handleFileSelect(input, type) {
+  var file = input.files[0];
+  if (!file) return;
 
-  // ── Build Instagram URL from handle ──
+  var preview = document.getElementById(type + 'Preview');
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    preview.src = e.target.result;
+    preview.style.display = 'block';
+    uploadToGAS(e.target.result, type);
+  };
+  reader.readAsDataURL(file);
+
+  // Hide errors
+  document.getElementById('err-' + type).classList.remove('visible');
+}
+
+function uploadToGAS(base64Data, type) {
+  var progress = document.getElementById(type + 'Progress');
+  var done = document.getElementById(type + 'Done');
+  var error = document.getElementById(type + 'Error');
+
+  isUploading[type] = true;
+  progress.style.display = 'block';
+  done.style.display = 'none';
+  error.style.display = 'none';
+
+  fetch(SCRIPT_URL + '?action=upload', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ image: base64Data, type: type })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    isUploading[type] = false;
+    progress.style.display = 'none';
+    if (data.success) {
+      uploadedUrls[type] = data.url;
+      document.getElementById(type + 'Url').value = data.url;
+      done.style.display = 'block';
+      saveDraft();
+    } else {
+      error.style.display = 'block';
+      error.textContent = data.error || 'Upload failed';
+    }
+  })
+  .catch(function() {
+    isUploading[type] = false;
+    progress.style.display = 'none';
+    error.style.display = 'block';
+    error.textContent = 'Upload failed — try again';
+  });
+}
+
+// ─── SETUP DRAG & DROP ─────────────────────────────────────────────
+setupDragDrop('heroBox', 'hero');
+setupDragDrop('flyerBox', 'flyer');
+
+// ─── FORM VALIDATION ───────────────────────────────────────────────
+function validateField(fieldId, errorId, condition) {
+  var field = document.getElementById(fieldId);
+  var error = document.getElementById(errorId);
+  if (!field) return true;
+  var valid = condition(field);
+  field.closest('.field').classList.toggle('invalid', !valid);
+  error.classList.toggle('visible', !valid);
+  return valid;
+}
+
+function validateForm() {
+  var valid = true;
+
+  // Party name
+  if (!validateField('field-party_name', 'err-party_name', function(f) {
+    return f.querySelector('input').value.trim().length > 0;
+  })) valid = false;
+
+  // City
+  var cityField = document.querySelector('select[name="city"]');
+  if (!validateField('field-city', 'err-city', function() {
+    return cityField.value && cityField.value !== '';
+  })) valid = false;
+
+  // Other city
+  if (cityField.value === 'Other') {
+    var otherField = document.querySelector('input[name="city_other"]');
+    if (!validateField('otherCityField', 'err-city_other', function() {
+      return otherField && otherField.value.trim().length > 0;
+    })) valid = false;
+  }
+
+  // Time
+  if (!validateField('field-time', 'err-time', function(f) {
+    return f.querySelector('select').value && f.querySelector('select').value !== '';
+  })) valid = false;
+
+  // Access
+  if (!validateField('field-access', 'err-access', function(f) {
+    return f.querySelector('select').value && f.querySelector('select').value !== '';
+  })) valid = false;
+
+  // Setting
+  if (!validateField('field-setting', 'err-setting', function(f) {
+    return f.querySelector('select').value && f.querySelector('select').value !== '';
+  })) valid = false;
+
+  // Genres
+  var genresVal = document.getElementById('genresVal').value;
+  if (!validateField('field-genres', 'err-genres', function() {
+    return genresVal && genresVal.length > 0;
+  })) valid = false;
+
+  // Description
+  var desc = document.getElementById('descTextarea');
+  if (!validateField('field-description', 'err-description', function() {
+    return desc.value.trim().length >= 100;
+  })) valid = false;
+
+  // Instagram
+  var igField = document.querySelector('input[name="instagram_handle"]');
+  if (!validateField('field-instagram', 'err-instagram', function() {
+    return igField.value.trim().length > 0;
+  })) valid = false;
+
+  // Email
+  var emailField = document.querySelector('input[name="contact_email"]');
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!validateField('field-email', 'err-email', function() {
+    return emailRegex.test(emailField.value.trim());
+  })) valid = false;
+
+  // Hero image
+  if (!uploadedUrls.hero) {
+    document.getElementById('err-hero').classList.add('visible');
+    valid = false;
+  } else {
+    document.getElementById('err-hero').classList.remove('visible');
+  }
+
+  return valid;
+}
+
+// ─── SHOW REVIEW ────────────────────────────────────────────────────
+function showReview() {
+  var form = document.getElementById('partyForm');
+  var genres = document.getElementById('genresVal').value;
   var igHandle = form.instagram_handle.value.trim();
-  // Remove @ if user added it
   if (igHandle.startsWith('@')) igHandle = igHandle.substring(1);
-  // Remove trailing slashes or query params
-  igHandle = igHandle.split('/')[0].split('?')[0];
-  var instagramUrl = 'https://instagram.com/' + igHandle;
 
-  // ── City value ──
-  var cityValue = form.city.value === 'Other' ? (form.city_other ? form.city_other.value.trim() : 'Other') : form.city.value;
-
-  // ── Payload (keys match GAS mapField) ──
   var data = {
-    source:        'party_submission',
-    party_name:    form.party_name.value.trim(),
-    city:          cityValue,
-    time:          form.time.value,
-    access:        form.access.value,
-    setting:       form.setting.value,
-    genres:        document.getElementById('genresVal').value,
-    description:   desc,
-    hero_image:    uploadedUrls.hero,
-    flyer_image:   uploadedUrls.flyer || '',
-    instagram_url: instagramUrl,  // full URL
-    website:       form.website ? form.website.value.trim() : '',
+    'Party Name': form.party_name.value,
+    'City': form.city.value === 'Other' ? form.city_other.value : form.city.value,
+    'Time': form.time.value,
+    'Access': form.access.value,
+    'Setting': form.setting.value,
+    'Genres': genres,
+    'Description': form.description.value.substring(0, 150) + '...',
+    'Instagram': '@' + igHandle,
+    'Website': form.website.value || '(not provided)',
+    'Email': form.contact_email.value
+  };
+
+  var html = '';
+  for (var key in data) {
+    html += '<div class="review-row"><span class="label">' + key + '</span><span class="value">' + data[key] + '</span></div>';
+  }
+  html += '<div class="review-row"><span class="label">Event Photo</span><span class="value">' + (uploadedUrls.hero ? '✓ Uploaded' : '❌ Missing') + '</span></div>';
+  html += '<div class="review-row"><span class="label">Flyer</span><span class="value">' + (uploadedUrls.flyer ? '✓ Uploaded' : '(optional)') + '</span></div>';
+
+  document.getElementById('reviewContent').innerHTML = html;
+  document.getElementById('reviewStep').classList.add('visible');
+  document.getElementById('submitWrap').style.display = 'none';
+  document.getElementById('reviewStep').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function hideReview() {
+  document.getElementById('reviewStep').classList.remove('visible');
+  document.getElementById('submitWrap').style.display = 'block';
+}
+
+// ─── CONFIRM SUBMIT ────────────────────────────────────────────────
+function confirmSubmit() {
+  document.getElementById('confirmSubmitBtn').disabled = true;
+  document.getElementById('confirmSubmitBtn').textContent = 'Submitting...';
+  document.getElementById('confirmSubmitBtn').classList.add('btn-loading');
+  doSubmit();
+}
+
+// ─── FORM SUBMISSION ───────────────────────────────────────────────
+function handleSubmit(e) {
+  e.preventDefault();
+  if (!validateForm()) {
+    // Scroll to first error
+    var firstError = document.querySelector('.field.invalid');
+    if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  showReview();
+}
+
+function doSubmit() {
+  var form = document.getElementById('partyForm');
+  var genres = document.getElementById('genresVal').value;
+  var igHandle = form.instagram_handle.value.trim();
+  if (igHandle.startsWith('@')) igHandle = igHandle.substring(1);
+  igHandle = igHandle.split('/')[0].split('?')[0];
+
+  var data = {
+    source: 'party_submission',
+    party_name: form.party_name.value.trim(),
+    city: form.city.value === 'Other' ? form.city_other.value.trim() : form.city.value,
+    time: form.time.value,
+    access: form.access.value,
+    setting: form.setting.value,
+    genres: genres,
+    description: form.description.value.trim(),
+    hero_image: uploadedUrls.hero,
+    flyer_image: uploadedUrls.flyer || '',
+    instagram_url: 'https://instagram.com/' + igHandle,
+    website: form.website.value.trim(),
     contact_email: form.contact_email.value.trim()
   };
 
-  // ── Disable button, show loading ──
+  var btn = document.getElementById('confirmSubmitBtn') || document.getElementById('partySubmitBtn');
   btn.textContent = 'Submitting...';
   btn.disabled = true;
   btn.classList.add('btn-loading');
 
-  // ── Get script URL from afrocue.js ──
-  var SCRIPT_URL = window.AFROCUE_SCRIPT_URL || 'YOUR_GAS_SCRIPT_URL_HERE';
-
-  // ── Send to GAS ──
   fetch(SCRIPT_URL, {
     method: 'POST',
     mode: 'no-cors',
@@ -483,10 +849,26 @@ function handlePartySubmit(e) {
     console.warn('Submission error (expected in no-cors):', err);
   })
   .finally(function() {
-    // Redirect to thank-you page
+    localStorage.removeItem(DRAFT_KEY);
     window.location.href = '/thank-you/parties';
   });
 }
+
+// ─── CHECK DRAFT ON LOAD ───────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+  checkDraft();
+  // If no draft, try to restore from localStorage
+  if (!window._draft) {
+    var raw = localStorage.getItem(DRAFT_KEY);
+    if (raw) {
+      try {
+        window._draft = JSON.parse(raw);
+        document.getElementById('draftBanner').classList.add('visible');
+        document.getElementById('draftTime').textContent = new Date(window._draft.timestamp).toLocaleString();
+      } catch(e) {}
+    }
+  }
+});
 </script>
 </body>
 </html>
