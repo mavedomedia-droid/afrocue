@@ -316,7 +316,7 @@
     .pillar-title { font-family: 'Aesthet Nova', 'Impact', sans-serif; font-weight: 900; font-size: 16px; color: var(--white); margin-bottom: 4px; }
     .pillar-desc { font-size: 11px; font-weight: 300; line-height: 1.4; color: rgba(240,237,232,0.7); }
 
-    /* EVENT MODULE with roamers_who.jpg background */
+    /* ─── EVENT MODULE — FIXED ─── */
     .event-section {
       position: relative;
       background-color: var(--dark);
@@ -324,27 +324,29 @@
       background-size: cover;
       background-position: center;
       overflow: hidden;
-      padding: 50px 20px;
+      padding: 60px 20px 70px;
       text-align: center;
       border-top: 1px solid rgba(255,255,255,0.06);
       border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 0;
     }
+    /* Gradient overlay that makes it feel like an event card */
     .event-section::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-image: url('texture.jpg');
-      background-size: cover;
-      opacity: 0.4;
-      pointer-events: none;
-      z-index: 1;
+      background: linear-gradient(135deg, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.6) 50%, rgba(10,10,10,0.85) 100%);
+      z-index: 0;
     }
     .event-section::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(10,10,10,0.7);
-      z-index: 0;
+      background-image: url('texture.jpg');
+      background-size: cover;
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 1;
     }
     .event-inner {
       position: relative;
@@ -352,37 +354,151 @@
       max-width: 700px;
       margin: 0 auto;
     }
-    .event-label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-bottom: 8px; }
-    .event-title { font-family: 'Aesthet Nova', 'Impact', sans-serif; font-weight: 900; font-size: clamp(32px, 5vw, 48px); color: var(--yellow); text-shadow: var(--yts); margin-bottom: 4px; }
-    .event-subtitle { font-size: 14px; font-weight: 300; color: rgba(240,237,232,0.6); margin-bottom: 16px; }
+    /* "Upcoming Event" badge */
+    .event-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--yellow);
+      padding: 6px 14px;
+      border-radius: 2px;
+      margin-bottom: 16px;
+    }
+    .event-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--black);
+      animation: pulseDot 1.5s infinite;
+    }
+    @keyframes pulseDot {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.6); opacity: 0.3; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .event-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--silver);
+      margin-bottom: 8px;
+      opacity: 0.7;
+    }
+    .event-title {
+      font-family: 'Aesthet Nova', 'Impact', sans-serif;
+      font-weight: 900;
+      font-size: clamp(36px, 5.5vw, 56px);
+      color: var(--yellow);
+      text-shadow: var(--yts);
+      line-height: 0.95;
+      margin-bottom: 8px;
+    }
+    /* Event date/time row with soft icons */
+    .event-datetime {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(240,237,232,0.6);
+    }
+    .event-datetime span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .event-datetime svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--silver);
+      opacity: 0.5;
+    }
+    .event-subtitle {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(240,237,232,0.5);
+      margin-bottom: 24px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
     .event-icons {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 8px;
-      margin: 24px 0;
+      margin: 24px 0 32px;
     }
     .event-icon-card {
-      background: rgba(17,17,17,0.8);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 6px;
-      padding: 16px 4px;
+      background: rgba(17,17,17,0.7);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      padding: 16px 6px;
       text-align: center;
+      transition: border-color 0.2s, background 0.2s;
     }
-    .event-icon-card svg { width: 18px; height: 18px; stroke: var(--silver); margin-bottom: 6px; }
-    .event-icon-card .icon-label { font-size: 9px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); }
+    .event-icon-card:hover {
+      border-color: rgba(200,224,0,0.2);
+      background: rgba(17,17,17,0.9);
+    }
+    .event-icon-card svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--silver);
+      margin-bottom: 6px;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+    .event-icon-card:hover svg {
+      opacity: 1;
+      stroke: var(--yellow);
+    }
+    .event-icon-card .icon-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(240,237,232,0.6);
+    }
     .event-cta {
       display: inline-block;
       background: var(--yellow);
       color: var(--black);
-      padding: 12px 24px;
+      padding: 14px 32px;
       border-radius: 4px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       font-size: 12px;
-      min-height: 44px;
+      min-height: 48px;
+      transition: opacity 0.2s, transform 0.2s;
     }
-    .event-tba { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--grey); margin-top: 12px; }
+    .event-cta:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+    .event-tba {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-top: 12px;
+    }
+    /* Divider line below event section for visual separation */
+    .event-section-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent);
+      margin: 0;
+    }
 
     /* YOUTUBE SECTION */
     .sets-section {
@@ -392,6 +508,7 @@
       align-items: center;
       max-width: 1100px;
       margin: 0 auto;
+      padding-top: 60px;
     }
     .sets-text .label { margin-bottom: 6px; }
     .sets-text h2 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 8px; }
@@ -671,21 +788,25 @@
         padding: 14px 20px;
       }
       .what-section, .sets-section { grid-template-columns: 1fr; gap: 24px; }
+      .sets-section { padding-top: 40px; }
       .about-afrocue-inner { flex-direction: column; text-align: center; }
       .about-afrocue-btn { margin-top: 16px; }
       .pillar-tiles { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
       .pillar-tile:nth-child(3) { grid-column: 1 / -1; max-width: 100%; }
       .event-icons { grid-template-columns: repeat(3, 1fr); }
+      .event-datetime { gap: 12px; font-size: 12px; flex-wrap: wrap; }
       .option-grid { grid-template-columns: 1fr; }
       .rec-input-row { flex-direction: row; }
       .add-btn { width: auto; }
       .btn-outline { width: 100%; text-align: center; }
+      .event-section { padding: 50px 16px 60px; }
     }
     @media (max-width: 420px) {
       .event-icons { grid-template-columns: repeat(2, 1fr); }
       .hero-title { font-size: 32px; }
       .what-heading, .event-title, .join-heading { font-size: 28px; }
       .option-pill .opt-examples { font-size: 8px; }
+      .event-datetime { font-size: 11px; gap: 8px; flex-direction: column; }
     }
   </style>
 </head>
@@ -798,38 +919,90 @@
     </div>
   </div>
 
-  <!-- EVENT MODULE -->
+  <!-- ─── EVENT MODULE — FIXED ─── -->
   <section class="event-section" id="event">
     <div class="event-inner">
+      <div class="event-badge">
+        <span class="dot"></span>
+        Upcoming Event
+      </div>
       <div class="event-label">Next Set Club</div>
       <h2 class="event-title" id="eventTitle">Set Club 001</h2>
-      <div class="event-subtitle" id="eventSubtitle">Coming soon. Join the Club and be first to know when it lands.</div>
+
+      <!-- Date/Time row with soft icons -->
+      <div class="event-datetime" id="eventDateTime">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          <span id="eventDate">Date TBA</span>
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <span id="eventTime">Time TBA</span>
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span id="eventLocation">Location TBA</span>
+        </span>
+      </div>
+
+      <p class="event-subtitle" id="eventSubtitle">Coming soon. Join the Club and be first to know when it lands.</p>
+
+      <!-- Icons row with hover effects -->
       <div class="event-icons">
         <div class="event-icon-card">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><polygon points="10 4 14 4 16 6 8 6"/><polygon points="12 10 12 14 14 12"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="6" width="20" height="12" rx="2" ry="2"/>
+            <polygon points="10 4 14 4 16 6 8 6"/>
+          </svg>
           <div class="icon-label">Big Screen</div>
         </div>
         <div class="event-icon-card">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18V5l12-2v13"/>
+            <circle cx="6" cy="18" r="3"/>
+            <circle cx="18" cy="16" r="3"/>
+          </svg>
           <div class="icon-label">Great Sound</div>
         </div>
         <div class="event-icon-card">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+          </svg>
           <div class="icon-label">Good People</div>
         </div>
         <div class="event-icon-card">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.23 5 5 0 0 1 7.08 0A4 4 0 0 1 18 13.87V21H6z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.23 5 5 0 0 1 7.08 0A4 4 0 0 1 18 13.87V21H6z"/>
+          </svg>
           <div class="icon-label">Refreshments</div>
         </div>
         <div class="event-icon-card">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2h-4l-2 3-2-3H4z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 16c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2h-4l-2 3-2-3H4z"/>
+          </svg>
           <div class="icon-label">Side Attractions</div>
         </div>
       </div>
+
       <a href="#" class="event-cta" id="eventCta" style="display:none;">Get Tickets</a>
       <div class="event-tba" id="eventTba">Date &amp; location — TBA</div>
     </div>
   </section>
+
+  <!-- Subtle divider for visual separation -->
+  <div class="event-section-divider"></div>
 
   <!-- YOUTUBE SECTION -->
   <section class="sets-section" id="sets">
@@ -1065,12 +1238,19 @@
       const eventCta = document.getElementById('eventCta');
       const eventTba = document.getElementById('eventTba');
       const creditEvent = document.getElementById('creditEvent');
+      const eventDate = document.getElementById('eventDate');
+      const eventTime = document.getElementById('eventTime');
+      const eventLocation = document.getElementById('eventLocation');
 
       eventTitle.textContent = cfg.edition;
+
       if (cfg.announced) {
         const parts = [cfg.date, cfg.venue, cfg.time].filter(Boolean);
-        eventSubtitle.textContent = parts.join(' · ');
+        eventSubtitle.textContent = 'Join us for Set Club 001.';
         creditEvent.textContent = parts.join(' · ');
+        eventDate.textContent = cfg.date || 'Date TBA';
+        eventTime.textContent = cfg.time || 'Time TBA';
+        eventLocation.textContent = cfg.venue || 'Location TBA';
         eventCta.style.display = 'inline-block';
         eventCta.href = cfg.ticketUrl || '#';
         eventCta.textContent = 'Get Tickets';
@@ -1078,6 +1258,9 @@
       } else {
         eventSubtitle.textContent = 'Coming soon. Join the Club and be first to know when it lands.';
         creditEvent.textContent = 'Date TBA';
+        eventDate.textContent = 'Date TBA';
+        eventTime.textContent = 'Time TBA';
+        eventLocation.textContent = 'Location TBA';
         eventCta.style.display = 'none';
         eventTba.style.display = 'block';
         eventTba.textContent = 'Date & location — TBA';
