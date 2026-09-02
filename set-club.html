@@ -309,7 +309,7 @@
       height: 100%;
       stroke: currentColor;
       fill: none;
-      stroke-width: 1.8;
+      stroke-width: 1.5;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
@@ -756,8 +756,8 @@
   <section class="what-section" id="what">
     <div class="what-text">
       <div class="label">What is Set Club?</div>
-      <h2 class="what-heading">For people who love to watch DJ sets.</h2>
-      <p class="what-intro">Set Club is a third space for reliving moments in Nigerian dance music culture.</p>
+      <h2 class="what-heading">A third space for the sets that move you.</h2>
+      <p class="what-intro">Set Club is a curated space for DJ sets — built to enjoy the music, relive the moments, and experience Nigerian dance music culture in a fresh, fun way. We explore, discover, and experience them together.</p>
     </div>
     <div class="what-image">
       <img src="setclub_still1.jpg" alt="Still from a DJ set screening" loading="lazy" />
@@ -768,24 +768,33 @@
   <div class="pillar-tiles">
     <div class="pillar-tile">
       <div class="pillar-icon">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polygon points="10 8 16 12 10 16 10 8"/>
+        </svg>
       </div>
       <div class="pillar-title">Explore</div>
-      <div class="pillar-desc">Relive sets already on YouTube.</div>
+      <div class="pillar-desc">Available sets, content engagements, and online watch parties via our YouTube playlist.</div>
     </div>
     <div class="pillar-tile">
       <div class="pillar-icon">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
       </div>
       <div class="pillar-title">Discover</div>
-      <div class="pillar-desc">New drops, premieres, recommendations.</div>
+      <div class="pillar-desc">New drops, premieres, and notifications straight to you.</div>
     </div>
     <div class="pillar-tile">
       <div class="pillar-icon">
-        <svg viewBox="0 0 24 24"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4V7z"/>
+          <line x1="8" y1="12" x2="16" y2="12" stroke-width="1.5" stroke-dasharray="2 2"/>
+        </svg>
       </div>
       <div class="pillar-title">Experience</div>
-      <div class="pillar-desc">Curated third space, iconic sets, side attractions.</div>
+      <div class="pillar-desc">Live Set Club events — tasteful curation, side attractions, and a true third space.</div>
     </div>
   </div>
 
@@ -794,7 +803,7 @@
     <div class="event-inner">
       <div class="event-label">Next Set Club</div>
       <h2 class="event-title" id="eventTitle">Set Club 001</h2>
-      <div class="event-subtitle" id="eventSubtitle">Date TBA</div>
+      <div class="event-subtitle" id="eventSubtitle">Coming soon. Join the Club and be first to know when it lands.</div>
       <div class="event-icons">
         <div class="event-icon-card">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><polygon points="10 4 14 4 16 6 8 6"/><polygon points="12 10 12 14 14 12"/></svg>
@@ -818,7 +827,7 @@
         </div>
       </div>
       <a href="#" class="event-cta" id="eventCta" style="display:none;">Get Tickets</a>
-      <div class="event-tba" id="eventTba">TBA</div>
+      <div class="event-tba" id="eventTba">Date &amp; location — TBA</div>
     </div>
   </section>
 
@@ -836,8 +845,8 @@
 
   <!-- JOIN CTA -->
   <section class="join-section">
-    <h2 class="join-heading">Join Set Club.</h2>
-    <p class="join-sub">Get the next announcement first.</p>
+    <h2 class="join-heading">Get in early.</h2>
+    <p class="join-sub">Join Set Club and be first to know what's next.</p>
     <a href="#" class="hero-cta primary" onclick="openModal()">Join Set Club</a>
   </section>
 
@@ -1039,7 +1048,7 @@
     const EVENT_CONFIG = {
       announced: false,    // set to true when event is announced
       edition: 'Set Club 001',
-      date: '22nd Dec 2026',   // used only if announced === true
+      date: '22nd Dec 2026',
       venue: 'Group Therapy',
       time: '',
       lineup: '',
@@ -1067,11 +1076,11 @@
         eventCta.textContent = 'Get Tickets';
         eventTba.style.display = 'none';
       } else {
-        eventSubtitle.textContent = 'Date TBA';
+        eventSubtitle.textContent = 'Coming soon. Join the Club and be first to know when it lands.';
         creditEvent.textContent = 'Date TBA';
         eventCta.style.display = 'none';
         eventTba.style.display = 'block';
-        eventTba.textContent = 'TBA';
+        eventTba.textContent = 'Date & location — TBA';
       }
     }
 
