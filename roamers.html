@@ -120,8 +120,9 @@
     .checkbox-row { display:flex; align-items:center; gap:8px; cursor:pointer; margin-bottom:12px; }
     .checkbox-row input { width:auto; margin-right:6px; }
 
-    .ty-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:40px 32px; text-align:center; }
-    .ty-title { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(36px,8vw,56px); color:var(--white); margin-bottom:12px; }
+    .btn-loading { position:relative; pointer-events:none; opacity:0.7; color:transparent !important; }
+    .btn-loading::after { content:''; position:absolute; top:50%; left:50%; width:18px; height:18px; margin-top:-9px; margin-left:-9px; border:2px solid rgba(0,0,0,0.3); border-top-color:#0a0a0a; border-radius:50%; animation:spin 0.6s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
     .info-section { margin-top:80px; text-align:left; }
     .section-h { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(44px,8vw,72px); line-height:0.9; color:var(--yellow); text-shadow:var(--yts); margin-bottom:28px; }
@@ -191,7 +192,7 @@
       <div class="hero-text">
         <div class="small-line">Are you a</div>
         <div class="big-line">ROAMER?</div>
-        <p class="hero-sub">Roamers are people who experience Lagos parties & raves and are particular about living the moment. Let's see if you qualify.</p>
+        <p class="hero-sub">Roamers live Lagos nightlife. They're particular about being present, tuned into the music, and part of the moments that shape the culture. Take the quiz and see if you qualify.</p>
       </div>
       <div class="hero-img">
         <img src="roamers_hero_thumb.jpg" alt="Lagos nightlife"/>
@@ -295,7 +296,7 @@
 
         <!-- One More Thing with images -->
         <div class="one-more-thing">
-          <p style="color:rgba(240,237,232,0.55); margin-bottom:12px;">The experience always comes first, but if you're the type to take a video or two on a night out, feel free to post on your story and tag us <strong>@afro.cue</strong>. 1 is enough, 2 is plenty </p>
+          <p style="color:rgba(240,237,232,0.55); margin-bottom:12px;">The experience always comes first, but if you're the type to take a video or two on a night out, feel free to post on your story and tag us <strong>@afro.cue</strong>. One is enough. No pressure.</p>
           <div class="moment-scroll">
             <div class="moment-item"><img src="roamers_top5_sample3.jpg" alt="DJ moment"></div>
             <div class="moment-item"><img src="roamers_top5_sample2.jpg" alt="DJ moment"></div>
@@ -307,15 +308,6 @@
         <p style="font-size:11px; color:var(--grey); margin-top:12px;">We'll reach out when opportunities arise.</p>
       </div>
 
-      <!-- THANK YOU -->
-      <div class="step" id="thankyou">
-        <div class="ty-card">
-          <div class="ty-title">Profile<br>Submitted.</div>
-          <p id="ty-message" style="font-size:15px; font-weight:300; color:rgba(240,237,232,0.55); margin:20px 0 28px;">We'll be in touch when opportunities arise. In the meantime, keep experiencing the culture.</p>
-          <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-primary">Follow AfroCue</a>
-        </div>
-      </div>
-
     </div>
   </section>
 
@@ -323,16 +315,16 @@
   <div class="info-section">
     <div class="section-h">Who Is A<br>Roamer?</div>
     <div class="section-body">
-      Roamers are people who live experiences in Lagos through parties and raves. In being present, your perspective is everything and as we document culture, we occasionally request your contribution in:
+      Roamers live Lagos nightlife. In being present, your perspective is everything — and as we document the culture, we occasionally request your contribution in:
       <ul style="margin-top:10px; padding-left:20px; color:rgba(240,237,232,0.7); font-size:15px; line-height:1.8;">
         <li>Simple & short surveys,</li>
-        <li>Tagging us in party and DJ moments you can find, and</li>
-        <li>Occasionally contributing on creative engagements that often come with benefits.</li>
+        <li>Tagging us in party and DJ moments you capture, and</li>
+        <li>Occasionally contributing on creative engagements that often come with rewards.</li>
       </ul>
     </div>
-    <p style="font-size:15px; font-weight:400; color:rgba(240,237,232,0.8); margin-bottom:20px;">From time to time, we will notify you if any opportunities come up for contribution beyond just tagging us on your stories. These may include:</p>
+    <p style="font-size:15px; font-weight:400; color:rgba(240,237,232,0.8); margin-bottom:20px;">From time to time, we'll notify you if opportunities come up beyond just tagging us on your stories. These may include:</p>
     <div class="opp-tiles">
-      <div class="opp-tile"><h4>ACCESS</h4><p> Go out as you would, we'll reach out when we have any extra slots.</p></div>
+      <div class="opp-tile"><h4>REWARDS</h4><p>Go out as you would. We'll reach out when we have slots, tickets, or perks to share.</p></div>
       <div class="opp-tile"><h4>FEATURES</h4><p>Your video might feature in our content — we'll give credit as much as we can.</p></div>
       <div class="opp-tile"><h4>BRANDED MOMENTS</h4><p>Initiatives like our Pregame series and Pregame Homies (coming soon). <a href="https://www.instagram.com/p/DYIDS-cCdKS/" target="_blank" style="color:var(--yellow); text-decoration:underline;">See example</a></p></div>
       <div class="opp-tile"><h4>CREATOR OPPORTUNITIES</h4><p>Occasionally, paid or collaborative projects for creators in the network.</p></div>
@@ -350,7 +342,7 @@
       <div class="how-step"><div class="how-step-num">1</div><div class="how-step-content"><div class="how-step-title">Sign up</div><div class="how-step-desc">Take the quiz and see if you're a Roamer.</div></div></div>
       <div class="how-step"><div class="how-step-num">2</div><div class="how-step-content"><div class="how-step-title">Go out</div><div class="how-step-desc">Keep going to the parties and raves you love.</div></div></div>
       <div class="how-step"><div class="how-step-num">3</div><div class="how-step-content"><div class="how-step-title">Share moments</div><div class="how-step-desc">If you catch a great DJ clip, post it and tag us. Completely optional.</div></div></div>
-      <div class="how-step"><div class="how-step-num">4</div><div class="how-step-content"><div class="how-step-title">Be on the lookout</div><div class="how-step-desc">We'll reach out by email if we have tickets, accesses, or any fun initiatives.</div></div></div>
+      <div class="how-step"><div class="how-step-num">4</div><div class="how-step-content"><div class="how-step-title">Get rewarded</div><div class="how-step-desc">We'll reach out by email when we have tickets, perks, or initiatives for you.</div></div></div>
     </div>
   </div>
 
@@ -369,7 +361,7 @@
   <div class="info-section" style="margin-top:80px;">
     <div class="section-h">What Do Roamers<br>Actually Do?</div>
     <div class="section-body">
-      You experience first. When it matters, you help us document the culture — a quick survey, a tagged clip, or a creative project. All optional, always credit where due.
+      You experience first. You live the dance floors. You're a fan of the music. And if you catch a moment, you can tag us and help us document when you can — a quick survey, a tagged clip, or a creative project. All optional, always credit where due.
     </div>
     <div class="img-block">
       <img src="roamers_what.jpg" alt="Nightlife moments"/>
@@ -408,11 +400,17 @@
 </main>
 
 <script>
+  // ─── CONFIG ───────────────────────────────────────────────────
+  const AFROCUE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwk0SvCWpKSr-hxsh_TPZiCCh2QTT8uXanQWiDl2qRCLqw1_wkNWLdNUs3LhYGqTl-O/exec';
+
+  // ─── STATE ────────────────────────────────────────────────────
   let currentStep = 'step-start';
   let selectedParties = new Set();
   let noneSelected = false;
   let notifyValue = null;
+  let isSubmitting = false;
 
+  // ─── NAVIGATION ───────────────────────────────────────────────
   function goTo(id) {
     document.getElementById(currentStep).classList.remove('active');
     document.getElementById(id).classList.add('active');
@@ -421,6 +419,7 @@
     if (card) window.scrollTo({ top: card.offsetTop - 20, behavior: 'smooth' });
   }
 
+  // ─── PARTY SELECTION ──────────────────────────────────────────
   function toggleParty(btn) {
     const val = btn.getAttribute('data-val');
     if (btn.classList.contains('selected')) {
@@ -498,6 +497,7 @@
     }
   }
 
+  // ─── SIMPLE SIGNUP ────────────────────────────────────────────
   function toggleSimpleBtn() {
     const n = document.getElementById('simple-name').value.trim();
     const ig = document.getElementById('simple-ig').value.trim();
@@ -505,33 +505,45 @@
     document.getElementById('simple-submit').disabled = !(n && ig && em);
   }
 
-  function submitSimpleSignup() {
+  async function submitSimpleSignup() {
+    if (isSubmitting) return;
+    isSubmitting = true;
+
+    const btn = document.getElementById('simple-submit');
+    btn.disabled = true;
+    btn.classList.add('btn-loading');
+
     const name = document.getElementById('simple-name').value.trim();
-    const ig = '@' + document.getElementById('simple-ig').value.trim().replace(/^@/, '');
+    const igRaw = document.getElementById('simple-ig').value.trim().replace(/^@/, '');
     const email = document.getElementById('simple-email').value.trim();
     const otherParty = document.getElementById('otherPartyInput')?.value.trim() || '';
 
     const data = {
+      source: 'roamers',
       type: 'roamers_signup',
       name: name,
-      ig: ig,
+      ig: '@' + igRaw,
       email: email,
-      otherParty: otherParty
+      other_party: otherParty
     };
 
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: 'roamers_signup', name, email });
+    window.dataLayer.push({ event: 'roamers_signup', name: name, email: email });
 
-    fetch(window.AFROCUE_SCRIPT_URL, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: { 'Content-Type': 'text/plain' }
-    }).catch(e => {}).finally(() => {
-      document.getElementById('ty-message').textContent = 'Thanks for signing up. We\'ll keep you in the loop.';
-      goTo('thankyou');
-    });
+    try {
+      await fetch(AFROCUE_SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'text/plain' }
+      });
+    } catch (e) {
+      console.error('Roamers signup error:', e);
+    } finally {
+      window.location.href = '/thank-you?name=' + encodeURIComponent(name);
+    }
   }
 
+  // ─── FULL APPLICATION ─────────────────────────────────────────
   function checkForm() {
     const valid = document.getElementById('name').value.trim()
       && document.getElementById('ig').value.trim()
@@ -545,18 +557,30 @@
     document.getElementById('creatorFields').style.display = document.getElementById('creatorCheck').checked ? 'block' : 'none';
   }
 
-  function submitApplication() {
+  async function submitApplication() {
+    if (isSubmitting) return;
+    isSubmitting = true;
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.classList.add('btn-loading');
+
+    const name = document.getElementById('name').value.trim();
+    const igRaw = document.getElementById('ig').value.trim().replace(/^@/, '');
+    const email = document.getElementById('email').value.trim();
+
     const data = {
-      type: window._roamersType,
-      name: document.getElementById('name').value.trim(),
-      ig: '@' + document.getElementById('ig').value.trim().replace(/^@/, ''),
-      email: document.getElementById('email').value.trim(),
+      source: 'roamers',
+      type: window._roamersType || 'roamers_application',
+      name: name,
+      ig: '@' + igRaw,
+      email: email,
       phone: document.getElementById('phone').value.trim(),
       area: document.getElementById('area').value.trim(),
-      isCreator: document.getElementById('creatorCheck').checked,
-      creatorType: document.getElementById('creatorType').value,
+      is_creator: document.getElementById('creatorCheck').checked,
+      creator_type: document.getElementById('creatorType').value,
       portfolio: document.getElementById('portfolio').value,
-      parties: window._selectedParties,
+      parties: window._selectedParties || [],
       notify: notifyValue
     };
 
@@ -567,24 +591,26 @@
       email: data.email,
       ig: data.ig,
       area: data.area,
-      is_creator: data.isCreator
+      is_creator: data.is_creator
     });
 
-    if (window.AFROCUE_SCRIPT_URL) {
-      fetch(window.AFROCUE_SCRIPT_URL, {
+    try {
+      await fetch(AFROCUE_SCRIPT_URL, {
         method: 'POST',
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'text/plain' }
-      }).catch(e => {});
+      });
+    } catch (e) {
+      console.error('Roamers application error:', e);
+    } finally {
+      window.location.href = '/thank-you?name=' + encodeURIComponent(name);
     }
-    goTo('thankyou');
   }
 
+  // ─── SCROLL ───────────────────────────────────────────────────
   function scrollToQuiz() {
     document.getElementById('quizTop').scrollIntoView({ behavior:'smooth' });
   }
-
-  window.AFROCUE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwk0SvCWpKSr-hxsh_TPZiCCh2QTT8uXanQWiDl2qRCLqw1_wkNWLdNUs3LhYGqTl-O/exec';   // ← Replace with your actual GAS URL
 </script>
 
 </body>
