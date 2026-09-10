@@ -51,7 +51,7 @@
       position:fixed; top:0; left:0; right:0; z-index:900;
       display:flex; align-items:center; justify-content:space-between;
       padding:16px 40px;
-      background:rgba(10,10,10,0.55); backdrop-filter:blur(20px);
+      background:rgba(10,10,10,0.7); backdrop-filter:blur(20px);
       border-bottom:1px solid rgba(255,255,255,0.05);
     }
     .nav-logo { display:flex; align-items:center; text-decoration:none; }
@@ -65,30 +65,74 @@
     .hero {
       position:relative; min-height:100vh;
       display:flex; align-items:center; justify-content:center;
-      padding:140px 40px 80px; overflow:hidden;
+      padding:140px 40px 100px; overflow:hidden;
     }
     .hero-bg { position:absolute; inset:0; z-index:0; }
-    .hero-bg img { width:100%; height:100%; object-fit:cover; object-position:center 40%; display:block; opacity:0.55; }
-    .hero-texture { position:absolute; inset:0; z-index:1; background-image:url('texture.jpg'); background-size:cover; opacity:0.22; pointer-events:none; mix-blend-mode:overlay; }
-    .hero-scrim-top { position:absolute; inset:0; z-index:2; background:linear-gradient(180deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.25) 35%, rgba(10,10,10,0.55) 70%, rgba(10,10,10,1) 100%); pointer-events:none; }
-    .hero-content { position:relative; z-index:3; max-width:820px; width:100%; text-align:center; }
+    .hero-bg img {
+      width:100%; height:100%;
+      object-fit:cover;
+      object-position:center 35%;
+      display:block;
+      opacity:0.85;
+    }
+    .hero-texture {
+      position:absolute; inset:0; z-index:1;
+      background-image:url('texture.jpg');
+      background-size:cover;
+      opacity:0.15;
+      pointer-events:none;
+      mix-blend-mode:overlay;
+    }
+    /* Softer scrim — darker at top for nav, darker at bottom for text, clear in middle */
+    .hero-scrim {
+      position:absolute; inset:0; z-index:2;
+      background:
+        linear-gradient(180deg,
+          rgba(10,10,10,0.85) 0%,
+          rgba(10,10,10,0.15) 25%,
+          rgba(10,10,10,0.35) 55%,
+          rgba(10,10,10,0.92) 88%,
+          rgba(10,10,10,1) 100%
+        );
+      pointer-events:none;
+    }
+    .hero-content {
+      position:relative; z-index:3;
+      max-width:820px; width:100%;
+      text-align:center;
+      display:flex; flex-direction:column; align-items:center;
+    }
 
-    /* Cool check animation */
+    /* Logo — prominent, above the check */
+    .hero-logo {
+      margin-bottom:40px;
+      display:inline-block;
+    }
+    .hero-logo img {
+      height:52px; width:auto; display:block;
+      filter:drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+    }
+    .hero-logo-fallback {
+      display:none; font-family:'Aesthet Nova',sans-serif; font-weight:900;
+      font-size:22px; color:var(--yellow); letter-spacing:0.08em;
+    }
+
+    /* Check animation */
     .check-anim {
-      width:88px; height:88px; margin:0 auto 32px;
+      width:80px; height:80px; margin:0 auto 30px;
       display:flex; align-items:center; justify-content:center;
     }
     .check-anim svg { width:100%; height:100%; display:block; overflow:visible; }
     .check-anim circle {
       fill:none; stroke:var(--yellow); stroke-width:2.5;
       stroke-dasharray:289; stroke-dashoffset:289;
-      animation:drawCircle 0.95s cubic-bezier(0.65,0,0.35,1) 0.15s forwards;
+      animation:drawCircle 0.95s cubic-bezier(0.65,0,0.35,1) 0.25s forwards;
     }
     .check-anim path {
       fill:none; stroke:var(--yellow); stroke-width:5;
       stroke-linecap:round; stroke-linejoin:round;
       stroke-dasharray:70; stroke-dashoffset:70;
-      animation:drawCheck 0.55s cubic-bezier(0.65,0,0.35,1) 0.75s forwards;
+      animation:drawCheck 0.55s cubic-bezier(0.65,0,0.35,1) 0.85s forwards;
     }
     @keyframes drawCircle { to { stroke-dashoffset:0; } }
     @keyframes drawCheck  { to { stroke-dashoffset:0; } }
@@ -105,7 +149,7 @@
     }
     .hero-sub {
       font-size:15px; font-weight:300; line-height:1.7;
-      color:rgba(240,237,232,0.65); max-width:460px; margin:0 auto;
+      color:rgba(240,237,232,0.7); max-width:460px; margin:0 auto;
     }
 
     /* SECTION SHELL */
@@ -127,7 +171,7 @@
       color:rgba(240,237,232,0.6); max-width:520px; margin-bottom:40px;
     }
 
-    /* WHAT'S NEXT — three actions */
+    /* WHAT'S NEXT */
     .next-section { background:var(--dark); border-top:1px solid rgba(255,255,255,0.05); border-bottom:1px solid rgba(255,255,255,0.05); }
     .next-list { display:flex; flex-direction:column; gap:0; }
     .next-item {
@@ -156,10 +200,12 @@
       font-family:'Aesthet Nova',sans-serif; font-weight:900;
       font-size:clamp(20px, 2.6vw, 26px); line-height:1.1;
       color:var(--white); margin-bottom:4px;
+      display:block;
     }
     .next-item .step-desc {
       font-size:13px; font-weight:300; line-height:1.5;
       color:rgba(240,237,232,0.5);
+      display:block;
     }
     .next-item .arrow {
       font-size:16px; color:var(--silver); flex-shrink:0; opacity:0;
@@ -205,7 +251,7 @@
     .wa-cta:hover { transform:translateY(-2px); box-shadow:0 12px 32px rgba(37,211,102,0.35); }
     .wa-cta svg { width:22px; height:22px; fill:#0a0a0a; }
 
-    /* EXPLORE PAGES */
+    /* EXPLORE */
     .explore-grid {
       display:grid; grid-template-columns:repeat(3, 1fr); gap:14px;
     }
@@ -265,7 +311,9 @@
       .nav-links { display:none; }
       .nav-logo img { height:34px; }
       .hero { padding:110px 20px 60px; min-height:auto; }
-      .check-anim { width:70px; height:70px; margin-bottom:24px; }
+      .hero-logo { margin-bottom:28px; }
+      .hero-logo img { height:42px; }
+      .check-anim { width:66px; height:66px; margin-bottom:22px; }
       section.block { padding:64px 20px; }
       .next-item { padding:18px 2px; gap:16px; }
       .next-item .step-icon { width:20px; height:20px; }
@@ -305,9 +353,17 @@
 <div class="hero">
   <div class="hero-bg"><img src="hero_dj.jpg" alt="AfroCue — Lagos nightlife"/></div>
   <div class="hero-texture"></div>
-  <div class="hero-scrim-top"></div>
+  <div class="hero-scrim"></div>
 
   <div class="hero-content">
+
+    <!-- Logo front and center -->
+    <div class="hero-logo">
+      <img src="logo_afrocue.png" alt="AfroCue"
+        onerror="this.style.display='none'; document.querySelector('.hero-logo-fallback').style.display='block'"/>
+      <span class="hero-logo-fallback">afro.cue</span>
+    </div>
+
     <div class="check-anim" aria-hidden="true">
       <svg viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="46"/>
@@ -327,7 +383,6 @@
     <div class="label">What's next</div>
 
     <div class="next-list">
-      <!-- 1. Check your email (passive — not clickable) -->
       <div class="next-item passive">
         <span class="num">01</span>
         <span class="step-icon">
@@ -339,7 +394,6 @@
         </span>
       </div>
 
-      <!-- 2. Follow @afro.cue (clickable) -->
       <a href="https://instagram.com/afro.cue" target="_blank" rel="noopener" class="next-item">
         <span class="num">02</span>
         <span class="step-icon">
@@ -352,7 +406,6 @@
         <span class="arrow">↗</span>
       </a>
 
-      <!-- 3. Tag us (passive — just behavior) -->
       <div class="next-item passive">
         <span class="num">03</span>
         <span class="step-icon">
