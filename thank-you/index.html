@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-  <title>Welcome to AfroCue</title>
+  <title>You're a Roamer — AfroCue</title>
   <link rel="icon" type="image/png" href="favicon.png"/>
   <link rel="apple-touch-icon" href="favicon.png"/>
-  <meta name="description" content="Welcome to AfroCue. Stay in touch with our content as we document Lagos and Nigeria DJ culture, dance music and more."/>
+  <meta name="description" content="You're a Roamer. Check your email, follow @afro.cue, and tag us in anything cool."/>
   <link rel="canonical" href="https://afrocue.xyz/thank-you"/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://afrocue.xyz/thank-you"/>
-  <meta property="og:title" content="Welcome to AfroCue"/>
-  <meta property="og:description" content="Stay in touch with our content as we document Lagos and Nigeria DJ culture, dance music and more."/>
+  <meta property="og:title" content="You're a Roamer — AfroCue"/>
+  <meta property="og:description" content="Check your email, follow @afro.cue, and tag us in anything cool."/>
   <meta property="og:image" content="https://afrocue.xyz/hero_dj.jpg"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:site" content="@afrocue_"/>
-  <meta name="twitter:title" content="Welcome to AfroCue"/>
-  <meta name="twitter:description" content="Stay in touch with our content as we document Lagos and Nigeria DJ culture, dance music and more."/>
+  <meta name="twitter:title" content="You're a Roamer — AfroCue"/>
+  <meta name="twitter:description" content="Check your email, follow @afro.cue, and tag us in anything cool."/>
   <meta name="twitter:image" content="https://afrocue.xyz/hero_dj.jpg"/>
 
   <!-- Google Tag Manager -->
@@ -34,8 +34,7 @@
     :root {
       --black:  #0a0a0a;
       --dark:   #111111;
-      --dark2:  #1c1c1c;
-      --mid:    #2e2e2e;
+      --dark2:  #181818;
       --grey:   #555555;
       --silver: #999999;
       --off:    #d4d4d0;
@@ -45,95 +44,242 @@
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior:smooth; }
-    body { background:var(--black); color:var(--white); font-family:'Figtree',sans-serif; overflow-x:hidden; }
-    .yh { font-family:'Aesthet Nova',sans-serif; font-weight:900; color:var(--yellow); text-shadow:var(--yts); line-height:0.92; }
+    body { background:var(--black); color:var(--white); font-family:'Figtree',sans-serif; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
 
     /* NAV */
     nav {
       position:fixed; top:0; left:0; right:0; z-index:900;
       display:flex; align-items:center; justify-content:space-between;
-      padding:16px 48px;
-      background:rgba(10,10,10,0.92); backdrop-filter:blur(20px);
-      border-bottom:1px solid rgba(255,255,255,0.06);
+      padding:16px 40px;
+      background:rgba(10,10,10,0.55); backdrop-filter:blur(20px);
+      border-bottom:1px solid rgba(255,255,255,0.05);
     }
     .nav-logo { display:flex; align-items:center; text-decoration:none; }
-    .nav-logo img { height:48px; width:auto; display:block; }
+    .nav-logo img { height:40px; width:auto; display:block; }
     .nav-logo-fallback { display:none; font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:17px; color:var(--yellow); letter-spacing:0.08em; }
     .nav-links { display:flex; gap:28px; list-style:none; }
-    .nav-links a { font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--silver); text-decoration:none; transition:color 0.2s; }
+    .nav-links a { font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(240,237,232,0.7); text-decoration:none; transition:color 0.2s; }
     .nav-links a:hover { color:var(--white); }
-    .nav-cta { font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--black); background:var(--white); padding:10px 20px; border-radius:2px; text-decoration:none; transition:background 0.2s; white-space:nowrap; }
-    .nav-cta:hover { background:var(--off); }
 
     /* HERO */
     .hero {
-      min-height:80vh; display:flex; flex-direction:column; justify-content:center; align-items:center;
-      position:relative; padding:120px 48px 80px; overflow:hidden; text-align:center;
+      position:relative; min-height:100vh;
+      display:flex; align-items:center; justify-content:center;
+      padding:140px 40px 80px; overflow:hidden;
     }
     .hero-bg { position:absolute; inset:0; z-index:0; }
-    .hero-bg img { width:100%; height:100%; object-fit:cover; object-position:center 30%; opacity:0.35; display:block; }
-    .hero-texture { position:absolute; inset:0; z-index:1; background-image:url('texture.jpg'); background-size:cover; opacity:0.35; pointer-events:none; }
-    .hero-overlay { position:absolute; inset:0; z-index:2; background:linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.6) 50%, rgba(10,10,10,0.2) 100%); }
-    .hero-content { position:relative; z-index:3; max-width:720px; width:100%; }
-    .checkmark {
-      width:80px; height:80px; border-radius:50%;
-      background:var(--yellow); margin:0 auto 28px;
+    .hero-bg img { width:100%; height:100%; object-fit:cover; object-position:center 40%; display:block; opacity:0.55; }
+    .hero-texture { position:absolute; inset:0; z-index:1; background-image:url('texture.jpg'); background-size:cover; opacity:0.22; pointer-events:none; mix-blend-mode:overlay; }
+    .hero-scrim-top { position:absolute; inset:0; z-index:2; background:linear-gradient(180deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.25) 35%, rgba(10,10,10,0.55) 70%, rgba(10,10,10,1) 100%); pointer-events:none; }
+    .hero-content { position:relative; z-index:3; max-width:820px; width:100%; text-align:center; }
+
+    /* Cool check animation */
+    .check-anim {
+      width:88px; height:88px; margin:0 auto 32px;
       display:flex; align-items:center; justify-content:center;
     }
-    .checkmark svg { width:36px; height:36px; stroke:var(--black); stroke-width:3; }
+    .check-anim svg { width:100%; height:100%; display:block; overflow:visible; }
+    .check-anim circle {
+      fill:none; stroke:var(--yellow); stroke-width:2.5;
+      stroke-dasharray:289; stroke-dashoffset:289;
+      animation:drawCircle 0.95s cubic-bezier(0.65,0,0.35,1) 0.15s forwards;
+    }
+    .check-anim path {
+      fill:none; stroke:var(--yellow); stroke-width:5;
+      stroke-linecap:round; stroke-linejoin:round;
+      stroke-dasharray:70; stroke-dashoffset:70;
+      animation:drawCheck 0.55s cubic-bezier(0.65,0,0.35,1) 0.75s forwards;
+    }
+    @keyframes drawCircle { to { stroke-dashoffset:0; } }
+    @keyframes drawCheck  { to { stroke-dashoffset:0; } }
+
     h1 {
       font-family:'Aesthet Nova',sans-serif; font-weight:900;
-      font-size:clamp(48px, 10vw, 100px); line-height:0.9;
-      color:var(--yellow); text-shadow:var(--yts); margin-bottom:20px;
+      font-size:clamp(34px, 6vw, 64px); line-height:1.05;
+      color:var(--yellow); text-shadow:var(--yts);
+      letter-spacing:-0.005em; margin-bottom:18px;
     }
-    .hero-sub { font-size:16px; font-weight:300; line-height:1.8; color:rgba(240,237,232,0.7); max-width:480px; margin:0 auto 36px; }
+    h1 .name {
+      color:var(--white);
+      text-shadow:2px 3px 0px rgba(0,0,0,0.9);
+    }
+    .hero-sub {
+      font-size:15px; font-weight:300; line-height:1.7;
+      color:rgba(240,237,232,0.65); max-width:460px; margin:0 auto;
+    }
 
-    .btn-row { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:8px; }
-    .btn { display:inline-block; font-family:'Figtree',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:14px 30px; border-radius:2px; text-decoration:none; border:none; cursor:pointer; transition:all 0.2s; white-space:nowrap; }
-    .btn-primary { color:var(--black); background:var(--yellow); }
-    .btn-primary:hover { opacity:0.85; }
-    .btn-secondary { color:var(--silver); background:transparent; border:1px solid rgba(255,255,255,0.18); }
-    .btn-secondary:hover { border-color:var(--white); color:var(--white); }
-    .next-step-label { font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--grey); margin-top:24px; }
+    /* SECTION SHELL */
+    section.block { padding:80px 40px; }
+    .inner { max-width:960px; margin:0 auto; }
+    .label {
+      font-size:10px; font-weight:700; letter-spacing:0.24em; text-transform:uppercase;
+      color:var(--grey); margin-bottom:16px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .label::before { content:''; width:20px; height:1px; background:var(--grey); flex-shrink:0; }
+    .block-heading {
+      font-family:'Aesthet Nova',sans-serif; font-weight:900;
+      font-size:clamp(28px, 4vw, 42px); line-height:0.98;
+      color:var(--white); margin-bottom:14px;
+    }
+    .block-sub {
+      font-size:15px; font-weight:300; line-height:1.7;
+      color:rgba(240,237,232,0.6); max-width:520px; margin-bottom:40px;
+    }
 
-    /* DISCOVER LINE */
-    .discover-line {
-      border-top:1px solid rgba(255,255,255,0.06);
-      background:var(--dark);
-      padding:64px 48px;
-      text-align:center;
+    /* WHAT'S NEXT — three actions */
+    .next-section { background:var(--dark); border-top:1px solid rgba(255,255,255,0.05); border-bottom:1px solid rgba(255,255,255,0.05); }
+    .next-list { display:flex; flex-direction:column; gap:0; }
+    .next-item {
+      display:flex; align-items:center; gap:20px;
+      padding:22px 4px;
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      text-decoration:none; color:var(--white);
+      transition:padding-left 0.25s, background 0.25s;
+      position:relative;
     }
-    .discover-line p {
-      font-size:clamp(20px, 3vw, 28px);
-      font-weight:300;
-      line-height:1.5;
-      color:rgba(240,237,232,0.6);
-      max-width:640px;
-      margin:0 auto;
+    .next-item:last-child { border-bottom:none; }
+    .next-item:not(.passive):hover { padding-left:14px; }
+    .next-item .num {
+      font-family:'Aesthet Nova',sans-serif; font-weight:900;
+      font-size:14px; color:var(--yellow);
+      width:26px; flex-shrink:0; text-align:left;
+      letter-spacing:0.04em;
     }
+    .next-item .step-icon {
+      width:22px; height:22px; flex-shrink:0; color:var(--silver); transition:color 0.25s;
+    }
+    .next-item:not(.passive):hover .step-icon { color:var(--yellow); }
+    .next-item .step-icon svg { width:100%; height:100%; stroke:currentColor; fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+    .next-item .step-text { flex:1; min-width:0; }
+    .next-item .step-title {
+      font-family:'Aesthet Nova',sans-serif; font-weight:900;
+      font-size:clamp(20px, 2.6vw, 26px); line-height:1.1;
+      color:var(--white); margin-bottom:4px;
+    }
+    .next-item .step-desc {
+      font-size:13px; font-weight:300; line-height:1.5;
+      color:rgba(240,237,232,0.5);
+    }
+    .next-item .arrow {
+      font-size:16px; color:var(--silver); flex-shrink:0; opacity:0;
+      transition:opacity 0.2s, transform 0.2s, color 0.2s;
+    }
+    .next-item:not(.passive):hover .arrow { opacity:1; transform:translate(2px, -2px); color:var(--yellow); }
+    .next-item.passive .arrow { display:none; }
+    .next-item.passive .step-title { color:var(--off); }
+
+    /* WHATSAPP */
+    .whatsapp-section {
+      background: linear-gradient(160deg, #0d1408 0%, #0a0a0a 60%);
+      border-bottom:1px solid rgba(255,255,255,0.05);
+      position:relative; overflow:hidden;
+    }
+    .whatsapp-section::before {
+      content:''; position:absolute; top:-120px; right:-120px;
+      width:420px; height:420px; border-radius:50%;
+      background:radial-gradient(circle, rgba(37,211,102,0.10) 0%, transparent 70%);
+      pointer-events:none;
+    }
+    .whatsapp-inner {
+      position:relative; z-index:1;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:40px; flex-wrap:wrap;
+      max-width:960px; margin:0 auto;
+    }
+    .whatsapp-text { flex:1 1 380px; min-width:0; }
+    .whatsapp-text .block-heading { margin-bottom:12px; }
+    .whatsapp-text .block-sub { margin-bottom:0; }
+    .wa-cta {
+      flex-shrink:0;
+      display:inline-flex; align-items:center; gap:12px;
+      padding:18px 30px;
+      background:#25D366; color:#0a0a0a;
+      font-family:'Figtree',sans-serif; font-size:12px; font-weight:700;
+      letter-spacing:0.14em; text-transform:uppercase;
+      border-radius:6px; text-decoration:none;
+      transition:transform 0.2s, box-shadow 0.2s;
+      box-shadow:0 8px 24px rgba(37,211,102,0.2);
+      min-height:54px;
+    }
+    .wa-cta:hover { transform:translateY(-2px); box-shadow:0 12px 32px rgba(37,211,102,0.35); }
+    .wa-cta svg { width:22px; height:22px; fill:#0a0a0a; }
+
+    /* EXPLORE PAGES */
+    .explore-grid {
+      display:grid; grid-template-columns:repeat(3, 1fr); gap:14px;
+    }
+    .explore-tile {
+      display:flex; flex-direction:column; justify-content:space-between;
+      background:var(--dark2);
+      border:1px solid rgba(255,255,255,0.06);
+      border-radius:12px;
+      padding:26px 22px 22px;
+      text-decoration:none; color:var(--white);
+      transition:border-color 0.2s, transform 0.2s, background 0.2s;
+      min-height:200px;
+      position:relative; overflow:hidden;
+    }
+    .explore-tile:hover {
+      border-color:rgba(200,224,0,0.35);
+      background:#1a1a1a;
+      transform:translateY(-2px);
+    }
+    .explore-tile .tile-icon {
+      width:36px; height:36px; color:var(--yellow); margin-bottom:22px;
+    }
+    .explore-tile .tile-icon svg { width:100%; height:100%; stroke:currentColor; fill:none; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+    .explore-tile .tile-title {
+      font-family:'Aesthet Nova',sans-serif; font-weight:900;
+      font-size:20px; line-height:1; margin-bottom:8px;
+      color:var(--white);
+    }
+    .explore-tile .tile-desc {
+      font-size:13px; font-weight:300; line-height:1.5;
+      color:rgba(240,237,232,0.55);
+    }
+    .explore-tile .tile-arrow {
+      position:absolute; top:24px; right:22px;
+      font-size:14px; color:var(--silver);
+      transition:transform 0.2s, color 0.2s;
+    }
+    .explore-tile:hover .tile-arrow { transform:translate(2px, -2px); color:var(--yellow); }
 
     /* FOOTER */
     footer {
       border-top:1px solid rgba(255,255,255,0.06);
-      padding:40px 48px;
-      display:flex; flex-direction:column; align-items:center; gap:20px;
+      padding:36px 40px;
+      display:flex; flex-direction:column; align-items:center; gap:16px;
       background:var(--dark); text-align:center;
     }
-    .footer-brand img { height:48px; width:auto; display:block; }
+    .footer-brand img { height:38px; width:auto; display:block; }
     .footer-links { display:flex; gap:22px; flex-wrap:wrap; justify-content:center; }
     .footer-links a { font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--grey); text-decoration:none; transition:color 0.2s; }
     .footer-links a:hover { color:var(--white); }
     .footer-email a { font-size:11px; color:var(--grey); text-decoration:none; }
     .footer-email a:hover { color:var(--white); }
 
+    /* RESPONSIVE */
     @media (max-width:768px) {
-      nav { padding:14px 20px; }
+      nav { padding:12px 20px; }
       .nav-links { display:none; }
-      .hero { padding:100px 20px 60px; }
-      .btn-row { flex-direction:column; align-items:center; }
-      .btn { width:100%; max-width:280px; text-align:center; }
-      .discover-line { padding:48px 20px; }
+      .nav-logo img { height:34px; }
+      .hero { padding:110px 20px 60px; min-height:auto; }
+      .check-anim { width:70px; height:70px; margin-bottom:24px; }
+      section.block { padding:64px 20px; }
+      .next-item { padding:18px 2px; gap:16px; }
+      .next-item .step-icon { width:20px; height:20px; }
+      .next-item .num { width:22px; font-size:12px; }
+      .whatsapp-inner { flex-direction:column; align-items:stretch; gap:28px; }
+      .wa-cta { width:100%; justify-content:center; }
+      .explore-grid { grid-template-columns:1fr; }
+      .explore-tile { min-height:auto; padding:22px 20px 20px; }
+      .explore-tile .tile-icon { margin-bottom:16px; }
       footer { padding:32px 20px; }
+    }
+    @media (max-width:420px) {
+      h1 { font-size:30px; }
+      .hero-sub { font-size:14px; }
     }
   </style>
 </head>
@@ -151,43 +297,134 @@
   <ul class="nav-links">
     <li><a href="index.html#about">About</a></li>
     <li><a href="parties.html">Parties</a></li>
-    <li><a href="index.html#content">Content</a></li>
-    <li><a href="index.html#playlists">Playlists</a></li>
+    <li><a href="set-club.html">Set Club</a></li>
   </ul>
-  <a href="index.html#join" class="nav-cta">Sign Up</a>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-bg"><img src="hero_dj.jpg" alt="AfroCue DJ"/></div>
+  <div class="hero-bg"><img src="hero_dj.jpg" alt="AfroCue — Lagos nightlife"/></div>
   <div class="hero-texture"></div>
-  <div class="hero-overlay"></div>
+  <div class="hero-scrim-top"></div>
+
   <div class="hero-content">
-    <div class="checkmark">
-      <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="20 6 9 17 4 12"/>
+    <div class="check-anim" aria-hidden="true">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46"/>
+        <path d="M32 51 L45 64 L70 36"/>
       </svg>
     </div>
-    <h1>Welcome<br>to AfroCue.</h1>
-    <p class="hero-sub">Stay in touch with our content as we document Lagos and Nigeria DJ culture, dance music, and more.</p>
 
-    <!-- Primary: Follow Instagram -->
-    <div class="btn-row">
-      <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-primary">Follow @afro.cue</a>
-    </div>
+    <h1 id="hero-title">You're a Roamer.</h1>
 
-    <!-- Secondary / Next step: WhatsApp -->
-    <div class="next-step-label">Next step</div>
-    <div class="btn-row">
-      <a href="https://whatsapp.com/channel/0029Vb74IjxGufJ0irS1uq0u" target="_blank" class="btn btn-secondary">Join WhatsApp Channel</a>
-    </div>
+    <p class="hero-sub">Here's what to do next.</p>
   </div>
 </div>
 
-<!-- DISCOVER LINE -->
-<div class="discover-line">
-  <p>Discover DJs, parties, dance music and Nigeria nightlife with AfroCue.</p>
-</div>
+<!-- WHAT'S NEXT -->
+<section class="block next-section">
+  <div class="inner">
+    <div class="label">What's next</div>
+
+    <div class="next-list">
+      <!-- 1. Check your email (passive — not clickable) -->
+      <div class="next-item passive">
+        <span class="num">01</span>
+        <span class="step-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"/><polyline points="2,7 12,14 22,7"/></svg>
+        </span>
+        <span class="step-text">
+          <span class="step-title">Check your email</span>
+          <span class="step-desc">Open it — there's a welcome waiting for you.</span>
+        </span>
+      </div>
+
+      <!-- 2. Follow @afro.cue (clickable) -->
+      <a href="https://instagram.com/afro.cue" target="_blank" rel="noopener" class="next-item">
+        <span class="num">02</span>
+        <span class="step-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </span>
+        <span class="step-text">
+          <span class="step-title">Follow @afro.cue</span>
+          <span class="step-desc">That's where we document the culture.</span>
+        </span>
+        <span class="arrow">↗</span>
+      </a>
+
+      <!-- 3. Tag us (passive — just behavior) -->
+      <div class="next-item passive">
+        <span class="num">03</span>
+        <span class="step-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.83z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+        </span>
+        <span class="step-text">
+          <span class="step-title">Tag us in anything cool</span>
+          <span class="step-desc">Anytime. No pressure. Just when it feels right.</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHATSAPP -->
+<section class="block whatsapp-section">
+  <div class="whatsapp-inner">
+    <div class="whatsapp-text">
+      <div class="label">Stay in the loop</div>
+      <h2 class="block-heading">One more thing.</h2>
+      <p class="block-sub">The WhatsApp channel is where we drop things first — events, tickets, opportunities, and things you won't see anywhere else.</p>
+    </div>
+    <a href="https://whatsapp.com/channel/0029Vb74IjxGufJ0irS1uq0u" target="_blank" rel="noopener" class="wa-cta">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.019-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+      Join the channel
+    </a>
+  </div>
+</section>
+
+<!-- EXPLORE -->
+<section class="block">
+  <div class="inner">
+    <div class="label">While you're here</div>
+    <h2 class="block-heading">Explore more.</h2>
+    <p class="block-sub">Three places to go deeper into what we do.</p>
+
+    <div class="explore-grid">
+      <a href="index.html" class="explore-tile">
+        <span class="tile-arrow">↗</span>
+        <div class="tile-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2h-4v-7h-6v7H5a2 2 0 0 1-2-2z"/></svg>
+        </div>
+        <div>
+          <div class="tile-title">AfroCue</div>
+          <div class="tile-desc">The main page — who we are, what we document.</div>
+        </div>
+      </a>
+
+      <a href="set-club.html" class="explore-tile">
+        <span class="tile-arrow">↗</span>
+        <div class="tile-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3" ry="3"/><polygon points="10 9 15 12 10 15 10 9"/></svg>
+        </div>
+        <div>
+          <div class="tile-title">Set Club</div>
+          <div class="tile-desc">DJ sets, the club, and the playlist on YouTube.</div>
+        </div>
+      </a>
+
+      <a href="parties.html" class="explore-tile">
+        <span class="tile-arrow">↗</span>
+        <div class="tile-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div>
+          <div class="tile-title">Parties</div>
+          <div class="tile-desc">What's happening across Lagos nightlife.</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
@@ -202,6 +439,30 @@
   </div>
   <div class="footer-email"><a href="mailto:hello@afrocue.xyz">hello@afrocue.xyz</a></div>
 </footer>
+
+<script>
+  // Personalize the greeting from ?name= query param
+  (function() {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const raw = params.get('name');
+      if (!raw) return;
+
+      const decoded = decodeURIComponent(raw).trim();
+      if (!decoded) return;
+
+      const firstName = decoded.split(/\s+/)[0];
+      const safe = firstName.replace(/[<>&"'`]/g, '').slice(0, 24);
+      if (!safe) return;
+
+      const h1 = document.getElementById('hero-title');
+      h1.innerHTML = '<span class="name">' + safe + '</span>, you\'re a Roamer.';
+      document.title = safe + ', you\'re a Roamer — AfroCue';
+    } catch (e) {
+      // silently fall back to default greeting
+    }
+  })();
+</script>
 
 </body>
 </html>
