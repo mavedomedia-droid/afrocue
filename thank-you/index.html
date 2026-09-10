@@ -4,22 +4,21 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <title>You're a Roamer — AfroCue</title>
-  <link rel="icon" type="image/png" href="favicon.png"/>
-  <link rel="apple-touch-icon" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="https://afrocue.xyz/favicon.png"/>
+  <link rel="apple-touch-icon" href="https://afrocue.xyz/favicon.png"/>
   <meta name="description" content="You're a Roamer. Check your email, follow @afro.cue, and tag us in anything cool."/>
   <link rel="canonical" href="https://afrocue.xyz/thank-you"/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://afrocue.xyz/thank-you"/>
   <meta property="og:title" content="You're a Roamer — AfroCue"/>
   <meta property="og:description" content="Check your email, follow @afro.cue, and tag us in anything cool."/>
-  <meta property="og:image" content="https://afrocue.xyz/hero_dj.jpg"/>
+  <meta property="og:image" content="https://afrocue.xyz/roamers_who.jpg"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:site" content="@afrocue_"/>
   <meta name="twitter:title" content="You're a Roamer — AfroCue"/>
   <meta name="twitter:description" content="Check your email, follow @afro.cue, and tag us in anything cool."/>
-  <meta name="twitter:image" content="https://afrocue.xyz/hero_dj.jpg"/>
+  <meta name="twitter:image" content="https://afrocue.xyz/roamers_who.jpg"/>
 
-  <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -29,8 +28,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
-    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('https://afrocue.xyz/fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('https://afrocue.xyz/fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
     :root {
       --black:  #0a0a0a;
       --dark:   #111111;
@@ -61,65 +60,50 @@
     .nav-links a { font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(240,237,232,0.7); text-decoration:none; transition:color 0.2s; }
     .nav-links a:hover { color:var(--white); }
 
-    /* HERO */
+    /* HERO — smaller, attitude */
     .hero {
-      position:relative; min-height:100vh;
-      display:flex; align-items:center; justify-content:center;
-      padding:140px 40px 100px; overflow:hidden;
+      position:relative;
+      padding:140px 40px 72px;
+      overflow:hidden;
+      border-bottom:1px solid rgba(255,255,255,0.06);
     }
     .hero-bg { position:absolute; inset:0; z-index:0; }
     .hero-bg img {
       width:100%; height:100%;
       object-fit:cover;
-      object-position:center 35%;
+      object-position:center 30%;
       display:block;
-      opacity:0.85;
+      opacity:0.6;
     }
     .hero-texture {
       position:absolute; inset:0; z-index:1;
-      background-image:url('texture.jpg');
+      background-image:url('https://afrocue.xyz/texture.jpg');
       background-size:cover;
       opacity:0.15;
       pointer-events:none;
       mix-blend-mode:overlay;
     }
-    /* Softer scrim — darker at top for nav, darker at bottom for text, clear in middle */
     .hero-scrim {
       position:absolute; inset:0; z-index:2;
       background:
         linear-gradient(180deg,
-          rgba(10,10,10,0.85) 0%,
-          rgba(10,10,10,0.15) 25%,
-          rgba(10,10,10,0.35) 55%,
-          rgba(10,10,10,0.92) 88%,
-          rgba(10,10,10,1) 100%
+          rgba(10,10,10,0.55) 0%,
+          rgba(10,10,10,0.35) 40%,
+          rgba(10,10,10,0.85) 100%
         );
       pointer-events:none;
     }
     .hero-content {
       position:relative; z-index:3;
       max-width:820px; width:100%;
-      text-align:center;
+      margin:0 auto;
       display:flex; flex-direction:column; align-items:center;
-    }
-
-    /* Logo — prominent, above the check */
-    .hero-logo {
-      margin-bottom:40px;
-      display:inline-block;
-    }
-    .hero-logo img {
-      height:52px; width:auto; display:block;
-      filter:drop-shadow(0 4px 12px rgba(0,0,0,0.5));
-    }
-    .hero-logo-fallback {
-      display:none; font-family:'Aesthet Nova',sans-serif; font-weight:900;
-      font-size:22px; color:var(--yellow); letter-spacing:0.08em;
+      text-align:center;
     }
 
     /* Check animation */
     .check-anim {
-      width:80px; height:80px; margin:0 auto 30px;
+      width:72px; height:72px; margin-bottom:26px;
       display:flex; align-items:center; justify-content:center;
     }
     .check-anim svg { width:100%; height:100%; display:block; overflow:visible; }
@@ -139,9 +123,9 @@
 
     h1 {
       font-family:'Aesthet Nova',sans-serif; font-weight:900;
-      font-size:clamp(34px, 6vw, 64px); line-height:1.05;
+      font-size:clamp(32px, 5.5vw, 58px); line-height:1.05;
       color:var(--yellow); text-shadow:var(--yts);
-      letter-spacing:-0.005em; margin-bottom:18px;
+      letter-spacing:-0.005em; margin-bottom:14px;
     }
     h1 .name {
       color:var(--white);
@@ -149,11 +133,12 @@
     }
     .hero-sub {
       font-size:15px; font-weight:300; line-height:1.7;
-      color:rgba(240,237,232,0.7); max-width:460px; margin:0 auto;
+      color:rgba(240,237,232,0.75); max-width:440px;
     }
+    .hero-sub strong { color:var(--white); font-weight:600; }
 
-    /* SECTION SHELL */
-    section.block { padding:80px 40px; }
+    /* SECTIONS */
+    section.block { padding:72px 40px; }
     .inner { max-width:960px; margin:0 auto; }
     .label {
       font-size:10px; font-weight:700; letter-spacing:0.24em; text-transform:uppercase;
@@ -172,7 +157,7 @@
     }
 
     /* WHAT'S NEXT */
-    .next-section { background:var(--dark); border-top:1px solid rgba(255,255,255,0.05); border-bottom:1px solid rgba(255,255,255,0.05); }
+    .next-section { background:var(--dark); border-bottom:1px solid rgba(255,255,255,0.05); }
     .next-list { display:flex; flex-direction:column; gap:0; }
     .next-item {
       display:flex; align-items:center; gap:20px;
@@ -310,11 +295,9 @@
       nav { padding:12px 20px; }
       .nav-links { display:none; }
       .nav-logo img { height:34px; }
-      .hero { padding:110px 20px 60px; min-height:auto; }
-      .hero-logo { margin-bottom:28px; }
-      .hero-logo img { height:42px; }
-      .check-anim { width:66px; height:66px; margin-bottom:22px; }
-      section.block { padding:64px 20px; }
+      .hero { padding:110px 20px 56px; }
+      .check-anim { width:60px; height:60px; margin-bottom:20px; }
+      section.block { padding:56px 20px; }
       .next-item { padding:18px 2px; gap:16px; }
       .next-item .step-icon { width:20px; height:20px; }
       .next-item .num { width:22px; font-size:12px; }
@@ -326,44 +309,35 @@
       footer { padding:32px 20px; }
     }
     @media (max-width:420px) {
-      h1 { font-size:30px; }
+      h1 { font-size:28px; }
       .hero-sub { font-size:14px; }
     }
   </style>
 </head>
 <body>
 
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/gtm.js?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<!-- NAV -->
 <nav>
-  <a class="nav-logo" href="index.html">
-    <img src="logo_afrocue.png" alt="AfroCue"
+  <a class="nav-logo" href="https://afrocue.xyz/index.html">
+    <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue"
       onerror="this.style.display='none'; document.querySelector('.nav-logo-fallback').style.display='block'"/>
     <span class="nav-logo-fallback">afro.cue</span>
   </a>
   <ul class="nav-links">
-    <li><a href="index.html#about">About</a></li>
-    <li><a href="parties.html">Parties</a></li>
-    <li><a href="set-club.html">Set Club</a></li>
+    <li><a href="https://afrocue.xyz/index.html#about">About</a></li>
+    <li><a href="https://afrocue.xyz/parties.html">Parties</a></li>
+    <li><a href="https://afrocue.xyz/set-club.html">Set Club</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-bg"><img src="hero_dj.jpg" alt="AfroCue — Lagos nightlife"/></div>
+  <div class="hero-bg"><img src="https://afrocue.xyz/roamers_who.jpg" alt="Roamers — Lagos nightlife"/></div>
   <div class="hero-texture"></div>
   <div class="hero-scrim"></div>
 
   <div class="hero-content">
-
-    <!-- Logo front and center -->
-    <div class="hero-logo">
-      <img src="logo_afrocue.png" alt="AfroCue"
-        onerror="this.style.display='none'; document.querySelector('.hero-logo-fallback').style.display='block'"/>
-      <span class="hero-logo-fallback">afro.cue</span>
-    </div>
-
     <div class="check-anim" aria-hidden="true">
       <svg viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="46"/>
@@ -373,7 +347,7 @@
 
     <h1 id="hero-title">You're a Roamer.</h1>
 
-    <p class="hero-sub">Here's what to do next.</p>
+    <p class="hero-sub">We had a feeling. <strong>Now go check that inbox</strong> — and let's move.</p>
   </div>
 </div>
 
@@ -443,7 +417,7 @@
     <p class="block-sub">Three places to go deeper into what we do.</p>
 
     <div class="explore-grid">
-      <a href="index.html" class="explore-tile">
+      <a href="https://afrocue.xyz/index.html" class="explore-tile">
         <span class="tile-arrow">↗</span>
         <div class="tile-icon">
           <svg viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2h-4v-7h-6v7H5a2 2 0 0 1-2-2z"/></svg>
@@ -454,7 +428,7 @@
         </div>
       </a>
 
-      <a href="set-club.html" class="explore-tile">
+      <a href="https://afrocue.xyz/set-club.html" class="explore-tile">
         <span class="tile-arrow">↗</span>
         <div class="tile-icon">
           <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3" ry="3"/><polygon points="10 9 15 12 10 15 10 9"/></svg>
@@ -465,7 +439,7 @@
         </div>
       </a>
 
-      <a href="parties.html" class="explore-tile">
+      <a href="https://afrocue.xyz/parties.html" class="explore-tile">
         <span class="tile-arrow">↗</span>
         <div class="tile-icon">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
@@ -479,22 +453,20 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-brand">
-    <a href="index.html"><img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none'"></a>
+    <a href="https://afrocue.xyz/index.html"><img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none'"></a>
   </div>
   <div class="footer-links">
-    <a href="index.html#about">About</a>
-    <a href="index.html#content">Content</a>
-    <a href="dj.html">DJ Signup</a>
-    <a href="index.html#playlists">Playlists</a>
+    <a href="https://afrocue.xyz/index.html#about">About</a>
+    <a href="https://afrocue.xyz/index.html#content">Content</a>
+    <a href="https://afrocue.xyz/dj.html">DJ Signup</a>
+    <a href="https://afrocue.xyz/index.html#playlists">Playlists</a>
   </div>
   <div class="footer-email"><a href="mailto:hello@afrocue.xyz">hello@afrocue.xyz</a></div>
 </footer>
 
 <script>
-  // Personalize the greeting from ?name= query param
   (function() {
     try {
       const params = new URLSearchParams(window.location.search);
@@ -511,9 +483,7 @@
       const h1 = document.getElementById('hero-title');
       h1.innerHTML = '<span class="name">' + safe + '</span>, you\'re a Roamer.';
       document.title = safe + ', you\'re a Roamer — AfroCue';
-    } catch (e) {
-      // silently fall back to default greeting
-    }
+    } catch (e) {}
   })();
 </script>
 
