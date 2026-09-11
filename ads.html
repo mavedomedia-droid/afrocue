@@ -17,7 +17,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Shared AfroCue config — absolute path so it always loads -->
+  <!-- Shared AfroCue config -->
   <script src="https://afrocue.xyz/afrocue.js"></script>
 
   <style>
@@ -46,7 +46,6 @@
     button { font-family: inherit; cursor: pointer; }
     img { display: block; max-width: 100%; }
 
-    /* NAV */
     nav {
       position: fixed; top:0; left:0; right:0; z-index:900;
       display: flex; align-items: center; justify-content: space-between;
@@ -88,7 +87,6 @@
     }
     .section-h.yellow { color: var(--yellow); text-shadow: var(--yts); }
 
-    /* STATUS BANNER (debug) */
     .cat-status {
       display: none;
       padding: 12px 16px;
@@ -102,7 +100,6 @@
     .cat-status.show { display: block; }
     .cat-status.error { border-color: rgba(255,80,80,0.3); color: #ff8080; }
 
-    /* HERO */
     .hero {
       position: relative;
       padding: 160px 40px 100px;
@@ -178,7 +175,6 @@
       text-transform: uppercase; color: var(--silver);
     }
 
-    /* PILLARS */
     .pillars { padding: 64px 40px; border-bottom: 1px solid rgba(255,255,255,0.06); background: var(--dark); }
     .pillars-inner {
       max-width: 1120px; margin: 0 auto;
@@ -201,14 +197,12 @@
     }
     .pillar-desc { font-size: 12px; font-weight: 300; line-height: 1.55; color: rgba(240,237,232,0.5); }
 
-    /* CATALOGUE */
     .catalogue { padding: 96px 40px; }
     .cat-header { margin-bottom: 56px; }
     .cat-header .label { margin-bottom: 20px; }
     .cat-header .section-h { margin-bottom: 18px; }
     .cat-header .section-sub { font-size: 16px; }
 
-    /* TABS */
     .cat-tabs {
       display: flex; gap: 4px;
       margin-bottom: 40px;
@@ -279,7 +273,6 @@
       color: rgba(240,237,232,0.65); max-width: 640px;
     }
 
-    /* PRODUCT CARDS */
     .cat-list { display: flex; flex-direction: column; gap: 18px; }
 
     .prod {
@@ -358,7 +351,6 @@
     }
     .prod-desc { font-size: 13px; font-weight: 300; line-height: 1.6; color: rgba(240,237,232,0.68); }
 
-    /* PRICE ON CARD */
     .prod-price {
       display: flex; align-items: baseline; gap: 8px;
       padding: 4px 0;
@@ -423,7 +415,6 @@
       letter-spacing: 0.01em;
     }
 
-    /* BRAND TILES */
     .brand-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
     .brand-tile {
       background: linear-gradient(155deg, rgba(200,224,0,0.04) 0%, rgba(255,255,255,0.01) 100%);
@@ -472,7 +463,6 @@
       border-color: rgba(200,224,0,0.25);
     }
 
-    /* RATE CARD */
     .rates {
       padding: 96px 40px;
       background: var(--dark);
@@ -522,7 +512,6 @@
       margin-top: 24px; line-height: 1.7;
     }
 
-    /* AMPLIFICATION */
     .amp {
       background: linear-gradient(155deg, #101608 0%, #0a0a0a 65%);
       padding: 96px 40px;
@@ -596,7 +585,6 @@
       line-height: 1.4;
     }
 
-    /* BUILD YOUR OWN */
     .build { padding: 96px 40px; }
     .build-head { max-width: 720px; margin-bottom: 48px; }
     .build-head .section-h { font-size: clamp(32px, 4.5vw, 52px); }
@@ -616,7 +604,6 @@
     .build-block:hover { border-color: rgba(200,224,0,0.35); background: rgba(200,224,0,0.04); color: var(--yellow); }
     .build-cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
 
-    /* FINAL CTA */
     .final {
       padding: 96px 40px 104px;
       background: linear-gradient(160deg, #0d0d0d 0%, #0a0a0a 100%);
@@ -638,7 +625,6 @@
     }
     .final-email:hover { color: var(--off); }
 
-    /* FOOTER */
     footer {
       border-top: 1px solid rgba(255,255,255,0.06);
       padding: 40px 40px;
@@ -652,7 +638,6 @@
     .footer-email a { font-size: 11px; color: var(--grey); }
     .footer-email a:hover { color: var(--white); }
 
-    /* INQUIRY MODAL */
     .inq-overlay {
       display: none;
       position: fixed; inset: 0; z-index: 9999;
@@ -809,7 +794,6 @@
     .inq-foot a { color: var(--yellow); text-decoration: none; }
     .inq-foot a:hover { text-decoration: underline; }
 
-    /* RESPONSIVE */
     @media (max-width: 960px) {
       nav { padding: 14px 24px; }
       .nav-links { display: none; }
@@ -862,7 +846,6 @@
 
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<!-- NAV -->
 <nav>
   <a class="nav-logo" href="https://afrocue.xyz/index.html">
     <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue"
@@ -877,7 +860,6 @@
   <button class="nav-cta" onclick="openInquiry()">Start a conversation</button>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"><img src="https://afrocue.xyz/hero_dj.jpg" alt="AfroCue"/></div>
   <div class="hero-texture"></div>
@@ -905,7 +887,6 @@
   </div>
 </section>
 
-<!-- PILLARS -->
 <section class="pillars">
   <div class="pillars-inner">
     <div class="pillar"><span class="pillar-num">01</span><div class="pillar-name">MEDIA</div><div class="pillar-desc">Editorial placements across Instagram, YouTube and our newsletter.</div></div>
@@ -915,7 +896,6 @@
   </div>
 </section>
 
-<!-- CATALOGUE -->
 <section class="catalogue" id="catalogue">
   <div class="inner">
     <div class="cat-header">
@@ -968,7 +948,6 @@
   </div>
 </section>
 
-<!-- RATE CARD -->
 <section class="rates" id="rates">
   <div class="inner">
     <div class="rates-head">
@@ -989,7 +968,6 @@
   </div>
 </section>
 
-<!-- AMPLIFICATION -->
 <section class="amp" id="amplification">
   <div class="amp-inner">
     <div class="amp-head">
@@ -1038,7 +1016,6 @@
   </div>
 </section>
 
-<!-- BUILD YOUR OWN -->
 <section class="build" id="build">
   <div class="inner">
     <div class="build-head">
@@ -1065,7 +1042,6 @@
   </div>
 </section>
 
-<!-- FINAL CTA -->
 <section class="final" id="contact">
   <div class="final-inner">
     <div class="label">Start a conversation</div>
@@ -1095,7 +1071,6 @@
   <div class="footer-email"><a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a></div>
 </footer>
 
-<!-- INQUIRY MODAL -->
 <div class="inq-overlay" id="inqOverlay">
   <div class="inq-modal" role="dialog" aria-labelledby="inqTitle">
     <button class="inq-close" onclick="closeInquiry()" aria-label="Close">✕</button>
@@ -1139,23 +1114,14 @@
 </div>
 
 <script>
-  // ═════════════════════════════════════════════════════════════════
-  //  CONFIG
-  //  afrocue.js already declares window.AFROCUE_SCRIPT_URL.
-  //  We read it into a differently-named variable so we don't
-  //  redeclare the global (which would crash the whole script).
-  // ═════════════════════════════════════════════════════════════════
   const INQUIRY_EMAIL = 'afrocueonline@gmail.com';
 
+  // afrocue.js declares window.AFROCUE_SCRIPT_URL — use a different local name
   const ADS_SCRIPT_URL = (typeof AFROCUE_SCRIPT_URL !== 'undefined' && AFROCUE_SCRIPT_URL)
     ? AFROCUE_SCRIPT_URL
     : (typeof getAfroCueScriptUrl === 'function' ? getAfroCueScriptUrl() : 'https://script.google.com/macros/s/AKfycbzOY0qvume6bE3S_XWyMShb1xK81ZxzpOD2moZb48qWFcDtSmZhis8g-E2g2v_5hOM-/exec');
 
   console.log('[AfroCue Ads] Using GAS URL:', ADS_SCRIPT_URL);
-
-  // ═════════════════════════════════════════════════════════════════
-  //  FALLBACK DATA (renders instantly; live data replaces it)
-  // ═════════════════════════════════════════════════════════════════
 
   const DJ_PRODUCTS_FALLBACK = [
     { id:'TOP_5', name:'Top 5', format:'Slideshow', price:'30,000', priceType:'fixed', description:"AfroCue's weekly Top 5 sets from the weekend. Your moment, standing out from everything else.", needs:['HD video of the DJ','Party flyer'], addon:{name:'Media coverage',price:'+₦50K'}, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_top5_sample.jpg', exampleType:'video' },
@@ -1203,14 +1169,9 @@
   let PARTY_PRODUCTS = PARTY_PRODUCTS_FALLBACK;
   let BRAND_PARTNERSHIPS = BRAND_PARTNERSHIPS_FALLBACK;
 
-  // ═════════════════════════════════════════════════════════════════
-  //  RENDERERS
-  // ═════════════════════════════════════════════════════════════════
-
   function renderPrice(product) {
     if (!product.price && product.priceType !== 'custom') return '';
     const pt = product.priceType || 'fixed';
-
     if (pt === 'custom' || product.price === 'Custom') {
       return `<div class="prod-price"><span class="prod-price-num">Let's talk</span></div>`;
     }
@@ -1351,18 +1312,10 @@
     else el.classList.remove('error');
   }
 
-  // ═════════════════════════════════════════════════════════════════
-  //  TABS
-  // ═════════════════════════════════════════════════════════════════
-
   function switchCatTab(tab) {
     document.querySelectorAll('.cat-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
     document.querySelectorAll('.cat-panel').forEach(p => p.classList.toggle('active', p.dataset.panel === tab));
   }
-
-  // ═════════════════════════════════════════════════════════════════
-  //  INQUIRY MODAL
-  // ═════════════════════════════════════════════════════════════════
 
   const INQ_GROUPS = { djs: [], parties: [], brands: [] };
   let inqActiveTab = 'djs';
@@ -1502,69 +1455,82 @@
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeInquiry(); });
 
   // ═════════════════════════════════════════════════════════════════
-  //  INIT — render fallback, then fetch live data
+  //  JSONP LOADER — works around GAS CORS/redirect limitation
   // ═════════════════════════════════════════════════════════════════
 
-  document.addEventListener('DOMContentLoaded', async () => {
-    console.log('[AfroCue Ads] DOMContentLoaded — rendering fallback data');
-    renderAll();
+  function loadAdsViaJsonp() {
+    return new Promise((resolve, reject) => {
+      const callbackName = 'afrocueAdsCb_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
+      const script = document.createElement('script');
 
-    const fetchUrl = ADS_SCRIPT_URL + '?export=ads';
-    console.log('[AfroCue Ads] Fetching:', fetchUrl);
+      const timer = setTimeout(() => {
+        cleanup();
+        reject(new Error('JSONP timeout — GAS did not respond within 15s'));
+      }, 15000);
 
-    try {
-      const res = await fetch(fetchUrl);
-      console.log('[AfroCue Ads] Response status:', res.status);
-
-      const raw = await res.text();
-      console.log('[AfroCue Ads] Response body (first 300 chars):', raw.slice(0, 300));
-
-      let data;
-      try {
-        data = JSON.parse(raw);
-      } catch (parseErr) {
-        console.error('[AfroCue Ads] JSON parse failed. Raw response:', raw);
-        setStatus('Sheet fetch returned invalid data. Using fallback content. Check the console for details.', true);
-        return;
+      function cleanup() {
+        clearTimeout(timer);
+        try { delete window[callbackName]; } catch (e) { window[callbackName] = undefined; }
+        if (script.parentNode) script.parentNode.removeChild(script);
       }
 
+      window[callbackName] = function (data) {
+        cleanup();
+        resolve(data);
+      };
+
+      script.onerror = function () {
+        cleanup();
+        reject(new Error('JSONP script load error'));
+      };
+
+      script.src = ADS_SCRIPT_URL + '?export=ads&callback=' + encodeURIComponent(callbackName);
+      document.head.appendChild(script);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    console.log('[AfroCue Ads] DOMContentLoaded — rendering fallback first');
+    renderAll();
+
+    console.log('[AfroCue Ads] Loading via JSONP:', ADS_SCRIPT_URL + '?export=ads');
+
+    try {
+      const data = await loadAdsViaJsonp();
+      console.log('[AfroCue Ads] JSONP response:', data);
+
       if (data.error) {
-        console.error('[AfroCue Ads] GAS returned an error:', data.error);
         setStatus('GAS error: ' + data.error, true);
         return;
       }
 
-      const hasDjs = Array.isArray(data.djs);
-      const hasParties = Array.isArray(data.parties);
-      const hasBrands = Array.isArray(data.brands);
-
+      const ok = Array.isArray(data.djs) && Array.isArray(data.parties) && Array.isArray(data.brands);
       console.log('[AfroCue Ads] Data shape:', {
-        djs: hasDjs ? data.djs.length : 'missing',
-        parties: hasParties ? data.parties.length : 'missing',
-        brands: hasBrands ? data.brands.length : 'missing'
+        djs: Array.isArray(data.djs) ? data.djs.length : 'missing',
+        parties: Array.isArray(data.parties) ? data.parties.length : 'missing',
+        brands: Array.isArray(data.brands) ? data.brands.length : 'missing'
       });
 
-      if (!hasDjs || !hasParties || !hasBrands) {
-        setStatus('Sheet response missing djs/parties/brands. Using fallback content. Check the console for the raw response.', true);
+      if (!ok) {
+        setStatus('Sheet response malformed. Using fallback content.', true);
         return;
       }
 
       if (data.djs.length === 0 && data.parties.length === 0 && data.brands.length === 0) {
-        setStatus('Sheet returned empty arrays. Check the Ads tab — the "Audience" column values must be exactly DJ, Party, or Brand.', true);
+        setStatus('Sheet returned empty arrays. Check the "Audience" column has DJ / Party / Brand.', true);
         return;
       }
 
-      // Success — replace data and re-render
       DJ_PRODUCTS = data.djs;
       PARTY_PRODUCTS = data.parties;
       BRAND_PARTNERSHIPS = data.brands;
       renderAll();
-      setStatus('Loaded ' + data.djs.length + ' DJ · ' + data.parties.length + ' Party · ' + data.brands.length + ' Brand placements from the sheet.');
+      setStatus('Loaded ' + data.djs.length + ' DJ · ' + data.parties.length + ' Party · ' + data.brands.length + ' Brand placements.');
       console.log('[AfroCue Ads] Live data rendered successfully');
 
     } catch (err) {
-      console.error('[AfroCue Ads] Fetch failed:', err);
-      setStatus('Could not reach the sheet (network/CORS error). Using fallback content. Check the console.', true);
+      console.error('[AfroCue Ads] JSONP failed:', err);
+      setStatus('Could not reach the sheet: ' + err.message, true);
     }
   });
 </script>
