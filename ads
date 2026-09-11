@@ -1,0 +1,1836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Advertise with AfroCue — For DJs, Parties & Brands</title>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="apple-touch-icon" href="favicon.png"/>
+  <meta name="description" content="Work with AfroCue. Promotion for DJs, content for parties, partnerships for brands."/>
+  <link rel="canonical" href="https://afrocue.xyz/ads"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://afrocue.xyz/ads"/>
+  <meta property="og:title" content="Advertise with AfroCue"/>
+  <meta property="og:description" content="Put your brand in the culture."/>
+  <meta property="og:image" content="https://afrocue.xyz/hero_dj.jpg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@afrocue_"/>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
+
+    :root {
+      --black:  #0a0a0a;
+      --dark:   #111111;
+      --dark2:  #181818;
+      --dark3:  #1f1f1f;
+      --grey:   #555555;
+      --silver: #888888;
+      --off:    #d4d4d0;
+      --white:  #f0ede8;
+      --yellow: #C8E000;
+      --yts:    2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.06);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      background: var(--black); color: var(--white);
+      font-family: 'Figtree', sans-serif;
+      overflow-x: hidden; -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top:0; left:0; right:0; z-index:900;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(10,10,10,0.72); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .nav-logo { display:flex; align-items:center; }
+    .nav-logo img { height: 38px; width: auto; }
+    .nav-logo-fallback { display:none; font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:17px; color:var(--yellow); letter-spacing:0.08em; }
+    .nav-links { display:flex; gap:28px; list-style:none; align-items:center; }
+    .nav-links a { font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(240,237,232,0.7); transition:color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+      color: var(--black); background: var(--white);
+      padding: 10px 20px; border-radius: 2px;
+      transition: background 0.2s; white-space: nowrap;
+      border: none;
+    }
+    .nav-cta:hover { background: var(--off); }
+
+    /* ─── SHARED ─── */
+    .inner { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
+    .label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--silver); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .label::before { content: ''; width: 20px; height: 1px; background: var(--silver); flex-shrink: 0; }
+    .section-h {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: clamp(30px, 4.2vw, 46px); line-height: 0.98;
+      color: var(--white); margin-bottom: 14px;
+      letter-spacing: -0.005em;
+    }
+    .section-sub {
+      font-size: 15px; font-weight: 300; line-height: 1.7;
+      color: rgba(240,237,232,0.6); max-width: 620px;
+    }
+    .section-h.yellow { color: var(--yellow); text-shadow: var(--yts); }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      padding: 160px 40px 100px;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .hero-bg img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 40%;
+      opacity: 0.28;
+    }
+    .hero-texture {
+      position: absolute; inset: 0; z-index: 1;
+      background-image: url('texture.jpg'); background-size: cover;
+      opacity: 0.3; mix-blend-mode: overlay; pointer-events: none;
+    }
+    .hero-scrim {
+      position: absolute; inset: 0; z-index: 2;
+      background:
+        linear-gradient(180deg,
+          rgba(10,10,10,0.6) 0%,
+          rgba(10,10,10,0.4) 40%,
+          rgba(10,10,10,0.95) 100%
+        );
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative; z-index: 3;
+      max-width: 1120px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr auto;
+      align-items: end; gap: 60px;
+    }
+    .hero-copy { max-width: 720px; }
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--yellow); margin-bottom: 28px;
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .hero-eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--yellow); }
+    .hero-h1 {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: clamp(44px, 8vw, 96px); line-height: 0.9;
+      color: var(--yellow); text-shadow: var(--yts);
+      letter-spacing: -0.01em; margin-bottom: 24px;
+    }
+    .hero-h1 .alt { color: var(--white); text-shadow: 2px 3px 0px rgba(0,0,0,0.9); }
+    .hero-sub {
+      font-size: clamp(15px, 1.8vw, 18px); font-weight: 300; line-height: 1.65;
+      color: rgba(240,237,232,0.75); max-width: 560px; margin-bottom: 36px;
+    }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'Figtree', sans-serif; font-size: 12px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 16px 28px; border-radius: 4px; border: none;
+      cursor: pointer; transition: all 0.2s; white-space: nowrap;
+      min-height: 48px;
+    }
+    .btn-primary { background: var(--yellow); color: var(--black); }
+    .btn-primary:hover { background: var(--off); transform: translateY(-1px); }
+    .btn-secondary { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.25); }
+    .btn-secondary:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
+    .btn svg { width: 14px; height: 14px; }
+
+    .hero-side {
+      align-self: end;
+      display: flex; flex-direction: column; gap: 20px;
+      max-width: 240px;
+    }
+    .hero-stat {
+      padding: 18px 20px;
+      background: rgba(17,17,17,0.7);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+    }
+    .hero-stat-num {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: 24px; line-height: 1; color: var(--yellow); margin-bottom: 6px;
+    }
+    .hero-stat-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--silver);
+    }
+
+    /* ─── PILLARS ─── */
+    .pillars {
+      padding: 64px 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: var(--dark);
+    }
+    .pillars-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .pillar {
+      padding: 28px 24px;
+      background: var(--dark);
+      transition: background 0.2s;
+    }
+    .pillar:hover { background: var(--dark2); }
+    .pillar-num {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: 12px; color: var(--yellow);
+      letter-spacing: 0.14em; margin-bottom: 14px;
+      display: block;
+    }
+    .pillar-name {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: 20px; line-height: 1; color: var(--white);
+      margin-bottom: 10px; letter-spacing: 0.02em;
+    }
+    .pillar-desc {
+      font-size: 12px; font-weight: 300; line-height: 1.55;
+      color: rgba(240,237,232,0.5);
+    }
+
+    /* ─── CATALOGUE ─── */
+    .catalogue { padding: 96px 40px; }
+    .cat-header { margin-bottom: 72px; }
+    .cat-header .label { margin-bottom: 20px; }
+    .cat-header .section-h { margin-bottom: 18px; }
+    .cat-header .section-sub { font-size: 16px; }
+
+    .aud-section {
+      margin-bottom: 112px;
+      position: relative;
+    }
+    .aud-section:last-child { margin-bottom: 0; }
+
+    .aud-head {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 32px;
+      align-items: flex-start;
+      padding-bottom: 32px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .aud-number {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: clamp(52px, 7vw, 88px); line-height: 0.85;
+      color: var(--yellow); text-shadow: var(--yts);
+      letter-spacing: -0.02em;
+      padding-top: 4px;
+    }
+    .aud-copy { padding-top: 8px; }
+    .aud-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--silver); margin-bottom: 14px;
+    }
+    .aud-name {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: clamp(28px, 3.8vw, 42px); line-height: 1;
+      color: var(--white); margin-bottom: 16px;
+      letter-spacing: -0.005em;
+    }
+    .aud-intro {
+      font-size: 15px; font-weight: 300; line-height: 1.75;
+      color: rgba(240,237,232,0.65); max-width: 640px;
+    }
+
+    /* ─── PRODUCT CARDS ─── */
+    .cat-list { display: flex; flex-direction: column; gap: 18px; }
+
+    .prod {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      background: var(--dark2);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.25s;
+      position: relative;
+    }
+    .prod:hover { border-color: rgba(200,224,0,0.28); }
+
+    .prod-media {
+      position: relative;
+      background: #000;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      display: block;
+    }
+    .prod-media img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .prod:hover .prod-media img { transform: scale(1.03); }
+    .prod-media-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(10,10,10,0.05) 0%, rgba(10,10,10,0.4) 100%);
+      pointer-events: none;
+    }
+    .prod-play {
+      position: absolute; top: 14px; right: 14px;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(10,10,10,0.55);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.22);
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.25s;
+    }
+    .prod-play svg { width: 12px; height: 12px; fill: var(--white); margin-left: 2px; }
+    .prod:hover .prod-play { background: rgba(200,224,0,0.85); border-color: var(--yellow); }
+    .prod:hover .prod-play svg { fill: var(--black); }
+
+    .prod-example-link {
+      position: absolute; bottom: 12px; left: 12px;
+      padding: 6px 11px;
+      background: rgba(10,10,10,0.65);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      font-size: 9px; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--white);
+      display: inline-flex; align-items: center; gap: 5px;
+      transition: all 0.2s;
+    }
+    .prod-example-link svg { width: 9px; height: 9px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .prod:hover .prod-example-link { background: rgba(200,224,0,0.85); border-color: var(--yellow); color: var(--black); }
+
+    .prod-body {
+      padding: 24px 28px 20px;
+      display: flex; flex-direction: column;
+      gap: 12px;
+      min-height: 100%;
+    }
+
+    .prod-meta {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--silver);
+    }
+    .prod-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--grey); }
+
+    .prod-name {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: 22px; line-height: 1.05;
+      color: var(--white); letter-spacing: -0.005em;
+    }
+
+    .prod-desc {
+      font-size: 13px; font-weight: 300; line-height: 1.6;
+      color: rgba(240,237,232,0.68);
+    }
+
+    .prod-needs {
+      display: flex; gap: 8px;
+      font-size: 12px; line-height: 1.5;
+      padding-top: 2px;
+    }
+    .prod-needs-label {
+      font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      font-size: 9px; color: var(--silver);
+      padding-top: 2px;
+      flex-shrink: 0;
+    }
+    .prod-needs-items {
+      color: rgba(240,237,232,0.7);
+      font-weight: 400;
+    }
+    .prod-needs-items .sep { color: var(--grey); margin: 0 4px; }
+
+    .prod-addon {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 12px;
+      background: rgba(200,224,0,0.05);
+      border: 1px solid rgba(200,224,0,0.15);
+      border-radius: 100px;
+      font-size: 11px;
+      align-self: flex-start;
+    }
+    .prod-addon-label {
+      font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      font-size: 9px; color: var(--yellow);
+    }
+    .prod-addon-text { color: rgba(240,237,232,0.8); font-weight: 400; }
+    .prod-addon-text strong { color: var(--yellow); font-weight: 600; margin-left: 4px; }
+
+    .prod-inquire {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 14px;
+      background: transparent;
+      border: 1px solid rgba(200,224,0,0.35);
+      border-radius: 100px;
+      font-family: 'Figtree', sans-serif;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--yellow);
+      cursor: pointer;
+      transition: all 0.2s;
+      align-self: flex-start;
+      margin-top: 4px;
+    }
+    .prod-inquire:hover {
+      background: var(--yellow);
+      color: var(--black);
+      border-color: var(--yellow);
+    }
+    .prod-inquire svg {
+      width: 11px; height: 11px;
+      stroke: currentColor; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    .prod-amp-note {
+      font-size: 11px;
+      font-style: italic;
+      color: rgba(240,237,232,0.42);
+      margin-top: auto;
+      padding-top: 8px;
+      letter-spacing: 0.01em;
+    }
+
+    /* ─── BRAND TILES ─── */
+    .brand-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .brand-tile {
+      background: linear-gradient(155deg, rgba(200,224,0,0.04) 0%, rgba(255,255,255,0.01) 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 28px 26px 24px;
+      display: flex; flex-direction: column;
+      gap: 14px;
+      position: relative;
+      min-height: 200px;
+      transition: border-color 0.25s, transform 0.25s;
+      text-decoration: none;
+      overflow: hidden;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      color: inherit;
+    }
+    .brand-tile::before {
+      content: ''; position: absolute; top: -80px; right: -80px;
+      width: 220px; height: 220px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,224,0,0.08) 0%, transparent 70%);
+      pointer-events: none;
+      opacity: 0.6;
+      transition: opacity 0.3s;
+    }
+    .brand-tile:hover::before { opacity: 1; }
+    .brand-tile:hover {
+      border-color: rgba(200,224,0,0.35);
+      transform: translateY(-2px);
+    }
+
+    .brand-icon {
+      width: 28px; height: 28px; color: var(--yellow);
+      position: relative; z-index: 1;
+    }
+    .brand-icon svg {
+      width: 100%; height: 100%;
+      stroke: currentColor; fill: none;
+      stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .brand-name {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: 22px; line-height: 1; color: var(--white);
+      letter-spacing: -0.005em;
+      position: relative; z-index: 1;
+    }
+    .brand-desc {
+      font-size: 13px; font-weight: 300; line-height: 1.6;
+      color: rgba(240,237,232,0.58);
+      position: relative; z-index: 1;
+    }
+    .brand-foot {
+      margin-top: auto;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--yellow);
+      display: flex; align-items: center; gap: 8px;
+      position: relative; z-index: 1;
+    }
+    .brand-foot .arrow { transition: transform 0.2s; }
+    .brand-tile:hover .brand-foot .arrow { transform: translate(3px, -3px); }
+
+    .brand-tile-wide {
+      grid-column: 1 / -1;
+      background: linear-gradient(155deg, rgba(200,224,0,0.07) 0%, rgba(255,255,255,0.015) 100%);
+      border-color: rgba(200,224,0,0.25);
+    }
+
+    /* ─── RATE CARD ─── */
+    .rates {
+      padding: 96px 40px;
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .rates-head { margin-bottom: 40px; }
+    .rate-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .rate-table thead { border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .rate-table th {
+      text-align: left;
+      padding: 14px 16px 18px;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--silver);
+    }
+    .rate-table th:last-child { text-align: right; }
+    .rate-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-weight: 400;
+      color: rgba(240,237,232,0.85);
+    }
+    .rate-table td.rate-name { font-weight: 500; color: var(--white); }
+    .rate-table td.rate-price {
+      text-align: right;
+      font-weight: 500;
+      font-size: 14px;
+      color: rgba(240,237,232,0.72);
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+    .rate-table td.rate-price .prefix {
+      font-size: 11px;
+      color: var(--silver);
+      margin-right: 4px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .rate-table tr:hover td { background: rgba(200,224,0,0.02); }
+    .rate-table tr:last-child td { border-bottom: none; }
+    .rate-cat-row td {
+      padding-top: 32px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      font-family: 'Aesthet Nova', sans-serif;
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--yellow);
+    }
+    .rate-cat-row:hover td { background: transparent; }
+
+    .rate-note {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(240,237,232,0.45);
+      margin-top: 24px;
+      line-height: 1.7;
+    }
+
+    /* ─── AMPLIFICATION ─── */
+    .amp {
+      background: linear-gradient(155deg, #101608 0%, #0a0a0a 65%);
+      padding: 96px 40px;
+      position: relative; overflow: hidden;
+    }
+    .amp::before {
+      content: ''; position: absolute; top: -160px; right: -160px;
+      width: 480px; height: 480px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,224,0,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .amp-inner {
+      position: relative; z-index: 1;
+      max-width: 1120px; margin: 0 auto;
+    }
+    .amp-head { max-width: 720px; margin-bottom: 56px; }
+    .amp-head .label { margin-bottom: 20px; }
+    .amp-head .section-h { font-size: clamp(34px, 4.8vw, 56px); margin-bottom: 20px; }
+    .amp-head .section-sub { font-size: 16px; }
+
+    .amp-main {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+      margin-bottom: 72px;
+      padding-bottom: 72px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .amp-main-copy .amp-price {
+      display: flex; align-items: baseline; gap: 10px;
+      margin-bottom: 8px;
+    }
+    .amp-main-copy .amp-price-num {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: 40px; line-height: 1; color: var(--yellow);
+      text-shadow: var(--yts);
+    }
+    .amp-main-copy .amp-price-suffix {
+      font-size: 13px; font-weight: 500; color: rgba(240,237,232,0.6);
+      letter-spacing: 0.04em;
+    }
+    .amp-main-copy p {
+      font-size: 15px; font-weight: 300; line-height: 1.75;
+      color: rgba(240,237,232,0.7);
+      margin-bottom: 12px;
+    }
+
+    .amp-visual {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .amp-tile {
+      aspect-ratio: 1 / 1;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      display: flex; flex-direction: column;
+      justify-content: space-between;
+      padding: 18px 16px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .amp-tile:hover {
+      border-color: rgba(200,224,0,0.3);
+      background: rgba(200,224,0,0.03);
+    }
+    .amp-tile-icon {
+      width: 26px; height: 26px; color: var(--yellow);
+    }
+    .amp-tile-icon svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .amp-tile-name {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: 15px; line-height: 1.1; color: var(--white);
+      margin-top: auto;
+    }
+
+    .amp-extras-label {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--silver); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .amp-extras-label::before {
+      content: ''; width: 20px; height: 1px; background: var(--silver);
+    }
+    .amp-extras {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .amp-extra {
+      padding: 20px 18px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      font-size: 13px; font-weight: 500;
+      color: rgba(240,237,232,0.8);
+      line-height: 1.4;
+    }
+
+    /* ─── BUILD YOUR OWN ─── */
+    .build {
+      padding: 96px 40px;
+    }
+    .build-head { max-width: 720px; margin-bottom: 48px; }
+    .build-head .section-h { font-size: clamp(32px, 4.5vw, 52px); }
+    .build-head .section-h.yellow { margin-bottom: 20px; }
+    .build-head .section-sub { font-size: 16px; }
+
+    .build-blocks {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-bottom: 40px;
+    }
+    .build-block {
+      padding: 14px 22px;
+      background: var(--dark2);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 100px;
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--white);
+      transition: all 0.2s;
+      cursor: default;
+    }
+    .build-block:hover {
+      border-color: rgba(200,224,0,0.35);
+      background: rgba(200,224,0,0.04);
+      color: var(--yellow);
+    }
+
+    .build-cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* ─── FINAL CTA ─── */
+    .final {
+      padding: 96px 40px 104px;
+      background: linear-gradient(160deg, #0d0d0d 0%, #0a0a0a 100%);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+    }
+    .final-inner { max-width: 720px; margin: 0 auto; }
+    .final .label { justify-content: center; }
+    .final .label::before { display: none; }
+    .final .label::after {
+      content: ''; width: 20px; height: 1px; background: var(--silver);
+    }
+    .final .section-h {
+      font-size: clamp(38px, 5.5vw, 64px);
+      margin-bottom: 20px;
+    }
+    .final .section-sub {
+      font-size: 16px; margin: 0 auto 36px;
+    }
+    .final-contacts {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+      margin-top: 28px;
+    }
+    .final-email {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: 18px; letter-spacing: 0.06em;
+      color: var(--yellow);
+      margin-top: 28px;
+      display: block;
+    }
+    .final-email:hover { color: var(--off); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 40px 40px;
+      display: flex; flex-direction: column; align-items: center; gap: 18px;
+      background: var(--dark); text-align: center;
+    }
+    .footer-brand img { height: 38px; width: auto; }
+    .footer-links { display: flex; gap: 22px; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-email a { font-size: 11px; color: var(--grey); }
+    .footer-email a:hover { color: var(--white); }
+
+    /* ─── INQUIRY MODAL ─── */
+    .inq-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(10,10,10,0.88);
+      backdrop-filter: blur(16px);
+      align-items: center; justify-content: center;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .inq-overlay.open { display: flex; }
+
+    .inq-modal {
+      position: relative;
+      background: var(--dark2);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      max-width: 640px;
+      width: 100%;
+      padding: 32px 32px 28px;
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: inqFadeUp 0.3s ease both;
+    }
+    @keyframes inqFadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .inq-close {
+      position: absolute; top: 14px; right: 14px;
+      width: 36px; height: 36px;
+      background: transparent; border: none;
+      color: var(--silver); font-size: 20px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .inq-close:hover { background: rgba(255,255,255,0.06); color: var(--white); }
+
+    .inq-label {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--yellow); margin-bottom: 10px;
+    }
+    .inq-h {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: 28px; line-height: 1.05;
+      color: var(--white); margin-bottom: 8px;
+      letter-spacing: -0.005em;
+    }
+    .inq-sub {
+      font-size: 15px; font-weight: 300; line-height: 1.6;
+      color: rgba(240,237,232,0.55);
+      margin-bottom: 24px;
+    }
+
+    .inq-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .inq-field { margin-bottom: 16px; }
+    .inq-field label {
+      display: block;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--silver); margin-bottom: 8px;
+    }
+    .inq-field input,
+    .inq-field textarea {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      color: var(--white);
+      font-family: 'Figtree', sans-serif;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+    .inq-field textarea { min-height: 90px; line-height: 1.55; }
+    .inq-field input:focus,
+    .inq-field textarea:focus { border-color: rgba(200,224,0,0.5); }
+    .inq-field input::placeholder,
+    .inq-field textarea::placeholder { color: rgba(240,237,232,0.32); }
+
+    .inq-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+      padding: 4px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+      margin-bottom: 14px;
+    }
+    .inq-tab {
+      padding: 11px 12px;
+      background: transparent;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Figtree', sans-serif;
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 0.04em;
+      color: rgba(240,237,232,0.55);
+      cursor: pointer;
+      transition: all 0.18s;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .inq-tab:hover { color: var(--white); }
+    .inq-tab.active {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    .inq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 16px;
+      min-height: 120px;
+    }
+
+    .inq-opt {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px; font-weight: 500;
+      color: rgba(240,237,232,0.85);
+      transition: all 0.15s;
+      user-select: none;
+      line-height: 1.3;
+      text-align: left;
+    }
+    .inq-opt:hover {
+      border-color: rgba(200,224,0,0.3);
+      background: rgba(255,255,255,0.04);
+    }
+    .inq-opt input { display: none; }
+    .inq-opt .inq-box {
+      width: 18px; height: 18px;
+      border-radius: 5px;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s;
+    }
+    .inq-opt.checked .inq-box {
+      background: var(--yellow);
+      border-color: var(--yellow);
+    }
+    .inq-opt.checked .inq-box::after {
+      content: '';
+      width: 10px; height: 5px;
+      border-left: 2px solid var(--black);
+      border-bottom: 2px solid var(--black);
+      transform: rotate(-45deg);
+      margin-top: -2px;
+    }
+    .inq-opt.checked {
+      border-color: rgba(200,224,0,0.4);
+      background: rgba(200,224,0,0.06);
+      color: var(--white);
+    }
+
+    .inq-summary {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(240,237,232,0.5);
+      margin-bottom: 16px;
+      min-height: 18px;
+      line-height: 1.5;
+    }
+    .inq-summary strong {
+      color: var(--yellow);
+      font-weight: 600;
+    }
+
+    .inq-submit {
+      display: block; width: 100%;
+      margin-top: 8px;
+      padding: 16px 24px;
+      background: var(--yellow);
+      color: var(--black);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Figtree', sans-serif;
+      font-size: 13px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .inq-submit:hover { background: var(--off); transform: translateY(-1px); }
+    .inq-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .inq-foot {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(240,237,232,0.42);
+      text-align: center;
+      margin-top: 14px;
+      line-height: 1.5;
+    }
+    .inq-foot a { color: var(--yellow); text-decoration: none; }
+    .inq-foot a:hover { text-decoration: underline; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      nav { padding: 14px 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 130px 24px 72px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; align-items: start; }
+      .hero-side { max-width: 100%; flex-direction: row; flex-wrap: wrap; }
+      .hero-stat { flex: 1 1 160px; }
+      .inner { padding: 0 24px; }
+      .pillars { padding: 48px 24px; }
+      .pillars-inner { grid-template-columns: repeat(2, 1fr); }
+      .catalogue { padding: 72px 24px; }
+      .aud-section { margin-bottom: 80px; }
+      .aud-head { grid-template-columns: 1fr; gap: 16px; padding-bottom: 24px; }
+      .aud-number { font-size: 56px; }
+      .prod { grid-template-columns: 280px 1fr; }
+      .brand-grid { grid-template-columns: 1fr; }
+      .rates { padding: 72px 24px; }
+      .amp { padding: 72px 24px; }
+      .amp-main { grid-template-columns: 1fr; gap: 40px; padding-bottom: 48px; margin-bottom: 48px; }
+      .amp-extras { grid-template-columns: 1fr 1fr; }
+      .build { padding: 72px 24px; }
+      .final { padding: 72px 24px 80px; }
+      footer { padding: 32px 24px; }
+    }
+    @media (max-width: 640px) {
+      .hero-h1 { font-size: 44px; }
+      .pillars-inner { grid-template-columns: 1fr; }
+      .prod { grid-template-columns: 1fr; gap: 0; }
+      .prod-media { aspect-ratio: 16 / 10; }
+      .prod-body { padding: 20px 20px 18px; }
+      .amp-visual { grid-template-columns: 1fr 1fr; }
+      .amp-extras { grid-template-columns: 1fr; }
+      .btn { width: 100%; justify-content: center; max-width: 320px; }
+      .hero-ctas, .build-cta-row, .final-contacts { flex-direction: column; align-items: center; }
+      .rate-table { font-size: 13px; }
+      .rate-table th, .rate-table td { padding: 12px 10px; }
+      .rate-table td.rate-price { font-size: 13px; }
+      .inq-modal { padding: 24px 20px 22px; border-radius: 12px; }
+      .inq-h { font-size: 24px; }
+      .inq-row { grid-template-columns: 1fr; gap: 0; }
+      .inq-row .inq-field { margin-bottom: 16px; }
+      .inq-grid { grid-template-columns: 1fr; }
+      .inq-tabs { padding: 3px; }
+      .inq-tab { padding: 10px 8px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="https://afrocue.xyz/index.html">
+    <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue"
+      onerror="this.style.display='none'; document.querySelector('.nav-logo-fallback').style.display='block'"/>
+    <span class="nav-logo-fallback">afro.cue</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#for-djs">For DJs</a></li>
+    <li><a href="#for-parties">For Parties</a></li>
+    <li><a href="#for-brands">For Brands</a></li>
+    <li><a href="#rates">Rate Card</a></li>
+  </ul>
+  <button class="nav-cta" onclick="openInquiry()">Start a conversation</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"><img src="https://afrocue.xyz/hero_dj.jpg" alt="AfroCue"/></div>
+  <div class="hero-texture"></div>
+  <div class="hero-scrim"></div>
+
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="hero-eyebrow">Advertise with AfroCue</div>
+      <h1 class="hero-h1">Put your brand<br><span class="alt">in the culture.</span></h1>
+      <p class="hero-sub">Work with AfroCue across editorial content, community placements and physical experiences. Whether you're a DJ, a party, or a brand — there's a way in.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary" onclick="openInquiry()">
+          See what's available
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <button class="btn btn-secondary" onclick="openInquiry()">Talk to us</button>
+      </div>
+    </div>
+
+    <div class="hero-side">
+      <div class="hero-stat">
+        <div class="hero-stat-num">DJs</div>
+        <div class="hero-stat-label">Promotion & spotlight</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">Parties</div>
+        <div class="hero-stat-label">Content for events</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">Brands</div>
+        <div class="hero-stat-label">Sponsorship & partnerships</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars">
+  <div class="pillars-inner">
+    <div class="pillar">
+      <span class="pillar-num">01</span>
+      <div class="pillar-name">MEDIA</div>
+      <div class="pillar-desc">Editorial placements across Instagram, YouTube and our newsletter.</div>
+    </div>
+    <div class="pillar">
+      <span class="pillar-num">02</span>
+      <div class="pillar-name">CONTENT</div>
+      <div class="pillar-desc">Branded content, DJ collaborations, creator-led work.</div>
+    </div>
+    <div class="pillar">
+      <span class="pillar-num">03</span>
+      <div class="pillar-name">COMMUNITY</div>
+      <div class="pillar-desc">Giveaways, newsletter features, community campaigns.</div>
+    </div>
+    <div class="pillar">
+      <span class="pillar-num">04</span>
+      <div class="pillar-name">EXPERIENCES</div>
+      <div class="pillar-desc">Set Club integrations, event activations, physical moments.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOGUE -->
+<section class="catalogue" id="catalogue">
+  <div class="inner">
+    <div class="cat-header">
+      <div class="label">The Catalogue</div>
+      <h2 class="section-h">Three ways to work<br>with AfroCue.</h2>
+      <p class="section-sub">Whether you're a DJ, a party, or a brand — the placements below show exactly what we produce, how it goes out, and what we need from you. Full rates are at the bottom of the page.</p>
+    </div>
+
+    <!-- FOR DJS -->
+    <div class="aud-section" id="for-djs">
+      <div class="aud-head">
+        <div class="aud-number">01</div>
+        <div class="aud-copy">
+          <div class="aud-eyebrow">For DJs</div>
+          <h3 class="aud-name">Promotion opportunities for DJs.</h3>
+          <p class="aud-intro">Whether you're managing yourself, working with a manager, or a friend helping you move — AfroCue is where the scene watches DJs. These are the formats built for you.</p>
+        </div>
+      </div>
+      <div class="cat-list" id="djs-list"></div>
+    </div>
+
+    <!-- FOR PARTIES -->
+    <div class="aud-section" id="for-parties">
+      <div class="aud-head">
+        <div class="aud-number">02</div>
+        <div class="aud-copy">
+          <div class="aud-eyebrow">For Parties & Events</div>
+          <h3 class="aud-name">Content for parties.</h3>
+          <p class="aud-intro">Video options for parties and events to creatively communicate their upcoming events — around Afrobeats, DJ-obsessed content styles and beyond.</p>
+        </div>
+      </div>
+      <div class="cat-list" id="parties-list"></div>
+    </div>
+
+    <!-- FOR BRANDS -->
+    <div class="aud-section" id="for-brands">
+      <div class="aud-head">
+        <div class="aud-number">03</div>
+        <div class="aud-copy">
+          <div class="aud-eyebrow">For Brands</div>
+          <h3 class="aud-name">Sponsorship & partnerships.</h3>
+          <p class="aud-intro">For brands looking beyond a single placement — AfroCue works on longer, deeper collaborations. Slide placements, sponsorship, creative campaigns and content production. Tell us what you're trying to achieve.</p>
+        </div>
+      </div>
+      <div class="brand-grid" id="brands-list"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RATE CARD -->
+<section class="rates" id="rates">
+  <div class="inner">
+    <div class="rates-head">
+      <div class="label">Rate Card</div>
+      <h2 class="section-h">Placements and pricing.</h2>
+    </div>
+
+    <table class="rate-table" id="rate-table">
+      <thead>
+        <tr>
+          <th>Placement</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody id="rate-table-body"></tbody>
+    </table>
+
+    <p class="rate-note">
+      Prices in Nigerian Naira. Media coverage add-on available on selected DJ placements. Rates update as our inventory updates. For custom work, reach out and we'll come back with a proposal.
+    </p>
+  </div>
+</section>
+
+<!-- AMPLIFICATION -->
+<section class="amp" id="amplification">
+  <div class="amp-inner">
+    <div class="amp-head">
+      <div class="label">The reach play</div>
+      <h2 class="section-h yellow">This is what<br>we do best.</h2>
+      <p class="section-sub">Content gets you seen by people who already follow us. Amplification takes it further — Meta pixel, audience signal, travel reach — and puts your content in front of people who don't yet know you exist.</p>
+    </div>
+
+    <div class="amp-main">
+      <div class="amp-main-copy">
+        <div class="amp-price">
+          <span class="amp-price-num">₦30,000</span>
+          <span class="amp-price-suffix">ad budget & up</span>
+        </div>
+        <p>If you want to promote, we can. Ad budget starting from ₦30,000 upwards — with the same audience signal and pixel work we bring to every campaign.</p>
+        <p style="color: rgba(240,237,232,0.55); font-size: 13px;">Available on selected placements.</p>
+      </div>
+
+      <div class="amp-visual">
+        <div class="amp-tile">
+          <div class="amp-tile-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg>
+          </div>
+          <div class="amp-tile-name">Meta Pixel</div>
+        </div>
+        <div class="amp-tile">
+          <div class="amp-tile-icon">
+            <svg viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="16 7 21 7 21 12"/></svg>
+          </div>
+          <div class="amp-tile-name">Travel Reach</div>
+        </div>
+        <div class="amp-tile">
+          <div class="amp-tile-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>
+          </div>
+          <div class="amp-tile-name">Audience Signal</div>
+        </div>
+        <div class="amp-tile">
+          <div class="amp-tile-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><polygon points="10 11 15 14 10 17 10 11"/></svg>
+          </div>
+          <div class="amp-tile-name">Boosted Posts</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="amp-extras-label">Additionally, we can do</div>
+    <div class="amp-extras">
+      <div class="amp-extra">Conversation starters</div>
+      <div class="amp-extra">Influencer & media partners</div>
+      <div class="amp-extra">Community collaboration</div>
+      <div class="amp-extra">Custom amplification plays</div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILD YOUR OWN -->
+<section class="build" id="build">
+  <div class="inner">
+    <div class="build-head">
+      <div class="label">Build your own campaign</div>
+      <h2 class="section-h yellow">Have something<br>bigger in mind?</h2>
+      <p class="section-sub">Tell us what you're trying to achieve and we'll recommend the right combination of AfroCue assets — media, content, DJ access, creators, community, events and amplification.</p>
+    </div>
+
+    <div class="build-blocks">
+      <div class="build-block">Media</div>
+      <div class="build-block">Content</div>
+      <div class="build-block">DJ Access</div>
+      <div class="build-block">Creators</div>
+      <div class="build-block">Community</div>
+      <div class="build-block">Events</div>
+      <div class="build-block">Amplification</div>
+      <div class="build-block">Set Club</div>
+    </div>
+
+    <div class="build-cta-row">
+      <button class="btn btn-primary" onclick="openInquiry()">
+        Talk to AfroCue
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final" id="contact">
+  <div class="final-inner">
+    <div class="label">Start a conversation</div>
+    <h2 class="section-h yellow">Have a campaign<br>in mind?</h2>
+    <p class="section-sub">Tell us what you're trying to achieve. We'll come back with a recommendation — usually within 48 hours.</p>
+
+    <div class="final-contacts">
+      <button class="btn btn-primary" onclick="openInquiry()">
+        Start an enquiry
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+      <a href="mailto:afrocueonline@gmail.com" class="btn btn-secondary">Email directly</a>
+    </div>
+
+    <a href="mailto:afrocueonline@gmail.com" class="final-email">afrocueonline@gmail.com</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a href="https://afrocue.xyz/index.html"><img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none'"></a>
+  </div>
+  <div class="footer-links">
+    <a href="https://afrocue.xyz/index.html">Home</a>
+    <a href="https://afrocue.xyz/parties.html">Parties</a>
+    <a href="https://afrocue.xyz/set-club.html">Set Club</a>
+    <a href="https://afrocue.xyz/roamers.html">Roamers</a>
+  </div>
+  <div class="footer-email"><a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a></div>
+</footer>
+
+<!-- INQUIRY MODAL -->
+<div class="inq-overlay" id="inqOverlay">
+  <div class="inq-modal" role="dialog" aria-labelledby="inqTitle">
+    <button class="inq-close" onclick="closeInquiry()" aria-label="Close">✕</button>
+
+    <div class="inq-label">Partnership Enquiry</div>
+    <h2 class="inq-h" id="inqTitle">Let's talk.</h2>
+    <p class="inq-sub">Pick what you're interested in. We'll come back with a proposal — usually within 48 hours.</p>
+
+    <form id="inqForm" onsubmit="return false;">
+
+      <div class="inq-row">
+        <div class="inq-field" style="margin-bottom: 0;">
+          <label>Name</label>
+          <input type="text" id="inqName" placeholder="Your name" required/>
+        </div>
+        <div class="inq-field" style="margin-bottom: 0;">
+          <label>Email</label>
+          <input type="email" id="inqEmail" placeholder="you@example.com" required/>
+        </div>
+      </div>
+
+      <div class="inq-field" style="margin-top: 16px;">
+        <label>What are you interested in?</label>
+
+        <div class="inq-tabs" role="tablist">
+          <button type="button" class="inq-tab active" data-tab="djs" onclick="switchInqTab('djs')">For DJs</button>
+          <button type="button" class="inq-tab" data-tab="parties" onclick="switchInqTab('parties')">For Parties</button>
+          <button type="button" class="inq-tab" data-tab="brands" onclick="switchInqTab('brands')">For Brands</button>
+        </div>
+
+        <div class="inq-grid" id="inqGrid"></div>
+
+        <div class="inq-summary" id="inqSummary"></div>
+      </div>
+
+      <div class="inq-field">
+        <label>Notes (optional)</label>
+        <textarea id="inqNotes" placeholder="Anything we should know — budget, timing, objective..."></textarea>
+      </div>
+
+      <button type="button" class="inq-submit" id="inqSubmit" onclick="submitInquiry()">
+        Send Enquiry
+      </button>
+
+      <p class="inq-foot">
+        Prefer email? <a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a>
+      </p>
+    </form>
+  </div>
+</div>
+
+<script>
+  // ═══════════════════════════════════════════════════════════════
+  //  CONFIG
+  // ═══════════════════════════════════════════════════════════════
+  const INQUIRY_EMAIL = 'afrocueonline@gmail.com';
+
+  // ═══════════════════════════════════════════════════════════════
+  //  CATALOGUE DATA
+  // ═══════════════════════════════════════════════════════════════
+
+  const DJ_PRODUCTS = [
+    {
+      id: 'TOP_5',
+      name: 'Top 5',
+      format: 'Slideshow',
+      description: "AfroCue's weekly Top 5 sets from the weekend. Your moment, standing out from everything else.",
+      needs: ['HD video of the DJ', 'Party flyer'],
+      addon: { name: 'Media coverage', price: '+₦50K' },
+      amplification: true,
+      sampleLink: 'https://instagram.com/afro.cue',
+      exampleImage: 'https://afrocue.xyz/roamers_top5_sample.jpg',
+      exampleType: 'video'
+    },
+    {
+      id: 'INCOMING_SETS',
+      name: 'Incoming Sets',
+      format: 'Video',
+      description: "Spotlight on a DJ playing or headlining an upcoming event, in AfroCue's editorial style.",
+      needs: ['HD video of the DJ', 'Event info + flyer'],
+      addon: null,
+      amplification: true,
+      sampleLink: 'https://instagram.com/afro.cue',
+      exampleImage: 'https://afrocue.xyz/roamers_top5_sample2.jpg',
+      exampleType: 'video'
+    },
+    {
+      id: 'DJ_SPOTLIGHT',
+      name: 'DJ Spotlight',
+      format: 'Editorial',
+      description: "Longer-form spotlight on a DJ — their story, their sound, the rooms they hold.",
+      needs: ['Brief on the DJ', 'Access for shoot / interview'],
+      addon: null,
+      amplification: true,
+      sampleLink: 'https://instagram.com/afro.cue',
+      exampleImage: 'https://afrocue.xyz/roamers_who.jpg',
+      exampleType: 'image'
+    },
+    {
+      id: 'DJ_DEBUT',
+      name: 'DJ Debut',
+      format: 'Editorial',
+      description: "A first-look spotlight for a DJ stepping into a bigger room. Framed as the moment their career shifts.",
+      needs: ['Access for the shoot', 'Event details'],
+      addon: null,
+      amplification: true,
+      sampleLink: 'https://instagram.com/afro.cue',
+      exampleImage: 'https://afrocue.xyz/roamers_who.jpg',
+      exampleType: 'image'
+    },
+    {
+      id: 'SET_MOMENTS',
+      name: 'Set Moments',
+      format: 'Video',
+      description: "One moment from a set that deserves its own frame. Short-form editorial for the clips that hit.",
+      needs: ['One clean clip', 'DJ + party context'],
+      addon: null,
+      amplification: false,
+      sampleLink: 'https://instagram.com/afro.cue',
+      exampleImage: 'https://afrocue.xyz/roamers_top5_sample3.jpg',
+      exampleType: 'video'
+    }
+  ];
+
+  const PARTY_PRODUCTS = [
+    {
+      id: 'LINEUP_RADAR',
+      name: 'Lineup Radar',
+      format: 'Image',
+      description: "AfroCue's weekly post of DJ lineups for parties happening that weekend.",
+      needs: ['Flyer with full DJ lineup only'],
+      addon: null,
+      amplification: true,
+      sampleLink: 'https://instagram.com/afro.cue',
+      exampleImage: 'https://afrocue.xyz/roamers_who.jpg',
+      exampleType: 'image'
+    },
+    {
+      id: 'INCOMING_DJ',
+      name: 'Incoming DJ',
+      format: 'Video',
+      description: "DJ-focused pre-event content for your party. Points people at the room before doors open.",
+      needs: ['HD video of the DJ', 'DJ + event info'],
+      addon: null,
+      amplification: true,
+      sampleLink: 'https://instagram.com/afro.cue',
+      exampleImage: 'https://afrocue.xyz/roamers_top5_sample.jpg',
+      exampleType: 'video'
+    },
+    {
+      id: 'DJ_TOP_5_PARTY',
+      name: 'DJ Top 5',
+      format: 'Slideshow',
+      description: "The same Top 5 format, positioned around your party — a spot for a DJ moment from your event.",
+      needs: ['HD video moment from your party', 'Party flyer'],
+      addon: { name: 'Media coverage', price: '+₦50K' },
+      amplification: true,
+      sampleLink: 'https://instagram.com/afro.cue',
+      exampleImage: 'https://afrocue.xyz/roamers_top5_sample2.jpg',
+      exampleType: 'video'
+    },
+    {
+      id: 'PARTY_EDITORIAL',
+      name: 'Party Editorial',
+      format: 'Editorial',
+      description: "Editorial interpretation of your party — how it went, what the room felt like.",
+      needs: ['Event brief', 'Photos, video or flyer'],
+      addon: { name: 'Post + Amplification', price: 'from ₦100K' },
+      amplification: true,
+      sampleLink: 'https://instagram.com/afro.cue',
+      exampleImage: 'https://afrocue.xyz/roamers_what.jpg',
+      exampleType: 'image'
+    },
+    {
+      id: 'CREATIVE_PARTNER',
+      name: 'Creative Partner Content',
+      format: 'Custom',
+      description: "AfroCue's creative expression with the right creator and videographer, built for your party audience.",
+      needs: ['The idea or brief'],
+      addon: null,
+      amplification: true,
+      sampleLink: 'https://instagram.com/afro.cue',
+      exampleImage: 'https://afrocue.xyz/roamers_top5_sample3.jpg',
+      exampleType: 'image'
+    }
+  ];
+
+  const BRAND_PARTNERSHIPS = [
+    {
+      name: 'Slide Placements',
+      desc: 'Your brand woven into AfroCue editorial slides — the Top 5, incoming events, party roundups.',
+      icon: 'slide'
+    },
+    {
+      name: 'Brand Sponsorship',
+      desc: 'Tiered sponsorship of AfroCue content, series or events. Multiple tiers — we\'ll match the right one to your objective.',
+      icon: 'sponsor'
+    },
+    {
+      name: 'DJ × Brand',
+      desc: 'A DJ or creator-led collaboration produced by AfroCue, with your brand at the centre.',
+      icon: 'dj'
+    },
+    {
+      name: 'Creative City Campaign',
+      desc: 'We use our network — rich audience, media relationships, party tastemakers, creators — to build you a culturally relevant creative campaign.',
+      icon: 'city'
+    },
+    {
+      name: 'Content Production',
+      desc: 'AfroCue creative expression using rich and relevant media assets to produce content that lands with your audience.',
+      icon: 'content'
+    },
+    {
+      name: 'Set Club 01 Partnership',
+      desc: "We're building something interesting. If your brand is serious about it, send a proposal document — reach out here.",
+      icon: 'star',
+      wide: true
+    }
+  ];
+
+  const RATE_TABLE = [
+    { category: 'Editorial · DJ', name: 'Top 5', price: '30,000', priceType: 'fixed' },
+    { category: 'Editorial · DJ', name: 'Incoming Sets', price: '50,000', priceType: 'fixed' },
+    { category: 'Editorial · DJ', name: 'DJ Spotlight', price: 'Let\u2019s talk', priceType: 'custom' },
+    { category: 'Editorial · DJ', name: 'DJ Debut', price: 'Let\u2019s talk', priceType: 'custom' },
+    { category: 'Editorial · DJ', name: 'Set Moments', price: 'Let\u2019s talk', priceType: 'custom' },
+    { category: 'Editorial · Party', name: 'Lineup Radar', price: '40,000', priceType: 'from' },
+    { category: 'Editorial · Party', name: 'Incoming DJ', price: '50,000', priceType: 'fixed' },
+    { category: 'Editorial · Party', name: 'DJ Top 5', price: '30,000', priceType: 'fixed' },
+    { category: 'Editorial · Party', name: 'Party Editorial', price: '70,000', priceType: 'fixed' },
+    { category: 'Custom · Party', name: 'Creative Partner Content', price: 'Let\u2019s talk', priceType: 'custom' },
+    { category: 'Add-on', name: 'Media Coverage', price: '50,000', priceType: 'addon' },
+    { category: 'Amplification', name: 'Ads', price: '30,000', priceType: 'from' },
+    { category: 'Amplification', name: 'Post Amplification', price: '100,000', priceType: 'from' }
+  ];
+
+  const BRAND_ICONS = {
+    slide: '<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><line x1="8" y1="20" x2="16" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></svg>',
+    sponsor: '<svg viewBox="0 0 24 24"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z"/></svg>',
+    dj: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/><path d="M12 3v3.5M12 17.5V21"/></svg>',
+    city: '<svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V10l5-3 5 3v11"/><path d="M15 21V8l4-2v15"/><path d="M9 14h.01M9 17h.01"/></svg>',
+    content: '<svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="11" r="2"/><path d="M14 10h5M14 14h5M6 17l2-2 3 3"/></svg>',
+    star: '<svg viewBox="0 0 24 24"><polygon points="12 2 15.1 8.6 22 9.3 17 14 18.4 21 12 17.4 5.6 21 7 14 2 9.3 8.9 8.6 12 2"/></svg>'
+  };
+
+  // ═══════════════════════════════════════════════════════════════
+  //  RENDERERS
+  // ═══════════════════════════════════════════════════════════════
+
+  function renderProduct(product) {
+    const playIcon = product.exampleType === 'video' ? `
+      <div class="prod-play" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+      </div>` : '';
+
+    const exampleLink = `
+      <span class="prod-example-link">
+        See example
+        <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg>
+      </span>`;
+
+    const needs = product.needs && product.needs.length ? `
+      <div class="prod-needs">
+        <span class="prod-needs-label">Needs</span>
+        <span class="prod-needs-items">${product.needs.join('<span class="sep">·</span>')}</span>
+      </div>` : '';
+
+    const addon = product.addon ? `
+      <div class="prod-addon">
+        <span class="prod-addon-label">Add-on</span>
+        <span class="prod-addon-text">${product.addon.name}<strong>${product.addon.price}</strong></span>
+      </div>` : '';
+
+    const ampNote = product.amplification ? `
+      <div class="prod-amp-note">Amplification available</div>` : '';
+
+    const safeName = product.name.replace(/'/g, "\\'");
+
+    return `
+      <div class="prod">
+        <a href="${product.sampleLink}" target="_blank" rel="noopener" class="prod-media">
+          <img src="${product.exampleImage}" alt="${product.name}" loading="lazy"/>
+          <div class="prod-media-overlay"></div>
+          ${playIcon}
+          ${exampleLink}
+        </a>
+        <div class="prod-body">
+          <div class="prod-meta">
+            <span>${product.format}</span>
+            <span class="dot"></span>
+            <span>${product.id}</span>
+          </div>
+          <h3 class="prod-name">${product.name}</h3>
+          <p class="prod-desc">${product.description}</p>
+          ${needs}
+          ${addon}
+          <button class="prod-inquire" onclick="openInquiry('${safeName}')">
+            Inquire
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+          ${ampNote}
+        </div>
+      </div>`;
+  }
+
+  function renderBrandTile(p) {
+    const wide = p.wide ? ' brand-tile-wide' : '';
+    const icon = BRAND_ICONS[p.icon] || BRAND_ICONS.sponsor;
+    const safeName = p.name.replace(/'/g, "\\'");
+    return `
+      <button class="brand-tile${wide}" onclick="openInquiry('${safeName}')">
+        <div class="brand-icon">${icon}</div>
+        <div class="brand-name">${p.name}</div>
+        <div class="brand-desc">${p.desc}</div>
+        <div class="brand-foot">Talk to us <span class="arrow">↗</span></div>
+      </button>`;
+  }
+
+  function renderRateTable(rows) {
+    let html = '';
+    let currentCategory = '';
+    rows.forEach(r => {
+      if (r.category !== currentCategory) {
+        currentCategory = r.category;
+        html += `<tr class="rate-cat-row"><td colspan="2">${currentCategory}</td></tr>`;
+      }
+
+      let priceHtml;
+      if (r.priceType === 'custom') {
+        priceHtml = r.price;
+      } else if (r.priceType === 'from') {
+        priceHtml = `<span class="prefix">From</span>₦${r.price}`;
+      } else if (r.priceType === 'addon') {
+        priceHtml = `<span class="prefix">+</span>₦${r.price}`;
+      } else {
+        priceHtml = `₦${r.price}`;
+      }
+
+      html += `
+        <tr>
+          <td class="rate-name">${r.name}</td>
+          <td class="rate-price">${priceHtml}</td>
+        </tr>`;
+    });
+    return html;
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  //  INQUIRY MODAL
+  // ═══════════════════════════════════════════════════════════════
+
+  const INQ_GROUPS = {
+    djs:     { label: 'For DJs',     items: [] },
+    parties: { label: 'For Parties', items: [] },
+    brands:  { label: 'For Brands',  items: [] }
+  };
+
+  let inqActiveTab = 'djs';
+  let inqSelected = new Set();
+
+  function buildInqGroups() {
+    INQ_GROUPS.djs.items     = DJ_PRODUCTS.map(p => p.name);
+    INQ_GROUPS.parties.items = PARTY_PRODUCTS.map(p => p.name);
+    INQ_GROUPS.brands.items  = BRAND_PARTNERSHIPS.map(p => p.name);
+  }
+
+  function renderInqGrid() {
+    const grid = document.getElementById('inqGrid');
+    const items = INQ_GROUPS[inqActiveTab].items;
+
+    grid.innerHTML = items.map(name => {
+      const checked = inqSelected.has(name);
+      return `
+        <label class="inq-opt${checked ? ' checked' : ''}" data-name="${name}">
+          <input type="checkbox" value="${name}"${checked ? ' checked' : ''}/>
+          <span class="inq-box"></span>
+          <span>${name}</span>
+        </label>`;
+    }).join('');
+
+    grid.querySelectorAll('.inq-opt').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        const name = el.dataset.name;
+        if (el.classList.contains('checked')) {
+          el.classList.remove('checked');
+          inqSelected.delete(name);
+        } else {
+          el.classList.add('checked');
+          inqSelected.add(name);
+        }
+        renderInqSummary();
+      });
+    });
+  }
+
+  function renderInqSummary() {
+    const summary = document.getElementById('inqSummary');
+    const count = inqSelected.size;
+    if (count === 0) {
+      summary.innerHTML = '';
+      return;
+    }
+    const names = Array.from(inqSelected);
+    const preview = names.length <= 3
+      ? names.join(' · ')
+      : `${names.slice(0, 3).join(' · ')} +${names.length - 3} more`;
+    summary.innerHTML = `<strong>${count} selected</strong> — ${preview}`;
+  }
+
+  function switchInqTab(tab) {
+    inqActiveTab = tab;
+    document.querySelectorAll('.inq-tab').forEach(t => {
+      t.classList.toggle('active', t.dataset.tab === tab);
+    });
+    renderInqGrid();
+  }
+
+  function openInquiry(preSelected) {
+    buildInqGroups();
+
+    inqSelected = new Set();
+
+    if (preSelected) {
+      const arr = Array.isArray(preSelected) ? preSelected : [preSelected];
+      arr.forEach(name => inqSelected.add(name));
+
+      const first = arr[0];
+      if (INQ_GROUPS.djs.items.includes(first)) inqActiveTab = 'djs';
+      else if (INQ_GROUPS.parties.items.includes(first)) inqActiveTab = 'parties';
+      else if (INQ_GROUPS.brands.items.includes(first)) inqActiveTab = 'brands';
+    } else {
+      inqActiveTab = 'djs';
+    }
+
+    document.querySelectorAll('.inq-tab').forEach(t => {
+      t.classList.toggle('active', t.dataset.tab === inqActiveTab);
+    });
+
+    renderInqGrid();
+    renderInqSummary();
+
+    document.getElementById('inqOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    setTimeout(() => {
+      const nameField = document.getElementById('inqName');
+      if (!nameField.value) nameField.focus();
+    }, 100);
+  }
+
+  function closeInquiry() {
+    document.getElementById('inqOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function submitInquiry() {
+    const name = document.getElementById('inqName').value.trim();
+    const email = document.getElementById('inqEmail').value.trim();
+    const notes = document.getElementById('inqNotes').value.trim();
+
+    if (!name) { document.getElementById('inqName').focus(); return; }
+    if (!email) { document.getElementById('inqEmail').focus(); return; }
+
+    const selected = Array.from(inqSelected);
+
+    if (selected.length === 0) {
+      alert('Please select at least one placement, or add a note if you want to discuss something custom.');
+      return;
+    }
+
+    const grouped = { djs: [], parties: [], brands: [] };
+    selected.forEach(name => {
+      if (INQ_GROUPS.djs.items.includes(name)) grouped.djs.push(name);
+      else if (INQ_GROUPS.parties.items.includes(name)) grouped.parties.push(name);
+      else if (INQ_GROUPS.brands.items.includes(name)) grouped.brands.push(name);
+    });
+
+    const subject = `AfroCue Partnership Enquiry — ${name}`;
+    const lines = [
+      'Hi AfroCue,',
+      '',
+      "I'd like to enquire about the following:",
+      ''
+    ];
+
+    if (grouped.djs.length) {
+      lines.push('For DJs:');
+      grouped.djs.forEach(s => lines.push(`• ${s}`));
+      lines.push('');
+    }
+    if (grouped.parties.length) {
+      lines.push('For Parties:');
+      grouped.parties.forEach(s => lines.push(`• ${s}`));
+      lines.push('');
+    }
+    if (grouped.brands.length) {
+      lines.push('For Brands:');
+      grouped.brands.forEach(s => lines.push(`• ${s}`));
+      lines.push('');
+    }
+
+    lines.push(`Name: ${name}`);
+    lines.push(`Email: ${email}`);
+
+    if (notes) {
+      lines.push('', 'Notes:', notes);
+    }
+
+    lines.push('', '— Sent from afrocue.xyz/ads');
+
+    const body = lines.join('\r\n');
+    const mailtoUrl = `mailto:${INQUIRY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'ads_inquiry_submit',
+      placements: selected,
+      placement_count: selected.length
+    });
+
+    window.location.href = mailtoUrl;
+
+    setTimeout(() => {
+      closeInquiry();
+      document.getElementById('inqForm').reset();
+      inqSelected.clear();
+    }, 800);
+  }
+
+  document.addEventListener('click', (e) => {
+    if (e.target.id === 'inqOverlay') closeInquiry();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeInquiry();
+  });
+
+  // ═══════════════════════════════════════════════════════════════
+  //  INIT
+  // ═══════════════════════════════════════════════════════════════
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('djs-list').innerHTML = DJ_PRODUCTS.map(renderProduct).join('');
+    document.getElementById('parties-list').innerHTML = PARTY_PRODUCTS.map(renderProduct).join('');
+    document.getElementById('brands-list').innerHTML = BRAND_PARTNERSHIPS.map(renderBrandTile).join('');
+    document.getElementById('rate-table-body').innerHTML = renderRateTable(RATE_TABLE);
+  });
+</script>
+
+</body>
+</html>
