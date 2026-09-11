@@ -1141,20 +1141,17 @@
 <script>
   // ═════════════════════════════════════════════════════════════════
   //  CONFIG
+  //  afrocue.js already declares window.AFROCUE_SCRIPT_URL.
+  //  We read it into a differently-named variable so we don't
+  //  redeclare the global (which would crash the whole script).
   // ═════════════════════════════════════════════════════════════════
   const INQUIRY_EMAIL = 'afrocueonline@gmail.com';
 
-  console.log('[AfroCue Ads] Script starting...');
+  const ADS_SCRIPT_URL = (typeof AFROCUE_SCRIPT_URL !== 'undefined' && AFROCUE_SCRIPT_URL)
+    ? AFROCUE_SCRIPT_URL
+    : (typeof getAfroCueScriptUrl === 'function' ? getAfroCueScriptUrl() : 'https://script.google.com/macros/s/AKfycbzOY0qvume6bE3S_XWyMShb1xK81ZxzpOD2moZb48qWFcDtSmZhis8g-E2g2v_5hOM-/exec');
 
-  // Pull GAS URL from afrocue.js (loaded in head)
-  let AFROCUE_SCRIPT_URL;
-  if (typeof getAfroCueScriptUrl === 'function') {
-    AFROCUE_SCRIPT_URL = getAfroCueScriptUrl();
-    console.log('[AfroCue Ads] GAS URL from afrocue.js:', AFROCUE_SCRIPT_URL);
-  } else {
-    AFROCUE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzOY0qvume6bE3S_XWyMShb1xK81ZxzpOD2moZb48qWFcDtSmZhis8g-E2g2v_5hOM-/exec';
-    console.warn('[AfroCue Ads] afrocue.js helper not found — using fallback URL:', AFROCUE_SCRIPT_URL);
-  }
+  console.log('[AfroCue Ads] Using GAS URL:', ADS_SCRIPT_URL);
 
   // ═════════════════════════════════════════════════════════════════
   //  FALLBACK DATA (renders instantly; live data replaces it)
@@ -1512,7 +1509,7 @@
     console.log('[AfroCue Ads] DOMContentLoaded — rendering fallback data');
     renderAll();
 
-    const fetchUrl = AFROCUE_SCRIPT_URL + '?export=ads';
+    const fetchUrl = ADS_SCRIPT_URL + '?export=ads';
     console.log('[AfroCue Ads] Fetching:', fetchUrl);
 
     try {
