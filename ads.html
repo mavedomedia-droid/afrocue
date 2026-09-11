@@ -17,6 +17,9 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <!-- Shared AfroCue config (GAS URL, helpers) — must load BEFORE the inline script -->
+  <script src="afrocue.js"></script>
+
   <style>
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
@@ -340,6 +343,23 @@
       color: var(--white); letter-spacing: -0.005em;
     }
     .prod-desc { font-size: 13px; font-weight: 300; line-height: 1.6; color: rgba(240,237,232,0.68); }
+
+    /* PRICE ON CARD */
+    .prod-price {
+      display: flex; align-items: baseline; gap: 8px;
+      padding: 4px 0;
+    }
+    .prod-price-prefix {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--silver);
+    }
+    .prod-price-num {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: 26px; line-height: 1;
+      color: var(--yellow);
+      letter-spacing: -0.01em;
+    }
 
     .prod-needs { display: flex; gap: 8px; font-size: 12px; line-height: 1.5; padding-top: 2px; }
     .prod-needs-label {
@@ -902,7 +922,6 @@
       </button>
     </div>
 
-    <!-- FOR DJS -->
     <div class="cat-panel active" data-panel="djs">
       <div class="aud-intro-block">
         <div class="aud-eyebrow">For DJs</div>
@@ -912,7 +931,6 @@
       <div class="cat-list" id="djs-list"></div>
     </div>
 
-    <!-- FOR PARTIES -->
     <div class="cat-panel" data-panel="parties">
       <div class="aud-intro-block">
         <div class="aud-eyebrow">For Parties & Events</div>
@@ -922,7 +940,6 @@
       <div class="cat-list" id="parties-list"></div>
     </div>
 
-    <!-- FOR BRANDS -->
     <div class="cat-panel" data-panel="brands">
       <div class="aud-intro-block">
         <div class="aud-eyebrow">For Brands</div>
@@ -1110,26 +1127,28 @@
   //  CONFIG
   // ═════════════════════════════════════════════════════════════════
   const INQUIRY_EMAIL = 'afrocueonline@gmail.com';
-  const AFROCUE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwk0SvCWpKSr-hxsh_TPZiCCh2QTT8uXanQWiDl2qRCLqw1_wkNWLdNUs3LhYGqTl-O/exec';
+  const AFROCUE_SCRIPT_URL = (typeof getAfroCueScriptUrl === 'function')
+    ? getAfroCueScriptUrl()
+    : 'https://script.google.com/macros/s/AKfycbzOY0qvume6bE3S_XWyMShb1xK81ZxzpOD2moZb48qWFcDtSmZhis8g-E2g2v_5hOM-/exec';
 
   // ═════════════════════════════════════════════════════════════════
   //  FALLBACK DATA (used if the sheet fetch fails)
   // ═════════════════════════════════════════════════════════════════
 
   const DJ_PRODUCTS_FALLBACK = [
-    { id:'TOP_5', name:'Top 5', format:'Slideshow', description:"AfroCue's weekly Top 5 sets from the weekend. Your moment, standing out from everything else.", needs:['HD video of the DJ','Party flyer'], addon:{name:'Media coverage',price:'+₦50K'}, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_top5_sample.jpg', exampleType:'video' },
-    { id:'INCOMING_SETS', name:'Incoming Sets', format:'Video', description:"Spotlight on a DJ playing or headlining an upcoming event, in AfroCue's editorial style.", needs:['HD video of the DJ','Event info + flyer'], addon:null, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_top5_sample2.jpg', exampleType:'video' },
-    { id:'DJ_SPOTLIGHT', name:'DJ Spotlight', format:'Editorial', description:"Longer-form spotlight on a DJ — their story, their sound, the rooms they hold.", needs:['Brief on the DJ','Access for shoot / interview'], addon:null, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_who.jpg', exampleType:'image' },
-    { id:'DJ_DEBUT', name:'DJ Debut', format:'Editorial', description:"A first-look spotlight for a DJ stepping into a bigger room. Framed as the moment their career shifts.", needs:['Access for the shoot','Event details'], addon:null, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_who.jpg', exampleType:'image' },
-    { id:'SET_MOMENTS', name:'Set Moments', format:'Video', description:"One moment from a set that deserves its own frame. Short-form editorial for the clips that hit.", needs:['One clean clip','DJ + party context'], addon:null, amplification:false, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_top5_sample3.jpg', exampleType:'video' }
+    { id:'TOP_5', name:'Top 5', format:'Slideshow', price:'30,000', priceType:'fixed', description:"AfroCue's weekly Top 5 sets from the weekend. Your moment, standing out from everything else.", needs:['HD video of the DJ','Party flyer'], addon:{name:'Media coverage',price:'+₦50K'}, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_top5_sample.jpg', exampleType:'video' },
+    { id:'INCOMING_SETS', name:'Incoming Sets', format:'Video', price:'50,000', priceType:'fixed', description:"Spotlight on a DJ playing or headlining an upcoming event, in AfroCue's editorial style.", needs:['HD video of the DJ','Event info + flyer'], addon:null, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_top5_sample2.jpg', exampleType:'video' },
+    { id:'DJ_SPOTLIGHT', name:'DJ Spotlight', format:'Editorial', price:'Custom', priceType:'custom', description:"Longer-form spotlight on a DJ — their story, their sound, the rooms they hold.", needs:['Brief on the DJ','Access for shoot / interview'], addon:null, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_who.jpg', exampleType:'image' },
+    { id:'DJ_DEBUT', name:'DJ Debut', format:'Editorial', price:'Custom', priceType:'custom', description:"A first-look spotlight for a DJ stepping into a bigger room. Framed as the moment their career shifts.", needs:['Access for the shoot','Event details'], addon:null, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_who.jpg', exampleType:'image' },
+    { id:'SET_MOMENTS', name:'Set Moments', format:'Video', price:'Custom', priceType:'custom', description:"One moment from a set that deserves its own frame. Short-form editorial for the clips that hit.", needs:['One clean clip','DJ + party context'], addon:null, amplification:false, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_top5_sample3.jpg', exampleType:'video' }
   ];
 
   const PARTY_PRODUCTS_FALLBACK = [
-    { id:'LINEUP_RADAR', name:'Lineup Radar', format:'Image', description:"AfroCue's weekly post of DJ lineups for parties happening that weekend.", needs:['Flyer with full DJ lineup only'], addon:null, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_who.jpg', exampleType:'image' },
-    { id:'INCOMING_DJ', name:'Incoming DJ', format:'Video', description:"DJ-focused pre-event content for your party. Points people at the room before doors open.", needs:['HD video of the DJ','DJ + event info'], addon:null, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_top5_sample.jpg', exampleType:'video' },
-    { id:'DJ_TOP_5_PARTY', name:'DJ Top 5', format:'Slideshow', description:"The same Top 5 format, positioned around your party — a spot for a DJ moment from your event.", needs:['HD video moment from your party','Party flyer'], addon:{name:'Media coverage',price:'+₦50K'}, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_top5_sample2.jpg', exampleType:'video' },
-    { id:'PARTY_EDITORIAL', name:'Party Editorial', format:'Editorial', description:"Editorial interpretation of your party — how it went, what the room felt like.", needs:['Event brief','Photos, video or flyer'], addon:{name:'Post + Amplification',price:'From ₦100K'}, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_what.jpg', exampleType:'image' },
-    { id:'CREATIVE_PARTNER', name:'Creative Partner Content', format:'Custom', description:"AfroCue's creative expression with the right creator and videographer, built for your party audience.", needs:['The idea or brief'], addon:null, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_top5_sample3.jpg', exampleType:'image' }
+    { id:'LINEUP_RADAR', name:'Lineup Radar', format:'Image', price:'40,000', priceType:'from', description:"AfroCue's weekly post of DJ lineups for parties happening that weekend.", needs:['Flyer with full DJ lineup only'], addon:null, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_who.jpg', exampleType:'image' },
+    { id:'INCOMING_DJ', name:'Incoming DJ', format:'Video', price:'50,000', priceType:'fixed', description:"DJ-focused pre-event content for your party. Points people at the room before doors open.", needs:['HD video of the DJ','DJ + event info'], addon:null, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_top5_sample.jpg', exampleType:'video' },
+    { id:'DJ_TOP_5_PARTY', name:'DJ Top 5', format:'Slideshow', price:'30,000', priceType:'fixed', description:"The same Top 5 format, positioned around your party — a spot for a DJ moment from your event.", needs:['HD video moment from your party','Party flyer'], addon:{name:'Media coverage',price:'+₦50K'}, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_top5_sample2.jpg', exampleType:'video' },
+    { id:'PARTY_EDITORIAL', name:'Party Editorial', format:'Editorial', price:'70,000', priceType:'fixed', description:"Editorial interpretation of your party — how it went, what the room felt like.", needs:['Event brief','Photos, video or flyer'], addon:{name:'Post + Amplification',price:'From ₦100K'}, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_what.jpg', exampleType:'image' },
+    { id:'CREATIVE_PARTNER', name:'Creative Partner Content', format:'Custom', price:'Custom', priceType:'custom', description:"AfroCue's creative expression with the right creator and videographer, built for your party audience.", needs:['The idea or brief'], addon:null, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_top5_sample3.jpg', exampleType:'image' }
   ];
 
   const BRAND_PARTNERSHIPS_FALLBACK = [
@@ -1141,18 +1160,11 @@
     { name:'Set Club 01 Partnership', desc:"We're building something interesting. If your brand is serious about it, send a proposal document — reach out here.", icon:'star', wide:true }
   ];
 
-  const RATE_TABLE = [
-    { category:'Editorial · DJ', name:'Top 5', price:'30,000', priceType:'fixed' },
-    { category:'Editorial · DJ', name:'Incoming Sets', price:'50,000', priceType:'fixed' },
-    { category:'Editorial · DJ', name:'DJ Spotlight', price:'Let\u2019s talk', priceType:'custom' },
-    { category:'Editorial · DJ', name:'DJ Debut', price:'Let\u2019s talk', priceType:'custom' },
-    { category:'Editorial · DJ', name:'Set Moments', price:'Let\u2019s talk', priceType:'custom' },
-    { category:'Editorial · Party', name:'Lineup Radar', price:'40,000', priceType:'from' },
-    { category:'Editorial · Party', name:'Incoming DJ', price:'50,000', priceType:'fixed' },
-    { category:'Editorial · Party', name:'DJ Top 5', price:'30,000', priceType:'fixed' },
-    { category:'Editorial · Party', name:'Party Editorial', price:'70,000', priceType:'fixed' },
-    { category:'Custom · Party', name:'Creative Partner Content', price:'Let\u2019s talk', priceType:'custom' },
-    { category:'Add-on', name:'Media Coverage', price:'50,000', priceType:'addon' },
+  // Rows that belong in the rate card but aren't products. Edit here if prices change.
+  const RATE_ADDONS = [
+    { category:'Add-on', name:'Media Coverage', price:'50,000', priceType:'addon' }
+  ];
+  const RATE_AMPLIFICATION = [
     { category:'Amplification', name:'Ads', price:'30,000', priceType:'from' },
     { category:'Amplification', name:'Post Amplification', price:'100,000', priceType:'from' }
   ];
@@ -1174,6 +1186,19 @@
   // ═════════════════════════════════════════════════════════════════
   //  RENDERERS
   // ═════════════════════════════════════════════════════════════════
+
+  function renderPrice(product) {
+    if (!product.price && product.priceType !== 'custom') return '';
+    const pt = product.priceType || 'fixed';
+
+    if (pt === 'custom' || product.price === 'Custom') {
+      return `<div class="prod-price"><span class="prod-price-num">Let's talk</span></div>`;
+    }
+    if (pt === 'from') {
+      return `<div class="prod-price"><span class="prod-price-prefix">From</span><span class="prod-price-num">₦${product.price}</span></div>`;
+    }
+    return `<div class="prod-price"><span class="prod-price-num">₦${product.price}</span></div>`;
+  }
 
   function renderProduct(product) {
     const playIcon = product.exampleType === 'video' ? `
@@ -1220,6 +1245,7 @@
           </div>
           <h3 class="prod-name">${product.name}</h3>
           <p class="prod-desc">${product.description}</p>
+          ${renderPrice(product)}
           ${needs}
           ${addon}
           <button class="prod-inquire" onclick="openInquiry('${safeName}')">
@@ -1244,6 +1270,37 @@
       </button>`;
   }
 
+  function buildRateTable() {
+    const rows = [];
+
+    // DJ products
+    (DJ_PRODUCTS || []).forEach(p => {
+      rows.push({
+        category: 'Editorial · DJ',
+        name: p.name,
+        price: p.priceType === 'custom' ? 'Let\u2019s talk' : (p.price || ''),
+        priceType: p.priceType || 'fixed'
+      });
+    });
+
+    // Party products
+    (PARTY_PRODUCTS || []).forEach(p => {
+      const cat = p.priceType === 'custom' ? 'Custom · Party' : 'Editorial · Party';
+      rows.push({
+        category: cat,
+        name: p.name,
+        price: p.priceType === 'custom' ? 'Let\u2019s talk' : (p.price || ''),
+        priceType: p.priceType || 'fixed'
+      });
+    });
+
+    // Add-ons and Amplification (not products, hardcoded above)
+    rows.push(...RATE_ADDONS);
+    rows.push(...RATE_AMPLIFICATION);
+
+    return rows;
+  }
+
   function renderRateTable(rows) {
     let html = '';
     let currentCategory = '';
@@ -1266,7 +1323,7 @@
     document.getElementById('djs-list').innerHTML = DJ_PRODUCTS.map(renderProduct).join('');
     document.getElementById('parties-list').innerHTML = PARTY_PRODUCTS.map(renderProduct).join('');
     document.getElementById('brands-list').innerHTML = BRAND_PARTNERSHIPS.map(renderBrandTile).join('');
-    document.getElementById('rate-table-body').innerHTML = renderRateTable(RATE_TABLE);
+    document.getElementById('rate-table-body').innerHTML = renderRateTable(buildRateTable());
     document.getElementById('count-djs').textContent = DJ_PRODUCTS.length;
     document.getElementById('count-parties').textContent = PARTY_PRODUCTS.length;
     document.getElementById('count-brands').textContent = BRAND_PARTNERSHIPS.length;
@@ -1427,10 +1484,8 @@
   // ═════════════════════════════════════════════════════════════════
 
   document.addEventListener('DOMContentLoaded', async () => {
-    // Render with fallback first (instant paint)
     renderAll();
 
-    // Then fetch live data
     try {
       const res = await fetch(AFROCUE_SCRIPT_URL + '?export=ads');
       const data = await res.json();
