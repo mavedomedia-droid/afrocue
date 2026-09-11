@@ -17,8 +17,8 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Shared AfroCue config (GAS URL, helpers) — must load BEFORE the inline script -->
-  <script src="afrocue.js"></script>
+  <!-- Shared AfroCue config — absolute path so it always loads -->
+  <script src="https://afrocue.xyz/afrocue.js"></script>
 
   <style>
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
@@ -87,6 +87,20 @@
       color: rgba(240,237,232,0.6); max-width: 620px;
     }
     .section-h.yellow { color: var(--yellow); text-shadow: var(--yts); }
+
+    /* STATUS BANNER (debug) */
+    .cat-status {
+      display: none;
+      padding: 12px 16px;
+      margin-bottom: 24px;
+      font-size: 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.02);
+      color: rgba(240,237,232,0.6);
+    }
+    .cat-status.show { display: block; }
+    .cat-status.error { border-color: rgba(255,80,80,0.3); color: #ff8080; }
 
     /* HERO */
     .hero {
@@ -910,6 +924,8 @@
       <p class="section-sub">Whether you're a DJ, a party, or a brand — the placements below show exactly what we produce, how it goes out, and what we need from you. Full rates are at the bottom of the page.</p>
     </div>
 
+    <div class="cat-status" id="catStatus"></div>
+
     <div class="cat-tabs" role="tablist">
       <button class="cat-tab active" data-tab="djs" onclick="switchCatTab('djs')">
         For DJs <span class="cat-tab-count" id="count-djs">5</span>
@@ -1127,12 +1143,21 @@
   //  CONFIG
   // ═════════════════════════════════════════════════════════════════
   const INQUIRY_EMAIL = 'afrocueonline@gmail.com';
-  const AFROCUE_SCRIPT_URL = (typeof getAfroCueScriptUrl === 'function')
-    ? getAfroCueScriptUrl()
-    : 'https://script.google.com/macros/s/AKfycbzOY0qvume6bE3S_XWyMShb1xK81ZxzpOD2moZb48qWFcDtSmZhis8g-E2g2v_5hOM-/exec';
+
+  console.log('[AfroCue Ads] Script starting...');
+
+  // Pull GAS URL from afrocue.js (loaded in head)
+  let AFROCUE_SCRIPT_URL;
+  if (typeof getAfroCueScriptUrl === 'function') {
+    AFROCUE_SCRIPT_URL = getAfroCueScriptUrl();
+    console.log('[AfroCue Ads] GAS URL from afrocue.js:', AFROCUE_SCRIPT_URL);
+  } else {
+    AFROCUE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzOY0qvume6bE3S_XWyMShb1xK81ZxzpOD2moZb48qWFcDtSmZhis8g-E2g2v_5hOM-/exec';
+    console.warn('[AfroCue Ads] afrocue.js helper not found — using fallback URL:', AFROCUE_SCRIPT_URL);
+  }
 
   // ═════════════════════════════════════════════════════════════════
-  //  FALLBACK DATA (used if the sheet fetch fails)
+  //  FALLBACK DATA (renders instantly; live data replaces it)
   // ═════════════════════════════════════════════════════════════════
 
   const DJ_PRODUCTS_FALLBACK = [
@@ -1160,7 +1185,6 @@
     { name:'Set Club 01 Partnership', desc:"We're building something interesting. If your brand is serious about it, send a proposal document — reach out here.", icon:'star', wide:true }
   ];
 
-  // Rows that belong in the rate card but aren't products. Edit here if prices change.
   const RATE_ADDONS = [
     { category:'Add-on', name:'Media Coverage', price:'50,000', priceType:'addon' }
   ];
@@ -1178,7 +1202,6 @@
     star:'<svg viewBox="0 0 24 24"><polygon points="12 2 15.1 8.6 22 9.3 17 14 18.4 21 12 17.4 5.6 21 7 14 2 9.3 8.9 8.6 12 2"/></svg>'
   };
 
-  // Live data (populated after fetch)
   let DJ_PRODUCTS = DJ_PRODUCTS_FALLBACK;
   let PARTY_PRODUCTS = PARTY_PRODUCTS_FALLBACK;
   let BRAND_PARTNERSHIPS = BRAND_PARTNERSHIPS_FALLBACK;
@@ -1272,8 +1295,6 @@
 
   function buildRateTable() {
     const rows = [];
-
-    // DJ products
     (DJ_PRODUCTS || []).forEach(p => {
       rows.push({
         category: 'Editorial · DJ',
@@ -1282,8 +1303,6 @@
         priceType: p.priceType || 'fixed'
       });
     });
-
-    // Party products
     (PARTY_PRODUCTS || []).forEach(p => {
       const cat = p.priceType === 'custom' ? 'Custom · Party' : 'Editorial · Party';
       rows.push({
@@ -1293,11 +1312,8 @@
         priceType: p.priceType || 'fixed'
       });
     });
-
-    // Add-ons and Amplification (not products, hardcoded above)
     rows.push(...RATE_ADDONS);
     rows.push(...RATE_AMPLIFICATION);
-
     return rows;
   }
 
@@ -1329,8 +1345,17 @@
     document.getElementById('count-brands').textContent = BRAND_PARTNERSHIPS.length;
   }
 
+  function setStatus(msg, isError) {
+    const el = document.getElementById('catStatus');
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.add('show');
+    if (isError) el.classList.add('error');
+    else el.classList.remove('error');
+  }
+
   // ═════════════════════════════════════════════════════════════════
-  //  CATALOGUE TABS
+  //  TABS
   // ═════════════════════════════════════════════════════════════════
 
   function switchCatTab(tab) {
@@ -1480,23 +1505,69 @@
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeInquiry(); });
 
   // ═════════════════════════════════════════════════════════════════
-  //  INIT
+  //  INIT — render fallback, then fetch live data
   // ═════════════════════════════════════════════════════════════════
 
   document.addEventListener('DOMContentLoaded', async () => {
+    console.log('[AfroCue Ads] DOMContentLoaded — rendering fallback data');
     renderAll();
 
+    const fetchUrl = AFROCUE_SCRIPT_URL + '?export=ads';
+    console.log('[AfroCue Ads] Fetching:', fetchUrl);
+
     try {
-      const res = await fetch(AFROCUE_SCRIPT_URL + '?export=ads');
-      const data = await res.json();
-      if (data.djs && data.parties && data.brands) {
-        DJ_PRODUCTS = data.djs;
-        PARTY_PRODUCTS = data.parties;
-        BRAND_PARTNERSHIPS = data.brands;
-        renderAll();
+      const res = await fetch(fetchUrl);
+      console.log('[AfroCue Ads] Response status:', res.status);
+
+      const raw = await res.text();
+      console.log('[AfroCue Ads] Response body (first 300 chars):', raw.slice(0, 300));
+
+      let data;
+      try {
+        data = JSON.parse(raw);
+      } catch (parseErr) {
+        console.error('[AfroCue Ads] JSON parse failed. Raw response:', raw);
+        setStatus('Sheet fetch returned invalid data. Using fallback content. Check the console for details.', true);
+        return;
       }
+
+      if (data.error) {
+        console.error('[AfroCue Ads] GAS returned an error:', data.error);
+        setStatus('GAS error: ' + data.error, true);
+        return;
+      }
+
+      const hasDjs = Array.isArray(data.djs);
+      const hasParties = Array.isArray(data.parties);
+      const hasBrands = Array.isArray(data.brands);
+
+      console.log('[AfroCue Ads] Data shape:', {
+        djs: hasDjs ? data.djs.length : 'missing',
+        parties: hasParties ? data.parties.length : 'missing',
+        brands: hasBrands ? data.brands.length : 'missing'
+      });
+
+      if (!hasDjs || !hasParties || !hasBrands) {
+        setStatus('Sheet response missing djs/parties/brands. Using fallback content. Check the console for the raw response.', true);
+        return;
+      }
+
+      if (data.djs.length === 0 && data.parties.length === 0 && data.brands.length === 0) {
+        setStatus('Sheet returned empty arrays. Check the Ads tab — the "Audience" column values must be exactly DJ, Party, or Brand.', true);
+        return;
+      }
+
+      // Success — replace data and re-render
+      DJ_PRODUCTS = data.djs;
+      PARTY_PRODUCTS = data.parties;
+      BRAND_PARTNERSHIPS = data.brands;
+      renderAll();
+      setStatus('Loaded ' + data.djs.length + ' DJ · ' + data.parties.length + ' Party · ' + data.brands.length + ' Brand placements from the sheet.');
+      console.log('[AfroCue Ads] Live data rendered successfully');
+
     } catch (err) {
-      console.warn('Ads catalogue fetch failed — using fallback data', err);
+      console.error('[AfroCue Ads] Fetch failed:', err);
+      setStatus('Could not reach the sheet (network/CORS error). Using fallback content. Check the console.', true);
     }
   });
 </script>
