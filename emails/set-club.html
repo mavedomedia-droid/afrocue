@@ -14,7 +14,6 @@
   </xml>
   <![endif]-->
   <style>
-    /* Fonts */
     @font-face {
       font-family: 'Aesthet Nova';
       src: url('https://afrocue.xyz/fonts/Aesthet-Nova-Black.woff2') format('woff2');
@@ -40,27 +39,28 @@
       .text-white { color: #f0ede8 !important; }
       .text-yellow { color: #C8E000 !important; }
     }
-    /* Animations */
     @keyframes subtlePulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.06); }
       100% { transform: scale(1); }
     }
-    .pulse {
-      animation: subtlePulse 2.4s infinite;
+    .pulse { animation: subtlePulse 2.4s infinite; }
+    @media only screen and (max-width: 480px) {
+      .btn-stack { display:block !important; width:100% !important; margin:0 0 10px !important; }
+      .pillar-cell { display:block !important; width:100% !important; padding:0 0 20px !important; }
     }
   </style>
 </head>
 <body style="margin:0; padding:0; background-color:#0a0a0a; font-family: 'Figtree', Arial, sans-serif;">
   <center style="width:100%; table-layout:fixed; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; background-color:#0a0a0a;">
     <div style="display:none; font-size:1px; color:#0a0a0a; line-height:1px; max-height:0px; max-width:0px; opacity:0; overflow:hidden;">
-      You're in, {{first_name}}. Welcome to AfroCue Set Club.
+      For people who love DJ sets.
     </div>
     <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width:600px; background-color:#0a0a0a; margin:auto;" class="main-table">
       <tr>
         <td style="padding:40px 24px;">
 
-          <!-- Header with texture and small logo left, link right -->
+          <!-- Header -->
           <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-image:url('https://afrocue.xyz/texture.jpg'); background-size:cover; background-position:center; border-radius:8px; overflow:hidden;">
             <tr>
               <td align="left" style="padding:16px 20px;">
@@ -74,7 +74,7 @@
             </tr>
           </table>
 
-          <!-- Hero Image with Play Overlay (slightly smaller) -->
+          <!-- Hero Image with Play Overlay -->
           <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-top:20px;">
             <tr>
               <td align="center" style="position:relative;">
@@ -93,7 +93,7 @@
             </tr>
           </table>
 
-          <!-- Welcome and quote: name bold yellow left, quote centered in a tile -->
+          <!-- Welcome + Quote Tile -->
           <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
             <tr>
               <td align="left" style="padding:36px 24px 8px;">
@@ -102,10 +102,10 @@
             </tr>
             <tr>
               <td align="center" style="padding:0 24px 24px;">
-                <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="background-color:#111111; border:1px solid rgba(200,224,0,0.2); border-radius:8px; padding:16px 20px;">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="background-color:#111111; border:1px solid rgba(200,224,0,0.2); border-radius:8px;">
                   <tr>
-                    <td align="center" style="padding:8px 16px;">
-                      <p style="font-size:22px; font-weight:300; font-style:italic; color:#f0ede8; margin:0; white-space:nowrap;">You like DJ sets. We do too.</p>
+                    <td align="center" style="padding:18px 22px;">
+                      <p style="font-family: 'Aesthet Nova', Georgia, serif; font-size:20px; font-weight:900; color:#C8E000; margin:0; letter-spacing:0.02em; text-shadow:0 0 10px rgba(200,224,0,0.2);">For people who love DJ sets.</p>
                     </td>
                   </tr>
                 </table>
@@ -113,68 +113,60 @@
             </tr>
           </table>
 
-          <!-- Body paragraphs with bold important words -->
+          <!-- Body paragraphs -->
           <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
             <tr>
               <td align="left" style="padding:0 24px 16px;">
                 <p style="font-size:16px; line-height:1.8; color:rgba(240,237,232,0.8); margin:0;">
-                  Welcome to Set Club — a third space for people who love DJ sets to experience them <strong style="color:#f0ede8;">differently</strong>.
+                  Set Club is a growing collection and community around DJ sets, the DJs, and the music moving the Nigerian party and rave scene forward.
                 </p>
               </td>
             </tr>
             <tr>
               <td align="left" style="padding:0 24px 32px;">
                 <p style="font-size:16px; line-height:1.8; color:rgba(240,237,232,0.8); margin:0;">
-                  There are many moments from talented Nigerian DJs etched in interesting YouTube sets that we’ll explore in <strong style="color:#f0ede8;">fun and engaging ways</strong> — including a <strong style="color:#f0ede8;">live event experience</strong> in a room, <strong style="color:#f0ede8;">small setting</strong> and all.
+                  We're building a new way to experience these sets. <strong style="color:#f0ede8;">First digitally. Very soon, physically.</strong>
                 </p>
               </td>
             </tr>
           </table>
 
-          <!-- Three Pillars with Icons -->
-          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-bottom:32px;">
+          <!-- Three Pillars -->
+          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-bottom:36px;">
             <tr>
-              <td width="33%" valign="top" style="padding:0 8px 16px; text-align:center;">
+              <td width="33%" valign="top" class="pillar-cell" style="padding:0 8px 16px; text-align:center;">
                 <p style="font-size:26px; color:#C8E000; margin:0 0 6px;">⏪</p>
-                <p style="font-size:12px; font-weight:bold; letter-spacing:1px; color:#C8E000; text-transform:uppercase; margin:0 0 4px;">Revisit</p>
-                <p style="font-size:13px; line-height:1.5; color:rgba(240,237,232,0.7); margin:0;">Relive sets already on YouTube.</p>
+                <p style="font-size:12px; font-weight:bold; letter-spacing:1px; color:#C8E000; text-transform:uppercase; margin:0 0 4px;">Explore</p>
+                <p style="font-size:13px; line-height:1.5; color:rgba(240,237,232,0.7); margin:0;">Find sets worth watching, from Nigeria and beyond.</p>
               </td>
-              <td width="33%" valign="top" style="padding:0 8px 16px; text-align:center;">
+              <td width="33%" valign="top" class="pillar-cell" style="padding:0 8px 16px; text-align:center;">
                 <p style="font-size:26px; color:#C8E000; margin:0 0 6px;">✨</p>
                 <p style="font-size:12px; font-weight:bold; letter-spacing:1px; color:#C8E000; text-transform:uppercase; margin:0 0 4px;">Discover</p>
-                <p style="font-size:13px; line-height:1.5; color:rgba(240,237,232,0.7); margin:0;">New drops, premieres, recommendations.</p>
+                <p style="font-size:13px; line-height:1.5; color:rgba(240,237,232,0.7); margin:0;">New sets, premieres, and recommendations worth your time.</p>
               </td>
-              <td width="33%" valign="top" style="padding:0 8px 16px; text-align:center;">
+              <td width="33%" valign="top" class="pillar-cell" style="padding:0 8px 16px; text-align:center;">
                 <p style="font-size:26px; color:#C8E000; margin:0 0 6px;">🎛️</p>
                 <p style="font-size:12px; font-weight:bold; letter-spacing:1px; color:#C8E000; text-transform:uppercase; margin:0 0 4px;">Experience</p>
-                <p style="font-size:13px; line-height:1.5; color:rgba(240,237,232,0.7); margin:0;">Curated third space, iconic sets, side attractions.</p>
+                <p style="font-size:13px; line-height:1.5; color:rgba(240,237,232,0.7); margin:0;">Watch together online — and soon, in real life.</p>
               </td>
             </tr>
           </table>
 
-          <!-- Coming Soon (texture background, bold captivating title) -->
-          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color:#111111; border-top:1px solid rgba(200,224,0,0.15); border-bottom:1px solid rgba(200,224,0,0.15); margin-bottom:40px; background-image:url('https://afrocue.xyz/texture.jpg'); background-size:cover; background-position:center;">
-            <tr>
-              <td align="center" style="padding:32px 20px;">
-                <p style="font-size:12px; font-weight:bold; letter-spacing:2px; color:#C8E000; text-transform:uppercase; margin:0 0 8px;">Coming Soon</p>
-                <p style="font-family: 'Aesthet Nova', Georgia, serif; font-size:36px; font-weight:900; color:#f0ede8; margin:0 0 8px; text-shadow: 0 0 10px rgba(200,224,0,0.4);">Set Club 001</p>
-                <p style="font-size:16px; color:rgba(240,237,232,0.7); margin:0;">Date TBA</p>
-              </td>
-            </tr>
-          </table>
-
-          <!-- Primary CTA -->
+          <!-- YouTube CTAs -->
           <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-bottom:40px;">
             <tr>
               <td align="center">
-                <a href="https://www.youtube.com/playlist?list=PLItANlSge6dc" target="_blank" style="display:inline-block; background-color:#C8E000; color:#0a0a0a; text-decoration:none; font-size:14px; font-weight:bold; letter-spacing:1px; padding:14px 28px; border-radius:4px; text-transform:uppercase;">
-                  Watch Set Club on YouTube →
+                <a href="https://www.youtube.com/playlist?list=PLItANlSge6dc" target="_blank" class="btn-stack" style="display:inline-block; background-color:#C8E000; color:#0a0a0a; text-decoration:none; font-size:13px; font-weight:bold; letter-spacing:1px; padding:14px 24px; border-radius:4px; text-transform:uppercase; margin:0 4px;">
+                  Save the playlist
+                </a>
+                <a href="https://youtube.com/@AfroCue" target="_blank" class="btn-stack" style="display:inline-block; background-color:transparent; color:#f0ede8; text-decoration:none; font-size:13px; font-weight:bold; letter-spacing:1px; padding:13px 24px; border:1px solid rgba(255,255,255,0.35); border-radius:4px; text-transform:uppercase; margin:0 4px;">
+                  Subscribe on YouTube
                 </a>
               </td>
             </tr>
           </table>
 
-          <!-- Weekly Top 5 CTA with side-by-side image on mobile -->
+          <!-- Weekly Top 5 -->
           <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-bottom:40px;">
             <tr>
               <td align="center" style="padding:24px; background-color:#111111; border-radius:8px; border:1px solid rgba(255,255,255,0.08);">
@@ -191,6 +183,51 @@
                     </td>
                   </tr>
                 </table>
+              </td>
+            </tr>
+          </table>
+
+          <!-- ─── SET CLUB 001 — LOCKED (rebuilt) ─── -->
+          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color:#0f0f0f; border:1px solid rgba(200,224,0,0.18); border-radius:10px; background-image:url('https://afrocue.xyz/texture.jpg'); background-size:cover; background-position:center; margin-bottom:40px;">
+            <tr>
+              <td align="center" style="padding:48px 24px 44px;">
+
+                <!-- Coming Soon badge -->
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin:0 auto 26px;">
+                  <tr>
+                    <td align="center" style="background-color:#C8E000; border-radius:2px; padding:7px 16px;">
+                      <p style="font-size:10px; font-weight:bold; letter-spacing:0.22em; color:#0a0a0a; text-transform:uppercase; margin:0;">● Coming Soon</p>
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Edition label -->
+                <p style="font-size:10px; font-weight:bold; letter-spacing:0.22em; color:#999999; text-transform:uppercase; margin:0 0 12px;">Set Club 001</p>
+
+                <!-- Big heading -->
+                <p style="font-family: 'Aesthet Nova', Georgia, serif; font-size:44px; line-height:0.95; font-weight:900; color:#C8E000; margin:0 0 26px; letter-spacing:0.01em; text-shadow: 2px 3px 0 rgba(0,0,0,0.85), 0 0 24px rgba(200,224,0,0.15);">
+                  SET CLUB 001
+                </p>
+
+                <!-- Locked pill (dashed, centered) -->
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin:0 auto 28px;">
+                  <tr>
+                    <td align="center" style="border:1.5px dashed rgba(200,224,0,0.55); border-radius:4px; background-color:rgba(200,224,0,0.05); padding:10px 24px;">
+                      <p style="font-family: 'Aesthet Nova', Georgia, serif; font-size:13px; font-weight:900; color:#C8E000; margin:0; letter-spacing:0.28em; text-transform:uppercase;">
+                        🔒 Locked
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Copy -->
+                <p style="font-size:15px; line-height:1.7; color:rgba(240,237,232,0.8); margin:0 0 6px; max-width:320px; margin-left:auto; margin-right:auto;">
+                  Something is taking shape.
+                </p>
+                <p style="font-size:15px; line-height:1.7; color:rgba(240,237,232,0.8); margin:0; max-width:320px; margin-left:auto; margin-right:auto;">
+                  You'll be the first to know when it opens.
+                </p>
+
               </td>
             </tr>
           </table>
