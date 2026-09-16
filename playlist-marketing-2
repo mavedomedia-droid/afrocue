@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Playlist Marketing — Curator Outreach · AfroCue</title>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="apple-touch-icon" href="favicon.png"/>
+  <meta name="description" content="We use a Spotify-approved research tool to shortlist only the playlists with real activity in the last 30 days. Then we reach out to curators directly. You pay for playlists that are actually moving."/>
+  <meta name="keywords" content="Spotify promotion, playlist placement, music marketing, Afrobeats promotion, playlist curator outreach, AfroCue"/>
+  <link rel="canonical" href="https://afrocue.xyz/playlist-marketing-2"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://afrocue.xyz/playlist-marketing-2"/>
+  <meta property="og:title" content="Playlist Marketing — Curator Outreach · AfroCue"/>
+  <meta property="og:description" content="Only playlists with recent activity. Only real curator outreach. From ₦250K."/>
+  <meta property="og:image" content="https://afrocue.xyz/playlist_groovy_afrobeats.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@afrocue_"/>
+  <meta name="theme-color" content="#0a0a0a"/>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WB5HQGFGV');</script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ════════════════════════════════════════════════════════════
+       PLAYLIST MARKETING 2 — Curator Outreach
+       Uses the same visual language as playlist-marketing-1.
+       ════════════════════════════════════════════════════════════ */
+
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
+    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
+
+    :root {
+      --black:  #0a0a0a;
+      --dark:   #111111;
+      --dark2:  #1c1c1c;
+      --mid:    #2e2e2e;
+      --grey:   #555555;
+      --silver: #999999;
+      --off:    #d4d4d0;
+      --white:  #f0ede8;
+      --yellow: #C8E000;
+      --green:  #1DB954;
+      --yts:    2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.06);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { background: var(--black); color: var(--white); font-family: 'Figtree', sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+    img { display: block; max-width: 100%; }
+
+    .yh { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; color: var(--yellow); text-shadow: var(--yts); line-height: 0.92; }
+    .outline { -webkit-text-stroke: 1.5px var(--yellow); color: transparent; text-shadow: none; }
+
+    .label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+    .label::before { content: ''; width: 22px; height: 1px; background: var(--silver); flex-shrink: 0; }
+
+    /* ═══ NAV ═══ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 40px;
+      background: rgba(10,10,10,0.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-logo { display: flex; align-items: center; }
+    .nav-logo img { height: 42px; width: auto; }
+    .nav-logo-fallback { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 15px; color: var(--yellow); letter-spacing: 0.08em; }
+    .nav-right { display: flex; align-items: center; gap: 18px; }
+    .nav-back { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+    .nav-back:hover { color: var(--white); }
+    .nav-cta { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); background: var(--yellow); padding: 10px 18px; border-radius: 2px; transition: opacity 0.2s; }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ═══ HERO ═══ */
+    .hero {
+      min-height: 100vh; min-height: 100dvh;
+      padding: 140px 40px 80px;
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(200,224,0,0.07) 0%, transparent 50%),
+        radial-gradient(circle at 20% 80%, rgba(29,185,84,0.05) 0%, transparent 50%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 1; opacity: 0.04;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .hero-inner { position: relative; z-index: 2; max-width: 1200px; width: 100%; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: center; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--yellow); margin-bottom: 28px; }
+    .hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--yellow); }
+    .hero h1 {
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: clamp(48px, 6.8vw, 108px); line-height: 0.88;
+      color: var(--yellow); text-shadow: var(--yts);
+      margin-bottom: 28px;
+      word-break: keep-all; hyphens: none;
+    }
+    .hero-sub { font-size: 17px; font-weight: 300; line-height: 1.65; color: rgba(240,237,232,0.65); max-width: 560px; margin-bottom: 36px; }
+    .hero-sub strong { color: var(--white); font-weight: 600; }
+    .hero-cta-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-family: 'Figtree', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 14px 26px; border-radius: 2px; text-decoration: none; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+    .btn-yellow { color: var(--black); background: var(--yellow); }
+    .btn-yellow:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-ghost { color: var(--silver); background: transparent; border: 1px solid rgba(255,255,255,0.18); font-weight: 500; }
+    .btn-ghost:hover { border-color: var(--white); color: var(--white); }
+    .btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* Hero right — playlist artwork */
+    .hero-art {
+      position: relative;
+      aspect-ratio: 1; max-width: 380px; justify-self: end;
+      border-radius: 8px; overflow: hidden;
+      transform: rotate(-2deg);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.08);
+    }
+    .hero-art img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-art::after {
+      content: 'EXAMPLE PLAYLIST'; position: absolute; bottom: 12px; left: 12px;
+      font-size: 9px; letter-spacing: 0.2em; color: rgba(240,237,232,0.6);
+      background: rgba(10,10,10,0.7); padding: 4px 8px; border-radius: 2px;
+    }
+
+    /* ═══ KILLER NUMBERS STRIP ═══ */
+    .numbers-strip {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: var(--dark);
+      padding: 36px 40px;
+    }
+    .numbers-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+    .num-cell { background: var(--dark); padding: 22px 24px; }
+    .num-val { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(28px,3vw,42px); color: var(--yellow); text-shadow: var(--yts); line-height: 1; margin-bottom: 6px; }
+    .num-key { font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--silver); line-height: 1.5; }
+
+    /* ═══ SECTIONS ═══ */
+    section { padding: 96px 40px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-h { font-size: clamp(40px, 5.5vw, 80px); margin-bottom: 24px; }
+
+    /* ═══ THE PROBLEM ═══ */
+    #problem { background: var(--black); border-top: 1px solid rgba(255,255,255,0.06); }
+    .problem-intro { font-size: 16px; font-weight: 300; line-height: 1.75; color: rgba(240,237,232,0.55); max-width: 720px; margin-bottom: 56px; }
+    .problem-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+    .problem-card { background: var(--dark); padding: 32px 28px; transition: background 0.2s; }
+    .problem-card:hover { background: var(--dark2); }
+    .problem-num { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 36px; color: rgba(200,224,0,0.18); line-height: 1; margin-bottom: 12px; }
+    .problem-card h3 { font-size: 17px; font-weight: 600; color: var(--white); margin-bottom: 10px; line-height: 1.35; }
+    .problem-card p { font-size: 14px; font-weight: 300; line-height: 1.65; color: var(--grey); }
+
+    /* ═══ THE APPROACH ═══ */
+    #system { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); position: relative; }
+    .system-head { max-width: 780px; margin-bottom: 56px; }
+    .system-head p { font-size: 16px; font-weight: 300; line-height: 1.75; color: rgba(240,237,232,0.55); margin-top: 16px; }
+    .system-head p + p { margin-top: 14px; }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .step { background: var(--black); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; padding: 26px 22px; position: relative; }
+    .step-num { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 14px; color: var(--yellow); margin-bottom: 18px; letter-spacing: 0.08em; }
+    .step-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 8px; line-height: 1.35; }
+    .step-desc { font-size: 12px; font-weight: 300; line-height: 1.6; color: var(--grey); }
+    .step-arrow { position: absolute; right: -16px; top: 50%; transform: translateY(-50%); color: var(--yellow); opacity: 0.4; font-size: 14px; z-index: 1; display: none; }
+    .step:not(:last-child) .step-arrow { display: block; }
+
+    .tool-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 10px 16px; border-radius: 2px;
+      background: rgba(29,185,84,0.08);
+      border: 1px solid rgba(29,185,84,0.25);
+      font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 22px;
+    }
+    .tool-badge svg { width: 14px; height: 14px; fill: var(--green); }
+
+    /* ═══ PROOF ═══ */
+    #proof { border-top: 1px solid rgba(255,255,255,0.06); background: var(--black); }
+    .proof-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 48px; }
+    .proof-head p { font-size: 14px; font-weight: 300; color: var(--silver); max-width: 440px; line-height: 1.65; }
+
+    /* Big thin banner for the total-playlists screenshot */
+    .proof-banner {
+      background: var(--dark);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 6px;
+      padding: 18px;
+      margin-bottom: 24px;
+    }
+    .proof-banner .proof-tag {
+      display: inline-block; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--silver); margin-bottom: 12px; padding: 4px 8px;
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 2px;
+    }
+    .proof-banner img {
+      width: 100%; height: auto; display: block; border-radius: 3px;
+    }
+    .proof-banner-caption {
+      font-size: 13px; font-weight: 300; color: rgba(240,237,232,0.55);
+      margin-top: 14px; line-height: 1.6;
+    }
+    .proof-banner-caption strong { color: var(--white); font-weight: 600; }
+
+    /* Three screenshot grid below */
+    .proof-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .proof-screenshot {
+      background: var(--dark); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 6px; padding: 14px;
+    }
+    .proof-screenshot img { width: 100%; height: auto; border-radius: 3px; display: block; }
+    .proof-screenshot .proof-tag {
+      display: inline-block; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--silver); margin-bottom: 10px; padding: 4px 8px;
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 2px;
+    }
+    .proof-screenshot .proof-caption {
+      font-size: 12px; font-weight: 300; color: rgba(240,237,232,0.5);
+      margin-top: 12px; line-height: 1.55;
+    }
+    .proof-screenshot .proof-caption strong { color: var(--white); font-weight: 600; }
+
+    /* ═══ PRICING ═══ */
+    #pricing { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
+    .pricing-head { max-width: 720px; margin-bottom: 48px; }
+    .pricing-head p { font-size: 16px; font-weight: 300; line-height: 1.7; color: rgba(240,237,232,0.55); margin-top: 16px; }
+    .tiers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .tier { background: var(--black); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 28px 24px; position: relative; transition: border-color 0.25s, transform 0.25s; }
+    .tier:hover { border-color: rgba(200,224,0,0.3); transform: translateY(-3px); }
+    .tier.popular { border-color: rgba(200,224,0,0.4); background: linear-gradient(180deg, rgba(200,224,0,0.05) 0%, var(--black) 60%); }
+    .tier-badge { position: absolute; top: -10px; left: 24px; background: var(--yellow); color: var(--black); font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; }
+    .tier-name { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-bottom: 12px; }
+    .tier-price { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(26px,2.8vw,40px); color: var(--yellow); text-shadow: var(--yts); line-height: 1; margin-bottom: 4px; }
+    .tier-currency { font-size: 12px; color: var(--silver); letter-spacing: 0.05em; margin-bottom: 18px; }
+    .tier-row { font-size: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; gap: 8px; }
+    .tier-row:last-child { border-bottom: none; }
+    .tier-row-key { color: var(--grey); font-weight: 500; }
+    .tier-row-val { color: var(--white); font-weight: 500; text-align: right; }
+    .tier-foot { font-size: 10px; color: var(--grey); margin-top: 14px; font-style: italic; letter-spacing: 0.02em; }
+
+    .pricing-footnote { margin-top: 24px; font-size: 11px; color: var(--grey); letter-spacing: 0.04em; line-height: 1.7; }
+
+    /* ═══ ADVANTAGES ═══ */
+    #advantages { background: var(--black); border-top: 1px solid rgba(255,255,255,0.06); }
+    .adv-head { max-width: 720px; margin-bottom: 48px; }
+    .adv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border-radius: 6px; overflow: hidden; }
+    .adv-cell { background: var(--dark); padding: 30px 26px; }
+    .adv-cell h3 { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: 20px; color: var(--yellow); text-shadow: var(--yts); margin-bottom: 12px; line-height: 1; }
+    .adv-cell p { font-size: 13px; font-weight: 300; line-height: 1.65; color: var(--grey); }
+
+    /* ═══ FINAL CTA ═══ */
+    #cta {
+      background:
+        radial-gradient(circle at 50% 50%, rgba(200,224,0,0.07) 0%, transparent 60%),
+        var(--black);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 100px 40px 120px;
+    }
+    .cta-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+    .cta-h { font-size: clamp(44px, 6vw, 92px); margin-bottom: 24px; }
+    .cta-body { font-size: 16px; font-weight: 300; line-height: 1.65; color: rgba(240,237,232,0.6); max-width: 560px; margin: 0 auto 44px; }
+    .cta-form { text-align: left; display: flex; flex-direction: column; gap: 18px; background: var(--dark); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 36px 32px; }
+    .cta-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .cta-field { display: flex; flex-direction: column; gap: 7px; }
+    .cta-field label { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--silver); }
+    .cta-field input, .cta-field select, .cta-field textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 3px;
+      padding: 13px 14px;
+      color: var(--white);
+      font-family: 'Figtree', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      width: 100%;
+      resize: vertical;
+    }
+    .cta-field input::placeholder, .cta-field textarea::placeholder { color: var(--grey); }
+    .cta-field input:focus, .cta-field select:focus, .cta-field textarea:focus {
+      border-color: rgba(200,224,0,0.4);
+      background: rgba(255,255,255,0.06);
+    }
+    .cta-field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .cta-field select option { background: #1a1a1a; color: var(--white); }
+    .cta-submit { align-self: stretch; justify-content: center; padding: 16px 32px; font-size: 12px; margin-top: 6px; }
+    .cta-submit:hover { transform: translateY(-1px); }
+    .cta-mail-note { font-size: 11px; color: var(--grey); text-align: center; margin-top: 6px; line-height: 1.6; }
+    .cta-mail-note a { color: var(--silver); text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
+    .cta-mail-note a:hover { color: var(--white); }
+
+    .proposal-success { text-align: center; padding: 56px 32px; background: var(--dark); border: 1px solid rgba(200,224,0,0.25); border-radius: 6px; animation: successIn 0.5s ease-out; }
+    @keyframes successIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .success-check { width: 64px; height: 64px; margin: 0 auto 24px; border-radius: 50%; background: rgba(200,224,0,0.12); border: 2px solid var(--yellow); display: flex; align-items: center; justify-content: center; color: var(--yellow); }
+    .success-check svg { width: 32px; height: 32px; }
+    .success-title { font-size: clamp(36px, 5vw, 64px); margin-bottom: 16px; }
+    .success-body { font-size: 15px; font-weight: 300; line-height: 1.65; color: rgba(240,237,232,0.6); max-width: 440px; margin: 0 auto 18px; }
+    .success-note { font-size: 12px; color: var(--grey); max-width: 440px; margin: 0 auto; line-height: 1.6; }
+    .success-note a { color: var(--silver); text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
+    .success-note a:hover { color: var(--white); }
+
+    /* ═══ FOOTER ═══ */
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 48px 40px; text-align: center; background: var(--dark); }
+    .footer-brand img { height: 56px; width: auto; margin: 0 auto 12px; opacity: 0.7; }
+    .footer-brand p { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--grey); }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; margin-top: 16px; }
+    .footer-links a { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+
+    /* ═══ MOBILE ═══ */
+    @media (max-width: 900px) {
+      nav { padding: 12px 18px; }
+      .nav-back { display: none; }
+      section { padding: 64px 20px; }
+      .hero { padding: 110px 20px 60px; min-height: 0; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-art { justify-self: center; max-width: 280px; }
+      .numbers-strip { padding: 24px 20px; }
+      .numbers-grid { grid-template-columns: 1fr 1fr; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .proof-grid-3 { grid-template-columns: 1fr; }
+      .tiers { grid-template-columns: 1fr; }
+      .adv-grid { grid-template-columns: 1fr; }
+      #cta { padding: 80px 20px; }
+      .cta-form { padding: 28px 22px; }
+      .cta-form-row { grid-template-columns: 1fr; gap: 18px; }
+    }
+
+    @media (max-width: 480px) {
+      .steps { grid-template-columns: 1fr; }
+      .numbers-grid { grid-template-columns: 1fr; }
+      .hero-cta-row .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFGV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="logo_afrocue.png" alt="AfroCue"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
+    <span class="nav-logo-fallback" style="display:none;">AFRO.CUE</span>
+  </a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back">&larr; Back to AfroCue</a>
+    <a href="#cta" class="nav-cta">Work With Us</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">For Artists, Labels &amp; Music Executives</div>
+      <h1>The playlists<br>that actually<br><span class="outline">move.</span></h1>
+      <p class="hero-sub">We use a <strong>Spotify-approved research tool</strong> to shortlist only the playlists with <strong>real activity in the last 30 days</strong> — then we reach out to the curators directly. You get pitched on playlists that are moving <em>right now</em>. Not the ones coasting on old saves.</p>
+      <div class="hero-cta-row">
+        <a href="#cta" class="btn btn-yellow">Work with us</a>
+        <a href="#system" class="btn btn-ghost">How it works</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img src="playlist_groovy_afrobeats.png" alt="Groovy Afrobeats — AfroCue playlist cover"/>
+    </div>
+  </div>
+</section>
+
+<!-- KILLER NUMBERS -->
+<div class="numbers-strip">
+  <div class="numbers-grid">
+    <div class="num-cell">
+      <div class="num-val">12M+</div>
+      <div class="num-key">Playlists visible to us — every one on Spotify</div>
+    </div>
+    <div class="num-cell">
+      <div class="num-val">30 days</div>
+      <div class="num-key">Activity filter. No dead playlists.</div>
+    </div>
+    <div class="num-cell">
+      <div class="num-val">Direct</div>
+      <div class="num-key">Curator outreach. No middlemen.</div>
+    </div>
+    <div class="num-cell">
+      <div class="num-val">₦250K–5M</div>
+      <div class="num-key">Any size budget works</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="container">
+    <div class="label">The Status Quo</div>
+    <h2 class="yh section-h">Why playlist<br>pitching is<br>broken.</h2>
+    <p class="problem-intro">Most pay-for-placement playlist services share the same problem: they sell you on <strong style="color:var(--white)">total saves</strong>, not recent activity. And there's no way to know how recently those saves happened.</p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-num">01</div>
+        <h3>Save totals hide the real story.</h3>
+        <p>A playlist can show 100K saves and still have almost zero people listening this month. The total is a screenshot, not an active audience.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">02</div>
+        <h3>Curators pump for two days, then stop.</h3>
+        <p>You get a spike of activity in week one — just enough to make the numbers look plausible — and then nothing. The cheque is already written.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">03</div>
+        <h3>You have no visibility into who's actually moving.</h3>
+        <p>There's no way to tell the difference between a playlist with 100K followers that grew 200 people last month and one that grew 8,000.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">04</div>
+        <h3>You're paying for someone else's dead audience.</h3>
+        <p>And you have no idea until the campaign is over — at which point you've spent your budget and learned nothing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE APPROACH -->
+<section id="system">
+  <div class="container">
+    <div class="system-head">
+      <div class="tool-badge">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        Spotify-approved research tool
+      </div>
+      <div class="label">Our Approach</div>
+      <h2 class="yh section-h">We only pitch<br>playlists that<br>are <span class="outline">moving.</span></h2>
+      <p>We have access to a Spotify-approved research tool that shows us <strong style="color:var(--white)">every playlist on Spotify</strong> — all ~12 million of them — alongside the metrics that actually matter for placement. Not total saves. <strong style="color:var(--white)">Recent activity</strong>.</p>
+      <p>Then we shortlist, filter by genre fit, and reach out to curators directly.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01 · SOURCE</div>
+        <div class="step-title">Every playlist. Visible.</div>
+        <div class="step-desc">We pull from every public playlist on Spotify — no curated "network" of the same five curators everyone else uses.</div>
+        <span class="step-arrow">&rarr;</span>
+      </div>
+      <div class="step">
+        <div class="step-num">02 · FILTER</div>
+        <div class="step-title">30-day activity only.</div>
+        <div class="step-desc">The key signal is <strong style="color:var(--white)">1-month followership growth</strong> — the clearest indicator a playlist is actually moving right now.</div>
+        <span class="step-arrow">&rarr;</span>
+      </div>
+      <div class="step">
+        <div class="step-num">03 · MATCH</div>
+        <div class="step-title">Genre &amp; category fit.</div>
+        <div class="step-desc">We keep only playlists that match your sound. Not just "Afrobeats" — the specific lane your song actually lives in.</div>
+        <span class="step-arrow">&rarr;</span>
+      </div>
+      <div class="step">
+        <div class="step-num">04 · OUTREACH</div>
+        <div class="step-title">Direct to curators.</div>
+        <div class="step-desc">We reach out 1:1 to the humans behind the shortlisted playlists. No bots, no bulk-blasts, no fake contacts.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section id="proof">
+  <div class="container">
+    <div class="proof-head">
+      <div>
+        <div class="label">The Proof</div>
+        <h2 class="yh section-h">Real screenshots.<br>From the tool<br>we use.</h2>
+      </div>
+      <p>This is what we actually see when we plan a campaign. Real data on real playlists — filtered to the ones actually moving in the last 30 days.</p>
+    </div>
+
+    <!-- Big thin banner for the total-playlists screenshot -->
+    <div class="proof-banner">
+      <span class="proof-tag">Spotify-approved tool · playlist database</span>
+      <img src="proof_spotify_total_playlists.png" alt="Spotify-approved research tool showing the total number of playlists on the platform"/>
+      <p class="proof-banner-caption"><strong>Every public playlist on Spotify</strong> — searchable, filterable, and sortable by recent activity. Not a curated "network." The entire platform.</p>
+    </div>
+
+    <!-- Three playlist research screenshots -->
+    <div class="proof-grid-3">
+      <div class="proof-screenshot">
+        <span class="proof-tag">Playlist research — filter</span>
+        <img src="proof_playlist_research_1.png" alt="Playlist research view filtered by recent activity"/>
+        <p class="proof-caption">Filtering by <strong>1-month followership growth</strong> and category fit — the two signals that actually correlate with results.</p>
+      </div>
+      <div class="proof-screenshot">
+        <span class="proof-tag">Shortlist view</span>
+        <img src="proof_playlist_research_2.png" alt="Shortlisted playlists with recent followership growth"/>
+        <p class="proof-caption">Shortlisted playlists ready for curator outreach. Each one has had <strong>real listener movement</strong> in the last 30 days.</p>
+      </div>
+      <div class="proof-screenshot">
+        <span class="proof-tag">Playlist detail</span>
+        <img src="proof_playlist_research_3.png" alt="Detailed view of a shortlisted playlist"/>
+        <p class="proof-caption">Deep-dive on each playlist: <strong>follower growth, save velocity, genre overlap</strong> — everything we need to know before we pitch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="pricing-head">
+      <div class="label">Pricing</div>
+      <h2 class="yh section-h">Any budget.<br>From ₦250K<br>up to ₦5M.</h2>
+      <p>Tell us your budget and we'll come back with a playlist plan. Higher budgets unlock higher-growth playlists and more of them. Lower budgets still get you real activity — just fewer placements.</p>
+    </div>
+
+    <div class="tiers">
+
+      <div class="tier">
+        <div class="tier-name">Starter</div>
+        <div class="tier-price">₦250K</div>
+        <div class="tier-currency">starting from</div>
+        <div class="tier-row"><span class="tier-row-key">Playlists</span><span class="tier-row-val">2–4 small, active</span></div>
+        <div class="tier-row"><span class="tier-row-key">Focus</span><span class="tier-row-val">Recent activity only</span></div>
+        <div class="tier-row"><span class="tier-row-key">Outreach</span><span class="tier-row-val">Direct to curators</span></div>
+        <div class="tier-foot">Test the system first</div>
+      </div>
+
+      <div class="tier popular">
+        <div class="tier-badge">Most Picked</div>
+        <div class="tier-name">Growth</div>
+        <div class="tier-price">₦500K<br>–₦1M</div>
+        <div class="tier-currency">typical range</div>
+        <div class="tier-row"><span class="tier-row-key">Playlists</span><span class="tier-row-val">4–8 mid-size, active</span></div>
+        <div class="tier-row"><span class="tier-row-key">Focus</span><span class="tier-row-val">30-day growth tiers</span></div>
+        <div class="tier-row"><span class="tier-row-key">Outreach</span><span class="tier-row-val">1:1 curator pitching</span></div>
+        <div class="tier-foot">Real audience growth window</div>
+      </div>
+
+      <div class="tier">
+        <div class="tier-name">Scale</div>
+        <div class="tier-price">₦1M<br>–₦2M</div>
+        <div class="tier-currency">typical range</div>
+        <div class="tier-row"><span class="tier-row-key">Playlists</span><span class="tier-row-val">6–12 mixed-size</span></div>
+        <div class="tier-row"><span class="tier-row-key">Focus</span><span class="tier-row-val">High-growth shortlist</span></div>
+        <div class="tier-row"><span class="tier-row-key">Outreach</span><span class="tier-row-val">Priority curator access</span></div>
+        <div class="tier-foot">Multi-playlist strategy</div>
+      </div>
+
+      <div class="tier">
+        <div class="tier-name">Major</div>
+        <div class="tier-price">₦2M<br>–₦5M</div>
+        <div class="tier-currency">typical range</div>
+        <div class="tier-row"><span class="tier-row-key">Playlists</span><span class="tier-row-val">10–20+ across tiers</span></div>
+        <div class="tier-row"><span class="tier-row-key">Focus</span><span class="tier-row-val">Full-category coverage</span></div>
+        <div class="tier-row"><span class="tier-row-key">Outreach</span><span class="tier-row-val">Extended curator network</span></div>
+        <div class="tier-foot">Label rollouts, major releases</div>
+      </div>
+
+    </div>
+
+    <p class="pricing-footnote">Final playlist mix depends on genre fit, release timing, and the specific shortlist at the time of campaign. We share the shortlist with you before any outreach — you always know exactly which playlists we're pitching. Cost per playlist scales with follower growth — bigger, faster-growing playlists cost more.</p>
+  </div>
+</section>
+
+<!-- ADVANTAGES -->
+<section id="advantages">
+  <div class="container">
+    <div class="adv-head">
+      <div class="label">Why This Works</div>
+      <h2 class="yh section-h">Six things<br>the usual<br>services<br>don't do.</h2>
+    </div>
+
+    <div class="adv-grid">
+      <div class="adv-cell">
+        <h3>Real activity.</h3>
+        <p>We filter for 1-month followership growth — the only metric that reliably correlates with listeners actually hearing your song this month.</p>
+      </div>
+      <div class="adv-cell">
+        <h3>Full-platform visibility.</h3>
+        <p>Every public playlist on Spotify is visible to us. Not a curated "network" of the same five names every other service uses.</p>
+      </div>
+      <div class="adv-cell">
+        <h3>Direct curator outreach.</h3>
+        <p>We pitch curators 1:1. No bots, no bulk blasts, no fake contacts. Real humans deciding whether your song belongs on their playlist.</p>
+      </div>
+      <div class="adv-cell">
+        <h3>Genre &amp; category fit.</h3>
+        <p>Not just "Afrobeats" — the specific sub-lane your song lives in. Groovy, party starters, amapiano, afrohouse, whatever it actually is.</p>
+      </div>
+      <div class="adv-cell">
+        <h3>You see the shortlist first.</h3>
+        <p>Before any outreach, you see exactly which playlists we're pitching. Full transparency on what your budget is buying.</p>
+      </div>
+      <div class="adv-cell">
+        <h3>No lock-in minimums.</h3>
+        <p>Start at ₦250K. Scale up when you're ready. No long-term contracts, no retainer traps, no "commitment tiers."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <div class="label" style="justify-content:center; margin-bottom: 24px;">Work With Us</div>
+    <h2 class="yh cta-h">Tell us about<br>the track.</h2>
+    <p class="cta-body">Fill in the form and we'll come back with a playlist shortlist, a curator outreach plan, and a budget recommendation. Starting from ₦250K.</p>
+
+    <form class="cta-form" onsubmit="sendProposal(event)">
+      <div class="cta-form-row">
+        <div class="cta-field">
+          <label>Your name</label>
+          <input type="text" name="name" placeholder="Jane Doe" required/>
+        </div>
+        <div class="cta-field">
+          <label>Artist name</label>
+          <input type="text" name="artist" placeholder="Stage name or band" required/>
+        </div>
+      </div>
+
+      <div class="cta-field">
+        <label>Link to track</label>
+        <input type="url" name="track" placeholder="Spotify, Audiomack, SoundCloud, YouTube — wherever it lives" required/>
+      </div>
+
+      <div class="cta-form-row">
+        <div class="cta-field">
+          <label>Suggested category / genre</label>
+          <input type="text" name="category" placeholder="e.g. Groovy Afrobeats, Amapiano, Party Starters" required/>
+        </div>
+        <div class="cta-field">
+          <label>Proposed budget</label>
+          <select name="budget" required>
+            <option value="" disabled selected>Pick a range</option>
+            <option>₦250K – ₦500K — Starter</option>
+            <option>₦500K – ₦1M — Growth</option>
+            <option>₦1M – ₦2M — Scale</option>
+            <option>₦2M – ₦5M — Major</option>
+            <option>Above ₦5M / let's discuss</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="cta-field">
+        <label>Best email to reach you</label>
+        <input type="email" name="email" placeholder="you@email.com" required/>
+      </div>
+
+      <div class="cta-field">
+        <label>Anything else? <span style="color:var(--grey); font-weight:400; text-transform:none; letter-spacing:0;">(optional)</span></label>
+        <textarea name="notes" rows="3" placeholder="Release date, goals, anything we should know..."></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-yellow cta-submit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Send To AfroCue
+      </button>
+
+      <p class="cta-mail-note">Or email us directly at <a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a>.</p>
+    </form>
+
+    <div id="proposalSuccess" class="proposal-success" style="display:none;">
+      <div class="success-check">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3 class="yh success-title">You're in.</h3>
+      <p class="success-body">Your brief is with us. We'll build a playlist shortlist for your track and come back within a few days with a curator outreach plan and a recommended budget.</p>
+      <p class="success-note">Check your inbox — including spam — for our reply. You can also reach us at <a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a href="index.html">
+      <img src="logo_afrocue.png" alt="AfroCue"
+        onerror="this.style.display='none';"/>
+    </a>
+    <p>Creatively Documenting Culture</p>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#about">About</a>
+    <a href="playlist-marketing.html">Playlist Marketing Engine</a>
+    <a href="mailto:afrocueonline@gmail.com">Contact</a>
+  </div>
+</footer>
+
+<script>
+  /* ⚠️ PASTE YOUR GAS WEB APP URL HERE ⚠️
+     (Same URL as the other playlist-marketing page.) */
+  var GAS_URL = 'https://script.google.com/macros/s/AKfycbzlHEsTeLWeBgEA2QWy4X7QU-2noZuO6r8G-Ga0eFR_1X1gl4qlPPgJLvLmcS-2L3Oy/exec';
+
+  function sendProposal(e) {
+    e.preventDefault();
+    var f = e.target;
+    var submitBtn = f.querySelector('button[type="submit"]');
+
+    var data = {
+      source:      'playlist_marketing_curator',
+      name:        (f.name.value     || '').trim(),
+      artist:      (f.artist.value   || '').trim(),
+      track:       (f.track.value    || '').trim(),
+      category:    (f.category.value || '').trim(),
+      email:       (f.email.value    || '').trim(),
+      budget:      (f.budget.value   || '').trim(),
+      notes:       (f.notes.value    || '').trim(),
+      source_page: window.location.href
+    };
+
+    try {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'proposal_submit',
+        proposal_page: 'playlist_marketing_curator',
+        proposal_budget: data.budget,
+        proposal_category: data.category
+      });
+    } catch (err) {}
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Sending...';
+
+    fetch(GAS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: 'payload=' + encodeURIComponent(JSON.stringify(data))
+    }).finally(function() {
+      f.style.display = 'none';
+      var success = document.getElementById('proposalSuccess');
+      if (success) success.style.display = 'block';
+    });
+  }
+</script>
+
+</body>
+</html>
