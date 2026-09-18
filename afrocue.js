@@ -3,7 +3,7 @@
    ============================================================ */
 
 // 👇 Set your Google Apps Script URL once here
-var AFROCUE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzSKLspzEdXquWTkqPjMZMQl_qK-2KWYMxszTU6HJMh3MPgzhqduarnRkxwbe-d1qpU/exec';
+var AFROCUE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzTbraxyotbxfSXBPS3K-aN8DRrvTR5jQe3F09blI6Vh51WFEwlnBECQZuaqwpXZ72L/exec';
 
 // Expose it for pages that expect different names
 window.AFROCUE_SCRIPT_URL = AFROCUE_SCRIPT_URL;
