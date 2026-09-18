@@ -1,781 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Roamers — AfroCue</title>
-  <link rel="icon" type="image/png" href="favicon.png"/>
-  <link rel="apple-touch-icon" href="favicon.png"/>
-  <meta name="description" content="Roamers are the people who show up for the room. Lagos parties, raves and events — take the quiz to see if you qualify."/>
-
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
-
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+  <meta name="x-apple-disable-message-reformatting"/>
+  <meta name="color-scheme" content="dark"/>
+  <meta name="supported-color-schemes" content="dark"/>
+  <title>You're a Roamer — AfroCue</title>
+  <!--[if mso]>
+  <noscript>
+    <xml>
+      <o:OfficeDocumentSettings>
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+    </xml>
+  </noscript>
+  <![endif]-->
   <style>
-    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
-    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
-    :root {
-      --black:  #0a0a0a; --dark: #111111; --grey: #555555; --silver: #999999;
-      --white:  #f0ede8; --yellow: #C8E000;
-      --yts: 1px 2px 0px rgba(0,0,0,0.85), 0 0 16px rgba(200,224,0,0.04);
-    }
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body { background:var(--black); color:var(--white); font-family:'Figtree',sans-serif; min-height:100vh; overflow-x:hidden; }
-
-    .bg-image { position:fixed; inset:0; z-index:0; background-image:url('roamers_bg.jpg'); background-size:cover; background-position:center 30%; opacity:0.16; pointer-events:none; }
-    .bg-scrim { position:fixed; inset:0; z-index:1; background:rgba(10,10,10,0.7); pointer-events:none; }
-    .bg-texture { position:fixed; inset:0; z-index:2; background-image:url('texture.jpg'); background-size:cover; opacity:0.35; pointer-events:none; }
-
-    .wrap { position:relative; z-index:3; max-width:680px; margin:0 auto; padding:0 32px 72px; text-align:center; }
-
-    .header-banner {
-      position: relative; padding: 18px 24px; margin-bottom: 28px;
-      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('texture.jpg');
-      background-size: cover; border-radius: 0 0 8px 8px; overflow: hidden;
-    }
-    .banner-logo img { height: 30px; width: auto; display: block; margin: 0 auto; }
-
-    .roamers-hero { margin-bottom:32px; }
-    .hero-flex { display:flex; align-items:center; gap:24px; flex-wrap:nowrap; margin-bottom:16px; }
-    .hero-text { flex:2 1 0%; min-width:0; text-align:left; }
-    .hero-text .small-line { font-family:'Aesthet Nova',sans-serif; font-weight:500; font-size:clamp(16px,2.5vw,22px); line-height:1; color:var(--white); margin-bottom:0; text-shadow:1px 1px 0px rgba(0,0,0,0.85); }
-    .hero-text .big-line { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(44px,8vw,80px); line-height:0.85; color:var(--yellow); text-shadow:var(--yts); margin-bottom:0; }
-    .hero-sub { font-size:14px; font-weight:300; line-height:1.6; color:rgba(240,237,232,0.6); margin-top:12px; display:block; max-width:100%; }
-    .hero-img { flex:1 1 0%; max-width:33.33%; aspect-ratio:4/5; border-radius:10px; overflow:hidden; border:1px solid rgba(255,255,255,0.1); box-shadow:0 14px 32px rgba(0,0,0,0.45); }
-    .hero-img img { width:100%; height:100%; object-fit:cover; display:block; }
-
-    @media (max-width:480px) {
-      .hero-text .small-line { font-size:15px; }
-      .hero-text .big-line { font-size:38px; }
-      .hero-img { max-width:33.33%; }
-    }
-
-    .quiz-card {
-      max-width:520px; margin:0 auto;
-      background:rgba(18,18,18,0.78); backdrop-filter:blur(14px);
-      border:1px solid rgba(255,255,255,0.08); border-radius:12px;
-      padding:28px 26px 32px; box-shadow:0 18px 48px rgba(0,0,0,0.5);
-      position:relative; overflow:visible;
-    }
-    .quiz-card::before { content:''; position:absolute; inset:0; background-image:url('texture.jpg'); background-size:cover; opacity:0.09; pointer-events:none; z-index:0; border-radius:inherit; }
-    .quiz-card > * { position:relative; z-index:1; }
-
-    .step { display:none; animation:fadeUp 0.35s ease both; }
-    .step.active { display:block; }
-    @keyframes fadeUp { from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:translateY(0);} }
-
-    .step-label { font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:rgba(200,224,0,0.4); margin-bottom:10px; }
-    .step-q { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(19px,3.6vw,24px); color:var(--white); line-height:1.15; margin-bottom:14px; }
-    .step-hint { font-size:13px; font-weight:300; color:rgba(240,237,232,0.45); line-height:1.55; margin-bottom:20px; }
-
-    .opts { display:flex; flex-direction:column; gap:9px; margin-top:6px; }
-    .opt { border:1.5px solid rgba(255,255,255,0.09); border-radius:10px; padding:13px 15px; cursor:pointer; background:rgba(255,255,255,0.025); display:flex; align-items:center; gap:13px; transition:border-color 0.15s,background 0.15s; text-align:left; font-family:'Figtree',sans-serif; }
-    .opt:hover { border-color:rgba(255,255,255,0.22); background:rgba(255,255,255,0.045); }
-    .opt.selected { border-color:var(--white); background:rgba(255,255,255,0.04); }
-    .opt-radio { width:18px; height:18px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.22); flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all 0.15s; }
-    .opt.selected .opt-radio { border-color:var(--white); background:var(--white); }
-    .opt.selected .opt-radio::after { content:''; width:7px; height:7px; border-radius:50%; background:var(--black); }
-    .opt-text { font-size:14.5px; font-weight:500; color:var(--white); }
-
-    .multi-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-    .multi-opt { border:1.5px solid rgba(255,255,255,0.07); border-radius:8px; padding:13px 12px; cursor:pointer; background:rgba(255,255,255,0.025); display:flex; align-items:center; gap:10px; transition:all 0.15s; text-align:left; font-family:'Figtree',sans-serif; }
-    .multi-opt:hover { border-color:rgba(255,255,255,0.18); background:rgba(255,255,255,0.045); }
-    .multi-opt.selected { border-color:var(--white); background:rgba(255,255,255,0.04); }
-    .check-box { width:17px; height:17px; border-radius:4px; border:1.5px solid rgba(255,255,255,0.18); flex-shrink:0; transition:all 0.15s; }
-    .multi-opt.selected .check-box { border-color:var(--white); background:var(--white); }
-    .multi-opt.selected .check-box::after { content:''; display:block; width:9px; height:4px; border-left:2px solid var(--black); border-bottom:2px solid var(--black); transform:rotate(-45deg); margin:3px auto 0; }
-    .multi-opt-text { font-size:13.5px; font-weight:500; color:var(--white); }
-    .multi-opt[data-none="true"] .multi-opt-text { color:rgba(240,237,232,0.55); }
-
-    .custom-party-input { margin-top:10px; text-align:left; display:none; }
-    .custom-party-input input { width:100%; padding:12px; border-radius:8px; background:rgba(255,255,255,0.035); border:1px solid rgba(255,255,255,0.09); color:white; font-family:'Figtree',sans-serif; font-size:15px; outline:none; }
-
-    .btn { display:inline-block; font-family:'Figtree',sans-serif; font-size:11.5px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:13px 26px; border-radius:6px; border:1.5px solid rgba(255,255,255,0.18); cursor:pointer; transition:all 0.2s; text-decoration:none; white-space:nowrap; background:transparent; color:var(--white); }
-    .btn:hover { border-color:var(--white); background:rgba(255,255,255,0.05); }
-    .btn-primary { background:var(--white); color:var(--black); border-color:var(--white); }
-    .btn-primary:hover { background:rgba(255,255,255,0.9); }
-    .btn-block { display:block; width:100%; max-width:300px; margin:18px auto 0; }
-    .btn:disabled { opacity:0.35; cursor:not-allowed; }
-
-    .signup-card { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:24px 22px; margin:18px 0; }
-    .field { margin-bottom:11px; text-align:left; }
-    .field label { display:block; font-size:10px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.32); margin-bottom:6px; }
-    .field input, .field select { width:100%; padding:12px 14px; border:1.5px solid rgba(255,255,255,0.09); border-radius:8px; background:rgba(255,255,255,0.035); color:var(--white); font-family:'Figtree',sans-serif; font-size:15px; outline:none; transition:border-color 0.2s; }
-    .field input:focus, .field select:focus { border-color:rgba(255,255,255,0.3); }
-    .field select option { background:#111; color:#f0ede8; }
-
-    .checkbox-row { display:flex; align-items:flex-start; gap:10px; cursor:pointer; margin-bottom:6px; text-align:left; }
-    .checkbox-row input { width:16px; height:16px; margin-top:2px; flex-shrink:0; accent-color:var(--yellow); cursor:pointer; }
-    .checkbox-row span { font-size:13.5px; font-weight:400; color:rgba(240,237,232,0.75); line-height:1.5; }
-    .notify-note { font-size:11.5px; font-weight:300; color:rgba(240,237,232,0.38); line-height:1.5; margin:0 0 14px 26px; text-align:left; }
-
-    .btn-loading { position:relative; pointer-events:none; opacity:0.7; color:transparent !important; }
-    .btn-loading::after { content:''; position:absolute; top:50%; left:50%; width:18px; height:18px; margin-top:-9px; margin-left:-9px; border:2px solid rgba(0,0,0,0.3); border-top-color:#0a0a0a; border-radius:50%; animation:spin 0.6s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* Modal */
-    .modal-overlay {
-      display: none; position: fixed; inset: 0; z-index: 100;
-      background: rgba(8,8,8,0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-      align-items: center; justify-content: center; padding: 24px;
-      animation: fadeIn 0.22s ease both;
-    }
-    .modal-overlay.active { display: flex; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-    .modal-card {
-      max-width: 420px; width: 100%;
-      background: rgba(20,20,20,0.96);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 14px;
-      padding: 32px 26px 24px;
-      text-align: center; position: relative;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.7);
-      animation: modalUp 0.3s ease both;
-    }
-    @keyframes modalUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-    .modal-close {
-      position: absolute; top: 12px; right: 14px;
-      background: transparent; border: none;
-      color: rgba(240,237,232,0.35);
-      font-size: 22px; cursor: pointer; padding: 4px 8px; line-height: 1;
-      transition: color 0.15s;
-    }
-    .modal-close:hover { color: var(--white); }
-
-    .modal-label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(200,224,0,0.45); margin-bottom: 12px; }
-    .modal-title { font-family:'Aesthet Nova',sans-serif; font-weight: 900; font-size: clamp(20px,4vw,24px); color: var(--white); line-height: 1.15; margin-bottom: 14px; }
-    .modal-body { font-size: 14px; font-weight: 300; line-height: 1.65; color: rgba(240,237,232,0.6); margin-bottom: 22px; }
-    .modal-actions { display: flex; flex-direction: column; gap: 6px; align-items: center; }
-    .modal-skip { background: transparent; border: none; color: rgba(240,237,232,0.4); font-family: 'Figtree',sans-serif; font-size: 13px; cursor: pointer; padding: 10px 14px; transition: color 0.15s; }
-    .modal-skip:hover { color: rgba(240,237,232,0.75); }
-
-    .info-section { margin-top:56px; text-align:left; }
-    .section-h { font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:clamp(36px,6.5vw,58px); line-height:0.92; color:var(--yellow); text-shadow:var(--yts); margin-bottom:22px; }
-    .section-body { font-size:15px; font-weight:300; line-height:1.75; color:rgba(240,237,232,0.55); margin-bottom:28px; }
-    .sub-h { font-family:'Aesthet Nova',sans-serif; font-weight:500; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(240,237,232,0.45); margin-bottom:18px; }
-
-    .img-block { border-radius:8px; overflow:hidden; border:1px solid rgba(255,255,255,0.06); margin-bottom:26px; aspect-ratio:3/2; position:relative; background:var(--dark); }
-    .img-block img { width:100%; height:100%; object-fit:cover; display:block; }
-    .img-block-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,10,0.45) 0%, transparent 60%); }
-
-    .how-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px 16px; margin-top:28px; }
-    .how-step { display:flex; align-items:flex-start; gap:11px; text-align:left; }
-    .how-step-num { flex-shrink:0; width:26px; height:26px; border-radius:50%; background:var(--dark); border:1px solid rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:12px; color:var(--yellow); }
-    .how-step-title { font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--white); margin-bottom:3px; }
-    .how-step-desc { font-size:12px; font-weight:300; color:rgba(240,237,232,0.42); line-height:1.55; }
-
-    .icon-cards { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
-    .icon-card { background:rgba(18,18,18,0.6); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:18px 16px; text-align:left; }
-    .icon-card svg { width:22px; height:22px; color:var(--yellow); margin-bottom:12px; opacity:0.75; display:block; }
-    .icon-card h4 { font-size:13.5px; font-weight:500; color:rgba(240,237,232,0.85); line-height:1.45; }
-
-    .opp-tiles { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:28px; }
-    .opp-tile { background:rgba(18,18,18,0.6); border:1px solid rgba(255,255,255,0.05); border-radius:10px; padding:20px; color:var(--white); }
-    .opp-tile h4 { font-size:14px; font-weight:600; margin-bottom:5px; }
-    .opp-tile p { font-size:12.5px; color:rgba(240,237,232,0.45); line-height:1.55; }
-    .opp-tile a { color:var(--yellow); text-decoration:underline; }
-
-    .one-more-thing { position:relative; margin:24px 0 18px; text-align:left; }
-    .moment-scroll { display:flex; gap:10px; overflow-x:auto; padding-bottom:8px; scroll-snap-type:x mandatory; margin:0 -26px; padding-left:26px; padding-right:26px; }
-    .moment-item { flex:0 0 auto; width:150px; aspect-ratio:4/5; border-radius:8px; overflow:hidden; scroll-snap-align:start; box-shadow:0 6px 16px rgba(0,0,0,0.5); }
-    .moment-item:first-child { margin-left:-10px; }
-    .moment-item:last-child { margin-right:-10px; }
-    .moment-item img { width:100%; height:100%; object-fit:cover; display:block; }
-
-    .inbox-note { display:flex; align-items:center; justify-content:center; gap:9px; margin-top:44px; font-size:13.5px; color:rgba(240,237,232,0.45); }
-    .inbox-note span { font-size:17px; }
-
-    .full-width-cta { margin-top:56px; padding:52px 0; text-align:center; border-top:1px solid rgba(255,255,255,0.05); border-bottom:1px solid rgba(255,255,255,0.05); }
-
-    @media (max-width:640px) {
-      .wrap { padding:0 20px 56px; }
-      .header-banner { padding:14px 20px; }
-      .quiz-card { padding:22px 16px 26px; max-width:100%; }
-      .icon-cards { grid-template-columns:1fr 1fr; }
-      .how-grid { grid-template-columns:1fr; gap:14px; }
-      .opp-tiles { grid-template-columns:1fr; }
-      .moment-scroll { margin:0 -16px; padding-left:16px; padding-right:16px; }
-    }
+    body, table, td, p, a { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+    table, td { mso-table-lspace:0pt; mso-table-rspace:0pt; }
+    img { -ms-interpolation-mode:bicubic; border:0; height:auto; line-height:100%; outline:none; text-decoration:none; display:block; }
+    :root { color-scheme: dark; supported-color-schemes: dark; }
+    body, .email-bg { background-color:#0a0a0a !important; }
+    u + .body .gmail-blend-screen { background:#0a0a0a; mix-blend-mode:screen; }
+    u + .body .gmail-blend-difference { background:#0a0a0a; mix-blend-mode:difference; }
   </style>
 </head>
-<body>
-
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
-<div class="bg-image"></div>
-<div class="bg-scrim"></div>
-<div class="bg-texture"></div>
-
-<main class="wrap" id="roamersPage">
-
-  <div class="header-banner">
-    <div class="banner-logo">
-      <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" />
-    </div>
-  </div>
-
-  <section class="roamers-hero" id="quizTop">
-    <div class="hero-flex">
-      <div class="hero-text">
-        <div class="small-line">Are you a</div>
-        <div class="big-line">ROAMER?</div>
-        <p class="hero-sub">Roamers live Lagos nightlife. Party goers, creatives, execs, DJs — if the experience comes first, you already know. Take the quiz to see if you qualify.</p>
-      </div>
-      <div class="hero-img">
-        <img src="roamers_hero_thumb.jpg" alt="Lagos nightlife"/>
-      </div>
-    </div>
-
-    <div class="quiz-card" id="quizCard">
-
-      <!-- START -->
-      <div class="step active" id="step-start">
-        <div class="step-label">Roamers</div>
-        <div class="step-q">Ready to find out?</div>
-        <button class="btn btn-primary btn-block" onclick="goTo('q-parties')">Start The Quiz →</button>
-      </div>
-
-      <!-- Q1 — EVENTS -->
-      <div class="step" id="q-parties">
-        <div class="step-label">Question 1 of 2</div>
-        <div class="step-q">Which of these have you been to in the last 60 days?</div>
-        <p class="step-hint">Pick everything that applies.</p>
-        <div class="multi-grid" id="partyGrid">
-          <button class="multi-opt" data-val="Monochroma" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Monochroma</span></button>
-          <button class="multi-opt" data-val="Even in the Day" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Even in the Day</span></button>
-          <button class="multi-opt" data-val="Amapiano District" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Amapiano District</span></button>
-          <button class="multi-opt" data-val="PM2AM" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">PM2AM</span></button>
-          <button class="multi-opt" data-val="Element House" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Element House</span></button>
-          <button class="multi-opt" data-val="Group Therapy" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Group Therapy</span></button>
-          <button class="multi-opt" data-val="Sunday Service" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Sunday Service</span></button>
-          <button class="multi-opt" data-val="V6 Group Collective" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">V6 Group Collective</span></button>
-          <button class="multi-opt" data-val="Tempo Lagos" onclick="toggleParty(this)"><span class="check-box"></span><span class="multi-opt-text">Tempo Lagos</span></button>
-          <button class="multi-opt" data-val="Something else" data-other="true" onclick="toggleOther(this)"><span class="check-box"></span><span class="multi-opt-text">Something else</span></button>
-          <button class="multi-opt" data-val="None" data-none="true" onclick="toggleNone(this)" style="grid-column:1 / -1;"><span class="check-box"></span><span class="multi-opt-text">Haven't been out much</span></button>
-        </div>
-        <div id="otherPartyWrap" class="custom-party-input">
-          <input type="text" id="otherPartyInput" placeholder="Which one?" oninput="updateNoneNext()"/>
-        </div>
-        <button class="btn btn-primary btn-block" id="partyNextBtn" disabled onclick="handlePartySelection()">Continue</button>
-      </div>
-
-      <!-- Q2 — FREQUENCY -->
-      <div class="step" id="q-frequency">
-        <div class="step-label">Question 2 of 2</div>
-        <div class="step-q">How often are you out in a month?</div>
-        <p class="step-hint">Roughly. No one's counting.</p>
-        <div class="opts">
-          <button class="opt" onclick="selectRadio('frequency','0–1 times',this,'frequencyNext')"><span class="opt-radio"></span><span class="opt-text">0–1 times</span></button>
-          <button class="opt" onclick="selectRadio('frequency','2–3 times',this,'frequencyNext')"><span class="opt-radio"></span><span class="opt-text">2–3 times</span></button>
-          <button class="opt" onclick="selectRadio('frequency','4+ times',this,'frequencyNext')"><span class="opt-radio"></span><span class="opt-text">4+ times</span></button>
-        </div>
-        <button class="btn btn-primary btn-block" id="frequencyNext" disabled onclick="finishQuiz()">Continue</button>
-      </div>
-
-      <!-- AFROCUE SIGNUP (soft exit path) -->
-      <div class="step" id="step-afrocue-signup">
-        <div class="step-label">AfroCue</div>
-        <div class="step-q">Get on the list.</div>
-        <p class="step-hint">Updates on the best DJs, parties, and dance music in Lagos.</p>
-        <div class="signup-card">
-          <div class="field"><label>Name</label><input type="text" id="ac-name" placeholder="Your name" oninput="toggleAfrocueBtn()"/></div>
-          <div class="field"><label>Instagram Handle</label>
-            <div style="position:relative;">
-              <span style="position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--grey); font-size:15px;">@</span>
-              <input type="text" id="ac-ig" placeholder="yourhandle" style="padding-left:32px;" oninput="toggleAfrocueBtn()"/>
-            </div>
-          </div>
-          <div class="field"><label>Email Address</label><input type="email" id="ac-email" placeholder="you@example.com" oninput="toggleAfrocueBtn()"/></div>
-
-          <label class="checkbox-row">
-            <input type="checkbox" id="ac-notify" checked />
-            <span>Notify me when there are freebies, tickets, invites, or occasional engagements</span>
-          </label>
-          <p class="notify-note">We'll only reach out when it's worth your time. No noise.</p>
-
-          <button class="btn btn-primary btn-block" id="ac-submit" disabled onclick="submitAfrocueSignup()">Sign Up →</button>
-        </div>
-      </div>
-
-      <!-- RESULT + SIGNUP -->
-      <div class="step" id="result">
-        <div class="step-label">Almost done</div>
-        <div class="step-q" id="resultQ">Looks like a Roamer.</div>
-        <p class="step-hint" id="resultHint">Complete your signup.</p>
-
-        <div class="form-fields">
-          <div class="field"><label>Name</label><input type="text" id="name" placeholder="Name / Moniker" oninput="checkForm()"/></div>
-          <div class="field"><label>IG / TikTok / X Handle</label>
-            <div style="position:relative;">
-              <span style="position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--grey); font-size:15px;">@</span>
-              <input type="text" id="ig" placeholder="yourhandle" style="padding-left:32px;" oninput="checkForm()"/>
-            </div>
-          </div>
-          <div class="field"><label>Email Address</label><input type="email" id="email" placeholder="you@example.com" oninput="checkForm()"/></div>
-          <div class="field"><label>WhatsApp Number</label><input type="tel" id="phone" placeholder="080..." oninput="checkForm()"/></div>
-          <div class="field"><label>Area of Lagos</label><input type="text" id="area" placeholder="e.g. Lekki, VI, Ikeja" oninput="checkForm()"/></div>
-          <div class="field"><label>Which one are you?</label>
-            <select id="persona">
-              <option value="">Select (optional)</option>
-              <option>Party Goer</option>
-              <option>Creative</option>
-              <option>Executive</option>
-              <option>DJ / Selector</option>
-              <option>Connector</option>
-            </select>
-          </div>
-        </div>
-
-        <div style="margin-top:10px; text-align:left;">
-          <label class="checkbox-row" onclick="toggleCreator()">
-            <input type="checkbox" id="creatorCheck"/> <span>I am also a creator (optional)</span>
-          </label>
-          <div id="creatorFields" style="display:none;">
-            <div class="field"><label>Creator Type</label>
-              <select id="creatorType">
-                <option value="">Select</option>
-                <option>Photographer</option><option>Videographer</option><option>Designer</option><option>TikTok Creator</option><option>Instagram Creator</option><option>Writer</option><option>Other</option>
-              </select>
-            </div>
-            <div class="field"><label>Creator Page Link (Optional)</label><input type="url" id="portfolio" placeholder="https://"/></div>
-          </div>
-        </div>
-
-        <div style="margin-top:14px; text-align:left;">
-          <label class="checkbox-row">
-            <input type="checkbox" id="notifyCheck" checked />
-            <span>Notify me when there are freebies, tickets, invites, or occasional engagements</span>
-          </label>
-          <p class="notify-note">We'll only reach out when it's worth your time. No noise.</p>
-        </div>
-
-        <div class="one-more-thing">
-          <p style="color:rgba(240,237,232,0.5); margin-bottom:12px; font-size:14px;">Experience always comes first. But if you catch a moment, tag us <strong>@afro.cue</strong>. One is enough. No pressure.</p>
-          <div class="moment-scroll">
-            <div class="moment-item"><img src="roamers_top5_sample3.jpg" alt="DJ moment"></div>
-            <div class="moment-item"><img src="roamers_top5_sample2.jpg" alt="DJ moment"></div>
-            <div class="moment-item"><img src="roamers_top5_sample.jpg" alt="DJ moment"></div>
-          </div>
-        </div>
-
-        <button class="btn btn-primary btn-block" id="submitBtn" disabled onclick="submitApplication()">Complete Profile →</button>
-        <p style="font-size:11px; color:var(--grey); margin-top:12px;">We'll reach out when opportunities arise.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- WHO IS A ROAMER -->
-  <div class="info-section">
-    <div class="section-h">Who Is A<br>Roamer?</div>
-    <div class="section-body">
-      Roamers live Lagos nightlife. Presence is the whole point. As we document the culture, we occasionally ask for your help with:
-      <ul style="margin-top:8px; padding-left:18px; color:rgba(240,237,232,0.65); font-size:14.5px; line-height:1.75;">
-        <li>Quick surveys</li>
-        <li>Tagging us in party and DJ moments</li>
-        <li>Creative projects that come with rewards</li>
-      </ul>
-    </div>
-    <p style="font-size:14.5px; font-weight:400; color:rgba(240,237,232,0.75); margin-bottom:16px;">Beyond stories, we'll reach out when something bigger opens up:</p>
-    <div class="opp-tiles">
-      <div class="opp-tile"><h4>REWARDS</h4><p>Go out as you would. We'll reach out with slots, tickets, or perks.</p></div>
-      <div class="opp-tile"><h4>FEATURES</h4><p>Your video might feature in our content — credit given.</p></div>
-      <div class="opp-tile"><h4>BRANDED MOMENTS</h4><p>Pregame series and Pregame Homies (soon). <a href="https://www.instagram.com/p/DYIDS-cCdKS/" target="_blank">See example</a></p></div>
-      <div class="opp-tile"><h4>CREATOR OPPORTUNITIES</h4><p>Occasional paid or collaborative projects for creators.</p></div>
-    </div>
-    <div class="img-block">
-      <img src="roamers_who.jpg" alt="Lagos nightlife crowd"/>
-      <div class="img-block-overlay"></div>
-    </div>
-  </div>
-
-  <!-- HOW IT WORKS -->
-  <div class="info-section">
-    <div class="section-h">How It<br>Works</div>
-    <div class="how-grid">
-      <div class="how-step"><div class="how-step-num">1</div><div><div class="how-step-title">Take the quiz</div><div class="how-step-desc">Two questions. See where you land.</div></div></div>
-      <div class="how-step"><div class="how-step-num">2</div><div><div class="how-step-title">Go out</div><div class="how-step-desc">Keep going to the parties you already love.</div></div></div>
-      <div class="how-step"><div class="how-step-num">3</div><div><div class="how-step-title">Share moments</div><div class="how-step-desc">Catch a great DJ clip? Post it and tag us. Optional.</div></div></div>
-      <div class="how-step"><div class="how-step-num">4</div><div><div class="how-step-title">Get reached out to</div><div class="how-step-desc">We'll email when we have tickets, perks, or initiatives.</div></div></div>
-    </div>
-  </div>
-
-  <!-- YOU MIGHT BE A ROAMER IF -->
-  <div class="info-section">
-    <div class="sub-h">You Might Be A Roamer If...</div>
-    <div class="icon-cards">
-      <div class="icon-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8"/><circle cx="12" cy="12" r="3.5"/></svg>
-        <h4>Experience first. Always present.</h4>
-      </div>
-      <div class="icon-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="0.5" fill="currentColor"/></svg>
-        <h4>You know the DJs moving the scene.</h4>
-      </div>
-      <div class="icon-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2L8 4.5h8L17.5 7h2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5v-9z"/><circle cx="12" cy="13" r="3.5"/></svg>
-        <h4>You capture moments — or you don't. No pressure.</h4>
-      </div>
-      <div class="icon-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
-        <h4>You can tell who moved the room.</h4>
-      </div>
-    </div>
-  </div>
-
-  <!-- WHAT DO ROAMERS ACTUALLY DO -->
-  <div class="info-section">
-    <div class="section-h">What Do Roamers<br>Actually Do?</div>
-    <div class="section-body">
-      You experience first. You live the dance floors. If you catch a moment, tag us — a survey, a clip, a project. All optional. Credit always given.
-    </div>
-    <div class="img-block">
-      <img src="roamers_what.jpg" alt="Nightlife moments"/>
-      <div class="img-block-overlay"></div>
-    </div>
-  </div>
-
-  <div class="inbox-note">
-    <span>✉️</span> We'll reach out by email — keep an eye on your inbox.
-  </div>
-
-  <div class="full-width-cta">
-    <div class="section-h" style="font-size:clamp(34px,8vw,60px); margin-bottom:22px;">Think you're a<br>Roamer?</div>
-    <button class="btn btn-primary" onclick="scrollToQuiz()">Start The Quiz</button>
-  </div>
-
-  <div class="info-section">
-    <div class="section-h" style="font-size:clamp(28px,5vw,44px); margin-bottom:14px;">We spotlight DJs<br>that move the room.</div>
-    <p style="font-size:15px; line-height:1.6; color:rgba(240,237,232,0.55); margin-bottom:24px;">
-      If you catch one, post it and tag us. High quality clips welcome. But no pressure — be present first.
-    </p>
-    <div style="display:flex; gap:10px; overflow-x:auto; padding-bottom:8px; scroll-snap-type:x mandatory;">
-      <div class="moment-item"><img src="roamers_top5_sample.jpg" alt="Top 5 DJ moment"></div>
-      <div class="moment-item"><img src="roamers_top5_sample2.jpg" alt="Top 5 DJ moment"></div>
-      <div class="moment-item"><img src="roamers_top5_sample3.jpg" alt="Top 5 DJ moment"></div>
-    </div>
-  </div>
-
-  <div style="text-align:center; padding:40px 0 20px; border-top:1px solid rgba(255,255,255,0.05); margin-top:32px;">
-    <p style="font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--grey);">Powered by AfroCue — Creatively Documenting Culture</p>
-  </div>
-
-</main>
-
-<!-- SOFT EXIT MODAL -->
-<div class="modal-overlay" id="softExitModal" role="dialog" aria-modal="true">
-  <div class="modal-card">
-    <button class="modal-close" onclick="closeModal()" aria-label="Close">×</button>
-    <div class="modal-label">Before you go</div>
-    <div class="modal-title">We see you don't go out much.</div>
-    <p class="modal-body">Sign up to AfroCue for updates on the best DJs, parties, and dance music in Lagos.</p>
-    <div class="modal-actions">
-      <button class="btn btn-primary" onclick="proceedToAfrocueSignup()" style="width:100%; max-width:280px;">Sign Up To AfroCue →</button>
-      <button class="modal-skip" onclick="closeModal()">Maybe later</button>
-    </div>
-  </div>
-</div>
-
-<script>
-  const AFROCUE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwk0SvCWpKSr-hxsh_TPZiCCh2QTT8uXanQWiDl2qRCLqw1_wkNWLdNUs3LhYGqTl-O/exec';
-
-  let currentStep = 'step-start';
-  let selectedParties = new Set();
-  let noneSelected = false;
-  let frequencyValue = null;
-  let eventsCount = 0;
-  let eventsOther = '';
-  let isSubmitting = false;
-
-  // ─── NAVIGATION ───────────────────────────────────────────────
-  function goTo(id) {
-    const prev = document.getElementById(currentStep);
-    if (prev) prev.classList.remove('active');
-    const next = document.getElementById(id);
-    if (!next) return;
-    next.classList.add('active');
-    currentStep = id;
-    const card = document.getElementById('quizCard');
-    if (card) window.scrollTo({ top: card.offsetTop - 20, behavior: 'smooth' });
-  }
-
-  // ─── Q1: EVENT SELECTION ──────────────────────────────────────
-  function toggleParty(btn) {
-    const val = btn.dataset.val;
-    if (btn.classList.contains('selected')) {
-      btn.classList.remove('selected');
-      selectedParties.delete(val);
-    } else {
-      if (noneSelected) {
-        const nb = document.querySelector('#partyGrid [data-none="true"]');
-        if (nb) nb.classList.remove('selected');
-        noneSelected = false;
-      }
-      btn.classList.add('selected');
-      selectedParties.add(val);
-    }
-    updatePartyNext();
-  }
-
-  function toggleOther(btn) {
-    const val = btn.dataset.val;
-    if (btn.classList.contains('selected')) {
-      btn.classList.remove('selected');
-      selectedParties.delete(val);
-      document.getElementById('otherPartyWrap').style.display = 'none';
-      document.getElementById('otherPartyInput').value = '';
-    } else {
-      if (noneSelected) {
-        const nb = document.querySelector('#partyGrid [data-none="true"]');
-        if (nb) nb.classList.remove('selected');
-        noneSelected = false;
-      }
-      btn.classList.add('selected');
-      selectedParties.add(val);
-      document.getElementById('otherPartyWrap').style.display = 'block';
-      document.getElementById('otherPartyInput').focus();
-    }
-    updatePartyNext();
-  }
-
-  function toggleNone(btn) {
-    if (btn.classList.contains('selected')) {
-      btn.classList.remove('selected');
-      noneSelected = false;
-    } else {
-      document.querySelectorAll('#partyGrid .multi-opt:not([data-none="true"])').forEach(b => b.classList.remove('selected'));
-      selectedParties.clear();
-      document.getElementById('otherPartyWrap').style.display = 'none';
-      document.getElementById('otherPartyInput').value = '';
-      btn.classList.add('selected');
-      noneSelected = true;
-    }
-    updatePartyNext();
-  }
-
-  function updatePartyNext() {
-    const btn = document.getElementById('partyNextBtn');
-    if (!btn) return;
-    if (noneSelected) { btn.disabled = false; return; }
-    if (selectedParties.size === 0) { btn.disabled = true; return; }
-    const otherBtn = document.querySelector('#partyGrid [data-other="true"]');
-    if (otherBtn && otherBtn.classList.contains('selected') && !document.getElementById('otherPartyInput').value.trim()) {
-      btn.disabled = true; return;
-    }
-    btn.disabled = false;
-  }
-
-  function updateNoneNext() { updatePartyNext(); }
-
-  function handlePartySelection() {
-    if (noneSelected) {
-      eventsCount = 0;
-      openSoftExitModal();
-      return;
-    }
-
-    eventsCount = selectedParties.size;
-    const otherBtn = document.querySelector('#partyGrid [data-other="true"]');
-    if (otherBtn && otherBtn.classList.contains('selected')) {
-      eventsOther = document.getElementById('otherPartyInput').value.trim();
-    }
-
-    if (eventsCount < 2) {
-      openSoftExitModal();
-    } else {
-      goTo('q-frequency');
-    }
-  }
-
-  // ─── MODAL ────────────────────────────────────────────────────
-  function openSoftExitModal() {
-    document.getElementById('softExitModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    document.getElementById('softExitModal').classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  function proceedToAfrocueSignup() {
-    closeModal();
-    goTo('step-afrocue-signup');
-  }
-
-  document.getElementById('softExitModal').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
-  });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeModal();
-  });
-
-  // ─── RADIO SELECTS ────────────────────────────────────────────
-  function selectRadio(group, value, btn, nextId) {
-    const container = btn.parentElement;
-    container.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
-    btn.classList.add('selected');
-    if (group === 'frequency') frequencyValue = value;
-    const next = document.getElementById(nextId);
-    if (next) next.disabled = false;
-  }
-
-  // ─── QUIZ FINISH ──────────────────────────────────────────────
-  function finishQuiz() {
-    const q = document.getElementById('resultQ');
-    const hint = document.getElementById('resultHint');
-
-    if (eventsCount >= 4) {
-      q.textContent = "You're a Roamer.";
-      hint.textContent = "Complete your profile and we'll keep you close to what's next.";
-    } else {
-      q.textContent = "Looks like a Roamer.";
-      hint.textContent = "Complete your signup.";
-    }
-
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'roamers_quiz_complete',
-      frequency: frequencyValue
-    });
-
-    goTo('result');
-  }
-
-  // ─── AFROCUE SIGNUP (soft exit) ───────────────────────────────
-  function toggleAfrocueBtn() {
-    const n  = document.getElementById('ac-name').value.trim();
-    const ig = document.getElementById('ac-ig').value.trim();
-    const em = document.getElementById('ac-email').value.trim();
-    document.getElementById('ac-submit').disabled = !(n && ig && em);
-  }
-
-  async function submitAfrocueSignup() {
-    if (isSubmitting) return;
-    isSubmitting = true;
-
-    const btn = document.getElementById('ac-submit');
-    btn.disabled = true;
-    btn.classList.add('btn-loading');
-
-    const name  = document.getElementById('ac-name').value.trim();
-    const igRaw = document.getElementById('ac-ig').value.trim().replace(/^@/, '');
-    const email = document.getElementById('ac-email').value.trim();
-    const notify = document.getElementById('ac-notify').checked ? 'Yes' : 'No';
-
-    const data = {
-      source: 'roamers',
-      type: 'afrocue_signup',
-      name: name,
-      ig: '@' + igRaw,
-      email: email,
-      notify: notify,
-      events_count: eventsCount,
-      frequency: frequencyValue
-    };
-
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: 'afrocue_signup', name: name, email: email });
-
-    try {
-      await fetch(AFROCUE_SCRIPT_URL, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: { 'Content-Type': 'text/plain' }
-      });
-    } catch (e) {
-      console.error('AfroCue signup error:', e);
-    } finally {
-      window.location.href = '/thank-you?name=' + encodeURIComponent(name);
-    }
-  }
-
-  // ─── ROAMER FULL APPLICATION ──────────────────────────────────
-  function checkForm() {
-    const valid = document.getElementById('name').value.trim()
-      && document.getElementById('ig').value.trim()
-      && document.getElementById('email').value.trim()
-      && document.getElementById('phone').value.trim()
-      && document.getElementById('area').value.trim();
-    document.getElementById('submitBtn').disabled = !valid;
-  }
-
-  function toggleCreator() {
-    document.getElementById('creatorFields').style.display = document.getElementById('creatorCheck').checked ? 'block' : 'none';
-  }
-
-  async function submitApplication() {
-    if (isSubmitting) return;
-    isSubmitting = true;
-
-    const btn = document.getElementById('submitBtn');
-    btn.disabled = true;
-    btn.classList.add('btn-loading');
-
-    const name  = document.getElementById('name').value.trim();
-    const igRaw = document.getElementById('ig').value.trim().replace(/^@/, '');
-    const email = document.getElementById('email').value.trim();
-    const persona = document.getElementById('persona').value;
-    const notify = document.getElementById('notifyCheck').checked ? 'Yes' : 'No';
-
-    const type = eventsCount >= 4 ? 'roamers_core' : 'roamers_application';
-
-    const data = {
-      source: 'roamers',
-      type: type,
-      name: name,
-      ig: '@' + igRaw,
-      email: email,
-      phone: document.getElementById('phone').value.trim(),
-      area: document.getElementById('area').value.trim(),
-      persona: persona,
-      notify: notify,
-      is_creator: document.getElementById('creatorCheck').checked,
-      creator_type: document.getElementById('creatorType').value,
-      portfolio: document.getElementById('portfolio').value,
-      parties: Array.from(selectedParties).filter(v => v !== 'Something else' && v !== 'None'),
-      other_party: eventsOther,
-      frequency: frequencyValue
-    };
-
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: type,
-      name: data.name,
-      email: data.email,
-      ig: data.ig,
-      area: data.area,
-      persona: data.persona,
-      frequency: data.frequency,
-      is_creator: data.is_creator
-    });
-
-    try {
-      await fetch(AFROCUE_SCRIPT_URL, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: { 'Content-Type': 'text/plain' }
-      });
-    } catch (e) {
-      console.error('Roamers application error:', e);
-    } finally {
-      window.location.href = '/thank-you/roamer?name=' + encodeURIComponent(name);
-    }
-  }
-
-  // ─── SCROLL ───────────────────────────────────────────────────
-  function scrollToQuiz() {
-    document.getElementById('quizTop').scrollIntoView({ behavior: 'smooth' });
-  }
-</script>
+<body class="body" style="margin:0;padding:0;background-color:#0a0a0a;font-family:Arial,Helvetica,sans-serif;color:#f0ede8;">
+
+<table role="presentation" class="email-bg" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#0a0a0a" style="background-color:#0a0a0a;">
+  <tr>
+    <td align="center" bgcolor="#0a0a0a" style="background-color:#0a0a0a;padding:48px 16px 40px;">
+
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#121212" style="max-width:520px;background-color:#121212;border:1px solid #232323;border-radius:10px;overflow:hidden;">
+
+        <!-- Header -->
+        <tr>
+          <td bgcolor="#121212" style="background-color:#121212;padding:32px 40px 20px;">
+            <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" height="32" style="display:block;height:32px;width:auto;border:0;outline:none;"/>
+          </td>
+        </tr>
+
+        <!-- Greeting -->
+        <tr>
+          <td bgcolor="#121212" style="background-color:#121212;padding:0 40px 24px;">
+            <p style="font-size:22px;line-height:1.3;color:#f0ede8;margin:0 0 14px;font-weight:700;font-family:Georgia,'Times New Roman',serif;">
+              You're a Roamer.
+            </p>
+            <p style="font-size:14px;line-height:1.7;color:#b8b5b0;margin:0;font-family:Arial,Helvetica,sans-serif;">
+              You go out. You're present. You feel the room. That's the whole thing.
+            </p>
+            <p style="font-size:14px;line-height:1.7;color:#b8b5b0;margin:12px 0 0;font-family:Arial,Helvetica,sans-serif;">
+              When you catch a great DJ moment, post it and tag <strong style="color:#C8E000;">@afro.cue</strong>. No pressure — the experience always comes first.
+            </p>
+          </td>
+        </tr>
+
+        <!-- What you get -->
+        <tr>
+          <td bgcolor="#121212" style="background-color:#121212;padding:0 40px 24px;border-top:1px solid #232323;">
+            <p style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#666666;margin:20px 0 14px;font-family:Arial,Helvetica,sans-serif;">
+              When it comes up
+            </p>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td width="48%" valign="top" style="padding:0 2% 14px 0;">
+                  <p style="font-size:13px;color:#f0ede8;margin:0 0 3px;font-weight:700;font-family:Arial,Helvetica,sans-serif;">🎟️ Access</p>
+                  <p style="font-size:12px;color:#888888;margin:0;line-height:1.5;font-family:Arial,Helvetica,sans-serif;">Event invitations, regular &amp; VIP.</p>
+                </td>
+                <td width="48%" valign="top" style="padding:0 0 14px 2%;">
+                  <p style="font-size:13px;color:#f0ede8;margin:0 0 3px;font-weight:700;font-family:Arial,Helvetica,sans-serif;">✨ Features</p>
+                  <p style="font-size:12px;color:#888888;margin:0;line-height:1.5;font-family:Arial,Helvetica,sans-serif;">Your moments on AfroCue, with credit.</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="48%" valign="top" style="padding:0 2% 0 0;">
+                  <p style="font-size:13px;color:#f0ede8;margin:0 0 3px;font-weight:700;font-family:Arial,Helvetica,sans-serif;">🚀 Branded moments</p>
+                  <p style="font-size:12px;color:#888888;margin:0;line-height:1.5;font-family:Arial,Helvetica,sans-serif;">Pregame series &amp; upcoming projects.</p>
+                </td>
+                <td width="48%" valign="top" style="padding:0 0 0 2%;">
+                  <p style="font-size:13px;color:#f0ede8;margin:0 0 3px;font-weight:700;font-family:Arial,Helvetica,sans-serif;">🎨 Creator opportunities</p>
+                  <p style="font-size:12px;color:#888888;margin:0;line-height:1.5;font-family:Arial,Helvetica,sans-serif;">Paid or collaborative projects.</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Clips matter -->
+        <tr>
+          <td bgcolor="#121212" style="background-color:#121212;padding:0 40px 24px;border-top:1px solid #232323;">
+            <p style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#666666;margin:20px 0 14px;font-family:Arial,Helvetica,sans-serif;">
+              Your clips matter
+            </p>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td width="32%" style="padding:0 2% 0 0;">
+                  <img src="https://afrocue.xyz/roamers_top5_sample.jpg" alt="DJ moment" width="140" style="display:block;width:100%;height:auto;border-radius:6px;border:0;"/>
+                </td>
+                <td width="32%" style="padding:0 2% 0 2%;">
+                  <img src="https://afrocue.xyz/roamers_top5_sample2.jpg" alt="DJ moment" width="140" style="display:block;width:100%;height:auto;border-radius:6px;border:0;"/>
+                </td>
+                <td width="32%" style="padding:0 0 0 2%;">
+                  <img src="https://afrocue.xyz/roamers_top5_sample3.jpg" alt="DJ moment" width="140" style="display:block;width:100%;height:auto;border-radius:6px;border:0;"/>
+                </td>
+              </tr>
+            </table>
+            <p style="font-size:12px;color:#888888;margin:10px 0 0;line-height:1.6;font-family:Arial,Helvetica,sans-serif;">
+              These clips help us spotlight DJs in our Weekly Top 5 — a series documenting Lagos dance music from the inside.
+            </p>
+          </td>
+        </tr>
+
+        <!-- What's next -->
+        <tr>
+          <td bgcolor="#121212" style="background-color:#121212;padding:0 40px 28px;border-top:1px solid #232323;">
+            <p style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#666666;margin:20px 0 10px;font-family:Arial,Helvetica,sans-serif;">
+              What's next
+            </p>
+            <p style="font-size:13px;line-height:1.7;color:#b8b5b0;margin:0;font-family:Arial,Helvetica,sans-serif;">
+              We'll reach out by email whenever opportunities come up.
+            </p>
+          </td>
+        </tr>
+
+        <!-- CTA -->
+        <tr>
+          <td bgcolor="#121212" align="center" style="background-color:#121212;padding:0 40px 36px;">
+            <a href="https://instagram.com/afro.cue" target="_blank"
+               style="display:inline-block;background-color:#ffffff;color:#0a0a0a;padding:13px 32px;border-radius:6px;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:0.08em;text-decoration:none;font-family:Arial,Helvetica,sans-serif;">
+              Follow @afro.cue
+            </a>
+          </td>
+        </tr>
+
+        <!-- Footer message -->
+        <tr>
+          <td bgcolor="#0d0d0d" style="background-color:#0d0d0d;padding:18px 40px;border-top:1px solid #1e1e1e;">
+            <p style="font-size:11px;color:#666666;margin:0;line-height:1.6;font-family:Arial,Helvetica,sans-serif;">
+              Stay present.<br/>&mdash; AfroCue
+            </p>
+          </td>
+        </tr>
+
+        <!-- Footer logo -->
+        <tr>
+          <td bgcolor="#0a0a0a" style="background-color:#0a0a0a;padding:24px 40px 24px;">
+            <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" height="20" style="display:block;height:20px;width:auto;border:0;outline:none;margin-bottom:10px;"/>
+            <p style="font-size:9px;color:#444444;line-height:1.6;margin:0;font-family:Arial,Helvetica,sans-serif;">
+              Lagos, Nigeria &nbsp;&middot;&nbsp; &copy; 2026 AfroCue<br/>
+              <a href="https://afrocue.xyz" style="color:#444444;text-decoration:none;">afrocue.xyz</a>
+            </p>
+          </td>
+        </tr>
+
+      </table>
+
+    </td>
+  </tr>
+</table>
 
 </body>
 </html>
