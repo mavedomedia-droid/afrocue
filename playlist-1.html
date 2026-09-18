@@ -31,11 +31,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    /* ════════════════════════════════════════════════════════════
-       AfroCue × Spotify-style Playlist Landing — Naija Party Starters
-       URL: afrocue.xyz/playlist-1
-       ════════════════════════════════════════════════════════════ */
-
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
 
@@ -91,7 +86,6 @@
       position: relative;
     }
 
-    /* ═══ FAKE STATUS BAR ═══ */
     .status-bar {
       display: flex;
       align-items: center;
@@ -108,7 +102,6 @@
     }
     .status-bar-icons { display: flex; align-items: center; gap: 6px; }
 
-    /* ═══ TOP CHROME ═══ */
     .top-chrome {
       display: flex;
       align-items: center;
@@ -131,15 +124,12 @@
     .chrome-btn:hover, .chrome-btn:active { background: rgba(0,0,0,0.75); }
     .chrome-btn svg { width: 22px; height: 22px; }
 
-    /* ════════════════════════════════════════════════════════════
-       CINEMATIC HERO — taller, squarer, bigger credits
-       ════════════════════════════════════════════════════════════ */
     .hero-bg-wrapper {
       position: relative;
       width: 100%;
-      min-height: 45vh;               /* taller, almost square */
+      min-height: 45vh;
       max-height: 55vh;
-      aspect-ratio: auto;             /* removed fixed ratio */
+      aspect-ratio: auto;
       overflow: hidden;
       animation: heroZoomIn 1.2s ease-out both;
     }
@@ -151,7 +141,7 @@
     .hero-bg-image {
       position: absolute;
       inset: 0;
-      background-image: var(--hero-bg-url, url('hero_bg_default.jpg'));
+      background-image: var(--hero-bg-url, url('playlist_naija_party_starters.jpg'));
       background-size: cover;
       background-position: center;
       transition: background-image 0.6s ease;
@@ -178,7 +168,6 @@
       box-shadow: inset 0 0 80px 30px rgba(0,0,0,0.5);
     }
 
-    /* Photo credit — more visible now */
     .hero-photo-credit {
       position: absolute;
       bottom: 12px;
@@ -196,7 +185,6 @@
       line-height: 1.3;
     }
 
-    /* Content row: cover + text */
     .hero-content-row {
       position: absolute;
       bottom: 20px;
@@ -335,7 +323,6 @@
       color: var(--silver);
     }
 
-    /* ═══ ACTION ROW — unchanged ═══ */
     .action-row {
       display: flex;
       align-items: center;
@@ -406,7 +393,6 @@
     }
     .cta-hint svg { width: 12px; height: 12px; flex-shrink: 0; }
 
-    /* ═══ TRACKLIST — unchanged ═══ */
     .tracklist {
       background: var(--dark);
       padding: 8px 0 20px;
@@ -437,16 +423,17 @@
       padding: 2px;
       line-height: 1.05;
     }
-    .track-art.a1 { background: linear-gradient(135deg, #1a1a1a 0%, #000 100%); color: #fff; }
-    .track-art.a2 { background: linear-gradient(135deg, #f5b800 0%, #b87800 100%); color: #2a1d00; }
-    .track-art.a3 { background: linear-gradient(135deg, #4a4a4a 0%, #1a1a1a 100%); color: #ddd; }
-    .track-art.a4 { background: linear-gradient(135deg, #0a4d8c 0%, #021a3a 100%); color: #fff; }
-    .track-art.a5 { background: linear-gradient(135deg, #d97706 0%, #7c2d12 100%); color: #fff; }
-    .track-art.a6 { background: linear-gradient(135deg, #525252 0%, #1c1917 100%); color: #fbbf24; }
-    .track-art.a7 { background: linear-gradient(135deg, #2a2a2a 0%, #0a0a0a 100%); color: #ef4444; }
-    .track-art.a8 { background: linear-gradient(135deg, #166534 0%, #14532d 100%); color: #fde047; }
-    .track-art.a9 { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: #fbbf24; }
+    .track-art.a1  { background: linear-gradient(135deg, #1a1a1a 0%, #000 100%); color: #fff; }
+    .track-art.a2  { background: linear-gradient(135deg, #f5b800 0%, #b87800 100%); color: #2a1d00; }
+    .track-art.a3  { background: linear-gradient(135deg, #4a4a4a 0%, #1a1a1a 100%); color: #ddd; }
+    .track-art.a4  { background: linear-gradient(135deg, #0a4d8c 0%, #021a3a 100%); color: #fff; }
+    .track-art.a5  { background: linear-gradient(135deg, #d97706 0%, #7c2d12 100%); color: #fff; }
+    .track-art.a6  { background: linear-gradient(135deg, #525252 0%, #1c1917 100%); color: #fbbf24; }
+    .track-art.a7  { background: linear-gradient(135deg, #2a2a2a 0%, #0a0a0a 100%); color: #ef4444; }
+    .track-art.a8  { background: linear-gradient(135deg, #166534 0%, #14532d 100%); color: #fde047; }
+    .track-art.a9  { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: #fbbf24; }
     .track-art.a10 { background: linear-gradient(135deg, #7c2d12 0%, #431407 100%); color: #fed7aa; }
+    .track-art.a11 { background: linear-gradient(135deg, #4c1d95 0%, #1e1b4b 100%); color: #c4b5fd; }
 
     .track-info { flex: 1; min-width: 0; }
     .track-name {
@@ -489,7 +476,6 @@
     }
     .track-more svg { width: 18px; height: 18px; display: block; }
 
-    /* ═══ BOTTOM CTA — unchanged ═══ */
     .bottom-cta {
       padding: 16px 20px 28px;
       background: var(--dark);
@@ -521,7 +507,6 @@
     .spotify-btn:active { transform: scale(0.97); }
     .spotify-btn svg { width: 18px; height: 18px; }
 
-    /* ═══ BRAND FOOTER — unchanged ═══ */
     .brand-footer {
       padding: 14px 20px 22px;
       text-align: center;
@@ -545,7 +530,6 @@
     .brand-footer-text a { color: var(--silver); }
     .brand-footer-text a:hover { color: var(--white); }
 
-    /* ═══ MOBILE ═══ */
     @media (max-width: 500px) {
       .stage {
         padding: 0;
@@ -626,13 +610,12 @@
 <div class="stage">
   <div class="frame">
 
-    <!-- ═══════════════ CINEMATIC HERO ═══════════════ -->
+    <!-- ═══════════════ HERO ═══════════════ -->
     <div class="hero-bg-wrapper">
       <div class="hero-bg-image" id="heroBgImage"></div>
       <div class="hero-bg-overlay"></div>
       <div class="hero-vignette"></div>
 
-      <!-- Photo credit — larger, more visible -->
       <div class="hero-photo-credit" id="photoCredit">Photo: Eko Noir</div>
 
       <div class="status-bar">
@@ -678,12 +661,12 @@
             <span class="hero-meta-dot"></span>
             <span class="hero-meta-text">2h 57m</span>
           </div>
-          <p class="cover-credit" id="coverCredit">Cover: Amapiano District South Gidi</p>
+          <p class="cover-credit" id="coverCredit">Cover: DOGHOUSETV</p>
         </div>
       </div>
     </div>
 
-    <!-- ═══════════════ ACTION ROW — unchanged ═══════════════ -->
+    <!-- ═══════════════ ACTION ROW ═══════════════ -->
     <div class="action-row">
       <div class="action-icons">
         <button class="action-icon" id="saveBtn" onclick="toggleSave()" aria-label="Save">
@@ -711,98 +694,108 @@
       Tap play to open in Spotify
     </div>
 
-    <!-- ═══════════════ TRACKLIST — unchanged ═══════════════ -->
+    <!-- ═══════════════ TRACKLIST ═══════════════ -->
     <div class="tracklist">
+
+      <!-- 1 -->
       <div class="track" onclick="openOnSpotify('track_1')">
-        <div class="track-art a1">AWOAMENAKASO</div>
+        <div class="track-art a1">OSUOFIA</div>
         <div class="track-info">
-          <div class="track-name">Awoamenakaso</div>
-          <div class="track-artist">Smeez &amp; D3AN</div>
+          <div class="track-name">Osuofia In London</div>
+          <div class="track-artist">Sigag Lauren</div>
         </div>
         <button class="track-more" onclick="event.stopPropagation(); openOnSpotify('track_1_more');" aria-label="More">
           <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
         </button>
       </div>
 
+      <!-- 2 -->
       <div class="track" onclick="openOnSpotify('track_2')">
-        <div class="track-art a2">Mr WEST × IRAQ × CALVARY</div>
+        <div class="track-art a2">AWOAMENAKASO</div>
         <div class="track-info">
-          <div class="track-name">Iraq</div>
-          <div class="track-artist">MR WEST, Party Boy, KEVIN LNDN</div>
+          <div class="track-name">Awoamenakaso</div>
+          <div class="track-artist">Smeez &amp; D3AN</div>
         </div>
         <button class="track-more" onclick="event.stopPropagation(); openOnSpotify('track_2_more');" aria-label="More">
           <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
         </button>
       </div>
 
+      <!-- 3 -->
       <div class="track" onclick="openOnSpotify('track_3')">
-        <div class="track-art a3">FILTH</div>
+        <div class="track-art a3">BOHO BOUNCE</div>
         <div class="track-info">
-          <div class="track-name">Bozza Mthathe</div>
-          <div class="track-artist">Thakzin</div>
+          <div class="track-name">BOHO BOUNCE</div>
+          <div class="track-artist">DOGHOUSETV, Sigag Lauren</div>
         </div>
         <button class="track-more" onclick="event.stopPropagation(); openOnSpotify('track_3_more');" aria-label="More">
           <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
         </button>
       </div>
 
+      <!-- 4 -->
       <div class="track" onclick="openOnSpotify('track_4')">
-        <div class="track-art a4">NYCBS</div>
+        <div class="track-art a4">ALAYE</div>
         <div class="track-info">
-          <div class="track-name">No You Can't Be Sober (NYCBS)</div>
-          <div class="track-artist"><span class="e-tag">E</span>King Perryy, Jamie Black</div>
+          <div class="track-name">ALAYE</div>
+          <div class="track-artist">Proton, DysleX</div>
         </div>
         <button class="track-more" onclick="event.stopPropagation(); openOnSpotify('track_4_more');" aria-label="More">
           <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
         </button>
       </div>
 
+      <!-- 5 -->
       <div class="track" onclick="openOnSpotify('track_5')">
-        <div class="track-art a5">AIBOO</div>
+        <div class="track-art a5">eko!</div>
         <div class="track-info">
-          <div class="track-name">AIBOO (feat. Thukuthela)</div>
-          <div class="track-artist">DJ Maphorisa, GL_Ceejay, JAZZWRX</div>
+          <div class="track-name">eko!</div>
+          <div class="track-artist">DOGHOUSE TV</div>
         </div>
         <button class="track-more" onclick="event.stopPropagation(); openOnSpotify('track_5_more');" aria-label="More">
           <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
         </button>
       </div>
 
+      <!-- 6 -->
       <div class="track" onclick="openOnSpotify('track_6')">
-        <div class="track-art a6">FILTH</div>
+        <div class="track-art a6">NEW LEVELS</div>
         <div class="track-info">
-          <div class="track-name">Filth</div>
-          <div class="track-artist">Sigag Lauren, Proton</div>
+          <div class="track-name">New Levels</div>
+          <div class="track-artist">Calix, Sigag Lauren</div>
         </div>
         <button class="track-more" onclick="event.stopPropagation(); openOnSpotify('track_6_more');" aria-label="More">
           <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
         </button>
       </div>
 
+      <!-- 7 -->
       <div class="track" onclick="openOnSpotify('track_7')">
-        <div class="track-art a7">REPEAT</div>
+        <div class="track-art a7">BANI KUDI VVIP</div>
         <div class="track-info">
-          <div class="track-name">Repeat</div>
-          <div class="track-artist">Vanco, DEELA</div>
+          <div class="track-name">Bani Kudi VVIP</div>
+          <div class="track-artist">Naija House Mafia, Calix, Jamie Black, Sigag Lauren</div>
         </div>
         <button class="track-more" onclick="event.stopPropagation(); openOnSpotify('track_7_more');" aria-label="More">
           <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
         </button>
       </div>
 
+      <!-- 8 -->
       <div class="track" onclick="openOnSpotify('track_8')">
-        <div class="track-art a8">KAMILI</div>
+        <div class="track-art a8">NYCBS</div>
         <div class="track-info">
-          <div class="track-name">Kamili</div>
-          <div class="track-artist">Francis Mercier, Nitefreak, Idd Aziz</div>
+          <div class="track-name">No You Can't Be Sober (NYCBS) — Jamie Black Remix</div>
+          <div class="track-artist"><span class="e-tag">E</span>King Perry, Jamie Black</div>
         </div>
         <button class="track-more" onclick="event.stopPropagation(); openOnSpotify('track_8_more');" aria-label="More">
           <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
         </button>
       </div>
 
+      <!-- 9 -->
       <div class="track" onclick="openOnSpotify('track_9')">
-        <div class="track-art a9">OGBA FLOW</div>
+        <div class="track-art a9">OGBA</div>
         <div class="track-info">
           <div class="track-name">OGBA</div>
           <div class="track-artist">Jamie Black</div>
@@ -812,19 +805,33 @@
         </button>
       </div>
 
+      <!-- 10 -->
       <div class="track" onclick="openOnSpotify('track_10')">
-        <div class="track-art a10">ONE CONDITION</div>
+        <div class="track-art a10">FAAJA</div>
         <div class="track-info">
-          <div class="track-name">One Condition</div>
-          <div class="track-artist">DJ Tunez, Wizkid, FOLA</div>
+          <div class="track-name">Faaja</div>
+          <div class="track-artist">Tobi Peter, Sõulaar</div>
         </div>
         <button class="track-more" onclick="event.stopPropagation(); openOnSpotify('track_10_more');" aria-label="More">
           <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
         </button>
       </div>
+
+      <!-- 11 -->
+      <div class="track" onclick="openOnSpotify('track_11')">
+        <div class="track-art a11">BANI KUDI</div>
+        <div class="track-info">
+          <div class="track-name">Bani Kudi</div>
+          <div class="track-artist">Naija House Mafia, Calix, Jamie Black, Sigag Lauren</div>
+        </div>
+        <button class="track-more" onclick="event.stopPropagation(); openOnSpotify('track_11_more');" aria-label="More">
+          <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+        </button>
+      </div>
+
     </div>
 
-    <!-- ═══════════════ BOTTOM CTA — unchanged ═══════════════ -->
+    <!-- ═══════════════ BOTTOM CTA ═══════════════ -->
     <div class="bottom-cta">
       <p class="bottom-cta-text">
         Listen to the full playlist on <strong>Spotify</strong>.<br>
@@ -836,7 +843,7 @@
       </button>
     </div>
 
-    <!-- ═══════════════ BRAND FOOTER — unchanged ═══════════════ -->
+    <!-- ═══════════════ BRAND FOOTER ═══════════════ -->
     <div class="brand-footer">
       <a href="index.html" class="brand-footer-logo">
         <img src="logo_afrocue.png" alt="AfroCue"
@@ -851,18 +858,13 @@
 </div>
 
 <script>
-  /* ════════════════════════════════════════════════════════════
-     CONFIGURATION — change these variables per playlist
-     ════════════════════════════════════════════════════════════ */
   var SPOTIFY_PLAYLIST_ID = '7Ehj5mLXwdW4Eu56rTwU4b';
   var SPOTIFY_WEB_URL = 'https://open.spotify.com/playlist/' + SPOTIFY_PLAYLIST_ID + '?si=71DGmtlqR-ee6B00xNQkXA&pi=_Y3XbUIcRUO7j';
 
-  /* ─── DYNAMIC HERO BACKGROUND ─── */
   var HERO_BACKGROUND_IMAGE = 'hero_bg_default.jpg';
   document.getElementById('heroBgImage').style.setProperty('--hero-bg-url', 'url(' + HERO_BACKGROUND_IMAGE + ')');
   document.getElementById('heroBgImage').style.backgroundImage = 'url(' + HERO_BACKGROUND_IMAGE + ')';
 
-  /* ─── IMAGE CREDITS ─── */
   var PHOTO_CREDIT_TEXT = 'Photo: Eko Noir';
   var COVER_CREDIT_TEXT = 'Cover: Amapiano District South Gidi';
   document.getElementById('photoCredit').textContent = PHOTO_CREDIT_TEXT;
