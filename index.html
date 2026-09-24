@@ -165,7 +165,7 @@
     .inc-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); background: var(--yellow); padding: 13px 24px; border-radius: 2px; text-decoration: none; transition: opacity 0.2s; align-self: flex-start; margin-top: 4px; white-space: nowrap; flex-shrink: 0; }
     .inc-btn:hover { opacity: 0.85; }
 
-    /* ── PARTIES STRIP (matches parties.html card language) ── */
+    /* ── PARTIES STRIP ── */
     #parties-strip { border-top: 1px solid rgba(255,255,255,0.06); background: var(--black); }
     .ps-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; gap: 16px; flex-wrap: wrap; }
     .ps-left .ps-h { font-size: clamp(36px,5vw,64px); margin-bottom: 0; }
@@ -197,25 +197,28 @@
     .ps-cta-btn { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); background: var(--yellow); padding: 12px 22px; border-radius: 2px; text-decoration: none; white-space: nowrap; transition: opacity 0.2s; flex-shrink: 0; }
     .ps-cta-btn:hover { opacity: 0.88; }
 
-    /* ── PROMO STRIP ── */
-    #promo-strip { display: none; padding: 0; border-top: 1px solid rgba(255,255,255,0.06); }
+    /* ── PROMO FEATURED STRIP — mirrors .upcoming from parties.html ── */
+    #promo-strip { display: none; position: relative; overflow: hidden; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
     #promo-strip.visible { display: block; }
-    .promo-card { position: relative; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; min-height: 260px; text-decoration: none; color: inherit; }
-    .promo-card.is-sponsored { background: linear-gradient(135deg, rgba(232,197,71,0.06), rgba(232,197,71,0.01)); }
-    .promo-img-wrap { position: relative; overflow: hidden; background: var(--dark2); }
-    .promo-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
-    .promo-card:hover .promo-img-wrap img { transform: scale(1.03); }
-    .promo-body { display: flex; flex-direction: column; justify-content: center; padding: 44px 48px; background: var(--dark); border-left: 1px solid rgba(255,255,255,0.06); gap: 10px; }
-    .promo-card.is-sponsored .promo-body { border-left-color: rgba(232,197,71,0.2); }
-    .promo-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 8px; }
-    .promo-eyebrow::before { content: ''; width: 14px; height: 1px; background: currentColor; flex-shrink: 0; }
-    .promo-card.is-sponsored .promo-eyebrow { color: var(--gold); }
-    .promo-title { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(26px, 3vw, 42px); line-height: 0.98; color: var(--white); text-transform: uppercase; }
-    .promo-subtitle { font-size: 14px; font-weight: 300; color: rgba(240,237,232,0.6); line-height: 1.6; }
-    .promo-btn { align-self: flex-start; margin-top: 12px; display: inline-flex; align-items: center; gap: 8px; font-family: 'Figtree', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); background: var(--white); padding: 13px 24px; border-radius: 2px; transition: background 0.2s; }
+    .promo-card { position: relative; display: block; text-decoration: none; color: inherit; }
+    .promo-card-bg { position: absolute; inset: -20px; z-index: 0; background-size: cover; background-position: center; filter: blur(28px) brightness(0.35) saturate(0.6); transform: scale(1.1); }
+    .promo-card-texture { position: absolute; inset: 0; z-index: 1; background-image: url('texture.jpg'); background-size: cover; opacity: 0.08; pointer-events: none; }
+    .promo-card-grad { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to right, rgba(10,10,10,0.1) 0%, rgba(10,10,10,0.45) 33%, rgba(10,10,10,0.88) 52%, rgba(10,10,10,0.96) 100%); }
+    .promo-card.is-sponsored .promo-card-grad { background: linear-gradient(to right, rgba(10,10,10,0.1) 0%, rgba(10,10,10,0.45) 33%, rgba(20,16,0,0.88) 52%, rgba(20,16,0,0.96) 100%); }
+    .promo-inner { position: relative; z-index: 3; display: grid; grid-template-columns: 1fr 2fr; height: 240px; }
+    .promo-flyer-wrap { position: relative; overflow: hidden; height: 100%; }
+    .promo-flyer-img { position: absolute; top: 12px; bottom: 12px; left: 50%; transform: translateX(-50%) rotate(1deg); width: auto; height: calc(100% - 24px); aspect-ratio: 3/4; object-fit: cover; border-radius: 5px; display: block; box-shadow: 0 8px 40px rgba(0,0,0,0.95); }
+    .promo-text { display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 28px 40px 28px 36px; overflow: visible; min-width: 0; }
+    .promo-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 8px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--black); background: var(--yellow); padding: 4px 10px; border-radius: 2px; align-self: flex-start; margin-bottom: 4px; }
+    .promo-card.is-sponsored .promo-badge { background: var(--gold); }
+    .promo-name { font-family: 'Aesthet Nova', sans-serif; font-weight: 900; font-size: clamp(32px,3.8vw,56px); color: var(--yellow); text-shadow: var(--yts); line-height: 0.9; }
+    .promo-card.is-sponsored .promo-name { color: var(--gold); }
+    .promo-sub { font-size: 11px; font-weight: 400; color: rgba(240,237,232,0.4); letter-spacing: 0.06em; }
+    .promo-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .promo-tag { font-size: 8px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; border: 1px solid rgba(200,224,0,0.25); color: rgba(200,224,0,0.7); }
+    .promo-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); background: var(--yellow); padding: 13px 24px; border-radius: 2px; transition: opacity 0.2s; align-self: flex-start; margin-top: 4px; white-space: nowrap; flex-shrink: 0; }
     .promo-card.is-sponsored .promo-btn { background: var(--gold); }
-    .promo-card:hover .promo-btn { background: var(--off); }
-    .promo-card.is-sponsored:hover .promo-btn { opacity: 0.88; }
+    .promo-card:hover .promo-btn { opacity: 0.85; }
 
     /* ── BLOG — mirrors blog.html card language ── */
     #blog-home { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
@@ -309,7 +312,7 @@
     .btn-join-dj { display: inline-block; font-family: 'Figtree', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--yellow); background: transparent; border: 1.5px solid rgba(200,224,0,0.5); padding: 13px 26px; border-radius: 2px; text-decoration: none; white-space: nowrap; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
     .btn-join-dj:hover { border-color: var(--yellow); background: rgba(200,224,0,0.06); }
 
-    /* ── JOIN (restructured) ── */
+    /* ── JOIN ── */
     #join { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); padding: 72px 48px; }
     .join-inner { max-width: 780px; margin: 0 auto; }
     .join-heading { display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px; }
@@ -455,12 +458,10 @@
       .ps-cta-bar { padding: 18px 20px; flex-direction: column; align-items: flex-start; gap: 12px; }
       .ps-cta-btn { width: 100%; text-align: center; }
 
-      .promo-card { grid-template-columns: 1fr; min-height: 0; }
-      .promo-img-wrap { aspect-ratio: 16/9; }
-      .promo-body { padding: 26px 22px 28px; border-left: none; border-top: 1px solid rgba(255,255,255,0.06); }
-      .promo-card.is-sponsored .promo-body { border-top-color: rgba(232,197,71,0.2); border-left: none; }
-      .promo-title { font-size: 22px; }
-      .promo-subtitle { font-size: 13px; }
+      .promo-inner { grid-template-columns: 1fr; height: auto; }
+      .promo-flyer-wrap { height: 220px; }
+      .promo-text { padding: 22px 20px 28px; }
+      .promo-name { font-size: clamp(24px, 6vw, 34px); }
 
       .bh-header { flex-direction: column; align-items: flex-start; gap: 14px; }
       .bh-all { align-self: flex-start; }
@@ -701,7 +702,7 @@
   </div>
 </section>
 
-<!-- PROMO STRIP -->
+<!-- PROMO FEATURED STRIP -->
 <section id="promo-strip"></section>
 
 <!-- BLOG -->
@@ -1060,7 +1061,7 @@
     document.getElementById('djMuteBtn').innerHTML = djRadarVid.muted ? '&#128266;' : '&#128263;';
   }
 
-  /* ── PARTIES — from GAS ?export=csv (same source as parties.html) ── */
+  /* ── PARTIES ── */
   function psHandleFromUrl(url) {
     if (!url) return '';
     var m = url.match(/instagram\.com\/([^\/\?]+)/);
@@ -1211,7 +1212,7 @@
     }
   }
 
-  /* ── BLOG — matches blog.html card structure ── */
+  /* ── BLOG ── */
   function loadHomeBlog() {
     var url = getScriptUrl() + '?export=blog';
     fetch(url)
@@ -1265,7 +1266,7 @@
     grid.innerHTML = featHtml + '<div class="bh-side">' + sideHtml + '</div>';
   }
 
-  /* ── PROMO STRIP — reads ?export=promo&slot=homepage ── */
+  /* ── PROMO FEATURED STRIP ── */
   function loadHomePromo() {
     var url = getScriptUrl() + '?export=promo&slot=homepage';
     fetch(url)
@@ -1280,27 +1281,55 @@
   function renderHomePromo(p) {
     var sec = document.getElementById('promo-strip');
     if (!sec) return;
+
     var isSpon = !!p.sponsored;
     var cls = 'promo-card' + (isSpon ? ' is-sponsored' : '');
-    var imgUrl = p.image || '';
-    var label = p.label || (isSpon ? 'Sponsored' : 'Promoted');
-    var title = p.title || '';
-    var subtitle = p.subtitle || p.text || '';
+
+    var bgUrl = p.image || '';
+    var flyerUrl = p.image || '';
+    var label = p.label || (isSpon ? 'Sponsored' : 'Featured');
+    var name = p.title || '';
+    var sub = p.subtitle || '';
     var btnText = p.linkText || 'Find out more';
     var btnUrl = p.url || '#';
 
-    var inner = ''
-      + '<div class="promo-img-wrap">'
-      +   (imgUrl ? '<img src="' + esc(imgUrl) + '" alt="' + esc(p.imageAlt || title) + '" loading="lazy" onerror="this.parentNode.style.display=\'none\';"/>' : '')
-      + '</div>'
-      + '<div class="promo-body">'
-      +   '<div class="promo-eyebrow">' + esc(label) + '</div>'
-      +   '<div class="promo-title">' + esc(title) + '</div>'
-      +   (subtitle ? '<div class="promo-subtitle">' + esc(subtitle) + '</div>' : '')
-      +   '<span class="promo-btn">' + esc(btnText) + ' →</span>'
+    var tags = [];
+    if (sub && sub.indexOf('·') > -1) {
+      tags = sub.split('·').map(function(s){ return s.trim(); }).filter(Boolean);
+    }
+
+    var bg = bgUrl ? '<div class="promo-card-bg" style="background-image:url(\'' + esc(bgUrl) + '\')"></div>' : '';
+    var tex = '<div class="promo-card-texture"></div>';
+    var grad = '<div class="promo-card-grad"></div>';
+
+    var flyer = ''
+      + '<div class="promo-flyer-wrap">'
+      +   (flyerUrl
+            ? '<img class="promo-flyer-img" src="' + esc(flyerUrl) + '" alt="' + esc(name) + '" loading="lazy" onerror="this.style.visibility=\'hidden\';"/>'
+            : '')
       + '</div>';
 
-    sec.innerHTML = '<a class="' + cls + '" href="' + esc(btnUrl) + '" target="_blank" rel="noopener' + (isSpon ? ' sponsored' : '') + '">' + inner + '</a>';
+    var tagsHtml = tags.length
+      ? '<div class="promo-tags">' + tags.map(function(t){ return '<span class="promo-tag">' + esc(t) + '</span>'; }).join('') + '</div>'
+      : '';
+
+    var subLine = sub && !tags.length
+      ? '<div class="promo-sub">' + esc(sub) + '</div>'
+      : '';
+
+    var inner = ''
+      + '<div class="promo-inner">'
+      +   flyer
+      +   '<div class="promo-text">'
+      +     '<span class="promo-badge">★ ' + esc(label) + '</span>'
+      +     '<div class="promo-name">' + esc(name) + '</div>'
+      +     subLine
+      +     tagsHtml
+      +     '<span class="promo-btn">' + esc(btnText) + ' →</span>'
+      +   '</div>'
+      + '</div>';
+
+    sec.innerHTML = '<a class="' + cls + '" href="' + esc(btnUrl) + '" target="_blank" rel="noopener' + (isSpon ? ' sponsored' : '') + '">' + bg + tex + grad + inner + '</a>';
     sec.classList.add('visible');
   }
 
