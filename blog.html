@@ -14,11 +14,8 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:site" content="@afrocue_"/>
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Shared afrocue.js — provides getAfroCueScriptUrl() -->
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <script src="afrocue.js"></script>
-
   <style>
     @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');font-weight:900}
     @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype');font-weight:500}
@@ -28,7 +25,6 @@
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{background:var(--black);color:var(--white);font-family:'Figtree',sans-serif;overflow-x:hidden}
-
     nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(10,10,10,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06)}
     .nav-logo{display:flex;align-items:center;text-decoration:none}
     .nav-logo img{height:48px;width:auto;display:block}
@@ -38,7 +34,6 @@
     .nav-links a:hover,.nav-links a.active{color:var(--white)}
     .nav-cta{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--white);padding:10px 20px;border-radius:2px;text-decoration:none;border:none;cursor:pointer;font-family:'Figtree',sans-serif;transition:background 0.2s;white-space:nowrap}
     .nav-cta:hover{background:var(--off)}
-
     .hero{padding:100px 48px 44px;border-bottom:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden}
     .hero-bg{position:absolute;inset:0;z-index:0;background-image:url('blog_hero.jpg');background-size:cover;background-position:center;opacity:0.55}
     .hero-content{position:relative;z-index:1;max-width:1100px}
@@ -47,7 +42,6 @@
     .hero h1{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(44px,6vw,88px);line-height:0.88;color:var(--yellow);text-shadow:var(--yts);margin-bottom:16px}
     .hero h1 .outline{-webkit-text-stroke:1.5px var(--yellow);color:transparent;text-shadow:none;display:block}
     .hero-sub{font-size:14px;font-weight:300;color:rgba(240,237,232,0.45);max-width:460px;line-height:1.75}
-
     #featured{border-bottom:1px solid rgba(255,255,255,0.06)}
     .feat-post{display:grid;grid-template-columns:1fr 1fr;cursor:pointer;transition:opacity 0.2s}
     .feat-post:hover{opacity:0.92}
@@ -56,14 +50,13 @@
     .feat-post:hover .feat-img{transform:scale(1.03)}
     .feat-img-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,10,0) 60%,rgba(10,10,10,0.6) 100%)}
     .feat-text{background:var(--dark);padding:36px 44px;display:flex;flex-direction:column;justify-content:center;gap:10px;border-left:1px solid rgba(255,255,255,0.06)}
-    .feat-eyebrow{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--yellow);opacity:0.7;display:flex;align-items:center;gap:8px}
-    .feat-eyebrow::before{content:'';width:14px;height:1px;background:var(--yellow);flex-shrink:0}
+    .feat-eyebrow{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--silver);display:flex;align-items:center;gap:8px}
+    .feat-eyebrow::before{content:'';width:14px;height:1px;background:var(--silver);flex-shrink:0}
     .feat-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(20px,2.2vw,32px);color:var(--white);line-height:1.05}
     .feat-excerpt{font-size:13px;font-weight:300;line-height:1.8;color:rgba(240,237,232,0.5);max-width:380px}
     .feat-meta{font-size:11px;font-weight:300;color:var(--grey)}
     .feat-btn{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--white);padding:13px 24px;border-radius:2px;align-self:flex-start;margin-top:4px;text-decoration:none;transition:background 0.2s;border:none;cursor:pointer;font-family:'Figtree',sans-serif}
     .feat-btn:hover{background:var(--off)}
-
     #posts{padding:56px 48px 80px}
     .posts-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:32px;flex-wrap:wrap}
     .posts-lbl{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);display:flex;align-items:center;gap:10px}
@@ -72,7 +65,6 @@
     .cat-btn{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:7px 14px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:transparent;color:var(--silver);cursor:pointer;font-family:'Figtree',sans-serif;transition:all 0.18s;white-space:nowrap}
     .cat-btn:hover{border-color:rgba(255,255,255,0.3);color:var(--white)}
     .cat-btn.active{background:var(--white);border-color:var(--white);color:var(--black)}
-
     .posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
     .post-card{background:var(--dark2);cursor:pointer;transition:background 0.2s;display:flex;flex-direction:column}
     .post-card:hover{background:#1e1e1e}
@@ -88,7 +80,6 @@
     .pc-tags{margin-top:1px}
     .pc-tag{font-size:5px;font-weight:300;color:rgba(240,237,232,0.18)}
     .pc-spon{position:absolute;top:8px;left:8px;z-index:2;font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;background:rgba(10,10,10,0.85);color:var(--gold);border:1px solid rgba(232,197,71,0.3);padding:4px 8px;border-radius:2px;backdrop-filter:blur(6px)}
-
     .modal-wrap{display:none;position:fixed;inset:0;z-index:9999;background:rgba(10,10,10,0.92);backdrop-filter:blur(16px);overflow-y:auto;padding:40px 16px}
     .modal-wrap.open{display:block}
     .modal{max-width:700px;margin:0 auto;background:var(--dark);border:1px solid rgba(255,255,255,0.08);border-radius:6px;overflow:hidden;animation:mIn 0.28s ease}
@@ -99,17 +90,23 @@
     .modal-body{padding:36px 44px 48px}
     .modal-cat{font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--yellow);opacity:0.7;margin-bottom:10px;display:flex;align-items:center;gap:8px}
     .modal-img-wrap{position:relative}
-    .modal-img-credit{font-size:10px;font-weight:300;color:var(--grey);font-style:italic;padding:6px 0 0;text-align:right}
+    .modal-hero-cap{font-family:'Figtree',sans-serif;font-style:italic;font-weight:300;font-size:11px;line-height:1.55;color:rgba(240,237,232,0.55);padding:8px 44px 0;text-align:right;background:var(--dark);letter-spacing:0.01em;}
+    .modal-img-credit{font-size:10px;font-weight:300;color:var(--grey);font-style:italic;padding:6px 44px 0;text-align:right;background:var(--dark);}
     .modal-cat::before{content:'';width:14px;height:1px;background:var(--yellow)}
-    .modal-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(22px,3.2vw,38px);color:var(--white);line-height:1;margin-bottom:12px}
+    .modal-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(22px,3.2vw,38px);color:var(--white);line-height:1;margin-bottom:14px}
+    .modal-deck{font-size:15px;font-weight:300;line-height:1.7;font-style:italic;color:rgba(240,237,232,0.6);margin-bottom:16px;max-width:560px}
     .modal-meta-row{font-size:11px;font-weight:300;color:var(--grey);margin-bottom:8px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
     .modal-reading{font-size:10px;color:var(--grey);opacity:0.7}
+    .modal-share-group{display:flex;align-items:center;gap:6px;margin-left:auto}
     .modal-share{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--silver);background:transparent;border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:5px 12px;cursor:pointer;font-family:'Figtree',sans-serif;transition:all 0.18s}
     .modal-share:hover{border-color:rgba(255,255,255,0.3);color:var(--white)}
     .modal-share.copied{border-color:#4caf50;color:#4caf50}
+    .share-icon-btn{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;background:transparent;border:1px solid rgba(255,255,255,0.12);border-radius:50%;color:var(--silver);cursor:pointer;transition:all 0.18s;padding:0}
+    .share-icon-btn:hover{border-color:rgba(255,255,255,0.35);color:var(--white)}
+    .share-icon-btn svg{width:13px;height:13px;display:block}
     .modal-divider{height:1px;background:rgba(255,255,255,0.07);margin:16px 0 24px}
-    .modal-content{font-size:15px;font-weight:300;line-height:1.9;color:rgba(240,237,232,0.7)}
-    .modal-content p{margin-bottom:18px}
+    .modal-content{font-size:16px;font-weight:300;line-height:1.9;color:rgba(240,237,232,0.72)}
+    .modal-content p{margin-bottom:20px}
     .modal-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.07)}
     .modal-related{padding:28px 44px 36px;border-top:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.015)}
     .modal-related-lbl{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--grey);margin-bottom:16px;display:flex;align-items:center;gap:8px}
@@ -121,53 +118,52 @@
     .rel-img img{width:100%;height:100%;object-fit:cover;display:block}
     .rel-body{padding:10px 12px 12px}
     .rel-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:13px;color:var(--white);line-height:1}
-
-    /* ── DJ NAME ── */
-    .dj-name{
-      font-family:'Aesthet Nova',sans-serif !important;
-      font-weight:900 !important;
-      font-size:1.12em !important;
-      text-transform:uppercase;
-      letter-spacing:0.03em;
-      color:var(--yellow) !important;
-    }
-
+    .inline-img{display:block;width:100%;border-radius:6px;margin:24px 0 0}
+    .inline-img-cap{font-family:'Figtree',sans-serif;font-style:italic;font-weight:300;font-size:11.5px;color:rgba(240,237,232,0.62);text-align:center;margin:10px 0 22px;line-height:1.55;letter-spacing:0.01em;}
+    .dj-name{font-family:'Aesthet Nova',sans-serif !important;font-weight:900 !important;font-style:normal !important;font-size:1.12em !important;text-transform:uppercase;letter-spacing:0.03em;color:var(--yellow) !important}
+    .inline-img-cap .dj-name,.modal-hero-cap .dj-name{font-size:1.08em !important}
     .spon-banner{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);background:rgba(232,197,71,0.07);border:1px solid rgba(232,197,71,0.22);border-radius:3px;padding:10px 12px;margin:0 0 22px}
     .spon-banner svg{flex-shrink:0;opacity:0.85}
-
-    .ref-card{display:grid;grid-template-columns:38% 1fr;background:var(--dark2);border:1px solid rgba(255,255,255,0.08);border-radius:6px;overflow:hidden;margin:26px 0}
-    .ref-card-img{position:relative;background:var(--mid);min-height:172px}
+    .ref-card{display:grid;grid-template-columns:1.2fr 1fr;max-width:480px;margin:32px auto;background:var(--dark2);border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit;box-shadow:0 6px 24px rgba(0,0,0,0.35);transition:border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;cursor:pointer}
+    .ref-card:hover{border-color:rgba(255,255,255,0.22);transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,0.5)}
+    .ref-card-img{position:relative;background:var(--mid);aspect-ratio:4/5;overflow:hidden}
     .ref-card-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-    .ref-card-body{padding:20px 22px;display:flex;flex-direction:column;gap:7px;justify-content:center;border-left:3px solid var(--white)}
-    .ref-card-label{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);opacity:0.9}
-    .ref-card-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:19px;line-height:1.08;color:var(--white)}
-    .ref-card-text{font-size:12.5px;font-weight:300;line-height:1.65;color:rgba(240,237,232,0.55)}
-    .ref-card-link{align-self:flex-start;margin-top:6px;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--black);background:var(--white);padding:9px 16px;border-radius:2px;text-decoration:none;transition:background 0.2s}
-    .ref-card-link:hover{background:var(--off)}
-    .ref-card.is-sponsored{border-color:rgba(232,197,71,0.25)}
-    .ref-card.is-sponsored .ref-card-body{border-left-color:var(--gold)}
-    .ref-card.is-sponsored .ref-card-label{color:var(--gold);opacity:1}
-    .ref-card.is-sponsored .ref-card-link{background:var(--gold)}
-    .ref-card.is-sponsored .ref-card-link:hover{opacity:0.88;background:var(--gold)}
-
-    /* ── SIGNUP CTA (end of every article) — neutral, less yellow ── */
-    .signup-cta{
-      position:relative;margin:36px 0 0;padding:28px 30px 26px;
-      background:rgba(255,255,255,0.02);
-      border:1px solid rgba(255,255,255,0.1);
-      border-radius:10px;overflow:hidden;
-    }
-    .signup-cta::before{
-      content:'';position:absolute;top:0;left:0;right:0;height:2px;
-      background:linear-gradient(90deg, rgba(255,255,255,0.35), rgba(255,255,255,0));
-    }
+    .ref-card-body{padding:16px 18px 16px 20px;display:flex;flex-direction:column;gap:5px;justify-content:center;border-left:1px solid rgba(255,255,255,0.08);min-width:0}
+    .ref-card-label{font-size:8.5px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);display:flex;align-items:center;gap:5px;margin-bottom:2px}
+    .ref-card-label svg{flex-shrink:0;opacity:0.75}
+    .ref-card-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:15px;line-height:1.15;color:var(--white)}
+    .ref-card-text{font-size:11px;font-weight:300;line-height:1.5;color:rgba(240,237,232,0.55)}
+    .ref-card-cta{margin-top:8px;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--white);display:inline-flex;align-items:center;gap:5px}
+    .ref-card-cta svg{transition:transform 0.2s ease;flex-shrink:0}
+    .ref-card:hover .ref-card-cta svg{transform:translateX(3px)}
+    .ref-card.is-sponsored{border-color:rgba(232,197,71,0.28)}
+    .ref-card.is-sponsored:hover{border-color:rgba(232,197,71,0.5)}
+    .ref-card.is-sponsored .ref-card-body{border-left-color:rgba(232,197,71,0.2)}
+    .ref-card.is-sponsored .ref-card-label{color:var(--gold)}
+    .ref-card.is-sponsored .ref-card-label svg{opacity:1}
+    .ref-card.is-sponsored .ref-card-cta{color:var(--gold)}
+    .event-cta{display:grid;grid-template-columns:140px 1fr;max-width:520px;margin:34px auto 0;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.1);border-radius:10px;overflow:hidden;text-decoration:none;color:inherit;transition:border-color 0.25s, transform 0.25s}
+    .event-cta:hover{border-color:rgba(255,255,255,0.22);transform:translateY(-1px)}
+    .event-cta-img{position:relative;background:var(--mid);aspect-ratio:4/5;overflow:hidden}
+    .event-cta-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+    .event-cta-body{padding:18px 20px;display:flex;flex-direction:column;gap:5px;justify-content:center;min-width:0;border-left:1px solid rgba(255,255,255,0.07)}
+    .event-cta-label{font-size:8.5px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);display:flex;align-items:center;gap:6px;margin-bottom:2px}
+    .event-cta-label::before{content:'';width:12px;height:1px;background:var(--silver);flex-shrink:0}
+    .event-cta-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:16px;line-height:1.15;color:var(--white);text-transform:uppercase;letter-spacing:0.01em}
+    .event-cta-subtitle{font-size:11.5px;font-weight:300;color:rgba(240,237,232,0.6);letter-spacing:0.01em;line-height:1.5;margin-bottom:8px}
+    .event-cta-btn{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;font-family:'Figtree',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--black);background:var(--white);padding:9px 16px;border-radius:2px;text-decoration:none;transition:background 0.2s}
+    .event-cta:hover .event-cta-btn{background:var(--off)}
+    .event-cta-btn svg{transition:transform 0.2s ease}
+    .event-cta:hover .event-cta-btn svg{transform:translateX(3px)}
+    .article-end-divider{height:1px;background:rgba(255,255,255,0.07);margin:36px 0 0}
+    .signup-cta{position:relative;margin:28px 0 0;padding:28px 30px 26px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.1);border-radius:10px;overflow:hidden}
+    .signup-cta::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg, rgba(255,255,255,0.35), rgba(255,255,255,0))}
     .signup-cta-label{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--silver);margin-bottom:10px;display:flex;align-items:center;gap:8px}
     .signup-cta-label::before{content:'';width:14px;height:1px;background:var(--silver);flex-shrink:0}
     .signup-cta-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(22px,2.6vw,30px);line-height:1;color:var(--white);text-shadow:var(--yts);margin-bottom:8px}
     .signup-cta-text{font-size:13px;font-weight:300;line-height:1.65;color:rgba(240,237,232,0.55);max-width:400px;margin-bottom:18px}
     .signup-cta-btn{display:inline-flex;align-items:center;gap:8px;font-family:'Figtree',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--black);background:var(--white);padding:12px 22px;border-radius:2px;border:none;cursor:pointer;transition:background 0.2s}
     .signup-cta-btn:hover{background:var(--off)}
-
     .wa{background:#111111;border-top:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;padding:40px 48px}
     .wa-bg{position:absolute;right:-40px;top:50%;transform:translateY(-50%);opacity:0.055;pointer-events:none;z-index:0}
     .wa-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:24px}
@@ -178,17 +174,13 @@
     .wa-note{font-size:11px;font-weight:300;color:rgba(240,237,232,0.35);display:flex;align-items:center;gap:7px}
     .wa-btn{display:inline-flex;align-items:center;gap:12px;background:#25D366;color:#0a0a0a;text-decoration:none;padding:18px 32px;border-radius:3px;font-family:'Figtree',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;flex-shrink:0;transition:opacity 0.2s}
     .wa-btn:hover{opacity:0.88}
-
     footer{border-top:1px solid rgba(255,255,255,0.06);padding:14px 48px;display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--dark)}
     .ft-links{display:flex;align-items:center;flex-wrap:nowrap}
     .ft-links a{font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--grey);text-decoration:none;transition:color 0.2s;white-space:nowrap;margin-right:16px}
     .ft-links a:hover{color:var(--white)}
     .ft-email{font-size:9px;color:var(--grey);white-space:nowrap}
     .ft-email a{color:var(--grey);text-decoration:none}
-
     .no-posts{padding:60px 0;text-align:center;color:var(--grey);font-size:14px;font-weight:300;display:none}
-
-    /* ── SIGNUP MODAL ── */
     .signup-modal-wrap{display:none;position:fixed;inset:0;z-index:10000;background:rgba(10,10,10,0.92);backdrop-filter:blur(16px);align-items:center;justify-content:center;padding:24px}
     .signup-modal-wrap.open{display:flex}
     .signup-modal{background:var(--dark);border:1px solid rgba(255,255,255,0.1);border-radius:8px;max-width:540px;width:100%;padding:48px 44px;position:relative;max-height:90vh;overflow-y:auto}
@@ -206,7 +198,6 @@
     .btn-white{display:inline-block;font-family:'Figtree',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:13px 26px;border-radius:2px;text-decoration:none;border:none;cursor:pointer;color:var(--black);background:var(--white);transition:background 0.2s}
     .btn-white:hover{background:var(--off)}
     .yh{font-family:'Aesthet Nova',sans-serif;font-weight:900;color:var(--yellow);text-shadow:var(--yts);line-height:0.92}
-
     @media(max-width:768px){
       nav{padding:14px 20px}
       .nav-links{display:none}
@@ -229,6 +220,10 @@
       .modal-wrap{padding:12px 8px}
       .modal-body{padding:20px 16px 32px}
       .modal-title{font-size:clamp(22px,6.5vw,34px)}
+      .modal-deck{font-size:14px;line-height:1.6}
+      .modal-content{font-size:15px}
+      .modal-hero-cap{padding:6px 16px 0;font-size:10px}
+      .modal-img-credit{padding:6px 16px 0}
       .modal-related{padding:20px 16px 28px}
       .modal-related-grid{grid-template-columns:1fr 1fr}
       .wa{padding:28px 20px}
@@ -238,31 +233,53 @@
       footer{padding:10px 16px}
       .ft-links a{margin-right:10px;font-size:8px}
       .ft-email{display:none}
-      .ref-card{grid-template-columns:1fr;margin:22px 0}
-      .ref-card-img{min-height:0;aspect-ratio:16/9}
-      .ref-card-body{border-left:none;border-top:3px solid var(--white);padding:16px 16px 18px}
-      .ref-card.is-sponsored .ref-card-body{border-top-color:var(--gold)}
-      .ref-card-title{font-size:16px}
-      .signup-cta{padding:22px 20px 20px;margin:28px 0 0}
+      .inline-img{border-radius:4px;margin:18px 0 0}
+      .inline-img-cap{font-size:10.5px;margin:8px 0 18px}
+      .ref-card{max-width:100%;margin:24px 12px;grid-template-columns:1.15fr 1fr;border-radius:10px}
+      .ref-card-img{aspect-ratio:4/5}
+      .ref-card-body{padding:12px 12px 12px 14px;gap:4px}
+      .ref-card-label{font-size:7.5px;letter-spacing:0.16em}
+      .ref-card-title{font-size:12.5px;line-height:1.15}
+      .ref-card-text{font-size:10px;line-height:1.45}
+      .ref-card-cta{margin-top:5px;font-size:8.5px}
+      .event-cta{max-width:100%;margin:26px 12px 0;grid-template-columns:110px 1fr;border-radius:10px}
+      .event-cta-img{aspect-ratio:4/5}
+      .event-cta-body{padding:14px 14px 14px 16px;gap:4px}
+      .event-cta-label{font-size:7.5px}
+      .event-cta-title{font-size:13px;line-height:1.15}
+      .event-cta-subtitle{font-size:10.5px;margin-bottom:6px}
+      .event-cta-btn{font-size:9px;padding:8px 14px}
+      .article-end-divider{margin:28px 0 0}
+      .signup-cta{padding:22px 20px 20px;margin:24px 0 0}
       .signup-cta-title{font-size:22px}
       .signup-cta-btn{width:100%;justify-content:center;padding:14px}
       .signup-modal{padding:32px 22px}
       .signup-row{grid-template-columns:1fr}
     }
-    @media(max-width:380px){.posts-grid{grid-template-columns:1fr}}
+    @media(max-width:380px){
+      .posts-grid{grid-template-columns:1fr}
+      .ref-card-title{font-size:11.5px}
+      .ref-card-text{font-size:9.5px}
+      .event-cta-title{font-size:12px}
+      .event-cta-subtitle{font-size:10px}
+    }
   </style>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<!-- POST MODAL -->
 <div class="modal-wrap" id="postModal">
   <button class="modal-x" onclick="closeModal()">&#x2715;</button>
   <div class="modal">
-    <div class="modal-img-wrap"><img class="modal-hero-img" id="mImg" src="" alt=""/><div class="modal-img-credit" id="mImgCredit" style="display:none;padding:4px 44px 0;background:var(--dark);"></div></div>
+    <div class="modal-img-wrap">
+      <img class="modal-hero-img" id="mImg" src="" alt=""/>
+      <div class="modal-hero-cap" id="mHeroCap" style="display:none"></div>
+      <div class="modal-img-credit" id="mImgCredit" style="display:none"></div>
+    </div>
     <div class="modal-body">
       <div class="modal-cat" id="mCat"></div>
       <div class="modal-title" id="mTitle"></div>
+      <div class="modal-deck" id="mDeck" style="display:none"></div>
       <div class="modal-meta-row" style="border-bottom:1px solid rgba(255,255,255,0.07);padding-bottom:14px;margin-bottom:14px;">
         <span style="display:flex;align-items:center;gap:5px;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="11" height="11" style="opacity:0.4"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -272,16 +289,23 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="11" height="11" style="opacity:0.4"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
           <span id="mReadText"></span>
         </span>
-        <button class="modal-share" id="mShare" onclick="handleShare()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-          Share
-        </button>
+        <div class="modal-share-group">
+          <button class="modal-share" id="mShare" onclick="handleShare()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            Share
+          </button>
+          <button class="share-icon-btn" id="mIG" onclick="shareToIG()" title="Open Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </button>
+          <button class="share-icon-btn" id="mIGStory" onclick="shareToIGStory()" title="Share to Instagram Story">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          </button>
+        </div>
       </div>
       <div class="modal-divider"></div>
       <div class="modal-content" id="mContent"></div>
       <div class="modal-tags" id="mTags"></div>
-
-      <!-- SIGNUP CTA — end of every article -->
+      <div class="article-end-divider"></div>
       <div class="signup-cta">
         <div class="signup-cta-label">Join AfroCue</div>
         <div class="signup-cta-title">Get the updates.</div>
@@ -310,7 +334,6 @@
   </div>
 </div>
 
-<!-- SIGNUP MODAL -->
 <div class="signup-modal-wrap" id="signupModal">
   <div class="signup-modal">
     <button class="signup-modal-close" onclick="closeSignupModal()">&#x2715;</button>
@@ -319,26 +342,16 @@
     <p style="font-size:14px;font-weight:300;color:rgba(240,237,232,0.55);margin-bottom:28px;line-height:1.75;">Tell us who you are. We'll reach out and keep you connected to what's happening.</p>
     <form class="signup-modal-form" onsubmit="handleSignup(event)">
       <div class="signup-row">
-        <div class="signup-field">
-          <label>Name</label>
-          <input type="text" name="su_name" placeholder="Your name" required/>
-        </div>
-        <div class="signup-field">
-          <label>Email</label>
-          <input type="email" name="su_email" placeholder="your@email.com" required/>
-        </div>
+        <div class="signup-field"><label>Name</label><input type="text" name="su_name" placeholder="Your name" required/></div>
+        <div class="signup-field"><label>Email</label><input type="email" name="su_email" placeholder="your@email.com" required/></div>
       </div>
       <div class="signup-field">
         <label>What do you do?</label>
         <select name="su_role">
           <option value="" disabled selected>Select your role</option>
-          <option>DJ</option>
-          <option>Manager</option>
-          <option>Event Executive</option>
-          <option>Brand Manager</option>
-          <option>Creative / Content</option>
-          <option>Journalist / Media</option>
-          <option>Other</option>
+          <option>DJ</option><option>Manager</option><option>Event Executive</option>
+          <option>Brand Manager</option><option>Creative / Content</option>
+          <option>Journalist / Media</option><option>Other</option>
         </select>
       </div>
       <div class="signup-field">
@@ -358,7 +371,6 @@
   </div>
 </div>
 
-<!-- NAV -->
 <nav>
   <a class="nav-logo" href="index.html">
     <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none';document.querySelector('.nav-logo-fallback').style.display='block'"/>
@@ -373,7 +385,6 @@
   <a href="list-party.html" class="nav-cta">List Your Party</a>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-bg"></div>
   <div style="position:absolute;inset:0;z-index:0;background:linear-gradient(to bottom,rgba(10,10,10,0.55),rgba(10,10,10,0.75));pointer-events:none;"></div>
@@ -384,13 +395,9 @@
   </div>
 </div>
 
-<!-- FEATURED -->
 <section id="featured">
   <div class="feat-post" id="featPost" onclick="openFeatured()" style="display:none">
-    <div class="feat-img-wrap">
-      <img class="feat-img" id="fImg" src="" alt=""/>
-      <div class="feat-img-overlay"></div>
-    </div>
+    <div class="feat-img-wrap"><img class="feat-img" id="fImg" src="" alt=""/><div class="feat-img-overlay"></div></div>
     <div class="feat-text">
       <div class="feat-eyebrow">Featured</div>
       <div class="feat-title" id="fTitle"></div>
@@ -401,7 +408,6 @@
   </div>
 </section>
 
-<!-- POSTS -->
 <section id="posts">
   <div class="posts-top">
     <div class="posts-lbl">All Posts</div>
@@ -413,7 +419,6 @@
   <div class="no-posts" id="noPosts">No posts in this category yet.</div>
 </section>
 
-<!-- WHATSAPP -->
 <div class="wa">
   <div class="wa-bg"><svg width="380" height="380" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="0.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
   <div class="wa-inner">
@@ -429,44 +434,27 @@
   </div>
 </div>
 
-<!-- LIST YOUR PARTY -->
-<div style="background:var(--dark2);border-top:1px solid rgba(255,255,255,0.06);padding:28px 48px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
-  <div>
-    <div style="font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);margin-bottom:5px;">Is your party on AfroCue?</div>
-    <div style="font-size:14px;font-weight:300;color:rgba(240,237,232,0.4);">Get your event in front of Lagos's nightlife audience.</div>
-  </div>
-  <a href="list-party.html" style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--off);background:transparent;border:1px solid rgba(240,237,232,0.25);padding:12px 24px;border-radius:2px;text-decoration:none;transition:all 0.2s;white-space:nowrap;flex-shrink:0;" onmouseover="this.style.borderColor='var(--white)';this.style.color='var(--white)'" onmouseout="this.style.borderColor='rgba(240,237,232,0.25)';this.style.color='var(--off)'">List Your Party &rarr;</a>
-</div>
-
-<!-- FOOTER -->
 <footer>
   <a href="index.html" style="display:inline-flex;align-items:center;text-decoration:none;flex-shrink:0;">
     <img src="logo_afrocue.png" alt="AfroCue" style="height:26px;width:auto;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
     <span style="display:none;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:13px;color:var(--yellow);">AfroCue</span>
   </a>
   <div class="ft-links">
-    <a href="index.html">Home</a>
-    <a href="parties.html">Parties</a>
-    <a href="dj.html">DJs</a>
-    <a href="blog.html">Culture</a>
+    <a href="index.html">Home</a><a href="parties.html">Parties</a><a href="dj.html">DJs</a><a href="blog.html">Culture</a>
   </div>
-  <div class="ft-email"><a href="mailto:hello@afrocue.xyz">hello@afrocue.xyz</a></div>
+  <div class="ft-email"><a href="mailto:hello@afrocue.xyz" style="color:var(--grey);text-decoration:none;">hello@afrocue.xyz</a></div>
 </footer>
 
 <script>
 /* ============================================================================
-   BLOG ENGINE — reads from the AfroCue GAS endpoint
-   Endpoint: <script-url>?export=blog   → JSON array of posts
-   The GAS filters by Status=Published and Live (default Yes-only), so the
-   response is exactly the shape POSTS expects.
+   BLOG ENGINE — reads from GAS ?export=blog
    ============================================================================ */
-
 var POSTS = [];
+var PROMOS = [];
 var FEATURED = null;
 var ACTIVE_CAT = '';
 var CURRENT_POST = null;
 
-/* ── GAS URL — prefers afrocue.js, falls back to hardcoded ── */
 function getScriptUrl(){
   if (typeof getAfroCueScriptUrl === 'function') return getAfroCueScriptUrl();
   return 'https://script.google.com/macros/s/AKfycbwk0SvCWpKSr-hxsh_TPZiCCh2QTT8uXanQWiDl2qRCLqw1_wkNWLdNUs3LhYGqTl-O/exec';
@@ -482,20 +470,26 @@ function readingTime(body){
   return Math.max(1,Math.round(words/200))+' min read';
 }
 
-/* ── DJ HIGHLIGHT ── */
+function formatInlineText(text){
+  var s = esc(text);
+  s = s.replace(/\*\*([^*]+)\*\*/g, '<strong style="color:var(--white);font-weight:600;">$1</strong>');
+  s = s.replace(/\*([^*]+)\*/g, '<em style="color:rgba(240,237,232,0.6);">$1</em>');
+  s = s.replace(/\[DJ:([^\]]+)\]/g, '<span class="dj-name">$1</span>');
+  return s;
+}
+
 var WORD_CHAR=/[A-Za-z0-9_]/;
 function skipForDJ(p){
   if(!p||p.nodeType!==1)return true;
   var tag=p.nodeName;
   if(tag==='SCRIPT'||tag==='STYLE'||tag==='A')return true;
   if(p.classList&&p.classList.contains('dj-name'))return true;
-  if(p.closest&&p.closest('.ref-card, .spon-banner, .modal-related, .signup-cta'))return true;
+  if(p.closest&&p.closest('.ref-card, .spon-banner, .modal-related, .signup-cta, .event-cta'))return true;
   return false;
 }
 function highlightDJs(root,djs){
   if(!root||!djs||!djs.length)return;
-  var names=djs.map(function(n){return String(n).trim();}).filter(Boolean)
-    .sort(function(a,b){return b.length-a.length;});
+  var names=djs.map(function(n){return String(n).trim();}).filter(Boolean).sort(function(a,b){return b.length-a.length;});
   if(!names.length)return;
   var walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null,false);
   var nodes=[],n;
@@ -505,18 +499,12 @@ function highlightDJs(root,djs){
     nodes.push(n);
   }
   nodes.forEach(function(node){
-    var text=node.nodeValue;
-    var lower=text.toLowerCase();
-    var hits=[];
+    var text=node.nodeValue,lower=text.toLowerCase(),hits=[];
     names.forEach(function(name){
-      var needle=name.toLowerCase();
-      var from=0,i;
+      var needle=name.toLowerCase(),from=0,i;
       while((i=lower.indexOf(needle,from))!==-1){
-        var before=i>0?text.charAt(i-1):'';
-        var after=i+needle.length<text.length?text.charAt(i+needle.length):'';
-        if(!WORD_CHAR.test(before)&&!WORD_CHAR.test(after)){
-          hits.push({s:i,e:i+needle.length});
-        }
+        var before=i>0?text.charAt(i-1):'',after=i+needle.length<text.length?text.charAt(i+needle.length):'';
+        if(!WORD_CHAR.test(before)&&!WORD_CHAR.test(after))hits.push({s:i,e:i+needle.length});
         from=i+needle.length;
       }
     });
@@ -525,8 +513,7 @@ function highlightDJs(root,djs){
     var keep=[],end=-1;
     hits.forEach(function(h){if(h.s>=end){keep.push(h);end=h.e;}});
     if(!keep.length)return;
-    var frag=document.createDocumentFragment();
-    var cursor=0;
+    var frag=document.createDocumentFragment(),cursor=0;
     keep.forEach(function(h){
       if(h.s>cursor)frag.appendChild(document.createTextNode(text.slice(cursor,h.s)));
       var span=document.createElement('span');
@@ -540,104 +527,102 @@ function highlightDJs(root,djs){
   });
 }
 
-/* ── CARD + BODY ── */
+var IG_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>';
+var ARROW_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" width="11" height="11"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+
 function renderCard(card){
-  if(!card)return '';
-  if(!card.image&&!card.title&&!card.text)return '';
-  var cls='ref-card'+(card.sponsored?' is-sponsored':'');
-  var img=card.image
-    ?'<div class="ref-card-img"><img src="'+esc(card.image)+'" alt="'+esc(card.title||'')+'" loading="lazy" onerror="this.parentNode.style.display=\'none\'"/></div>'
-    :'';
-  var label=card.label?'<div class="ref-card-label">'+esc(card.label)+'</div>':'';
-  var title=card.title?'<div class="ref-card-title">'+esc(card.title)+'</div>':'';
-  var text=card.text?'<div class="ref-card-text">'+esc(card.text)+'</div>':'';
-  var link='';
-  if(card.url&&card.linkText){
-    var rel=card.sponsored?'noopener sponsored':'noopener';
-    link='<a class="ref-card-link" href="'+esc(card.url)+'" target="_blank" rel="'+rel+'">'+esc(card.linkText)+'</a>';
+  if(!card) return '';
+  if(!card.image && !card.title && !card.text) return '';
+  var kind = card.kind || 'ref';
+  var cls = 'ref-card';
+  if(kind === 'spon') cls += ' is-sponsored';
+  var url = card.url || '';
+  var label = card.label || 'Also on AfroCue (IG)';
+  var linkText = card.linkText || 'Check it out';
+  var img = card.image ? '<div class="ref-card-img"><img src="' + esc(card.image) + '" alt="' + esc(card.title || '') + '" loading="lazy" onerror="this.parentNode.style.display=\'none\'"/></div>' : '';
+  var title = card.title ? '<div class="ref-card-title">' + esc(card.title) + '</div>' : '';
+  var text  = card.text  ? '<div class="ref-card-text">' + esc(card.text) + '</div>' : '';
+  var inner = img + '<div class="ref-card-body"><div class="ref-card-label">' + IG_ICON + esc(label) + '</div>' + title + text + '<div class="ref-card-cta">' + esc(linkText) + ' ' + ARROW_ICON + '</div></div>';
+  if(url){
+    var rel = kind === 'spon' ? 'noopener sponsored' : 'noopener';
+    return '<a class="' + cls + '" href="' + esc(url) + '" target="_blank" rel="' + rel + '">' + inner + '</a>';
   }
-  return '<div class="'+cls+'">'+img+'<div class="ref-card-body">'+label+title+text+link+'</div></div>';
+  return '<div class="' + cls + '">' + inner + '</div>';
 }
+
 function parseCardMarker(p){
   var m=p.match(/^\[(REF|SPON):([\s\S]*)\]$/);
   if(!m)return null;
   var parts=m[2].split('|');
   return {
-    sponsored:m[1]==='SPON',
+    kind: m[1].toLowerCase(),
     image:(parts[0]||'').trim(),label:(parts[1]||'').trim(),
     title:(parts[2]||'').trim(),text:(parts[3]||'').trim(),
     url:(parts[4]||'').trim(),linkText:(parts[5]||'').trim()
   };
 }
+
 function renderBlock(p){
-  var cta=p.match(/^\[CTA:([^\]]+):([^\]]+)\]$/);
-  if(cta){
-    return '<div style="margin:8px 0 16px;">'
-      +'<a href="'+esc(cta[1])+'" target="_blank" rel="noopener" '
-      +'style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--white);padding:13px 24px;border-radius:2px;text-decoration:none;">'
-      +esc(cta[2])+'</a></div>';
+  var cta5 = p.match(/^\[CTA:([^\]]+)\|([^\]]+)\|([^\]]+)\|([^\]]+)\|([^\]]+)\]$/);
+  if(cta5){
+    return '<a class="event-cta" href="'+esc(cta5[1])+'" target="_blank" rel="noopener">'
+      +'<div class="event-cta-img"><img src="'+esc(cta5[5])+'" alt="'+esc(cta5[2])+'" loading="lazy" onerror="this.parentNode.style.display=\'none\'"/></div>'
+      +'<div class="event-cta-body">'
+      +  '<div class="event-cta-label">Upcoming Event</div>'
+      +  '<div class="event-cta-title">'+esc(cta5[2])+'</div>'
+      +  '<div class="event-cta-subtitle">'+esc(cta5[3])+'</div>'
+      +  '<span class="event-cta-btn">'+esc(cta5[4])+' '+ARROW_ICON+'</span>'
+      +'</div></a>';
   }
-  var im=p.match(/^\[IMG:(https?:\/\/[^\s\]]+):?([^\]]*)\]$/);
-  if(!im)im=p.match(/^\[IMG:([^:]+):?([^\]]*)\]$/);
+  var cta4 = p.match(/^\[CTA:([^\]]+)\|([^\]]+)\|([^\]]+)\|([^\]]+)\]$/);
+  if(cta4){
+    return '<a class="event-cta" href="'+esc(cta4[1])+'" target="_blank" rel="noopener" style="grid-template-columns:1fr">'
+      +'<div class="event-cta-body" style="border-left:none">'
+      +  '<div class="event-cta-label">Upcoming Event</div>'
+      +  '<div class="event-cta-title">'+esc(cta4[2])+'</div>'
+      +  '<div class="event-cta-subtitle">'+esc(cta4[3])+'</div>'
+      +  '<span class="event-cta-btn">'+esc(cta4[4])+' '+ARROW_ICON+'</span>'
+      +'</div></a>';
+  }
+  var cta = p.match(/^\[CTA:([^\]]+):([^\]]+)\]$/);
+  if(cta){
+    return '<div style="margin:8px 0 16px;"><a href="'+esc(cta[1])+'" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--white);padding:13px 24px;border-radius:2px;text-decoration:none;">'+esc(cta[2])+' '+ARROW_ICON+'</a></div>';
+  }
+  var im = p.match(/^\[IMG:([^|\]]+)\|([\s\S]*)\]$/);
+  if(!im) im = p.match(/^\[IMG:([^\]]+)\]$/);
   if(im){
-    var cap=im[2]?'<p style="font-size:11px;color:var(--grey);margin-top:8px;line-height:1.5;">'+esc(im[2])+'</p>':'';
-    return '<div style="margin:16px 0;">'
-      +'<img src="'+esc(im[1])+'" style="width:100%;border-radius:6px;display:block;" loading="lazy"/>'
-      +cap+'</div>';
+    var capText = im[2] ? im[2] : '';
+    var cap = capText ? '<div class="inline-img-cap">'+formatInlineText(capText)+'</div>' : '<div style="height:24px"></div>';
+    return '<img class="inline-img" src="'+esc(im[1])+'" loading="lazy" alt=""/>' + cap;
   }
   var card=parseCardMarker(p);
   if(card)return renderCard(card);
   if(/^\d+\.\s+.+$/.test(p)){
-    return '<p style="font-size:15px;font-weight:600;color:var(--white);margin-bottom:4px;">'+esc(p)+'</p>';
+    return '<p style="font-size:16px;font-weight:600;color:var(--white);margin-bottom:6px;">'+esc(p)+'</p>';
   }
-  var formatted=esc(p)
-    .replace(/\*\*([^*]+)\*\*/g,'<strong style="color:var(--white);font-weight:600;">$1</strong>')
-    .replace(/\*([^*]+)\*/g,'<em style="color:rgba(240,237,232,0.6);">$1</em>');
-  return '<p>'+formatted+'</p>';
+  return '<p>'+formatInlineText(p)+'</p>';
 }
+
 function renderBody(post){
   var paras=String(post.body||'').split(/\\n\\n|\n\n/).filter(function(s){return s.trim().length;});
   var html='';
   if(post.sponsored){
     var who=post.sponsorName?' · '+esc(post.sponsorName):'';
-    html+='<div class="spon-banner">'
-      +'<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>'
-      +'Paid partnership'+who+'</div>';
+    html+='<div class="spon-banner"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>Paid partnership'+who+'</div>';
   }
-  var card=post.card;
-  var cardAfter=(card&&card.after)?parseInt(card.after,10):null;
-  var cardPlaced=false;
-  paras.forEach(function(p,i){
-    html+=renderBlock(p);
-    if(card&&cardAfter===(i+1)){html+=renderCard(card);cardPlaced=true;}
-  });
-  if(card&&!cardPlaced)html+=renderCard(card);
-  if(post.extraImages&&post.extraImages.length){
-    var strip='<div style="display:grid;grid-template-columns:repeat('+Math.min(post.extraImages.length,3)+',1fr);gap:4px;margin:20px 0;">';
-    post.extraImages.forEach(function(u){strip+='<img src="'+esc(u)+'" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;" loading="lazy"/>';});
-    strip+='</div>';
-    html+=strip;
-  }
+  paras.forEach(function(p){ html+=renderBlock(p); });
   if(post.caption)html+='<p style="font-size:11px;color:var(--grey);margin-top:-8px;">'+esc(post.caption)+'</p>';
   return html;
 }
 
-/* ── LOAD ── */
 function loadBlog(){
   renderSkeletons();
   var url = getScriptUrl() + '?export=blog';
   fetch(url)
-    .then(function(r){
-      if(!r.ok) throw new Error('HTTP '+r.status);
-      return r.json();
-    })
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
     .then(function(posts){
       if(!Array.isArray(posts)) throw new Error('Blog endpoint did not return an array');
-      POSTS = posts;
-      FEATURED = POSTS.filter(function(p){return p.featured;})[0] || POSTS[0] || null;
-      buildFilters();
-      renderFeatured(FEATURED);
-      renderPosts(ACTIVE_CAT);
+      boot(posts);
     })
     .catch(function(err){
       console.warn('Blog load failed:', err);
@@ -646,13 +631,18 @@ function loadBlog(){
     });
 }
 
+function boot(posts){
+  POSTS = posts;
+  FEATURED = POSTS.filter(function(p){return p.featured;})[0] || POSTS[0] || null;
+  buildFilters();
+  renderFeatured(FEATURED);
+  renderPosts(ACTIVE_CAT);
+}
+
 function buildFilters(){
   var wrap=document.getElementById('catFilters');
-  if(!wrap)return;
   var cats=[];
-  POSTS.forEach(function(p){
-    if(p.category&&cats.indexOf(p.category)===-1)cats.push(p.category);
-  });
+  POSTS.forEach(function(p){ if(p.category&&cats.indexOf(p.category)===-1)cats.push(p.category); });
   cats.sort();
   cats.forEach(function(c){
     var b=document.createElement('button');
@@ -726,7 +716,6 @@ function renderPosts(cat){
   });
 }
 
-/* ── POST MODAL ── */
 function openModal(id){
   var post=POSTS.find(function(p){return p.id===id;});
   if(!post)return;
@@ -734,11 +723,20 @@ function openModal(id){
   var img=document.getElementById('mImg');
   if(post.image){img.src=post.image;img.alt=post.imageAlt||post.title;img.style.display='block';}
   else{img.style.display='none';}
+  var heroCap=document.getElementById('mHeroCap');
+  if(post.imageCaption){
+    heroCap.innerHTML=formatInlineText(post.imageCaption);
+    heroCap.style.display='block';
+    highlightDJs(heroCap,post.djs);
+  } else { heroCap.style.display='none'; }
   var creditEl=document.getElementById('mImgCredit');
   if(post.credit){creditEl.textContent=post.credit;creditEl.style.display='block';}
   else{creditEl.style.display='none';}
   document.getElementById('mCat').textContent=post.category;
   document.getElementById('mTitle').textContent=post.title;
+  var deckEl=document.getElementById('mDeck');
+  if(post.excerpt){deckEl.textContent=post.excerpt;deckEl.style.display='block';}
+  else{deckEl.style.display='none';}
   document.getElementById('mMetaText').textContent=post.date+(post.author?' · '+post.author:'');
   document.getElementById('mReadText').textContent=readingTime(post.body);
   var shareBtn=document.getElementById('mShare');
@@ -791,52 +789,47 @@ function handleShare(){
     }).catch(function(){});
   }
 }
+function shareToIG(){ if(!CURRENT_POST)return; window.open('https://www.instagram.com/','_blank'); }
+async function shareToIGStory(){
+  if(!CURRENT_POST)return;
+  var url='https://afrocue.xyz/blog.html#'+CURRENT_POST.id;
+  var text=CURRENT_POST.title+' — AfroCue';
+  try{
+    if(navigator.canShare && CURRENT_POST.image){
+      var resp=await fetch(CURRENT_POST.image);
+      var blob=await resp.blob();
+      var ext=(blob.type.split('/')[1]||'jpg').split('+')[0];
+      var file=new File([blob],'afrocue.'+ext,{type:blob.type});
+      if(navigator.canShare({files:[file]})){await navigator.share({files:[file],text:text,url:url});return;}
+    }
+    if(navigator.share){await navigator.share({title:CURRENT_POST.title,text:text,url:url});return;}
+    await navigator.clipboard.writeText(url);
+    alert('Link copied — paste it into your Instagram Story.');
+  }catch(e){}
+}
 document.getElementById('postModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
-document.addEventListener('keydown',function(e){
-  if(e.key==='Escape'){closeModal();closeSignupModal();}
-});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();closeSignupModal();}});
 
-/* ── SIGNUP MODAL + GAS ROUTING ── */
-function openSignupModal(){
-  document.getElementById('signupModal').classList.add('open');
-}
-function closeSignupModal(){
-  document.getElementById('signupModal').classList.remove('open');
-}
+function openSignupModal(){document.getElementById('signupModal').classList.add('open');}
+function closeSignupModal(){document.getElementById('signupModal').classList.remove('open');}
 function handleSignup(e){
   e.preventDefault();
   var form=e.target;
   var btn=form.querySelector('button[type="submit"]');
   btn.disabled=true;
   btn.textContent='Signing up...';
-  var data={
-    source:'blog-signup',
-    name:form.su_name.value.trim(),
-    email:form.su_email.value.trim(),
-    role:form.su_role.value,
-    instagram:form.su_ig.value.trim()
-  };
-  fetch(getScriptUrl(),{
-    method:'POST',
-    mode:'no-cors',
-    headers:{'Content-Type':'text/plain'},
-    body:JSON.stringify(data)
-  }).finally(function(){
+  var data={source:'blog-signup',name:form.su_name.value.trim(),email:form.su_email.value.trim(),role:form.su_role.value,instagram:form.su_ig.value.trim()};
+  fetch(getScriptUrl(),{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(data)}).finally(function(){
     form.style.display='none';
     document.getElementById('signupSuccess').style.display='block';
   });
 }
-document.getElementById('signupModal').addEventListener('click',function(e){
-  if(e.target===this)closeSignupModal();
-});
+document.getElementById('signupModal').addEventListener('click',function(e){if(e.target===this)closeSignupModal();});
 
-/* ── HASH DEEP LINK ── */
 (function(){
   var hash=window.location.hash.replace('#','');
   if(!hash)return;
-  var t=setInterval(function(){
-    if(POSTS.length>0){clearInterval(t);openModal(hash);}
-  },100);
+  var t=setInterval(function(){if(POSTS.length>0){clearInterval(t);openModal(hash);}},100);
 })();
 
 loadBlog();
