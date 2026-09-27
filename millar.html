@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>OluwaMillar — Gbadura / Ya Allahu</title>
+    <meta name="description" content="Gbadura / Ya Allahu — a two pack single from OluwaMillar. Now streaming on Spotify and Apple Music.">
+    <meta name="theme-color" content="#080808">
+    <link rel="canonical" href="https://afrocue.xyz/oluwamillar-gbadura">
+
+    <meta property="og:title" content="OluwaMillar — Gbadura / Ya Allahu">
+    <meta property="og:description" content="A two pack single from OluwaMillar. Now streaming.">
+    <meta property="og:image" content="gbadura_ya_allahu_cover.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    <meta property="og:url" content="https://afrocue.xyz/oluwamillar-gbadura">
+    <meta property="og:type" content="music.album">
+    <meta property="og:site_name" content="OluwaMillar">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="OluwaMillar — Gbadura / Ya Allahu">
+    <meta name="twitter:description" content="A two pack single from OluwaMillar. Now streaming.">
+    <meta name="twitter:image" content="gbadura_ya_allahu_cover.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400;1,14..32,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ════════════════════════════════════════════════════════════
+           OLUWAMILLAR — GBADURA / YA ALLAHU
+           Monochrome editorial record sleeve
+           ════════════════════════════════════════════════════════════ */
+
+        :root {
+            --deep-black: #080808;
+            --black: #101010;
+            --near-black: #1a1a1a;
+            --charcoal: #292929;
+            --dark-grey: #414141;
+            --mid-grey: #777777;
+            --silver-grey: #aaaaaa;
+            --light-grey: #d0d0d0;
+            --off-white: #eeeeee;
+            --white: #ffffff;
+
+            --radius-sm: 4px;
+            --radius: 8px;
+            --radius-lg: 14px;
+            --radius-full: 9999px;
+
+            --font-display: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+
+            --shadow-artwork: 0 30px 80px rgba(0,0,0,0.85), 0 10px 30px rgba(0,0,0,0.6);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background: var(--deep-black);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-display);
+            background: var(--deep-black);
+            color: var(--off-white);
+            min-height: 100vh;
+            min-height: 100dvh;
+            line-height: 1.4;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+            position: relative;
+        }
+
+        .bg-blur {
+            position: fixed;
+            inset: -10%;
+            z-index: 0;
+            background-image: var(--artwork-url, url('gbadura_ya_allahu_cover.jpg'));
+            background-size: cover;
+            background-position: center;
+            filter: blur(80px) grayscale(100%) brightness(0.35) contrast(1.1);
+            opacity: 0.4;
+            pointer-events: none;
+            transform: scale(1.15);
+        }
+
+        .bg-vignette {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            background:
+                radial-gradient(ellipse at 50% 40%, transparent 0%, rgba(8,8,8,0.7) 65%, var(--deep-black) 100%),
+                linear-gradient(to bottom, rgba(8,8,8,0.4) 0%, transparent 25%, transparent 70%, var(--deep-black) 100%);
+            pointer-events: none;
+        }
+
+        .bg-grain {
+            position: fixed;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            opacity: 0.055;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 220px 220px;
+            mix-blend-mode: overlay;
+        }
+
+        .page {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 28px 22px 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ═══════════════ HERO ═══════════════ */
+
+        .hero {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            animation: heroEnter 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        }
+
+        @keyframes heroEnter {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .artwork-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 320px;
+            aspect-ratio: 1 / 1;
+            margin-bottom: 26px;
+            animation: artworkReveal 1.1s 0.15s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        }
+
+        @keyframes artworkReveal {
+            from { opacity: 0; transform: scale(0.94); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+
+        .artwork-wrap::before {
+            content: '';
+            position: absolute;
+            inset: -8%;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.08) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+            filter: blur(20px);
+        }
+
+        .artwork {
+            position: relative;
+            z-index: 1;
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-artwork);
+        }
+
+        .artwork-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255,255,255,0.08);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .artist {
+            font-family: var(--font-display);
+            font-weight: 500;
+            font-size: 0.78rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--silver-grey);
+            margin-bottom: 14px;
+            animation: fadeUp 0.7s 0.4s ease-out both;
+        }
+
+        /* Song titles — smaller now, letting other text lead */
+        .title {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: clamp(1.7rem, 7vw, 2.2rem);
+            line-height: 1;
+            letter-spacing: -0.03em;
+            color: var(--off-white);
+            margin-bottom: 20px;
+            text-wrap: balance;
+            animation: fadeUp 0.7s 0.5s ease-out both;
+        }
+
+        .title .title-slash {
+            color: var(--mid-grey);
+            font-weight: 300;
+            margin: 0 0.05em;
+            display: inline-block;
+        }
+
+        /* Two pack single line */
+        .pack-line {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: 0.92rem;
+            line-height: 1.5;
+            color: var(--silver-grey);
+            max-width: 340px;
+            margin: 0 auto 14px;
+            animation: fadeUp 0.7s 0.6s ease-out both;
+        }
+
+        .pack-line .artist-highlight {
+            color: var(--white);
+            font-weight: 700;
+            letter-spacing: 0.01em;
+        }
+
+        /* Yoruba Soul — now the star of the copy */
+        .soul-line {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: clamp(1.4rem, 5.6vw, 1.7rem);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            color: var(--white);
+            margin: 0 auto 32px;
+            text-wrap: balance;
+            animation: fadeUp 0.7s 0.65s ease-out both;
+        }
+
+        .soul-line .soul-accent {
+            color: var(--mid-grey);
+            font-weight: 500;
+            display: block;
+            font-size: 0.6em;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            font-family: var(--font-mono);
+        }
+
+        .cta-group {
+            width: 100%;
+            max-width: 340px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            animation: fadeUp 0.7s 0.7s ease-out both;
+        }
+
+        .btn-primary {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 18px 28px;
+            background: var(--white);
+            color: var(--deep-black);
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.92rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: var(--radius-full);
+            border: none;
+            cursor: pointer;
+            transition: transform var(--transition-fast), background var(--transition-fast), box-shadow var(--transition);
+            box-shadow: 0 6px 24px rgba(255,255,255,0.08);
+        }
+        .btn-primary:hover {
+            background: var(--off-white);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 32px rgba(255,255,255,0.15);
+        }
+        .btn-primary:active {
+            transform: translateY(0) scale(0.985);
+        }
+        .btn-primary svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .btn-secondary {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            width: 100%;
+            padding: 15px 24px;
+            background: rgba(255,255,255,0.04);
+            color: var(--light-grey);
+            font-family: var(--font-display);
+            font-weight: 500;
+            font-size: 0.82rem;
+            letter-spacing: 0.04em;
+            text-decoration: none;
+            border-radius: var(--radius-full);
+            border: 1px solid rgba(255,255,255,0.12);
+            cursor: pointer;
+            transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), color var(--transition-fast);
+        }
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.25);
+            color: var(--white);
+            transform: translateY(-1px);
+        }
+        .btn-secondary:active {
+            transform: scale(0.985);
+        }
+        .btn-secondary svg {
+            width: 15px;
+            height: 15px;
+            flex-shrink: 0;
+            opacity: 0.85;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── Playful CTA links under the streaming buttons ─── */
+        .playful-links {
+            width: 100%;
+            max-width: 340px;
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            animation: fadeUp 0.7s 0.8s ease-out both;
+        }
+
+        .answered-cta {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: clamp(1.05rem, 4.4vw, 1.25rem);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: var(--white);
+            text-decoration: none;
+            text-align: center;
+            transition: color var(--transition-fast), opacity var(--transition-fast);
+            text-wrap: balance;
+        }
+
+        .answered-cta em {
+            color: var(--silver-grey);
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .answered-cta:hover {
+            opacity: 0.85;
+        }
+
+        .answered-cta:hover em {
+            color: var(--light-grey);
+        }
+
+        .more-platforms-link {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            font-weight: 500;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: var(--mid-grey);
+            text-decoration: none;
+            padding: 6px 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            transition: color var(--transition-fast), border-color var(--transition-fast);
+        }
+
+        .more-platforms-link:hover {
+            color: var(--light-grey);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        /* ═══════════════ DIVIDER ═══════════════ */
+        .divider {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin: 52px 0;
+        }
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--dark-grey), transparent);
+        }
+        .divider-diamond {
+            width: 5px;
+            height: 5px;
+            background: var(--dark-grey);
+            transform: rotate(45deg);
+            flex-shrink: 0;
+        }
+
+        /* ═══════════════ TRACKLIST ═══════════════ */
+        .tracklist {
+            width: 100%;
+            animation: fadeUp 0.7s 0.9s ease-out both;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            font-weight: 500;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--mid-grey);
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .track-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 20px;
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius);
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: inherit;
+            transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+            cursor: pointer;
+        }
+        .track-card:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.14);
+            transform: translateY(-1px);
+        }
+        .track-card:active {
+            transform: scale(0.99);
+        }
+
+        .track-num {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--mid-grey);
+            letter-spacing: 0.05em;
+            flex-shrink: 0;
+            min-width: 22px;
+        }
+
+        .track-body {
+            flex: 1;
+            min-width: 0;
+            text-align: left;
+        }
+
+        .track-name {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: -0.01em;
+            color: var(--white);
+            margin-bottom: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .track-artist {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: 0.82rem;
+            color: var(--mid-grey);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .track-arrow {
+            flex-shrink: 0;
+            width: 18px;
+            height: 18px;
+            color: var(--dark-grey);
+            transition: color var(--transition-fast), transform var(--transition-fast);
+        }
+        .track-card:hover .track-arrow {
+            color: var(--white);
+            transform: translateX(3px);
+        }
+
+        /* ═══════════════ FOOTER ═══════════════ */
+        .footer {
+            width: 100%;
+            margin-top: 56px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+            animation: fadeUp 0.7s 1.1s ease-out both;
+        }
+
+        .footer-line {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            color: var(--mid-grey);
+            line-height: 1.7;
+        }
+
+        .footer-line strong {
+            color: var(--light-grey);
+            font-weight: 500;
+        }
+
+        .footer-copy {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            color: var(--dark-grey);
+            margin-top: 8px;
+        }
+
+        /* ═══════════════ RESPONSIVE ═══════════════ */
+
+        @media (max-width: 380px) {
+            .page { padding: 22px 18px 40px; }
+            .artwork-wrap { max-width: 280px; margin-bottom: 22px; }
+            .title { font-size: 1.5rem; margin-bottom: 16px; }
+            .pack-line { font-size: 0.86rem; margin-bottom: 12px; }
+            .soul-line { font-size: 1.3rem; margin-bottom: 26px; }
+            .btn-primary { padding: 16px 24px; font-size: 0.86rem; }
+            .btn-secondary { padding: 14px 20px; font-size: 0.78rem; }
+            .playful-links { margin-top: 20px; gap: 12px; }
+            .answered-cta { font-size: 1rem; }
+            .track-card { padding: 16px 16px; gap: 14px; }
+            .track-name { font-size: 1rem; }
+        }
+
+        @media (min-width: 640px) {
+            .page { max-width: 560px; padding: 44px 32px 64px; }
+            .artwork-wrap { max-width: 360px; margin-bottom: 32px; }
+            .title { font-size: 2.4rem; margin-bottom: 24px; }
+            .pack-line { font-size: 1rem; margin-bottom: 16px; }
+            .soul-line { font-size: 1.9rem; margin-bottom: 40px; }
+            .cta-group { max-width: 380px; }
+            .btn-primary { padding: 20px 32px; font-size: 0.95rem; }
+            .btn-secondary { padding: 17px 28px; font-size: 0.86rem; }
+            .playful-links { max-width: 380px; margin-top: 28px; gap: 16px; }
+            .answered-cta { font-size: 1.4rem; }
+            .divider { margin: 64px 0; }
+            .track-card { padding: 22px 24px; }
+            .track-name { font-size: 1.15rem; }
+            .footer { margin-top: 68px; }
+        }
+
+        @media (min-width: 900px) {
+            .page { max-width: 640px; padding: 56px 40px 80px; }
+            .artwork-wrap { max-width: 400px; }
+            .title { font-size: 2.6rem; }
+            .soul-line { font-size: 2.1rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-blur" id="bgBlur" aria-hidden="true"></div>
+    <div class="bg-vignette" aria-hidden="true"></div>
+    <div class="bg-grain" aria-hidden="true"></div>
+
+    <main class="page">
+
+        <!-- ═══════════════ HERO ═══════════════ -->
+        <section class="hero" aria-label="Release hero">
+
+            <div class="artwork-wrap">
+                <img
+                    class="artwork"
+                    id="artwork"
+                    src="gbadura_ya_allahu_cover.jpg"
+                    alt="Gbadura / Ya Allahu — OluwaMillar"
+                    width="1200"
+                    height="1200"
+                    fetchpriority="high"
+                    decoding="async"
+                >
+            </div>
+
+            <p class="artist" id="artistName">OluwaMillar</p>
+
+            <h1 class="title" id="releaseTitle">
+                Gbadura <span class="title-slash">/</span> Ya&nbsp;Allahu
+            </h1>
+
+            <p class="pack-line">
+                Two pack single from <span class="artist-highlight">OluwaMillar</span>
+            </p>
+
+            <p class="soul-line">
+                <span class="soul-accent">Pioneer of</span>
+                Yoruba Soul
+            </p>
+
+            <div class="cta-group">
+
+                <a
+                    class="btn-primary"
+                    id="spotifyLink"
+                    href="https://open.spotify.com/album/7fXeYWaAEt5RHh9v0H78io"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-platform="Spotify"
+                >
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.301.421-1.021.599-1.561.3z"/>
+                    </svg>
+                    Listen on Spotify
+                </a>
+
+                <a
+                    class="btn-secondary"
+                    id="appleLink"
+                    href="https://music.apple.com/ng/album/6807369265"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-platform="Apple Music"
+                >
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                    </svg>
+                    Listen on Apple Music
+                </a>
+
+            </div>
+
+            <!-- ─── Playful CTA links, under the streaming buttons ─── -->
+            <div class="playful-links">
+
+                <a
+                    class="answered-cta"
+                    href="https://moreclues.lnk.to/gba-ya"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Click here for <em>answered prayers.</em>
+                </a>
+
+                <a
+                    class="more-platforms-link"
+                    href="https://moreclues.lnk.to/gba-ya"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    More Platforms →
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- ═══════════════ DIVIDER ═══════════════ -->
+        <div class="divider" aria-hidden="true">
+            <span class="divider-line"></span>
+            <span class="divider-diamond"></span>
+            <span class="divider-line"></span>
+        </div>
+
+        <!-- ═══════════════ TRACKLIST ═══════════════ -->
+        <section class="tracklist" aria-label="Tracklist">
+
+            <p class="section-label">The Pack</p>
+
+            <a
+                class="track-card"
+                href="https://open.spotify.com/album/7fXeYWaAEt5RHh9v0H78io"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-track="Gbadura"
+            >
+                <span class="track-num">01</span>
+                <span class="track-body">
+                    <span class="track-name">Gbadura</span>
+                    <span class="track-artist">OluwaMillar, Bayoo</span>
+                </span>
+                <svg class="track-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                    <polyline points="12 5 19 12 12 19"/>
+                </svg>
+            </a>
+
+            <a
+                class="track-card"
+                href="https://open.spotify.com/album/7fXeYWaAEt5RHh9v0H78io"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-track="Ya Allahu"
+            >
+                <span class="track-num">02</span>
+                <span class="track-body">
+                    <span class="track-name">Ya Allahu</span>
+                    <span class="track-artist">OluwaMillar</span>
+                </span>
+                <svg class="track-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                    <polyline points="12 5 19 12 12 19"/>
+                </svg>
+            </a>
+
+        </section>
+
+        <!-- ═══════════════ FOOTER ═══════════════ -->
+        <footer class="footer">
+            <p class="footer-line">
+                <strong>OluwaMillar</strong> · Gbadura / Ya Allahu
+            </p>
+            <p class="footer-copy">© 2026 OluwaMillar</p>
+        </footer>
+
+    </main>
+
+    <script>
+    /* ════════════════════════════════════════════════════════════════
+       CONFIGURATION
+       ════════════════════════════════════════════════════════════════ */
+
+    const RELEASE_CONFIG = {
+        artist: 'OluwaMillar',
+        title: 'Gbadura / Ya Allahu',
+        artworkPath: 'gbadura_ya_allahu_cover.jpg',
+        spotifyUrl: 'https://open.spotify.com/album/7fXeYWaAEt5RHh9v0H78io',
+        appleMusicUrl: 'https://music.apple.com/ng/album/6807369265',
+        morePlatformsUrl: 'https://moreclues.lnk.to/gba-ya',
+        campaignSource: 'OluwaMillar Gbadura Landing'
+    };
+
+    (function applyConfig() {
+        const artworkEl = document.getElementById('artwork');
+        if (artworkEl) {
+            artworkEl.src = RELEASE_CONFIG.artworkPath;
+            artworkEl.alt = RELEASE_CONFIG.title + ' — ' + RELEASE_CONFIG.artist;
+        }
+
+        const bgEl = document.getElementById('bgBlur');
+        if (bgEl) {
+            bgEl.style.setProperty('--artwork-url', 'url(' + RELEASE_CONFIG.artworkPath + ')');
+        }
+
+        const spotifyEl = document.getElementById('spotifyLink');
+        if (spotifyEl) spotifyEl.href = RELEASE_CONFIG.spotifyUrl;
+
+        const appleEl = document.getElementById('appleLink');
+        if (appleEl && RELEASE_CONFIG.appleMusicUrl) {
+            appleEl.href = RELEASE_CONFIG.appleMusicUrl;
+        }
+    })();
+
+    function pushAnalyticsEvent(eventName, data) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            event: eventName,
+            campaign_source: RELEASE_CONFIG.campaignSource,
+            ...(data || {})
+        });
+    }
+
+    document.querySelectorAll('[data-platform]').forEach(function(el) {
+        el.addEventListener('click', function() {
+            pushAnalyticsEvent('release_cta_click', {
+                platform: el.getAttribute('data-platform'),
+                destination: el.href,
+                cta_location: 'hero'
+            });
+        });
+    });
+
+    document.querySelectorAll('[data-track]').forEach(function(el) {
+        el.addEventListener('click', function() {
+            pushAnalyticsEvent('release_track_click', {
+                track: el.getAttribute('data-track'),
+                destination: el.href
+            });
+        });
+    });
+    </script>
+
+</body>
+</html>
