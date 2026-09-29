@@ -158,8 +158,6 @@
             align-items: center;
         }
 
-        /* ═══════════════ HERO ═══════════════ */
-
         .hero {
             width: 100%;
             display: flex;
@@ -257,7 +255,6 @@
             80% { opacity: 0.4; transform: scale(0.7) rotate(60deg); }
         }
 
-        /* ═══ Song title — right under the artwork ═══ */
         .title {
             font-family: var(--font-display);
             font-weight: 800;
@@ -277,7 +274,6 @@
             display: inline-block;
         }
 
-        /* ═══ Artist block — own line, calmly stacked ═══ */
         .artist-block {
             display: flex;
             flex-direction: column;
@@ -306,7 +302,6 @@
             line-height: 1.1;
         }
 
-        /* Yoruba Soul — calm serif line under the artist name */
         .soul-line {
             font-family: var(--font-serif);
             font-weight: 500;
@@ -350,7 +345,6 @@
             animation: fadeUp 0.7s 0.7s ease-out both;
         }
 
-        /* Smaller, quieter "answered prayers" line */
         .answered-cta {
             display: block;
             font-family: var(--font-display);
@@ -455,7 +449,6 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* ═══════════════ DIVIDER ═══════════════ */
         .divider {
             width: 100%;
             display: flex;
@@ -477,7 +470,6 @@
             flex-shrink: 0;
         }
 
-        /* ═══════════════ TRACKLIST ═══════════════ */
         .tracklist {
             width: 100%;
             animation: fadeUp 0.7s 0.85s ease-out both;
@@ -567,7 +559,6 @@
             transform: translateX(3px);
         }
 
-        /* ═══════════════ MORE PLATFORMS ═══════════════ */
         .more-platforms-block {
             width: 100%;
             text-align: center;
@@ -607,7 +598,6 @@
             transform: translateY(-1px);
         }
 
-        /* ═══════════════ FOOTER ═══════════════ */
         .footer {
             width: 100%;
             margin-top: 48px;
@@ -638,8 +628,6 @@
             color: var(--dark-grey);
             margin-top: 8px;
         }
-
-        /* ═══════════════ RESPONSIVE ═══════════════ */
 
         @media (max-width: 380px) {
             .page { padding: 18px 18px 40px; }
@@ -762,7 +750,6 @@
                 Gbadura <span class="title-slash">/</span> Ya&nbsp;Allahu
             </h1>
 
-            <!-- by / OLUWAMILLAR / Pioneer of Yoruba Soul -->
             <div class="artist-block">
                 <span class="artist-by">by</span>
                 <span class="artist-name" id="artistName">OLUWAMILLAR</span>
@@ -886,6 +873,10 @@
     </main>
 
     <script>
+    /* ════════════════════════════════════════════════════════════════
+       CONFIGURATION
+       ════════════════════════════════════════════════════════════════ */
+
     const RELEASE_CONFIG = {
         artist: 'OluwaMillar',
         title: 'Gbadura / Ya Allahu',
@@ -912,6 +903,16 @@
         if (appleEl && RELEASE_CONFIG.appleMusicUrl) appleEl.href = RELEASE_CONFIG.appleMusicUrl;
     })();
 
+    /* ════════════════════════════════════════════════════════════════
+       ANALYTICS — GTM dataLayer pushes
+
+       EVENTS:
+       - afrocue_click         → uniform catch-all, fires on EVERY tracked click
+       - playlist_spotify_click → streaming platforms (matches other music pages)
+       - release_track_click    → tracklist items
+       - prayer_cta_click       → "answered prayers" link
+       ════════════════════════════════════════════════════════════════ */
+
     function pushAnalyticsEvent(eventName, data) {
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
@@ -921,28 +922,47 @@
         });
     }
 
+    // Uniform catch-all — one GTM trigger catches every click
+    function pushUniformClick(clickType, label, destination) {
+        pushAnalyticsEvent('afrocue_click', {
+            click_type: clickType,   // 'stream' | 'track' | 'prayer'
+            click_label: label,      // e.g. 'Spotify', 'Gbadura', 'answered prayers'
+            destination: destination
+        });
+    }
+
+    // 1. Streaming platform buttons — Spotify, Apple Music, More Platforms
     document.querySelectorAll('[data-platform]').forEach(function(el) {
         el.addEventListener('click', function() {
-            pushAnalyticsEvent('release_cta_click', {
-                platform: el.getAttribute('data-platform'),
+            var platform = el.getAttribute('data-platform');
+            pushAnalyticsEvent('playlist_spotify_click', {
+                platform: platform,
                 destination: el.href,
                 cta_location: 'hero'
             });
+            pushUniformClick('stream', platform, el.href);
         });
     });
 
+    // 2. Tracklist cards
     document.querySelectorAll('[data-track]').forEach(function(el) {
         el.addEventListener('click', function() {
+            var track = el.getAttribute('data-track');
             pushAnalyticsEvent('release_track_click', {
-                track: el.getAttribute('data-track'),
+                track: track,
                 destination: el.href
             });
+            pushUniformClick('track', track, el.href);
         });
     });
 
+    // 3. Prayer CTA — "Click here for answered prayers"
     document.querySelectorAll('[data-cta="prayers"]').forEach(function(el) {
         el.addEventListener('click', function() {
-            pushAnalyticsEvent('prayer_cta_click', { destination: el.href });
+            pushAnalyticsEvent('prayer_cta_click', {
+                destination: el.href
+            });
+            pushUniformClick('prayer', 'answered prayers', el.href);
         });
     });
     </script>
