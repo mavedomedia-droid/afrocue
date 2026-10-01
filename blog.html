@@ -448,9 +448,10 @@
 <script>
 /* ============================================================================
    BLOG ENGINE — reads from GAS ?export=blog
+   Body paragraphs split on `|||` OR blank lines, so single-line Body cells
+   can be pasted into the sheet without losing structure.
    ============================================================================ */
 var POSTS = [];
-var PROMOS = [];
 var FEATURED = null;
 var ACTIVE_CAT = '';
 var CURRENT_POST = null;
@@ -604,7 +605,8 @@ function renderBlock(p){
 }
 
 function renderBody(post){
-  var paras=String(post.body||'').split(/\\n\\n|\n\n/).filter(function(s){return s.trim().length;});
+  /* Split paragraphs on ||| first (single-line sheet cells), then on blank lines (multi-line cells) */
+  var paras=String(post.body||'').split(/\|\|\||\\n\\n|\n\n/).filter(function(s){return s.trim().length;});
   var html='';
   if(post.sponsored){
     var who=post.sponsorName?' · '+esc(post.sponsorName):'';
