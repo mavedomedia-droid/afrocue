@@ -2,573 +2,838 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Culture | AfroCue</title>
-  <meta name="description" content="DJs, parties, music and nightlife culture in Lagos and Nigeria, documented by AfroCue."/>
-  <link rel="canonical" href="https://afrocue.xyz/blog.html"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>AfroCue — DJs, Raves &amp; Dance Music in Nigeria</title>
   <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="apple-touch-icon" href="favicon.png"/>
+  <meta name="description" content="We follow the DJs, the parties and raves they play at, and the music they play from afrohouse, amapiano, 3step and afrobeats. AfroCue is Nigeria's nightlife and dance music media platform."/>
+  <link rel="canonical" href="https://afrocue.xyz/"/>
   <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://afrocue.xyz/blog.html"/>
-  <meta property="og:title" content="Culture | AfroCue"/>
-  <meta property="og:image" content="https://afrocue.xyz/hero_dj.jpg" id="ogImage"/>
+  <meta property="og:url" content="https://afrocue.xyz/"/>
+  <meta property="og:title" content="AfroCue — DJs, Raves &amp; Dance Music in Nigeria"/>
+  <meta property="og:image" content="https://afrocue.xyz/hero_dj.jpg"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:site" content="@afrocue_"/>
+
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="afrocue.js"></script>
+
   <style>
     @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');font-weight:900}
     @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype');font-weight:500}
     @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-.otf') format('opentype');font-weight:400}
     @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthetet-Nova-Light.otf') format('opentype');font-weight:300}
-    :root{--black:#0a0a0a;--dark:#111111;--dark2:#1c1c1c;--mid:#2e2e2e;--grey:#808080;--silver:#999999;--off:#d4d4d0;--white:#f0ede8;--yellow:#C8E000;--gold:#E8C547;--yts:2px 3px 0px rgba(0,0,0,0.9),0 0 24px rgba(200,224,0,0.06)}
+
+    :root{--black:#0a0a0a;--dark:#111111;--dark2:#1c1c1c;--mid:#2e2e2e;--grey:#808080;--silver:#999999;--off:#d4d4d0;--white:#f0ede8;--yellow:#C8E000;--gold:#E8C547;--spotify:#1DB954;--yts:2px 3px 0px rgba(0,0,0,0.9),0 0 24px rgba(200,224,0,0.06)}
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{background:var(--black);color:var(--white);font-family:'Figtree',sans-serif;overflow-x:hidden}
     :focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+    .yh{font-family:'Aesthet Nova',sans-serif;font-weight:900;color:var(--yellow);text-shadow:var(--yts);line-height:0.92}
 
-    /* ── NAV ── */
-    nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(10,10,10,0.82);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);transition:background 0.3s ease}
-    nav.solid{background:rgba(10,10,10,0.96)}
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(10,10,10,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06)}
     .nav-logo{display:flex;align-items:center;text-decoration:none}
     .nav-logo img{height:48px;width:auto;display:block}
     .nav-logo-fallback{display:none;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:17px;color:var(--yellow);letter-spacing:0.08em}
     .nav-links{display:flex;gap:28px;list-style:none}
     .nav-links a{font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--silver);text-decoration:none;transition:color 0.2s}
-    .nav-links a:hover,.nav-links a.active{color:var(--white)}
+    .nav-links a:hover{color:var(--white)}
     .nav-cta{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--white);padding:10px 20px;border-radius:2px;text-decoration:none;border:none;cursor:pointer;font-family:'Figtree',sans-serif;transition:background 0.2s;white-space:nowrap}
     .nav-cta:hover{background:var(--off)}
 
-    /* ── HERO POST ── */
-    .hero-post{
-      position:relative;
-      min-height:92vh;
-      display:flex;
-      align-items:flex-end;
-      padding:160px 48px 88px;
-      overflow:hidden;
-      border-bottom:1px solid rgba(255,255,255,0.06);
-      isolation:isolate;
-      cursor:pointer;
-    }
-    .hero-post.no-post{cursor:default}
-    .hero-post-bg{
-      position:absolute;inset:0;z-index:0;
-      background-size:cover;background-position:center;
-      background-color:var(--dark2);
-      background-image:url('blog_hero.jpg');
-      transform:scale(1.03);
-      transition:transform 10s ease, opacity 0.6s ease;
-      will-change:transform;
-    }
-    .hero-post:hover .hero-post-bg{transform:scale(1.08)}
-    .hero-post-texture{position:absolute;inset:0;z-index:1;background-image:url('texture.jpg');background-size:cover;background-position:center;opacity:0.18;pointer-events:none}
-    .hero-post-overlay{
-      position:absolute;inset:0;z-index:2;
-      background:
-        linear-gradient(to top, rgba(10,10,10,0.98) 0%, rgba(10,10,10,0.72) 35%, rgba(10,10,10,0.35) 65%, rgba(10,10,10,0.1) 100%),
-        linear-gradient(to right, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0) 45%);
-    }
+    /* HERO */
+    .hero{min-height:100vh;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:80px 48px 72px;overflow:hidden}
+    .hero-img-slot{position:absolute;inset:0;width:100%;overflow:hidden;z-index:0}
+    .hero-img-slot img{width:100%;height:100%;object-fit:cover;object-position:center 65%;opacity:0.6;display:block}
+    .hero-img-credit{position:absolute;bottom:80px;right:24px;font-size:10px;letter-spacing:0.1em;color:rgba(240,237,232,0.3);text-transform:uppercase;z-index:4;writing-mode:vertical-rl}
+    .hero-texture{position:absolute;inset:0;z-index:1;background-image:url('texture.jpg');background-size:cover;background-position:center;opacity:0.3;pointer-events:none}
+    .hero-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(10,10,10,1) 0%,rgba(10,10,10,0.65) 40%,rgba(10,10,10,0.3) 70%,rgba(10,10,10,0.1) 100%)}
+    .hero-content{position:relative;z-index:3;max-width:720px;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center}
+    .hero-eyebrow{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:20px}
+    .hero-eyebrow-line{width:36px;height:1px;background:var(--silver);flex-shrink:0}
+    .hero-eyebrow span{font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver)}
+    .hero h1{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(58px,9.5vw,140px);line-height:0.9;color:var(--yellow);text-shadow:var(--yts);margin-bottom:28px}
+    .hero h1 .outline{-webkit-text-stroke:1.5px var(--yellow);color:transparent;text-shadow:none}
+    .hero-desc{font-size:15px;font-weight:300;line-height:1.75;color:rgba(240,237,232,0.58);max-width:480px;margin-bottom:36px;text-align:center}
+    .hero-actions{display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:nowrap}
+    .btn-ig{display:inline-flex;align-items:center;gap:8px;font-family:'Figtree',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--white);padding:13px 22px;border-radius:2px;text-decoration:none;border:none;cursor:pointer;transition:background 0.2s;white-space:nowrap}
+    .btn-ig:hover{background:var(--off)}
+    .btn{display:inline-block;font-family:'Figtree',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:13px 26px;border-radius:2px;text-decoration:none;border:none;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+    .btn-white{color:var(--black);background:var(--white)}
+    .btn-white:hover{background:var(--off)}
+    .btn-ghost{color:var(--silver);background:transparent;border:1px solid rgba(255,255,255,0.18);font-weight:500}
+    .btn-ghost:hover{border-color:var(--white);color:var(--white)}
+    .btn-yellow{color:var(--black);background:var(--yellow)}
+    .btn-yellow:hover{opacity:0.88}
 
-    /* Default branded layer */
-    .hero-brand{
-      position:relative;z-index:3;
-      max-width:900px;
-      width:100%;
-      display:flex;
-      flex-direction:column;
-      gap:22px;
-      transition:opacity 0.5s ease, transform 0.5s ease;
-      opacity:1;
-      transform:translateY(0);
-    }
-    .hero-post.has-post .hero-brand{opacity:0;transform:translateY(-10px);pointer-events:none;position:absolute}
-    .hero-brand-eyebrow{
-      font-size:10px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;
-      color:var(--silver);
-      display:flex;align-items:center;gap:12px;
-    }
-    .hero-brand-eyebrow::before{content:'';width:22px;height:1px;background:var(--silver);flex-shrink:0}
-    .hero-brand-title{
-      font-family:'Aesthet Nova',sans-serif;font-weight:900;
-      font-size:clamp(48px,7.5vw,120px);
-      line-height:0.88;
-      color:var(--yellow);
-      text-shadow:var(--yts);
-      letter-spacing:-0.01em;
-    }
-    .hero-brand-title .outline{
-      -webkit-text-stroke:1.5px var(--yellow);
-      color:transparent;
-      text-shadow:none;
-      display:block;
-    }
-    .hero-brand-sub{
-      font-size:15px;font-weight:300;line-height:1.7;
-      color:rgba(240,237,232,0.6);
-      max-width:520px;
-    }
-    .hero-brand-scroll{
-      display:inline-flex;align-items:center;gap:10px;
-      font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;
-      color:var(--silver);
-      margin-top:14px;
-      transition:color 0.2s;
-    }
-    .hero-post:hover .hero-brand-scroll{color:var(--white)}
-    .hero-brand-scroll svg{animation:scrollBounce 2s ease-in-out infinite}
-    @keyframes scrollBounce{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(4px)}
-    }
+    section{padding:88px 48px}
+    .section-texture{position:relative}
+    .label{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+    .label::before{content:'';width:18px;height:1px;background:var(--silver);flex-shrink:0}
 
-    /* Featured post layer */
-    .hero-post-inner{
-      position:relative;z-index:3;
-      max-width:920px;
-      width:100%;
-      display:flex;
-      flex-direction:column;
-      gap:20px;
-      opacity:0;
-      transform:translateY(16px);
-      transition:opacity 0.6s ease, transform 0.6s ease;
-      pointer-events:none;
-      position:absolute;
-    }
-    .hero-post.has-post .hero-post-inner{
-      opacity:1;
-      transform:translateY(0);
-      pointer-events:auto;
-      position:relative;
-    }
+    /* ABOUT */
+    #about{background:var(--dark);border-top:1px solid rgba(255,255,255,0.06)}
+    .about-grid{display:grid;grid-template-columns:5fr 4fr;grid-template-rows:auto auto;gap:0 64px;align-items:start;max-width:1200px}
+    .about-top{grid-column:1;grid-row:1;padding-bottom:20px}
+    .about-bottom{grid-column:1;grid-row:2}
+    .about-video-col{grid-column:2;grid-row:1 / span 2}
+    .about-h{font-size:clamp(48px,6.5vw,92px);margin-bottom:0}
+    .about-h .dim{color:rgba(200,224,0,0.2);text-shadow:none}
+    .about-body{font-size:15px;font-weight:300;line-height:1.85;color:rgba(240,237,232,0.55);margin-bottom:28px}
+    .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.06)}
+    .stat{background:var(--dark);padding:22px 20px}
+    .stat-val{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:30px;color:var(--yellow);text-shadow:var(--yts);line-height:1;margin-bottom:4px}
+    .stat-key{font-size:10px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey)}
+    .about-video-wrap{width:100%;aspect-ratio:4/5;border-radius:4px;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,0.06);background:var(--dark2)}
+    .about-video-wrap video{width:100%;height:100%;object-fit:cover;display:block}
+    .about-video-fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background-image:url('about_editorial.jpg');background-size:cover;background-position:center}
+    .about-video-fallback::before{content:'';position:absolute;inset:0;background:rgba(10,10,10,0.5)}
+    .img-label{position:relative;z-index:1;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey)}
 
-    .hero-post-topline{
-      display:flex;align-items:center;gap:14px;flex-wrap:wrap;
-      font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;
-      color:var(--silver);
-    }
-    .hero-post-topline .brand{color:var(--silver);opacity:0.8}
-    .hero-post-topline .dot{width:4px;height:4px;border-radius:50%;background:var(--grey)}
-    .hero-post-topline .featured-pill{
-      display:inline-flex;align-items:center;gap:6px;
-      background:var(--yellow);color:var(--black);
-      font-size:9px;font-weight:800;letter-spacing:0.16em;
-      padding:5px 10px;border-radius:2px;
-    }
-    .hero-post-topline .featured-pill::before{
-      content:'';width:5px;height:5px;border-radius:50%;background:var(--black);
-    }
-    .hero-post-topline .cat{color:var(--white);opacity:0.9;font-weight:500;letter-spacing:0.16em}
+    /* CONTENT SLIDER */
+    #content{position:relative;border-top:1px solid rgba(255,255,255,0.06);overflow:hidden;background:var(--black);padding:64px 48px}
+    .content-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;filter:blur(48px) saturate(0.7);transform:scale(1.12);opacity:0;transition:opacity 0.7s ease}
+    .content-bg.loaded{opacity:1}
+    .content-bg-overlay{position:absolute;inset:0;z-index:1;background:rgba(10,10,10,0.80)}
+    #content > *:not(.content-bg):not(.content-bg-overlay){position:relative;z-index:2}
+    .content-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px;gap:24px;flex-wrap:wrap}
+    .content-h{font-size:clamp(44px,5.5vw,80px)}
+    .slide-nav{display:flex;gap:8px;align-items:center;padding-top:6px;flex-shrink:0}
+    .slide-btn{width:36px;height:36px;border:1px solid rgba(255,255,255,0.15);border-radius:2px;background:transparent;color:var(--silver);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:border-color 0.2s,color 0.2s}
+    .slide-btn:hover{border-color:var(--yellow);color:var(--yellow)}
+    .slides-wrap{position:relative}
+    .slide{display:none}
+    .slide.active{display:grid;grid-template-columns:5fr 6fr;gap:36px;align-items:center;animation:fadeUp 0.4s ease}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .slide-img-box{aspect-ratio:4/5;border-radius:6px;overflow:hidden;position:relative;flex-shrink:0}
+    .slide-img-box img{width:100%;height:100%;object-fit:cover;display:block}
+    .slide-series{font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--grey);margin-bottom:12px}
+    .slide-text h3{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(32px,3.5vw,56px);line-height:0.9;color:var(--yellow);text-shadow:var(--yts);margin-bottom:12px}
+    .slide-text p{font-size:14px;font-weight:300;line-height:1.8;color:rgba(240,237,232,0.5);margin-bottom:20px}
+    .slide-counter{font-size:10px;letter-spacing:0.12em;color:var(--grey);margin-top:16px}
+    .slide-counter span{color:var(--yellow)}
 
-    .hero-post-title{
-      font-family:'Aesthet Nova',sans-serif;font-weight:900;
-      font-size:clamp(36px,5.4vw,84px);
-      line-height:0.94;
-      color:var(--white);
-      letter-spacing:-0.01em;
-      max-width:900px;
-    }
+    /* INCOMING PARTY */
+    #incoming{display:none;position:relative;overflow:hidden;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06)}
+    #incoming.visible{display:block}
+    .inc-bg{position:absolute;inset:-20px;z-index:0;background-size:cover;background-position:center;filter:blur(28px) brightness(0.35) saturate(0.6);transform:scale(1.1)}
+    .inc-texture{position:absolute;inset:0;z-index:1;background-image:url('texture.jpg');background-size:cover;opacity:0.08;pointer-events:none}
+    .inc-grad{position:absolute;inset:0;z-index:2;background:linear-gradient(to right,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.45) 33%,rgba(10,10,10,0.88) 52%,rgba(10,10,10,0.96) 100%)}
+    .inc-inner{position:relative;z-index:3;display:grid;grid-template-columns:1fr 2fr;height:240px}
+    .inc-flyer-wrap{position:relative;overflow:hidden;height:100%}
+    .inc-flyer-img{position:absolute;top:12px;bottom:12px;left:50%;transform:translateX(-50%) rotate(1deg);width:auto;height:calc(100% - 24px);aspect-ratio:3/4;object-fit:cover;border-radius:5px;display:block;box-shadow:0 8px 40px rgba(0,0,0,0.95)}
+    .inc-text{display:flex;flex-direction:column;justify-content:center;gap:8px;padding:28px 40px 28px 36px;overflow:visible;min-width:0}
+    .inc-badge{display:inline-flex;align-items:center;gap:5px;font-size:8px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:4px 10px;border-radius:2px;align-self:flex-start;margin-bottom:4px}
+    .inc-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(32px,3.8vw,56px);color:var(--yellow);text-shadow:var(--yts);line-height:0.9}
+    .inc-date{font-size:11px;font-weight:400;color:rgba(240,237,232,0.4);letter-spacing:0.06em}
+    .inc-tags{display:flex;gap:6px;flex-wrap:wrap}
+    .inc-tag{font-size:8px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:3px 8px;border-radius:2px;border:1px solid rgba(200,224,0,0.25);color:rgba(200,224,0,0.7)}
+    .inc-desc{font-size:13px;font-weight:300;color:rgba(240,237,232,0.55);line-height:1.6;max-width:640px}
+    .inc-btn{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:13px 24px;border-radius:2px;text-decoration:none;transition:opacity 0.2s;align-self:flex-start;margin-top:4px;white-space:nowrap;flex-shrink:0}
+    .inc-btn:hover{opacity:0.85}
 
-    .hero-post-excerpt{
-      font-size:16px;font-weight:300;line-height:1.7;
-      color:rgba(240,237,232,0.72);
-      max-width:580px;
-    }
+    /* PARTIES STRIP */
+    #parties-strip{border-top:1px solid rgba(255,255,255,0.06);background:var(--black)}
+    .ps-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;gap:16px;flex-wrap:wrap}
+    .ps-left .ps-h{font-size:clamp(36px,5vw,64px);margin-bottom:0}
+    .ps-left .ps-sub{font-size:13px;font-weight:300;color:rgba(240,237,232,0.4);margin-top:10px;max-width:380px;line-height:1.65}
+    .ps-see-all{font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--grey);text-decoration:none;border:1px solid rgba(255,255,255,0.12);padding:10px 18px;border-radius:2px;white-space:nowrap;transition:all 0.2s;flex-shrink:0;align-self:flex-end}
+    .ps-see-all:hover{border-color:var(--yellow);color:var(--yellow)}
+    .ps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+    .ps-card{position:relative;aspect-ratio:3/4;overflow:hidden;cursor:pointer;background:var(--dark2);transition:transform 0.3s ease}
+    .ps-card:hover{transform:scale(1.01);z-index:2}
+    .ps-card-bg{position:absolute;inset:-20px;z-index:0;background-size:cover;background-position:center;filter:blur(24px) saturate(0.6) brightness(0.4);transform:scale(1.15)}
+    .ps-card-img{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 0.4s ease}
+    .ps-card:hover .ps-card-img{transform:scale(1.04)}
+    .ps-card-tint{position:absolute;inset:0;z-index:2;background:rgba(10,10,10,0.25)}
+    .ps-card-grad{position:absolute;inset:0;z-index:3;background:linear-gradient(to top,rgba(10,10,10,0.96) 0%,rgba(10,10,10,0.4) 45%,rgba(10,10,10,0.05) 100%)}
+    .ps-card-texture{position:absolute;inset:0;z-index:4;background-image:url('texture.jpg');background-size:cover;opacity:0.12;pointer-events:none}
+    .ps-card-logo{position:absolute;top:14px;right:14px;z-index:6;opacity:0.45}
+    .ps-card-logo img{height:22px;width:auto;display:block}
+    .ps-card-content{position:absolute;bottom:0;left:0;right:0;z-index:5;padding:20px 18px 18px}
+    .ps-card-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+    .ps-tag{font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:4px 8px;border-radius:2px;border:1px solid rgba(255,255,255,0.15);color:rgba(240,237,232,0.7)}
+    .ps-tag.type{border-color:rgba(200,224,0,0.3);color:rgba(200,224,0,0.8)}
+    .ps-card-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(22px,2.5vw,32px);color:var(--yellow);text-shadow:var(--yts);line-height:0.95;margin-bottom:4px}
+    .ps-card-ig{font-size:10px;font-weight:400;color:rgba(240,237,232,0.4);margin-bottom:8px;letter-spacing:0.05em}
+    .ps-card-city{font-size:11px;font-weight:300;color:rgba(240,237,232,0.45)}
+    .ps-loading{padding:60px 0;text-align:center;color:var(--grey);font-size:13px;font-weight:300;grid-column:1 / -1}
+    .ps-cta-bar{margin-top:2px;background:var(--dark);border:1px solid rgba(255,255,255,0.06);padding:22px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .ps-cta-label{font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--silver);margin-bottom:4px}
+    .ps-cta-text{font-size:13px;font-weight:300;color:rgba(240,237,232,0.4)}
+    .ps-cta-btn{font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:12px 22px;border-radius:2px;text-decoration:none;white-space:nowrap;transition:opacity 0.2s;flex-shrink:0}
+    .ps-cta-btn:hover{opacity:0.88}
 
-    .hero-post-meta{
-      display:flex;align-items:center;gap:14px;flex-wrap:wrap;
-      font-size:11px;font-weight:400;color:rgba(240,237,232,0.6);
-      letter-spacing:0.06em;
-    }
-    .hero-post-meta .sep{width:3px;height:3px;border-radius:50%;background:var(--grey)}
-    .hero-post-meta .read{color:var(--silver)}
+    /* HOME PROMO STRIP — from ?export=promo&slot=homepage */
+    #home-promo{display:none;position:relative;overflow:hidden;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06)}
+    #home-promo.visible{display:block}
+    .hp-card{position:relative;display:block;text-decoration:none;color:inherit}
+    .hp-bg{position:absolute;inset:-20px;z-index:0;background-size:cover;background-position:center;filter:blur(28px) brightness(0.35) saturate(0.6);transform:scale(1.1);transition:filter 0.4s ease}
+    .hp-texture{position:absolute;inset:0;z-index:1;background-image:url('texture.jpg');background-size:cover;opacity:0.08;pointer-events:none}
+    .hp-grad{position:absolute;inset:0;z-index:2;background:linear-gradient(to right,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.45) 33%,rgba(10,10,10,0.88) 52%,rgba(10,10,10,0.96) 100%)}
+    .hp-card.is-sponsored .hp-grad{background:linear-gradient(to right,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.45) 33%,rgba(20,16,0,0.88) 52%,rgba(20,16,0,0.96) 100%)}
+    .hp-card:hover .hp-bg{filter:blur(28px) brightness(0.42) saturate(0.7)}
+    .hp-inner{position:relative;z-index:3;display:grid;grid-template-columns:1fr 2fr;height:240px}
+    .hp-flyer-wrap{position:relative;overflow:hidden;height:100%}
+    .hp-flyer{position:absolute;top:12px;bottom:12px;left:50%;transform:translateX(-50%) rotate(1deg);width:auto;height:calc(100% - 24px);aspect-ratio:3/4;object-fit:cover;border-radius:5px;display:block;box-shadow:0 8px 40px rgba(0,0,0,0.95)}
+    .hp-text{display:flex;flex-direction:column;justify-content:center;gap:8px;padding:28px 40px 28px 36px;overflow:visible;min-width:0}
+    .hp-badge{display:inline-flex;align-items:center;gap:5px;font-size:8px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:4px 10px;border-radius:2px;align-self:flex-start;margin-bottom:4px}
+    .hp-card.is-sponsored .hp-badge{background:var(--gold)}
+    .hp-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(32px,3.8vw,56px);color:var(--yellow);text-shadow:var(--yts);line-height:0.9}
+    .hp-card.is-sponsored .hp-name{color:var(--gold)}
+    .hp-sub{font-size:11px;font-weight:400;color:rgba(240,237,232,0.4);letter-spacing:0.06em}
+    .hp-tags{display:flex;gap:6px;flex-wrap:wrap}
+    .hp-tag{font-size:8px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:3px 8px;border-radius:2px;border:1px solid rgba(200,224,0,0.25);color:rgba(200,224,0,0.7)}
+    .hp-btn{display:inline-flex;align-items:center;gap:8px;font-family:'Figtree',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:13px 24px;border-radius:2px;transition:opacity 0.2s;align-self:flex-start;margin-top:4px;white-space:nowrap;flex-shrink:0}
+    .hp-card.is-sponsored .hp-btn{background:var(--gold)}
+    .hp-card:hover .hp-btn{opacity:0.85}
 
-    .hero-post-actions{display:flex;align-items:center;gap:12px;margin-top:6px;flex-wrap:wrap}
-    .hero-post-btn{
-      display:inline-flex;align-items:center;gap:10px;
-      font-family:'Figtree',sans-serif;font-size:11px;font-weight:700;
-      letter-spacing:0.14em;text-transform:uppercase;
-      color:var(--black);background:var(--white);
-      padding:14px 26px;border-radius:2px;border:none;cursor:pointer;
-      transition:background 0.2s,transform 0.2s;
-    }
-    .hero-post-btn:hover{background:var(--off);transform:translateY(-1px)}
-    .hero-post-btn svg{transition:transform 0.2s ease}
-    .hero-post-btn:hover svg{transform:translateX(3px)}
-    .hero-post-btn-secondary{
-      display:inline-flex;align-items:center;gap:8px;
-      font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;
-      color:var(--silver);text-decoration:none;
-      padding:14px 8px;transition:color 0.2s;
-    }
-    .hero-post-btn-secondary:hover{color:var(--white)}
+    /* BLOG */
+    #blog-home{background:var(--dark);border-top:1px solid rgba(255,255,255,0.06)}
+    .bh-inner{max-width:1200px;margin:0 auto}
+    .bh-header{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:32px;flex-wrap:wrap}
+    .bh-header-left .label{margin-bottom:12px}
+    .bh-h{font-size:clamp(40px,5vw,68px)}
+    .bh-all{font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--grey);text-decoration:none;border:1px solid rgba(255,255,255,0.12);padding:10px 18px;border-radius:2px;white-space:nowrap;transition:all 0.2s;align-self:flex-end}
+    .bh-all:hover{border-color:var(--yellow);color:var(--yellow)}
+    .bh-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:2px}
+    .bh-feat-post{display:grid;grid-template-columns:1fr;cursor:pointer;background:var(--dark);transition:opacity 0.2s;text-decoration:none;color:inherit}
+    .bh-feat-post:hover{opacity:0.94}
+    .bh-feat-img-wrap{position:relative;overflow:hidden;aspect-ratio:16/11;background:var(--dark2)}
+    .bh-feat-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s}
+    .bh-feat-post:hover .bh-feat-img-wrap img{transform:scale(1.03)}
+    .bh-feat-text{background:var(--dark);padding:32px 36px;display:flex;flex-direction:column;justify-content:center;gap:10px;flex:1}
+    .bh-feat-eyebrow{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--silver);display:flex;align-items:center;gap:8px}
+    .bh-feat-eyebrow::before{content:'';width:14px;height:1px;background:var(--silver);flex-shrink:0}
+    .bh-feat-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(20px,2.2vw,32px);color:var(--white);line-height:1.05}
+    .bh-feat-excerpt{font-size:13px;font-weight:300;line-height:1.75;color:rgba(240,237,232,0.5);max-width:440px}
+    .bh-feat-meta{font-size:11px;font-weight:300;color:var(--grey)}
+    .bh-feat-btn{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--white);padding:12px 22px;border-radius:2px;align-self:flex-start;margin-top:6px;transition:background 0.2s}
+    .bh-feat-post:hover .bh-feat-btn{background:var(--off)}
+    .bh-side{display:grid;grid-template-rows:1fr 1fr;gap:2px}
+    .bh-side-card{display:flex;flex-direction:column;background:var(--dark2);text-decoration:none;color:inherit;transition:background 0.2s;cursor:pointer}
+    .bh-side-card:hover{background:#1e1e1e}
+    .bh-side-img{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--mid)}
+    .bh-side-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s}
+    .bh-side-card:hover .bh-side-img img{transform:scale(1.04)}
+    .bh-side-body{padding:16px 18px 18px;flex:1;display:flex;flex-direction:column;gap:5px}
+    .bh-side-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(14px,1.5vw,19px);color:var(--white);line-height:1.08;flex:1}
+    .bh-side-excerpt{font-size:11px;font-weight:300;line-height:1.55;color:rgba(240,237,232,0.35);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .bh-side-meta{font-size:10px;font-weight:300;color:var(--grey);margin-top:auto;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between}
+    .bh-skel{background:var(--dark2)}
+    .bh-skel-bar{background:rgba(255,255,255,0.06);border-radius:2px}
+    .bh-shim{position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.04),transparent);background-size:200% 100%;animation:bhShim 1.8s infinite}
+    @keyframes bhShim{0%{background-position:200% 0}100%{background-position:-200% 0}}
+    .bh-feat-post.skel:hover{opacity:1}
 
-    /* ── POSTS ── */
-    #posts{padding:64px 48px 88px}
-    .posts-filters{
-      display:flex;gap:6px;flex-wrap:wrap;
-      margin-bottom:36px;
-    }
-    .cat-btn{
-      font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
-      padding:8px 16px;border-radius:20px;
-      border:1px solid rgba(255,255,255,0.12);background:transparent;
-      color:var(--silver);cursor:pointer;font-family:'Figtree',sans-serif;
-      transition:all 0.18s;white-space:nowrap;
-    }
-    .cat-btn:hover{border-color:rgba(255,255,255,0.3);color:var(--white)}
-    .cat-btn.active{background:var(--white);border-color:var(--white);color:var(--black)}
+    /* PLAYLISTS */
+    #playlists{background:var(--dark);border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);padding:64px 48px}
+    .playlists-inner{max-width:1200px;margin:0 auto}
+    .playlists-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:16px}
+    .playlists-h{font-size:clamp(40px,5vw,64px);margin-bottom:0}
+    .playlists-scroll{display:flex;gap:16px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--mid) transparent}
+    .playlists-scroll::-webkit-scrollbar{height:4px}
+    .playlists-scroll::-webkit-scrollbar-track{background:transparent}
+    .playlists-scroll::-webkit-scrollbar-thumb{background:var(--mid);border-radius:2px}
+    .playlist-card{flex:0 0 220px;background:var(--black);border:1px solid rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;text-decoration:none;transition:transform 0.2s,border-color 0.2s;scroll-snap-align:start}
+    .playlist-card:hover{transform:translateY(-4px);border-color:rgba(200,224,0,0.3)}
+    .playlist-card-img{aspect-ratio:1 / 1;overflow:hidden;background:var(--dark2)}
+    .playlist-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s}
+    .playlist-card:hover .playlist-card-img img{transform:scale(1.05)}
+    .playlist-card-body{padding:14px 16px 16px}
+    .playlist-card-tag{display:inline-block;font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--spotify);margin-bottom:6px}
+    .playlist-card-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:18px;color:var(--yellow);text-shadow:var(--yts);line-height:0.95;margin-bottom:6px}
+    .playlist-card-desc{font-size:11px;font-weight:300;color:rgba(240,237,232,0.5);line-height:1.5;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .playlist-card-cta{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--silver);transition:color 0.2s}
+    .playlist-card:hover .playlist-card-cta{color:var(--yellow)}
 
-    .posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
-    .post-card{
-      background:var(--dark2);cursor:pointer;
-      transition:background 0.2s,transform 0.2s;
-      display:flex;flex-direction:column;
-      position:relative;
-    }
-    .post-card:hover{background:#1e1e1e}
-    .pc-img{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--mid)}
-    .pc-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.45s ease}
-    .post-card:hover .pc-img img{transform:scale(1.05)}
-    .pc-img-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
-    .pc-img-ph span{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey)}
-    .pc-body{padding:16px 18px 18px;flex:1;display:flex;flex-direction:column;gap:6px}
-    .pc-cat{
-      font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;
-      color:var(--yellow);opacity:0.85;
-    }
-    .pc-title{
-      font-family:'Aesthet Nova',sans-serif;font-weight:900;
-      font-size:clamp(15px,1.4vw,20px);color:var(--white);
-      line-height:1.08;flex:1;
-    }
-    .pc-excerpt{
-      font-size:12px;font-weight:300;line-height:1.55;
-      color:rgba(240,237,232,0.6);
-      display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
-    }
-    .pc-meta{
-      font-size:10px;font-weight:300;color:var(--grey);
-      margin-top:auto;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06);
-      display:flex;align-items:center;justify-content:space-between;gap:8px;
-    }
-    .pc-tags{
-      font-size:10px;font-weight:400;letter-spacing:0.04em;
-      color:rgba(240,237,232,0.5);
-      display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;
-    }
-    .pc-tag{
-      font-size:10px;font-weight:500;letter-spacing:0.06em;
-      color:rgba(240,237,232,0.7);
-      border:1px solid rgba(255,255,255,0.14);
-      border-radius:20px;padding:4px 10px;line-height:1.2;
-    }
-    .pc-spon{
-      position:absolute;top:10px;left:10px;z-index:2;
-      font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
-      background:rgba(10,10,10,0.85);color:var(--gold);
-      border:1px solid rgba(232,197,71,0.3);
-      padding:4px 8px;border-radius:2px;backdrop-filter:blur(6px);
-    }
-    .no-posts{padding:60px 0;text-align:center;color:var(--grey);font-size:14px;font-weight:300;display:none}
+    /* ROAMERS */
+    #roamers-promo{border-top:1px solid rgba(255,255,255,0.06);background:var(--black)}
+    .roamers-promo-inner{max-width:1200px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+    .roamers-promo-left{display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+    .roamers-promo-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(40px,6vw,80px);line-height:0.9;color:var(--yellow);text-shadow:var(--yts)}
+    .roamers-promo-desc{font-size:14px;font-weight:300;line-height:1.7;color:rgba(240,237,232,0.6);max-width:400px}
+    .roamers-promo-btn{display:inline-block;font-family:'Figtree',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:14px 32px;border-radius:2px;text-decoration:none;white-space:nowrap;transition:opacity 0.2s}
+    .roamers-promo-btn:hover{opacity:0.85}
+    .roamers-phone-wrap{display:flex;justify-content:center}
+    .roamers-phone-mockup{position:relative;width:100%;max-width:280px;border:8px solid #1c1c1c;border-radius:36px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,0.6);aspect-ratio:9 / 19;background:#000}
+    .roamers-phone-mockup::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:120px;height:24px;background:#1c1c1c;border-radius:0 0 16px 16px;z-index:2}
+    .roamers-phone-mockup img{width:100%;height:100%;object-fit:cover;display:block}
 
-    /* ── READING PROGRESS BAR ── */
-    .reading-progress{
-      position:fixed;top:0;left:0;height:2px;width:0%;
-      background:var(--yellow);z-index:10002;
-      pointer-events:none;transition:width 0.05s linear;
-      box-shadow:0 0 8px rgba(200,224,0,0.5);
-      display:none;
-    }
-    .reading-progress.on{display:block}
+    /* DJ RADAR */
+    #dj-radar{border-top:1px solid rgba(255,255,255,0.06);background:var(--dark)}
+    .dj-radar-inner{max-width:1200px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+    .dj-radar-left{display:flex;flex-direction:column;align-items:flex-start;gap:24px}
+    .dj-radar-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(44px,6vw,88px);line-height:0.9;color:var(--yellow);text-shadow:var(--yts)}
+    .dj-radar-outline{-webkit-text-stroke:1.5px var(--yellow);color:transparent;text-shadow:none;display:block}
+    .dj-radar-btn{display:inline-block;font-family:'Figtree',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--yellow);background:transparent;border:1.5px solid var(--yellow);padding:14px 32px;border-radius:2px;text-decoration:none;white-space:nowrap;transition:background 0.2s,color 0.2s}
+    .dj-radar-btn:hover{background:var(--yellow);color:var(--black)}
+    .dj-radar-video-wrap{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:2/1;border:1px solid rgba(255,255,255,0.12);background:var(--dark2)}
+    .dj-radar-video-wrap video{width:100%;height:100%;object-fit:cover;display:block}
+    .dj-radar-texture{position:absolute;inset:0;z-index:1;background-image:url('texture.jpg');background-size:cover;background-position:center;opacity:0.45;pointer-events:none;border-radius:12px}
+    .dj-radar-controls{position:absolute;bottom:12px;right:12px;z-index:2;display:flex;gap:6px}
+    .dj-radar-ctrl{width:30px;height:30px;border-radius:4px;background:rgba(10,10,10,0.65);border:1px solid rgba(255,255,255,0.15);color:var(--white);font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s}
+    .dj-radar-ctrl:hover{background:rgba(10,10,10,0.9)}
+    .btn-join-dj{display:inline-block;font-family:'Figtree',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--yellow);background:transparent;border:1.5px solid rgba(200,224,0,0.5);padding:13px 26px;border-radius:2px;text-decoration:none;white-space:nowrap;cursor:pointer;transition:border-color 0.2s,background 0.2s}
+    .btn-join-dj:hover{border-color:var(--yellow);background:rgba(200,224,0,0.06)}
 
-    /* ── MODAL ── */
-    .modal-wrap{display:none;position:fixed;inset:0;z-index:9999;background:rgba(10,10,10,0.92);backdrop-filter:blur(16px);overflow-y:auto;padding:40px 16px}
-    .modal-wrap.open{display:block}
-    .modal{max-width:700px;margin:0 auto;background:var(--dark);border:1px solid rgba(255,255,255,0.08);border-radius:6px;overflow:hidden;animation:mIn 0.3s ease}
-    @keyframes mIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-    .modal-x{position:fixed;top:20px;right:24px;z-index:10001;background:var(--dark2);border:1px solid rgba(255,255,255,0.12);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--silver);cursor:pointer;transition:all 0.2s;font-family:'Figtree',sans-serif}
-    .modal-x:hover{color:var(--white);border-color:var(--white)}
-    .modal-hero-img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--mid)}
-    .modal-body{padding:36px 44px 48px}
-    .modal-cat{font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--yellow);opacity:0.7;margin-bottom:10px;display:flex;align-items:center;gap:8px}
-    .modal-img-wrap{position:relative}
-    .modal-hero-cap{font-family:'Figtree',sans-serif;font-style:italic;font-weight:300;font-size:11px;line-height:1.55;color:rgba(240,237,232,0.55);padding:8px 44px 0;text-align:right;background:var(--dark);letter-spacing:0.01em}
-    .modal-img-credit{font-size:10px;font-weight:300;color:var(--grey);font-style:italic;padding:6px 44px 0;text-align:right;background:var(--dark)}
-    .modal-cat::before{content:'';width:14px;height:1px;background:var(--yellow)}
-    .modal-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(22px,3.2vw,38px);color:var(--white);line-height:1;margin-bottom:14px}
-    .modal-deck{font-size:15px;font-weight:300;line-height:1.7;font-style:italic;color:rgba(240,237,232,0.6);margin-bottom:16px;max-width:560px}
-    .modal-meta-row{font-size:11px;font-weight:300;color:var(--grey);margin-bottom:8px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-    .modal-reading{font-size:10px;color:var(--grey)}
-    .modal-share-group{display:flex;align-items:center;gap:6px;margin-left:auto}
-    .modal-share{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--silver);background:transparent;border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:5px 12px;cursor:pointer;font-family:'Figtree',sans-serif;transition:all 0.18s}
-    .modal-share:hover{border-color:rgba(255,255,255,0.3);color:var(--white)}
-    .modal-share.copied{border-color:#4caf50;color:#4caf50}
-    .share-icon-btn{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;background:transparent;border:1px solid rgba(255,255,255,0.12);border-radius:50%;color:var(--silver);cursor:pointer;transition:all 0.18s;padding:0}
-    .share-icon-btn:hover{border-color:rgba(255,255,255,0.35);color:var(--white)}
-    .share-icon-btn svg{width:13px;height:13px;display:block}
-    .modal-divider{height:1px;background:rgba(255,255,255,0.07);margin:16px 0 24px}
-    .modal-content{font-size:16px;font-weight:300;line-height:1.9;color:rgba(240,237,232,0.72)}
-    .modal-content p{margin-bottom:20px}
-    .modal-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.07)}
-    .modal-related{padding:28px 44px 36px;border-top:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.015)}
-    .modal-related-lbl{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--grey);margin-bottom:16px;display:flex;align-items:center;gap:8px}
-    .modal-related-lbl::before{content:'';width:12px;height:1px;background:var(--grey)}
-    .modal-related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
-    .rel-card{cursor:pointer;background:var(--dark2);transition:background 0.2s}
-    .rel-card:hover{background:#222}
-    .rel-img{aspect-ratio:16/9;overflow:hidden;background:var(--mid)}
-    .rel-img img{width:100%;height:100%;object-fit:cover;display:block}
-    .rel-body{padding:10px 12px 12px}
-    .rel-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:13px;color:var(--white);line-height:1}
-    .inline-img{display:block;width:100%;border-radius:6px;margin:24px 0 0}
-    .inline-img-cap{font-family:'Figtree',sans-serif;font-style:italic;font-weight:300;font-size:11.5px;color:rgba(240,237,232,0.62);text-align:center;margin:10px 0 22px;line-height:1.55;letter-spacing:0.01em}
-    .dj-name{font-family:'Aesthet Nova',sans-serif !important;font-weight:900 !important;font-style:normal !important;font-size:1.12em !important;text-transform:uppercase;letter-spacing:0.03em;color:var(--yellow) !important}
-    .inline-img-cap .dj-name,.modal-hero-cap .dj-name{font-size:1.08em !important}
-    .spon-banner{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);background:rgba(232,197,71,0.07);border:1px solid rgba(232,197,71,0.22);border-radius:3px;padding:10px 12px;margin:0 0 22px}
-    .spon-banner svg{flex-shrink:0;opacity:0.85}
-    .ref-card{display:grid;grid-template-columns:1.2fr 1fr;max-width:480px;margin:32px auto;background:var(--dark2);border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit;box-shadow:0 6px 24px rgba(0,0,0,0.35);transition:border-color 0.25s ease,transform 0.25s ease,box-shadow 0.25s ease;cursor:pointer}
-    .ref-card:hover{border-color:rgba(255,255,255,0.22);transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,0.5)}
-    .ref-card-img{position:relative;background:var(--mid);aspect-ratio:4/5;overflow:hidden}
-    .ref-card-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-    .ref-card-body{padding:16px 18px 16px 20px;display:flex;flex-direction:column;gap:5px;justify-content:center;border-left:1px solid rgba(255,255,255,0.08);min-width:0}
-    .ref-card-label{font-size:8.5px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);display:flex;align-items:center;gap:5px;margin-bottom:2px}
-    .ref-card-label svg{flex-shrink:0;opacity:0.75}
-    .ref-card-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:15px;line-height:1.15;color:var(--white)}
-    .ref-card-text{font-size:11px;font-weight:300;line-height:1.5;color:rgba(240,237,232,0.6)}
-    .ref-card-cta{margin-top:8px;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--white);display:inline-flex;align-items:center;gap:5px}
-    .ref-card-cta svg{transition:transform 0.2s ease;flex-shrink:0}
-    .ref-card:hover .ref-card-cta svg{transform:translateX(3px)}
-    .ref-card.is-sponsored{border-color:rgba(232,197,71,0.28)}
-    .ref-card.is-sponsored:hover{border-color:rgba(232,197,71,0.5)}
-    .ref-card.is-sponsored .ref-card-body{border-left-color:rgba(232,197,71,0.2)}
-    .ref-card.is-sponsored .ref-card-label{color:var(--gold)}
-    .ref-card.is-sponsored .ref-card-label svg{opacity:1}
-    .ref-card.is-sponsored .ref-card-cta{color:var(--gold)}
-    .event-cta{display:grid;grid-template-columns:140px 1fr;max-width:520px;margin:34px auto 0;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.1);border-radius:10px;overflow:hidden;text-decoration:none;color:inherit;transition:border-color 0.25s,transform 0.25s}
-    .event-cta:hover{border-color:rgba(255,255,255,0.22);transform:translateY(-1px)}
-    .event-cta-img{position:relative;background:var(--mid);aspect-ratio:4/5;overflow:hidden}
-    .event-cta-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-    .event-cta-body{padding:18px 20px;display:flex;flex-direction:column;gap:5px;justify-content:center;min-width:0;border-left:1px solid rgba(255,255,255,0.07)}
-    .event-cta-label{font-size:8.5px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);display:flex;align-items:center;gap:6px;margin-bottom:2px}
-    .event-cta-label::before{content:'';width:12px;height:1px;background:var(--silver);flex-shrink:0}
-    .event-cta-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:16px;line-height:1.15;color:var(--white);text-transform:uppercase;letter-spacing:0.01em}
-    .event-cta-subtitle{font-size:11.5px;font-weight:300;color:rgba(240,237,232,0.6);letter-spacing:0.01em;line-height:1.5;margin-bottom:8px}
-    .event-cta-btn{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;font-family:'Figtree',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--black);background:var(--white);padding:9px 16px;border-radius:2px;text-decoration:none;transition:background 0.2s}
-    .event-cta:hover .event-cta-btn{background:var(--off)}
-    .event-cta-btn svg{transition:transform 0.2s ease}
-    .event-cta:hover .event-cta-btn svg{transform:translateX(3px)}
-    .event-cta.is-sponsored{border-color:rgba(232,197,71,0.28)}
-    .event-cta.is-sponsored .event-cta-label{color:var(--gold)}
-    .article-end-divider{height:1px;background:rgba(255,255,255,0.07);margin:36px 0 0}
-    .signup-cta{position:relative;margin:28px 0 0;padding:28px 30px 26px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.1);border-radius:10px;overflow:hidden}
-    .signup-cta::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(255,255,255,0.35),rgba(255,255,255,0))}
-    .signup-cta-label{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--silver);margin-bottom:10px;display:flex;align-items:center;gap:8px}
-    .signup-cta-label::before{content:'';width:14px;height:1px;background:var(--silver);flex-shrink:0}
-    .signup-cta-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(22px,2.6vw,30px);line-height:1;color:var(--white);text-shadow:var(--yts);margin-bottom:8px}
-    .signup-cta-text{font-size:13px;font-weight:300;line-height:1.65;color:rgba(240,237,232,0.6);max-width:400px;margin-bottom:18px}
-    .signup-cta-btn{display:inline-flex;align-items:center;gap:8px;font-family:'Figtree',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--black);background:var(--white);padding:12px 22px;border-radius:2px;border:none;cursor:pointer;transition:background 0.2s}
-    .signup-cta-btn:hover{background:var(--off)}
+    /* JOIN */
+    #join{background:var(--dark);border-top:1px solid rgba(255,255,255,0.06);padding:72px 48px}
+    .join-inner{max-width:780px;margin:0 auto}
+    .join-heading{display:flex;flex-direction:column;gap:16px;margin-bottom:28px}
+    .join-q{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(24px,3vw,38px);line-height:1.05;color:var(--white);text-transform:uppercase;letter-spacing:0.01em}
+    .join-q .q-accent{color:var(--yellow);text-shadow:var(--yts)}
+    .join-body{font-size:14px;font-weight:300;line-height:1.75;color:rgba(240,237,232,0.55);max-width:620px}
+    .join-body strong{color:var(--white);font-weight:600}
+    .join-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:44px}
+    .join-divider-line{height:1px;background:rgba(255,255,255,0.08);margin-bottom:36px}
+    .join-newsletter{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+    .join-newsletter-left .nl-label{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);display:flex;align-items:center;gap:10px;margin-bottom:12px}
+    .join-newsletter-left .nl-label::before{content:'';width:18px;height:1px;background:var(--silver);flex-shrink:0}
+    .join-newsletter-left h3{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(22px,2.4vw,30px);line-height:1;color:var(--white);margin-bottom:8px}
+    .join-newsletter-left p{font-size:12px;font-weight:300;color:var(--grey);letter-spacing:0.04em}
+    .join-newsletter-form{display:flex;flex-direction:column;gap:10px}
+    .join-newsletter-form input{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:2px;padding:14px 16px;color:var(--white);font-family:'Figtree',sans-serif;font-size:15px;outline:none;transition:border-color 0.2s;width:100%}
+    .join-newsletter-form input::placeholder{color:var(--grey)}
+    .join-newsletter-form input:focus{border-color:rgba(255,255,255,0.35)}
 
-    /* ── WHATSAPP ── */
-    .wa{background:#111111;border-top:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;padding:40px 48px}
-    .wa-bg{position:absolute;right:-40px;top:50%;transform:translateY(-50%);opacity:0.055;pointer-events:none;z-index:0}
-    .wa-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:24px}
-    .wa-lbl{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#25D366;opacity:0.7;margin-bottom:10px;display:flex;align-items:center;gap:8px}
-    .wa-lbl::before{content:'';width:14px;height:1px;background:#25D366;display:inline-block;flex-shrink:0}
-    .wa-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(22px,3.5vw,44px);color:#f0ede8;line-height:0.92;text-shadow:2px 3px 0px rgba(0,0,0,0.9);margin-bottom:10px}
-    .wa-title span{color:#25D366}
-    .wa-note{font-size:11px;font-weight:300;color:rgba(240,237,232,0.5);display:flex;align-items:center;gap:7px}
-    .wa-btn{display:inline-flex;align-items:center;gap:12px;background:#25D366;color:#0a0a0a;text-decoration:none;padding:18px 32px;border-radius:3px;font-family:'Figtree',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;flex-shrink:0;transition:opacity 0.2s}
-    .wa-btn:hover{opacity:0.88}
-
-    /* ── FOOTER ── */
-    footer{border-top:1px solid rgba(255,255,255,0.06);padding:14px 48px;display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--dark)}
-    .ft-links{display:flex;align-items:center;flex-wrap:nowrap}
-    .ft-links a{font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--grey);text-decoration:none;transition:color 0.2s;white-space:nowrap;margin-right:16px}
-    .ft-links a:hover{color:var(--white)}
-    .ft-email{font-size:9px;color:var(--grey);white-space:nowrap}
-    .ft-email a{color:var(--grey);text-decoration:none}
-
-    /* ── SIGNUP MODAL ── */
+    /* SIGNUP MODAL */
     .signup-modal-wrap{display:none;position:fixed;inset:0;z-index:10000;background:rgba(10,10,10,0.92);backdrop-filter:blur(16px);align-items:center;justify-content:center;padding:24px}
     .signup-modal-wrap.open{display:flex}
-    .signup-modal{background:var(--dark);border:1px solid rgba(255,255,255,0.1);border-radius:8px;max-width:540px;width:100%;padding:48px 44px;position:relative;max-height:90vh;overflow-y:auto}
-    .signup-modal-close{position:absolute;top:20px;right:20px;background:none;border:none;color:var(--silver);font-size:18px;cursor:pointer;transition:color 0.2s;padding:4px 8px}
+    .signup-modal{background:var(--dark);border:1px solid rgba(255,255,255,0.1);border-radius:10px;max-width:520px;width:100%;padding:40px;position:relative;max-height:92vh;overflow-y:auto}
+    .signup-modal-close{position:absolute;top:18px;right:18px;background:none;border:none;color:var(--silver);font-size:18px;cursor:pointer;transition:color 0.2s;padding:4px 8px}
     .signup-modal-close:hover{color:var(--white)}
+    .signup-modal-eyebrow{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);display:flex;align-items:center;gap:10px;margin-bottom:12px}
+    .signup-modal-eyebrow::before{content:'';width:18px;height:1px;background:var(--silver);flex-shrink:0}
+    .signup-modal-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(26px,4vw,36px);line-height:1;color:var(--yellow);text-shadow:var(--yts);margin-bottom:12px}
+    .signup-modal-desc{font-size:13px;font-weight:300;line-height:1.65;color:rgba(240,237,232,0.55);margin-bottom:24px}
     .signup-modal-form{display:flex;flex-direction:column;gap:12px}
     .signup-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .signup-field{display:flex;flex-direction:column;gap:6px}
     .signup-field label{font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--silver)}
-    .signup-field input,.signup-field select{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:2px;padding:13px 14px;color:var(--white);font-family:'Figtree',sans-serif;font-size:16px;outline:none;transition:border-color 0.2s;width:100%;appearance:none}
-    .signup-field input:focus,.signup-field select:focus{border-color:rgba(255,255,255,0.35)}
+    .signup-field input,.signup-field select{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:2px;padding:12px 14px;color:var(--white);font-family:'Figtree',sans-serif;font-size:15px;outline:none;transition:border-color 0.2s;width:100%;appearance:none}
+    .signup-field input:focus,.signup-field select:focus{border-color:rgba(200,224,0,0.4)}
     .signup-field input::placeholder{color:var(--grey)}
     .signup-field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;background-color:rgba(255,255,255,0.05);padding-right:34px;cursor:pointer}
     .signup-field select option{background:#1a1a1a}
-    .btn-white{display:inline-block;font-family:'Figtree',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:13px 26px;border-radius:2px;text-decoration:none;border:none;cursor:pointer;color:var(--black);background:var(--white);transition:background 0.2s}
-    .btn-white:hover{background:var(--off)}
-    .yh{font-family:'Aesthet Nova',sans-serif;font-weight:900;color:var(--yellow);text-shadow:var(--yts);line-height:0.92}
-    .lbl{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);margin-bottom:16px;display:flex;align-items:center;gap:10px}
-    .lbl::before{content:'';width:18px;height:1px;background:var(--silver);flex-shrink:0}
+    .signup-submit{width:100%;padding:15px;font-size:12px;margin-top:8px;background:var(--yellow);color:var(--black);border:none;font-family:'Figtree',sans-serif;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:opacity 0.2s}
+    .signup-submit:hover{opacity:0.88}
+    .signup-submit:disabled{opacity:0.6;cursor:wait}
+    .signup-fineprint{font-size:11px;color:var(--grey);text-align:center;margin-top:10px}
 
-    /* ── MOBILE ── */
-    @media(max-width:900px){
-      .posts-grid{grid-template-columns:repeat(2,1fr)}
-    }
+    /* ADVERTISE */
+    #advertise{background:var(--black);border-top:1px solid rgba(255,255,255,0.06)}
+
+    /* AUDIENCE */
+    #audience{background:var(--dark);border-top:1px solid rgba(255,255,255,0.06)}
+    .audience-top{max-width:580px;margin-bottom:44px}
+    .audience-h{font-size:clamp(48px,6.5vw,92px);margin-bottom:16px}
+    .audience-body{font-size:14px;font-weight:300;line-height:1.8;color:rgba(240,237,232,0.5)}
+    .audience-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .aud-card{position:relative;border-radius:5px;overflow:hidden;aspect-ratio:4/3;border:1px solid rgba(255,255,255,0.07)}
+    .aud-card-bg{position:absolute;inset:0;background:var(--dark2);display:flex;align-items:center;justify-content:center}
+    .aud-card-bg::before{content:'';position:absolute;inset:0;background-image:url('texture.jpg');background-size:cover;opacity:0.25}
+    .aud-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;z-index:1}
+    .aud-card:hover img{transform:scale(1.05)}
+    .aud-card-emoji{font-size:48px;opacity:0.15;position:relative;z-index:0}
+    .aud-card-tint{position:absolute;inset:0;background:rgba(10,10,10,0.35);z-index:2}
+    .aud-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,0.92) 0%,rgba(10,10,10,0.2) 50%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:18px 16px;z-index:3}
+    .aud-card-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:20px;color:var(--yellow);text-shadow:var(--yts);line-height:1;margin-bottom:3px}
+    .aud-card-desc{font-size:11px;font-weight:300;color:rgba(240,237,232,0.55);line-height:1.45}
+
+    /* FOLLOW */
+    #follow{border-top:1px solid rgba(255,255,255,0.06);background:var(--black)}
+    .follow-h{font-size:clamp(48px,6.5vw,92px);margin-bottom:40px}
+    .follow-ig-card{background:var(--dark);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:32px 40px;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;text-decoration:none;transition:border-color 0.25s;max-width:1100px;margin-bottom:20px}
+    .follow-ig-card:hover{border-color:rgba(255,255,255,0.2)}
+    .follow-ig-info h3{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:34px;color:var(--yellow);text-shadow:var(--yts);margin-bottom:3px}
+    .follow-ig-info p{font-size:12px;color:var(--grey);font-weight:300}
+    .social-row{display:flex;gap:8px;flex-wrap:wrap;max-width:1100px}
+    .social-chip{border:1px solid rgba(255,255,255,0.1);border-radius:2px;padding:11px 18px;font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--silver);text-decoration:none;transition:border-color 0.2s,color 0.2s}
+    .social-chip:hover{border-color:var(--yellow);color:var(--yellow)}
+
+    /* WHATSAPP */
+    #whatsapp-channel{background:#111111;border-top:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;padding:40px 48px}
+    .wa-bg{position:absolute;right:-40px;top:50%;transform:translateY(-50%);opacity:0.055;pointer-events:none;z-index:0}
+    .wa-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:24px;max-width:1200px;margin:0 auto}
+    .wa-left{display:flex;align-items:center;gap:14px;min-width:0}
+    .wa-icon{flex-shrink:0}
+    .wa-lbl{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#25D366;opacity:0.7;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+    .wa-lbl::before{content:'';width:14px;height:1px;background:#25D366;flex-shrink:0}
+    .wa-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(20px,2.6vw,30px);color:#f0ede8;line-height:1;margin-bottom:6px;text-shadow:2px 3px 0px rgba(0,0,0,0.9)}
+    .wa-title span{color:#25D366}
+    .wa-note{font-size:11px;font-weight:300;color:rgba(240,237,232,0.4)}
+    .wa-btn{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#0a0a0a;text-decoration:none;padding:14px 24px;border-radius:3px;font-family:'Figtree',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;flex-shrink:0;transition:opacity 0.2s}
+    .wa-btn:hover{opacity:0.88}
+
+    /* YOUTUBE */
+    #youtube{border-top:1px solid rgba(255,255,255,0.06);position:relative;background:var(--dark)}
+    .yt-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:center;max-width:1200px}
+    .yt-left{display:flex;flex-direction:column;justify-content:center}
+    .yt-h{font-size:clamp(36px,4.5vw,64px);margin-bottom:10px;line-height:0.92}
+    .yt-artist{font-size:13px;font-weight:300;color:rgba(240,237,232,0.45);margin-bottom:28px;letter-spacing:0.04em}
+    .yt-watch-btn{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:14px 26px;border-radius:2px;text-decoration:none;transition:opacity 0.2s;align-self:flex-start}
+    .yt-watch-btn:hover{opacity:0.88}
+    .yt-watch-btn svg{width:14px;height:14px;flex-shrink:0}
+    .yt-right{position:relative}
+    .yt-embed-wrap{position:relative;width:100%;padding-bottom:56.25%;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);background:var(--dark2);box-shadow:0 24px 64px rgba(0,0,0,0.6)}
+    .yt-embed-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;border-radius:16px}
+
+    /* FOOTER */
+    footer{border-top:1px solid rgba(255,255,255,0.06);padding:56px 48px 40px;display:flex;flex-direction:column;align-items:center;gap:24px;background:var(--dark);text-align:center}
+    .footer-brand{display:flex;flex-direction:column;align-items:center;gap:12px}
+    .footer-brand img{height:72px;width:auto;display:block}
+    .footer-brand p{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey)}
+    .footer-links{display:flex;gap:22px;flex-wrap:wrap;justify-content:center}
+    .footer-links a{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey);text-decoration:none;transition:color 0.2s}
+    .footer-links a:hover{color:var(--white)}
+    .footer-email a{font-size:11px;color:var(--grey);text-decoration:none;transition:color 0.2s}
+    .footer-email a:hover{color:var(--white)}
+
+    /* MOBILE */
     @media(max-width:768px){
       nav{padding:14px 20px}
       .nav-links{display:none}
-      .hero-post{min-height:78vh;padding:120px 20px 52px;align-items:flex-end}
-      .hero-brand-title{font-size:clamp(46px,13vw,72px);line-height:0.9}
-      .hero-brand-sub{font-size:14px;max-width:100%}
-      .hero-post-title{font-size:clamp(26px,7.5vw,44px);line-height:1}
-      .hero-post-excerpt{font-size:14px;line-height:1.65}
-      .hero-post-actions .hero-post-btn{width:100%;justify-content:center;padding:14px}
-      .hero-post-btn-secondary{width:100%;justify-content:center;text-align:center}
-      #posts{padding:40px 16px 64px}
-      .posts-filters{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;margin-bottom:24px}
-      .posts-filters::-webkit-scrollbar{display:none}
-      .cat-btn{flex-shrink:0}
-      .pc-title{font-size:14px}
-      .pc-excerpt{-webkit-line-clamp:3}
-      .modal-wrap{padding:12px 8px}
-      .modal-body{padding:20px 16px 32px}
-      .modal-title{font-size:clamp(22px,6.5vw,34px)}
-      .modal-deck{font-size:14px;line-height:1.6}
-      .modal-content{font-size:15px}
-      .modal-hero-cap{padding:6px 16px 0;font-size:10px}
-      .modal-img-credit{padding:6px 16px 0}
-      .modal-related{padding:20px 16px 28px}
-      .modal-related-grid{grid-template-columns:1fr 1fr}
-      .wa{padding:28px 20px}
-      .wa-inner{flex-direction:column;align-items:flex-start;gap:16px}
-      .wa-title{font-size:clamp(20px,6vw,32px)}
-      .wa-btn{width:100%;justify-content:center;padding:16px}
-      footer{padding:10px 16px}
-      .ft-links a{margin-right:10px;font-size:8px}
-      .ft-email{display:none}
-      .inline-img{border-radius:4px;margin:18px 0 0}
-      .inline-img-cap{font-size:10.5px;margin:8px 0 18px}
-      .ref-card{max-width:100%;margin:24px 0;grid-template-columns:1.15fr 1fr;border-radius:10px}
-      .ref-card-img{aspect-ratio:4/5}
-      .ref-card-body{padding:12px 12px 12px 14px;gap:4px}
-      .ref-card-label{font-size:7.5px;letter-spacing:0.16em}
-      .ref-card-title{font-size:12.5px;line-height:1.15}
-      .ref-card-text{font-size:10px;line-height:1.45}
-      .ref-card-cta{margin-top:5px;font-size:8.5px}
-      .event-cta{max-width:100%;margin:26px 0 0;grid-template-columns:110px 1fr;border-radius:10px}
-      .event-cta-img{aspect-ratio:4/5}
-      .event-cta-body{padding:14px 14px 14px 16px;gap:4px}
-      .event-cta-label{font-size:7.5px}
-      .event-cta-title{font-size:13px;line-height:1.15}
-      .event-cta-subtitle{font-size:10.5px;margin-bottom:6px}
-      .event-cta-btn{font-size:9px;padding:8px 14px}
-      .article-end-divider{margin:28px 0 0}
-      .signup-cta{padding:22px 20px 20px;margin:24px 0 0}
-      .signup-cta-title{font-size:22px}
-      .signup-cta-btn{width:100%;justify-content:center;padding:14px}
-      .signup-modal{padding:32px 22px}
-      .signup-row{grid-template-columns:1fr}
+      .hero{padding:0 20px;min-height:0;height:70vh}
+      .hero-img-slot{display:block;position:absolute;inset:0;width:100%;max-width:100%;height:100%}
+      .hero-img-slot img{opacity:0.75;object-position:center 30%;width:100%;height:100%;object-fit:cover}
+      .hero-img-credit{display:none}
+      .hero-content{max-width:100%;padding-bottom:0}
+      .hero h1{font-size:clamp(48px,13vw,72px);line-height:0.9}
+      .hero-desc{max-width:100%;font-size:14px}
+      .hero-actions{flex-wrap:wrap;gap:10px}
+      .hero-actions .btn,.hero-actions .btn-ig{flex:1;min-width:130px;text-align:center;justify-content:center}
+      section{padding:64px 20px}
+      .about-grid{display:flex;flex-direction:column}
+      .about-top{order:1;margin-bottom:20px}
+      .about-video-col{order:2;margin-bottom:28px}
+      .about-bottom{order:3}
+      .about-video-wrap{aspect-ratio:4/5}
+      .slide.active{grid-template-columns:1fr;gap:28px}
+      .slide-img-box{aspect-ratio:4/5;width:100%;max-width:340px;margin:0 auto}
+      .ps-grid{grid-template-columns:1fr 1fr;gap:2px}
+      .ps-header{flex-direction:column;align-items:flex-start;gap:12px}
+      .ps-see-all{align-self:flex-start}
+      .ps-card-tags .ps-tag:not(.type){display:none}
+      .ps-card-tags .ps-tag.type:nth-child(n+3){display:none}
+      .ps-card-name{font-size:clamp(16px,5vw,22px);margin-bottom:3px}
+      .ps-card-ig{font-size:9px}
+      .ps-card-city{font-size:10px}
+      .ps-card-content{padding:14px 12px 12px}
+      .ps-cta-bar{padding:18px 20px;flex-direction:column;align-items:flex-start;gap:12px}
+      .ps-cta-btn{width:100%;text-align:center}
+      .hp-inner{grid-template-columns:1fr;height:auto}
+      .hp-flyer-wrap{height:220px}
+      .hp-text{padding:22px 20px 28px}
+      .hp-name{font-size:clamp(24px,6vw,34px)}
+      .bh-header{flex-direction:column;align-items:flex-start;gap:14px}
+      .bh-all{align-self:flex-start}
+      .bh-h{font-size:clamp(34px,9vw,52px)}
+      .bh-grid{grid-template-columns:1fr}
+      .bh-feat-text{padding:22px 20px 24px}
+      .bh-feat-title{font-size:22px}
+      .bh-feat-excerpt{display:none}
+      .bh-side{grid-template-columns:1fr 1fr;grid-template-rows:none}
+      .bh-side-body{padding:12px 12px 14px}
+      .bh-side-title{font-size:13px}
+      .bh-side-excerpt{display:none}
+      #incoming .inc-inner{grid-template-columns:1fr;height:auto}
+      .inc-flyer-wrap{height:220px}
+      .inc-text{padding:22px 20px 28px}
+      #join{padding:52px 20px}
+      .join-q{font-size:clamp(22px,6vw,30px)}
+      .join-body{font-size:13px}
+      .join-actions{margin-bottom:32px}
+      .join-actions .btn,.join-actions .btn-join-dj{width:100%;text-align:center}
+      .join-divider-line{margin-bottom:28px}
+      .join-newsletter{grid-template-columns:1fr;gap:22px}
+      .signup-modal-wrap{padding:16px;align-items:flex-start}
+      .signup-modal{padding:32px 22px 26px;border-radius:12px;max-height:96vh}
+      .signup-modal-close{top:14px;right:14px;font-size:16px}
+      .signup-modal-title{font-size:clamp(22px,6vw,30px);margin-bottom:10px}
+      .signup-modal-desc{font-size:12px;line-height:1.55;margin-bottom:18px}
+      .signup-modal-eyebrow{font-size:9px;margin-bottom:10px}
+      .signup-modal-form{gap:10px}
+      .signup-row{grid-template-columns:1fr;gap:10px}
+      .signup-field label{font-size:9px;letter-spacing:0.14em}
+      .signup-field input,.signup-field select{padding:11px 13px;font-size:14px}
+      .signup-submit{padding:14px;font-size:11px;margin-top:6px}
+      .signup-fineprint{font-size:10px;margin-top:8px}
+      .audience-cards{grid-template-columns:1fr 1fr;gap:8px}
+      .follow-ig-card{padding:24px 20px}
+      footer{padding:48px 20px 36px;flex-direction:column;align-items:center;gap:20px}
+      #youtube{padding:64px 20px}
+      .yt-inner{grid-template-columns:1fr;gap:36px}
+      .yt-h{font-size:clamp(32px,10vw,52px)}
+      .playlists-scroll{display:grid;grid-template-columns:1fr 1fr;gap:12px;overflow:visible;padding-bottom:0}
+      .playlist-card{flex:none;width:100%}
+      .roamers-promo-inner{grid-template-columns:1fr;gap:40px}
+      .roamers-promo-left{align-items:center;text-align:center}
+      .roamers-promo-desc{max-width:100%}
+      .roamers-phone-mockup{max-width:240px}
+      #whatsapp-channel{padding:32px 20px}
+      .wa-inner{flex-direction:column;align-items:flex-start;gap:18px}
+      .wa-left{gap:12px}
+      .wa-title{font-size:22px}
+      .wa-btn{width:100%;justify-content:center;padding:14px 20px}
     }
-    @media(max-width:560px){
-      .posts-grid{grid-template-columns:1fr}
-    }
-    @media(max-width:380px){
-      .ref-card-title{font-size:11.5px}
-      .ref-card-text{font-size:9.5px}
-      .event-cta-title{font-size:12px}
-      .event-cta-subtitle{font-size:10px}
+    @media(max-width:420px){
+      .hero h1{font-size:clamp(40px,12vw,58px)}
+      .audience-cards{grid-template-columns:1fr 1fr}
+      .bh-side{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
+
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<div class="reading-progress" id="readingProgress"></div>
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none'; document.querySelector('.nav-logo-fallback').style.display='block'"/>
+    <span class="nav-logo-fallback">afro.cue</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="parties.html">Parties</a></li>
+    <li><a href="#content">Content</a></li>
+    <li><a href="#blog-home">Blog</a></li>
+    <li><a href="#playlists">Playlists</a></li>
+    <li><a href="#advertise">Get Featured</a></li>
+  </ul>
+  <button class="nav-cta" onclick="openSignupModal()">Sign Up</button>
+</nav>
 
-<!-- POST MODAL -->
-<div class="modal-wrap" id="postModal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
-  <button class="modal-x" id="modalClose" aria-label="Close" onclick="closeModal()">&#x2715;</button>
-  <div class="modal">
-    <div class="modal-img-wrap">
-      <img class="modal-hero-img" id="mImg" src="" alt=""/>
-      <div class="modal-hero-cap" id="mHeroCap" style="display:none"></div>
-      <div class="modal-img-credit" id="mImgCredit" style="display:none"></div>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-img-slot"><img src="hero_dj.jpg" alt="Aniko at Rampa Lagos"/></div>
+  <div class="hero-texture"></div>
+  <div class="hero-overlay"></div>
+  <span class="hero-img-credit">Aniko · Rampa Lagos</span>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span>Lagos Nightlife &amp; Dance Music</span>
     </div>
-    <div class="modal-body">
-      <div class="modal-cat" id="mCat"></div>
-      <div class="modal-title" id="mTitle"></div>
-      <div class="modal-deck" id="mDeck" style="display:none"></div>
-      <div class="modal-meta-row" style="border-bottom:1px solid rgba(255,255,255,0.07);padding-bottom:14px;margin-bottom:14px;">
-        <span style="display:flex;align-items:center;gap:5px;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="11" height="11" style="opacity:0.4" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span id="mMetaText"></span>
-        </span>
-        <span class="modal-reading" style="display:flex;align-items:center;gap:5px;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="11" height="11" style="opacity:0.4" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          <span id="mReadText"></span>
-        </span>
-        <div class="modal-share-group">
-          <button class="modal-share" id="mShare" onclick="handleShare()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-            Share
-          </button>
-          <button class="share-icon-btn" id="mIG" onclick="shareToIG()" title="Open Instagram" aria-label="Open Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          </button>
-          <button class="share-icon-btn" id="mIGStory" onclick="shareToIGStory()" title="Share to Instagram Story" aria-label="Share to Instagram Story">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-          </button>
-        </div>
-      </div>
-      <div class="modal-divider"></div>
-      <div class="modal-content" id="mContent"></div>
-      <div class="modal-tags" id="mTags"></div>
-      <div class="article-end-divider"></div>
-      <div class="signup-cta">
-        <div class="signup-cta-label">Join AfroCue</div>
-        <div class="signup-cta-title">Get the updates.</div>
-        <div class="signup-cta-text">DJs, parties, music and culture, straight to your inbox. No noise.</div>
-        <button class="signup-cta-btn" onclick="openSignupModal()">
-          Sign Up
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
-      </div>
-    </div>
-    <div class="modal-related" id="mRelated" style="display:none">
-      <div class="modal-related-lbl">More posts</div>
-      <div class="modal-related-grid" id="mRelGrid"></div>
-    </div>
-    <div style="padding:24px 44px;border-top:1px solid rgba(255,255,255,0.06);background:#0d0d0d;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
-      <div style="position:absolute;right:-20px;top:50%;transform:translateY(-50%);opacity:0.04;pointer-events:none;"><svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
-      <div style="display:flex;align-items:center;gap:12px;">
-        <svg viewBox="0 0 24 24" width="20" height="20" style="flex-shrink:0;" fill="#25D366" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
-        <div>
-          <div style="font-size:11px;font-weight:600;color:#f0ede8;letter-spacing:0.04em;">Follow AfroCue on WhatsApp</div>
-          <div style="font-size:10px;font-weight:300;color:rgba(240,237,232,0.5);margin-top:2px;">Parties, DJs and drops. Unmute for updates.</div>
-        </div>
-      </div>
-      <a href="https://whatsapp.com/channel/0029Vb74IjxGufJ0irS1uq0u" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#0a0a0a;text-decoration:none;padding:11px 20px;border-radius:3px;font-family:'Figtree',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;flex-shrink:0;">Follow</a>
+    <h1>Creatively<br><span class="outline">Documenting</span><br>Culture.</h1>
+    <p class="hero-desc">We spotlight the DJs, the raves and parties they play at, and the music — from afrohouse to amapiano and our own afrobeats — shaping Nigeria's dance floor.</p>
+    <div class="hero-actions">
+      <button class="btn-ig" onclick="openSignupModal()">Join AfroCue</button>
+      <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">Follow Us</a>
     </div>
   </div>
 </div>
 
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-top">
+      <div class="label">About AfroCue</div>
+      <h2 class="yh about-h">Where<br><span class="dim">Culture</span><br>Lives.</h2>
+    </div>
+    <div class="about-video-col">
+      <div class="label" style="margin-bottom:14px;">Media</div>
+      <div class="about-video-wrap">
+        <video src="about_video.mp4" autoplay muted loop playsinline onerror="this.style.display='none'"></video>
+        <div class="about-video-fallback" id="videoFallback" style="display:none;">
+          <span class="img-label">about_video.mp4</span>
+          <span class="img-label" style="opacity:0.4;">1080 × 1350px</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-bottom">
+      <p class="about-body">
+        AfroCue is our attempt to creatively document and advance the dance music culture and nightlife scene — spotlighting the DJs who power it, the raves and parties they play at, and the music that moves the dance floor. From amapiano and afrohouse to 3step and afrobeats, we champion Nigerian nightlife culture.
+      </p>
+      <div class="about-stats">
+        <div class="stat"><div class="stat-val">DJs</div><div class="stat-key">We spotlight</div></div>
+        <div class="stat"><div class="stat-val">Parties</div><div class="stat-key">We document</div></div>
+        <div class="stat"><div class="stat-val">Music</div><div class="stat-key">We follow</div></div>
+        <div class="stat"><div class="stat-val">Culture</div><div class="stat-key">We advance</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT SLIDER -->
+<section id="content">
+  <div class="content-bg" id="contentBg"></div>
+  <div class="content-bg-overlay"></div>
+  <div class="content-header">
+    <div>
+      <div class="label">Featured Content</div>
+      <h2 class="yh content-h">Our<br>Content.</h2>
+    </div>
+    <div class="slide-nav">
+      <button class="slide-btn" onclick="prevSlide()">&#8592;</button>
+      <button class="slide-btn" onclick="nextSlide()">&#8594;</button>
+    </div>
+  </div>
+  <div class="slides-wrap">
+    <div class="slide active" data-img="content_weekly_top5.jpeg">
+      <div class="slide-img-box"><img src="content_weekly_top5.jpeg" alt="AfroCue Weekly Top 5"/></div>
+      <div class="slide-text">
+        <div class="slide-series">Weekly Series</div>
+        <h3>Weekly Top 5</h3>
+        <p>Every week, we spotlight DJs from upcoming parties and events — not to rank them, but to spotlight the people shaping the dance floor.</p>
+        <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram</a>
+        <div class="slide-counter"><span>01</span> / 04</div>
+      </div>
+    </div>
+    <div class="slide" data-img="content_monthly_recap.jpeg">
+      <div class="slide-img-box"><img src="content_monthly_recap.jpeg" alt="AfroCue Monthly Recap"/></div>
+      <div class="slide-text">
+        <div class="slide-series">Monthly Series</div>
+        <h3>Monthly Recap</h3>
+        <p>A recap of moments, DJs, and parties that defined the month in nightlife and dance music culture.</p>
+        <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram</a>
+        <div class="slide-counter"><span>02</span> / 04</div>
+      </div>
+    </div>
+    <div class="slide" data-img="content_set_moments.jpeg">
+      <div class="slide-img-box"><img src="content_set_moments.jpeg" alt="Set Moments"/></div>
+      <div class="slide-text">
+        <div class="slide-series">Ongoing Series</div>
+        <h3>Set Moments</h3>
+        <p>Short moments from DJ sets that capture the energy of the dance floor and spotlight the DJ behind the moment.</p>
+        <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram</a>
+        <div class="slide-counter"><span>03</span> / 04</div>
+      </div>
+    </div>
+    <div class="slide" data-img="content_creative_events.jpeg">
+      <div class="slide-img-box"><img src="content_creative_events.jpeg" alt="Event Content"/></div>
+      <div class="slide-text">
+        <div class="slide-series">Event Content</div>
+        <h3>Event Content</h3>
+        <p>We convey narratives through culture-aware perspectives — documenting events and the energy around them the way they actually feel.</p>
+        <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram</a>
+        <div class="slide-counter"><span>04</span> / 04</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOME PROMO — populated from ?export=promo&slot=homepage -->
+<section id="home-promo">
+  <a class="hp-card" id="hpCard" href="#" target="_blank" rel="noopener">
+    <div class="hp-bg" id="hpBg"></div>
+    <div class="hp-texture"></div>
+    <div class="hp-grad"></div>
+    <div class="hp-inner">
+      <div class="hp-flyer-wrap" id="hpFlyerWrap">
+        <img class="hp-flyer" id="hpFlyer" src="" alt=""/>
+      </div>
+      <div class="hp-text">
+        <span class="hp-badge" id="hpBadge">Featured</span>
+        <div class="hp-name" id="hpName"></div>
+        <div class="hp-sub" id="hpSub"></div>
+        <div class="hp-tags" id="hpTags"></div>
+        <span class="hp-btn" id="hpBtn">Learn more</span>
+      </div>
+    </div>
+  </a>
+</section>
+
+<!-- INCOMING PARTY -->
+<section id="incoming">
+  <div class="inc-bg" id="incBg"></div>
+  <div class="inc-texture"></div>
+  <div class="inc-grad"></div>
+  <div class="inc-inner">
+    <div class="inc-flyer-wrap" id="incFlyerWrap">
+      <img class="inc-flyer-img" id="incFlyerImg" src="" alt=""/>
+    </div>
+    <div class="inc-text">
+      <span class="inc-badge">&#9733; Featured</span>
+      <div class="inc-name" id="incName"></div>
+      <div class="inc-date" id="incDate"></div>
+      <div class="inc-tags" id="incTags"></div>
+      <div class="inc-desc" id="incDesc"></div>
+      <a class="inc-btn" id="incBtn" href="parties.html">Buy Tickets</a>
+    </div>
+  </div>
+</section>
+
+<!-- PARTIES STRIP -->
+<section id="parties-strip">
+  <div class="ps-header">
+    <div class="ps-left">
+      <div class="label">Party Directory</div>
+      <div class="ps-h yh">What's On.</div>
+      <div class="ps-sub">Raves, events and nights worth knowing — documented by AfroCue.</div>
+    </div>
+    <a href="parties.html" class="ps-see-all">See all parties &rarr;</a>
+  </div>
+  <div class="ps-grid" id="psGrid">
+    <div class="ps-loading">Loading parties...</div>
+  </div>
+  <div class="ps-cta-bar">
+    <div>
+      <div class="ps-cta-label">Is your party on here?</div>
+      <div class="ps-cta-text">Get your event in front of Lagos's nightlife audience.</div>
+    </div>
+    <a href="list-party.html" class="ps-cta-btn">List Your Party &rarr;</a>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog-home">
+  <div class="bh-inner">
+    <div class="bh-header">
+      <div class="bh-header-left">
+        <div class="label">Latest Stories</div>
+        <h2 class="yh bh-h">From<br>the blog.</h2>
+      </div>
+      <a href="blog.html" class="bh-all">All stories &rarr;</a>
+    </div>
+    <div class="bh-grid" id="bhGrid">
+      <div class="bh-feat-post skel">
+        <div class="bh-feat-img-wrap" style="position:relative;overflow:hidden;aspect-ratio:16/11;"><div class="bh-shim"></div></div>
+        <div class="bh-feat-text">
+          <div class="bh-skel-bar" style="width:32%;height:9px;margin-bottom:12px;"></div>
+          <div class="bh-skel-bar" style="width:88%;height:28px;margin-bottom:8px;"></div>
+          <div class="bh-skel-bar" style="width:100%;height:11px;margin-bottom:5px;"></div>
+          <div class="bh-skel-bar" style="width:60%;height:11px;"></div>
+        </div>
+      </div>
+      <div class="bh-side">
+        <div class="bh-side-card skel">
+          <div class="bh-side-img" style="position:relative;overflow:hidden;aspect-ratio:16/10;"><div class="bh-shim"></div></div>
+          <div class="bh-side-body">
+            <div class="bh-skel-bar" style="width:88%;height:16px;margin-bottom:8px;"></div>
+            <div class="bh-skel-bar" style="width:60%;height:11px;"></div>
+          </div>
+        </div>
+        <div class="bh-side-card skel">
+          <div class="bh-side-img" style="position:relative;overflow:hidden;aspect-ratio:16/10;"><div class="bh-shim"></div></div>
+          <div class="bh-side-body">
+            <div class="bh-skel-bar" style="width:88%;height:16px;margin-bottom:8px;"></div>
+            <div class="bh-skel-bar" style="width:60%;height:11px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAYLISTS -->
+<section id="playlists">
+  <div class="playlists-inner">
+    <div class="playlists-header">
+      <div>
+        <div class="label">Discover Our Playlists</div>
+        <h2 class="yh playlists-h">The<br>Soundtrack.</h2>
+      </div>
+      <a href="playlists.html" class="ps-see-all">All playlists &rarr;</a>
+    </div>
+    <div class="playlists-scroll">
+      <a href="playlist-1.html" class="playlist-card">
+        <div class="playlist-card-img"><img src="playlist_naija_party_starters.jpg" alt="Naija Party Starters cover"/></div>
+        <div class="playlist-card-body">
+          <span class="playlist-card-tag">Spotify</span>
+          <h3 class="playlist-card-title">Naija Party Starters</h3>
+          <p class="playlist-card-desc">Music that moves Nigerian dance floors — updated weekly.</p>
+          <span class="playlist-card-cta">Listen now →</span>
+        </div>
+      </a>
+      <a href="playlist-2.html" class="playlist-card">
+        <div class="playlist-card-img"><img src="playlist_groovy_afrobeats.png" alt="Groovy Afrobeats cover"/></div>
+        <div class="playlist-card-body">
+          <span class="playlist-card-tag">Spotify</span>
+          <h3 class="playlist-card-title">Groovy Afrobeats</h3>
+          <p class="playlist-card-desc">Tasteful curation of groovy Afrobeat gems.</p>
+          <span class="playlist-card-cta">Listen now →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ROAMERS -->
+<section id="roamers-promo">
+  <div class="roamers-promo-inner">
+    <div class="roamers-promo-left">
+      <div class="label">Roamers</div>
+      <h2 class="roamers-promo-title">Be a<br>contributor.</h2>
+      <p class="roamers-promo-desc">Live the moment first. If you catch a great picture or video of a DJ, party, or moment — tag us and we might share it.</p>
+      <a href="roamers.html" class="roamers-promo-btn">Become a Roamer →</a>
+    </div>
+    <div class="roamers-phone-wrap">
+      <div class="roamers-phone-mockup">
+        <img src="roamers_hero_thumb.jpg" alt="Roamers – Lagos nightlife"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DJ RADAR -->
+<section id="dj-radar">
+  <div class="dj-radar-inner">
+    <div class="dj-radar-left">
+      <div class="label">Are You a DJ?</div>
+      <h2 class="dj-radar-title">Get on our<br><span class="dj-radar-outline">DJ Radar.</span></h2>
+      <a href="dj.html" class="dj-radar-btn">Sign Up as a DJ</a>
+    </div>
+    <div class="dj-radar-video-wrap">
+      <video id="djRadarVid" src="dj_radar_banner.mp4" loop playsinline></video>
+      <div class="dj-radar-texture"></div>
+      <div class="dj-radar-controls">
+        <button class="dj-radar-ctrl" id="djPlayBtn" onclick="toggleDJPlay()">&#9654;</button>
+        <button class="dj-radar-ctrl" id="djMuteBtn" onclick="toggleDJMute()">&#128266;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section id="join">
+  <div class="join-inner">
+    <div class="join-heading">
+      <div class="label">Join AfroCue</div>
+      <h2 class="join-q">Are you a creative <span class="q-accent">or in media?</span></h2>
+      <p class="join-body">
+        <strong>Managers</strong>, <strong>event executives</strong>, <strong>brand managers</strong>, <strong>photographers</strong>, <strong>videographers</strong>, <strong>journalists</strong> — anyone working in and around Nigeria's dance music scene. Sign up and stay connected.
+      </p>
+    </div>
+    <div class="join-actions">
+      <button class="btn btn-white" onclick="openSignupModal()">Sign Up</button>
+      <a href="#dj-radar" class="btn-join-dj">Or Join as DJ</a>
+    </div>
+    <div class="join-divider-line"></div>
+    <div class="join-newsletter">
+      <div class="join-newsletter-left">
+        <div class="nl-label">Newsletter</div>
+        <h3>Get the updates.</h3>
+        <p>DJs · Parties · Music · Culture</p>
+      </div>
+      <form class="join-newsletter-form" onsubmit="handleNewsletter(event)">
+        <input type="text" name="nl_name" placeholder="Your name" required/>
+        <input type="email" name="nl_email" placeholder="your@email.com" required/>
+        <button type="submit" class="btn btn-yellow" style="width:100%;">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
 <!-- SIGNUP MODAL -->
-<div class="signup-modal-wrap" id="signupModal" role="dialog" aria-modal="true" aria-label="Sign up to AfroCue">
+<div class="signup-modal-wrap" id="signupModal">
   <div class="signup-modal">
-    <button class="signup-modal-close" aria-label="Close" onclick="closeSignupModal()">&#x2715;</button>
-    <div class="lbl" style="margin-bottom:12px;">Join AfroCue</div>
-    <h2 class="yh" style="font-size:clamp(36px,5vw,56px);margin-bottom:20px;line-height:0.9;">Sign up<br>to AfroCue.</h2>
-    <p style="font-size:14px;font-weight:300;color:rgba(240,237,232,0.6);margin-bottom:28px;line-height:1.75;">Tell us who you are. We'll reach out and keep you connected to what's happening.</p>
+    <button class="signup-modal-close" onclick="closeSignupModal()">&#x2715;</button>
+    <div class="signup-modal-eyebrow">Join AfroCue</div>
+    <h2 class="signup-modal-title">Sign up<br>to AfroCue.</h2>
+    <p class="signup-modal-desc">Tell us who you are. We'll reach out and keep you connected to what's happening.</p>
     <form class="signup-modal-form" onsubmit="handleSignup(event)">
       <div class="signup-row">
-        <div class="signup-field"><label for="su_name">Name</label><input type="text" id="su_name" name="su_name" placeholder="Your name" required/></div>
-        <div class="signup-field"><label for="su_email">Email</label><input type="email" id="su_email" name="su_email" placeholder="your@email.com" required/></div>
+        <div class="signup-field"><label>Name</label><input type="text" name="su_name" placeholder="Your name" required/></div>
+        <div class="signup-field"><label>Email</label><input type="email" name="su_email" placeholder="your@email.com" required/></div>
       </div>
       <div class="signup-field">
-        <label for="su_role">What do you do?</label>
-        <select id="su_role" name="su_role">
+        <label>What do you do?</label>
+        <select name="su_role">
           <option value="" disabled selected>Select your role</option>
           <option>DJ</option><option>Manager</option><option>Event Executive</option>
           <option>Brand Manager</option><option>Creative / Content</option>
@@ -576,683 +841,551 @@
         </select>
       </div>
       <div class="signup-field">
-        <label for="su_ig">Instagram (optional)</label>
+        <label>Instagram — optional</label>
         <div style="position:relative;">
           <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--grey);font-size:14px;pointer-events:none;">@</span>
-          <input type="text" id="su_ig" name="su_ig" placeholder="yourhandle" style="padding-left:30px;"/>
+          <input type="text" name="su_ig" placeholder="yourhandle" style="padding-left:30px;"/>
         </div>
       </div>
-      <button type="submit" class="btn-white" style="width:100%;padding:16px;font-size:13px;margin-top:8px;">Sign Up</button>
-      <p style="font-size:11px;color:var(--grey);text-align:center;margin-top:10px;">By signing up you agree to be contacted by AfroCue.</p>
+      <button type="submit" class="signup-submit">Sign Up</button>
+      <p class="signup-fineprint">By signing up you agree to be contacted by AfroCue.</p>
     </form>
-    <div class="signup-success" id="signupSuccess" style="display:none;text-align:center;padding:32px 0;">
-      <div class="yh" style="font-size:clamp(36px,5vw,52px);margin-bottom:12px;">You're in.</div>
-      <p style="font-size:14px;font-weight:300;color:rgba(240,237,232,0.6);">We'll be in touch.</p>
-    </div>
   </div>
 </div>
 
-<nav id="mainNav">
-  <a class="nav-logo" href="index.html">
-    <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none';document.querySelector('.nav-logo-fallback').style.display='block'"/>
-    <span class="nav-logo-fallback">afro.cue</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="parties.html">Parties</a></li>
-    <li><a href="dj.html">DJs</a></li>
-    <li><a href="blog.html" class="active">Culture</a></li>
-  </ul>
-  <a href="list-party.html" class="nav-cta">List Your Party</a>
-</nav>
-
-<!-- HERO POST -->
-<section class="hero-post" id="heroPost">
-  <div class="hero-post-bg" id="heroPostBg"></div>
-  <div class="hero-post-texture"></div>
-  <div class="hero-post-overlay"></div>
-
-  <!-- Default branded layer -->
-  <div class="hero-brand" id="heroBrand">
-    <div class="hero-brand-eyebrow">AfroCue Blog</div>
-    <h1 class="hero-brand-title">
-      Culture.
-      <span class="outline">Documented.</span>
-    </h1>
-    <p class="hero-brand-sub">
-      DJs, parties, music and the nightlife culture surrounding them, written and documented by AfroCue.
+<!-- ADVERTISE -->
+<section id="advertise">
+  <div style="max-width:900px; margin:0 auto; text-align:center;">
+    <div class="label" style="justify-content:center;">Work With Us</div>
+    <h2 class="yh" style="font-size:clamp(44px,7vw,80px); margin-bottom:20px;">Get<br>Featured.</h2>
+    <p style="font-size:15px; font-weight:300; line-height:1.8; color:rgba(240,237,232,0.6); max-width:520px; margin:0 auto 28px;">
+      We work with DJs, events, and brands to create culture‑driven content and connect them with the right audience.
     </p>
-    <div class="hero-brand-scroll">
-      Latest stories below
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <line x1="12" y1="5" x2="12" y2="19"/>
-        <polyline points="19 12 12 19 5 12"/>
-      </svg>
-    </div>
-  </div>
-
-  <!-- Featured post layer -->
-  <div class="hero-post-inner" id="heroPostInner">
-    <div class="hero-post-topline">
-      <span class="brand">AfroCue &middot; Culture, Documented</span>
-      <span class="dot"></span>
-      <span class="featured-pill">Featured</span>
-      <span class="cat" id="heroPostCat"></span>
-    </div>
-    <h1 class="hero-post-title" id="heroPostTitle"></h1>
-    <p class="hero-post-excerpt" id="heroPostExcerpt"></p>
-    <div class="hero-post-meta" id="heroPostMeta"></div>
-    <div class="hero-post-actions">
-      <button class="hero-post-btn" id="heroPostBtn" onclick="event.stopPropagation();openFeatured();">
-        Read the story
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </button>
-      <a href="index.html" class="hero-post-btn-secondary" onclick="event.stopPropagation();">Back to AfroCue</a>
-    </div>
+    <a href="/promo" class="btn btn-yellow" style="font-size:12px; padding:16px 36px;">Explore Promo Opportunities →</a>
   </div>
 </section>
 
-<!-- POSTS -->
-<section id="posts">
-  <div class="posts-filters" id="catFilters">
-    <button class="cat-btn active" onclick="filterCat('',this)">All</button>
+<!-- AUDIENCE -->
+<section id="audience">
+  <div class="audience-top">
+    <div class="label">Our Audience</div>
+    <h2 class="yh audience-h">Who We<br>Reach.</h2>
+    <p class="audience-body">AfroCue speaks to the people who go out, listen to DJs, discover music, and shape nightlife culture.</p>
   </div>
-  <div class="posts-grid" id="postsGrid"></div>
-  <div class="no-posts" id="noPosts">No posts in this category yet.</div>
+  <div class="audience-cards">
+    <div class="aud-card"><div class="aud-card-bg"><span class="aud-card-emoji">🎛️</span></div><img src="audience_djs.jpg" alt="DJs"/><div class="aud-card-tint"></div><div class="aud-card-overlay"><div class="aud-card-title">DJs</div><div class="aud-card-desc">The people who control the dance floor</div></div></div>
+    <div class="aud-card"><div class="aud-card-bg"><span class="aud-card-emoji">🕺</span></div><img src="audience_partygoers.jpg" alt="Partygoers"/><div class="aud-card-tint"></div><div class="aud-card-overlay"><div class="aud-card-title">Partygoers</div><div class="aud-card-desc">Lagos raves, amapiano nights and afrohouse sets</div></div></div>
+    <div class="aud-card"><div class="aud-card-bg"><span class="aud-card-emoji">🎪</span></div><img src="audience_organizers.jpg" alt="Event Organizers"/><div class="aud-card-tint"></div><div class="aud-card-overlay"><div class="aud-card-title">Event Organizers</div><div class="aud-card-desc">The people who build the rooms</div></div></div>
+    <div class="aud-card"><div class="aud-card-bg"><span class="aud-card-emoji">🎨</span></div><img src="audience_creatives.jpg" alt="Creative Directors"/><div class="aud-card-tint"></div><div class="aud-card-overlay"><div class="aud-card-title">Creative Directors</div><div class="aud-card-desc">The vision behind the culture</div></div></div>
+    <div class="aud-card"><div class="aud-card-bg"><span class="aud-card-emoji">📡</span></div><img src="audience_brands.jpg" alt="Brand Managers"/><div class="aud-card-tint"></div><div class="aud-card-overlay"><div class="aud-card-title">Brand Managers</div><div class="aud-card-desc">Brands seeking culture-first reach</div></div></div>
+    <div class="aud-card"><div class="aud-card-bg"><span class="aud-card-emoji">🌍</span></div><img src="audience_culture.jpg" alt="Culture Audiences"/><div class="aud-card-tint"></div><div class="aud-card-overlay"><div class="aud-card-title">Culture Audiences</div><div class="aud-card-desc">People shaped by the dance floor</div></div></div>
+  </div>
+</section>
+
+<!-- FOLLOW -->
+<section id="follow">
+  <div class="label">Follow AfroCue</div>
+  <h2 class="yh follow-h">Find<br>Us.</h2>
+  <a href="https://instagram.com/afro.cue" target="_blank" class="follow-ig-card">
+    <div class="follow-ig-info">
+      <h3>@afro.cue</h3>
+      <p>Instagram — our main platform</p>
+    </div>
+    <div class="btn btn-white" style="pointer-events:none;">Follow on Instagram</div>
+  </a>
+  <div class="social-row">
+    <a href="https://twitter.com/afrocue_" target="_blank" class="social-chip">X / Twitter — @afrocue_</a>
+    <a href="https://tiktok.com/@afro.cue" target="_blank" class="social-chip">TikTok — @afro.cue</a>
+    <a href="https://youtube.com/@AfroCue" target="_blank" class="social-chip">YouTube</a>
+    <a href="https://open.spotify.com" target="_blank" class="social-chip">Spotify</a>
+  </div>
 </section>
 
 <!-- WHATSAPP -->
-<div class="wa">
-  <div class="wa-bg"><svg width="380" height="380" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="0.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+<section id="whatsapp-channel">
+  <div class="wa-bg">
+    <svg width="380" height="380" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="0.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+      <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+    </svg>
+  </div>
   <div class="wa-inner">
-    <div>
-      <div class="wa-lbl">WhatsApp Channel</div>
-      <div class="wa-title">Get the updates<br>on <span>WhatsApp.</span></div>
-      <div class="wa-note"><svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13" style="flex-shrink:0;opacity:0.6" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>Unmute notifications so you never miss a drop.</div>
+    <div class="wa-left">
+      <svg class="wa-icon" viewBox="0 0 24 24" width="28" height="28" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+      <div>
+        <div class="wa-lbl">WhatsApp Channel</div>
+        <div class="wa-title">Get the updates on <span>WhatsApp.</span></div>
+        <div class="wa-note">Parties, DJs and drops — unmute for updates.</div>
+      </div>
     </div>
-    <a class="wa-btn" href="https://whatsapp.com/channel/0029Vb74IjxGufJ0irS1uq0u" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" width="20" height="20" style="flex-shrink:0" fill="#0a0a0a" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
-      Follow on WhatsApp
-    </a>
+    <a class="wa-btn" href="https://whatsapp.com/channel/0029Vb74IjxGufJ0irS1uq0u" target="_blank" rel="noopener">Follow on WhatsApp</a>
   </div>
-</div>
+</section>
 
-<footer>
-  <a href="index.html" style="display:inline-flex;align-items:center;text-decoration:none;flex-shrink:0;">
-    <img src="logo_afrocue.png" alt="AfroCue" style="height:26px;width:auto;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
-    <span style="display:none;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:13px;color:var(--yellow);">AfroCue</span>
-  </a>
-  <div class="ft-links">
-    <a href="index.html">Home</a><a href="parties.html">Parties</a><a href="dj.html">DJs</a><a href="blog.html">Culture</a>
+<!-- YOUTUBE -->
+<section id="youtube">
+  <div class="yt-inner">
+    <div class="yt-left">
+      <div class="label">Featured Set</div>
+      <h2 class="yh yt-h">Yanos Theory.</h2>
+      <p class="yt-artist">Smeez &amp; D3AN — Prep Session</p>
+      <a href="https://www.youtube.com/watch?v=Ebrtzg0cJXM" target="_blank" rel="noopener" class="yt-watch-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-2.75 12 12 0 0 0-8.45 0A4.83 4.83 0 0 1 3.6 6.69 46.29 46.29 0 0 0 3 12a46.29 46.29 0 0 0 .6 5.31 4.83 4.83 0 0 1 3.77 2.75 12 12 0 0 0 8.45 0 4.83 4.83 0 0 1 3.77-2.75A46.29 46.29 0 0 0 21 12a46.29 46.29 0 0 0-.41-5.31zM10 15V9l5 3-5 3z"/></svg>
+        Watch on YouTube
+      </a>
+    </div>
+    <div class="yt-right">
+      <div class="yt-embed-wrap">
+        <iframe src="https://www.youtube.com/embed/Ebrtzg0cJXM?si=RST1dLRLpXVBwdDs" title="Smeez & D3AN — Yanos Theory Prep Session" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
   </div>
-  <div class="ft-email"><a href="mailto:hello@afrocue.xyz" style="color:var(--grey);text-decoration:none;">hello@afrocue.xyz</a></div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a href="#" style="text-decoration:none;">
+      <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+      <span style="display:none;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:48px;letter-spacing:0.08em;color:var(--yellow);">AfroCue</span>
+    </a>
+    <p>Creatively Documenting Culture</p>
+  </div>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#content">Content</a>
+    <a href="#blog-home">Blog</a>
+    <a href="dj.html">DJ Signup</a>
+    <a href="#advertise">Get Featured</a>
+    <a href="#playlists">Playlists</a>
+  </div>
+  <div class="footer-email"><a href="mailto:hello@afrocue.xyz">hello@afrocue.xyz</a></div>
 </footer>
 
 <script>
-/* ============================================================================
-   BLOG ENGINE: reads from GAS ?export=blog
-   Body paragraphs split on `|||` OR blank lines.
-   Hero renders a branded fallback immediately, then cross-fades to the
-   featured post once the sheet loads.
-   ============================================================================ */
-var POSTS = [];
-var FEATURED = null;
-var ACTIVE_CAT = '';
-var CURRENT_POST = null;
-var BASE_TITLE = document.title;
-var LAST_FOCUS = null;
-var SIGNUP_LAST_FOCUS = null;
-
+/* ════════════════════════════════════════════════════════════════════
+   HELPERS
+   ════════════════════════════════════════════════════════════════════ */
 function getScriptUrl(){
   if (typeof getAfroCueScriptUrl === 'function') return getAfroCueScriptUrl();
   return 'https://script.google.com/macros/s/AKfycbwk0SvCWpKSr-hxsh_TPZiCCh2QTT8uXanQWiDl2qRCLqw1_wkNWLdNUs3LhYGqTl-O/exec';
 }
-
 function esc(s){
-  return String(s==null?'':s).replace(/[&<>"']/g,function(c){
+  return String(s == null ? '' : s).replace(/[&<>"']/g,function(c){
     return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
   });
 }
-
 function safeUrl(u){
   u = String(u == null ? '' : u).trim();
   return /^https:\/\//i.test(u) ? u : '';
 }
-
-function todayLagos(){
-  try { return new Date().toLocaleDateString('en-CA',{timeZone:'Africa/Lagos'}); }
-  catch(e){ return new Date().toISOString().slice(0,10); }
-}
-
 function readingTime(body){
-  var words=String(body||'').split(/\s+/).filter(Boolean).length;
-  return Math.max(1,Math.round(words/200))+' min read';
+  var words = String(body || '').split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200)) + ' min read';
 }
-
-function formatInlineText(text){
-  var s = esc(text);
-  s = s.replace(/\*\*([^*]+)\*\*/g, '<strong style="color:var(--white);font-weight:600;">$1</strong>');
-  s = s.replace(/\*([^*]+)\*/g, '<em style="color:rgba(240,237,232,0.6);">$1</em>');
-  s = s.replace(/\[DJ:([^\]]+)\]/g, '<span class="dj-name">$1</span>');
-  return s;
-}
-
-function plainText(text){
-  return String(text||'').replace(/\[DJ:([^\]]+)\]/g,'$1').replace(/\*\*?/g,'').trim();
-}
-
-function makeActivatable(el, label, fn){
-  el.setAttribute('role','button');
-  el.setAttribute('tabindex','0');
-  if(label) el.setAttribute('aria-label', label);
-  el.onclick = fn;
-  el.addEventListener('keydown', function(e){
-    if(e.key === 'Enter' || e.key === ' '){
-      e.preventDefault();
-      fn();
-    }
-  });
-}
-
-var WORD_CHAR=/[A-Za-z0-9_]/;
-function skipForDJ(p){
-  if(!p||p.nodeType!==1)return true;
-  var tag=p.nodeName;
-  if(tag==='SCRIPT'||tag==='STYLE'||tag==='A')return true;
-  if(p.classList&&p.classList.contains('dj-name'))return true;
-  if(p.closest&&p.closest('.ref-card, .spon-banner, .modal-related, .signup-cta, .event-cta'))return true;
-  return false;
-}
-function highlightDJs(root,djs){
-  if(!root||!djs||!djs.length)return;
-  var names=djs.map(function(n){return String(n).trim();}).filter(Boolean).sort(function(a,b){return b.length-a.length;});
-  if(!names.length)return;
-  var walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null,false);
-  var nodes=[],n;
-  while((n=walker.nextNode())){
-    if(!n.nodeValue||!n.nodeValue.trim())continue;
-    if(skipForDJ(n.parentNode))continue;
-    nodes.push(n);
+function splitCSVLine(line){
+  var cols=[], cur='', inQuote=false;
+  for(var i=0; i<line.length; i++){
+    var c = line[i];
+    if(c === '"'){ inQuote = !inQuote; }
+    else if(c === ',' && !inQuote){ cols.push(cur); cur=''; }
+    else { cur += c; }
   }
-  nodes.forEach(function(node){
-    var text=node.nodeValue,lower=text.toLowerCase(),hits=[];
-    names.forEach(function(name){
-      var needle=name.toLowerCase(),from=0,i;
-      while((i=lower.indexOf(needle,from))!==-1){
-        var before=i>0?text.charAt(i-1):'',after=i+needle.length<text.length?text.charAt(i+needle.length):'';
-        if(!WORD_CHAR.test(before)&&!WORD_CHAR.test(after))hits.push({s:i,e:i+needle.length});
-        from=i+needle.length;
-      }
-    });
-    if(!hits.length)return;
-    hits.sort(function(a,b){return a.s-b.s||(b.e-b.s)-(a.e-a.s);});
-    var keep=[],end=-1;
-    hits.forEach(function(h){if(h.s>=end){keep.push(h);end=h.e;}});
-    if(!keep.length)return;
-    var frag=document.createDocumentFragment(),cursor=0;
-    keep.forEach(function(h){
-      if(h.s>cursor)frag.appendChild(document.createTextNode(text.slice(cursor,h.s)));
-      var span=document.createElement('span');
-      span.className='dj-name';
-      span.textContent=text.slice(h.s,h.e);
-      frag.appendChild(span);
-      cursor=h.e;
-    });
-    if(cursor<text.length)frag.appendChild(document.createTextNode(text.slice(cursor)));
-    node.parentNode.replaceChild(frag,node);
+  cols.push(cur);
+  return cols;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   CONTENT SLIDER
+   ════════════════════════════════════════════════════════════════════ */
+var currentSlide = 0;
+var slides = document.querySelectorAll('.slide');
+function showSlide(index){
+  slides.forEach(function(s, i){
+    s.classList.remove('active');
+    if (i === index) s.classList.add('active');
   });
+  currentSlide = index;
+  var bg = document.querySelector('.content-bg');
+  var img = slides[index] && slides[index].dataset.img;
+  if (img) bg.style.backgroundImage = "url('" + img + "')";
+  bg.classList.add('loaded');
+}
+function nextSlide(){ showSlide((currentSlide + 1) % slides.length); }
+function prevSlide(){ showSlide((currentSlide - 1 + slides.length) % slides.length); }
+showSlide(0);
+
+/* ════════════════════════════════════════════════════════════════════
+   DJ RADAR VIDEO
+   ════════════════════════════════════════════════════════════════════ */
+var djRadarVid = document.getElementById('djRadarVid');
+if (djRadarVid) {
+  djRadarVid.pause();
+  djRadarVid.muted = true;
+  document.getElementById('djPlayBtn').innerHTML = '&#9654;';
+  document.getElementById('djMuteBtn').innerHTML = '&#128266;';
+}
+function toggleDJPlay(){
+  if (!djRadarVid) return;
+  if (djRadarVid.paused) { djRadarVid.play(); document.getElementById('djPlayBtn').innerHTML = '&#10074;&#10074;'; }
+  else { djRadarVid.pause(); document.getElementById('djPlayBtn').innerHTML = '&#9654;'; }
+}
+function toggleDJMute(){
+  if (!djRadarVid) return;
+  djRadarVid.muted = !djRadarVid.muted;
+  document.getElementById('djMuteBtn').innerHTML = djRadarVid.muted ? '&#128266;' : '&#128263;';
 }
 
-var IG_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>';
-var ARROW_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" width="11" height="11" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
-
-function renderCard(card){
-  if(!card) return '';
-  if(!card.image && !card.title && !card.text) return '';
-  var kind = card.kind || 'ref';
-  var cls = 'ref-card';
-  if(kind === 'spon') cls += ' is-sponsored';
-  var url = safeUrl(card.url);
-  var imgUrl = safeUrl(card.image);
-  var label = card.label || 'Also on AfroCue (IG)';
-  var linkText = card.linkText || 'Check it out';
-  var img = imgUrl ? '<div class="ref-card-img"><img src="' + esc(imgUrl) + '" alt="' + esc(card.title || '') + '" loading="lazy" onerror="this.parentNode.style.display=\'none\'"/></div>' : '';
-  var title = card.title ? '<div class="ref-card-title">' + esc(card.title) + '</div>' : '';
-  var text  = card.text  ? '<div class="ref-card-text">' + esc(card.text) + '</div>' : '';
-  var inner = img + '<div class="ref-card-body"><div class="ref-card-label">' + IG_ICON + esc(label) + '</div>' + title + text + '<div class="ref-card-cta">' + esc(linkText) + ' ' + ARROW_ICON + '</div></div>';
-  if(url){
-    var rel = kind === 'spon' ? 'noopener sponsored' : 'noopener';
-    return '<a class="' + cls + '" href="' + esc(url) + '" target="_blank" rel="' + rel + '">' + inner + '</a>';
-  }
-  return '<div class="' + cls + '">' + inner + '</div>';
+/* ════════════════════════════════════════════════════════════════════
+   PARTIES — from GAS ?export=csv
+   ════════════════════════════════════════════════════════════════════ */
+function psHandleFromUrl(url){
+  if (!url) return '';
+  var m = url.match(/instagram\.com\/([^\/\?]+)/);
+  return m ? '@' + m[1] : '';
 }
 
-function parseCardMarker(p){
-  var m=p.match(/^\[(REF|SPON):([\s\S]*)\]$/);
-  if(!m)return null;
-  var parts=m[2].split('|');
-  return {
-    kind: m[1].toLowerCase(),
-    image:(parts[0]||'').trim(),label:(parts[1]||'').trim(),
-    title:(parts[2]||'').trim(),text:(parts[3]||'').trim(),
-    url:(parts[4]||'').trim(),linkText:(parts[5]||'').trim()
+function parsePartiesCSV(text){
+  var lines = text.trim().split('\n');
+  if (lines.length < 2) return { parties: [], featured: null };
+  var headers = splitCSVLine(lines[0]).map(function(h){ return h.trim().toLowerCase(); });
+  function col(name){ var i = headers.indexOf(name); return i > -1 ? i : -1; }
+  var C = {
+    id: col('party id'), name: col('party name'), city: col('city'),
+    time: col('time'), access: col('access'), setting: col('setting'),
+    genres: col('genres'), desc: col('description'),
+    hero: col('hero image'), flyer: col('flyer image'),
+    ig: col('instagram url'), web: col('website url'),
+    status: col('status'), featured: col('featured'),
+    upFlyer: col('upcoming flyer'), upDate: col('upcoming date')
   };
+  var parties = []; var featured = null;
+  for (var i=1; i<lines.length; i++){
+    var c = splitCSVLine(lines[i]);
+    if (!c[C.id] || !c[C.name]) continue;
+    var status = (c[C.status] || '').trim();
+    var isFeatured = (c[C.featured] || '').trim().toLowerCase() === 'yes';
+    var p = {
+      id: c[C.id].trim(),
+      name: c[C.name].trim(),
+      city: (c[C.city] || '').trim(),
+      time: (c[C.time] || '').trim(),
+      access: (c[C.access] || '').trim(),
+      setting: (c[C.setting] || '').trim(),
+      genres: c[C.genres] ? c[C.genres].trim().split(',').map(function(s){ return s.trim(); }).filter(Boolean) : [],
+      description: (c[C.desc] || '').trim(),
+      hero_img: (c[C.hero] || '').trim(),
+      flyer_img: (c[C.flyer] || '').trim(),
+      instagram: (c[C.ig] || '').trim(),
+      website: (c[C.web] || '').trim(),
+      upcoming_flyer: C.upFlyer > -1 ? (c[C.upFlyer] || '').trim() : '',
+      upcoming_date: C.upDate > -1 ? (c[C.upDate] || '').trim() : '',
+      featured: isFeatured
+    };
+    if (isFeatured) featured = p;
+    if (status === 'Active' || status === '') parties.push(p);
+  }
+  return { parties: parties, featured: featured };
 }
 
-function renderCta(parts, post){
-  var url = safeUrl(parts[0]);
-  if(!url) return '';
-  var title = (parts[1]||'').trim();
-  var sub   = (parts[2]||'').trim();
-  var btn   = (parts[3]||'').trim() || 'Learn more';
-  var img   = safeUrl(parts[4]);
-  var label = (parts[5]||'').trim() || 'Upcoming Event';
-  var expiry = (parts[6]||'').trim();
-  var spon = (post && post.sponsored) || (parts[7]||'').trim().toLowerCase() === 'sponsored';
-  if(expiry && todayLagos() > expiry) return '';
-  var rel = spon ? 'noopener sponsored' : 'noopener';
-  var cls = 'event-cta' + (spon ? ' is-sponsored' : '');
-  var imgHtml = img ? '<div class="event-cta-img"><img src="'+esc(img)+'" alt="'+esc(title)+'" loading="lazy" onerror="this.parentNode.style.display=\'none\'"/></div>' : '';
-  var styleAttr = img ? '' : ' style="grid-template-columns:1fr"';
-  var bodyStyle = img ? '' : ' style="border-left:none"';
-  return '<a class="'+cls+'" href="'+esc(url)+'" target="_blank" rel="'+rel+'"'+styleAttr+'>'
-    + imgHtml
-    + '<div class="event-cta-body"'+bodyStyle+'>'
-    +   '<div class="event-cta-label">'+esc(label)+'</div>'
-    +   '<div class="event-cta-title">'+esc(title)+'</div>'
-    +   '<div class="event-cta-subtitle">'+esc(sub)+'</div>'
-    +   '<span class="event-cta-btn">'+esc(btn)+' '+ARROW_ICON+'</span>'
-    + '</div></a>';
-}
-
-function renderBlock(p, post){
-  var ctaPipe = p.match(/^\[CTA:([^\]]+)\]$/);
-  if(ctaPipe && ctaPipe[1].indexOf('|') !== -1){
-    return renderCta(ctaPipe[1].split('|'), post);
-  }
-  var cta = p.match(/^\[CTA:([^\]]+):([^\]]+)\]$/);
-  if(cta){
-    var legacyUrl = safeUrl(cta[1]);
-    if(!legacyUrl) return '';
-    var legacyRel = (post && post.sponsored) ? 'noopener sponsored' : 'noopener';
-    return '<div style="margin:8px 0 16px;"><a href="'+esc(legacyUrl)+'" target="_blank" rel="'+legacyRel+'" style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--white);padding:13px 24px;border-radius:2px;text-decoration:none;">'+esc(cta[2])+' '+ARROW_ICON+'</a></div>';
-  }
-  var im = p.match(/^\[IMG:([^|\]]+)\|([\s\S]*)\]$/);
-  if(!im) im = p.match(/^\[IMG:([^\]]+)\]$/);
-  if(im){
-    var imSrc = safeUrl(im[1]);
-    if(!imSrc) return '';
-    var capText = im[2] ? im[2] : '';
-    var cap = capText ? '<div class="inline-img-cap">'+formatInlineText(capText)+'</div>' : '<div style="height:24px"></div>';
-    return '<img class="inline-img" src="'+esc(imSrc)+'" loading="lazy" alt="'+esc(plainText(capText))+'"/>' + cap;
-  }
-  var card=parseCardMarker(p);
-  if(card)return renderCard(card);
-  if(/^\d+\.\s+.+$/.test(p)){
-    return '<p style="font-size:16px;font-weight:600;color:var(--white);margin-bottom:6px;">'+esc(p)+'</p>';
-  }
-  return '<p>'+formatInlineText(p)+'</p>';
-}
-
-function renderBody(post){
-  var paras=String(post.body||'').split(/\|\|\||\\n\\n|\n\n/).filter(function(s){return s.trim().length;});
-  var html='';
-  if(post.sponsored){
-    var who=post.sponsorName?' &middot; '+esc(post.sponsorName):'';
-    html+='<div class="spon-banner"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>Paid partnership'+who+'</div>';
-  }
-  paras.forEach(function(p){ html+=renderBlock(p.trim(), post); });
-  if(post.caption)html+='<p style="font-size:11px;color:var(--grey);margin-top:-8px;">'+esc(post.caption)+'</p>';
-  return html;
-}
-
-function loadBlog(){
-  renderSkeletons();
-  var url = getScriptUrl() + '?export=blog';
-  fetch(url)
-    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
-    .then(function(posts){
-      if(!Array.isArray(posts)) throw new Error('Blog endpoint did not return an array');
-      boot(posts);
+function loadHomeParties(){
+  var csvUrl = getScriptUrl() + '?export=csv';
+  fetch(csvUrl)
+    .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+    .then(function(text){
+      var result = parsePartiesCSV(text);
+      renderHomeParties(result.parties.slice(0, 4));
+      renderHomeIncoming(result.featured);
     })
     .catch(function(err){
-      console.warn('Blog load failed:', err);
-      document.getElementById('noPosts').textContent = 'Could not load stories. Please try again shortly.';
-      document.getElementById('noPosts').style.display='block';
-      document.getElementById('postsGrid').innerHTML='';
+      console.warn('Home parties load failed:', err);
+      document.getElementById('psGrid').innerHTML = '<div class="ps-loading"><a href="parties.html" style="color:var(--yellow);text-decoration:none;">Browse all parties &rarr;</a></div>';
     });
 }
 
-function boot(posts){
-  POSTS = posts;
-  FEATURED = POSTS.filter(function(p){return p.featured;})[0] || POSTS[0] || null;
-  buildFilters();
-  renderHero(FEATURED);
-  renderPosts(ACTIVE_CAT);
-}
-
-function buildFilters(){
-  var wrap=document.getElementById('catFilters');
-  var cats=[];
-  POSTS.forEach(function(p){ if(p.category&&cats.indexOf(p.category)===-1)cats.push(p.category); });
-  cats.sort();
-  cats.forEach(function(c){
-    var b=document.createElement('button');
-    b.className='cat-btn';
-    b.textContent=c;
-    b.onclick=function(){filterCat(c,b);};
-    wrap.appendChild(b);
-  });
-}
-
-function renderHero(post){
-  var hero = document.getElementById('heroPost');
-  if(!post){
-    hero.classList.add('no-post');
-    hero.classList.remove('has-post');
+function renderHomeParties(parties){
+  var grid = document.getElementById('psGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  if (!parties.length){
+    grid.innerHTML = '<div class="ps-loading"><a href="parties.html" style="color:var(--yellow);text-decoration:none;">Browse all parties &rarr;</a></div>';
     return;
   }
-  var bg = document.getElementById('heroPostBg');
-  var bgUrl = safeUrl(post.image);
-  if(bgUrl){
-    bg.style.backgroundImage = "url('" + bgUrl + "')";
-  }
-  document.getElementById('heroPostCat').textContent = post.category || '';
-  document.getElementById('heroPostTitle').textContent = post.title;
-  document.getElementById('heroPostExcerpt').textContent = post.excerpt || '';
+  parties.forEach(function(p){
+    var card = document.createElement('div');
+    card.className = 'ps-card';
+    card.onclick = function(){ window.location.href = 'parties.html#' + p.id; };
 
-  var meta = document.getElementById('heroPostMeta');
-  var bits = [];
-  if(post.date) bits.push('<span>'+esc(post.date)+'</span>');
-  if(post.author) bits.push('<span>'+esc(post.author)+'</span>');
-  bits.push('<span class="read">'+readingTime(post.body)+'</span>');
-  meta.innerHTML = bits.join('<span class="sep"></span>');
+    var bg = document.createElement('div'); bg.className = 'ps-card-bg';
+    if (p.hero_img) bg.style.backgroundImage = "url('" + p.hero_img + "')";
 
-  makeActivatable(hero, 'Read: '+post.title, function(){ openModal(post.id); });
+    var img = document.createElement('img'); img.className = 'ps-card-img';
+    if (p.hero_img) { img.src = p.hero_img; img.loading = 'lazy'; img.decoding = 'async'; }
+    img.alt = p.name;
+    img.onerror = function(){ this.style.opacity = 0; };
 
-  requestAnimationFrame(function(){
-    hero.classList.add('has-post');
+    var tint = document.createElement('div'); tint.className = 'ps-card-tint';
+    var grad = document.createElement('div'); grad.className = 'ps-card-grad';
+    var tex = document.createElement('div'); tex.className = 'ps-card-texture';
+    var logo = document.createElement('div'); logo.className = 'ps-card-logo';
+    var li = document.createElement('img'); li.src = 'logo_afrocue.png'; li.alt = 'AfroCue';
+    li.onerror = function(){ this.style.display = 'none'; };
+    logo.appendChild(li);
+
+    var metaTags = [p.time, p.access, p.setting].filter(Boolean);
+    var allTags = metaTags.concat(p.genres || []);
+    var tagHTML = allTags.map(function(t, i){
+      return '<span class="ps-tag' + (i < metaTags.length ? ' type' : '') + '">' + esc(t) + '</span>';
+    }).join('');
+
+    var handle = psHandleFromUrl(p.instagram);
+
+    var content = document.createElement('div'); content.className = 'ps-card-content';
+    content.innerHTML = '<div class="ps-card-tags">' + tagHTML + '</div>'
+      + '<div class="ps-card-name">' + esc(p.name) + '</div>'
+      + (handle ? '<div class="ps-card-ig">' + esc(handle) + '</div>' : '')
+      + '<div class="ps-card-city">' + esc(p.city) + '</div>';
+
+    card.appendChild(bg);
+    card.appendChild(img);
+    card.appendChild(tint);
+    card.appendChild(grad);
+    card.appendChild(tex);
+    card.appendChild(logo);
+    card.appendChild(content);
+    grid.appendChild(card);
   });
 }
 
-function openFeatured(){ if(FEATURED) openModal(FEATURED.id); }
-
-function renderSkeletons(){
-  var g=document.getElementById('postsGrid');
-  g.innerHTML='';
-  for(var i=0;i<6;i++){
-    var c=document.createElement('div');
-    c.className='post-card';
-    c.innerHTML='<div class="pc-img" style="background:var(--mid)"></div>'
-      +'<div class="pc-body">'
-      +'<div style="width:38%;height:9px;background:rgba(255,255,255,0.06);border-radius:2px;margin-bottom:10px;"></div>'
-      +'<div style="width:88%;height:20px;background:rgba(255,255,255,0.06);border-radius:2px;margin-bottom:8px;"></div>'
-      +'<div style="width:100%;height:12px;background:rgba(255,255,255,0.06);border-radius:2px;margin-bottom:4px;"></div>'
-      +'<div style="width:65%;height:12px;background:rgba(255,255,255,0.06);border-radius:2px;"></div>'
-      +'</div>';
-    g.appendChild(c);
-  }
-}
-
-function filterCat(cat,btn){
-  ACTIVE_CAT=cat;
-  document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('active');});
-  if(btn)btn.classList.add('active');
-  renderPosts(cat);
-}
-
-function renderPosts(cat){
-  var g=document.getElementById('postsGrid');
-  var np=document.getElementById('noPosts');
-  g.innerHTML='';
-  var list=POSTS.filter(function(p){
-    if(FEATURED && p.id === FEATURED.id) return false;
-    return !cat || p.category===cat;
-  });
-  if(!list.length){
-    np.style.display='block';
-    np.textContent = cat ? 'No more posts in this category.' : 'No more posts yet.';
-    return;
-  }
-  np.style.display='none';
-  list.forEach(function(post){
-    var card=document.createElement('div');
-    card.className='post-card';
-    makeActivatable(card, post.title, function(){openModal(post.id);});
-    var thumb=safeUrl(post.image);
-    var imgHtml=thumb
-      ?'<img src="'+esc(thumb)+'" alt="'+esc(post.imageAlt||post.title)+'" loading="lazy" onerror="this.parentNode.innerHTML=\'<div class=pc-img-ph><span>No image</span></div>\'">'
-      :'<div class="pc-img-ph"><span>No image</span></div>';
-    var sponFlag=post.sponsored?'<span class="pc-spon">Sponsored</span>':'';
-    var tags=(post.tags||[]).slice(0,3).join(' · ');
-    card.innerHTML='<div class="pc-img">'+imgHtml+sponFlag+'</div>'
-      +'<div class="pc-body">'
-      +'<div class="pc-cat">'+esc(post.category||'')+'</div>'
-      +'<div class="pc-title">'+esc(post.title)+'</div>'
-      +'<div class="pc-excerpt">'+esc(post.excerpt||'')+'</div>'
-      +(tags?'<div class="pc-tags">'+esc(tags)+'</div>':'')
-      +'<div class="pc-meta"><span>'+esc(post.date||'')+'</span><span>'+readingTime(post.body)+'</span></div>'
-      +'</div>';
-    g.appendChild(card);
-  });
-}
-
-/* ---------- Modal, history and focus handling ---------- */
-function focusables(container){
-  return Array.prototype.slice.call(container.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex="0"]'))
-    .filter(function(el){ return el.offsetParent !== null || el === document.activeElement; });
-}
-function trapFocus(container, e){
-  var items = focusables(container);
-  if(!items.length) return;
-  var first = items[0], last = items[items.length-1];
-  if(e.shiftKey && (document.activeElement === first || !container.contains(document.activeElement))){
-    e.preventDefault(); last.focus();
-  } else if(!e.shiftKey && document.activeElement === last){
-    e.preventDefault(); first.focus();
-  }
-}
-
-function openModal(id,noPush){
-  var post=POSTS.find(function(p){return p.id===id;});
-  if(!post)return;
-  var modal=document.getElementById('postModal');
-  var wasOpen=modal.classList.contains('open');
-  if(!wasOpen) LAST_FOCUS = document.activeElement;
-  CURRENT_POST=post;
-  var img=document.getElementById('mImg');
-  var heroSrc=safeUrl(post.image);
-  if(heroSrc){img.src=heroSrc;img.alt=post.imageAlt||post.title;img.style.display='block';}
-  else{img.style.display='none';}
-  var heroCap=document.getElementById('mHeroCap');
-  if(post.imageCaption){
-    heroCap.innerHTML=formatInlineText(post.imageCaption);
-    heroCap.style.display='block';
-    highlightDJs(heroCap,post.djs);
-  } else { heroCap.style.display='none'; }
-  var creditEl=document.getElementById('mImgCredit');
-  if(post.credit){creditEl.textContent=post.credit;creditEl.style.display='block';}
-  else{creditEl.style.display='none';}
-  document.getElementById('mCat').textContent=post.category;
-  document.getElementById('mTitle').textContent=post.title;
-  var deckEl=document.getElementById('mDeck');
-  if(post.excerpt){deckEl.textContent=post.excerpt;deckEl.style.display='block';}
-  else{deckEl.style.display='none';}
-  document.getElementById('mMetaText').textContent=post.date+(post.author?' · '+post.author:'');
-  document.getElementById('mReadText').textContent=readingTime(post.body);
-  var shareBtn=document.getElementById('mShare');
-  shareBtn.className='modal-share';
-  shareBtn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share';
-  var contentEl=document.getElementById('mContent');
-  contentEl.innerHTML=renderBody(post);
-  highlightDJs(contentEl,post.djs);
-  document.getElementById('mTags').innerHTML=(post.tags||[]).map(function(t){return'<span class="pc-tag">'+esc(t)+'</span>';}).join('');
-  var related=POSTS.filter(function(p){return p.id!==id&&p.category===post.category;}).slice(0,3);
-  var relWrap=document.getElementById('mRelated');
-  var relGrid=document.getElementById('mRelGrid');
-  relGrid.innerHTML='';
-  if(related.length){
-    relWrap.style.display='block';
-    related.forEach(function(rp){
-      var rc=document.createElement('div');rc.className='rel-card';
-      makeActivatable(rc, rp.title, function(){openModal(rp.id);});
-      var rs=safeUrl(rp.image);
-      var ri=rs?'<img src="'+esc(rs)+'" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">':'';
-      rc.innerHTML='<div class="rel-img">'+ri+'</div><div class="rel-body"><div class="rel-title">'+esc(rp.title)+'</div></div>';
-      relGrid.appendChild(rc);
-    });
-  }else{relWrap.style.display='none';}
-  modal.classList.add('open');
-  modal.scrollTop=0;
-  document.body.style.overflow='hidden';
-  document.title = post.title + ' | AfroCue';
-  var progress=document.getElementById('readingProgress');
-  progress.classList.add('on');
-  progress.style.width='0%';
-  if(!noPush){
-    if(wasOpen) history.replaceState({post:id},'','#'+id);
-    else history.pushState({post:id},'','#'+id);
-  }
-  var closeBtn=document.getElementById('modalClose');
-  if(closeBtn) closeBtn.focus({preventScroll:true});
-}
-
-function closeModal(fromPop){
-  var modal=document.getElementById('postModal');
-  if(!modal.classList.contains('open'))return;
-  modal.classList.remove('open');
-  document.body.style.overflow='';
-  CURRENT_POST=null;
-  document.title = BASE_TITLE;
-  document.getElementById('readingProgress').classList.remove('on');
-  document.getElementById('readingProgress').style.width='0%';
-  if(fromPop !== true){
-    if(history.state && history.state.post){ history.back(); }
-    else { history.replaceState(null,'',location.pathname); }
-  }
-  if(LAST_FOCUS && typeof LAST_FOCUS.focus === 'function'){
-    try{ LAST_FOCUS.focus({preventScroll:true}); }catch(e){}
-  }
-  LAST_FOCUS = null;
-}
-
-document.getElementById('postModal').addEventListener('scroll',function(){
-  var el=this;
-  var h=el.scrollHeight - el.clientHeight;
-  var pct = h > 0 ? (el.scrollTop / h) * 100 : 0;
-  var bar=document.getElementById('readingProgress');
-  if(bar.classList.contains('on')) bar.style.width = pct + '%';
-},{passive:true});
-
-window.addEventListener('popstate',function(){
-  var h=location.hash.replace('#','');
-  if(h && POSTS.length) openModal(h,true);
-  else closeModal(true);
-});
-
-function handleShare(){
-  if(!CURRENT_POST)return;
-  var url='https://afrocue.xyz/blog.html#'+CURRENT_POST.id;
-  var btn=document.getElementById('mShare');
-  if(navigator.share){
-    navigator.share({title:CURRENT_POST.title,text:CURRENT_POST.excerpt,url:url}).catch(function(){});
-  }else{
-    navigator.clipboard.writeText(url).then(function(){
-      btn.className='modal-share copied';
-      btn.textContent='Copied!';
-      setTimeout(function(){
-        btn.className='modal-share';
-        btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share';
-      },2000);
-    }).catch(function(){});
-  }
-}
-function shareToIG(){ if(!CURRENT_POST)return; window.open('https://www.instagram.com/','_blank','noopener'); }
-async function shareToIGStory(){
-  if(!CURRENT_POST)return;
-  var url='https://afrocue.xyz/blog.html#'+CURRENT_POST.id;
-  var text=CURRENT_POST.title+' | AfroCue';
-  try{
-    if(navigator.canShare && CURRENT_POST.image){
-      var resp=await fetch(CURRENT_POST.image);
-      var blob=await resp.blob();
-      var ext=(blob.type.split('/')[1]||'jpg').split('+')[0];
-      var file=new File([blob],'afrocue.'+ext,{type:blob.type});
-      if(navigator.canShare({files:[file]})){await navigator.share({files:[file],text:text,url:url});return;}
+function renderHomeIncoming(party){
+  var sec = document.getElementById('incoming');
+  if (!sec) return;
+  if (!party || !party.name){ sec.classList.remove('visible'); return; }
+  sec.classList.add('visible');
+  var bg = document.getElementById('incBg');
+  if (bg && party.hero_img) bg.style.backgroundImage = "url('" + party.hero_img + "')";
+  document.getElementById('incName').textContent = party.name;
+  var metaTags = [party.time, party.access, party.setting].filter(Boolean);
+  var allTags = metaTags.concat(party.genres || []);
+  document.getElementById('incTags').innerHTML = allTags.map(function(t){
+    return '<span class="inc-tag">' + esc(t) + '</span>';
+  }).join('');
+  document.getElementById('incDesc').textContent = party.description || '';
+  var dateEl = document.getElementById('incDate');
+  if (party.upcoming_date) dateEl.textContent = '📅 ' + party.upcoming_date;
+  else dateEl.textContent = party.city;
+  var btn = document.getElementById('incBtn');
+  if (btn) btn.href = party.website || ('parties.html#' + party.id);
+  if (btn && party.website) btn.setAttribute('target', '_blank');
+  var flyerImg = document.getElementById('incFlyerImg');
+  var flyerSrc = party.upcoming_flyer || party.flyer_img || '';
+  if (flyerImg){
+    if (flyerSrc){
+      flyerImg.src = flyerSrc;
+      flyerImg.alt = party.name + ' flyer';
+      flyerImg.style.visibility = 'visible';
+      flyerImg.onerror = function(){ this.style.visibility = 'hidden'; };
+    } else {
+      flyerImg.style.visibility = 'hidden';
     }
-    if(navigator.share){await navigator.share({title:CURRENT_POST.title,text:text,url:url});return;}
-    await navigator.clipboard.writeText(url);
-    alert('Link copied. Paste it into your Instagram Story.');
-  }catch(e){}
+  }
 }
-document.getElementById('postModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
 
-document.addEventListener('keydown',function(e){
-  var signup=document.getElementById('signupModal');
-  var post=document.getElementById('postModal');
-  var signupOpen=signup.classList.contains('open');
-  var postOpen=post.classList.contains('open');
-  if(e.key==='Escape'){
-    if(signupOpen) closeSignupModal();
-    else if(postOpen) closeModal();
-    return;
-  }
-  if(e.key==='Tab'){
-    if(signupOpen) trapFocus(signup.querySelector('.signup-modal'), e);
-    else if(postOpen) trapFocus(post, e);
-  }
-});
+/* ════════════════════════════════════════════════════════════════════
+   HOME PROMO — from ?export=promo&slot=homepage
+   ════════════════════════════════════════════════════════════════════ */
+function loadHomePromo(){
+  var url = getScriptUrl() + '?export=promo&slot=homepage';
+  fetch(url)
+    .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function(promos){
+      if (!Array.isArray(promos) || !promos.length) return;
+      renderHomePromo(promos[0]);
+    })
+    .catch(function(err){ console.warn('Home promo load failed:', err); });
+}
 
+function renderHomePromo(p){
+  var sec = document.getElementById('home-promo');
+  if (!sec) return;
+
+  var isSpon = !!p.sponsored;
+  var flyerUrl = safeUrl(p.image);
+  var label = p.label || (isSpon ? 'Sponsored' : 'Featured');
+  var name = p.title || '';
+  var sub = p.subtitle || p.text || '';
+  var btnText = p.linkText || 'Learn more';
+  var btnUrl = safeUrl(p.url);
+  if (!btnUrl) return;
+
+  /* Split subtitle on '·' into tags if present */
+  var tags = [];
+  if (sub && sub.indexOf('·') > -1){
+    tags = sub.split('·').map(function(s){ return s.trim(); }).filter(Boolean);
+  }
+
+  document.getElementById('hpBadge').textContent = label;
+  document.getElementById('hpName').textContent = name;
+
+  var subEl = document.getElementById('hpSub');
+  var tagsEl = document.getElementById('hpTags');
+  if (tags.length){
+    subEl.style.display = 'none';
+    tagsEl.innerHTML = tags.map(function(t){ return '<span class="hp-tag">' + esc(t) + '</span>'; }).join('');
+  } else {
+    subEl.textContent = sub;
+    subEl.style.display = '';
+    tagsEl.innerHTML = '';
+  }
+
+  document.getElementById('hpBtn').textContent = btnText;
+
+  var card = document.getElementById('hpCard');
+  card.href = btnUrl;
+  card.rel = isSpon ? 'noopener sponsored' : 'noopener';
+  if (isSpon) card.classList.add('is-sponsored');
+
+  var bg = document.getElementById('hpBg');
+  if (flyerUrl) bg.style.backgroundImage = "url('" + flyerUrl + "')";
+
+  var flyer = document.getElementById('hpFlyer');
+  var wrap = document.getElementById('hpFlyerWrap');
+  if (flyerUrl){
+    flyer.src = flyerUrl;
+    flyer.alt = p.imageAlt || name;
+    flyer.onerror = function(){ wrap.style.display = 'none'; };
+  } else {
+    wrap.style.display = 'none';
+  }
+
+  sec.classList.add('visible');
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   BLOG — from ?export=blog
+   ════════════════════════════════════════════════════════════════════ */
+function loadHomeBlog(){
+  var url = getScriptUrl() + '?export=blog';
+  fetch(url)
+    .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function(posts){
+      if (!Array.isArray(posts) || !posts.length) throw new Error('Empty blog');
+      renderHomeBlog(posts);
+    })
+    .catch(function(err){
+      console.warn('Home blog load failed:', err);
+      var g = document.getElementById('bhGrid');
+      if (g) g.innerHTML = '<div style="grid-column:1/-1;padding:40px 0;text-align:center;color:var(--grey);font-size:13px;font-weight:300;">Blog unavailable — <a href="blog.html" style="color:var(--yellow);text-decoration:none;">visit the blog</a>.</div>';
+    });
+}
+
+function renderHomeBlog(posts){
+  var featured = posts.filter(function(p){ return p.featured; })[0] || posts[0];
+  var side = posts.filter(function(p){ return p.id !== featured.id; }).slice(0, 2);
+  var grid = document.getElementById('bhGrid');
+  if (!grid) return;
+
+  function imgHtml(post, cls, ratio){
+    var src = safeUrl(post.image);
+    if (!src) return '<div class="' + cls + '" style="background:var(--mid);aspect-ratio:' + ratio + ';"></div>';
+    return '<div class="' + cls + '"><img src="' + esc(src) + '" alt="' + esc(post.imageAlt || post.title) + '" loading="lazy" onerror="this.parentNode.style.background=\'var(--mid)\';this.style.display=\'none\';"/></div>';
+  }
+
+  var featHtml = ''
+    + '<a class="bh-feat-post" href="blog.html#' + esc(featured.id) + '">'
+    +   imgHtml(featured, 'bh-feat-img-wrap', '16/11')
+    +   '<div class="bh-feat-text">'
+    +     '<div class="bh-feat-eyebrow">Featured</div>'
+    +     '<div class="bh-feat-title">' + esc(featured.title) + '</div>'
+    +     '<p class="bh-feat-excerpt">' + esc(featured.excerpt || '') + '</p>'
+    +     '<div class="bh-feat-meta">' + esc(featured.date || '') + (featured.author ? ' · ' + esc(featured.author) : '') + '</div>'
+    +     '<span class="bh-feat-btn">Read &rarr;</span>'
+    +   '</div>'
+    + '</a>';
+
+  var sideHtml = side.map(function(p){
+    return ''
+      + '<a class="bh-side-card" href="blog.html#' + esc(p.id) + '">'
+      +   imgHtml(p, 'bh-side-img', '16/10')
+      +   '<div class="bh-side-body">'
+      +     '<div class="bh-side-title">' + esc(p.title) + '</div>'
+      +     '<div class="bh-side-excerpt">' + esc(p.excerpt || '') + '</div>'
+      +     '<div class="bh-side-meta"><span>' + esc(p.date || '') + '</span><span>' + readingTime(p.body) + '</span></div>'
+      +   '</div>'
+      + '</a>';
+  }).join('');
+
+  grid.innerHTML = featHtml + '<div class="bh-side">' + sideHtml + '</div>';
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   SIGNUP MODAL
+   ════════════════════════════════════════════════════════════════════ */
 function openSignupModal(){
-  SIGNUP_LAST_FOCUS = document.activeElement;
-  var m=document.getElementById('signupModal');
-  m.classList.add('open');
-  var first=m.querySelector('input');
-  if(first) first.focus({preventScroll:true});
+  document.getElementById('signupModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
 function closeSignupModal(){
-  var m=document.getElementById('signupModal');
-  if(!m.classList.contains('open')) return;
-  m.classList.remove('open');
-  if(SIGNUP_LAST_FOCUS && typeof SIGNUP_LAST_FOCUS.focus === 'function'){
-    try{ SIGNUP_LAST_FOCUS.focus({preventScroll:true}); }catch(e){}
-  }
-  SIGNUP_LAST_FOCUS = null;
+  document.getElementById('signupModal').classList.remove('open');
+  document.body.style.overflow = '';
 }
-function handleSignup(e){
+document.getElementById('signupModal').addEventListener('click', function(e){
+  if (e.target === this) closeSignupModal();
+});
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') closeSignupModal();
+});
+
+function handleNewsletter(e){
   e.preventDefault();
-  var form=e.target;
-  var btn=form.querySelector('button[type="submit"]');
-  btn.disabled=true;
-  btn.textContent='Signing up...';
-  var data={source:'blog-signup',name:form.su_name.value.trim(),email:form.su_email.value.trim(),role:form.su_role.value,instagram:form.su_ig.value.trim()};
-  fetch(getScriptUrl(),{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(data)}).finally(function(){
-    form.style.display='none';
-    document.getElementById('signupSuccess').style.display='block';
+  var form = e.target;
+  var btn = form.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  btn.textContent = 'Subscribing...';
+  var data = {
+    source: 'newsletter',
+    name: form.nl_name.value.trim(),
+    email: form.nl_email.value.trim()
+  };
+  fetch(getScriptUrl(), {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify(data)
+  }).finally(function(){
+    window.location.href = 'https://afrocue.xyz/thank-you/sign-up';
   });
 }
-document.getElementById('signupModal').addEventListener('click',function(e){if(e.target===this)closeSignupModal();});
 
-(function(){
-  var nav=document.getElementById('mainNav');
-  window.addEventListener('scroll',function(){
-    if(window.scrollY > 40) nav.classList.add('solid');
-    else nav.classList.remove('solid');
-  },{passive:true});
-})();
+function handleSignup(e){
+  e.preventDefault();
+  var form = e.target;
+  var btn = form.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  btn.textContent = 'Signing up...';
+  var data = {
+    source: 'join',
+    name: form.su_name.value.trim(),
+    email: form.su_email.value.trim(),
+    role: form.su_role.value,
+    instagram: form.su_ig.value.trim()
+  };
+  fetch(getScriptUrl(), {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify(data)
+  }).finally(function(){
+    window.location.href = 'https://afrocue.xyz/thank-you/sign-up';
+  });
+}
 
-(function(){
-  var hash=window.location.hash.replace('#','');
-  if(!hash)return;
-  var tries=0;
-  var t=setInterval(function(){
-    tries++;
-    if(POSTS.length>0){clearInterval(t);openModal(hash,true);}
-    else if(tries>200){clearInterval(t);}
-  },100);
-})();
-
-loadBlog();
+/* ════════════════════════════════════════════════════════════════════
+   BOOT
+   ════════════════════════════════════════════════════════════════════ */
+loadHomeParties();
+loadHomePromo();
+loadHomeBlog();
 </script>
 </body>
 </html>
