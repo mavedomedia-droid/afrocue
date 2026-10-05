@@ -21,7 +21,7 @@
   var CFG = {
     home: 'index.html',
     logo: 'logo_afrocue.png',
-    email: 'hello@afrocue.xyz',
+    email: 'info@afrocue.xyz',
 
     nav: [
       { label: 'Home',    href: 'index.html'   },
