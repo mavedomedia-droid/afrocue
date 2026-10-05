@@ -64,17 +64,7 @@
     .skip-link{position:absolute;top:-60px;left:16px;z-index:20000;background:var(--yellow);color:#0a0a0a;padding:12px 18px;border-radius:2px;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;transition:top 0.15s}
     .skip-link:focus{top:16px}
 
-    /* NAV */
-    nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(11,10,9,0.78);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--edge);transition:background 0.3s}
-    nav.solid{background:rgba(11,10,9,0.96)}
-    .nav-logo{display:flex;align-items:center;text-decoration:none}
-    .nav-logo img{height:44px;width:auto}
-    .nav-logo-fallback{display:none;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:17px;color:var(--yellow);letter-spacing:0.08em}
-    .nav-links{display:flex;gap:28px;list-style:none}
-    .nav-links a{font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--silver);text-decoration:none;transition:color 0.2s}
-    .nav-links a:hover,.nav-links a.active{color:var(--ink)}
-    .nav-cta{font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#0a0a0a;background:var(--ink);padding:10px 18px;border-radius:2px;text-decoration:none;white-space:nowrap;transition:background 0.2s}
-    .nav-cta:hover{background:#d4d4d0}
+    /* NAV + FOOTER now come from js/afrocue-ui.js */
 
     /* HERO — light leak from above */
     .hero-post{position:relative;min-height:84vh;display:flex;align-items:flex-end;padding:150px var(--edge-pad) 80px;overflow:hidden;isolation:isolate;cursor:pointer}
@@ -365,10 +355,6 @@
     .wa-note{font-size:14px;color:rgba(240,237,232,0.6);margin-top:10px}
     .wa-btn{display:inline-flex;align-items:center;gap:10px;background:var(--wa);color:#0a0a0a;text-decoration:none;padding:17px 28px;border-radius:2px;font-size:12px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;transition:opacity 0.2s}
     .wa-btn:hover{opacity:0.88}
-    footer{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px var(--edge-pad);background:var(--bg);border-top:1px solid var(--edge)}
-    .ft-links{display:flex;gap:18px;flex-wrap:wrap}
-    .ft-links a,.ft-email a{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--silver);text-decoration:none}
-    .ft-links a:hover,.ft-email a:hover{color:var(--ink)}
 
     .signup-modal-wrap{display:none;position:fixed;inset:0;z-index:10000;background:rgba(6,6,5,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);align-items:center;justify-content:center;padding:24px}
     .signup-modal-wrap.open{display:flex}
@@ -395,8 +381,6 @@
       .post-card.is-lead .pc-img{aspect-ratio:16/10;min-height:0}
     }
     @media(max-width:768px){
-      nav{padding:12px 20px}
-      .nav-links{display:none}
       .hero-post{min-height:76vh;padding:120px 20px 52px}
       .hero-post-title{font-size:clamp(32px,9vw,48px)}
       .hero-post-excerpt{font-size:15px}
@@ -426,7 +410,6 @@
       .modal-wa{padding:20px}
       .wa{padding:40px 20px}
       .wa-btn{width:100%;justify-content:center}
-      footer{padding:16px 20px;flex-direction:column;align-items:flex-start}
       .signup-modal{padding:36px 22px}
       .signup-row{grid-template-columns:1fr}
       .back-to-top{right:16px;bottom:16px;width:44px;height:44px}
@@ -444,6 +427,9 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <a href="#posts" class="skip-link">Skip to stories</a>
+
+<!-- SHARED NAV (rendered by js/afrocue-ui.js) -->
+<div id="ac-nav"></div>
 
 <div class="reading-progress" id="readingProgress"></div>
 
@@ -533,20 +519,6 @@
   </div>
 </div>
 
-<nav id="mainNav">
-  <a class="nav-logo" href="index.html">
-    <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none';document.querySelector('.nav-logo-fallback').style.display='block'"/>
-    <span class="nav-logo-fallback">afro.cue</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="parties.html">Parties</a></li>
-    <li><a href="dj.html">DJs</a></li>
-    <li><a href="blog.html" class="active">Culture</a></li>
-  </ul>
-  <a href="list-party.html" class="nav-cta">List Your Party</a>
-</nav>
-
 <main id="main">
   <section class="hero-post" id="heroPost">
     <div class="hero-post-bg" id="heroPostBg"></div>
@@ -609,14 +581,9 @@
   </div>
 </div>
 
-<footer>
-  <a href="index.html" style="display:inline-flex;text-decoration:none;">
-    <img src="logo_afrocue.png" alt="AfroCue" style="height:26px;width:auto;" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
-    <span style="display:none;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:14px;color:var(--yellow);">AfroCue</span>
-  </a>
-  <div class="ft-links"><a href="index.html">Home</a><a href="parties.html">Parties</a><a href="dj.html">DJs</a><a href="blog.html">Culture</a></div>
-  <div class="ft-email"><a href="mailto:hello@afrocue.xyz">hello@afrocue.xyz</a></div>
-</footer>
+<!-- SHARED FOOTER (rendered by js/afrocue-ui.js) -->
+<div id="ac-footer"></div>
+<script src="js/afrocue-ui.js" data-nav="full" data-footer="full"></script>
 
 <script>
 var POSTS = [];
@@ -909,6 +876,7 @@ function sortPosts(list){
 /* ---- FILTER / SEARCH ---- */
 function filterCat(cat,btn){
   ACTIVE_CAT=cat;
+  ACTIVE_TAG='';
   document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('active');});
   if(btn)btn.classList.add('active');
   renderPosts();
@@ -1241,9 +1209,6 @@ function handleSignup(e){
 }
 document.getElementById('signupModal').addEventListener('click',function(e){if(e.target===this)closeSignupModal();});
 
-window.addEventListener('scroll',function(){
-  document.getElementById('mainNav').classList.toggle('solid', window.scrollY > 40);
-},{passive:true});
 document.getElementById('searchInput').addEventListener('input', onSearchInput);
 
 (function(){
