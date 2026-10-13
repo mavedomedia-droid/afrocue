@@ -165,6 +165,7 @@
 
   #formStatus{display:none;font-size:14px;font-weight:500;line-height:1.6;margin-top:10px;padding:14px 16px;border-radius:5px;background:rgba(200,224,0,.06);border:1px solid rgba(200,224,0,.28);color:var(--yellow)}
   #formStatus.err{background:rgba(255,80,80,.06);border-color:rgba(255,80,80,.3);color:#ff8a8a}
+  #formStatus.loading{background:rgba(255,255,255,.04);border-color:var(--edge-hi);color:var(--ink3)}
 
   .form-meta{margin:18px 0 0;font-size:13px;line-height:1.7;color:var(--mute)}
   .form-meta a{color:var(--silver);text-decoration:underline;text-underline-offset:3px}
@@ -329,7 +330,9 @@
           <h3>Apply below.</h3>
           <p class="apply-lede">Tell us about yourself, your experience, and how much you know or have experience in nightlife, dance music, media, and lifestyle.</p>
 
-          <form class="career-form" id="careerForm" novalidate autocomplete="on">
+          <form class="career-form" id="careerForm" novalidate autocomplete="on"
+                onsubmit="try{ if(window.afrocareerSubmit){ window.afrocareerSubmit(event); } else { console.error('[careers] handler not defined'); alert('Form is not ready yet. Please reload the page.'); } }catch(err){ console.error('[careers] inline handler error:', err); alert('Error: ' + err.message); } return false;">
+
             <div class="form-row">
               <div class="field">
                 <label for="c-name">Your name <span class="req">·</span></label>
@@ -427,10 +430,15 @@
 <script src="js/afrocue-ui.js" data-nav="full" data-footer="full"></script>
 
 <script>
+/* ════════════════════════════════════════════════════════════════
+   CAREERS FORM
+   The submit handler is defined on window BEFORE anything else
+   runs, and the form calls it via an inline onsubmit attribute.
+   That means even if this script block errors out halfway, the
+   form will still call the handler and stop the native submit.
+   ════════════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
-
-  console.log('[careers] script start');
 
   var MAX_RESUME_BYTES = 2 * 1024 * 1024;
   var FALLBACK_URL = 'https://script.google.com/macros/s/AKfycwk0SvCWpKSr-hxsh_TPZiCCh2QTT8uXanQWiDl2qRCLqw1_wkNWLdNUs3LhYGqTl-O/exec';
@@ -441,19 +449,21 @@
         var u = getAfroCueScriptUrl();
         if (u && /^https:\/\//i.test(u)) return u;
       }
-    } catch (e) {
-      console.warn('[careers] getAfroCueScriptUrl() threw:', e);
-    }
+    } catch (e) { console.warn('[careers] getAfroCueScriptUrl() threw:', e); }
     return FALLBACK_URL;
   }
 
-  function show(msg, isError) {
-    var status = document.getElementById('formStatus');
-    if (!status) { alert(msg); return; }
-    status.textContent = msg;
-    status.classList.toggle('err', !!isError);
-    status.style.display = 'block';
-    status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  function setStatus(msg, kind) {
+    var st = document.getElementById('formStatus');
+    if (!st) { console.log('[careers] status:', msg); return; }
+    st.textContent = msg || '';
+    st.classList.remove('err', 'loading');
+    if (kind === 'err') st.classList.add('err');
+    else if (kind === 'loading') st.classList.add('loading');
+    st.style.display = msg ? 'block' : 'none';
+    if (msg) {
+      try { st.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
+    }
   }
 
   function humanSize(b) {
@@ -467,7 +477,7 @@
       var reader = new FileReader();
       reader.onload = function () {
         var result = String(reader.result);
-        var comma  = result.indexOf(',');
+        var comma = result.indexOf(',');
         resolve({
           name: file.name,
           type: file.type || 'application/pdf',
@@ -479,27 +489,19 @@
     });
   }
 
-  /* ══════════════════════════════════════════════════════
-     SUBMIT HANDLER — attached FIRST, in its own scope.
-     Nothing below can prevent it from attaching.
-     ══════════════════════════════════════════════════════ */
-  (function attachSubmit() {
-    var form = document.getElementById('careerForm');
-    if (!form) {
-      console.error('[careers] #careerForm not found — submit handler not attached');
-      return;
-    }
-    console.log('[careers] submit handler attached');
+  /* ── The global submit handler ──────────────────────────── */
+  window.afrocareerSubmit = function (ev) {
+    if (ev) { ev.preventDefault(); ev.stopPropagation(); }
+    console.log('[careers] handler called');
 
-    form.addEventListener('submit', function (ev) {
-      ev.preventDefault();
-      ev.stopPropagation();
-      console.log('[careers] submit fired');
+    try {
+      var form = document.getElementById('careerForm');
+      if (!form) throw new Error('Form not found');
 
-      var btn = form.querySelector('button[type="submit"]');
       var honey = document.getElementById('c-company');
       if (honey && honey.value) { form.reset(); return; }
 
+      var btn = form.querySelector('button[type="submit"]');
       var fName  = document.getElementById('c-name');
       var fEmail = document.getElementById('c-email');
       var fPhone = document.getElementById('c-phone');
@@ -510,28 +512,26 @@
       var fileInput = document.getElementById('c-resume');
       var fileLabel = document.getElementById('fileLabel');
 
-      // Manual validation — file input is display:none so native
-      // reportValidity() can't show a tooltip on it.
-      if (!fName.value.trim())  { show('Please enter your name.', true); fName.focus(); return; }
+      if (!fName.value.trim()) { setStatus('Please enter your name.', 'err'); fName.focus(); return; }
       if (!fEmail.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fEmail.value.trim())) {
-        show('Please enter a valid email address.', true); fEmail.focus(); return;
+        setStatus('Please enter a valid email address.', 'err'); fEmail.focus(); return;
       }
-      if (!fPhone.value.trim()) { show('Please enter your phone or WhatsApp number.', true); fPhone.focus(); return; }
-      if (!fScene.value.trim()) { show('Please tell us about your background in nightlife, dance music, or media.', true); fScene.focus(); return; }
-      if (!fExp.value.trim())   { show('Please add your relevant experience.', true); fExp.focus(); return; }
+      if (!fPhone.value.trim()) { setStatus('Please enter your phone or WhatsApp number.', 'err'); fPhone.focus(); return; }
+      if (!fScene.value.trim()) { setStatus('Please tell us about your background in nightlife, dance music, or media.', 'err'); fScene.focus(); return; }
+      if (!fExp.value.trim())   { setStatus('Please add your relevant experience.', 'err'); fExp.focus(); return; }
 
       var resumeFile = (fileInput && fileInput.files && fileInput.files[0]) ? fileInput.files[0] : null;
       if (!resumeFile) {
-        show('Please attach your resume before submitting.', true);
+        setStatus('Please attach your resume before submitting.', 'err');
         return;
       }
       if (resumeFile.size > MAX_RESUME_BYTES) {
-        show('Your resume is ' + humanSize(resumeFile.size) + ' — the limit is 2 MB. Please compress it or export a smaller PDF.', true);
+        setStatus('Your resume is ' + humanSize(resumeFile.size) + ' — the limit is 2 MB. Please compress it or export a smaller PDF.', 'err');
         return;
       }
 
       if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
-      show('Uploading your application…', false);
+      setStatus('Uploading your application…', 'loading');
 
       var SCRIPT_URL = resolveScriptUrl();
       console.log('[careers] POST to:', SCRIPT_URL);
@@ -552,7 +552,7 @@
             resume_type: file.type,
             resume_data: file.data
           };
-          console.log('[careers] payload built, resume bytes:', file.data.length);
+          console.log('[careers] payload ready, resume b64 length:', file.data.length);
 
           return fetch(SCRIPT_URL, {
             method:  'POST',
@@ -565,111 +565,120 @@
           console.log('[careers] POST returned');
           form.reset();
           if (fileLabel) fileLabel.textContent = 'Choose a file or drag it here';
-          show("Thanks — your application is in. We'll be in touch if it's a fit.", false);
+          setStatus("Thanks — your application is in. We'll be in touch if it's a fit.", 'ok');
         })
         .catch(function (err) {
           console.error('[careers] submit error:', err);
-          show('Something went wrong. Please email afrocueonline@gmail.com directly.', true);
+          setStatus('Something went wrong. Please email afrocueonline@gmail.com directly.', 'err');
         })
         .finally(function () {
           if (btn) { btn.disabled = false; btn.textContent = 'Submit application'; }
         });
-    });
-  })();
 
-  /* ══════════════════════════════════════════════════════
-     Everything else — each wrapped so a failure in one
-     cannot break the submit handler above.
-     ══════════════════════════════════════════════════════ */
-
-  // Collapsible role card
-  try {
-    var card = document.getElementById('roleCard');
-    var head = document.getElementById('roleHead');
-    var body = document.getElementById('roleBody');
-    if (card && head && body) {
-      head.addEventListener('click', function () {
-        var open = !card.classList.contains('is-open');
-        card.classList.toggle('is-open', open);
-        body.style.display = open ? 'block' : 'none';
-      });
-      if (window.location.hash === '#apply') {
-        setTimeout(function () {
-          card.classList.add('is-open');
-          body.style.display = 'block';
-          var apply = document.getElementById('apply');
-          if (apply) {
-            var top = apply.getBoundingClientRect().top + window.pageYOffset - 100;
-            window.scrollTo({ top: top, behavior: 'smooth' });
-          }
-        }, 120);
-      }
+    } catch (err) {
+      console.error('[careers] handler crash:', err);
+      setStatus('Something went wrong: ' + err.message, 'err');
     }
-  } catch (e) { console.warn('[careers] role card error:', e); }
+  };
 
-  // File picker label + size guard
-  try {
-    var fi = document.getElementById('c-resume');
-    var fl = document.getElementById('fileLabel');
-    if (fi && fl) {
-      fi.addEventListener('change', function () {
-        var f = fi.files && fi.files[0];
-        if (!f) { fl.textContent = 'Choose a file or drag it here'; return; }
-        if (f.size > MAX_RESUME_BYTES) {
-          fi.value = '';
-          fl.textContent = 'Choose a file or drag it here';
-          show('That file is ' + humanSize(f.size) + ' — the limit is 2 MB. Please upload a smaller PDF or DOC.', true);
-          return;
+  console.log('[careers] handler defined on window.afrocareerSubmit');
+
+  /* ── Everything else, each in its own try/catch ───────── */
+  function initExtras() {
+    // Collapsible role card
+    try {
+      var card = document.getElementById('roleCard');
+      var head = document.getElementById('roleHead');
+      var body = document.getElementById('roleBody');
+      if (card && head && body) {
+        head.addEventListener('click', function () {
+          var open = !card.classList.contains('is-open');
+          card.classList.toggle('is-open', open);
+          body.style.display = open ? 'block' : 'none';
+        });
+        if (window.location.hash === '#apply') {
+          setTimeout(function () {
+            card.classList.add('is-open');
+            body.style.display = 'block';
+            var apply = document.getElementById('apply');
+            if (apply) {
+              var top = apply.getBoundingClientRect().top + window.pageYOffset - 100;
+              window.scrollTo({ top: top, behavior: 'smooth' });
+            }
+          }, 120);
         }
-        var st = document.getElementById('formStatus');
-        if (st) st.style.display = 'none';
-        fl.innerHTML = '<strong>' + f.name + '</strong>';
-      });
-    }
-  } catch (e) { console.warn('[careers] file picker error:', e); }
+      }
+    } catch (e) { console.warn('[careers] role card error:', e); }
 
-  // Featured blog strip
-  try {
-    var sec   = document.getElementById('blogStrip');
-    var link  = document.getElementById('blogStripLink');
-    var img   = document.getElementById('blogStripImg');
-    var title = document.getElementById('blogStripTitle');
-    var exc   = document.getElementById('blogStripExcerpt');
-    var meta  = document.getElementById('blogStripMeta');
-
-    if (sec) {
-      fetch(resolveScriptUrl() + '?export=blog', { cache: 'no-store' })
-        .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-        .then(function (posts) {
-          if (!Array.isArray(posts) || !posts.length) return;
-          var post = posts.filter(function (p) { return p.featured; })[0] || posts[0];
-          if (!post || !post.title) return;
-
-          var imgUrl = (post.image || '').trim();
-          if (imgUrl && /^https:\/\//i.test(imgUrl)) {
-            img.src = imgUrl;
-            img.alt = post.imageAlt || post.title;
-            img.onerror = function () { img.parentNode.style.display = 'none'; };
-          } else {
-            img.parentNode.style.display = 'none';
+    // File picker label + size guard
+    try {
+      var fi = document.getElementById('c-resume');
+      var fl = document.getElementById('fileLabel');
+      if (fi && fl) {
+        fi.addEventListener('change', function () {
+          var f = fi.files && fi.files[0];
+          if (!f) { fl.textContent = 'Choose a file or drag it here'; return; }
+          if (f.size > MAX_RESUME_BYTES) {
+            fi.value = '';
+            fl.textContent = 'Choose a file or drag it here';
+            setStatus('That file is ' + humanSize(f.size) + ' — the limit is 2 MB. Please upload a smaller PDF or DOC.', 'err');
+            return;
           }
+          setStatus('', 'ok');
+          fl.innerHTML = '<strong>' + f.name + '</strong>';
+        });
+      }
+    } catch (e) { console.warn('[careers] file picker error:', e); }
 
-          title.textContent = post.title || '';
-          exc.textContent   = post.excerpt || '';
+    // Featured blog strip
+    try {
+      var sec   = document.getElementById('blogStrip');
+      var link  = document.getElementById('blogStripLink');
+      var img   = document.getElementById('blogStripImg');
+      var title = document.getElementById('blogStripTitle');
+      var exc   = document.getElementById('blogStripExcerpt');
+      var meta  = document.getElementById('blogStripMeta');
 
-          var bits = [];
-          if (post.date)   bits.push(post.date);
-          if (post.author) bits.push(post.author);
-          meta.textContent = bits.join(' · ');
+      if (sec) {
+        fetch(resolveScriptUrl() + '?export=blog', { cache: 'no-store' })
+          .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+          .then(function (posts) {
+            if (!Array.isArray(posts) || !posts.length) return;
+            var post = posts.filter(function (p) { return p.featured; })[0] || posts[0];
+            if (!post || !post.title) return;
 
-          link.href = 'blog.html#' + (post.id || '');
-          sec.style.display = 'block';
-        })
-        .catch(function (err) { console.warn('[careers] blog strip failed:', err); });
-    }
-  } catch (e) { console.warn('[careers] blog strip error:', e); }
+            var imgUrl = (post.image || '').trim();
+            if (imgUrl && /^https:\/\//i.test(imgUrl)) {
+              img.src = imgUrl;
+              img.alt = post.imageAlt || post.title;
+              img.onerror = function () { img.parentNode.style.display = 'none'; };
+            } else {
+              img.parentNode.style.display = 'none';
+            }
 
-  console.log('[careers] script end');
+            title.textContent = post.title || '';
+            exc.textContent   = post.excerpt || '';
+
+            var bits = [];
+            if (post.date)   bits.push(post.date);
+            if (post.author) bits.push(post.author);
+            meta.textContent = bits.join(' · ');
+
+            link.href = 'blog.html#' + (post.id || '');
+            sec.style.display = 'block';
+          })
+          .catch(function (err) { console.warn('[careers] blog strip failed:', err); });
+      }
+    } catch (e) { console.warn('[careers] blog strip error:', e); }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initExtras);
+  } else {
+    initExtras();
+  }
+
+  console.log('[careers] script ready');
 })();
 </script>
 </body>
