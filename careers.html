@@ -40,37 +40,16 @@
   @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-.otf') format('opentype');font-weight:400;font-display:swap}
 
   :root{
-    --bg:#0b0a09;
-    --surface:#0f0e0c;
-    --card:#171614;
-    --card-hi:#1e1c19;
-    --panel:#141210;
-    --edge:rgba(255,255,255,0.07);
-    --edge-hi:rgba(255,255,255,0.15);
-    --ink:#f0ede8;
-    --ink2:#b8b3aa;
-    --ink3:#d8d3ca;
-    --mute:#7a756d;
-    --silver:#a3a3a3;
-    --yellow:#C8E000;
-    --yellow-dark:#a8bd00;
-    --yellow-deep:#8a9c00;
-    --gold:#E8C547;
+    --bg:#0b0a09;--surface:#0f0e0c;--card:#171614;--card-hi:#1e1c19;--panel:#141210;
+    --edge:rgba(255,255,255,0.07);--edge-hi:rgba(255,255,255,0.15);
+    --ink:#f0ede8;--ink2:#b8b3aa;--ink3:#d8d3ca;--mute:#7a756d;--silver:#a3a3a3;
+    --yellow:#C8E000;--yellow-dark:#a8bd00;--yellow-deep:#8a9c00;--gold:#E8C547;
     --yts:2px 3px 0px rgba(0,0,0,0.9),0 0 24px rgba(200,224,0,0.06);
     --edge-pad:max(24px, calc((100vw - 1200px) / 2));
   }
-
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;width:100%;overflow-x:hidden}
-  body{
-    background:var(--bg);
-    color:var(--ink);
-    font-family:'Figtree',system-ui,sans-serif;
-    font-size:17px;
-    line-height:1.7;
-    -webkit-font-smoothing:antialiased;
-    width:100%;max-width:100%;overflow-x:hidden;
-  }
+  body{background:var(--bg);color:var(--ink);font-family:'Figtree',system-ui,sans-serif;font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;width:100%;max-width:100%;overflow-x:hidden}
   img{display:block;max-width:100%;height:auto}
   a{color:inherit;text-decoration:none}
   button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
@@ -78,55 +57,30 @@
 
   .wrap{width:100%;max-width:820px;margin:0 auto;padding:0 24px}
   @media (min-width:768px){.wrap{padding:0 40px}}
-  .wrap-wide{width:100%;max-width:1200px;margin:0 auto;padding:0 var(--edge-pad)}
 
-  /* ── PAGE HEAD ────────────────────────────────────────── */
   .page-head{padding:132px 0 40px;border-bottom:1px solid var(--edge)}
   .page-head-inner{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:16px}
-  .page-head h1{
-    font-family:'Aesthet Nova',sans-serif;
-    font-weight:900;
-    font-size:clamp(28px,4vw,42px);
-    line-height:1;
-    letter-spacing:-0.02em;
-    color:var(--ink);
-    text-shadow:var(--yts);
-  }
-  .page-head .count{
-    font-size:12px;
-    font-weight:600;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--silver);
-    white-space:nowrap;
-  }
+  .page-head h1{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(28px,4vw,42px);line-height:1;letter-spacing:-0.02em;color:var(--ink);text-shadow:var(--yts)}
+  .page-head .count{font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--silver);white-space:nowrap}
   .page-head .count b{color:var(--yellow);font-weight:700}
 
-  /* ── POSITIONS ────────────────────────────────────────── */
   .positions{padding:48px 0 72px}
 
-  /* ── ROLE CARD ────────────────────────────────────────── */
   .role-card{background:var(--card);border:1px solid var(--edge-hi);border-radius:16px;overflow:hidden;transition:border-color .25s}
   .role-card:hover{border-color:rgba(200,224,0,.22)}
   .role-card.is-open{border-color:rgba(200,224,0,.35)}
-
   .role-card-head{padding:32px 34px 28px;cursor:pointer;user-select:none;position:relative}
   .role-card-head:hover .role-open-hint{color:var(--yellow)}
-
   .role-open-tag{display:inline-flex;align-items:center;gap:7px;font-size:10.5px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--yellow);margin-bottom:14px}
   .role-open-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--yellow);flex-shrink:0}
-
   .role-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(28px,3.8vw,42px);line-height:1;letter-spacing:-0.02em;color:var(--ink);margin-bottom:18px}
   .role-card.is-open .role-title{color:var(--yellow);text-shadow:var(--yts)}
-
   .role-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
   .meta-chip{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;background:rgba(255,255,255,.03);border:1px solid var(--edge-hi);border-radius:3px;font-size:12.5px;font-weight:600;color:var(--ink3)}
   .meta-chip svg{color:var(--yellow);flex-shrink:0}
   .meta-chip.hi{background:rgba(200,224,0,.06);border-color:rgba(200,224,0,.28);color:var(--yellow)}
-
   .role-summary{font-size:16px;line-height:1.75;color:var(--ink2);max-width:64ch;margin-bottom:22px}
   .role-summary strong{color:var(--ink);font-weight:600}
-
   .role-open-hint{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--silver);transition:color .2s}
   .role-open-hint svg{transition:transform .3s ease}
   .role-card.is-open .role-open-hint svg{transform:rotate(180deg)}
@@ -134,24 +88,14 @@
   .role-open-hint .lbl-close{display:none}
   .role-card.is-open .role-open-hint .lbl-open{display:none}
   .role-card.is-open .role-open-hint .lbl-close{display:inline}
-
   .role-body{display:none;padding:0 34px 40px;border-top:1px solid var(--edge)}
   .role-card.is-open .role-body{display:block;animation:fadeIn .3s ease}
   @keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+  @media (max-width:640px){.role-card-head{padding:26px 22px 22px}.role-body{padding:0 22px 32px}}
 
-  @media (max-width:640px){
-    .role-card-head{padding:26px 22px 22px}
-    .role-body{padding:0 22px 32px}
-  }
-
-  /* ── ROLE BODY CONTENT ────────────────────────────────── */
   .jd-section{padding:36px 0 0}
   .jd-section + .jd-section{border-top:1px solid var(--edge);margin-top:36px}
-  .jd-section h3{
-    font-family:'Figtree',sans-serif;font-weight:700;
-    font-size:19px;line-height:1.35;letter-spacing:-0.01em;
-    color:var(--ink);margin-bottom:18px;
-  }
+  .jd-section h3{font-family:'Figtree',sans-serif;font-weight:700;font-size:19px;line-height:1.35;letter-spacing:-0.01em;color:var(--ink);margin-bottom:18px}
   .jd-section p{font-size:16px;line-height:1.8;color:var(--ink2);margin-bottom:16px}
   .jd-section p:last-child{margin-bottom:0}
   .jd-section p strong{color:var(--ink);font-weight:600}
@@ -180,21 +124,15 @@
   .detail-val{font-size:16px;font-weight:600;color:var(--ink);line-height:1.55}
   .detail-val .note{display:block;font-size:14.5px;font-weight:300;color:var(--silver);margin-top:5px;line-height:1.7}
 
-  /* ── APPLY ────────────────────────────────────────────── */
   .apply-block{padding:40px 0 0;border-top:1px solid var(--edge);margin-top:40px}
   .apply-block .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--yellow);margin-bottom:14px}
   .apply-block .eyebrow::before{content:'';width:20px;height:1.5px;background:var(--yellow);flex-shrink:0}
-  .apply-block h3{
-    font-family:'Figtree',sans-serif;font-weight:700;
-    font-size:22px;line-height:1.3;letter-spacing:-0.01em;
-    color:var(--ink);margin-bottom:14px;
-  }
+  .apply-block h3{font-family:'Figtree',sans-serif;font-weight:700;font-size:22px;line-height:1.3;letter-spacing:-0.01em;color:var(--ink);margin-bottom:14px}
   .apply-block .apply-lede{font-size:16px;line-height:1.75;color:var(--ink2);margin-bottom:32px;max-width:62ch}
 
   .career-form{display:flex;flex-direction:column;gap:18px}
   .form-row{display:grid;grid-template-columns:1fr;gap:18px}
   @media (min-width:600px){.form-row{grid-template-columns:1fr 1fr}}
-
   .field{display:flex;flex-direction:column;gap:7px}
   .field label{font-size:11px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:var(--silver)}
   .field label .opt{color:var(--mute);font-weight:400;letter-spacing:0.06em}
@@ -203,20 +141,7 @@
   .career-form input[type="text"],
   .career-form input[type="email"],
   .career-form input[type="tel"],
-  .career-form textarea{
-    background:rgba(255,255,255,.03);
-    border:1px solid var(--edge-hi);
-    border-radius:5px;
-    padding:13px 15px;
-    color:var(--ink);
-    font-family:'Figtree',sans-serif;
-    font-size:16px;
-    line-height:1.55;
-    outline:none;
-    transition:border-color .2s;
-    width:100%;
-    resize:vertical;
-  }
+  .career-form textarea{background:rgba(255,255,255,.03);border:1px solid var(--edge-hi);border-radius:5px;padding:13px 15px;color:var(--ink);font-family:'Figtree',sans-serif;font-size:16px;line-height:1.55;outline:none;transition:border-color .2s;width:100%;resize:vertical}
   .career-form input::placeholder,
   .career-form textarea::placeholder{color:var(--mute);font-size:15.5px;line-height:1.6}
   .career-form input:focus,
@@ -245,72 +170,28 @@
   .form-meta a{color:var(--silver);text-decoration:underline;text-underline-offset:3px}
   .form-meta a:hover{color:var(--ink)}
 
-  /* ── ABOUT ────────────────────────────────────────────── */
   .about{padding:64px 0 72px;border-top:1px solid var(--edge)}
   .about .about-label{font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--silver);margin-bottom:20px}
   .about p{font-size:16px;line-height:1.8;color:var(--ink2);margin-bottom:16px;max-width:70ch}
   .about p:last-child{margin-bottom:0}
   .about p strong{color:var(--ink);font-weight:600}
 
-  /* ── FEATURED BLOG STRIP ──────────────────────────────── */
   .blog-strip{padding:0 0 72px}
-  .blog-strip-inner{
-    display:grid;
-    grid-template-columns:220px 1fr;
-    gap:24px;
-    align-items:center;
-    background:var(--card);
-    border:1px solid var(--edge);
-    border-radius:14px;
-    overflow:hidden;
-    text-decoration:none;
-    color:inherit;
-    transition:border-color .2s,transform .2s,background .2s;
-  }
+  .blog-strip-inner{display:grid;grid-template-columns:220px 1fr;gap:24px;align-items:center;background:var(--card);border:1px solid var(--edge);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;transition:border-color .2s,transform .2s,background .2s}
   .blog-strip-inner:hover{border-color:var(--edge-hi);background:var(--card-hi);transform:translateY(-2px)}
-  .blog-strip-img{
-    position:relative;
-    aspect-ratio:4/3;
-    overflow:hidden;
-    background:#222019;
-  }
+  .blog-strip-img{position:relative;aspect-ratio:4/3;overflow:hidden;background:#222019}
   .blog-strip-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
   .blog-strip-inner:hover .blog-strip-img img{transform:scale(1.04)}
   .blog-strip-body{padding:24px 26px 24px 0;display:flex;flex-direction:column;gap:10px}
-  .blog-strip-eyebrow{
-    font-size:10.5px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;
-    color:var(--yellow);display:inline-flex;align-items:center;gap:8px;
-  }
+  .blog-strip-eyebrow{font-size:10.5px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--yellow);display:inline-flex;align-items:center;gap:8px}
   .blog-strip-eyebrow::before{content:'';width:14px;height:1.5px;background:var(--yellow);flex-shrink:0}
-  .blog-strip-title{
-    font-family:'Aesthet Nova',sans-serif;font-weight:900;
-    font-size:clamp(20px,2.2vw,28px);line-height:1.05;
-    color:var(--ink);letter-spacing:-0.01em;
-  }
-  .blog-strip-excerpt{
-    font-size:14.5px;line-height:1.65;color:var(--ink2);
-    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
-  }
+  .blog-strip-title{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(20px,2.2vw,28px);line-height:1.05;color:var(--ink);letter-spacing:-0.01em}
+  .blog-strip-excerpt{font-size:14.5px;line-height:1.65;color:var(--ink2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .blog-strip-meta{font-size:12px;color:var(--mute);letter-spacing:0.02em}
-  .blog-strip-cta{
-    align-self:flex-start;
-    display:inline-flex;align-items:center;gap:8px;
-    font-size:11.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
-    color:var(--ink);
-    border-bottom:1px solid rgba(255,255,255,0.35);
-    padding-bottom:2px;
-    margin-top:4px;
-    transition:border-color .2s;
-  }
+  .blog-strip-cta{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid rgba(255,255,255,0.35);padding-bottom:2px;margin-top:4px;transition:border-color .2s}
   .blog-strip-inner:hover .blog-strip-cta{border-color:var(--yellow)}
+  @media (max-width:640px){.blog-strip-inner{grid-template-columns:1fr}.blog-strip-img{aspect-ratio:16/9}.blog-strip-body{padding:22px 22px 24px}}
 
-  @media (max-width:640px){
-    .blog-strip-inner{grid-template-columns:1fr}
-    .blog-strip-img{aspect-ratio:16/9}
-    .blog-strip-body{padding:22px 22px 24px}
-  }
-
-  /* ── MOBILE ───────────────────────────────────────────── */
   @media (max-width:768px){
     .page-head{padding:112px 0 32px}
     .positions{padding:36px 0 56px}
@@ -326,10 +207,8 @@
 
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<!-- Shared nav mounted by afrocue-ui.js -->
 <div id="ac-nav"></div>
 
-<!-- PAGE HEAD -->
 <header class="page-head">
   <div class="wrap page-head-inner">
     <h1>Careers</h1>
@@ -337,7 +216,6 @@
   </div>
 </header>
 
-<!-- POSITIONS -->
 <section class="positions" id="positions">
   <div class="wrap">
 
@@ -381,58 +259,20 @@
         <div class="jd-section">
           <h3>What You'll Do</h3>
           <ul class="duty-list">
-            <li>
-              <span class="duty-num">01</span>
-              <div class="duty-body">
-                <h4>Manage our master content sheet</h4>
-                <p>We have recurring content formats and plenty of things we want to do. You'll help us keep track of them, source what we need ahead of time, and make sure our content is prepared well before it's due to go out.</p>
-              </div>
-            </li>
-            <li>
-              <span class="duty-num">02</span>
-              <div class="duty-body">
-                <h4>Source content</h4>
-                <p>Find relevant videos, clips, and materials for our recurring formats, including Weekly Top 5 and Lineup Radar. This may involve following party stories while events are happening to find clips we can use.</p>
-              </div>
-            </li>
-            <li>
-              <span class="duty-num">03</span>
-              <div class="duty-body">
-                <h4>Prepare content for production</h4>
-                <p>Find the right DJ photos, clips from YouTube sets, previously posted reels, titles, and other relevant information. Select the appropriate templates and put everything together into a clear framework our production team can work with. The goal is to get content ready up to the point of publication — not scramble to find materials when it's already due.</p>
-              </div>
-            </li>
-            <li>
-              <span class="duty-num">04</span>
-              <div class="duty-body">
-                <h4>Contribute from time to time</h4>
-                <p>You should already be familiar with Nigerian electronic music events and attend them regularly. Occasionally, you'll also contribute short clips yourself when you're out. You're not our videographer, but being a <a class="inline" href="/roamers"><strong>roamer</strong></a> is part of the job.</p>
-              </div>
-            </li>
-            <li>
-              <span class="duty-num">05</span>
-              <div class="duty-body">
-                <h4>Keep things moving</h4>
-                <p>You're responsible for making sure our planned content gets prepared and is ready to go out. That means following up, identifying what's missing, communicating clearly, and taking ownership rather than waiting to be reminded.</p>
-              </div>
-            </li>
+            <li><span class="duty-num">01</span><div class="duty-body"><h4>Manage our master content sheet</h4><p>We have recurring content formats and plenty of things we want to do. You'll help us keep track of them, source what we need ahead of time, and make sure our content is prepared well before it's due to go out.</p></div></li>
+            <li><span class="duty-num">02</span><div class="duty-body"><h4>Source content</h4><p>Find relevant videos, clips, and materials for our recurring formats, including Weekly Top 5 and Lineup Radar. This may involve following party stories while events are happening to find clips we can use.</p></div></li>
+            <li><span class="duty-num">03</span><div class="duty-body"><h4>Prepare content for production</h4><p>Find the right DJ photos, clips from YouTube sets, previously posted reels, titles, and other relevant information. Select the appropriate templates and put everything together into a clear framework our production team can work with. The goal is to get content ready up to the point of publication — not scramble to find materials when it's already due.</p></div></li>
+            <li><span class="duty-num">04</span><div class="duty-body"><h4>Contribute from time to time</h4><p>You should already be familiar with Nigerian electronic music events and attend them regularly. Occasionally, you'll also contribute short clips yourself when you're out. You're not our videographer, but being a <a class="inline" href="/roamers"><strong>roamer</strong></a> is part of the job.</p></div></li>
+            <li><span class="duty-num">05</span><div class="duty-body"><h4>Keep things moving</h4><p>You're responsible for making sure our planned content gets prepared and is ready to go out. That means following up, identifying what's missing, communicating clearly, and taking ownership rather than waiting to be reminded.</p></div></li>
           </ul>
         </div>
 
         <div class="jd-section">
           <h3>What You Won't Be Doing</h3>
-          <p>
-            You're not our head of content, and you're not our designer or full-time videographer. We already have a content direction, production process, and visual identity.
-          </p>
-          <p>
-            You won't be expected to come up with most of our content from scratch. However, we'd love you to learn the ropes quickly enough to understand what we're building and start contributing ideas and direct value.
-          </p>
-          <p>
-            We're a team of marketing people, so we like finding ways to automate repetitive work and avoid unnecessary busywork. We want to work smart, not just work more.
-          </p>
-          <p>
-            You'll report directly to the team lead.
-          </p>
+          <p>You're not our head of content, and you're not our designer or full-time videographer. We already have a content direction, production process, and visual identity.</p>
+          <p>You won't be expected to come up with most of our content from scratch. However, we'd love you to learn the ropes quickly enough to understand what we're building and start contributing ideas and direct value.</p>
+          <p>We're a team of marketing people, so we like finding ways to automate repetitive work and avoid unnecessary busywork. We want to work smart, not just work more.</p>
+          <p>You'll report directly to the team lead.</p>
         </div>
 
         <div class="jd-section">
@@ -451,25 +291,15 @@
 
         <div class="jd-section">
           <h3>Working With Us</h3>
-          <p>
-            <strong>Flexible hours, but timelines matter.</strong> There's no rigid 9–5. You organise your own time, but we have things we need to get done, and we need someone who takes ownership, communicates clearly, and delivers without constant supervision.
-          </p>
-          <p>
-            This is a <strong>95% remote role.</strong> The other 5% is when you're out at a party, at a brand engagement, or on a shoot with us.
-          </p>
-          <div class="callout">
-            <strong>Room to grow.</strong> There's a clear path from this role into a more strategic content position as the team scales.
-          </div>
+          <p><strong>Flexible hours, but timelines matter.</strong> There's no rigid 9–5. You organise your own time, but we have things we need to get done, and we need someone who takes ownership, communicates clearly, and delivers without constant supervision.</p>
+          <p>This is a <strong>95% remote role.</strong> The other 5% is when you're out at a party, at a brand engagement, or on a shoot with us.</p>
+          <div class="callout"><strong>Room to grow.</strong> There's a clear path from this role into a more strategic content position as the team scales.</div>
         </div>
 
         <div class="jd-section">
           <h3>Deal Breakers</h3>
-          <p>
-            We need someone who takes the role seriously, communicates clearly, and doesn't need constant reminders to get things done.
-          </p>
-          <p>
-            The first month is our getting-to-know-each-other period. If we realise we're not the right fit for each other, we'll have an honest conversation and part ways amicably. No hard feelings.
-          </p>
+          <p>We need someone who takes the role seriously, communicates clearly, and doesn't need constant reminders to get things done.</p>
+          <p>The first month is our getting-to-know-each-other period. If we realise we're not the right fit for each other, we'll have an honest conversation and part ways amicably. No hard feelings.</p>
         </div>
 
         <div class="jd-section">
@@ -477,79 +307,66 @@
           <div class="detail-list">
             <div class="detail-row">
               <div class="detail-key">Salary</div>
-              <div class="detail-val">
-                ₦150,000 / month
-                <span class="note">Extra assignments and brand engagements are paid on top, with logistics support where applicable.</span>
-              </div>
+              <div class="detail-val">₦150,000 / month<span class="note">Extra assignments and brand engagements are paid on top, with logistics support where applicable.</span></div>
             </div>
             <div class="detail-row">
               <div class="detail-key">Work arrangement</div>
-              <div class="detail-val">
-                95% remote · Lagos · Flexible hours
-                <span class="note">The 5% is when you're out at events, or when we have brand engagements you need to be at.</span>
-              </div>
+              <div class="detail-val">95% remote · Lagos · Flexible hours<span class="note">The 5% is when you're out at events, or when we have brand engagements you need to be at.</span></div>
             </div>
             <div class="detail-row">
               <div class="detail-key">Working across</div>
-              <div class="detail-val">
-                AfroCue &amp; Set Club
-              </div>
+              <div class="detail-val">AfroCue &amp; Set Club</div>
             </div>
             <div class="detail-row">
               <div class="detail-key">You'll need</div>
-              <div class="detail-val">
-                A smartphone that captures 1080p or better, and the ability to manage our content spreadsheet.
-              </div>
+              <div class="detail-val">A smartphone that captures 1080p or better, and the ability to manage our content spreadsheet.</div>
             </div>
           </div>
         </div>
 
-        <!-- APPLY -->
         <div class="apply-block" id="apply">
           <div class="eyebrow">Interested?</div>
           <h3>Apply below.</h3>
-          <p class="apply-lede">
-            Tell us about yourself, your experience, and how much you know or have experience in nightlife, dance music, media, and lifestyle.
-          </p>
+          <p class="apply-lede">Tell us about yourself, your experience, and how much you know or have experience in nightlife, dance music, media, and lifestyle.</p>
 
-          <form class="career-form" id="careerForm" novalidate>
+          <form class="career-form" id="careerForm" novalidate autocomplete="on">
             <div class="form-row">
               <div class="field">
                 <label for="c-name">Your name <span class="req">·</span></label>
-                <input id="c-name" type="text" name="name" placeholder="Your name" required autocomplete="name">
+                <input id="c-name" type="text" name="name" placeholder="Your name" autocomplete="name">
               </div>
               <div class="field">
                 <label for="c-email">Email <span class="req">·</span></label>
-                <input id="c-email" type="email" name="email" placeholder="you@email.com" required autocomplete="email">
+                <input id="c-email" type="email" name="email" placeholder="you@email.com" autocomplete="email">
               </div>
             </div>
 
             <div class="form-row">
               <div class="field">
                 <label for="c-phone">Phone / WhatsApp <span class="req">·</span></label>
-                <input id="c-phone" type="tel" name="phone" placeholder="+234..." required autocomplete="tel">
+                <input id="c-phone" type="tel" name="phone" placeholder="+234..." autocomplete="tel">
               </div>
               <div class="field">
                 <label for="c-ig">Instagram / X <span class="opt">— optional</span></label>
-                <input id="c-ig" type="text" name="social" placeholder="@yourhandle">
+                <input id="c-ig" type="text" name="social" placeholder="@yourhandle" autocomplete="off">
               </div>
             </div>
 
             <div class="field">
               <label for="c-scene">Your background in nightlife, dance music, or media <span class="req">·</span></label>
-              <textarea id="c-scene" name="background" rows="4" placeholder="Which parties do you go to? What DJs, platforms, or media do you follow? Where have you worked or volunteered?" required></textarea>
+              <textarea id="c-scene" name="background" rows="4" placeholder="Which parties do you go to? What DJs, platforms, or media do you follow? Where have you worked or volunteered?"></textarea>
             </div>
 
             <div class="field">
               <label for="c-exp">Relevant experience <span class="req">·</span></label>
               <textarea id="c-exp" name="experience" rows="5" placeholder="Bullet points, not paragraphs. For example:
 • Ran social media for Chicken Republic
-• Volunteered at an edition of Monochroma" required></textarea>
+• Volunteered at an edition of Monochroma"></textarea>
             </div>
 
             <div class="field">
               <label for="c-links">Links — work, writing sample, portfolio <span class="opt">— optional</span></label>
-              <input id="c-links" type="text" name="links" placeholder="Instagram, Drive folder, portfolio, anything relevant">
+              <input id="c-links" type="text" name="links" placeholder="Instagram, Drive folder, portfolio, anything relevant" autocomplete="off">
             </div>
 
             <div class="field">
@@ -558,7 +375,7 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
                 <span class="file-label" id="fileLabel">Choose a file or drag it here</span>
                 <span class="file-hint">PDF or DOC · max 2MB</span>
-                <input id="c-resume" type="file" name="resume" accept=".pdf,.doc,.docx" required>
+                <input id="c-resume" type="file" name="resume" accept=".pdf,.doc,.docx">
               </label>
             </div>
 
@@ -571,9 +388,7 @@
             <p id="formStatus" role="status" aria-live="polite"></p>
           </form>
 
-          <p class="form-meta">
-            We review every application. If it's a fit, we'll reach out. &nbsp;·&nbsp; Or email <a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a>.
-          </p>
+          <p class="form-meta">We review every application. If it's a fit, we'll reach out. &nbsp;·&nbsp; Or email <a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a>.</p>
         </div>
 
       </div>
@@ -581,32 +396,20 @@
   </div>
 </section>
 
-<!-- ABOUT -->
 <section class="about">
   <div class="wrap">
     <div class="about-label">About AfroCue</div>
-    <p>
-      AfroCue sits at the intersection of Nigerian DJs, the music they play, and the parties where it all comes together.
-    </p>
-    <p>
-      We believe there's so much more to tell about Nigerian dance music culture. From intimate club nights to raves, festivals, and even weddings, DJs are a constant thread connecting the music and the experiences around it.
-    </p>
-    <p>
-      AfroCue started in August 2025 with a simple idea: there were moments, sets, and stories worth documenting. Through <strong>AfroCue</strong> and <strong>Set Club</strong>, we're building the platform that tells them — and a team that runs it.
-    </p>
-    <p style="margin-top:28px;color:var(--silver);font-size:15px;">
-      Nothing else open right now. If you're experienced in Nigerian nightlife, dance music, or media, we're always open to meeting good people — <a href="mailto:afrocueonline@gmail.com" style="color:var(--yellow);text-decoration:underline;text-underline-offset:3px;">afrocueonline@gmail.com</a>.
-    </p>
+    <p>AfroCue sits at the intersection of Nigerian DJs, the music they play, and the parties where it all comes together.</p>
+    <p>We believe there's so much more to tell about Nigerian dance music culture. From intimate club nights to raves, festivals, and even weddings, DJs are a constant thread connecting the music and the experiences around it.</p>
+    <p>AfroCue started in August 2025 with a simple idea: there were moments, sets, and stories worth documenting. Through <strong>AfroCue</strong> and <strong>Set Club</strong>, we're building the platform that tells them — and a team that runs it.</p>
+    <p style="margin-top:28px;color:var(--silver);font-size:15px;">Nothing else open right now. If you're experienced in Nigerian nightlife, dance music, or media, we're always open to meeting good people — <a href="mailto:afrocueonline@gmail.com" style="color:var(--yellow);text-decoration:underline;text-underline-offset:3px;">afrocueonline@gmail.com</a>.</p>
   </div>
 </section>
 
-<!-- FEATURED BLOG STRIP -->
 <section class="blog-strip" id="blogStrip" style="display:none;">
   <div class="wrap">
     <a class="blog-strip-inner" id="blogStripLink" href="blog.html">
-      <div class="blog-strip-img">
-        <img id="blogStripImg" src="" alt="" loading="lazy" decoding="async"/>
-      </div>
+      <div class="blog-strip-img"><img id="blogStripImg" src="" alt="" loading="lazy" decoding="async"/></div>
       <div class="blog-strip-body">
         <div class="blog-strip-eyebrow">From the blog</div>
         <div class="blog-strip-title" id="blogStripTitle"></div>
@@ -618,73 +421,47 @@
   </div>
 </section>
 
-<!-- Shared footer mounted by afrocue-ui.js -->
 <div id="ac-footer"></div>
 
-<!-- Shared config + chrome -->
 <script src="afrocue.js"></script>
 <script src="js/afrocue-ui.js" data-nav="full" data-footer="full"></script>
 
 <script>
 (function () {
-  /* ── Config ────────────────────────────────────────────── */
-  var SCRIPT_URL = (typeof getAfroCueScriptUrl === 'function')
-    ? getAfroCueScriptUrl()
-    : 'https://script.google.com/macros/s/AKfycbye1E1iPt7idSYZCUz75mPsqCRHF90_NtrOQwSUGLj7tLjbLSNagFNrXH5aRhWfaoPp/exec';
+  'use strict';
+
+  console.log('[careers] script start');
 
   var MAX_RESUME_BYTES = 2 * 1024 * 1024;
+  var FALLBACK_URL = 'https://script.google.com/macros/s/AKfycwk0SvCWpKSr-hxsh_TPZiCCh2QTT8uXanQWiDl2qRCLqw1_wkNWLdNUs3LhYGqTl-O/exec';
 
-  /* ── Collapsible role card ─────────────────────────────── */
-  var card = document.getElementById('roleCard');
-  var head = document.getElementById('roleHead');
-  var body = document.getElementById('roleBody');
-
-  function toggleCard(forceOpen) {
-    var isOpen = card.classList.contains('is-open');
-    var next = (typeof forceOpen === 'boolean') ? forceOpen : !isOpen;
-    card.classList.toggle('is-open', next);
-    body.style.display = next ? 'block' : 'none';
-  }
-  head.addEventListener('click', function () { toggleCard(); });
-
-  if (window.location.hash === '#apply') {
-    setTimeout(function () {
-      toggleCard(true);
-      var apply = document.getElementById('apply');
-      if (apply) {
-        var top = apply.getBoundingClientRect().top + window.pageYOffset - 100;
-        window.scrollTo({ top: top, behavior: 'smooth' });
+  function resolveScriptUrl() {
+    try {
+      if (typeof getAfroCueScriptUrl === 'function') {
+        var u = getAfroCueScriptUrl();
+        if (u && /^https:\/\//i.test(u)) return u;
       }
-    }, 120);
+    } catch (e) {
+      console.warn('[careers] getAfroCueScriptUrl() threw:', e);
+    }
+    return FALLBACK_URL;
   }
 
-  /* ── Form refs ─────────────────────────────────────────── */
-  var form      = document.getElementById('careerForm');
-  var status    = document.getElementById('formStatus');
-  var btn       = form.querySelector('button[type="submit"]');
-  var fileInput = document.getElementById('c-resume');
-  var fileLabel = document.getElementById('fileLabel');
-
-  var fName    = document.getElementById('c-name');
-  var fEmail   = document.getElementById('c-email');
-  var fPhone   = document.getElementById('c-phone');
-  var fSocial  = document.getElementById('c-ig');
-  var fScene   = document.getElementById('c-scene');
-  var fExp     = document.getElementById('c-exp');
-  var fLinks   = document.getElementById('c-links');
-  var fCompany = document.getElementById('c-company');
-
-  /* ── Helpers ───────────────────────────────────────────── */
   function show(msg, isError) {
+    var status = document.getElementById('formStatus');
+    if (!status) { alert(msg); return; }
     status.textContent = msg;
     status.classList.toggle('err', !!isError);
     status.style.display = 'block';
+    status.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
-  function humanSize(bytes) {
-    if (bytes < 1024) return bytes + ' B';
-    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(0) + ' KB';
-    return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+
+  function humanSize(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1048576) return (b / 1024).toFixed(0) + ' KB';
+    return (b / 1048576).toFixed(2) + ' MB';
   }
+
   function fileToBase64(file) {
     return new Promise(function (resolve, reject) {
       var reader = new FileReader();
@@ -702,91 +479,157 @@
     });
   }
 
-  /* ── File picker ───────────────────────────────────────── */
-  fileInput.addEventListener('change', function () {
-    var f = fileInput.files && fileInput.files[0];
-    if (!f) {
-      fileLabel.textContent = 'Choose a file or drag it here';
+  /* ══════════════════════════════════════════════════════
+     SUBMIT HANDLER — attached FIRST, in its own scope.
+     Nothing below can prevent it from attaching.
+     ══════════════════════════════════════════════════════ */
+  (function attachSubmit() {
+    var form = document.getElementById('careerForm');
+    if (!form) {
+      console.error('[careers] #careerForm not found — submit handler not attached');
       return;
     }
-    if (f.size > MAX_RESUME_BYTES) {
-      fileInput.value = '';
-      fileLabel.textContent = 'Choose a file or drag it here';
-      show('That file is ' + humanSize(f.size) + ' — the limit is 2 MB. Please upload a smaller PDF or DOC.', true);
-      return;
-    }
-    status.style.display = 'none';
-    fileLabel.innerHTML = '<strong>' + f.name + '</strong>';
-  });
+    console.log('[careers] submit handler attached');
 
-  /* ── Submit ────────────────────────────────────────────── */
-  form.addEventListener('submit', function (ev) {
-    ev.preventDefault();
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      ev.stopPropagation();
+      console.log('[careers] submit fired');
 
-    if (fCompany && fCompany.value) { form.reset(); return; }
-    if (!form.checkValidity()) { form.reportValidity(); return; }
+      var btn = form.querySelector('button[type="submit"]');
+      var honey = document.getElementById('c-company');
+      if (honey && honey.value) { form.reset(); return; }
 
-    var resumeFile = fileInput.files && fileInput.files[0] ? fileInput.files[0] : null;
-    if (!resumeFile) {
-      show('Please attach your resume before submitting.', true);
-      return;
-    }
-    if (resumeFile.size > MAX_RESUME_BYTES) {
-      show('Your resume is ' + humanSize(resumeFile.size) + ' — the limit is 2 MB. Please compress it or export a smaller PDF.', true);
-      return;
-    }
+      var fName  = document.getElementById('c-name');
+      var fEmail = document.getElementById('c-email');
+      var fPhone = document.getElementById('c-phone');
+      var fIg    = document.getElementById('c-ig');
+      var fScene = document.getElementById('c-scene');
+      var fExp   = document.getElementById('c-exp');
+      var fLinks = document.getElementById('c-links');
+      var fileInput = document.getElementById('c-resume');
+      var fileLabel = document.getElementById('fileLabel');
 
-    btn.disabled = true;
-    btn.textContent = 'Sending…';
-    status.style.display = 'none';
+      // Manual validation — file input is display:none so native
+      // reportValidity() can't show a tooltip on it.
+      if (!fName.value.trim())  { show('Please enter your name.', true); fName.focus(); return; }
+      if (!fEmail.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fEmail.value.trim())) {
+        show('Please enter a valid email address.', true); fEmail.focus(); return;
+      }
+      if (!fPhone.value.trim()) { show('Please enter your phone or WhatsApp number.', true); fPhone.focus(); return; }
+      if (!fScene.value.trim()) { show('Please tell us about your background in nightlife, dance music, or media.', true); fScene.focus(); return; }
+      if (!fExp.value.trim())   { show('Please add your relevant experience.', true); fExp.focus(); return; }
 
-    fileToBase64(resumeFile)
-      .then(function (file) {
-        var payload = {
-          source:      'careers',
-          role:        'Content Coordinator',
-          name:        fName.value.trim(),
-          email:       fEmail.value.trim(),
-          phone:       fPhone.value.trim(),
-          social:      fSocial.value.trim(),
-          background:  fScene.value.trim(),
-          experience:  fExp.value.trim(),
-          links:       fLinks.value.trim(),
-          resume_name: file.name,
-          resume_type: file.type,
-          resume_data: file.data
-        };
+      var resumeFile = (fileInput && fileInput.files && fileInput.files[0]) ? fileInput.files[0] : null;
+      if (!resumeFile) {
+        show('Please attach your resume before submitting.', true);
+        return;
+      }
+      if (resumeFile.size > MAX_RESUME_BYTES) {
+        show('Your resume is ' + humanSize(resumeFile.size) + ' — the limit is 2 MB. Please compress it or export a smaller PDF.', true);
+        return;
+      }
 
-        return fetch(SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify(payload)
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+      show('Uploading your application…', false);
+
+      var SCRIPT_URL = resolveScriptUrl();
+      console.log('[careers] POST to:', SCRIPT_URL);
+
+      fileToBase64(resumeFile)
+        .then(function (file) {
+          var payload = {
+            source:      'careers',
+            role:        'Content Coordinator',
+            name:        fName.value.trim(),
+            email:       fEmail.value.trim(),
+            phone:       fPhone.value.trim(),
+            social:      (fIg && fIg.value || '').trim(),
+            background:  fScene.value.trim(),
+            experience:  fExp.value.trim(),
+            links:       (fLinks && fLinks.value || '').trim(),
+            resume_name: file.name,
+            resume_type: file.type,
+            resume_data: file.data
+          };
+          console.log('[careers] payload built, resume bytes:', file.data.length);
+
+          return fetch(SCRIPT_URL, {
+            method:  'POST',
+            mode:    'no-cors',
+            headers: { 'Content-Type': 'text/plain' },
+            body:    JSON.stringify(payload)
+          });
+        })
+        .then(function () {
+          console.log('[careers] POST returned');
+          form.reset();
+          if (fileLabel) fileLabel.textContent = 'Choose a file or drag it here';
+          show("Thanks — your application is in. We'll be in touch if it's a fit.", false);
+        })
+        .catch(function (err) {
+          console.error('[careers] submit error:', err);
+          show('Something went wrong. Please email afrocueonline@gmail.com directly.', true);
+        })
+        .finally(function () {
+          if (btn) { btn.disabled = false; btn.textContent = 'Submit application'; }
         });
-      })
-      .then(function () {
-        form.reset();
-        fileLabel.textContent = 'Choose a file or drag it here';
-        show("Thanks — your application is in. We'll be in touch if it's a fit.", false);
-      })
-      .catch(function (err) {
-        console.error('Career form error:', err);
-        show('Something went wrong. Please email afrocueonline@gmail.com directly.', true);
-      })
-      .finally(function () {
-        btn.disabled = false;
-        btn.textContent = 'Submit application';
-      });
-  });
-
-  /* ── Featured blog strip ───────────────────────────────── */
-  function esc(s) {
-    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
-  }
+  })();
 
-  function renderBlogStrip(post) {
+  /* ══════════════════════════════════════════════════════
+     Everything else — each wrapped so a failure in one
+     cannot break the submit handler above.
+     ══════════════════════════════════════════════════════ */
+
+  // Collapsible role card
+  try {
+    var card = document.getElementById('roleCard');
+    var head = document.getElementById('roleHead');
+    var body = document.getElementById('roleBody');
+    if (card && head && body) {
+      head.addEventListener('click', function () {
+        var open = !card.classList.contains('is-open');
+        card.classList.toggle('is-open', open);
+        body.style.display = open ? 'block' : 'none';
+      });
+      if (window.location.hash === '#apply') {
+        setTimeout(function () {
+          card.classList.add('is-open');
+          body.style.display = 'block';
+          var apply = document.getElementById('apply');
+          if (apply) {
+            var top = apply.getBoundingClientRect().top + window.pageYOffset - 100;
+            window.scrollTo({ top: top, behavior: 'smooth' });
+          }
+        }, 120);
+      }
+    }
+  } catch (e) { console.warn('[careers] role card error:', e); }
+
+  // File picker label + size guard
+  try {
+    var fi = document.getElementById('c-resume');
+    var fl = document.getElementById('fileLabel');
+    if (fi && fl) {
+      fi.addEventListener('change', function () {
+        var f = fi.files && fi.files[0];
+        if (!f) { fl.textContent = 'Choose a file or drag it here'; return; }
+        if (f.size > MAX_RESUME_BYTES) {
+          fi.value = '';
+          fl.textContent = 'Choose a file or drag it here';
+          show('That file is ' + humanSize(f.size) + ' — the limit is 2 MB. Please upload a smaller PDF or DOC.', true);
+          return;
+        }
+        var st = document.getElementById('formStatus');
+        if (st) st.style.display = 'none';
+        fl.innerHTML = '<strong>' + f.name + '</strong>';
+      });
+    }
+  } catch (e) { console.warn('[careers] file picker error:', e); }
+
+  // Featured blog strip
+  try {
     var sec   = document.getElementById('blogStrip');
     var link  = document.getElementById('blogStripLink');
     var img   = document.getElementById('blogStripImg');
@@ -794,40 +637,39 @@
     var exc   = document.getElementById('blogStripExcerpt');
     var meta  = document.getElementById('blogStripMeta');
 
-    var imgUrl = (post.image || '').trim();
-    if (imgUrl && /^https:\/\//i.test(imgUrl)) {
-      img.src = imgUrl;
-      img.alt = post.imageAlt || post.title;
-      img.onerror = function () { img.parentNode.style.display = 'none'; };
-    } else {
-      img.parentNode.style.display = 'none';
+    if (sec) {
+      fetch(resolveScriptUrl() + '?export=blog', { cache: 'no-store' })
+        .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+        .then(function (posts) {
+          if (!Array.isArray(posts) || !posts.length) return;
+          var post = posts.filter(function (p) { return p.featured; })[0] || posts[0];
+          if (!post || !post.title) return;
+
+          var imgUrl = (post.image || '').trim();
+          if (imgUrl && /^https:\/\//i.test(imgUrl)) {
+            img.src = imgUrl;
+            img.alt = post.imageAlt || post.title;
+            img.onerror = function () { img.parentNode.style.display = 'none'; };
+          } else {
+            img.parentNode.style.display = 'none';
+          }
+
+          title.textContent = post.title || '';
+          exc.textContent   = post.excerpt || '';
+
+          var bits = [];
+          if (post.date)   bits.push(post.date);
+          if (post.author) bits.push(post.author);
+          meta.textContent = bits.join(' · ');
+
+          link.href = 'blog.html#' + (post.id || '');
+          sec.style.display = 'block';
+        })
+        .catch(function (err) { console.warn('[careers] blog strip failed:', err); });
     }
+  } catch (e) { console.warn('[careers] blog strip error:', e); }
 
-    title.textContent = post.title || '';
-    exc.textContent   = post.excerpt || '';
-
-    var bits = [];
-    if (post.date)   bits.push(post.date);
-    if (post.author) bits.push(post.author);
-    meta.textContent = bits.join(' · ');
-
-    link.href = 'blog.html#' + (post.id || '');
-    sec.style.display = 'block';
-  }
-
-  function loadBlogStrip() {
-    fetch(SCRIPT_URL + '?export=blog', { cache: 'no-store' })
-      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-      .then(function (posts) {
-        if (!Array.isArray(posts) || !posts.length) return;
-        var featured = posts.filter(function (p) { return p.featured; })[0] || posts[0];
-        if (!featured || !featured.title) return;
-        renderBlogStrip(featured);
-      })
-      .catch(function (err) { console.warn('Blog strip load failed:', err); });
-  }
-
-  loadBlogStrip();
+  console.log('[careers] script end');
 })();
 </script>
 </body>
