@@ -167,6 +167,9 @@
   #formStatus.err{background:rgba(255,80,80,.06);border-color:rgba(255,80,80,.3);color:#ff8a8a}
   #formStatus.loading{background:rgba(255,255,255,.04);border-color:var(--edge-hi);color:var(--ink3)}
 
+  .form-debug{display:none;margin-top:14px;padding:10px 12px;background:rgba(255,255,255,.02);border:1px dashed var(--edge);border-radius:4px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;line-height:1.5;color:var(--mute);word-break:break-all}
+  body.debug-on .form-debug{display:block}
+
   .form-meta{margin:18px 0 0;font-size:13px;line-height:1.7;color:var(--mute)}
   .form-meta a{color:var(--silver);text-decoration:underline;text-underline-offset:3px}
   .form-meta a:hover{color:var(--ink)}
@@ -330,9 +333,8 @@
           <h3>Apply below.</h3>
           <p class="apply-lede">Tell us about yourself, your experience, and how much you know or have experience in nightlife, dance music, media, and lifestyle.</p>
 
-          <form class="career-form" id="careerForm" novalidate autocomplete="on"
-                onsubmit="try{ if(window.afrocareerSubmit){ window.afrocareerSubmit(event); } else { console.error('[careers] handler not defined'); alert('Form is not ready yet. Please reload the page.'); } }catch(err){ console.error('[careers] inline handler error:', err); alert('Error: ' + err.message); } return false;">
-
+          <!-- No <form> element — inputs are standalone. Button uses onclick only. -->
+          <div class="career-form" id="careerForm">
             <div class="form-row">
               <div class="field">
                 <label for="c-name">Your name <span class="req">·</span></label>
@@ -373,7 +375,7 @@
             </div>
 
             <div class="field">
-              <label for="c-resume">Resume <span class="req">·</span></label>
+              <label for="c-resume">Resume <span class="opt">— optional</span></label>
               <label class="file-drop" for="c-resume">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
                 <span class="file-label" id="fileLabel">Choose a file or drag it here</span>
@@ -387,9 +389,13 @@
               <input id="c-company" type="text" name="company" tabindex="-1" autocomplete="off">
             </div>
 
-            <button type="submit" class="btn-submit">Submit application</button>
+            <button type="button" id="submitBtn" class="btn-submit" onclick="window.afrocareerSubmit && window.afrocareerSubmit(event)">
+              Submit application
+            </button>
             <p id="formStatus" role="status" aria-live="polite"></p>
-          </form>
+          </div>
+
+          <div class="form-debug" id="formDebug">Resolving endpoint…</div>
 
           <p class="form-meta">We review every application. If it's a fit, we'll reach out. &nbsp;·&nbsp; Or email <a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a>.</p>
         </div>
@@ -431,11 +437,7 @@
 
 <script>
 /* ════════════════════════════════════════════════════════════════
-   CAREERS FORM
-   The submit handler is defined on window BEFORE anything else
-   runs, and the form calls it via an inline onsubmit attribute.
-   That means even if this script block errors out halfway, the
-   form will still call the handler and stop the native submit.
+   CAREERS — plain button, no <form>, no native submission.
    ════════════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
@@ -444,26 +446,33 @@
   var FALLBACK_URL = 'https://script.google.com/macros/s/AKfycwk0SvCWpKSr-hxsh_TPZiCCh2QTT8uXanQWiDl2qRCLqw1_wkNWLdNUs3LhYGqTl-O/exec';
 
   function resolveScriptUrl() {
+    var used = 'fallback';
+    var url = FALLBACK_URL;
     try {
-      if (typeof getAfroCueScriptUrl === 'function') {
-        var u = getAfroCueScriptUrl();
-        if (u && /^https:\/\//i.test(u)) return u;
+      if (typeof window.getAfroCueScriptUrl === 'function') {
+        var u = window.getAfroCueScriptUrl();
+        if (u && /^https:\/\//i.test(u)) { url = u; used = 'afrocue.js'; }
+        else { used = 'afrocue.js returned invalid'; }
+      } else {
+        used = 'getAfroCueScriptUrl undefined';
       }
-    } catch (e) { console.warn('[careers] getAfroCueScriptUrl() threw:', e); }
-    return FALLBACK_URL;
+    } catch (e) {
+      used = 'afrocue.js threw: ' + e.message;
+    }
+    console.log('[careers] URL source:', used);
+    console.log('[careers] URL:', url);
+    return { url: url, source: used };
   }
 
   function setStatus(msg, kind) {
     var st = document.getElementById('formStatus');
-    if (!st) { console.log('[careers] status:', msg); return; }
+    if (!st) return;
     st.textContent = msg || '';
     st.classList.remove('err', 'loading');
     if (kind === 'err') st.classList.add('err');
     else if (kind === 'loading') st.classList.add('loading');
     st.style.display = msg ? 'block' : 'none';
-    if (msg) {
-      try { st.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
-    }
+    if (msg) { try { st.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {} }
   }
 
   function humanSize(b) {
@@ -489,19 +498,16 @@
     });
   }
 
-  /* ── The global submit handler ──────────────────────────── */
+  /* ── Global handler — called by the button's onclick ────── */
   window.afrocareerSubmit = function (ev) {
     if (ev) { ev.preventDefault(); ev.stopPropagation(); }
-    console.log('[careers] handler called');
+    console.log('[careers] submit clicked');
 
     try {
-      var form = document.getElementById('careerForm');
-      if (!form) throw new Error('Form not found');
-
+      var btn = document.getElementById('submitBtn');
       var honey = document.getElementById('c-company');
-      if (honey && honey.value) { form.reset(); return; }
+      if (honey && honey.value) return;
 
-      var btn = form.querySelector('button[type="submit"]');
       var fName  = document.getElementById('c-name');
       var fEmail = document.getElementById('c-email');
       var fPhone = document.getElementById('c-phone');
@@ -520,12 +526,9 @@
       if (!fScene.value.trim()) { setStatus('Please tell us about your background in nightlife, dance music, or media.', 'err'); fScene.focus(); return; }
       if (!fExp.value.trim())   { setStatus('Please add your relevant experience.', 'err'); fExp.focus(); return; }
 
+      // Resume is OPTIONAL — only validate if one was picked.
       var resumeFile = (fileInput && fileInput.files && fileInput.files[0]) ? fileInput.files[0] : null;
-      if (!resumeFile) {
-        setStatus('Please attach your resume before submitting.', 'err');
-        return;
-      }
-      if (resumeFile.size > MAX_RESUME_BYTES) {
+      if (resumeFile && resumeFile.size > MAX_RESUME_BYTES) {
         setStatus('Your resume is ' + humanSize(resumeFile.size) + ' — the limit is 2 MB. Please compress it or export a smaller PDF.', 'err');
         return;
       }
@@ -533,47 +536,53 @@
       if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
       setStatus('Uploading your application…', 'loading');
 
-      var SCRIPT_URL = resolveScriptUrl();
-      console.log('[careers] POST to:', SCRIPT_URL);
+      var resolved = resolveScriptUrl();
 
-      fileToBase64(resumeFile)
-        .then(function (file) {
-          var payload = {
-            source:      'careers',
-            role:        'Content Coordinator',
-            name:        fName.value.trim(),
-            email:       fEmail.value.trim(),
-            phone:       fPhone.value.trim(),
-            social:      (fIg && fIg.value || '').trim(),
-            background:  fScene.value.trim(),
-            experience:  fExp.value.trim(),
-            links:       (fLinks && fLinks.value || '').trim(),
-            resume_name: file.name,
-            resume_type: file.type,
-            resume_data: file.data
-          };
-          console.log('[careers] payload ready, resume b64 length:', file.data.length);
+      var prep = resumeFile ? fileToBase64(resumeFile) : Promise.resolve(null);
 
-          return fetch(SCRIPT_URL, {
-            method:  'POST',
-            mode:    'no-cors',
-            headers: { 'Content-Type': 'text/plain' },
-            body:    JSON.stringify(payload)
-          });
-        })
-        .then(function () {
-          console.log('[careers] POST returned');
-          form.reset();
-          if (fileLabel) fileLabel.textContent = 'Choose a file or drag it here';
-          setStatus("Thanks — your application is in. We'll be in touch if it's a fit.", 'ok');
-        })
-        .catch(function (err) {
-          console.error('[careers] submit error:', err);
-          setStatus('Something went wrong. Please email afrocueonline@gmail.com directly.', 'err');
-        })
-        .finally(function () {
-          if (btn) { btn.disabled = false; btn.textContent = 'Submit application'; }
+      prep.then(function (file) {
+        var payload = {
+          source:      'careers',
+          role:        'Content Coordinator',
+          name:        fName.value.trim(),
+          email:       fEmail.value.trim(),
+          phone:       fPhone.value.trim(),
+          social:      (fIg && fIg.value || '').trim(),
+          background:  fScene.value.trim(),
+          experience:  fExp.value.trim(),
+          links:       (fLinks && fLinks.value || '').trim()
+        };
+        if (file) {
+          payload.resume_name = file.name;
+          payload.resume_type = file.type;
+          payload.resume_data = file.data;
+        }
+        console.log('[careers] payload ready. resume:', file ? file.name : 'none');
+
+        return fetch(resolved.url, {
+          method:  'POST',
+          mode:    'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body:    JSON.stringify(payload)
         });
+      })
+      .then(function () {
+        console.log('[careers] POST done');
+        // manually clear fields — no form to reset
+        ['c-name','c-email','c-phone','c-ig','c-scene','c-exp','c-links'].forEach(function (id) {
+          var el = document.getElementById(id); if (el) el.value = '';
+        });
+        if (fileInput) fileInput.value = '';
+        if (fileLabel) fileLabel.textContent = 'Choose a file or drag it here';
+        setStatus("Thanks — your application is in. We'll be in touch if it's a fit.", 'ok');
+      })
+      .catch(function (err) {
+        console.error('[careers] submit error:', err);
+        setStatus('Something went wrong. Please email afrocueonline@gmail.com directly.', 'err');
+      })
+      .finally(function () {
+        if (btn) { btn.disabled = false; btn.textContent = 'Submit application'; }
+      });
 
     } catch (err) {
       console.error('[careers] handler crash:', err);
@@ -581,11 +590,24 @@
     }
   };
 
-  console.log('[careers] handler defined on window.afrocareerSubmit');
+  console.log('[careers] window.afrocareerSubmit defined');
 
-  /* ── Everything else, each in its own try/catch ───────── */
+  /* ── Extras ─────────────────────────────────────────────── */
   function initExtras() {
-    // Collapsible role card
+    // Debug line
+    try {
+      var dbg = document.getElementById('formDebug');
+      if (dbg) {
+        var r = resolveScriptUrl();
+        dbg.textContent = 'Endpoint source: ' + r.source + '\n' + r.url;
+      }
+      // Show debug panel when ?debug=1
+      if (/[?&]debug=1/.test(location.search)) {
+        document.body.classList.add('debug-on');
+      }
+    } catch (e) {}
+
+    // Role card toggle
     try {
       var card = document.getElementById('roleCard');
       var head = document.getElementById('roleHead');
@@ -608,9 +630,9 @@
           }, 120);
         }
       }
-    } catch (e) { console.warn('[careers] role card error:', e); }
+    } catch (e) {}
 
-    // File picker label + size guard
+    // File picker
     try {
       var fi = document.getElementById('c-resume');
       var fl = document.getElementById('fileLabel');
@@ -628,9 +650,9 @@
           fl.innerHTML = '<strong>' + f.name + '</strong>';
         });
       }
-    } catch (e) { console.warn('[careers] file picker error:', e); }
+    } catch (e) {}
 
-    // Featured blog strip
+    // Blog strip
     try {
       var sec   = document.getElementById('blogStrip');
       var link  = document.getElementById('blogStripLink');
@@ -640,36 +662,29 @@
       var meta  = document.getElementById('blogStripMeta');
 
       if (sec) {
-        fetch(resolveScriptUrl() + '?export=blog', { cache: 'no-store' })
+        fetch(FALLBACK_URL + '?export=blog', { cache: 'no-store' })
           .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
           .then(function (posts) {
             if (!Array.isArray(posts) || !posts.length) return;
             var post = posts.filter(function (p) { return p.featured; })[0] || posts[0];
             if (!post || !post.title) return;
-
             var imgUrl = (post.image || '').trim();
             if (imgUrl && /^https:\/\//i.test(imgUrl)) {
-              img.src = imgUrl;
-              img.alt = post.imageAlt || post.title;
+              img.src = imgUrl; img.alt = post.imageAlt || post.title;
               img.onerror = function () { img.parentNode.style.display = 'none'; };
-            } else {
-              img.parentNode.style.display = 'none';
-            }
-
+            } else { img.parentNode.style.display = 'none'; }
             title.textContent = post.title || '';
             exc.textContent   = post.excerpt || '';
-
             var bits = [];
             if (post.date)   bits.push(post.date);
             if (post.author) bits.push(post.author);
             meta.textContent = bits.join(' · ');
-
             link.href = 'blog.html#' + (post.id || '');
             sec.style.display = 'block';
           })
           .catch(function (err) { console.warn('[careers] blog strip failed:', err); });
       }
-    } catch (e) { console.warn('[careers] blog strip error:', e); }
+    } catch (e) {}
   }
 
   if (document.readyState === 'loading') {
@@ -678,7 +693,7 @@
     initExtras();
   }
 
-  console.log('[careers] script ready');
+  console.log('[careers] ready');
 })();
 </script>
 </body>
