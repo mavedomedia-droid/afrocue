@@ -245,15 +245,15 @@
   .form-meta a{color:var(--silver);text-decoration:underline;text-underline-offset:3px}
   .form-meta a:hover{color:var(--ink)}
 
-  /* ── ABOUT (supporting) ───────────────────────────────── */
-  .about{padding:64px 0 0;border-top:1px solid var(--edge)}
+  /* ── ABOUT ────────────────────────────────────────────── */
+  .about{padding:64px 0 72px;border-top:1px solid var(--edge)}
   .about .about-label{font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--silver);margin-bottom:20px}
   .about p{font-size:16px;line-height:1.8;color:var(--ink2);margin-bottom:16px;max-width:70ch}
   .about p:last-child{margin-bottom:0}
   .about p strong{color:var(--ink);font-weight:600}
 
   /* ── FEATURED BLOG STRIP ──────────────────────────────── */
-  .blog-strip{padding:56px 0 0}
+  .blog-strip{padding:0 0 72px}
   .blog-strip-inner{
     display:grid;
     grid-template-columns:220px 1fr;
@@ -317,8 +317,8 @@
     .jd-section{padding:28px 0 0}
     .jd-section + .jd-section{margin-top:28px}
     .apply-block{padding:32px 0 0;margin-top:32px}
-    .about{padding:48px 0 0}
-    .blog-strip{padding:48px 0 64px}
+    .about{padding:48px 0 56px}
+    .blog-strip{padding:0 0 56px}
   }
 </style>
 </head>
@@ -621,7 +621,8 @@
 <!-- Shared footer mounted by afrocue-ui.js -->
 <div id="ac-footer"></div>
 
-<!-- Shared nav + footer -->
+<!-- Shared config + chrome -->
+<script src="afrocue.js"></script>
 <script src="js/afrocue-ui.js" data-nav="full" data-footer="full"></script>
 
 <script>
@@ -779,18 +780,6 @@
   });
 
   /* ── Featured blog strip ───────────────────────────────── */
-  function loadBlogStrip() {
-    fetch(SCRIPT_URL + '?export=blog', { cache: 'no-store' })
-      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-      .then(function (posts) {
-        if (!Array.isArray(posts) || !posts.length) return;
-        var featured = posts.filter(function (p) { return p.featured; })[0] || posts[0];
-        if (!featured || !featured.title) return;
-        renderBlogStrip(featured);
-      })
-      .catch(function (err) { console.warn('Blog strip load failed:', err); });
-  }
-
   function esc(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
@@ -824,6 +813,18 @@
 
     link.href = 'blog.html#' + (post.id || '');
     sec.style.display = 'block';
+  }
+
+  function loadBlogStrip() {
+    fetch(SCRIPT_URL + '?export=blog', { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (posts) {
+        if (!Array.isArray(posts) || !posts.length) return;
+        var featured = posts.filter(function (p) { return p.featured; })[0] || posts[0];
+        if (!featured || !featured.title) return;
+        renderBlogStrip(featured);
+      })
+      .catch(function (err) { console.warn('Blog strip load failed:', err); });
   }
 
   loadBlogStrip();
