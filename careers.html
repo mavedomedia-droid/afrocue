@@ -333,7 +333,6 @@
           <h3>Apply below.</h3>
           <p class="apply-lede">Tell us about yourself, your experience, and how much you know or have experience in nightlife, dance music, media, and lifestyle.</p>
 
-          <!-- No <form> element — inputs are standalone. Button uses onclick only. -->
           <div class="career-form" id="careerForm">
             <div class="form-row">
               <div class="field">
@@ -438,21 +437,26 @@
 <script>
 /* ════════════════════════════════════════════════════════════════
    CAREERS — plain button, no <form>, no native submission.
+   Both the form AND the blog strip use the same URL from afrocue.js.
    ════════════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
 
   var MAX_RESUME_BYTES = 2 * 1024 * 1024;
-  var FALLBACK_URL = 'https://script.google.com/macros/s/AKfycwk0SvCWpKSr-hxsh_TPZiCCh2QTT8uXanQWiDl2qRCLqw1_wkNWLdNUs3LhYGqTl-O/exec';
+  // Last-resort fallback ONLY if afrocue.js fails to load.
+  var HARD_FALLBACK_URL = 'https://script.google.com/macros/s/AKfycbzV6tD85ncJSHYo3K7u7m24eukL0--xfpYR84c1Omle0fEppjJJcZXFcVXK0xgPB6M9/exec';
 
   function resolveScriptUrl() {
-    var used = 'fallback';
-    var url = FALLBACK_URL;
+    var used = 'hard fallback';
+    var url = HARD_FALLBACK_URL;
     try {
       if (typeof window.getAfroCueScriptUrl === 'function') {
         var u = window.getAfroCueScriptUrl();
         if (u && /^https:\/\//i.test(u)) { url = u; used = 'afrocue.js'; }
         else { used = 'afrocue.js returned invalid'; }
+      } else if (window.AFROCUE_SCRIPT_URL && /^https:\/\//i.test(window.AFROCUE_SCRIPT_URL)) {
+        url = window.AFROCUE_SCRIPT_URL;
+        used = 'window.AFROCUE_SCRIPT_URL';
       } else {
         used = 'getAfroCueScriptUrl undefined';
       }
@@ -498,7 +502,7 @@
     });
   }
 
-  /* ── Global handler — called by the button's onclick ────── */
+  /* ── Submit handler ─────────────────────────────────────── */
   window.afrocareerSubmit = function (ev) {
     if (ev) { ev.preventDefault(); ev.stopPropagation(); }
     console.log('[careers] submit clicked');
@@ -526,7 +530,6 @@
       if (!fScene.value.trim()) { setStatus('Please tell us about your background in nightlife, dance music, or media.', 'err'); fScene.focus(); return; }
       if (!fExp.value.trim())   { setStatus('Please add your relevant experience.', 'err'); fExp.focus(); return; }
 
-      // Resume is OPTIONAL — only validate if one was picked.
       var resumeFile = (fileInput && fileInput.files && fileInput.files[0]) ? fileInput.files[0] : null;
       if (resumeFile && resumeFile.size > MAX_RESUME_BYTES) {
         setStatus('Your resume is ' + humanSize(resumeFile.size) + ' — the limit is 2 MB. Please compress it or export a smaller PDF.', 'err');
@@ -537,7 +540,6 @@
       setStatus('Uploading your application…', 'loading');
 
       var resolved = resolveScriptUrl();
-
       var prep = resumeFile ? fileToBase64(resumeFile) : Promise.resolve(null);
 
       prep.then(function (file) {
@@ -568,7 +570,6 @@
       })
       .then(function () {
         console.log('[careers] POST done');
-        // manually clear fields — no form to reset
         ['c-name','c-email','c-phone','c-ig','c-scene','c-exp','c-links'].forEach(function (id) {
           var el = document.getElementById(id); if (el) el.value = '';
         });
@@ -601,7 +602,6 @@
         var r = resolveScriptUrl();
         dbg.textContent = 'Endpoint source: ' + r.source + '\n' + r.url;
       }
-      // Show debug panel when ?debug=1
       if (/[?&]debug=1/.test(location.search)) {
         document.body.classList.add('debug-on');
       }
@@ -652,7 +652,7 @@
       }
     } catch (e) {}
 
-    // Blog strip
+    // Blog strip — uses SAME resolved URL as form
     try {
       var sec   = document.getElementById('blogStrip');
       var link  = document.getElementById('blogStripLink');
@@ -662,10 +662,16 @@
       var meta  = document.getElementById('blogStripMeta');
 
       if (sec) {
-        fetch(FALLBACK_URL + '?export=blog', { cache: 'no-store' })
+        var blogUrl = resolveScriptUrl().url + '?export=blog';
+        console.log('[careers] blog fetch:', blogUrl);
+
+        fetch(blogUrl, { cache: 'no-store' })
           .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
           .then(function (posts) {
-            if (!Array.isArray(posts) || !posts.length) return;
+            if (!Array.isArray(posts) || !posts.length) {
+              console.log('[careers] blog empty');
+              return;
+            }
             var post = posts.filter(function (p) { return p.featured; })[0] || posts[0];
             if (!post || !post.title) return;
             var imgUrl = (post.image || '').trim();
@@ -681,10 +687,11 @@
             meta.textContent = bits.join(' · ');
             link.href = 'blog.html#' + (post.id || '');
             sec.style.display = 'block';
+            console.log('[careers] blog strip rendered:', post.title);
           })
           .catch(function (err) { console.warn('[careers] blog strip failed:', err); });
       }
-    } catch (e) {}
+    } catch (e) { console.warn('[careers] blog init error:', e); }
   }
 
   if (document.readyState === 'loading') {
