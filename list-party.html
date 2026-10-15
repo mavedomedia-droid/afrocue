@@ -45,23 +45,34 @@
     /* ─── NAV ─── */
     /* NAV + FOOTER now come from js/afrocue-ui.js */
 
-    /* ─── BANNER ─── */
-    .page-banner{position:relative;width:100%;aspect-ratio:21/9;overflow:hidden;background:var(--dark2);margin-top:80px}
-    .page-banner-bg{position:absolute;inset:-20px;z-index:0;background-image:url('texture.jpg');background-size:cover;background-position:center;filter:brightness(0.3);transform:scale(1.05)}
-    .page-banner-img{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0.5}
-    .page-banner-grad{position:absolute;inset:0;z-index:2;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.75) 100%)}
-    .page-banner-text{position:absolute;bottom:32px;left:48px;z-index:3}
     .label{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);margin-bottom:16px;display:flex;align-items:center;gap:10px}
     .label::before{content:'';width:18px;height:1px;background:var(--silver);flex-shrink:0}
-    .page-banner-text .label{margin-bottom:8px}
-    .page-banner-text h2{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(32px,4vw,56px);color:var(--yellow);text-shadow:var(--yts);line-height:0.9}
 
-    /* ─── SECTION ─── */
-    section{padding:48px 48px 100px}
-    .form-layout{display:grid;grid-template-columns:5fr 6fr;gap:80px;align-items:start;max-width:1200px}
-    .form-left{position:sticky;top:100px}
-    .form-left-h{font-size:clamp(44px,5.5vw,72px);margin-bottom:18px}
-    .form-left p{font-size:14px;font-weight:300;line-height:1.8;color:rgba(240,237,232,0.5);margin-bottom:20px}
+    /* ─── ATMOSPHERE ───
+       The photo used to be a 600px-tall band that pushed the form off screen.
+       It is now a backdrop behind the top of the page: same mood, no height. */
+    .hero-atmos{position:absolute;top:0;left:0;right:0;height:min(68vh,600px);z-index:0;overflow:hidden;pointer-events:none;background:var(--dark2)}
+    .hero-atmos img{width:100%;height:100%;object-fit:cover;object-position:62% 28%;opacity:0.2;filter:grayscale(0.4);-webkit-mask-image:linear-gradient(to right,#000 0%,#000 36%,transparent 64%);mask-image:linear-gradient(to right,#000 0%,#000 36%,transparent 64%)}
+    .hero-atmos::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.5) 0%,rgba(10,10,10,0.86) 58%,var(--black) 100%)}
+
+    /* ─── SECTION ───
+       --ac-nav-h and --ac-pad come from js/afrocue-ui.js, so the form lines up
+       with the nav logo instead of its own flat 48px. Fallbacks match. */
+    section{position:relative;z-index:1;padding:calc(var(--ac-nav-h,76px) + 34px) var(--ac-pad,max(48px,calc((100vw - 1200px) / 2))) 100px}
+    .form-layout{display:grid;grid-template-columns:5fr 6fr;gap:80px;align-items:start}
+    .form-left{position:sticky;top:calc(var(--ac-nav-h,76px) + 34px)}
+    .form-left-h{font-size:clamp(42px,5.2vw,68px);margin-bottom:16px;letter-spacing:-0.01em}
+    .form-lede{font-size:14px;font-weight:300;line-height:1.75;color:rgba(240,237,232,0.52);max-width:46ch}
+
+    /* ─── SECTION RAIL ───
+       Six headers on a long form. The rail says how much there is and where
+       you are, and jumps you there. Hidden on mobile, where it cannot stick. */
+    .rail{margin:30px 0 24px;border-left:1px solid rgba(255,255,255,0.1);display:flex;flex-direction:column}
+    .rail a{position:relative;padding:9px 0 9px 20px;font-size:12px;font-weight:400;color:rgba(240,237,232,0.36);text-decoration:none;transition:color 0.18s}
+    .rail a::before{content:'';position:absolute;left:-1px;top:50%;transform:translateY(-50%);width:1px;height:0;background:var(--yellow);transition:height 0.18s}
+    .rail a:hover,.rail a:focus-visible{color:var(--white)}
+    .rail a.is-active{color:var(--yellow);font-weight:500}
+    .rail a.is-active::before{height:100%}
     .form-note{background:rgba(200,224,0,0.05);border:1px solid rgba(200,224,0,0.14);border-radius:3px;padding:16px 18px;margin-bottom:16px}
     .form-note p{font-size:12px;font-weight:400;line-height:1.7;color:rgba(240,237,232,0.5);margin:0}
     .form-note strong{color:var(--yellow);font-weight:500}
@@ -175,20 +186,29 @@
 
     /* ─── RESPONSIVE ─── */
     @media(max-width:768px){
-      .page-banner{aspect-ratio:16/9;margin-top:76px}
-      .page-banner-text{left:20px;bottom:20px}
-      section{padding:40px 20px 72px}
-      .form-layout{grid-template-columns:1fr;gap:36px}
-      .form-left{position:static}
+      section{padding:calc(var(--ac-nav-h,76px) + 26px) var(--ac-pad,20px) 72px}
+      .hero-atmos{height:min(52vh,380px)}
+      .hero-atmos img{-webkit-mask-image:none;mask-image:none;opacity:0.16}
+      /* display:contents lets the headline stay above the form while the
+         approval terms drop below it. */
+      .form-layout{display:flex;flex-direction:column;gap:0}
+      .form-left{display:contents}
+      .page-head{order:1;margin-bottom:24px}
+      #formWrap{order:2}
+      .approval-notice{order:3;margin-top:34px}
+      .rail{display:none}
+      .form-left-h{font-size:clamp(40px,10.5vw,56px)}
+      .form-lede{font-size:13px;max-width:none}
       .frow{grid-template-columns:1fr}
       .upload-box{min-height:100px}
-      footer{padding:28px 20px;flex-direction:column;align-items:flex-start}
       .review-row{flex-direction:column;gap:4px}
       .review-actions{flex-direction:column}
     }
     @media(max-width:420px){
-      .page-banner-text h2{font-size:28px}
       .pill-opt{font-size:10px;padding:6px 10px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .rail a,.rail a::before{transition:none}
     }
   </style>
 </head>
@@ -199,24 +219,28 @@
 <!-- SHARED NAV (rendered by js/afrocue-ui.js) -->
 <div id="ac-nav"></div>
 
-<div class="page-banner">
-  <div class="page-banner-bg"></div>
-  <img class="page-banner-img" src="about_editorial.jpg" alt="AfroCue" onerror="this.style.display='none'"/>
-  <div class="page-banner-grad"></div>
-  <div class="page-banner-text">
-    <div class="label">Party Directory</div>
-    <h2 class="yh">List your<br>party.</h2>
-  </div>
+<div class="hero-atmos" aria-hidden="true">
+  <img src="about_editorial.jpg" alt="" onerror="this.style.display='none'"/>
 </div>
 
 <section>
   <div class="form-layout">
 
     <div class="form-left">
-      <p>Fill in the details. We will review and publish within a few days. Once live, your party gets its own page on AfroCue — searchable, shareable, documented.</p>
-      <div class="form-note">
-        <p><strong>Images matter.</strong> Upload a strong event photo and a flyer. These are what people see first. High quality only.</p>
+      <div class="page-head">
+        <h1 class="yh form-left-h">List your party.</h1>
+        <p class="form-lede">Your party gets its own page on AfroCue once we have reviewed it: searchable, shareable, documented. Takes about ten minutes.</p>
       </div>
+
+      <nav class="rail" id="formRail" aria-label="Form sections">
+        <a href="#sec-party">The party</a>
+        <a href="#sec-when">Schedule and access</a>
+        <a href="#sec-music">Music</a>
+        <a href="#sec-images">Images</a>
+        <a href="#sec-links">Links</a>
+        <a href="#sec-contact">Your contact</a>
+      </nav>
+
       <div class="approval-notice">
         <p><strong>How approval works.</strong> Before your party goes live, we review your Instagram page, past editions, and any documentation we can find online. Make sure your Instagram is public and up to date - the more we can find, the faster the review.</p>
       </div>
@@ -236,7 +260,7 @@
       <form class="party-form" id="partyForm" onsubmit="handleSubmit(event)" novalidate>
 
         <!-- ─── THE PARTY ─── -->
-        <div class="fsec">The Party</div>
+        <div class="fsec" id="sec-party">The Party</div>
         <div class="frow">
           <div class="field" id="field-party_name">
             <label>Party / Event Name</label>
@@ -303,6 +327,22 @@
         </div>
 
         <div class="frow">
+          <div class="field" id="field-venue">
+            <label>Venue <span style="opacity:.5;font-weight:400;">(optional)</span></label>
+            <input type="text" name="venue" placeholder="e.g. Praia Lagos"/>
+          </div>
+          <div class="field" id="field-organiser">
+            <label>Organiser <span style="opacity:.5;font-weight:400;">(optional)</span></label>
+            <input type="text" name="organiser" placeholder="e.g. The Chibyverse"/>
+          </div>
+        </div>
+
+        <div class="fdivider"></div>
+
+        <!-- ─── SCHEDULE &amp; ACCESS ─── -->
+        <div class="fsec" id="sec-when">Schedule &amp; Access</div>
+
+        <div class="frow">
           <div class="field" id="field-time">
             <label>Time of Day</label>
             <select name="time" required>
@@ -350,17 +390,6 @@
         </div>
 
         <div class="frow">
-          <div class="field" id="field-venue">
-            <label>Venue <span style="opacity:.5;font-weight:400;">(optional)</span></label>
-            <input type="text" name="venue" placeholder="e.g. Praia Lagos"/>
-          </div>
-          <div class="field" id="field-organiser">
-            <label>Organiser <span style="opacity:.5;font-weight:400;">(optional)</span></label>
-            <input type="text" name="organiser" placeholder="e.g. The Chibyverse"/>
-          </div>
-        </div>
-
-        <div class="frow">
           <div class="field" id="field-recurrence">
             <label>How often?</label>
             <select name="recurrence" required>
@@ -389,8 +418,13 @@
           </div>
         </div>
 
+        <div class="fdivider"></div>
+
+        <!-- ─── MUSIC ─── -->
+        <div class="fsec" id="sec-music">Music</div>
+
         <div class="field" id="field-genres">
-          <label>Music</label>
+          <label>Genres</label>
           <div class="pill-select" id="genrePills">
             <span class="pill-opt" onclick="toggleGenre(this)">Afrobeats</span>
             <span class="pill-opt" onclick="toggleGenre(this)">Afro House</span>
@@ -422,7 +456,10 @@
         <div class="fdivider"></div>
 
         <!-- ─── IMAGES ─── -->
-        <div class="fsec">Images</div>
+        <div class="fsec" id="sec-images">Images</div>
+        <div class="form-note">
+          <p><strong>These are the first thing anyone sees.</strong> One photo from the party itself, one flyer. High quality only.</p>
+        </div>
 
         <div class="upload-field">
           <div class="upload-label">Event Photo <span style="font-weight:300;text-transform:none;letter-spacing:0;">- a moment from your party in action</span></div>
@@ -460,7 +497,7 @@
         <div class="fdivider"></div>
 
         <!-- ─── LINKS ─── -->
-        <div class="fsec">Links</div>
+        <div class="fsec" id="sec-links">Links</div>
 
         <div class="field" id="field-instagram">
           <label>Instagram Handle</label>
@@ -480,7 +517,7 @@
         <div class="fdivider"></div>
 
         <!-- ─── CONTACT ─── -->
-        <div class="fsec">Your Contact</div>
+        <div class="fsec" id="sec-contact">Your Contact</div>
         <div class="field" id="field-email">
           <label>Your Email</label>
           <input type="email" name="contact_email" placeholder="your@email.com" required/>
@@ -742,6 +779,52 @@ function uploadToGAS(base64Data, type) {
 }
 
 // ─── SETUP DRAG & DROP ─────────────────────────────────────────────
+// ─── SECTION RAIL ───────────────────────────────────────────────────
+(function () {
+  var rail = document.getElementById('formRail');
+  if (!rail) return;
+  var links = [].slice.call(rail.querySelectorAll('a'));
+  var secs = links.map(function (a) {
+    return document.getElementById(a.getAttribute('href').slice(1));
+  });
+
+  function navH() {
+    var v = getComputedStyle(document.documentElement).getPropertyValue('--ac-nav-h');
+    return parseInt(v, 10) || 76;
+  }
+
+  // Jump to the header, not under the nav.
+  links.forEach(function (a, i) {
+    a.addEventListener('click', function (e) {
+      if (!secs[i]) return;
+      e.preventDefault();
+      var y = secs[i].getBoundingClientRect().top + window.pageYOffset - navH() - 24;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    });
+  });
+
+  // Active = the last header scrolled past.
+  var ticking = false;
+  function mark() {
+    ticking = false;
+    var line = navH() + 90, active = 0;
+    secs.forEach(function (s, i) {
+      if (s && s.getBoundingClientRect().top <= line) active = i;
+    });
+    // The last section can never reach the line - the page runs out of scroll.
+    var atEnd = window.pageYOffset + window.innerHeight >= document.documentElement.scrollHeight - 4;
+    if (atEnd) active = secs.length - 1;
+    links.forEach(function (a, i) {
+      a.className = i === active ? 'is-active' : '';
+    });
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(mark); }
+  }, { passive: true });
+  window.addEventListener('resize', mark, { passive: true });
+  mark();
+})();
+
 setupDragDrop('heroBox', 'hero');
 setupDragDrop('flyerBox', 'flyer');
 
