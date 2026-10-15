@@ -321,19 +321,8 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <nav>
-    <a class="nav-logo" href="index.html">
-      <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none';document.querySelector('.nav-logo-fallback').style.display='block'"/>
-      <span class="nav-logo-fallback">afro.cue</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="index.html#about">About</a></li>
-      <li><a href="parties.html" class="active">Parties</a></li>
-      <li><a href="dj.html">DJs</a></li>
-    </ul>
-    <a href="list-party.html" class="nav-cta">List Your Party</a>
-  </nav>
+  <!-- SHARED NAV (rendered by js/afrocue-ui.js) -->
+  <div id="ac-nav"></div>
 
   <!-- MODAL -->
   <div class="modal-wrap" id="partyModal">
@@ -495,30 +484,20 @@
   <section id="parties">
     <div class="parties-header">
       <div class="filter-bar">
+        <select class="filter-select" id="filterArea" onchange="applyFilters()">
+          <option value="">Area</option>
+        </select>
         <select class="filter-select" id="filterCity" onchange="applyFilters()">
           <option value="">City</option>
-          <optgroup label="Nigeria">
-            <option>Lagos</option><option>Port Harcourt</option><option>Abuja</option>
-            <option>Benin</option><option>Ibadan</option><option>Enugu</option>
-            <option>Calabar</option><option>Warri</option>
-          </optgroup>
-          <optgroup label="West Africa">
-            <option>Accra</option><option>Nairobi</option><option>Johannesburg</option>
-          </optgroup>
         </select>
         <select class="filter-select" id="filterTime" onchange="applyFilters()">
           <option value="">Time</option><option>Day</option><option>Night</option><option>Day &amp; Night</option>
         </select>
         <select class="filter-select" id="filterAccess" onchange="applyFilters()">
-          <option value="">Access</option><option>Free</option><option>Ticketed</option><option>RSVP</option><option>Invite Only</option>
-        </select>
-        <select class="filter-select" id="filterSetting" onchange="applyFilters()">
-          <option value="">Setting</option><option>Indoor</option><option>Outdoor</option><option>Both</option>
+          <option value="">Access</option>
         </select>
         <select class="filter-select" id="filterGenre" onchange="applyFilters()">
-          <option value="">Genre</option><option>Afrobeats</option><option>Afro House</option>
-          <option>Amapiano</option><option>3-Step</option><option>Hip Hop</option>
-          <option>Dancehall</option><option>Electronic</option>
+          <option value="">Genre</option>
         </select>
         <input class="search-input" id="searchInput" type="text" placeholder="Search parties..." oninput="applyFilters()">
         <button class="filter-reset" id="filterReset" onclick="resetFilters()">Clear</button>
@@ -576,20 +555,9 @@
   </section>
 
   <!-- FOOTER -->
-  <footer>
-    <a class="footer-logo" href="index.html">
-      <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
-      <span class="footer-logo-fallback">AfroCue</span>
-    </a>
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="parties.html">Parties</a>
-      <a href="dj.html">DJs</a>
-      <a href="pregame.html">Pregame</a>
-      <a href="list-party.html">List a Party</a>
-    </div>
-    <div class="footer-email"><a href="mailto:hello@afrocue.xyz">hello@afrocue.xyz</a></div>
-  </footer>
+  <!-- SHARED FOOTER (rendered by js/afrocue-ui.js) -->
+<div id="ac-footer"></div>
+<script src="js/afrocue-ui.js" data-nav="full" data-footer="full"></script>
 
   <!-- Shared config -->
   <script src="afrocue.js"></script>
@@ -701,6 +669,14 @@
       var C_LAST_PARTY_DATE = col('last party date');
       var C_NEXT_PARTY_DATE = col('next party date');
       var C_PULSE_CONFIDENCE = col('pulse confidence');
+      var C_AREA = col('area');
+      var C_VENUE = col('venue');
+      var C_ORGANISER = col('organiser');
+      var C_ENTRY = col('entry');
+      var C_DAY_OF_WEEK = col('day of week');
+      var C_RECURRENCE = col('recurrence');
+      var C_NEXT_PARTY_TIME = col('next party time');
+      var C_VIBE_TAGS = col('vibe tags');
 
       var parties = [];
       var featured = null;
@@ -746,7 +722,15 @@
           post3_type: C_POST3_TYPE > -1 ? cols[C_POST3_TYPE].trim() : '',
           last_party_date: C_LAST_PARTY_DATE > -1 ? cols[C_LAST_PARTY_DATE].trim() : '',
           next_party_date: C_NEXT_PARTY_DATE > -1 ? cols[C_NEXT_PARTY_DATE].trim() : '',
-          pulse_confidence: C_PULSE_CONFIDENCE > -1 ? cols[C_PULSE_CONFIDENCE].trim() : ''
+          pulse_confidence: C_PULSE_CONFIDENCE > -1 ? cols[C_PULSE_CONFIDENCE].trim() : '',
+          area: C_AREA > -1 ? cols[C_AREA].trim() : '',
+          venue: C_VENUE > -1 ? cols[C_VENUE].trim() : '',
+          organiser: C_ORGANISER > -1 ? cols[C_ORGANISER].trim() : '',
+          entry: C_ENTRY > -1 ? cols[C_ENTRY].trim() : '',
+          day_of_week: C_DAY_OF_WEEK > -1 ? cols[C_DAY_OF_WEEK].trim() : '',
+          recurrence: C_RECURRENCE > -1 ? cols[C_RECURRENCE].trim() : '',
+          next_party_time: C_NEXT_PARTY_TIME > -1 ? cols[C_NEXT_PARTY_TIME].trim() : '',
+          vibe_tags: C_VIBE_TAGS > -1 ? cols[C_VIBE_TAGS].trim().split(',').map(function(s){ return s.trim(); }).filter(Boolean) : []
         };
         if(isFeatured) featured = p;
         if(status === 'Active' || status === '') parties.push(p);
@@ -764,6 +748,7 @@
           PARTIES = result.parties;
           renderUpcoming(result.featured);
           if(PARTIES.length > 0){
+            buildFilterOptions();
             renderCards(getFilters());
             initFeatured();
           } else {
@@ -777,22 +762,69 @@
     }
 
     // ─── FILTERS ─────────────────────────────────────────────────────────
+    // Dropdowns are built from the rows that actually loaded, so an option
+    // can never point at zero parties, and a filter with nothing to choose
+    // between hides itself. Add a genre on the form and it appears here with
+    // no code change.
+    function buildFilterOptions(){
+      function fill(id, values, label){
+        var el = document.getElementById(id);
+        if(!el) return;
+        var uniq = [];
+        values.forEach(function(v){
+          v = String(v || '').trim();
+          if(v && uniq.indexOf(v) === -1) uniq.push(v);
+        });
+        uniq.sort(function(a,b){ return a.localeCompare(b); });
+        // One value means the filter can't narrow anything down.
+        if(uniq.length < 2){ el.style.display = 'none'; return; }
+        el.style.display = '';
+        el.innerHTML = '<option value="">' + label + '</option>'
+          + uniq.map(function(v){ return '<option>' + v + '</option>'; }).join('');
+      }
+      fill('filterArea',   PARTIES.map(function(p){ return p.area; }),   'Area');
+      fill('filterCity',   PARTIES.map(function(p){ return p.city; }),   'City');
+      fill('filterTime',   PARTIES.map(function(p){ return p.time; }),   'Time');
+      fill('filterAccess', PARTIES.map(function(p){ return p.access; }), 'Access');
+
+      var genres = [];
+      PARTIES.forEach(function(p){ (p.genres || []).forEach(function(g){ genres.push(g); }); });
+      fill('filterGenre', genres, 'Genre');
+    }
+
     function getFilters(){
       return {
+        area: document.getElementById('filterArea').value,
         city: document.getElementById('filterCity').value,
         time: document.getElementById('filterTime').value,
         access: document.getElementById('filterAccess').value,
-        setting: document.getElementById('filterSetting').value,
         genre: document.getElementById('filterGenre').value,
         search: document.getElementById('searchInput').value.trim().toLowerCase()
       };
     }
 
+    // "Praia Lagos, Lekki" where we have it, otherwise fall back to the city.
+    function partyWhere(party){
+      var bits = [party.venue, party.area].filter(Boolean);
+      return bits.length ? bits.join(', ') : (party.city || '');
+    }
+
+    // "Every Saturday", "Monthly", or nothing.
+    function partyWhen(party){
+      var r = party.recurrence || '';
+      if(!r || r === 'One-off' || r === 'Irregular') return r === 'One-off' ? 'One-off' : '';
+      if(party.day_of_week){
+        if(r === 'Weekly') return 'Every ' + party.day_of_week;
+        return r + ' on ' + party.day_of_week + 's';
+      }
+      return r;
+    }
+
     function partyMatchesFilters(party, filters){
+      if(filters.area && (party.area || '') !== filters.area) return false;
       if(filters.city && party.city.toLowerCase().indexOf(filters.city.toLowerCase()) === -1) return false;
       if(filters.time && party.time !== filters.time) return false;
       if(filters.access && party.access !== filters.access) return false;
-      if(filters.setting && party.setting !== filters.setting) return false;
       if(filters.genre && (!party.genres || party.genres.map(function(g){ return g.toLowerCase(); }).indexOf(filters.genre.toLowerCase()) === -1)) return false;
       if(filters.search && party.name.toLowerCase().indexOf(filters.search) === -1) return false;
       return true;
@@ -800,17 +832,17 @@
 
     function applyFilters(){
       var filters = getFilters();
-      var hasAny = filters.city || filters.time || filters.access || filters.setting || filters.genre || filters.search;
+      var hasAny = filters.area || filters.city || filters.time || filters.access || filters.genre || filters.search;
       var reset = document.getElementById('filterReset');
       if(reset) reset.className = 'filter-reset' + (hasAny ? ' visible' : '');
-      ['filterCity','filterTime','filterAccess','filterSetting','filterGenre'].forEach(function(id){
+      ['filterArea','filterCity','filterTime','filterAccess','filterGenre'].forEach(function(id){
         var el = document.getElementById(id); if(el) el.className = 'filter-select' + (el.value ? ' has-value' : '');
       });
       renderCards(filters);
     }
 
     function resetFilters(){
-      ['filterCity','filterTime','filterAccess','filterSetting','filterGenre'].forEach(function(id){
+      ['filterArea','filterCity','filterTime','filterAccess','filterGenre'].forEach(function(id){
         var el = document.getElementById(id); if(el){ el.value = ''; el.className = 'filter-select'; }
       });
       document.getElementById('searchInput').value = '';
@@ -862,7 +894,8 @@
         content.innerHTML = '<div class="party-card-tags">'+tagHTML+'</div>'
           + '<div class="party-card-name">'+party.name+'</div>'
           + (handle ? '<div class="party-card-ig">'+handle+'</div>' : '')
-          + '<div class="party-card-meta">'+party.city+'</div>'
+          + '<div class="party-card-meta">'+partyWhere(party)+'</div>'
+          + (partyWhen(party) ? '<div class="party-card-meta">'+partyWhen(party)+'</div>' : '')
           + statsHtml;
 
         card.appendChild(bg); card.appendChild(img); card.appendChild(tint); card.appendChild(grad);
