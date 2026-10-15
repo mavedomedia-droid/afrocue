@@ -43,13 +43,7 @@
     .yh{font-family:'Aesthet Nova',sans-serif;font-weight:900;color:var(--yellow);text-shadow:var(--yts);line-height:0.92}
 
     /* ─── NAV ─── */
-    nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(10,10,10,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06)}
-    .nav-logo{display:flex;align-items:center;text-decoration:none}
-    .nav-logo img{height:48px;width:auto;display:block}
-    .nav-logo-fallback{display:none;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:17px;color:var(--yellow)}
-    .nav-back{font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--silver);text-decoration:none;transition:color 0.2s;display:flex;align-items:center;gap:8px}
-    .nav-back::before{content:'←';font-size:14px}
-    .nav-back:hover{color:var(--white)}
+    /* NAV + FOOTER now come from js/afrocue-ui.js */
 
     /* ─── BANNER ─── */
     .page-banner{position:relative;width:100%;aspect-ratio:21/9;overflow:hidden;background:var(--dark2);margin-top:80px}
@@ -177,14 +171,10 @@
     .draft-banner button:hover{background:rgba(200,224,0,0.1)}
 
     /* ─── FOOTER ─── */
-    footer{border-top:1px solid rgba(255,255,255,0.06);padding:36px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;background:var(--dark)}
-    .footer-links{display:flex;gap:22px;flex-wrap:wrap}
-    .footer-links a{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey);text-decoration:none;transition:color 0.2s}
-    .footer-links a:hover{color:var(--white)}
+    /* footer comes from js/afrocue-ui.js */
 
     /* ─── RESPONSIVE ─── */
     @media(max-width:768px){
-      nav{padding:14px 20px}
       .page-banner{aspect-ratio:16/9;margin-top:76px}
       .page-banner-text{left:20px;bottom:20px}
       section{padding:40px 20px 72px}
@@ -206,13 +196,8 @@
 
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<nav>
-  <a class="nav-logo" href="index.html">
-    <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none'; document.querySelector('.nav-logo-fallback').style.display='block'"/>
-    <span class="nav-logo-fallback">afro.cue</span>
-  </a>
-  <a href="parties.html" class="nav-back">Party Directory</a>
-</nav>
+<!-- SHARED NAV (rendered by js/afrocue-ui.js) -->
+<div id="ac-nav"></div>
 
 <div class="page-banner">
   <div class="page-banner-bg"></div>
@@ -300,6 +285,23 @@
           <span class="field-error" id="err-city_other">Please specify the city.</span>
         </div>
 
+        <!-- ─── AREA (Lagos only) ─── -->
+        <div class="field" id="areaField" style="display:none;">
+          <label>Area</label>
+          <select name="area">
+            <option value="" disabled selected>Select area</option>
+            <option>Lekki</option>
+            <option>Victoria Island</option>
+            <option>Ikoyi</option>
+            <option>Ajah</option>
+            <option>Yaba</option>
+            <option>Surulere</option>
+            <option>Ikeja</option>
+            <option>Mainland (other)</option>
+          </select>
+          <span class="field-error" id="err-area">Please select an area.</span>
+        </div>
+
         <div class="frow">
           <div class="field" id="field-time">
             <label>Time of Day</label>
@@ -324,6 +326,18 @@
           </div>
         </div>
 
+        <!-- ─── TICKETING (Ticketed only) ─── -->
+        <div class="frow" id="ticketRow" style="display:none;">
+          <div class="field" id="field-entry">
+            <label>Entry Price <span style="opacity:.5;font-weight:400;">(optional)</span></label>
+            <input type="text" name="entry" placeholder="e.g. ₦10,000 or ₦15,000 at the door"/>
+          </div>
+          <div class="field" id="field-ticket_url">
+            <label>Ticket Link <span style="opacity:.5;font-weight:400;">(optional)</span></label>
+            <input type="url" name="ticket_url" placeholder="https://..."/>
+          </div>
+        </div>
+
         <div class="field" id="field-setting">
           <label>Setting</label>
           <select name="setting" required>
@@ -335,15 +349,60 @@
           <span class="field-error" id="err-setting">Please select a setting.</span>
         </div>
 
+        <div class="frow">
+          <div class="field" id="field-venue">
+            <label>Venue <span style="opacity:.5;font-weight:400;">(optional)</span></label>
+            <input type="text" name="venue" placeholder="e.g. Praia Lagos"/>
+          </div>
+          <div class="field" id="field-organiser">
+            <label>Organiser <span style="opacity:.5;font-weight:400;">(optional)</span></label>
+            <input type="text" name="organiser" placeholder="e.g. The Chibyverse"/>
+          </div>
+        </div>
+
+        <div class="frow">
+          <div class="field" id="field-recurrence">
+            <label>How often?</label>
+            <select name="recurrence" required>
+              <option value="" disabled selected>Select</option>
+              <option>One-off</option>
+              <option>Weekly</option>
+              <option>Fortnightly</option>
+              <option>Monthly</option>
+              <option>Quarterly</option>
+              <option>Irregular</option>
+            </select>
+            <span class="field-error" id="err-recurrence">Please tell us how often it runs.</span>
+          </div>
+          <div class="field" id="field-day_of_week" style="visibility:hidden;">
+            <label>Usual Day</label>
+            <select name="day_of_week">
+              <option value="" selected>Select</option>
+              <option>Monday</option>
+              <option>Tuesday</option>
+              <option>Wednesday</option>
+              <option>Thursday</option>
+              <option>Friday</option>
+              <option>Saturday</option>
+              <option>Sunday</option>
+            </select>
+          </div>
+        </div>
+
         <div class="field" id="field-genres">
-          <label>Genres</label>
+          <label>Music</label>
           <div class="pill-select" id="genrePills">
             <span class="pill-opt" onclick="toggleGenre(this)">Afrobeats</span>
             <span class="pill-opt" onclick="toggleGenre(this)">Afro House</span>
             <span class="pill-opt" onclick="toggleGenre(this)">Amapiano</span>
             <span class="pill-opt" onclick="toggleGenre(this)">3-Step</span>
+            <span class="pill-opt" onclick="toggleGenre(this)">Alt&eacute;</span>
             <span class="pill-opt" onclick="toggleGenre(this)">Hip Hop</span>
+            <span class="pill-opt" onclick="toggleGenre(this)">R&amp;B</span>
             <span class="pill-opt" onclick="toggleGenre(this)">Dancehall</span>
+            <span class="pill-opt" onclick="toggleGenre(this)">House</span>
+            <span class="pill-opt" onclick="toggleGenre(this)">Techno</span>
+            <span class="pill-opt" onclick="toggleGenre(this)">EDM</span>
             <span class="pill-opt" onclick="toggleGenre(this)">Electronic</span>
             <span class="pill-opt" onclick="toggleGenre(this)">Other</span>
           </div>
@@ -366,12 +425,12 @@
         <div class="fsec">Images</div>
 
         <div class="upload-field">
-          <div class="upload-label">Event Photo <span style="font-weight:300;text-transform:none;letter-spacing:0;">- wide shot from the event</span></div>
+          <div class="upload-label">Event Photo <span style="font-weight:300;text-transform:none;letter-spacing:0;">- a moment from your party in action</span></div>
           <div class="upload-box" id="heroBox">
             <input type="file" accept="image/*" id="heroFile" onchange="handleFileSelect(this, 'hero')"/>
             <div class="upload-box-inner">
               <div class="upload-icon">&#8593;</div>
-              <div class="upload-text"><strong>Click to upload</strong> or drag and drop<br>JPG, PNG - min 1200px wide</div>
+              <div class="upload-text"><strong>Click to upload</strong> or drag and drop<br>The crowd, the dancefloor, the booth. Not a flyer.<br>JPG, PNG - min 1200px wide</div>
             </div>
             <img class="upload-preview" id="heroPreview" alt="Preview"/>
           </div>
@@ -383,7 +442,7 @@
         </div>
 
         <div class="upload-field" style="margin-top:12px;">
-          <div class="upload-label">Flyer <span style="font-weight:300;text-transform:none;letter-spacing:0;">- portrait ratio preferred</span></div>
+          <div class="upload-label">Flyer <span style="font-weight:300;text-transform:none;letter-spacing:0;">- your most recent party flyer or poster</span></div>
           <div class="upload-box" id="flyerBox">
             <input type="file" accept="image/*" id="flyerFile" onchange="handleFileSelect(this, 'flyer')"/>
             <div class="upload-box-inner">
@@ -426,7 +485,13 @@
           <label>Your Email</label>
           <input type="email" name="contact_email" placeholder="your@email.com" required/>
           <span class="field-error" id="err-email">Please enter a valid email address.</span>
-          <span class="field-note">So we can reach you before publishing. This email will receive your approval notification.</span>
+          <span class="field-note">So we can reach you before publishing. This email receives your approval notification. It is never shown publicly.</span>
+        </div>
+
+        <div class="field" id="field-official_email">
+          <label>Official Party Email <span style="opacity:.5;font-weight:400;">- optional</span></label>
+          <input type="email" name="official_email" placeholder="bookings@yourparty.com"/>
+          <span class="field-note">The address you want listed on your AfroCue page for bookings and enquiries. Leave blank if there isn't one.</span>
         </div>
 
         <!-- ─── REVIEW STEP ─── -->
@@ -451,20 +516,9 @@
   </div>
 </section>
 
-<footer>
-  <div>
-    <a href="index.html" style="display:inline-flex;align-items:center;text-decoration:none;">
-      <img src="logo_afrocue.png" alt="AfroCue" style="height:36px;width:auto;" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
-      <span style="display:none;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:18px;color:var(--yellow);">AfroCue</span>
-    </a>
-  </div>
-  <div class="footer-links">
-    <a href="parties.html">Party Directory</a>
-    <a href="dj.html">DJs</a>
-    <a href="index.html">Home</a>
-  </div>
-  <div><a href="/cdn-cgi/l/email-protection#ea898f9b868a9c8c86878580878caa8d878b8386c4898587" style="font-size:11px;color:var(--grey);text-decoration:none;"><span class="__cf_email__" data-cfemail="dabb9c88b5b9afbfb5b4b6b3b4bf9abdb7bbb3b6f4b9b5b7">[email&#160;protected]</span></a></div>
-</footer>
+<!-- SHARED FOOTER (rendered by js/afrocue-ui.js) -->
+<div id="ac-footer"></div>
+<script src="js/afrocue-ui.js" data-nav="full" data-footer="full"></script>
 
 <script>
 // ─── CONFIG ──────────────────────────────────────────────────────────
@@ -579,10 +633,32 @@ function updateCharCount(el) {
   display.className = 'char-count' + (count > 1000 ? ' over' : count > 800 ? ' warn' : '');
 }
 
-// ─── CITY OTHER ─────────────────────────────────────────────────────
+// ─── CITY OTHER + AREA ──────────────────────────────────────────────
 document.querySelector('select[name="city"]').addEventListener('change', function() {
   var f = document.getElementById('otherCityField');
   if (f) f.style.display = this.value === 'Other' ? 'flex' : 'none';
+  // Area only makes sense for Lagos; every other city is one bucket for now.
+  var a = document.getElementById('areaField');
+  if (a) a.style.display = this.value === 'Lagos, Nigeria' ? 'flex' : 'none';
+  saveDraft();
+});
+
+// ─── TICKETING ──────────────────────────────────────────────────────
+document.querySelector('select[name="access"]').addEventListener('change', function() {
+  var r = document.getElementById('ticketRow');
+  if (r) r.style.display = this.value === 'Ticketed' ? 'flex' : 'none';
+  saveDraft();
+});
+
+// ─── DAY OF WEEK ────────────────────────────────────────────────────
+// Only meaningful for something that repeats on a schedule.
+document.querySelector('select[name="recurrence"]').addEventListener('change', function() {
+  var d = document.getElementById('field-day_of_week');
+  var repeats = ['Weekly', 'Fortnightly', 'Monthly', 'Quarterly'].indexOf(this.value) >= 0;
+  if (d) {
+    d.style.visibility = repeats ? 'visible' : 'hidden';
+    if (!repeats) d.querySelector('select').value = '';
+  }
   saveDraft();
 });
 
@@ -702,6 +778,19 @@ function validateForm() {
     })) valid = false;
   }
 
+  // Area (Lagos only)
+  if (cityField.value === 'Lagos, Nigeria') {
+    var areaSel = document.querySelector('select[name="area"]');
+    if (!validateField('areaField', 'err-area', function() {
+      return areaSel && areaSel.value && areaSel.value !== '';
+    })) valid = false;
+  }
+
+  // Recurrence
+  if (!validateField('field-recurrence', 'err-recurrence', function(f) {
+    return f.querySelector('select').value && f.querySelector('select').value !== '';
+  })) valid = false;
+
   // Time
   if (!validateField('field-time', 'err-time', function(f) {
     return f.querySelector('select').value && f.querySelector('select').value !== '';
@@ -765,12 +854,18 @@ function showReview() {
     'City': form.city.value === 'Other' ? form.city_other.value : form.city.value,
     'Time': form.time.value,
     'Access': form.access.value,
+    'Area': form.area && form.area.value ? form.area.value : '(not set)',
+    'Venue': form.venue.value || '(not provided)',
+    'Organiser': form.organiser.value || '(not provided)',
+    'How often': form.recurrence.value + (form.day_of_week.value ? ' on ' + form.day_of_week.value + 's' : ''),
+    'Entry': form.entry.value || (form.access.value === 'Ticketed' ? '(not provided)' : form.access.value),
     'Setting': form.setting.value,
     'Genres': genres,
     'Description': form.description.value.substring(0, 150) + '...',
     'Instagram': '@' + igHandle,
     'Website': form.website.value || '(not provided)',
-    'Email': form.contact_email.value
+    'Your Email': form.contact_email.value,
+    'Public Email': form.official_email.value || '(none)'
   };
 
   var html = '';
@@ -822,6 +917,13 @@ function doSubmit() {
     source: 'party_submission',
     party_name: form.party_name.value.trim(),
     city: form.city.value === 'Other' ? form.city_other.value.trim() : form.city.value,
+    area: form.area ? form.area.value : '',
+    venue: form.venue.value.trim(),
+    organiser: form.organiser.value.trim(),
+    recurrence: form.recurrence.value,
+    day_of_week: form.day_of_week.value,
+    entry: form.entry.value.trim(),
+    ticket_url: form.ticket_url.value.trim(),
     time: form.time.value,
     access: form.access.value,
     setting: form.setting.value,
@@ -831,7 +933,8 @@ function doSubmit() {
     flyer_image: uploadedUrls.flyer || '',
     instagram_url: 'https://instagram.com/' + igHandle,
     website: form.website.value.trim(),
-    contact_email: form.contact_email.value.trim()
+    contact_email: form.official_email.value.trim() || form.contact_email.value.trim(),
+    submitted_by_email: form.contact_email.value.trim()
   };
 
   var btn = document.getElementById('confirmSubmitBtn') || document.getElementById('partySubmitBtn');
