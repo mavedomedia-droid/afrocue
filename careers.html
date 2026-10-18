@@ -443,28 +443,29 @@
   'use strict';
 
   var MAX_RESUME_BYTES = 2 * 1024 * 1024;
-  // Last-resort fallback ONLY if afrocue.js fails to load.
-  var HARD_FALLBACK_URL = 'https://script.google.com/macros/s/AKfycbzV6tD85ncJSHYo3K7u7m24eukL0--xfpYR84c1Omle0fEppjJJcZXFcVXK0xgPB6M9/exec';
 
+  // No hardcoded endpoint. afrocue.js is the single source of truth, so this
+  // page can never quietly post to a stale deployment that someone forgot to
+  // update here. If afrocue.js does not supply a URL, the form refuses to
+  // submit and says so rather than pretending to work.
   function resolveScriptUrl() {
-    var used = 'hard fallback';
-    var url = HARD_FALLBACK_URL;
+    var used = '', url = '';
     try {
       if (typeof window.getAfroCueScriptUrl === 'function') {
         var u = window.getAfroCueScriptUrl();
         if (u && /^https:\/\//i.test(u)) { url = u; used = 'afrocue.js'; }
-        else { used = 'afrocue.js returned invalid'; }
+        else { used = 'afrocue.js returned an invalid URL: ' + JSON.stringify(u); }
       } else if (window.AFROCUE_SCRIPT_URL && /^https:\/\//i.test(window.AFROCUE_SCRIPT_URL)) {
         url = window.AFROCUE_SCRIPT_URL;
         used = 'window.AFROCUE_SCRIPT_URL';
       } else {
-        used = 'getAfroCueScriptUrl undefined';
+        used = 'afrocue.js defined neither getAfroCueScriptUrl() nor AFROCUE_SCRIPT_URL';
       }
     } catch (e) {
       used = 'afrocue.js threw: ' + e.message;
     }
     console.log('[careers] URL source:', used);
-    console.log('[careers] URL:', url);
+    console.log('[careers] URL:', url || '(none)');
     return { url: url, source: used };
   }
 
@@ -536,10 +537,20 @@
         return;
       }
 
+      // Resolve the endpoint BEFORE locking the button, so a missing URL
+      // leaves the filled-in form exactly as the applicant typed it.
+      var resolved = resolveScriptUrl();
+      if (!resolved.url) {
+        console.error('[careers] no endpoint:', resolved.source);
+        setStatus('The application form is not set up correctly right now. Please email afrocueonline@gmail.com and we will take it from there.', 'err');
+        var dbgNo = document.getElementById('formDebug');
+        if (dbgNo) dbgNo.textContent = 'No endpoint. ' + resolved.source;
+        return;
+      }
+
       if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
       setStatus('Uploading your application…', 'loading');
 
-      var resolved = resolveScriptUrl();
       var prep = resumeFile ? fileToBase64(resumeFile) : Promise.resolve(null);
 
       prep.then(function (file) {
@@ -617,7 +628,7 @@
       var dbg = document.getElementById('formDebug');
       if (dbg) {
         var r = resolveScriptUrl();
-        dbg.textContent = 'Endpoint source: ' + r.source + '\n' + r.url;
+        dbg.textContent = 'Endpoint source: ' + r.source + '\n' + (r.url || 'NO URL — afrocue.js did not supply one');
       }
       if (/[?&]debug=1/.test(location.search)) {
         document.body.classList.add('debug-on');
@@ -714,8 +725,9 @@
       var exc   = document.getElementById('blogStripExcerpt');
       var meta  = document.getElementById('blogStripMeta');
 
-      if (sec) {
-        var blogUrl = resolveScriptUrl().url + '?export=blog';
+      var blogBase = resolveScriptUrl().url;
+      if (sec && blogBase) {
+        var blogUrl = blogBase + '?export=blog';
         console.log('[careers] blog fetch:', blogUrl);
 
         fetch(blogUrl, { cache: 'no-store' })
