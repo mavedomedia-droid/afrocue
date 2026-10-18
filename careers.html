@@ -375,7 +375,7 @@
 
             <div class="field">
               <label for="c-resume">Resume <span class="opt">— optional</span></label>
-              <label class="file-drop" for="c-resume">
+              <label class="file-drop" id="fileDrop">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
                 <span class="file-label" id="fileLabel">Choose a file or drag it here</span>
                 <span class="file-hint">PDF or DOC · max 2MB</span>
@@ -385,7 +385,7 @@
 
             <div class="hp" aria-hidden="true">
               <label for="c-company">Leave this empty</label>
-              <input id="c-company" type="text" name="company" tabindex="-1" autocomplete="off">
+              <input id="c-company" type="text" name="ac_hp_field" tabindex="-1" autocomplete="off">
             </div>
 
             <button type="button" id="submitBtn" class="btn-submit" onclick="window.afrocareerSubmit && window.afrocareerSubmit(event)">
@@ -510,7 +510,7 @@
     try {
       var btn = document.getElementById('submitBtn');
       var honey = document.getElementById('c-company');
-      if (honey && honey.value) return;
+      if (honey && honey.value) { console.warn('[careers] honeypot tripped, submit blocked'); return; }
 
       var fName  = document.getElementById('c-name');
       var fEmail = document.getElementById('c-email');
@@ -561,25 +561,42 @@
         }
         console.log('[careers] payload ready. resume:', file ? file.name : 'none');
 
+        // text/plain is a CORS-simple content type, so this needs no preflight
+        // and the response is readable. Without that, an opaque no-cors reply
+        // made a 302 to a login page look exactly like a success.
         return fetch(resolved.url, {
-          method:  'POST',
-          mode:    'no-cors',
-          headers: { 'Content-Type': 'text/plain' },
-          body:    JSON.stringify(payload)
+          method:   'POST',
+          headers:  { 'Content-Type': 'text/plain;charset=utf-8' },
+          body:     JSON.stringify(payload),
+          redirect: 'follow'
         });
       })
-      .then(function () {
-        console.log('[careers] POST done');
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.text();
+      })
+      .then(function (text) {
+        var out;
+        try { out = JSON.parse(text); }
+        catch (e) { throw new Error('Backend did not return JSON. First 120 chars: ' + text.slice(0, 120)); }
+
+        if (out.status !== 'success') {
+          throw new Error(out.message || out.status || 'Backend returned no success flag');
+        }
+
+        console.log('[careers] confirmed by backend');
         ['c-name','c-email','c-phone','c-ig','c-scene','c-exp','c-links'].forEach(function (id) {
           var el = document.getElementById(id); if (el) el.value = '';
         });
         if (fileInput) fileInput.value = '';
         if (fileLabel) fileLabel.textContent = 'Choose a file or drag it here';
-        setStatus("Thanks — your application is in. We'll be in touch if it's a fit.", 'ok');
+        setStatus("Thanks, your application is in. We'll be in touch if it's a fit.", 'ok');
       })
       .catch(function (err) {
         console.error('[careers] submit error:', err);
         setStatus('Something went wrong. Please email afrocueonline@gmail.com directly.', 'err');
+        var dbg = document.getElementById('formDebug');
+        if (dbg) dbg.textContent = 'Last error: ' + err.message;
       })
       .finally(function () {
         if (btn) { btn.disabled = false; btn.textContent = 'Submit application'; }
@@ -647,10 +664,46 @@
             return;
           }
           setStatus('', 'ok');
-          fl.innerHTML = '<strong>' + f.name + '</strong>';
+          fl.textContent = '';
+          var strong = document.createElement('strong');
+          strong.textContent = f.name;
+          fl.appendChild(strong);
         });
+
+        // The label says "drag it here" but nothing handled a drop, so the
+        // browser navigated away to the file and wiped the typed-in form.
+        var drop = document.getElementById('fileDrop');
+        if (drop) {
+          ['dragenter','dragover','dragleave','drop'].forEach(function (evt) {
+            drop.addEventListener(evt, function (e) { e.preventDefault(); e.stopPropagation(); });
+          });
+          drop.addEventListener('dragover',  function () { drop.style.borderColor = 'rgba(200,224,0,.45)'; });
+          drop.addEventListener('dragleave', function () { drop.style.borderColor = ''; });
+          drop.addEventListener('drop', function (e) {
+            drop.style.borderColor = '';
+            var dropped = e.dataTransfer && e.dataTransfer.files;
+            if (dropped && dropped.length) {
+              try {
+                var dt = new DataTransfer();
+                dt.items.add(dropped[0]);
+                fi.files = dt.files;
+              } catch (assignErr) {
+                fi.files = dropped;
+              }
+              fi.dispatchEvent(new Event('change'));
+            }
+          });
+          drop.addEventListener('click', function () { fi.click(); });
+        }
       }
     } catch (e) {}
+
+    // The whole page is a drop target otherwise, same navigate-away problem.
+    ['dragover','drop'].forEach(function (evt) {
+      window.addEventListener(evt, function (e) {
+        if (!e.target.closest || !e.target.closest('#fileDrop')) e.preventDefault();
+      });
+    });
 
     // Blog strip — uses SAME resolved URL as form
     try {
