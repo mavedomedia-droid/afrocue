@@ -174,6 +174,22 @@
   .form-meta a{color:var(--silver);text-decoration:underline;text-underline-offset:3px}
   .form-meta a:hover{color:var(--ink)}
 
+  .open-app{margin-top:28px;background:var(--card);border:1px solid var(--edge);border-radius:16px;padding:34px}
+  .open-app-head{margin-bottom:28px}
+  .open-app-head h3{font-family:'Figtree',sans-serif;font-weight:700;font-size:22px;line-height:1.3;letter-spacing:-0.01em;color:var(--ink);margin:14px 0}
+  .open-app-head p{font-size:15.5px;line-height:1.75;color:var(--ink2);max-width:62ch;margin:0}
+  .open-app .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--yellow)}
+  .open-app .eyebrow::before{content:'';width:20px;height:1.5px;background:var(--yellow);flex-shrink:0}
+  .btn-anyway{display:inline-flex;align-items:center;gap:9px;margin-top:22px;padding:13px 20px;border-radius:5px;background:transparent;border:1px solid var(--edge-hi);color:var(--ink);font-family:'Figtree',sans-serif;font-size:12.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+  .btn-anyway:hover{border-color:rgba(200,224,0,.45);color:var(--yellow);background:rgba(200,224,0,.04)}
+  .btn-anyway svg{transition:transform .25s ease}
+  #openForm[hidden]{display:none}
+  #openForm{animation:fadeIn .3s ease;margin-top:26px}
+  #openStatus{display:none;font-size:14px;font-weight:500;line-height:1.6;margin-top:10px;padding:14px 16px;border-radius:5px;background:rgba(200,224,0,.06);border:1px solid rgba(200,224,0,.28);color:var(--yellow)}
+  #openStatus.err{background:rgba(255,80,80,.06);border-color:rgba(255,80,80,.3);color:#ff8a8a}
+  #openStatus.loading{background:rgba(255,255,255,.04);border-color:var(--edge-hi);color:var(--ink3)}
+  @media (max-width:640px){.open-app{padding:26px 22px}}
+
   .about{padding:64px 0 72px;border-top:1px solid var(--edge)}
   .about .about-label{font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--silver);margin-bottom:20px}
   .about p{font-size:16px;line-height:1.8;color:var(--ink2);margin-bottom:16px;max-width:70ch}
@@ -401,6 +417,63 @@
 
       </div>
     </article>
+
+    <div class="open-app" id="openApp">
+      <div class="open-app-head">
+        <div class="eyebrow">Nothing above fits?</div>
+        <h3>Tell us what you do.</h3>
+        <p>We are not always hiring for a named role, but we are always short of good people who know this scene. Leave your details and we will come back to you when something opens up that fits.</p>
+        <button type="button" class="btn-anyway" id="applyAnywayBtn" aria-expanded="false" aria-controls="openForm">
+          Apply anyway
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+      </div>
+
+      <div class="career-form" id="openForm" hidden>
+        <div class="form-row">
+          <div class="field">
+            <label for="o-name">Your name <span class="req">·</span></label>
+            <input id="o-name" type="text" placeholder="Your name" autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="o-email">Email <span class="req">·</span></label>
+            <input id="o-email" type="email" placeholder="you@email.com" autocomplete="email">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="o-phone">Phone / WhatsApp <span class="req">·</span></label>
+            <input id="o-phone" type="tel" placeholder="+234..." autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="o-ig">Instagram / X <span class="opt">— optional</span></label>
+            <input id="o-ig" type="text" placeholder="@yourhandle" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="o-what">What do you do, and what would you want to do with us? <span class="req">·</span></label>
+          <textarea id="o-what" rows="4" placeholder="Photographer, writer, editor, producer, something else. Tell us what you're good at and which parties or DJs you're close to."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="o-links">Links — portfolio, reel, writing, Instagram <span class="opt">— optional</span></label>
+          <input id="o-links" type="text" placeholder="Anything that shows your work" autocomplete="off">
+        </div>
+
+        <div class="hp" aria-hidden="true">
+          <label for="o-company">Leave this empty</label>
+          <input id="o-company" type="text" name="ac_hp_field2" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button type="button" id="openSubmitBtn" class="btn-submit" onclick="window.afrocueOpenSubmit && window.afrocueOpenSubmit(event)">
+          Send it in
+        </button>
+        <p id="openStatus" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -451,7 +524,7 @@
      updating one never disturbs the other.
      Paste the /exec URL from the AfroCue Careers project below.
      ══════════════════════════════════════════════════════════════ */
-  var CAREERS_SCRIPT_URL = 'PASTE_YOUR_CAREERS_EXEC_URL_HERE';
+  var CAREERS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3bJ668uFihwxyUwv08ZTy_W9lyNxbAZLUN6QspHs4CORP0jxdj6rPwxMQMTcpt5ibPA/exec';
 
   // The tab the careers backend must report writing to.
   var REQUIRED_TAB = 'Careers';
@@ -656,6 +729,99 @@
 
   console.log('[careers] window.afrocareerSubmit defined');
 
+  /* ── Open application ───────────────────────────────────── */
+  function setOpenStatus(msg, kind) {
+    var st = document.getElementById('openStatus');
+    if (!st) return;
+    st.textContent = msg || '';
+    st.classList.remove('err', 'loading');
+    if (kind === 'err') st.classList.add('err');
+    else if (kind === 'loading') st.classList.add('loading');
+    st.style.display = msg ? 'block' : 'none';
+  }
+
+  window.afrocueOpenSubmit = function (ev) {
+    if (ev) { ev.preventDefault(); ev.stopPropagation(); }
+
+    try {
+      var btn   = document.getElementById('openSubmitBtn');
+      var honey = document.getElementById('o-company');
+      if (honey && honey.value) { console.warn('[careers] open honeypot tripped'); return; }
+
+      var fName  = document.getElementById('o-name');
+      var fEmail = document.getElementById('o-email');
+      var fPhone = document.getElementById('o-phone');
+      var fIg    = document.getElementById('o-ig');
+      var fWhat  = document.getElementById('o-what');
+      var fLinks = document.getElementById('o-links');
+
+      if (!fName.value.trim()) { setOpenStatus('Please enter your name.', 'err'); fName.focus(); return; }
+      if (!fEmail.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fEmail.value.trim())) {
+        setOpenStatus('Please enter a valid email address.', 'err'); fEmail.focus(); return;
+      }
+      if (!fPhone.value.trim()) { setOpenStatus('Please enter your phone or WhatsApp number.', 'err'); fPhone.focus(); return; }
+      if (!fWhat.value.trim())  { setOpenStatus('Please tell us what you do.', 'err'); fWhat.focus(); return; }
+
+      var resolved = resolveScriptUrl();
+      if (!resolved.url) {
+        setOpenStatus('This form is not set up correctly right now. Please email afrocueonline@gmail.com instead.', 'err');
+        console.error('[careers] no endpoint:', resolved.source);
+        return;
+      }
+
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+      setOpenStatus('Sending…', 'loading');
+
+      // No role, so the backend files it as "Open application" in the same tab.
+      fetch(resolved.url, {
+        method:   'POST',
+        headers:  { 'Content-Type': 'text/plain;charset=utf-8' },
+        redirect: 'follow',
+        body: JSON.stringify({
+          source:     'careers',
+          tab:        REQUIRED_TAB,
+          name:       fName.value.trim(),
+          email:      fEmail.value.trim(),
+          phone:      fPhone.value.trim(),
+          social:     (fIg && fIg.value || '').trim(),
+          background: fWhat.value.trim(),
+          links:      (fLinks && fLinks.value || '').trim()
+        })
+      })
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.text();
+      })
+      .then(function (t) {
+        var o;
+        try { o = JSON.parse(t); }
+        catch (e) { throw new Error('Backend did not return JSON. First 120 chars: ' + t.slice(0, 120)); }
+        if (o.status !== 'success') throw new Error(o.message || o.status || 'No success flag');
+        if (o.tab && o.tab !== REQUIRED_TAB) {
+          throw new Error('Backend filed this under "' + o.tab + '" instead of "' + REQUIRED_TAB + '".');
+        }
+
+        ['o-name','o-email','o-phone','o-ig','o-what','o-links'].forEach(function (id) {
+          var el = document.getElementById(id); if (el) el.value = '';
+        });
+        setOpenStatus("Got it. We'll reach out when something fits.", 'ok');
+      })
+      .catch(function (err) {
+        console.error('[careers] open submit error:', err);
+        setOpenStatus('Something went wrong. Please email afrocueonline@gmail.com directly.', 'err');
+        var dbg = document.getElementById('formDebug');
+        if (dbg) dbg.textContent = 'Last error (open form): ' + err.message;
+      })
+      .finally(function () {
+        if (btn) { btn.disabled = false; btn.textContent = 'Send it in'; }
+      });
+
+    } catch (err) {
+      console.error('[careers] open handler crash:', err);
+      setOpenStatus('Something went wrong: ' + err.message, 'err');
+    }
+  };
+
   /* ── Extras ─────────────────────────────────────────────── */
   function initExtras() {
     // Debug line
@@ -751,6 +917,22 @@
         if (!e.target.closest || !e.target.closest('#fileDrop')) e.preventDefault();
       });
     });
+
+    // "Apply anyway" reveals the open application form. It stays hidden until
+    // asked for, so the listed role is the only thing competing for attention.
+    try {
+      var anywayBtn = document.getElementById('applyAnywayBtn');
+      var openForm  = document.getElementById('openForm');
+      if (anywayBtn && openForm) {
+        anywayBtn.addEventListener('click', function () {
+          openForm.hidden = false;
+          anywayBtn.setAttribute('aria-expanded', 'true');
+          anywayBtn.style.display = 'none';
+          var first = document.getElementById('o-name');
+          if (first) { try { first.focus({ preventScroll: true }); } catch (e) { first.focus(); } }
+        });
+      }
+    } catch (e) {}
 
     // Blog strip — uses SAME resolved URL as form
     try {
