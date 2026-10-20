@@ -67,7 +67,7 @@
     ],
 
     whatsapp: 'https://whatsapp.com/channel/0029Vb74IjxGufJ0irS1uq0u',
-    tagline: 'Creatively documenting culture.'
+    tagline: "Documenting Nigeria's dance floor."
   };
 
   /* ==========================================================================
