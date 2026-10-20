@@ -444,42 +444,51 @@
 
   var MAX_RESUME_BYTES = 2 * 1024 * 1024;
 
-  // The tab this page REQUIRES. Checked against what the backend reports.
-  var REQUIRED_TAB = 'Applications';
+  /* ══════════════════════════════════════════════════════════════
+     THE ONLY LINE YOU EDIT.
+     The careers form posts here and nowhere else. This is its own
+     Apps Script deployment, separate from the one in afrocue.js, so
+     updating one never disturbs the other.
+     Paste the /exec URL from the AfroCue Careers project below.
+     ══════════════════════════════════════════════════════════════ */
+  var CAREERS_SCRIPT_URL = 'PASTE_YOUR_CAREERS_EXEC_URL_HERE';
 
-  // No hardcoded endpoint. afrocue.js is the single source of truth, so this
-  // page can never quietly post to a stale deployment that someone forgot to
-  // update here. If afrocue.js does not supply a URL, the form refuses to
-  // submit and says so rather than pretending to work.
-  //
-  // All three names afrocue.js exposes are accepted, in its own order of
-  // preference. Nothing here needs changing when the URL changes.
+  // The tab the careers backend must report writing to.
+  var REQUIRED_TAB = 'Careers';
+
+  function isUrl(u) { return !!u && /^https:\/\/script\.google\.com\//i.test(u); }
+
+  // The form's endpoint: the careers deployment, and only that.
   function resolveScriptUrl() {
-    var used = '', url = '';
-    function ok(u) { return !!u && /^https:\/\//i.test(u); }
+    var url = '', used = '';
+    if (isUrl(CAREERS_SCRIPT_URL)) {
+      url  = CAREERS_SCRIPT_URL;
+      used = 'careers.html CAREERS_SCRIPT_URL';
+    } else {
+      used = 'CAREERS_SCRIPT_URL is not set in careers.html';
+    }
+    console.log('[careers] form URL source:', used);
+    console.log('[careers] form URL:', url || '(none)');
+    return { url: url, source: used };
+  }
+
+  // The blog strip is a different thing: it reads the Blog tab of the MAIN
+  // spreadsheet, so it keeps using the shared URL out of afrocue.js. The
+  // careers deployment knows nothing about blog posts.
+  function resolveMainUrl() {
     try {
       if (typeof window.getAfroCueScriptUrl === 'function') {
         var u = window.getAfroCueScriptUrl();
-        if (ok(u)) { url = u; used = 'afrocue.js getAfroCueScriptUrl()'; }
-        else { used = 'getAfroCueScriptUrl() returned an invalid URL: ' + JSON.stringify(u); }
+        if (isUrl(u)) return u;
       }
-      if (!url && ok(window.AFROCUE_SCRIPT_URL)) {
-        url = window.AFROCUE_SCRIPT_URL;
-        used = 'afrocue.js AFROCUE_SCRIPT_URL';
-      }
-      if (!url && window.AFROCUE_CONFIG && ok(window.AFROCUE_CONFIG.scriptUrl)) {
-        url = window.AFROCUE_CONFIG.scriptUrl;
-        used = 'afrocue.js AFROCUE_CONFIG.scriptUrl';
-      }
-      if (!url && !used) {
-        used = 'afrocue.js did not load, or defines no URL';
+      if (isUrl(window.AFROCUE_SCRIPT_URL)) return window.AFROCUE_SCRIPT_URL;
+      if (window.AFROCUE_CONFIG && isUrl(window.AFROCUE_CONFIG.scriptUrl)) {
+        return window.AFROCUE_CONFIG.scriptUrl;
       }
     } catch (e) {
-      used = 'afrocue.js threw: ' + e.message;
+      console.warn('[careers] afrocue.js lookup failed:', e.message);
     }
-    console.log('[careers] URL source:', used);
-    console.log('[careers] URL:', url || '(none)');
-    return { url: url, source: used };
+    return '';
   }
 
   function setStatus(msg, kind) {
@@ -556,6 +565,7 @@
       if (!resolved.url) {
         console.error('[careers] no endpoint:', resolved.source);
         setStatus('The application form is not set up correctly right now. Please email afrocueonline@gmail.com and we will take it from there.', 'err');
+        console.error('[careers] set CAREERS_SCRIPT_URL at the top of careers.html');
         var dbgNo = document.getElementById('formDebug');
         if (dbgNo) dbgNo.textContent = 'No endpoint. ' + resolved.source;
         return;
@@ -653,7 +663,8 @@
       var dbg = document.getElementById('formDebug');
       if (dbg) {
         var r = resolveScriptUrl();
-        dbg.textContent = 'Endpoint source: ' + r.source + '\n' + (r.url || 'NO URL — afrocue.js did not supply one');
+        dbg.textContent = 'Form endpoint: ' + r.source + '\n' + (r.url || 'NOT SET')
+                        + '\nBlog strip:    ' + (resolveMainUrl() || 'afrocue.js supplied none');
       }
       if (/[?&]debug=1/.test(location.search)) {
         document.body.classList.add('debug-on');
@@ -750,7 +761,7 @@
       var exc   = document.getElementById('blogStripExcerpt');
       var meta  = document.getElementById('blogStripMeta');
 
-      var blogBase = resolveScriptUrl().url;
+      var blogBase = resolveMainUrl();
       if (sec && blogBase) {
         var blogUrl = blogBase + '?export=blog';
         console.log('[careers] blog fetch:', blogUrl);
