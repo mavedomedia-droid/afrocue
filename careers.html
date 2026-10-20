@@ -444,22 +444,35 @@
 
   var MAX_RESUME_BYTES = 2 * 1024 * 1024;
 
+  // The tab this page REQUIRES. Checked against what the backend reports.
+  var REQUIRED_TAB = 'Applications';
+
   // No hardcoded endpoint. afrocue.js is the single source of truth, so this
   // page can never quietly post to a stale deployment that someone forgot to
   // update here. If afrocue.js does not supply a URL, the form refuses to
   // submit and says so rather than pretending to work.
+  //
+  // All three names afrocue.js exposes are accepted, in its own order of
+  // preference. Nothing here needs changing when the URL changes.
   function resolveScriptUrl() {
     var used = '', url = '';
+    function ok(u) { return !!u && /^https:\/\//i.test(u); }
     try {
       if (typeof window.getAfroCueScriptUrl === 'function') {
         var u = window.getAfroCueScriptUrl();
-        if (u && /^https:\/\//i.test(u)) { url = u; used = 'afrocue.js'; }
-        else { used = 'afrocue.js returned an invalid URL: ' + JSON.stringify(u); }
-      } else if (window.AFROCUE_SCRIPT_URL && /^https:\/\//i.test(window.AFROCUE_SCRIPT_URL)) {
+        if (ok(u)) { url = u; used = 'afrocue.js getAfroCueScriptUrl()'; }
+        else { used = 'getAfroCueScriptUrl() returned an invalid URL: ' + JSON.stringify(u); }
+      }
+      if (!url && ok(window.AFROCUE_SCRIPT_URL)) {
         url = window.AFROCUE_SCRIPT_URL;
-        used = 'window.AFROCUE_SCRIPT_URL';
-      } else {
-        used = 'afrocue.js defined neither getAfroCueScriptUrl() nor AFROCUE_SCRIPT_URL';
+        used = 'afrocue.js AFROCUE_SCRIPT_URL';
+      }
+      if (!url && window.AFROCUE_CONFIG && ok(window.AFROCUE_CONFIG.scriptUrl)) {
+        url = window.AFROCUE_CONFIG.scriptUrl;
+        used = 'afrocue.js AFROCUE_CONFIG.scriptUrl';
+      }
+      if (!url && !used) {
+        used = 'afrocue.js did not load, or defines no URL';
       }
     } catch (e) {
       used = 'afrocue.js threw: ' + e.message;
@@ -556,6 +569,7 @@
       prep.then(function (file) {
         var payload = {
           source:      'careers',
+          tab:         REQUIRED_TAB,   // the page names its own destination
           role:        'Content Coordinator',
           name:        fName.value.trim(),
           email:       fEmail.value.trim(),
@@ -595,7 +609,18 @@
           throw new Error(out.message || out.status || 'Backend returned no success flag');
         }
 
-        console.log('[careers] confirmed by backend');
+        // The backend picks the tab, not this page. All the page can do is
+        // check what it reports and refuse to call a misfiled row a success.
+        // An old deployment answers without "tab" at all, which is the tell.
+        if (!out.tab) {
+          throw new Error('Backend did not say which tab it used, so it is running OLD code. '
+            + 'Deploy a new version of the deployment this page posts to. Reply: ' + text.slice(0, 160));
+        }
+        if (out.tab !== REQUIRED_TAB) {
+          throw new Error('Backend filed this under "' + out.tab + '" instead of "' + REQUIRED_TAB + '".');
+        }
+
+        console.log('[careers] confirmed by backend: tab=' + out.tab + ' build=' + (out.build || 'n/a'));
         ['c-name','c-email','c-phone','c-ig','c-scene','c-exp','c-links'].forEach(function (id) {
           var el = document.getElementById(id); if (el) el.value = '';
         });
