@@ -491,22 +491,8 @@
 
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#">
-    <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none'; document.querySelector('.nav-logo-fallback').style.display='block'"/>
-    <span class="nav-logo-fallback">afro.cue</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="parties.html">Parties</a></li>
-    <li><a href="#content">Content</a></li>
-    <li><a href="#blog-home">Blog</a></li>
-    <li><a href="#playlists">Playlists</a></li>
-    <li><a href="#advertise">Get Featured</a></li>
-  </ul>
-  <button class="nav-cta" onclick="openSignupModal()">Sign Up</button>
-</nav>
+<!-- SHARED NAV (rendered by js/afrocue-ui.js) -->
+<div id="ac-nav"></div>
 
 <!-- HERO -->
 <div class="hero">
@@ -519,8 +505,8 @@
       <div class="hero-eyebrow-line"></div>
       <span>Lagos Nightlife &amp; Dance Music</span>
     </div>
-    <h1>Creatively<br><span class="outline">Documenting</span><br>Culture.</h1>
-    <p class="hero-desc">We spotlight the DJs, the raves and parties they play at, and the music — from afrohouse to amapiano and our own afrobeats — shaping Nigeria's dance floor.</p>
+    <h1>Documenting<br><span class="outline">Nigeria's</span><br>Dance Floor.</h1>
+    <p class="hero-desc">We spotlight the DJs, the raves and parties they play at, and the music, from afrohouse to amapiano and our own afrobeats.</p>
     <div class="hero-actions">
       <button class="btn-ig" onclick="openSignupModal()">Join AfroCue</button>
       <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">Follow Us</a>
@@ -547,7 +533,7 @@
     </div>
     <div class="about-bottom">
       <p class="about-body">
-        AfroCue is our attempt to creatively document and advance the dance music culture and nightlife scene — spotlighting the DJs who power it, the raves and parties they play at, and the music that moves the dance floor. From amapiano and afrohouse to 3step and afrobeats, we champion Nigerian nightlife culture.
+        AfroCue documents and advances the dance music culture and nightlife scene, spotlighting the DJs who power it and the music that moves the floor. From amapiano and afrohouse to 3step and afrobeats, we champion Nigerian nightlife culture.
       </p>
       <div class="about-stats">
         <div class="stat"><div class="stat-val">DJs</div><div class="stat-key">We spotlight</div></div>
@@ -579,8 +565,8 @@
       <div class="slide-text">
         <div class="slide-series">Weekly Series</div>
         <h3>Weekly Top 5</h3>
-        <p>Every week, we spotlight DJs from upcoming parties and events — not to rank them, but to spotlight the people shaping the dance floor.</p>
-        <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram</a>
+        <p>Every week, five DJs from the parties coming up. Not to rank them, but to spotlight the people shaping the floor.</p>
+        <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram &rarr;</a>
         <div class="slide-counter"><span>01</span> / 04</div>
       </div>
     </div>
@@ -589,8 +575,8 @@
       <div class="slide-text">
         <div class="slide-series">Monthly Series</div>
         <h3>Monthly Recap</h3>
-        <p>A recap of moments, DJs, and parties that defined the month in nightlife and dance music culture.</p>
-        <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram</a>
+        <p>A recap of the moments, DJs and parties that defined the month.</p>
+        <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram &rarr;</a>
         <div class="slide-counter"><span>02</span> / 04</div>
       </div>
     </div>
@@ -599,18 +585,18 @@
       <div class="slide-text">
         <div class="slide-series">Ongoing Series</div>
         <h3>Set Moments</h3>
-        <p>Short moments from DJ sets that capture the energy of the dance floor and spotlight the DJ behind the moment.</p>
-        <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram</a>
+        <p>Short moments from DJ sets that capture the energy of a room, and the DJ behind it.</p>
+        <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram &rarr;</a>
         <div class="slide-counter"><span>03</span> / 04</div>
       </div>
     </div>
     <div class="slide" data-img="content_creative_events.jpeg">
       <div class="slide-img-box"><img src="content_creative_events.jpeg" alt="Event Content"/></div>
       <div class="slide-text">
-        <div class="slide-series">Event Content</div>
-        <h3>Event Content</h3>
-        <p>We convey narratives through culture-aware perspectives — documenting events and the energy around them the way they actually feel.</p>
-        <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram</a>
+        <div class="slide-series">Per Event</div>
+        <h3>Event Coverage</h3>
+        <p>We convey narratives through culture-aware perspectives, documenting events the way they actually feel.</p>
+        <a href="https://instagram.com/afro.cue" target="_blank" class="btn btn-ghost">See on Instagram &rarr;</a>
         <div class="slide-counter"><span>04</span> / 04</div>
       </div>
     </div>
@@ -632,7 +618,7 @@
         <div class="hp-name" id="hpName"></div>
         <div class="hp-sub" id="hpSub"></div>
         <div class="hp-tags" id="hpTags"></div>
-        <span class="hp-btn" id="hpBtn">Learn more</span>
+        <span class="hp-btn" id="hpBtn">Learn more &rarr;</span>
       </div>
     </div>
   </a>
@@ -664,7 +650,7 @@
     <div class="ps-left">
       <div class="label">Party Directory</div>
       <div class="ps-h yh">What's On.</div>
-      <div class="ps-sub">Raves, events and nights worth knowing — documented by AfroCue.</div>
+      <div class="ps-sub">Raves, events and nights worth knowing about.</div>
     </div>
     <a href="parties.html" class="ps-see-all">See all parties &rarr;</a>
   </div>
@@ -676,7 +662,7 @@
       <div class="ps-cta-label">Is your party on here?</div>
       <div class="ps-cta-text">Get your event in front of Lagos's nightlife audience.</div>
     </div>
-    <a href="list-party.html" class="ps-cta-btn">List Your Party &rarr;</a>
+    <a href="list-party.html" class="ps-cta-btn">List Your Party</a>
   </div>
 </section>
 
@@ -736,7 +722,7 @@
         <div class="playlist-card-body">
           <span class="playlist-card-tag">Spotify</span>
           <h3 class="playlist-card-title">Naija Party Starters</h3>
-          <p class="playlist-card-desc">Music that moves Nigerian dance floors — updated weekly.</p>
+          <p class="playlist-card-desc">Music that moves Nigerian dance floors. Updated weekly.</p>
           <span class="playlist-card-cta">Listen now →</span>
         </div>
       </a>
@@ -758,8 +744,8 @@
   <div class="roamers-promo-inner">
     <div class="roamers-promo-left">
       <div class="label">Roamers</div>
-      <h2 class="roamers-promo-title">Be a<br>contributor.</h2>
-      <p class="roamers-promo-desc">Live the moment first. If you catch a great picture or video of a DJ, party, or moment — tag us and we might share it.</p>
+      <h2 class="roamers-promo-title">Be there<br>first.</h2>
+      <p class="roamers-promo-desc">Live the moment first. If you catch a great picture or video of a DJ, party or set, tag us and we might run it.</p>
       <a href="roamers.html" class="roamers-promo-btn">Become a Roamer →</a>
     </div>
     <div class="roamers-phone-wrap">
@@ -793,21 +779,20 @@
 <section id="join">
   <div class="join-inner">
     <div class="join-heading">
-      <div class="label">Join AfroCue</div>
-      <h2 class="join-q">Are you a creative <span class="q-accent">or in media?</span></h2>
+      <div class="label">For Creatives &amp; Media</div>
+      <h2 class="join-q">Work in and <span class="q-accent">around the scene?</span></h2>
       <p class="join-body">
-        <strong>Managers</strong>, <strong>event executives</strong>, <strong>brand managers</strong>, <strong>photographers</strong>, <strong>videographers</strong>, <strong>journalists</strong> — anyone working in and around Nigeria's dance music scene. Sign up and stay connected.
+        <strong>Managers</strong>, <strong>event executives</strong>, <strong>brand managers</strong>, <strong>photographers</strong>, <strong>videographers</strong>, <strong>journalists</strong>, anyone working in and around Nigeria's dance music scene. Tell us what you do and we will come to you when it is relevant.
       </p>
     </div>
     <div class="join-actions">
       <button class="btn btn-white" onclick="openSignupModal()">Sign Up</button>
-      <a href="#dj-radar" class="btn-join-dj">Or Join as DJ</a>
     </div>
     <div class="join-divider-line"></div>
     <div class="join-newsletter">
       <div class="join-newsletter-left">
         <div class="nl-label">Newsletter</div>
-        <h3>Get the updates.</h3>
+        <h3>Know first.</h3>
         <p>DJs · Parties · Music · Culture</p>
       </div>
       <form class="join-newsletter-form" onsubmit="handleNewsletter(event)">
@@ -823,9 +808,8 @@
 <div class="signup-modal-wrap" id="signupModal">
   <div class="signup-modal">
     <button class="signup-modal-close" onclick="closeSignupModal()">&#x2715;</button>
-    <div class="signup-modal-eyebrow">Join AfroCue</div>
     <h2 class="signup-modal-title">Sign up<br>to AfroCue.</h2>
-    <p class="signup-modal-desc">Tell us who you are. We'll reach out and keep you connected to what's happening.</p>
+    <p class="signup-modal-desc">Tell us who you are. We will reach out when there is something worth your time.</p>
     <form class="signup-modal-form" onsubmit="handleSignup(event)">
       <div class="signup-row">
         <div class="signup-field"><label>Name</label><input type="text" name="su_name" placeholder="Your name" required/></div>
@@ -841,7 +825,7 @@
         </select>
       </div>
       <div class="signup-field">
-        <label>Instagram — optional</label>
+        <label>Instagram (optional)</label>
         <div style="position:relative;">
           <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--grey);font-size:14px;pointer-events:none;">@</span>
           <input type="text" name="su_ig" placeholder="yourhandle" style="padding-left:30px;"/>
@@ -859,9 +843,9 @@
     <div class="label" style="justify-content:center;">Work With Us</div>
     <h2 class="yh" style="font-size:clamp(44px,7vw,80px); margin-bottom:20px;">Get<br>Featured.</h2>
     <p style="font-size:15px; font-weight:300; line-height:1.8; color:rgba(240,237,232,0.6); max-width:520px; margin:0 auto 28px;">
-      We work with DJs, events, and brands to create culture‑driven content and connect them with the right audience.
+      We work with DJs, events and brands to create culture‑driven content and put it in front of the people who show up.
     </p>
-    <a href="/promo" class="btn btn-yellow" style="font-size:12px; padding:16px 36px;">Explore Promo Opportunities →</a>
+    <a href="/promo" class="btn btn-yellow" style="font-size:12px; padding:16px 36px;">See what we offer &rarr;</a>
   </div>
 </section>
 
@@ -870,15 +854,15 @@
   <div class="audience-top">
     <div class="label">Our Audience</div>
     <h2 class="yh audience-h">Who We<br>Reach.</h2>
-    <p class="audience-body">AfroCue speaks to the people who go out, listen to DJs, discover music, and shape nightlife culture.</p>
+    <p class="audience-body">AfroCue reaches the people who actually go out.</p>
   </div>
   <div class="audience-cards">
     <div class="aud-card"><div class="aud-card-bg"><span class="aud-card-emoji">🎛️</span></div><img src="audience_djs.jpg" alt="DJs"/><div class="aud-card-tint"></div><div class="aud-card-overlay"><div class="aud-card-title">DJs</div><div class="aud-card-desc">The people who control the dance floor</div></div></div>
     <div class="aud-card"><div class="aud-card-bg"><span class="aud-card-emoji">🕺</span></div><img src="audience_partygoers.jpg" alt="Partygoers"/><div class="aud-card-tint"></div><div class="aud-card-overlay"><div class="aud-card-title">Partygoers</div><div class="aud-card-desc">Lagos raves, amapiano nights and afrohouse sets</div></div></div>
     <div class="aud-card"><div class="aud-card-bg"><span class="aud-card-emoji">🎪</span></div><img src="audience_organizers.jpg" alt="Event Organizers"/><div class="aud-card-tint"></div><div class="aud-card-overlay"><div class="aud-card-title">Event Organizers</div><div class="aud-card-desc">The people who build the rooms</div></div></div>
-    <div class="aud-card"><div class="aud-card-bg"><span class="aud-card-emoji">🎨</span></div><img src="audience_creatives.jpg" alt="Creative Directors"/><div class="aud-card-tint"></div><div class="aud-card-overlay"><div class="aud-card-title">Creative Directors</div><div class="aud-card-desc">The vision behind the culture</div></div></div>
+    <div class="aud-card"><div class="aud-card-bg"><span class="aud-card-emoji">🎨</span></div><img src="audience_creatives.jpg" alt="Creative Directors"/><div class="aud-card-tint"></div><div class="aud-card-overlay"><div class="aud-card-title">Creative Directors</div><div class="aud-card-desc">The people commissioning the look of a night</div></div></div>
     <div class="aud-card"><div class="aud-card-bg"><span class="aud-card-emoji">📡</span></div><img src="audience_brands.jpg" alt="Brand Managers"/><div class="aud-card-tint"></div><div class="aud-card-overlay"><div class="aud-card-title">Brand Managers</div><div class="aud-card-desc">Brands seeking culture-first reach</div></div></div>
-    <div class="aud-card"><div class="aud-card-bg"><span class="aud-card-emoji">🌍</span></div><img src="audience_culture.jpg" alt="Culture Audiences"/><div class="aud-card-tint"></div><div class="aud-card-overlay"><div class="aud-card-title">Culture Audiences</div><div class="aud-card-desc">People shaped by the dance floor</div></div></div>
+    <div class="aud-card"><div class="aud-card-bg"><span class="aud-card-emoji">🌍</span></div><img src="audience_culture.jpg" alt="Culture Audiences"/><div class="aud-card-tint"></div><div class="aud-card-overlay"><div class="aud-card-title">Culture Audiences</div><div class="aud-card-desc">Fashion, media and the people who follow the scene</div></div></div>
   </div>
 </section>
 
@@ -889,13 +873,13 @@
   <a href="https://instagram.com/afro.cue" target="_blank" class="follow-ig-card">
     <div class="follow-ig-info">
       <h3>@afro.cue</h3>
-      <p>Instagram — our main platform</p>
+      <p>Instagram &middot; our main platform</p>
     </div>
     <div class="btn btn-white" style="pointer-events:none;">Follow on Instagram</div>
   </a>
   <div class="social-row">
-    <a href="https://twitter.com/afrocue_" target="_blank" class="social-chip">X / Twitter — @afrocue_</a>
-    <a href="https://tiktok.com/@afro.cue" target="_blank" class="social-chip">TikTok — @afro.cue</a>
+    <a href="https://twitter.com/afrocue_" target="_blank" class="social-chip">X / Twitter &middot; @afrocue_</a>
+    <a href="https://tiktok.com/@afro.cue" target="_blank" class="social-chip">TikTok &middot; @afro.cue</a>
     <a href="https://youtube.com/@AfroCue" target="_blank" class="social-chip">YouTube</a>
     <a href="https://open.spotify.com" target="_blank" class="social-chip">Spotify</a>
   </div>
@@ -915,7 +899,7 @@
       <div>
         <div class="wa-lbl">WhatsApp Channel</div>
         <div class="wa-title">Get the updates on <span>WhatsApp.</span></div>
-        <div class="wa-note">Parties, DJs and drops — unmute for updates.</div>
+        <div class="wa-note">Parties, DJs and drops. Unmute for updates.</div>
       </div>
     </div>
     <a class="wa-btn" href="https://whatsapp.com/channel/0029Vb74IjxGufJ0irS1uq0u" target="_blank" rel="noopener">Follow on WhatsApp</a>
@@ -928,7 +912,7 @@
     <div class="yt-left">
       <div class="label">Featured Set</div>
       <h2 class="yh yt-h">Yanos Theory.</h2>
-      <p class="yt-artist">Smeez &amp; D3AN — Prep Session</p>
+      <p class="yt-artist">Smeez &amp; D3AN &middot; Prep Session</p>
       <a href="https://www.youtube.com/watch?v=Ebrtzg0cJXM" target="_blank" rel="noopener" class="yt-watch-btn">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-2.75 12 12 0 0 0-8.45 0A4.83 4.83 0 0 1 3.6 6.69 46.29 46.29 0 0 0 3 12a46.29 46.29 0 0 0 .6 5.31 4.83 4.83 0 0 1 3.77 2.75 12 12 0 0 0 8.45 0 4.83 4.83 0 0 1 3.77-2.75A46.29 46.29 0 0 0 21 12a46.29 46.29 0 0 0-.41-5.31zM10 15V9l5 3-5 3z"/></svg>
         Watch on YouTube
@@ -942,25 +926,34 @@
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-brand">
-    <a href="#" style="text-decoration:none;">
-      <img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
-      <span style="display:none;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:48px;letter-spacing:0.08em;color:var(--yellow);">AfroCue</span>
-    </a>
-    <p>Creatively Documenting Culture</p>
-  </div>
-  <div class="footer-links">
-    <a href="#about">About</a>
-    <a href="#content">Content</a>
-    <a href="#blog-home">Blog</a>
-    <a href="dj.html">DJ Signup</a>
-    <a href="#advertise">Get Featured</a>
-    <a href="#playlists">Playlists</a>
-  </div>
-  <div class="footer-email"><a href="mailto:hello@afrocue.xyz">hello@afrocue.xyz</a></div>
-</footer>
+<!-- SHARED FOOTER (rendered by js/afrocue-ui.js) -->
+<div id="ac-footer"></div>
+<script src="js/afrocue-ui.js" data-nav="full" data-footer="full"></script>
+<script>
+  /* Homepage keeps its Sign Up entry point. The shared nav renders the site
+     links and the List Your Party CTA; this appends the modal trigger beside
+     it, so the signup conversion point survives the migration. */
+  (function () {
+    function addSignup() {
+      var right = document.querySelector('#ac-nav .ac-right');
+      if (!right || right.querySelector('.ac-signup')) return;
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'ac-cta ac-signup';
+      b.style.cssText = 'background:var(--ac-yellow);border:0;cursor:pointer;font:inherit;'
+        + 'font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;'
+        + 'color:#0a0a0a;padding:11px 18px;border-radius:2px;';
+      b.textContent = 'Sign Up';
+      b.addEventListener('click', function () {
+        if (typeof openSignupModal === 'function') openSignupModal();
+      });
+      right.insertBefore(b, right.firstChild);
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', addSignup);
+    } else { addSignup(); }
+  })();
+</script>
 
 <script>
 /* ════════════════════════════════════════════════════════════════════
@@ -1214,7 +1207,7 @@ function renderHomePromo(p){
   var label = p.label || (isSpon ? 'Sponsored' : 'Featured');
   var name = p.title || '';
   var sub = p.subtitle || p.text || '';
-  var btnText = p.linkText || 'Learn more';
+  var btnText = p.linkText || 'Learn more \u2192';
   var btnUrl = safeUrl(p.url);
   if (!btnUrl) return;
 
