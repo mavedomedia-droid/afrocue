@@ -264,6 +264,56 @@ document.getElementById('flyer').src = FLYER;
    the browser wants, which is why the other pages use mode:'no-cors' and
    discard the reply. We need the reply here, so every call is JSONP.
    ══════════════════════════════════════════════════════════════ */
+function query(params){
+  var q = [];
+  for(var k in params) if(Object.prototype.hasOwnProperty.call(params,k))
+    q.push(encodeURIComponent(k) + '=' + encodeURIComponent(params[k]));
+  return q.join('&');
+}
+
+/* Primary transport. A web app published to "Anyone" returns
+   Access-Control-Allow-Origin:* so this just works, and when it does not
+   it hands back a real status code instead of the silent failure a script
+   tag gives. JSONP stays as the fallback for anything fetch cannot do. */
+function call(params, done, fail){
+  if(!GAS_URL){
+    console.error('[guestlist] GAS_URL is empty.');
+    fail && fail('no_url'); return;
+  }
+  if(!window.fetch){ jsonp(params, done, fail); return; }
+
+  var url = GAS_URL + (GAS_URL.indexOf('?') > -1 ? '&' : '?') + query(params);
+  var ctl = null, timer;
+  try { ctl = new AbortController(); } catch(e){}
+  timer = setTimeout(function(){ try{ ctl && ctl.abort(); }catch(e){} }, 12000);
+
+  fetch(url, ctl ? { signal: ctl.signal } : {})
+    .then(function(r){
+      clearTimeout(timer);
+      if(!r.ok){
+        console.warn('[guestlist] fetch got HTTP ' + r.status + '. ' +
+          (r.status===401||r.status===403
+            ? 'That is Google refusing anonymous access: the deployment is not set to "Anyone".'
+            : 'Falling back to JSONP.'));
+        jsonp(params, done, fail); return;
+      }
+      return r.text().then(function(txt){
+        var data;
+        try { data = JSON.parse(txt); }
+        catch(e){
+          console.warn('[guestlist] response was not JSON, trying JSONP. First 120 chars: ' + txt.slice(0,120));
+          jsonp(params, done, fail); return;
+        }
+        done(data);
+      });
+    })
+    .catch(function(e){
+      clearTimeout(timer);
+      console.warn('[guestlist] fetch failed (' + e.name + ': ' + e.message + '), trying JSONP');
+      jsonp(params, done, fail);
+    });
+}
+
 var seq = 0;
 var FAIL = {
   no_url : 'Something went wrong on our end. Try again in a moment.',
@@ -379,7 +429,7 @@ function shut(why){
 }
 
 function refresh(){
-  jsonp({ action:'gl_count' }, function(r){
+  call({ action:'gl_count' }, function(r){
     if(!r) return;
     if(!r.ok){
       /* Config problem on the sheet, not a visitor problem. Say nothing on
@@ -436,10 +486,17 @@ function claim(isRetry){
   btn.innerHTML = '<span class="spin"></span>Claiming&hellip;';
 
   var u = utm();
-  jsonp({ action:'gl_claim', name:name, email:mail, source:SOURCE,
+  call({ action:'gl_claim', name:name, email:mail, source:SOURCE,
           utm_source:u.utm_source, utm_medium:u.utm_medium, utm_campaign:u.utm_campaign },
     function(r){
       if(!r){ back('Something went wrong. Try again.'); return; }
+      /* ok:true with no position means a half-formed response. Never paint
+         "#undefined" on somebody's confirmation. */
+      if(r.ok && !(Number(r.position) > 0)){
+        console.error('[guestlist] ok:true but no usable position:', r);
+        back('Something went wrong on our end. Try again in a moment.');
+        return;
+      }
       if(r.ok){
         animateTo(r.count);
         document.getElementById('posN').textContent = '#' + r.position;
