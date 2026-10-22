@@ -35,6 +35,7 @@
       --yellow:#C8E000;--pink:#FF3DCC;
       --yts:2px 3px 0px rgba(0,0,0,0.9),0 0 24px rgba(200,224,0,0.06);
       --section-spacing: 60px 0;
+      --ev:#C8E000;--ev-soft:rgba(200,224,0,0.06);--ev-line:rgba(200,224,0,0.22);
     }
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -119,10 +120,276 @@
     .party-card-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(22px,2.5vw,32px);color:var(--yellow);text-shadow:var(--yts);line-height:0.95;margin-bottom:4px}
     .party-card-ig{font-size:10px;font-weight:400;color:rgba(240,237,232,0.4);margin-bottom:8px;letter-spacing:0.05em}
     .party-card-meta{font-size:11px;font-weight:300;color:rgba(240,237,232,0.45)}
-    .party-card-cta{position:absolute;top:14px;left:14px;z-index:6;font-size:9px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:5px 10px;border-radius:2px;opacity:0;transition:opacity 0.2s}
-    .party-card:hover .party-card-cta{opacity:1}
+
     .party-card-stats{display:none;align-items:center;gap:10px;margin-top:6px}
     .card-stat{display:flex;align-items:center;gap:3px;font-size:10px;font-weight:400;color:rgba(240,237,232,0.4)}
+
+    /* ---- v2 additions, using the page's existing tokens ---- */
+
+
+    .party-card.is-dormant{opacity:0.55}
+    .party-card.is-off .party-card-name{color:var(--silver)}
+    .card-flag{position:absolute;top:14px;left:14px;z-index:7;font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 8px;border-radius:2px}
+    .card-flag.soon{background:var(--yellow);color:var(--black)}
+    .card-flag.fresh{background:var(--pink);color:var(--black)}
+    .card-flag.off{background:#7a1f30;color:var(--white)}
+    .card-flag.quiet{background:rgba(10,10,10,0.8);color:var(--silver);border:1px solid rgba(255,255,255,0.18)}
+    .card-reel{position:absolute;bottom:14px;right:14px;z-index:7;display:flex;align-items:center;gap:4px;background:rgba(10,10,10,0.78);padding:4px 8px;border-radius:2px;font-size:8px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--white)}
+    .card-reel svg{width:8px;height:8px;fill:var(--pink)}
+    .party-card-when{font-size:11px;font-weight:500;color:var(--yellow);margin-top:3px;letter-spacing:0.02em}
+    .party-card.is-off .party-card-when{color:var(--grey)}
+
+    /* RIGHT NOW: what the LLM read out of the last three posts */
+    .m-now{border:1px solid rgba(255,255,255,0.1);border-left:2px solid var(--yellow);background:rgba(255,255,255,0.02);padding:18px 20px;margin-bottom:24px}
+    .m-now.quiet{border-left-color:var(--grey)}
+    .m-now.off{border-left-color:#7a1f30}
+    .m-now-head{display:flex;align-items:center;gap:9px;margin-bottom:8px;flex-wrap:wrap}
+    .m-now-dot{width:6px;height:6px;border-radius:50%;background:var(--yellow);flex-shrink:0}
+    .m-now.quiet .m-now-dot{background:var(--grey)}
+    .m-now.off .m-now-dot{background:#c0394f}
+    .m-now-label{font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--yellow)}
+    .m-now.quiet .m-now-label{color:var(--silver)}
+    .m-now.off .m-now-label{color:#c0394f}
+    .m-now-age{font-size:10px;color:var(--grey);letter-spacing:0.06em}
+    .m-now-quote{font-size:13px;font-weight:300;line-height:1.7;color:rgba(240,237,232,0.72);font-style:italic}
+    .m-now-src{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey);margin-top:10px}
+
+    /* NEXT EDITION */
+    .m-next{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.08);margin-bottom:24px}
+    .m-next-cell{background:var(--dark);padding:16px 18px}
+    .m-next-k{font-size:9px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--grey);margin-bottom:6px}
+    .m-next-v{font-size:14px;font-weight:500;color:var(--white);line-height:1.4}
+    .m-next-v.hl{color:var(--yellow)}
+    .m-next-v.dim{color:var(--grey);font-weight:300}
+    .m-next-v .hl{color:var(--yellow)}
+    /* a gap we are waiting on: quiet, but not an error */
+    .ph{font-weight:300;color:var(--grey)}
+    /* held back on purpose: this IS the answer, so it reads like one */
+    .ph-held{color:var(--silver);font-weight:400;font-style:italic}
+    .f-sub{display:block;font-size:11px;font-weight:300;color:var(--grey);margin-top:3px}
+
+    .modal-lineup{margin-bottom:28px}
+    .modal-dj{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;padding:7px 13px;border-radius:2px;background:rgba(255,255,255,0.06);color:var(--off);text-decoration:none;margin:0 6px 6px 0;transition:all 0.2s;min-height:36px}
+    .modal-dj:hover{background:rgba(200,224,0,0.12);color:var(--yellow)}
+    .modal-dj.unknown{background:transparent;border:1px dashed rgba(255,255,255,0.18);color:var(--grey)}
+    .modal-entry{font-size:13px;color:var(--off);margin-bottom:8px}
+
+    @media(max-width:768px){
+    }
+
+
+    /* ── EDITIONS vs FRANCHISES ─────────────────────────────────── */
+    .view-tabs{display:flex;gap:0;margin-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.08)}
+    .view-tab{font-family:'Figtree',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.12em;
+      text-transform:uppercase;color:var(--grey);background:none;border:0;border-bottom:2px solid transparent;
+      padding:12px 2px;margin-right:28px;cursor:pointer;transition:color .2s,border-color .2s;min-height:44px}
+    .view-tab:hover{color:var(--silver)}
+    .view-tab.on{color:var(--yellow);border-bottom-color:var(--yellow)}
+    .view-tab span{color:var(--grey);font-weight:400;margin-left:6px}
+
+    /* countdown, on the card and in the modal */
+    .cd{display:flex;align-items:baseline;gap:4px;font-family:'Aesthet Nova',sans-serif;font-weight:900;color:var(--yellow)}
+    .cd-n{font-size:26px;line-height:1}
+    .cd-u{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--silver);
+      font-family:'Figtree',sans-serif;margin-right:8px}
+    .card-cd{position:absolute;top:14px;left:14px;z-index:7;background:rgba(10,10,10,0.82);
+      border:1px solid rgba(200,224,0,0.35);padding:6px 10px;border-radius:2px;display:flex;align-items:baseline;gap:4px}
+    .card-cd b{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:17px;color:var(--yellow);line-height:1}
+    .card-cd i{font-style:normal;font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--silver)}
+    .card-cd.live{border-color:var(--pink)}
+    .card-cd.live b{color:var(--pink)}
+
+    /* which franchise an edition belongs to */
+    .card-franchise{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+      color:rgba(240,237,232,0.45);margin-bottom:6px}
+
+    /* countdown: one line, no box. Sits on the signal row so the
+       things worth reading start higher up the modal. */
+    .cd-line{margin-left:auto;font-family:'Aesthet Nova',sans-serif;font-weight:900;
+      font-size:clamp(20px,2.4vw,27px);color:var(--ev);text-shadow:2px 3px 0 rgba(0,0,0,.9);
+      line-height:1;white-space:nowrap}
+    .cd-line.today{color:var(--pink)}
+    .cd-line small{font-family:'Figtree',sans-serif;font-weight:500;font-size:11px;
+      letter-spacing:.06em;color:var(--silver);text-shadow:none;margin-left:8px}
+
+    /* LLM summary */
+    .m-sum{font-size:14px;font-weight:300;line-height:1.8;color:rgba(240,237,232,0.72);
+      border-left:2px solid var(--yellow);padding-left:18px;margin-bottom:24px}
+    .m-sum-k{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--grey);margin-bottom:8px}
+
+    /* 4x5 post grid, the format their flyers are posted in */
+    .m-posts{margin-bottom:28px}
+    .m-posts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:8px}
+    .m-post{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--dark2);
+      border:1px solid rgba(255,255,255,0.07);text-decoration:none;display:block}
+    .m-post img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+    .m-post:hover img{transform:scale(1.05)}
+    .m-post-k{position:absolute;top:6px;left:6px;font-size:8px;font-weight:700;letter-spacing:0.1em;
+      text-transform:uppercase;background:rgba(10,10,10,0.8);color:var(--silver);padding:3px 6px;border-radius:2px}
+    .m-post-k.flyer{background:var(--yellow);color:var(--black)}
+    .m-post-cap{position:absolute;left:0;right:0;bottom:0;padding:16px 8px 7px;font-size:9px;line-height:1.45;
+      color:rgba(240,237,232,0.82);background:linear-gradient(to top,rgba(10,10,10,0.95),transparent)}
+
+    /* the link between an edition and its franchise */
+    .m-parent{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+      background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:16px 20px;margin-bottom:24px}
+    .m-parent-l{font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--grey);margin-bottom:4px}
+    .m-parent-n{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:21px;color:var(--white);line-height:1}
+    .m-parent-b{font-family:'Figtree',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.1em;
+      text-transform:uppercase;color:var(--yellow);background:transparent;border:1px solid rgba(200,224,0,0.4);
+      padding:10px 16px;border-radius:2px;cursor:pointer;white-space:nowrap;min-height:44px}
+    .m-parent-b:hover{background:rgba(200,224,0,0.1)}
+
+    /* franchise history */
+    .m-hist{margin-bottom:28px}
+    .m-hist-row{display:flex;align-items:center;gap:14px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.05);
+      font-size:12px;cursor:pointer}
+    .m-hist-row:hover .m-hist-n{color:var(--yellow)}
+    .m-hist-d{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--grey);
+      width:92px;flex-shrink:0}
+    .m-hist-n{color:var(--off);font-weight:500;flex:1;transition:color .2s}
+    .m-hist-t{font-size:10px;color:var(--grey);white-space:nowrap}
+    .m-hist-row.next .m-hist-d{color:var(--yellow)}
+    .m-hist-row.next .m-hist-n{color:var(--white);font-weight:600}
+
+    .m-bio{font-size:13px;font-weight:300;line-height:1.75;color:rgba(240,237,232,0.6);margin-bottom:22px}
+    .m-ig-stats{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:24px;padding-bottom:22px;
+      border-bottom:1px solid rgba(255,255,255,0.06)}
+    .m-ig-stat b{display:block;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:22px;color:var(--white);line-height:1}
+    .m-ig-stat span{font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--grey)}
+
+    @media(max-width:768px){
+      .m-cd{gap:16px;padding:14px 16px}
+      .m-cd-units{gap:16px}
+      .m-cd-unit b{font-size:26px}
+      .view-tab{margin-right:18px;font-size:11px}
+    }
+
+
+    /* ── MIRRORED PALETTE ───────────────────────────────────────
+       Pulled off the flyer with a canvas histogram, not a model.
+       It tints AfroCue's furniture; it never replaces the yellow. */
+    .m-cd.tinted{background:var(--ev-soft);border-color:var(--ev-line)}
+    .m-cd.tinted .m-cd-unit b{color:var(--ev)}
+    .m-sum.tinted{border-left-color:var(--ev)}
+    .ev-strip{height:3px;width:100%;background:var(--ev);opacity:.9}
+    .ev-swatch{display:inline-flex;align-items:center;gap:7px;font-size:9px;font-weight:600;
+      letter-spacing:.12em;text-transform:uppercase;color:var(--grey);margin-left:auto}
+    .ev-swatch i{width:11px;height:11px;border-radius:2px;display:block}
+
+    /* confirmation signal */
+    .sig{display:inline-flex;align-items:center;gap:7px;font-size:9px;font-weight:700;
+      letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border-radius:2px;
+      background:rgba(200,224,0,0.1);border:1px solid rgba(200,224,0,0.3);color:var(--yellow)}
+    .sig.soft{background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.12);color:var(--silver)}
+    .sig-dot{width:6px;height:6px;border-radius:50%;background:var(--yellow);position:relative;flex-shrink:0}
+    .sig-dot::after{content:'';position:absolute;inset:-3px;border-radius:50%;
+      border:1px solid var(--yellow);opacity:.5;animation:sigPulse 2.4s ease-out infinite}
+    .sig.soft .sig-dot{background:var(--silver)}
+    .sig.soft .sig-dot::after{display:none}
+    @keyframes sigPulse{0%{transform:scale(.6);opacity:.7}100%{transform:scale(1.5);opacity:0}}
+    @media(prefers-reduced-motion:reduce){.sig-dot::after{animation:none}}
+    .sig-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+
+    /* card: countdown becomes the headline, not the date */
+    .card-togo{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:13px;
+      color:var(--yellow);letter-spacing:0.01em;margin-top:3px}
+    .card-togo.today{color:var(--pink)}
+    .card-togo small{font-family:'Figtree',sans-serif;font-weight:400;font-size:10px;
+      color:rgba(240,237,232,0.4);letter-spacing:0.04em;margin-left:7px}
+
+    /* lineup read off the flyer by the vision pass */
+    .dj-src{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);
+      margin-top:9px;display:flex;align-items:center;gap:6px}
+    .dj-src b{color:var(--silver);font-weight:600}
+
+
+    /* ── DONNA ──────────────────────────────────────────────────
+       The watcher has a name, so a reader knows a machine wrote it
+       and knows which machine. */
+    .donna-k{display:flex;align-items:center;gap:8px;font-size:9px;font-weight:700;
+      letter-spacing:.2em;text-transform:uppercase;color:var(--grey);margin-bottom:9px}
+    .donna-k b{color:var(--ev);font-weight:700;letter-spacing:.2em}
+    .donna-k .sig-dot{width:5px;height:5px;background:var(--ev)}
+    .donna-k .sig-dot::after{border-color:var(--ev)}
+    .sig-l{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--grey)}
+    /* ── INTERESTED ─────────────────────────────────────────────
+       Same shape as the DPS items page: one tap registers, then it
+       asks whether to tell you when something changes. On a party the
+       two things that change after you mark interest are the venue and
+       the lineup, so that is what it offers. */
+    .int-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:26px 0 22px}
+    .int-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;background:transparent;
+      border:1px solid var(--yellow);border-radius:2px;color:var(--yellow);cursor:pointer;
+      font-family:'Figtree',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;
+      text-transform:uppercase;transition:background .18s,color .18s}
+    .int-btn:hover{background:var(--yellow);color:var(--black)}
+    .int-btn.on{background:var(--yellow);color:var(--black);cursor:default}
+    .int-n{font-size:12px;font-weight:300;color:var(--silver)}
+    .int-n b{font-weight:600;color:var(--white)}
+    .int-ask{margin:14px 0 30px;max-width:60ch;animation:modalIn .22s ease}
+    .int-ask-t{font-size:13px;font-weight:400;color:var(--white);margin-bottom:10px}
+    .int-f{display:flex;gap:8px;flex-wrap:wrap}
+    .int-f input{flex:1 1 220px;padding:11px 13px;background:var(--dark2);
+      border:1px solid rgba(255,255,255,.14);border-radius:2px;color:var(--white);
+      font-family:'Figtree',sans-serif;font-size:13px}
+    .int-f input:focus{outline:none;border-color:var(--yellow)}
+    .int-f button{padding:11px 22px;background:var(--yellow);border:none;border-radius:2px;
+      color:var(--black);font-family:'Figtree',sans-serif;font-size:11px;font-weight:600;
+      letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+    .int-fine{font-size:11px;font-weight:300;color:var(--grey);margin-top:8px}
+    .int-opt{display:flex;align-items:flex-start;gap:10px;margin-top:11px;cursor:pointer}
+    .int-opt input{appearance:none;-webkit-appearance:none;flex-shrink:0;width:16px;height:16px;
+      margin:1px 0 0;border:1px solid rgba(255,255,255,.3);border-radius:2px;background:transparent;
+      cursor:pointer;position:relative;transition:background .15s,border-color .15s}
+    .int-opt input:checked{background:var(--yellow);border-color:var(--yellow)}
+    .int-opt input:checked::after{content:'';position:absolute;left:5px;top:1px;width:4px;height:9px;
+      border:solid var(--black);border-width:0 2px 2px 0;transform:rotate(45deg)}
+    .int-opt span{font-size:12.5px;font-weight:300;color:var(--white);line-height:1.45}
+    .int-done{font-size:12.5px;font-weight:300;color:var(--silver);line-height:1.6;margin-top:4px}
+    .donna-note{font-size:11px;line-height:1.65;color:var(--silver);margin:12px 0 26px;max-width:62ch}
+    .donna-note a{color:var(--silver);text-decoration:underline;text-underline-offset:2px}
+
+    /* lineup in the display face, the way DJ names are set everywhere else */
+    .lineup-k{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-bottom:12px}
+    .lineup-k .k{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--grey)}
+    .lineup-k .src{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--grey)}
+    .lineup-k .src b{color:var(--silver);font-weight:600}
+    .djs-display{display:flex;flex-wrap:wrap;gap:0 22px;margin-bottom:4px}
+    .dj-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(21px,2.6vw,30px);
+      line-height:1.22;color:var(--yellow);text-shadow:var(--yts);text-decoration:none;
+      transition:opacity .18s;white-space:nowrap}
+    a.dj-name:hover{opacity:.72}
+    .dj-name.unlisted{color:rgba(240,237,232,0.55);text-shadow:none}
+
+
+    /* ── THE PARTIES RAIL ───────────────────────────────────────
+       A franchise is not a night. Same grid treatment made them
+       read as competing answers to the same question. */
+    .rail-wrap{margin-top:56px;padding-top:34px;border-top:1px solid rgba(255,255,255,0.08)}
+    .rail-head{display:flex;align-items:baseline;gap:12px;margin-bottom:18px}
+    .rail-h{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(22px,2.6vw,30px);
+      color:var(--white);line-height:1}
+    .rail-n{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--grey)}
+    .rail{display:flex;gap:12px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x proximity;
+      -webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--mid) transparent}
+    .rail::-webkit-scrollbar{height:5px}
+    .rail::-webkit-scrollbar-thumb{background:var(--mid);border-radius:3px}
+    .rail-card{flex:0 0 210px;scroll-snap-align:start;background:var(--dark);
+      border:1px solid rgba(255,255,255,0.08);cursor:pointer;text-align:left;
+      font-family:'Figtree',sans-serif;transition:border-color .2s;padding:0;overflow:hidden}
+    .rail-card:hover{border-color:rgba(200,224,0,0.4)}
+    .rail-img{width:100%;height:104px;object-fit:cover;display:block;background:var(--dark2);
+      filter:grayscale(.45) contrast(1.05);transition:filter .3s}
+    .rail-card:hover .rail-img{filter:grayscale(0) contrast(1)}
+    .rail-body{padding:12px 13px 14px}
+    .rail-name{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:17px;
+      color:var(--yellow);line-height:1.05;margin-bottom:5px}
+    .rail-meta{font-size:10px;font-weight:300;color:rgba(240,237,232,0.45);line-height:1.5}
+    .rail-next{font-size:10px;font-weight:600;letter-spacing:.06em;color:var(--white);margin-top:6px}
+    .rail-next.none{color:var(--grey);font-weight:400}
+    @media(max-width:768px){.rail-card{flex-basis:168px}.rail-img{height:88px}}
 
     /* SKELETON */
     .party-card-skeleton{background:var(--dark2);border:1px solid rgba(255,255,255,0.04);cursor:default}
@@ -168,7 +435,12 @@
     .like-btn{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--silver);background:transparent;border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:6px 14px;cursor:pointer;transition:all 0.18s;font-family:'Figtree',sans-serif;letter-spacing:0.04em;min-height:36px}
     .like-btn:hover{border-color:var(--yellow);color:var(--yellow)}
     .like-btn.liked{background:rgba(200,224,0,0.1);border-color:var(--yellow);color:var(--yellow)}
-    .like-btn svg{width:13px;height:13px}
+    .like-btn svg{width:13px;height:13px;transition:fill .18s}
+    .like-btn.liked svg{fill:currentColor}
+    .like-btn.pop svg{animation:heartPop .5s ease}
+    @keyframes heartPop{0%{transform:scale(1)}30%{transform:scale(1.45)}60%{transform:scale(.9)}100%{transform:scale(1)}}
+    @media (prefers-reduced-motion:reduce){.like-btn.pop svg{animation:none}}
+    #heartAsk:empty{display:none}
     .share-btn{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--silver);background:transparent;border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:6px 14px;cursor:pointer;transition:all 0.18s;font-family:'Figtree',sans-serif;letter-spacing:0.04em;min-height:36px}
     .share-btn:hover{border-color:rgba(255,255,255,0.3);color:var(--white)}
     .share-btn.copied{border-color:#4caf50;color:#4caf50}
@@ -345,7 +617,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
             <span id="viewCountNum">—</span> views
           </div>
-          <button class="like-btn" id="likeBtn" onclick="handleLike()">
+          <button class="like-btn" id="likeBtn" onclick="handleLike()" aria-label="Interested" title="Interested">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             <span id="likeCountNum">—</span>
           </button>
@@ -354,6 +626,7 @@
             Share
           </button>
         </div>
+        <div id="heartAsk"></div>
         <p class="modal-desc" id="modalDesc"></p>
 
         <!-- Party Pulse -->
@@ -390,12 +663,6 @@
         </div>
 
         <div class="modal-lower">
-          <div>
-            <div class="modal-cta-label">Last uploaded party flier</div>
-            <div class="modal-flyer" id="modalFlyer">
-              <div class="modal-flyer-placeholder"><span>Flyer coming soon</span></div>
-            </div>
-          </div>
           <div class="modal-right">
             <div>
               <div class="modal-cta-label">Find them on</div>
@@ -487,17 +754,15 @@
         <select class="filter-select" id="filterArea" onchange="applyFilters()">
           <option value="">Area</option>
         </select>
-        <select class="filter-select" id="filterCity" onchange="applyFilters()">
-          <option value="">City</option>
+        <select class="filter-select" id="filterEntry" onchange="applyFilters()">
+          <option value="">Entry</option><option value="free">Free</option><option value="paid">Paid</option>
         </select>
-        <select class="filter-select" id="filterTime" onchange="applyFilters()">
-          <option value="">Time</option><option>Day</option><option>Night</option><option>Day &amp; Night</option>
+        <select class="filter-select" id="filterVibe" onchange="applyFilters()">
+          <option value="">Vibe</option>
         </select>
-        <select class="filter-select" id="filterAccess" onchange="applyFilters()">
-          <option value="">Access</option>
-        </select>
-        <select class="filter-select" id="filterGenre" onchange="applyFilters()">
-          <option value="">Genre</option>
+        <select class="filter-select" id="filterSort" onchange="applyFilters()">
+          <option value="soon">Soonest</option><option value="views">Most viewed</option>
+          <option value="active">Recently active</option><option value="az">A to Z</option>
         </select>
         <input class="search-input" id="searchInput" type="text" placeholder="Search parties..." oninput="applyFilters()">
         <button class="filter-reset" id="filterReset" onclick="resetFilters()">Clear</button>
@@ -505,6 +770,16 @@
     </div>
     <div class="parties-grid" id="partiesGrid"></div>
     <div class="no-results" id="noResults">No parties match this filter yet.</div>
+
+    <!-- The franchises, as a rail. Smaller, scrollable, clearly a
+         different kind of thing from a night. -->
+    <div class="rail-wrap" id="railWrap">
+      <div class="rail-head">
+        <h2 class="rail-h">The parties.</h2>
+        <span class="rail-n" id="railCount"></span>
+      </div>
+      <div class="rail" id="partyRail"></div>
+    </div>
   </section>
 
   <!-- LIST YOUR PARTY CTA -->
@@ -574,6 +849,21 @@
 
     function getGasUrl(){ return GAS_WEBAPP_URL; }
 
+    /* Opened from a file, or inside a sandboxed frame, the page has a
+       null origin. history.replaceState then throws a SecurityError and
+       sessionStorage can throw too. Both used to sit in openModal ahead
+       of the line that actually reveals the modal, so the modal never
+       appeared unless the page was served over http. */
+    function safeHash(h){
+      try { history.replaceState(null, '', h); } catch(e){}
+    }
+    function storeGet(k){
+      try { return sessionStorage.getItem(k); } catch(e){ return null; }
+    }
+    function storeSet(k, v){
+      try { sessionStorage.setItem(k, v); } catch(e){}
+    }
+
     // ─── HELPERS ──────────────────────────────────────────────────────────
     function getHandleFromUrl(url) {
       if (!url || typeof url !== 'string') return '';
@@ -625,12 +915,30 @@
       return cols;
     }
 
+    /* Rows split on newlines, but an Instagram caption is mostly
+       newlines, and serveCSV quotes those cells rather than stripping
+       them. Splitting blind cuts one party into several broken rows. */
+    function splitCSVRows(text){
+      var rows=[], cur='', inQuote=false;
+      for(var i=0; i<text.length; i++){
+        var c = text[i];
+        if(c === '"'){ inQuote = !inQuote; cur += c; }
+        else if(c === '\r'){ continue; }
+        else if(c === '\n' && !inQuote){ rows.push(cur); cur=''; }
+        else { cur += c; }
+      }
+      if(cur.trim()) rows.push(cur);
+      return rows;
+    }
+
     function parseCSV(text){
-      var lines = text.trim().split('\n');
+      var lines = splitCSVRows(text.trim());
       if(lines.length < 2) return { parties: [], featured: null };
       var headers = splitCSVLine(lines[0]).map(function(h){ return h.trim().toLowerCase(); });
       function col(name){ var i = headers.indexOf(name.toLowerCase()); return i > -1 ? i : -1; }
 
+      var C_LAST_SUCCESS = col('last success at');
+      var C_LAST_SCRAPED = col('last scraped at');
       var C_ID = col('party id');
       var C_NAME = col('party name');
       var C_CITY = col('city');
@@ -730,7 +1038,9 @@
           day_of_week: C_DAY_OF_WEEK > -1 ? cols[C_DAY_OF_WEEK].trim() : '',
           recurrence: C_RECURRENCE > -1 ? cols[C_RECURRENCE].trim() : '',
           next_party_time: C_NEXT_PARTY_TIME > -1 ? cols[C_NEXT_PARTY_TIME].trim() : '',
-          vibe_tags: C_VIBE_TAGS > -1 ? cols[C_VIBE_TAGS].trim().split(',').map(function(s){ return s.trim(); }).filter(Boolean) : []
+          vibe_tags: C_VIBE_TAGS > -1 ? cols[C_VIBE_TAGS].trim().split(',').map(function(s){ return s.trim(); }).filter(Boolean) : [],
+          last_success_at: C_LAST_SUCCESS > -1 ? cols[C_LAST_SUCCESS].trim().slice(0,10) : '',
+          last_scraped_at: C_LAST_SCRAPED > -1 ? cols[C_LAST_SCRAPED].trim().slice(0,10) : ''
         };
         if(isFeatured) featured = p;
         if(status === 'Active' || status === '') parties.push(p);
@@ -739,26 +1049,308 @@
     }
 
     // ─── LOAD DATA ───────────────────────────────────────────────────────
+    /* ══════════════════════════════════════════════════════════════
+       TWO TABLES, NOT ONE.
+
+       FRANCHISES  one row per party brand. Seeded from a handle.
+                   Apify fills bio, followers, posts. The LLM reads the
+                   bio and recurrence out of them.
+
+       EDITIONS    one row per night. The LLM creates these from
+                   announcement posts, so six months of scraped history
+                   becomes six months of past editions rather than one
+                   overwritten date field.
+
+       The grid shows editions. The franchise is what you click through
+       to. Both live in the same sheet as two tabs.
+       ══════════════════════════════════════════════════════════════ */
+
+    /* Flip this to true to show the sample set instead of the sheet. */
+    var USE_SAMPLE_DATA = false;
+
+    var FRANCHISES = [];
+    var EDITIONS   = [];
+
+    var SAMPLE_FRANCHISES = [
+      { id:'south-social', name:'South Social', handle:'southsocialhouse', city:'Lagos', ticked:true,
+        organiser:'The Chibyverse', area:'Victoria Island', home_venue:'Praia Lagos',
+        bio:'Rooftop sessions in VI. Amapiano, afrohouse, and whatever the floor asks for. Monthly.',
+        recurrence:'Monthly', day_of_week:'Saturday',
+        genres:['Amapiano','Afrohouse'], vibe_tags:['rooftop','late','dressy'],
+        hero_img:'audience_partygoers.jpg', followers:18400, editions_seen:11,
+        first_seen:'2025-11-08', views:1284, likes:96, last_success_at:'2026-10-20' },
+
+      { id:'amapiano-district', name:'Amapiano District', handle:'amapianodistrict', city:'Lagos', ticked:true,
+        organiser:'AD Collective', area:'Lekki', home_venue:'Hard Rock Cafe',
+        bio:'The amapiano night. Beachside, monthly, loud.',
+        recurrence:'Monthly', day_of_week:'Friday',
+        genres:['Amapiano'], vibe_tags:['amapiano','beachside'],
+        hero_img:'audience_djs.jpg', followers:31200, editions_seen:14,
+        first_seen:'2025-08-22', views:2140, likes:187, last_success_at:'2026-10-20' },
+
+      { id:'sunday-service', name:'Sunday Service', handle:'blackmarketlagos', city:'Lagos', ticked:true,
+        organiser:'Black Market', area:'Ikoyi', home_venue:'The Garden',
+        bio:'Daytime afrohouse every Sunday. Free before six.',
+        recurrence:'Weekly', day_of_week:'Sunday',
+        genres:['Afrohouse','3step'], vibe_tags:['daytime','free','outdoor'],
+        hero_img:'hero_dj.jpg', followers:9800, editions_seen:38,
+        first_seen:'2025-09-14', views:3012, likes:241, last_success_at:'2026-10-21' },
+
+      { id:'group-therapy', name:'Group Therapy', handle:'kvltwrld', city:'Lagos', ticked:true,
+        organiser:'KVLTWRLD', area:'Yaba', home_venue:'',
+        bio:'Basement techno and afrohouse. Venue announced on the day.',
+        recurrence:'Fortnightly', day_of_week:'Saturday',
+        genres:['Afrohouse','Techno'], vibe_tags:['techno','basement','underground'],
+        hero_img:'content_dj.jpeg', followers:6400, editions_seen:9,
+        first_seen:'2026-02-14', views:874, likes:63, last_success_at:'2026-10-20' },
+
+      { id:'element-house', name:'Element House', handle:'elementhouse', city:'Lagos', ticked:true,
+        organiser:'Element', area:'Lekki', home_venue:'Element Rooftop',
+        bio:'Rooftop afrobeats in Lekki.',
+        recurrence:'Monthly', day_of_week:'Saturday',
+        genres:['Afrobeats','Amapiano'], vibe_tags:['rooftop','afrobeats'],
+        hero_img:'content_creative_events.jpeg', followers:4100, editions_seen:5,
+        first_seen:'2026-05-02', views:412, likes:28, last_success_at:'2026-10-19' },
+
+      { id:'dance-eko', name:'DanceEko', handle:'danceeko', city:'Lagos', ticked:true,
+        organiser:'DanceEko', area:'Surulere', home_venue:'',
+        bio:'Intimate afrohouse. Irregular.',
+        recurrence:'Irregular', day_of_week:'',
+        genres:['Afrohouse'], vibe_tags:['afrohouse','intimate'],
+        hero_img:'content_weekly_top5.jpeg', followers:2200, editions_seen:4,
+        first_seen:'2026-01-20', views:138, likes:9, last_success_at:'2026-08-02' }
+    ];
+
+    /* One row per night. state: announced | past | cancelled */
+    var SAMPLE_EDITIONS = [
+      { id:'ss-2026-10-25', views:1284, interested:86, last_read:'2026-10-21T06:10:00Z', party_id:'south-social', title:'South Social', state:'announced',
+        date:'2026-10-25', time:'10:00 PM', venue:'Praia Lagos', area:'Victoria Island',
+        entry:'₦10,000 presale / ₦15,000 door', entry_free:false,
+        flyer:'chibyverse_flyer.jpg', flyer_confidence:'High',
+        lineup:[{name:'Six7even',handle:'six7even',known:true},{name:'Tobi Peter',handle:'tobipeter',known:true},{name:'DJ Lambo',handle:'djlambo',known:false},{name:'Nezzy Beatz',handle:'nezzybeatz',known:false},{name:'Yammy Svibe',handle:'yammysvibe',known:false}],
+        lineup_source:'flyer', palette:'rgb(214,166,94)',
+        summary:'Presale closes Friday, and they have said the door price goes up after that. Five names on the flyer, two more than the caption lists.',
+        posts:[
+          {img:'chibyverse_flyer.jpg', kind:'flyer', cap:'25.10 · Six7even, Tobi Peter, DJ Lambo. Presale closes Friday.', url:'#'},
+          {img:'audience_partygoers.jpg', kind:'post', cap:'Last edition was full by midnight. Get in early.', url:'#'},
+          {img:'content_dj.jpeg', kind:'reel', cap:'Six7even closing the September roof.', url:'#'}
+        ] },
+
+      { id:'ad-2026-10-24', views:940, interested:61, last_read:'2026-10-21T06:10:00Z', party_id:'amapiano-district', title:'Amapiano District', state:'announced',
+        date:'2026-10-24', time:'9:00 PM', venue:'Hard Rock Cafe', area:'Lekki',
+        entry:'₦7,500', entry_free:false,
+        flyer:'', flyer_confidence:'Medium',
+        lineup:[{name:'Yanfssss',handle:'yanfssss',known:true},{name:'Smeez',handle:'smeez',known:true}],
+        lineup_source:'caption', palette:'rgb(226,122,62)',
+        summary:'Anniversary edition. Second ticket release is nearly gone as of yesterday. Only two names announced so far, and they have added more in the last 48 hours before each of their recent editions.',
+        posts:[
+          {img:'audience_djs.jpg', kind:'flyer', cap:'ANNIVERSARY. Friday 24th. Hard Rock. Second release almost gone.', url:'#'},
+          {img:'content_monthly_recap.jpeg', kind:'post', cap:'One year of District.', url:'#'}
+        ] },
+
+      { id:'sund-2026-10-26', views:2012, interested:148, last_read:'2026-10-21T06:10:00Z', party_id:'sunday-service', title:'Sunday Service', state:'announced',
+        date:'2026-10-26', time:'4:00 PM', venue:'The Garden', area:'Ikoyi',
+        entry:'Free before 6pm', entry_free:true,
+        flyer:'sunday_service_flyer.jpg', flyer_confidence:'High',
+        lineup:[{name:'Marrz',handle:'marrz',known:true},{name:'Millar',handle:'millar',known:true},{name:'Swayvee',handle:'swayvee',known:true}],
+        lineup_source:'flyer', palette:'rgb(198,86,74)',
+        summary:'Running as usual. Free before six, three DJs on the flyer.',
+        posts:[
+          {img:'sunday_service_flyer.jpg', kind:'flyer', cap:'Sunday. Marrz, Millar, Swayvee. Free before 6.', url:'#'},
+          {img:'hero_dj.jpg', kind:'post', cap:'Golden hour last week.', url:'#'}
+        ] },
+
+      { id:'gt-2026-11-08', views:604, interested:44, last_read:'2026-10-20T06:10:00Z', party_id:'group-therapy', title:'Group Therapy', state:'announced',
+        date:'2026-11-08', time:'', venue:'', venue_held:true, area:'Yaba',
+        entry:'₦12,000', entry_free:false,
+        flyer:'', flyer_confidence:'Low',
+        lineup:[{name:'Zhus',handle:'zhus',known:true}],
+        summary:'Zhus on an all-night set. The address goes out on the day, as it has for their last four.',
+        posts:[
+          {img:'content_dj.jpeg', kind:'post', cap:'08.11. Zhus all night. Address on the day.', url:'#'}
+        ] },
+
+      { id:'eh-2026-11-21', views:238, interested:12, party_id:'element-house', title:'Element House', state:'announced',
+        date:'2026-11-21', time:'', venue:'Element Rooftop', area:'Lekki', last_read:'2026-10-20T19:40:00Z',
+        entry:'₦5,000', entry_free:false,
+        flyer:'', flyer_confidence:'Low',
+        lineup:[],
+        summary:'This date came from the organiser, not from their page. Nothing posted in three weeks.',
+        posts:[] },
+
+      /* past editions, built from six months of scraped history */
+      { id:'ss-2026-09-27', party_id:'south-social', title:'South Social', state:'past', views:2152, interested:161,
+        date:'2026-09-27', time:'10:00 PM', venue:'Praia Lagos', area:'Victoria Island',
+        entry:'₦10,000', entry_free:false, flyer:'', lineup:[{name:'Six7even',handle:'six7even',known:true}],
+        summary:'', posts:[] },
+      { id:'ss-2026-08-30', party_id:'south-social', title:'South Social', state:'past', views:2207, interested:133,
+        date:'2026-08-30', time:'10:00 PM', venue:'Praia Lagos', area:'Victoria Island',
+        entry:'₦8,000', entry_free:false, flyer:'', lineup:[], summary:'', posts:[] },
+      { id:'ad-2026-09-26', party_id:'amapiano-district', title:'Amapiano District', state:'past', views:2380, interested:168,
+        date:'2026-09-26', time:'9:00 PM', venue:'Hard Rock Cafe', area:'Lekki',
+        entry:'₦7,500', entry_free:false, flyer:'', lineup:[], summary:'', posts:[] },
+      { id:'sund-2026-10-19', party_id:'sunday-service', title:'Sunday Service', state:'past', views:1077, interested:65,
+        date:'2026-10-19', time:'4:00 PM', venue:'The Garden', area:'Ikoyi',
+        entry:'Free before 6pm', entry_free:true, flyer:'', lineup:[], summary:'', posts:[] },
+      { id:'gt-2026-10-11', party_id:'group-therapy', title:'Group Therapy', state:'past', views:2396, interested:139,
+        date:'2026-10-11', time:'', venue:'Secret, Yaba', area:'Yaba',
+        entry:'₦12,000', entry_free:false, flyer:'', lineup:[], summary:'', posts:[] },
+      { id:'sund-2026-10-12', party_id:'sunday-service', title:'Sunday Service', state:'past', views:1062, interested:42,
+        date:'2026-10-12', time:'4:00 PM', venue:'The Garden', area:'Ikoyi',
+        entry:'Free before 6pm', entry_free:true, flyer:'', lineup:[], summary:'', posts:[] },
+      { id:'sund-2026-10-05', party_id:'sunday-service', title:'Sunday Service', state:'past', views:2129, interested:95,
+        date:'2026-10-05', time:'4:00 PM', venue:'The Garden', area:'Ikoyi',
+        entry:'Free before 6pm', entry_free:true, flyer:'', lineup:[], summary:'', posts:[] },
+      { id:'sund-2026-09-28', party_id:'sunday-service', title:'Sunday Service', state:'past', views:880, interested:41,
+        date:'2026-09-28', time:'4:00 PM', venue:'The Garden', area:'Ikoyi',
+        entry:'Free before 6pm', entry_free:true, flyer:'', lineup:[], summary:'', posts:[] },
+      { id:'sund-2026-09-21', party_id:'sunday-service', title:'Sunday Service', state:'past', views:2506, interested:180,
+        date:'2026-09-21', time:'4:00 PM', venue:'The Garden', area:'Ikoyi',
+        entry:'Free before 6pm', entry_free:true, flyer:'', lineup:[], summary:'', posts:[] },
+      { id:'de-2026-06-14', party_id:'dance-eko', title:'DanceEko', state:'past', views:471, interested:170,
+        date:'2026-06-14', time:'', venue:'', area:'Surulere',
+        entry:'Free', entry_free:true, flyer:'', lineup:[], summary:'', posts:[] },
+
+      { id:'dr-2026-12-24', party_id:'amapiano-district', title:'Detty Sexy Rave', state:'cancelled',
+        date:'2026-12-24', time:'9:00 PM', venue:'Balmoral Convention Centre', area:'Victoria Island',
+        entry:'₦20,000', entry_free:false, flyer:'', flyer_confidence:'Medium', lineup:[],
+        summary:'Called off. Refunds open Monday, new date to follow.',
+        posts:[{img:'content_monthly_recap.jpeg', kind:'post', cap:'December 24th is off. New date coming, refunds open Monday.', url:'#'}] }
+    ];
+
+    /* joins */
+    function fx(id){ for(var i=0;i<FRANCHISES.length;i++) if(FRANCHISES[i].id===id) return FRANCHISES[i]; return null; }
+    function edOf(pid){ return EDITIONS.filter(function(e){ return e.party_id===pid; })
+      .sort(function(a,b){ return a.date < b.date ? 1 : -1; }); }
+    function edById(id){ for(var i=0;i<EDITIONS.length;i++) if(EDITIONS[i].id===id) return EDITIONS[i]; return null; }
+
+    /* ── Sheet to page ────────────────────────────────────────────
+       Two sources. The Parties tab arrives as CSV and carries every
+       column including the three scraped posts. The nights arrive as
+       JSON from ?export=editions, which already drops anything past
+       the 120 day window.
+       ──────────────────────────────────────────────────────────── */
+
+    function csvHandle(url){
+      var m = String(url || '').match(/instagram\.com\/([^\/?#]+)/i);
+      return m ? m[1].toLowerCase() : '';
+    }
+
+    /* The three posts the pull rehosted, newest first. Latest Post has
+       no Type column of its own, so a filled Latest Reel URL is what
+       marks the newest one as a reel. */
+    function csvPosts(p){
+      var out = [];
+      var slots = [
+        [p.latest_post_image, p.latest_post_caption, p.latest_post_url,
+         p.latest_reel_url ? 'reel' : 'post'],
+        [p.post2_image, p.post2_caption, p.post2_url, p.post2_type],
+        [p.post3_image, p.post3_caption, p.post3_url, p.post3_type]
+      ];
+      slots.forEach(function(s){
+        if(!s[0]) return;
+        out.push({
+          img: s[0], cap: s[1] || '', url: s[2] || '#',
+          kind: String(s[3] || '').toLowerCase() === 'reel' ? 'reel' : 'post'
+        });
+      });
+      return out;
+    }
+
+    function csvToFranchise(p){
+      return {
+        id: p.id, name: p.name, handle: csvHandle(p.instagram),
+        city: p.city || 'Lagos', ticked: true,
+        organiser: p.organiser, area: p.area, home_venue: p.venue,
+        bio: p.description, recurrence: p.recurrence, day_of_week: p.day_of_week,
+        genres: p.genres || [], vibe_tags: p.vibe_tags || [],
+        hero_img: p.hero_img, flyer_img: p.flyer_img,
+        website: p.website, ticket_url: p.ticket_url,
+        views: p.views, likes: p.likes, featured: p.featured,
+        next_party_date: p.next_party_date, next_party_time: p.next_party_time,
+        last_party_date: p.last_party_date,
+        upcoming_flyer: p.upcoming_flyer, upcoming_date: p.upcoming_date,
+        pulse_confidence: p.pulse_confidence,
+        last_success_at: p.last_success_at || p.last_scraped_at || '',
+        posts: csvPosts(p),
+        editions_seen: 0        /* counted once the nights are in */
+      };
+    }
+
+    /* serveEditions names it confidence, the card reads flyer_confidence,
+       and its lineup is plain names where the card wants objects. */
+    function apiToEdition(e, byId){
+      var f = byId[e.party_id] || {};
+      return {
+        id: e.id, party_id: e.party_id, title: f.name || e.party_id,
+        state: e.state, date: e.date, time: e.time,
+        venue: e.venue, venue_held: !!e.venue_held, area: e.area,
+        entry: e.entry, entry_free: !!e.entry_free,
+        flyer: e.flyer || f.upcoming_flyer || f.flyer_img || '',
+        flyer_confidence: e.confidence || '',
+        lineup: (e.lineup || []).map(function(n){
+          return { name: n, handle: '', known: false };
+        }),
+        lineup_source: e.lineup_source || '',
+        summary: e.summary || '',
+        posts: f.posts || [],       /* posts live on the party, not the night */
+        views: e.views || 0, interested: e.interested || 0,
+        last_read: e.last_read || '', palette: ''
+      };
+    }
+
     function loadParties(){
       renderSkeletons();
-      fetch(CSV_URL)
-        .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.text(); })
-        .then(function(text){
-          var result = parseCSV(text);
-          PARTIES = result.parties;
-          renderUpcoming(result.featured);
-          if(PARTIES.length > 0){
-            buildFilterOptions();
-            renderCards(getFilters());
-            initFeatured();
-          } else {
-            showEmptyState('No parties listed yet. Check back soon.');
-          }
-        })
-        .catch(function(err){
-          console.warn('AfroCue: CSV fetch failed ('+err+')');
-          showEmptyState('Could not load parties right now. Try again shortly.');
+
+      if(USE_SAMPLE_DATA){
+        FRANCHISES = SAMPLE_FRANCHISES;
+        EDITIONS   = SAMPLE_EDITIONS;
+        setTimeout(function(){ setView(V2.view, true); initFeatured(); }, 260);
+        return;
+      }
+
+      var getCSV = fetch(CSV_URL).then(function(r){
+        if(!r.ok) throw new Error('parties HTTP ' + r.status);
+        return r.text();
+      });
+      var getEds = fetch(GAS_WEBAPP_URL + '?export=editions').then(function(r){
+        if(!r.ok) throw new Error('editions HTTP ' + r.status);
+        return r.json();
+      }).catch(function(err){
+        /* A party with no nights is still a party worth showing. */
+        console.warn('AfroCue: editions unavailable (' + err + ')');
+        return { editions: [] };
+      });
+
+      Promise.all([getCSV, getEds]).then(function(got){
+        var parsed = parseCSV(got[0]);
+        FRANCHISES = parsed.parties.map(csvToFranchise);
+
+        var byId = {};
+        FRANCHISES.forEach(function(f){ byId[f.id] = f; });
+
+        EDITIONS = ((got[1] && got[1].editions) || []).map(function(e){
+          return apiToEdition(e, byId);
         });
+
+        FRANCHISES.forEach(function(f){
+          f.editions_seen = EDITIONS.filter(function(e){
+            return e.party_id === f.id;
+          }).length;
+        });
+
+        if(!FRANCHISES.length){
+          showEmptyState('No parties listed yet. Check back soon.');
+          return;
+        }
+
+        setView(V2.view, true);
+        renderUpcoming(parsed.featured);
+        initFeatured();
+      }).catch(function(err){
+        console.warn('AfroCue: load failed (' + err + ')');
+        showEmptyState('Could not load parties right now. Try again shortly.');
+      });
     }
 
     // ─── FILTERS ─────────────────────────────────────────────────────────
@@ -783,22 +1375,17 @@
           + uniq.map(function(v){ return '<option>' + v + '</option>'; }).join('');
       }
       fill('filterArea',   PARTIES.map(function(p){ return p.area; }),   'Area');
-      fill('filterCity',   PARTIES.map(function(p){ return p.city; }),   'City');
-      fill('filterTime',   PARTIES.map(function(p){ return p.time; }),   'Time');
-      fill('filterAccess', PARTIES.map(function(p){ return p.access; }), 'Access');
-
-      var genres = [];
-      PARTIES.forEach(function(p){ (p.genres || []).forEach(function(g){ genres.push(g); }); });
-      fill('filterGenre', genres, 'Genre');
+      var vibes = [];
+      PARTIES.forEach(function(p){ (p.vibe_tags || []).forEach(function(v){ vibes.push(v); }); });
+      fill('filterVibe', vibes, 'Vibe');
     }
 
     function getFilters(){
       return {
         area: document.getElementById('filterArea').value,
-        city: document.getElementById('filterCity').value,
-        time: document.getElementById('filterTime').value,
-        access: document.getElementById('filterAccess').value,
-        genre: document.getElementById('filterGenre').value,
+        entry: document.getElementById('filterEntry').value,
+        vibe: document.getElementById('filterVibe').value,
+        sort: document.getElementById('filterSort').value,
         search: document.getElementById('searchInput').value.trim().toLowerCase()
       };
     }
@@ -809,45 +1396,632 @@
       return bits.length ? bits.join(', ') : (party.city || '');
     }
 
-    // "Every Saturday", "Monthly", or nothing.
+    // Only what provenRecurrence() could establish. Never a day name:
+    // "Monthly on Saturdays" is two claims and the second one is the
+    // first to go wrong when a party moves to a Friday.
     function partyWhen(party){
-      var r = party.recurrence || '';
-      if(!r || r === 'One-off' || r === 'Irregular') return r === 'One-off' ? 'One-off' : '';
-      if(party.day_of_week){
-        if(r === 'Weekly') return 'Every ' + party.day_of_week;
-        return r + ' on ' + party.day_of_week + 's';
-      }
-      return r;
+      return party.recurrence || '';
     }
 
     function partyMatchesFilters(party, filters){
       if(filters.area && (party.area || '') !== filters.area) return false;
-      if(filters.city && party.city.toLowerCase().indexOf(filters.city.toLowerCase()) === -1) return false;
-      if(filters.time && party.time !== filters.time) return false;
-      if(filters.access && party.access !== filters.access) return false;
-      if(filters.genre && (!party.genres || party.genres.map(function(g){ return g.toLowerCase(); }).indexOf(filters.genre.toLowerCase()) === -1)) return false;
+      if(filters.entry === 'free' && !party.entry_free) return false;
+      if(filters.entry === 'paid' && party.entry_free) return false;
+      if(filters.vibe && (party.vibe_tags || []).indexOf(filters.vibe) === -1) return false;
       if(filters.search && party.name.toLowerCase().indexOf(filters.search) === -1) return false;
       return true;
     }
 
     function applyFilters(){
       var filters = getFilters();
-      var hasAny = filters.area || filters.city || filters.time || filters.access || filters.genre || filters.search;
+      var hasAny = filters.area || filters.entry || filters.vibe || filters.search;
       var reset = document.getElementById('filterReset');
       if(reset) reset.className = 'filter-reset' + (hasAny ? ' visible' : '');
-      ['filterArea','filterCity','filterTime','filterAccess','filterGenre'].forEach(function(id){
+      ['filterArea','filterVibe','filterEntry'].forEach(function(id){
         var el = document.getElementById(id); if(el) el.className = 'filter-select' + (el.value ? ' has-value' : '');
       });
       renderCards(filters);
     }
 
     function resetFilters(){
-      ['filterArea','filterCity','filterTime','filterAccess','filterGenre'].forEach(function(id){
+      ['filterArea','filterVibe','filterEntry'].forEach(function(id){
         var el = document.getElementById(id); if(el){ el.value = ''; el.className = 'filter-select'; }
       });
       document.getElementById('searchInput').value = '';
       var reset = document.getElementById('filterReset'); if(reset) reset.className = 'filter-reset';
       renderCards({});
+    }
+
+
+    /* ══════════════════════════════════════════════════════════════
+       v2 — everything below reads columns the sheet already has.
+       lineup / venue / entry / cancelled would come from the LLM
+       extending the response it already requests each day.
+       ══════════════════════════════════════════════════════════════ */
+    var V2 = { vibe:'', view:'editions', today:new Date() };
+
+    function v2Days(d){ if(!d) return null;
+      var t=new Date(d+'T00:00:00+01:00'); if(isNaN(t)) return null;
+      return Math.round((t - new Date(V2.today.toDateString()))/864e5); }
+    function v2Fmt(d){ if(!d) return ''; var x=new Date(d+'T00:00:00+01:00'); if(isNaN(x)) return '';
+      return x.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'}); }
+    function v2Dormant(p){ var n=v2Days(p.last_party_date); return n!==null && n < -60; }
+    function v2Stale(p){ var n=v2Days(p.last_success_at); return n!==null && n < -14; }
+
+    /* Next Party Date, finally used outside the modal */
+    function v2When(p){
+      if(p.cancelled) return 'Cancelled';
+      var n=v2Days(p.next_party_date);
+      if(n===null || n<0) return partyWhen(p) || 'Date not announced';
+      var day = n===0 ? 'Tonight' : n===1 ? 'Tomorrow' : v2Fmt(p.next_party_date);
+      return day + (p.next_party_time ? ' · ' + p.next_party_time : '');
+    }
+    function v2FlagHTML(p){
+      if(p.cancelled) return {c:'off', t:'Cancelled'};
+      if(p.just_dropped) return {c:'fresh', t:'Just dropped'};
+      var n=v2Days(p.next_party_date);
+      if(v2Dormant(p)) return {c:'quiet', t:'Quiet since '+v2Fmt(p.last_party_date)};
+      return null;
+    }
+    /* The DJ join. Known names link into the DJ directory. */
+    function v2LineupHTML(p){
+      if(!(p.lineup||[]).length) return '';
+      return '<div class="card-lineup">' + p.lineup.slice(0,4).map(function(d){
+        return '<span class="card-dj'+(d.known?'':' unknown')+'">'+d.name+'</span>';
+      }).join('') + '</div>';
+    }
+    function v2SourceHTML(p){
+      if(v2Stale(p)) return '<div class="card-src stale">Not updated since '+v2Fmt(p.last_success_at)+'</div>';
+      if(p.source==='llm') return '<div class="card-src">From their posts</div>';
+      return '<div class="card-src">Listed by organiser</div>';
+    }
+    function v2Sort(list, mode){
+      var f={
+        soon:function(a,b){ var x=v2Days(a.next_party_date), y=v2Days(b.next_party_date);
+          if(x===null&&y===null) return 0; if(x===null) return 1; if(y===null) return -1;
+          if(x<0&&y>=0) return 1; if(y<0&&x>=0) return -1; return x-y; },
+        views:function(a,b){ return (b.views||0)-(a.views||0); },
+        active:function(a,b){ return (v2Days(b.last_party_date)||-9e9)-(v2Days(a.last_party_date)||-9e9); },
+        az:function(a,b){ return a.name.localeCompare(b.name); }
+      };
+      return list.slice().sort(f[mode]||f.soon);
+    }
+
+
+
+    /* ══════════════════════════════════════════════════════════════
+       MIRRORING THE FLYER'S COLOUR
+
+       This is a canvas histogram, not a model call. The flyer is drawn
+       to a small offscreen canvas, pixels are bucketed, and the most
+       saturated usable bucket wins. Costs nothing and runs in about a
+       millisecond, so it never belongs in an LLM prompt.
+
+       The result tints AfroCue furniture only: the countdown band, the
+       summary rule, a strip under the hero. The yellow stays ours.
+       ══════════════════════════════════════════════════════════════ */
+    var PALETTE_CACHE = {};
+    function mirrorPalette(src, done){
+      if(!src){ done(null); return; }
+      if(PALETTE_CACHE[src] !== undefined){ done(PALETTE_CACHE[src]); return; }
+      var im = new Image();
+      im.crossOrigin = 'anonymous';
+      im.onload = function(){
+        try{
+          var N = 48, c = document.createElement('canvas');
+          c.width = N; c.height = N;
+          var g = c.getContext('2d');
+          g.drawImage(im, 0, 0, N, N);
+          var d = g.getImageData(0, 0, N, N).data, buckets = {};
+          for(var i = 0; i < d.length; i += 4){
+            var r = d[i], gg = d[i+1], b = d[i+2];
+            var mx = Math.max(r,gg,b), mn = Math.min(r,gg,b);
+            var l = (mx + mn) / 2, sat = mx === mn ? 0 : (mx - mn) / (255 - Math.abs(mx + mn - 255));
+            /* skip near-black, near-white and grey: a flyer's ink, not its colour */
+            if(l < 38 || l > 222 || sat < 0.28) continue;
+            var k = (r>>4)+','+(gg>>4)+','+(b>>4);
+            (buckets[k] = buckets[k] || {n:0,r:0,g:0,b:0,s:0});
+            buckets[k].n++; buckets[k].r+=r; buckets[k].g+=gg; buckets[k].b+=b; buckets[k].s+=sat;
+          }
+          var best = null;
+          for(var k2 in buckets){
+            var v = buckets[k2];
+            /* weight by how much of the flyer it covers and how saturated it is */
+            v.score = v.n * (v.s / v.n);
+            if(!best || v.score > best.score) best = v;
+          }
+          if(!best){ PALETTE_CACHE[src] = null; done(null); return; }
+          var out = lift(Math.round(best.r/best.n), Math.round(best.g/best.n), Math.round(best.b/best.n));
+          PALETTE_CACHE[src] = out; done(out);
+        } catch(e){
+          /* a cross-origin image taints the canvas; fall back silently */
+          PALETTE_CACHE[src] = null; done(null);
+        }
+      };
+      im.onerror = function(){ PALETTE_CACHE[src] = null; done(null); };
+      im.src = src;
+    }
+    /* keep it readable on black: raise anything too dark to sit on ground */
+    function lift(r,g,b){
+      var l = (0.2126*r + 0.7152*g + 0.0722*b) / 255;
+      if(l < 0.42){ var f = 0.42 / Math.max(l, 0.04);
+        r = Math.min(255, Math.round(r*f)); g = Math.min(255, Math.round(g*f)); b = Math.min(255, Math.round(b*f)); }
+      return 'rgb('+r+','+g+','+b+')';
+    }
+    function applyAccent(col){
+      var root = document.documentElement.style;
+      if(!col){ root.removeProperty('--ev'); root.removeProperty('--ev-soft'); root.removeProperty('--ev-line'); return; }
+      var m = col.match(/\d+/g);
+      root.setProperty('--ev', col);
+      root.setProperty('--ev-soft', 'rgba('+m[0]+','+m[1]+','+m[2]+',0.09)');
+      root.setProperty('--ev-line', 'rgba('+m[0]+','+m[1]+','+m[2]+',0.34)');
+    }
+
+    /* ── COUNTDOWN AS LANGUAGE ──────────────────────────────────
+       "2 days to go" reads better than a calendar date on a page
+       about what is on. The date moves to the facts table. */
+    function toGo(dateStr, timeStr, cancelled){
+      if(cancelled) return {t:'Cancelled', cls:'off'};
+      var c = v2Countdown(dateStr, timeStr);
+      if(!c) return {t:'Date not announced', cls:'dim'};
+      if(c.past) return {t:'Finished', cls:'dim'};
+      if(c.d === 0) return {t:(c.h < 6 ? 'Happening now' : 'Happening today'), cls:'today'};
+      if(c.d === 1) return {t:'Tomorrow', cls:'today'};
+      if(c.d <= 14) return {t:c.d + ' days to go', cls:''};
+      if(c.d <= 31) return {t:'In ' + Math.ceil(c.d/7) + ' weeks', cls:''};
+      return {t:v2Fmt(dateStr), cls:''};
+    }
+
+    /* ── WHAT COUNTS AS A PARTY ──────────────────────────────────
+       The gate a candidate passes before it can appear anywhere.
+       Written as rules, not a feeling, because this is the thing the
+       Knowledge tab in the sheet edits.
+
+       Two requirements, and only two:
+
+         1. IDENTITY. The post comes from a handle in the watch log
+            with the party column ticked. A tick is a human saying
+            "this account runs parties". Nothing else gets in, however
+            party-shaped a caption reads. That tick is the difference
+            between a listing and a guess.
+
+         2. A DATE. Not a flyer, not a caption that sounds like a
+            party. A date we can resolve to one calendar day. The date
+            is what confirms it: a party without one is an intention,
+            and we do not list intentions. Everything downstream (the
+            countdown, the sort, the rail, "4 days to go") is built on
+            a date existing, so admitting a dateless row would break
+            the page in six places to show a listing nobody can use.
+
+       Everything else (venue, entry, lineup, time, city) is optional
+       and shows a placeholder. Deliberately: these parties hold the
+       venue back until the afternoon of, so a template that needs a
+       venue would drop the best nights in Lagos.
+
+       'hold' rows stay in the sheet with their reason, so a human can
+       see what Donna chose not to publish and why. */
+    function qualifies(e){
+      var f = fx(e.party_id);
+      if(!f)         return {ok:false, why:'No franchise for this handle'};
+      if(!f.ticked)  return {ok:false, why:'Handle not ticked as a party in the watch log'};
+      if(!e.date || v2Days(e.date) === null)
+                     return {ok:false, why:'No date we can resolve. Not a party yet'};
+      if(v2Days(e.date) < -2 && e.state === 'announced')
+                     return {ok:false, why:'Date passed and was never marked done'};
+      return {ok:true, why:''};
+    }
+
+    /* ── PLACEHOLDERS ───────────────────────────────────────────
+       One agreed phrase per field, so a gap reads identically
+       everywhere and never looks like a broken page. Three kinds of
+       gap, and they do not mean the same thing:
+
+         pending  we read their page, they have not said yet
+         held     they are withholding on purpose. This is the answer,
+                  not a gap, so it is not greyed out like one
+         looking  nothing new since the announcement
+
+       All three say the same thing underneath: the party is certain,
+       the detail is what is missing. */
+    var PH = {
+      nextDate:  {t:'Next date not announced',    k:'pending'},
+      venue:     {t:'Not announced yet',          k:'pending'},
+      venueHeld: {t:'Given out on the night',     k:'held'},
+      entry:     {t:'Not announced yet',          k:'pending'},
+      city:      {t:'Not confirmed',              k:'pending'},
+      lineup:    {t:'No lineup announced yet',    k:'pending'},
+      summary:   {t:'Nothing new on their page since the announcement', k:'looking'}
+    };
+    function phHTML(ph){ return '<span class="ph ph-'+ph.k+'">'+ph.t+'</span>'; }
+    function factCell(label, value, ph, cls, sub){
+      var v = value ? '<span class="'+(cls||'')+'">'+value+'</span>' : phHTML(ph);
+      return '<div class="m-next-cell"><div class="m-next-k">'+label+'</div>'
+           + '<div class="m-next-v">'+v+(sub?'<span class="f-sub">'+sub+'</span>':'')+'</div></div>';
+    }
+
+    /* ── THE SIGNAL ─────────────────────────────────────────────
+       Every edition has a date, or it is not here. So the signal no
+       longer asks whether this is real. It says where the date came
+       from, which is the thing a reader can actually weigh. */
+    function signalHTML(p){
+      var conf = p.flyer_confidence || '';
+      if(p.cancelled)
+        return '<span class="sig soft"><span class="sig-dot"></span>Cancelled by the organiser</span>';
+      if(conf === 'High')
+        return '<span class="sig"><span class="sig-dot"></span>Date from their flyer</span>';
+      if(conf === 'Medium')
+        return '<span class="sig"><span class="sig-dot"></span>Date from their caption</span>';
+      return '<span class="sig soft"><span class="sig-dot"></span>Date worked out from their caption</span>';
+    }
+
+    /* ── RECURRENCE, ONLY WHEN PROVEN ───────────────────────────
+       A bio saying "every Saturday" is a claim. Editions on the
+       calendar are evidence. These parties move around, so nothing
+       about cadence is stated unless the dates back it.
+
+       Needs four dated editions and gaps that actually agree. Returns
+       null otherwise, and null renders as nothing at all. */
+    function provenRecurrence(partyId){
+      var dated = EDITIONS.filter(function(e){
+        return e.party_id === partyId && e.date && e.state !== 'cancelled'; })
+        .map(function(e){ return e.date; }).sort();
+      if(dated.length < 4) return null;
+
+      var gaps=[];
+      for(var i=1;i<dated.length;i++){
+        gaps.push(Math.round((new Date(dated[i]) - new Date(dated[i-1]))/864e5));
+      }
+      var avg = gaps.reduce(function(a,b){return a+b;},0)/gaps.length;
+      /* every gap has to sit near the average, not just the mean of a
+         wild spread: one 60-day gap among 7s is not "weekly" */
+      var band = Math.max(3, avg * 0.22);
+      for(var j=0;j<gaps.length;j++) if(Math.abs(gaps[j]-avg) > band) return null;
+
+      if(Math.abs(avg-7)  <= 2) return 'Weekly';
+      if(Math.abs(avg-14) <= 3) return 'Every two weeks';
+      if(Math.abs(avg-30) <= 6) return 'Monthly';
+      return null;
+    }
+
+    /* ── VIEW ──────────────────────────────────────────────────────
+       editions = one card per night, the what's-on answer
+       parties  = one card per franchise, the directory answer
+       ──────────────────────────────────────────────────────────── */
+    function liveEditions(){
+      return EDITIONS.filter(function(e){ return e.state !== 'past'; })
+        .map(function(e){
+          var f = fx(e.party_id) || {};
+          return {
+            _kind:'edition', id:e.id, name:e.title, party_id:e.party_id,
+            franchise:f.name, organiser:f.organiser,
+            city:f.city || 'Lagos', area:e.area || f.area, venue:e.venue,
+            venue_held:!!e.venue_held, last_read:e.last_read, ticked:f.ticked,
+            genres:f.genres || [], vibe_tags:f.vibe_tags || [],
+            entry:e.entry, entry_free:e.entry_free,
+            next_party_date:e.date, next_party_time:e.time,
+            last_party_date:'', recurrence:'', day_of_week:'',
+            /* The card always wears the franchise's identity image. A flyer is
+               text-heavy and often light, so the party name becomes unreadable
+               over it; the flyer belongs in the modal and the post grid. */
+            hero_img: f.hero_img,
+            flyer_img:e.flyer, instagram:'https://instagram.com/'+(f.handle||''),
+            /* the modal hero and the card show the same picture: the party's
+               own image, never a post that happened to be scraped that week */
+            views:e.views||0, interested:e.interested||0, likes:f.likes||0,
+            cancelled: e.state === 'cancelled',
+            last_success_at:f.last_success_at, source:'llm',
+            lineup:e.lineup||[], summary:e.summary, posts:e.posts||[],
+            lineup_source:e.lineup_source, palette:e.palette,
+            flyer_confidence:e.flyer_confidence
+          };
+        });
+    }
+    function franchiseRows(){
+      return FRANCHISES.map(function(f){
+        var eds = edOf(f.id);
+        var next = eds.filter(function(e){ return e.state==='announced' && v2Days(e.date)>=0; }).pop();
+        var last = eds.filter(function(e){ return v2Days(e.date) < 0; })[0];
+        return {
+          _kind:'franchise', id:f.id, name:f.name, organiser:f.organiser,
+          city:f.city || 'Lagos', area:f.area, venue:f.home_venue,
+          last_read:f.last_success_at, ticked:f.ticked,
+          genres:f.genres||[], vibe_tags:f.vibe_tags||[],
+          entry:'', entry_free:false,
+          next_party_date: next ? next.date : '', next_party_time: next ? next.time : '',
+          last_party_date: last ? last.date : '',
+          recurrence:provenRecurrence(f.id) || '', day_of_week:'',
+          hero_img:f.hero_img,
+          instagram:'https://instagram.com/'+f.handle,
+          /* a franchise does not have views of its own. It has the sum of
+             what its nights pulled, which is the number that actually says
+             how big the party is. */
+          views: eds.reduce(function(a,e){ return a+(e.views||0); }, 0),
+          interested: eds.reduce(function(a,e){ return a+(e.interested||0); }, 0),
+          likes:f.likes, cancelled:false,
+          last_success_at:f.last_success_at, source:'llm',
+          lineup:[], editions_seen:f.editions_seen, bio:f.bio,
+          posts:(f.posts && f.posts.length) ? f.posts : ((eds[0] && eds[0].posts) || []),
+          pulse_confidence:f.pulse_confidence || (next && next.flyer_confidence) || '',
+          flyer_img:f.upcoming_flyer || f.flyer_img ||
+                    (next && next.flyer) || (eds[0] && eds[0].flyer) || ''
+        };
+      });
+    }
+    function setView(v, boot){
+      var live = liveEditions();
+      /* Nights when there are nights, parties when there are not. A
+         blank grid would otherwise be the first thing anyone sees. */
+      V2.view = (v === 'parties' || !live.length) ? 'parties' : 'editions';
+      PARTIES = V2.view === 'parties' ? franchiseRows() : live;
+      if(boot) buildFilterOptions();
+      renderCards(getFilters());
+      buildRail();
+    }
+
+    /* The rail: every franchise, with its next date if there is one. */
+    function buildRail(){
+      var wrap=document.getElementById('railWrap'), rail=document.getElementById('partyRail');
+      if(!rail) return;
+      var rows=franchiseRows();
+      if(!rows.length){ if(wrap) wrap.style.display='none'; return; }
+      document.getElementById('railCount').textContent =
+        rows.length + ' tracked';
+      rail.innerHTML = rows.map(function(f){
+        var n = v2Days(f.next_party_date);
+        var nxt = (n!==null && n>=0)
+          ? '<div class="rail-next">'+toGo(f.next_party_date, f.next_party_time, false).t+'</div>'
+          : '<div class="rail-next none">Nothing announced</div>';
+        /* area only. Venue is withheld by most of these parties, so the
+           template never leans on it. */
+        var meta = [f.area, partyWhen(f)].filter(Boolean).join(' · ');
+        return '<button class="rail-card" onclick="openModal(\''+f.id+'\')">'
+          + '<img class="rail-img" src="'+(f.hero_img||'')+'" alt="" loading="lazy" '
+          +   'onerror="this.style.visibility=\'hidden\'"/>'
+          + '<div class="rail-body"><div class="rail-name">'+f.name+'</div>'
+          +   (meta ? '<div class="rail-meta">'+meta+'</div>' : '')
+          +   nxt
+          + '</div></button>';
+      }).join('');
+    }
+
+    /* countdown, recomputed on open and ticked once a minute */
+    function v2Countdown(dateStr, timeStr){
+      if(!dateStr) return null;
+      var t = new Date(dateStr + 'T' + (parseTime(timeStr) || '21:00') + ':00+01:00');
+      if(isNaN(t)) return null;
+      var ms = t - new Date();
+      if(ms <= 0) return {past:true};
+      var d = Math.floor(ms/864e5), h = Math.floor(ms%864e5/36e5), m = Math.floor(ms%36e5/6e4);
+      return {d:d, h:h, m:m, past:false};
+    }
+    function parseTime(t){
+      if(!t) return null;
+      var m = String(t).match(/^(\d{1,2}):(\d{2})\s*(AM|PM)?$/i);
+      if(!m) return null;
+      var hh = parseInt(m[1],10);
+      if(m[3] && /pm/i.test(m[3]) && hh < 12) hh += 12;
+      if(m[3] && /am/i.test(m[3]) && hh === 12) hh = 0;
+      return (hh<10?'0':'')+hh+':'+m[2];
+    }
+
+    /* ── MODAL: state first, then the next edition ──────────────────
+       state.* comes from the daily LLM pass over the last three posts.
+       Nothing here is fetched when the modal opens.
+       ──────────────────────────────────────────────────────────────── */
+    /* "Last read 3 hours ago" is the useful granularity for a watcher
+       that runs on a schedule. v2Ago only speaks in whole days, and it
+       cannot parse an ISO timestamp, so this handles the read clock. */
+    function sinceRead(iso){
+      var t = Date.parse(iso); if(!t) return '';
+      var m = Math.floor((Date.now() - t)/60000);
+      if(m < 2)    return 'a moment ago';
+      if(m < 60)   return m+' minutes ago';
+      var hh = Math.round(m/60);
+      if(hh < 24)  return hh+(hh===1?' hour ago':' hours ago');
+      var dd = Math.round(hh/24);
+      return dd===1 ? 'yesterday' : dd+' days ago';
+    }
+    function v2Ago(d){
+      var n=v2Days(d); if(n===null) return '';
+      if(n===0) return 'today'; if(n===-1) return 'yesterday';
+      if(n>-7) return Math.abs(n)+' days ago';
+      if(n>-14) return 'last week';
+      if(n>-35) return Math.round(Math.abs(n)/7)+' weeks ago';
+      return 'on '+v2Fmt(d);
+    }
+    function v2FillModal(p){
+      var host=document.getElementById('modalDesc'); if(!host) return;
+      var old=document.getElementById('v2ModalBlock'); if(old) old.parentNode.removeChild(old);
+      var w=document.createElement('div'); w.id='v2ModalBlock';
+      w.innerHTML = (p._kind === 'franchise') ? franchiseBody(p) : editionBody(p);
+      host.parentNode.insertBefore(w, host.nextSibling);
+      startTick(p);
+      /* mirror the flyer's dominant colour onto AfroCue's furniture */
+      applyAccent(p.palette || null);
+      var art = p.flyer_img || p.hero_img;
+      if(art) mirrorPalette(art, function(col){ if(col) applyAccent(col); });
+    }
+
+    /* Views and interest are counted on the EDITION, then summed onto
+       the franchise. A party that ran twelve times is big because of
+       what the twelve nights pulled, not because of one of them. Both
+       numbers are columns in the sheet. */
+    /* The heart is Interested. The old separate "+1 Interested" button
+       is gone, so this returns nothing and the heart owns the count. */
+    function interestedHTML(p){ return ''; }
+
+    function v2Num(n){ return n>=1000 ? (n/1000).toFixed(1).replace(/\.0$/,'')+'k' : String(n); }
+
+    /* ── AN EDITION: one night ─────────────────────────────────── */
+    function editionBody(p){
+      var h='';
+
+      /* where this date came from, before anything that depends on it */
+      var g = toGo(p.next_party_date, p.next_party_time, p.cancelled);
+      h += '<div class="sig-row">' + signalHTML(p)
+        +  (g.cls !== 'dim' && g.cls !== 'off'
+             ? '<span class="cd-line '+g.cls+'" id="cdLine">'+g.t
+               + (p.next_party_time ? '<small>'+p.next_party_time+'</small>' : '') + '</span>'
+             : '')
+        +  '</div>';
+
+      /* The countdown now rides the signal row above, so nothing here. */
+
+      /* what the LLM made of their recent posts */
+      if(p.summary || p.last_read){
+        h += '<div class="donna-k"><span class="sig-dot"></span>What <b>Donna</b> knows</div>'
+          +  '<div class="m-sum tinted">'+(p.summary || phHTML(PH.summary))+'</div>'
+          +  '<div class="donna-note">Donna is our watcher. She reads what each party '
+          +  'posts and writes up what changed.'
+          +  (p.last_read && sinceRead(p.last_read) ? ' Last read '+sinceRead(p.last_read)+'.' : '')
+          +  ' Their own page is the final word.</div>';
+      }
+
+      /* the facts. Date, venue, entry, city. Area rides under the
+         venue when we know it, because "Lekki" is useful even on a
+         night where the room itself is still a secret. */
+      h += '<div class="m-next">'
+        + factCell('Date',
+            p.next_party_date ? v2Fmt(p.next_party_date)
+              + (p.next_party_time ? ' &middot; '+p.next_party_time : '') : '',
+            PH.date, 'hl')
+        + factCell('Venue', p.venue, p.venue_held ? PH.venueHeld : PH.venue,
+            '', (!p.venue && p.area) ? 'in '+p.area : '')
+        + factCell('Entry', p.entry, PH.entry, p.entry_free ? 'hl' : '')
+        + factCell('City',  p.city,  PH.city)
+        + '</div>';
+
+      if(!(p.lineup||[]).length){
+        h += '<div class="modal-lineup">'
+          + '<div class="lineup-k"><span class="k">Lineup</span></div>'
+          + '<div class="m-next-v">'+phHTML(PH.lineup)+'</div></div>';
+      } else {
+        var src = p.lineup_source === 'flyer'
+          ? '<span class="src"><b>Donna read these off the flyer</b></span>'
+          : '<span class="src"><b>From their caption</b></span>';
+        h += '<div class="modal-lineup">'
+          + '<div class="lineup-k"><span class="k">Lineup</span>'+src+'</div>'
+          + '<div class="djs-display">'
+          + p.lineup.map(function(d){ return d.known
+              ? '<a class="dj-name" href="dj.html#'+d.handle+'">'+d.name+'</a>'
+              : '<span class="dj-name unlisted" title="Not in the AfroCue DJ directory yet">'+d.name+'</span>';
+            }).join('')
+          + '</div></div>';
+      }
+
+      h += interestedHTML(p);
+      h += postsHTML(p.posts, 'From their page');
+
+      /* back to the franchise */
+      var f = fx(p.party_id);
+      if(f){
+        var same = (f.name || '').toLowerCase() === (p.name || '').toLowerCase();
+        h += '<div class="m-parent"><div>'
+          +    '<div class="m-parent-l">'+(same ? 'The party' : 'Part of')+'</div>'
+          +    '<div class="m-parent-n">'+f.name+'</div></div>'
+          +  '<button class="m-parent-b" onclick="openFranchise(\''+f.id+'\')">'
+          +    (same ? 'Every edition' : 'See the party') + '</button>'
+          + '</div>';
+      }
+      return h;
+    }
+
+    /* ── A FRANCHISE: the brand behind the nights ──────────────── */
+    function franchiseBody(p){
+      var f = fx(p.id) || {};
+      var eds = edOf(p.id);
+      var next = eds.filter(function(e){ return e.state==='announced' && v2Days(e.date)>=0; }).pop();
+      var past = eds.filter(function(e){ return v2Days(e.date) < 0; });
+
+      var h='';
+      if(f.bio) h += '<div class="m-bio">'+f.bio+'</div>';
+
+      h += '<div class="m-ig-stats">'
+        +  '<div class="m-ig-stat"><b>'+(f.editions_seen||eds.length)+'</b><span>Editions tracked</span></div>'
+        +  '<div class="m-ig-stat"><b>'+v2Num(p.views||0)+'</b><span>Views, all editions</span></div>'
+        +  '<div class="m-ig-stat"><b>'+v2Num(p.interested||0)+'</b><span>Interested</span></div>'
+        +  (f.followers ? '<div class="m-ig-stat"><b>'+(f.followers/1000).toFixed(1)+'k</b><span>Followers</span></div>' : '')
+        +  '<div class="m-ig-stat"><b>'+(partyWhen(p)||'&mdash;')+'</b><span>'
+        +  (partyWhen(p) ? 'Runs' : 'No steady pattern yet')+'</span></div>'
+        +  '</div>';
+
+      if(next){
+        var fg = toGo(next.date, next.time, next.state==='cancelled');
+        if(fg.cls !== 'dim' && fg.cls !== 'off')
+          h += '<div class="sig-row"><span class="sig-l">Next edition</span>'
+            +  '<span class="cd-line '+fg.cls+'" id="cdLine">'+fg.t
+            +  (next.time ? '<small>'+next.time+'</small>' : '')+'</span></div>';
+        h += '<div class="m-next">'
+          + factCell('Date', v2Fmt(next.date) + (next.time ? ' &middot; '+next.time : ''), PH.date, 'hl')
+          + factCell('Venue', next.venue, next.venue_held ? PH.venueHeld : PH.venue,
+              '', (!next.venue && next.area) ? 'in '+next.area : '')
+          + factCell('Entry', next.entry, PH.entry, next.entry_free ? 'hl' : '')
+          + factCell('City',  p.city,     PH.city)
+          + '</div>';
+        if(next.summary) h += '<div class="donna-k"><span class="sig-dot"></span>What <b>Donna</b> knows</div>'
+          + '<div class="m-sum tinted">'+next.summary+'</div>';
+      } else {
+        h += '<div class="m-now quiet"><div class="m-now-head"><span class="m-now-dot"></span>'
+          +  '<span class="m-now-label">No edition announced</span></div>'
+          +  '<div class="m-now-src">Last ran '+(past.length?v2Fmt(past[0].date):'unknown')+'</div></div>';
+      }
+
+      /* the history, which is what six months of scraping buys you */
+      if(eds.length){
+        h += '<div class="m-hist"><div class="modal-cta-label">Editions</div>'
+          + eds.slice(0,10).map(function(e){
+              var up = v2Days(e.date) >= 0 && e.state==='announced';
+              return '<div class="m-hist-row'+(up?' next':'')+'" onclick="openEdition(\''+e.id+'\')">'
+                +  '<span class="m-hist-d">'+v2Fmt(e.date)+'</span>'
+                +  '<span class="m-hist-n">'+(e.venue || e.area || '<span class="ph ph-'+(e.venue_held?'held':'pending')+'">'
+                   +(e.venue_held?PH.venueHeld.t:PH.venue.t)+'</span>')+'</span>'
+                +  '<span class="m-hist-t">'+(e.state==='cancelled'?'Cancelled':(up?'Upcoming':(e.entry||'')))+'</span>'
+                + '</div>';
+            }).join('') + '</div>';
+      }
+      return h;
+    }
+
+    var _tick=null;
+    function startTick(p){
+      if(_tick) clearInterval(_tick);
+      var d=p.next_party_date, t=p.next_party_time;
+      if(p._kind==='franchise'){
+        var nx=edOf(p.id).filter(function(e){ return e.state==='announced' && v2Days(e.date)>=0; }).pop();
+        if(!nx) return; d=nx.date; t=nx.time;
+      }
+      if(!d) return;
+      _tick=setInterval(function(){
+        var el=document.getElementById('cdLine'); if(!el){ clearInterval(_tick); return; }
+        var g=toGo(d,t,false);
+        if(g.cls==='dim'){ clearInterval(_tick); return; }
+        el.className='cd-line '+g.cls;
+        el.innerHTML=g.t+(t?'<small>'+t+'</small>':'');
+      }, 60000);
+    }
+
+    /* 4x5, the shape flyers are posted in */
+    function postsHTML(posts, label){
+      if(!(posts||[]).length) return '';
+      return '<div class="m-posts"><div class="modal-cta-label">'+label+'</div><div class="m-posts-grid">'
+        + posts.map(function(o){
+            return '<a class="m-post" href="'+(o.url||'#')+'" target="_blank" rel="noopener">'
+              + '<img src="'+o.img+'" alt="" loading="lazy" onerror="this.style.opacity=0"/>'
+              + '<span class="m-post-k'+(o.kind==='flyer'?' flyer':'')+'">'+o.kind+'</span>'
+              + (o.cap ? '<span class="m-post-cap">'+o.cap+'</span>' : '')
+              + '</a>';
+          }).join('') + '</div></div>';
+    }
+
+    /* cross-navigation between the two object types */
+    function openFranchise(id){
+      closeModal();
+      setTimeout(function(){ openModal(id); }, 180);
+    }
+    function openEdition(id){
+      var e = edById(id); if(!e || e.state === 'past') return;
+      closeModal();
+      setTimeout(function(){ openModal(id); }, 180);
     }
 
     // ─── RENDER CARDS ──────────────────────────────────────────────────
@@ -856,7 +2030,7 @@
       var grid = document.getElementById('partiesGrid');
       var noResults = document.getElementById('noResults');
       grid.innerHTML = '';
-      var visible = PARTIES.filter(function(p){ return partyMatchesFilters(p, filters); });
+      var visible = v2Sort(PARTIES.filter(function(p){ return partyMatchesFilters(p, filters); }), filters.sort);
       if(visible.length === 0){ noResults.style.display = 'block'; return; }
       noResults.style.display = 'none';
 
@@ -881,7 +2055,6 @@
         var logo = document.createElement('div'); logo.className = 'party-card-logo';
         var li = document.createElement('img'); li.src = 'logo_afrocue.png'; li.alt = 'AfroCue';
         li.onerror = function(){ this.style.display = 'none'; }; logo.appendChild(li);
-        var cta = document.createElement('div'); cta.className = 'party-card-cta'; cta.textContent = 'See More';
         var content = document.createElement('div'); content.className = 'party-card-content';
 
         var handle = getHandleFromUrl(party.instagram);
@@ -891,15 +2064,39 @@
           + (likes ? '<span class="card-stat"><svg viewBox="0 0 24 24" fill="currentColor" width="10" height="10"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>'+likes+'</span>' : '')
           + '</div>' : '';
 
+        /* A card is for scanning: what is it, where, when. Everything else
+           is a reason to open it, not something to read in the grid. */
+        var sub = party._kind === 'franchise'
+          ? (partyWhen(party) || party.organiser || '')
+          : (party.organiser || '');
         content.innerHTML = '<div class="party-card-tags">'+tagHTML+'</div>'
+          + (sub ? '<div class="card-franchise">'+sub+'</div>' : '')
           + '<div class="party-card-name">'+party.name+'</div>'
-          + (handle ? '<div class="party-card-ig">'+handle+'</div>' : '')
-          + '<div class="party-card-meta">'+partyWhere(party)+'</div>'
-          + (partyWhen(party) ? '<div class="party-card-meta">'+partyWhen(party)+'</div>' : '')
-          + statsHtml;
+          + '<div class="party-card-meta">'+(party.area || 'Lagos')+'</div>'
+          + (party._kind === 'edition'
+              ? (function(){ var g = toGo(party.next_party_date, party.next_party_time, party.cancelled);
+                  return '<div class="card-togo '+g.cls+'">'+g.t
+                    + (party.next_party_time && g.cls !== 'dim' && g.cls !== 'off'
+                        ? '<small>'+party.next_party_time+'</small>' : '') + '</div>'; })()
+              : '<div class="party-card-when">'+v2When(party)+'</div>');
+
+        /* the countdown is the point of an edition card */
+        var cdv = party.cancelled ? null : v2Countdown(party.next_party_date, party.next_party_time);
+        if(cdv && !cdv.past && cdv.d <= 30){
+          var cd = document.createElement('div');
+          cd.className = 'card-cd' + (cdv.d === 0 ? ' live' : '');
+          cd.innerHTML = cdv.d > 0 ? '<b>'+cdv.d+'</b><i>day'+(cdv.d===1?'':'s')+'</i>'
+                                   : '<b>'+cdv.h+'</b><i>hrs</i>';
+          card.appendChild(cd);
+        }
+
+        var flag = v2FlagHTML(party); if(flag){ var fe=document.createElement('div');
+          fe.className='card-flag '+flag.c; fe.textContent=flag.t; card.appendChild(fe); }
+        if(v2Dormant(party)) card.className += ' is-dormant';
+        if(party.cancelled)  card.className += ' is-off';
 
         card.appendChild(bg); card.appendChild(img); card.appendChild(tint); card.appendChild(grad);
-        card.appendChild(tex); card.appendChild(logo); card.appendChild(cta); card.appendChild(content);
+        card.appendChild(tex); card.appendChild(logo); card.appendChild(content);
         grid.appendChild(card);
       });
       if(!featuredList.length) initFeatured();
@@ -910,11 +2107,17 @@
       var slot = document.getElementById('featuredSlot');
       if(!slot) return;
       
-      featuredList = PARTIES
-        .filter(function(p){ return p.hero_img && p.hero_img.trim() !== ''; })
-        .slice()
-        .sort(function(a,b){ return (b.views||0) - (a.views||0); })
-        .slice(0,5);
+      /* The carousel is the what's-on slot: parties with a date in the next
+         7 days lead, soonest first, then the rest by views. The weekend
+         answer lives here rather than in a band of its own. */
+      var withImg = PARTIES.filter(function(p){
+        return !p.cancelled && p.hero_img && p.hero_img.trim() !== ''; });
+      var soon = withImg.filter(function(p){ var n=v2Days(p.next_party_date);
+        return n!==null && n>=0 && n<=7; })
+        .sort(function(a,b){ return v2Days(a.next_party_date)-v2Days(b.next_party_date); });
+      var rest = withImg.filter(function(p){ return soon.indexOf(p)===-1; })
+        .sort(function(a,b){ return (b.views||0)-(a.views||0); });
+      featuredList = soon.concat(rest).slice(0,5);
       
       if(featuredList.length === 0){
         featuredList = PARTIES.slice().sort(function(a,b){ 
@@ -977,7 +2180,9 @@
         }
         
         nm.textContent = p.name || 'Untitled Party';
-        ct.textContent = p.city || 'Location TBA';
+        /* In a what's-on slot the date beats the city */
+        var fWhen = v2When(p);
+        ct.textContent = (fWhen && fWhen !== 'Date not announced') ? fWhen : (p.city || '');
         
         if(flyerImg && flyerWrap){
           var hasFlyer = p.flyer_img && p.flyer_img.trim() !== '';
@@ -1064,6 +2269,9 @@
 
     // ─── STATS (views/likes) — FIXED ───────────────────────────────────
     function incrementStat(id, action, displayId) {
+      /* The sample ids match real Party IDs, so counting here would add
+         views and likes to the live sheet. */
+      if(USE_SAMPLE_DATA) return;
       var gasUrl = getGasUrl();
       if (!gasUrl) {
         console.warn('AfroCue: no script URL for stats');
@@ -1093,11 +2301,18 @@
 
     // ─── MODAL ──────────────────────────────────────────────────────────
     function openModal(id){
+      /* the rail opens a franchise by id, so the lookup spans both lists */
+      if(!PARTIES.filter(function(x){ return x.id===id; }).length){
+        var f = franchiseRows().filter(function(x){ return x.id===id; })[0];
+        if(f) PARTIES = PARTIES.concat([f]);
+      }
       var party = PARTIES.find(function(p){ return p.id === id; });
       if(!party) return;
       
       // ─── Count view when modal opens ──────────────────────────
-      incrementStat(id, 'view', null);
+      /* A night counts on Editions and the server adds it to the party
+         too. A party opened from the rail counts on the party. */
+      incrementStat(id, party._kind === 'edition' ? 'edview' : 'view', null);
       
       currentParty = party;
       document.getElementById('modalHeroBg').style.backgroundImage = "url('"+(party.hero_img||'')+"')";
@@ -1112,9 +2327,19 @@
       document.getElementById('modalIg').textContent = handle;
       document.getElementById('modalCity').textContent = party.city;
       document.getElementById('modalDesc').textContent = party.description;
+      v2FillModal(party);
+      /* The countdown band and post grid now carry what Party Pulse and the
+         single flyer slot used to. Both stay for a franchise, where there is
+         no edition-level countdown above them. */
+      var isEdition = party._kind === 'edition';
+      var pulse = document.getElementById('partyPulse');
+      if(pulse) pulse.style.display = isEdition ? 'none' : '';
+      var lower = document.querySelector('.modal-lower');
+      if(lower) lower.style.display = (isEdition && (party.posts||[]).length) ? 'none' : '';
       document.getElementById('viewCountNum').textContent = party.views || 0;
-      document.getElementById('likeCountNum').textContent = party.likes || 0;
-      document.getElementById('likeBtn').className = 'like-btn' + (sessionStorage.getItem('liked_'+id) ? ' liked' : '');
+      document.getElementById('likeCountNum').textContent = party.interested || 0;
+      var ha = document.getElementById('heartAsk'); if(ha) ha.innerHTML = '';
+      document.getElementById('likeBtn').className = 'like-btn' + (storeGet('int_'+(heartTarget(party)||id)) ? ' liked' : '');
 
       // Party Pulse
       var pulseLast = document.getElementById('pulseLastParty');
@@ -1144,10 +2369,29 @@
       var latestSection = document.getElementById('latestPostsSection');
       var latestGrid = document.getElementById('latestPostsGrid');
       latestGrid.innerHTML = '';
+      /* franchiseRows and liveEditions both hand over a normalised
+         posts array, so read that first and keep the flat column names
+         as a fallback for anything still carrying the raw CSV shape. */
       var posts = [];
-      if(party.latest_post_image) posts.push({image: party.latest_post_image, caption: party.latest_post_caption, url: party.latest_post_url, timestamp: party.latest_post_timestamp});
-      if(party.post2_image) posts.push({image: party.post2_image, caption: party.post2_caption, url: party.post2_url, timestamp: party.post2_timestamp});
-      if(party.post3_image) posts.push({image: party.post3_image, caption: party.post3_caption, url: party.post3_url, timestamp: party.post3_timestamp});
+      if((party.posts || []).length){
+        party.posts.slice(0,3).forEach(function(q){
+          if(!q) return;
+          var img = q.image || q.img;
+          if(!img) return;
+          posts.push({
+            image: img,
+            caption: q.caption || q.cap || '',
+            url: q.url || '',
+            timestamp: q.timestamp || q.ts || '',
+            kind: q.kind || ''
+          });
+        });
+      }
+      if(!posts.length){
+        if(party.latest_post_image) posts.push({image: party.latest_post_image, caption: party.latest_post_caption, url: party.latest_post_url, timestamp: party.latest_post_timestamp});
+        if(party.post2_image) posts.push({image: party.post2_image, caption: party.post2_caption, url: party.post2_url, timestamp: party.post2_timestamp});
+        if(party.post3_image) posts.push({image: party.post3_image, caption: party.post3_caption, url: party.post3_url, timestamp: party.post3_timestamp});
+      }
       if(posts.length){
         latestSection.style.display = 'block';
         document.getElementById('latestPostsLabel').textContent = 'Latest from ' + party.name;
@@ -1163,15 +2407,20 @@
           latestGrid.appendChild(a);
         });
       } else { latestSection.style.display = 'none'; }
+      /* A night already shows these as "From their page". */
+      if(party._kind === 'edition') latestSection.style.display = 'none';
 
       // Flyer
+      /* The "last uploaded flier" block is gone. Guarded so a missing
+         element can never stop the modal opening again. */
       var flyerEl = document.getElementById('modalFlyer');
-      flyerEl.innerHTML = '';
-      if(party.flyer_img && party.flyer_img !== ''){
-        var fi = document.createElement('img'); fi.src = party.flyer_img; fi.alt = party.name+' flyer';
-        fi.onerror = function(){ flyerEl.innerHTML = '<div class="modal-flyer-placeholder"><span>Flyer coming soon</span></div>'; };
-        flyerEl.appendChild(fi);
-      } else { flyerEl.innerHTML = '<div class="modal-flyer-placeholder"><span>Flyer coming soon</span></div>'; }
+      if(flyerEl){
+        flyerEl.innerHTML = '';
+        if(party.flyer_img){
+          var fi = document.createElement('img'); fi.src = party.flyer_img; fi.alt = party.name+' flyer';
+          flyerEl.appendChild(fi);
+        }
+      }
 
       var linkUrl = party.instagram || party.website || '#';
       document.getElementById('modalLink').href = linkUrl;
@@ -1195,18 +2444,19 @@
         othersGrid.appendChild(el);
       });
 
-      document.title = 'Discover '+party.name+' on AfroCue';
-      history.replaceState(null, '', '#'+id);
       document.getElementById('partyModal').classList.add('open');
       document.getElementById('partyModal').scrollTop = 0;
       document.body.style.overflow = 'hidden';
+      document.title = 'Discover '+party.name+' on AfroCue';
+      safeHash('#'+id);
     }
 
     function closeModal(){
       document.getElementById('partyModal').classList.remove('open');
       document.body.style.overflow = '';
       document.title = 'Party Directory — AfroCue';
-      history.replaceState(null, '', 'parties.html');
+      applyAccent(null);
+      safeHash(location.pathname + location.search);
       currentParty = null;
     }
 
@@ -1223,21 +2473,115 @@
       } catch(e){ return ''; }
     }
 
-    // ─── HANDLE LIKE ────────────────────────────────────────────────────
+    // ─── THE HEART: INTERESTED ──────────────────────────────────────────
+    /* Which night a heart belongs to. A night is itself. A party borrows
+       its next announced night. With none, it has no night, and the
+       signup means "tell me when they announce one". */
+    function heartTarget(p){
+      if(!p) return '';
+      if(p._kind === 'edition') return p.id;
+      var nx = edOf(p.id).filter(function(e){
+        return e.state === 'announced' && v2Days(e.date) >= 0;
+      }).pop();
+      return nx ? nx.id : '';
+    }
+
     function handleLike(){
-      if(!currentParty) return;
-      var key = 'liked_'+currentParty.id;
-      if(sessionStorage.getItem(key)) return;
-      sessionStorage.setItem(key, '1');
-      document.getElementById('likeBtn').classList.add('liked');
-      var cur = parseInt(document.getElementById('likeCountNum').textContent) || 0;
-      document.getElementById('likeCountNum').textContent = cur + 1;
-      incrementStat(currentParty.id, 'like', null);
+      var p = currentParty; if(!p) return;
+      var btn = document.getElementById('likeBtn');
+      btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+
+      var ed = heartTarget(p);
+      var key = 'int_' + (ed || p.id);
+      if(!storeGet(key)){
+        storeSet(key, '1');
+        btn.classList.add('liked');
+        if(ed){
+          /* +1 on the night, and the server adds it to the party */
+          var n = document.getElementById('likeCountNum');
+          n.textContent = (parseInt(n.textContent, 10) || 0) + 1;
+          incrementStat(ed, 'edinterested', null);
+        }
+      }
+      showHeartAsk(p, ed);
+    }
+
+    function heartName(p){
+      return (p._kind === 'edition' ? (p.franchise || p.name) : p.name) || 'this party';
+    }
+
+    function showHeartAsk(p, ed){
+      var host = document.getElementById('heartAsk'); if(!host) return;
+      var name = heartName(p);
+      var thisLine = ed
+        ? name + ', on the day, and if the date, venue or lineup changes'
+        : name + ', the moment they announce their next night';
+      host.innerHTML = '<div class="int-ask">'
+        + '<div class="int-ask-t">Interested? Get updates from us about ' + name + ' and other parties.</div>'
+        + '<div class="int-f"><input type="text" id="intWho" placeholder="Email or phone" autocomplete="email"/>'
+        + '<button onclick="saveInterest()">Send</button></div>'
+        + '<label class="int-opt"><input type="checkbox" id="optThis" checked/><span>' + thisLine + '</span></label>'
+        + '<label class="int-opt"><input type="checkbox" id="optMore" checked/><span>Other parties worth knowing about, once a week</span></label>'
+        + '<div class="int-fine" id="intFine">Only what you tick. One tap to stop, any time.</div>'
+        + '</div>';
+      var i = document.getElementById('intWho');
+      if(i){ try { i.focus({ preventScroll: true }); } catch(e){ i.focus(); } }
+    }
+
+    function saveInterest(){
+      var p = currentParty; if(!p) return;
+      var input = document.getElementById('intWho');
+      var v = ((input || {}).value || '').trim();
+      if(!v){ if(input) input.focus(); return; }
+
+      var a = (document.getElementById('optThis') || {}).checked;
+      var b = (document.getElementById('optMore') || {}).checked;
+      if(!a && !b){
+        var fine = document.getElementById('intFine');
+        if(fine) fine.textContent = 'Tick at least one and we will send it.';
+        return;
+      }
+
+      var ed = heartTarget(p);
+      var payload = {
+        source: 'party_alert',
+        contact: v,
+        edition_id: ed,
+        party_id: p._kind === 'edition' ? p.party_id : p.id,
+        this_party: a,
+        on_list: b,
+        source_page: 'parties'
+      };
+
+      /* Saved to the Alerts tab by handleAlertPost, which also sends the
+         "You are in" email. no-cors because Apps Script answers POSTs
+         through a redirect the browser will not let us read; the row
+         is written either way. Sample mode sends nothing. */
+      if(!USE_SAMPLE_DATA){
+        fetch(getGasUrl(), {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        }).catch(function(err){ console.warn('AfroCue: alert signup failed', err); });
+      }
+
+      var lines = [];
+      if(a) lines.push(ed
+        ? 'We will message you on the day, and sooner if anything changes.'
+        : 'We will tell you as soon as they announce their next night.');
+      if(b) lines.push('One round-up a week, nothing else.');
+      document.getElementById('heartAsk').innerHTML =
+        '<div class="int-ask"><div class="int-ask-t">You are in.</div>'
+        + lines.map(function(l){ return '<div class="int-done">' + l + '</div>'; }).join('')
+        + '</div>';
     }
 
     function handleShare(){
       if(!currentParty) return;
-      var shareUrl = 'https://afrocue.xyz/parties.html#'+currentParty.id;
+      var shareUrl = location.origin.indexOf('http')===0
+        ? location.origin + location.pathname + '#' + currentParty.id
+        : 'https://afrocue.xyz/parties.html#' + currentParty.id;
       var shareTitle = 'Discover '+currentParty.name+' on AfroCue';
       var shareText = 'Discover '+currentParty.name+' on AfroCue — '+currentParty.description.substring(0,100);
       if(navigator.share){
@@ -1268,4 +2612,4 @@
     loadParties();
   </script>
 </body>
-</html>
+</html>s
