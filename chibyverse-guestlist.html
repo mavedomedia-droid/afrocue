@@ -3,479 +3,364 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-<title>Claim your seat &middot; Clayface Community Screening</title>
+<title>Claim your seat &middot; Clayface</title>
 <meta name="robots" content="noindex"/>
-<meta name="theme-color" content="#050508"/>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#0b0a09"/>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<!-- No afrocue.js. This page talks to its own standalone Apps Script,
-     so it has one dependency and one URL. -->
+<!-- OPTIONAL. Only if you prefer the URL in afrocue.js. Works without it. -->
+<!-- <script src="/js/afrocue.js"></script> -->
 
 <style>
-  @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');font-weight:900;font-display:swap}
-  @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype');font-weight:500;font-display:swap}
+@font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');font-weight:900;font-display:swap}
 </style>
 
 <style>
 /* ══════════════════════════════════════════════════════════════
-   CLAYFACE GUEST LIST  ·  /guestlist
-   Same shell as the South Social invite pages. Two differences:
-     1. No password gate and no envelope. Speed matters more than
-        ceremony when the window closes at 8am.
-     2. Accent is blood red, not gold, to match the Halloween emails.
-        Flip --acc and --acc2 back to #f5d896 / #d4a653 for gold.
+   CLAYFACE GUESTLIST
+   Rebuilt to put the form near the top. The previous version stacked
+   a tall hero, a counter block, a separate countdown block and a
+   details card before anyone reached a field, which on a phone was
+   two full screens of scrolling before the one thing we want.
+
+   Now: slim bar, short hero, ONE status strip, then the form.
+   Everything else moved below it, where it belongs.
    ══════════════════════════════════════════════════════════════ */
 :root{
-  --bg:#050508; --card:#0e0e14; --ink:#f0ede8;
-  --acc:#D71920; --acc2:#C8151C; --cream:#FDF0DB;
-  --line:rgba(255,255,255,0.08);
+  --bg:#0b0a09; --card:#141210; --soft:#0f0e0c;
+  --ink:#f0ede8; --ink2:#b8b3aa; --dim:#7a756d;
+  --acc:#D71920; --acc2:#C8151C;
+  --line:rgba(255,255,255,0.08); --line2:rgba(255,255,255,0.06);
+  --sans:'Figtree',Arial,Helvetica,sans-serif;
+  --display:'Aesthet Nova','Figtree',sans-serif;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html,body{min-height:100%;background:var(--bg);color:var(--ink);font-family:'Figtree',sans-serif;overflow-x:hidden;-webkit-text-size-adjust:100%}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-text-size-adjust:100%;overflow-x:hidden}
 
-/* ── HERO ─────────────────────────────────────────────── */
-.hero{position:relative;overflow:hidden;height:42vw;max-height:380px;min-height:230px}
-.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 28%;filter:brightness(0.38) saturate(1.1);transform:scale(1.08)}
-.hero-grad{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,5,8,0.5) 0%,rgba(5,5,8,0.1) 35%,rgba(5,5,8,0.85) 80%,var(--bg) 100%)}
-.hero-txt{position:absolute;bottom:0;left:0;right:0;padding:0 40px 30px;z-index:2}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:9px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:rgba(215,25,32,0.95);margin-bottom:10px}
-.hero-eyebrow::before{content:'';width:18px;height:1px;background:var(--acc);flex-shrink:0}
-.hero-title{font-family:'Aesthet Nova','Figtree',sans-serif;font-size:clamp(30px,5.2vw,62px);font-weight:900;line-height:0.94;color:var(--ink)}
-.hero-title span{color:var(--acc);display:block;font-style:italic;font-weight:500;font-size:0.42em;letter-spacing:0.04em;margin-top:8px}
+.wrap{max-width:560px;margin:0 auto;padding:0 18px 56px}
 
-.wrap{max-width:720px;margin:-52px auto 0;position:relative;z-index:3;padding:0 24px 72px}
+/* ── top bar ─────────────────────────────────────────── */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0 12px}
+.bar img{height:26px;width:auto;display:block;opacity:.95}
+.bar .fb{font-family:var(--display);font-weight:900;font-size:15px;color:var(--ink);letter-spacing:.04em}
+.tag{font-size:9px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);
+     border:1px solid rgba(215,25,32,.35);background:rgba(215,25,32,.08);padding:5px 10px;border-radius:20px;white-space:nowrap}
 
-/* ── COUNTER ──────────────────────────────────────────── */
-.counter{background:linear-gradient(160deg,#16100F 0%,#0B0B0B 100%);border:1px solid rgba(215,25,32,0.28);border-radius:16px;padding:26px 24px 22px;margin-bottom:14px;text-align:center;position:relative;overflow:hidden}
-.counter::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");pointer-events:none}
-.counter-lbl{font-size:9px;font-weight:700;letter-spacing:0.26em;text-transform:uppercase;color:rgba(240,237,232,0.4);margin-bottom:12px}
-.counter-nums{display:flex;align-items:baseline;justify-content:center;gap:6px;line-height:1}
-.counter-n{font-family:'Aesthet Nova','Figtree',sans-serif;font-size:clamp(50px,13vw,76px);font-weight:900;color:var(--acc);letter-spacing:-0.02em;text-shadow:0 0 34px rgba(215,25,32,0.45)}
-.counter-of{font-size:clamp(17px,4vw,22px);font-weight:600;color:rgba(240,237,232,0.3)}
-.counter-sub{font-size:12px;font-weight:500;letter-spacing:0.04em;color:rgba(240,237,232,0.55);margin-top:8px;min-height:18px}
-.counter-sub b{color:var(--cream);font-weight:700}
+/* ── hero: short on purpose ──────────────────────────── */
+.hero{position:relative;border-radius:14px;overflow:hidden;height:132px;margin-bottom:12px}
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 30%;filter:brightness(.42)}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,10,9,.96) 0%,rgba(11,10,9,.25) 70%)}
+.hero-txt{position:absolute;left:0;right:0;bottom:0;padding:0 16px 13px;z-index:2}
+.kick{font-size:8.5px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,154,158,.95);margin-bottom:5px}
+.hero-txt h1{font-family:var(--display);font-size:clamp(26px,8vw,38px);font-weight:900;line-height:.95;color:var(--ink)}
 
-.bar{height:5px;background:rgba(255,255,255,0.07);border-radius:4px;overflow:hidden;margin-top:16px}
-.bar-fill{height:100%;width:0%;border-radius:4px;background:linear-gradient(90deg,#7E151B,var(--acc));transition:width 1.1s cubic-bezier(0.2,0.8,0.2,1);box-shadow:0 0 12px rgba(215,25,32,0.55)}
+/* ── one status strip, was two blocks ────────────────── */
+.strip{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 16px 11px;margin-bottom:12px}
+.strip-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.cnt{font-family:var(--display);font-weight:900;font-size:25px;line-height:1;color:var(--acc);letter-spacing:-.01em}
+.cnt small{font-size:13px;color:var(--dim);font-weight:900;margin-left:2px}
+.cnt-l{font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-top:5px}
+.clock{text-align:right;font-variant-numeric:tabular-nums}
+.clock b{font-family:var(--display);font-weight:900;font-size:17px;color:var(--ink);letter-spacing:.02em}
+.clock span{display:block;font-size:8.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-top:4px}
+.bar-t{height:3px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden;margin-top:11px;position:relative}
+.bar-f{height:100%;width:0;border-radius:3px;background:linear-gradient(90deg,#7E151B,var(--acc));transition:width 1s cubic-bezier(.2,.8,.2,1);position:relative;overflow:hidden}
+.bar-f::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:sheen 2.6s ease-in-out infinite}
+@keyframes sheen{0%{transform:translateX(-100%)}60%,100%{transform:translateX(240%)}}
+.cnt.bump{animation:bump .5s cubic-bezier(.2,1.6,.4,1)}
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.14)}100%{transform:scale(1)}}
 
-/* ── COUNTDOWN ────────────────────────────────────────── */
-.clock{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
-.clock-lbl{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(240,237,232,0.4);line-height:1.5}
-.clock-lbl b{display:block;color:rgba(240,237,232,0.75);letter-spacing:0.12em;margin-top:3px}
-.clock-digits{display:flex;gap:7px}
-.cd{min-width:48px;background:rgba(215,25,32,0.1);border:1px solid rgba(215,25,32,0.3);border-radius:8px;padding:8px 6px;text-align:center}
-.cd-n{font-family:'Aesthet Nova','Figtree',sans-serif;font-size:21px;font-weight:900;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums}
-.cd-l{font-size:7.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,237,232,0.38);margin-top:4px}
-
-/* ── CARD ─────────────────────────────────────────────── */
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.card-top{display:grid;grid-template-columns:210px 1fr}
-.card-flyer{aspect-ratio:4/5;background:#1a1a22;position:relative;overflow:hidden}
-.card-flyer img{width:100%;height:100%;object-fit:cover;display:block}
-.card-intro{padding:26px 28px;display:flex;flex-direction:column;justify-content:center;gap:13px;border-left:1px solid rgba(255,255,255,0.06)}
-.badge{display:inline-flex;align-items:center;gap:6px;font-size:8px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;background:rgba(215,25,32,0.1);border:1px solid rgba(215,25,32,0.32);padding:5px 10px;border-radius:20px;color:rgba(255,160,164,0.95);align-self:flex-start}
-.badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--acc);animation:dot 1.8s ease-in-out infinite;box-shadow:0 0 7px rgba(215,25,32,0.9)}
-@keyframes dot{0%,100%{opacity:1}50%{opacity:0.25}}
-.card-intro h2{font-family:'Aesthet Nova','Figtree',sans-serif;font-size:clamp(20px,2.9vw,27px);font-weight:900;line-height:1.04;color:var(--ink)}
-.card-intro h2 em{font-style:italic;font-weight:500;color:var(--acc)}
-.meta{display:flex;flex-direction:column;gap:8px;margin-top:2px}
-.meta-row{display:flex;align-items:flex-start;gap:10px;font-size:12.5px;line-height:1.5;color:rgba(240,237,232,0.6)}
-.meta-row svg{width:13px;height:13px;flex-shrink:0;margin-top:2px;color:var(--acc);opacity:0.85}
-.meta-row strong{font-weight:600;color:rgba(240,237,232,0.9)}
-.note{margin-top:4px;padding:11px 13px;background:rgba(215,25,32,0.07);border-left:2px solid var(--acc);border-radius:0 4px 4px 0;font-size:12.5px;line-height:1.6;color:rgba(240,237,232,0.72)}
-.note strong{color:#FF9A9E;font-weight:600}
-
-/* ── FORM ─────────────────────────────────────────────── */
-.form{padding:26px 28px;border-top:1px solid rgba(255,255,255,0.06)}
-.form-intro{font-size:13px;line-height:1.65;color:rgba(240,237,232,0.55);margin-bottom:18px;font-weight:300}
-.form-intro strong{color:rgba(240,237,232,0.88);font-weight:600}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.field{display:flex;flex-direction:column;gap:6px}
-.field label{font-size:9px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(240,237,232,0.4)}
-.field input{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:8px;padding:13px 14px;color:var(--ink);font-family:'Figtree',sans-serif;font-size:16px;outline:none;transition:border-color .2s;width:100%}
-.field input:focus{border-color:rgba(215,25,32,0.55)}
-.field input::placeholder{color:rgba(240,237,232,0.2)}
-.err{font-size:10px;color:#f87171;margin-top:2px;display:none}
-.btn{width:100%;margin-top:18px;padding:17px;background:linear-gradient(135deg,var(--acc) 0%,#9E1016 100%);color:#fff;border:none;border-radius:8px;font-family:'Figtree',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:opacity .2s,transform .15s}
-.btn:hover:not(:disabled){opacity:.92}
+/* ── the form, now right under the strip ─────────────── */
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 16px}
+.lead{font-size:14px;line-height:1.55;color:var(--ink2);margin-bottom:14px}
+.lead b{color:var(--ink);font-weight:700}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.f{display:flex;flex-direction:column;gap:5px}
+.f label{font-size:8.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.f input{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:13px 13px;
+         color:var(--ink);font-family:var(--sans);font-size:16px;outline:none;transition:border-color .2s,box-shadow .2s;width:100%}
+.f input:focus{border-color:rgba(215,25,32,.6);box-shadow:0 0 0 3px rgba(215,25,32,.13)}
+.f input::placeholder{color:rgba(240,237,232,.22)}
+.err{font-size:10px;color:#f87171;display:none}
+.btn{width:100%;margin-top:13px;padding:17px;background:linear-gradient(135deg,var(--acc),#9E1016);color:#fff;border:0;border-radius:9px;
+     font-family:var(--sans);font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:opacity .2s,transform .15s}
+.btn:hover:not(:disabled){opacity:.93}
 .btn:active:not(:disabled){transform:scale(.99)}
-.btn:disabled{opacity:.45;cursor:not-allowed}
-.btn.shake{animation:shake .4s ease}
-@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
-.foot{font-size:10px;font-weight:300;color:rgba(240,237,232,0.26);text-align:center;margin-top:12px;line-height:1.6}
-
-/* ── BUTTON SPINNER ───────────────────────────────────── */
-.spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px;margin-right:9px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.shake{animation:shake .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.spin{display:inline-block;width:13px;height:13px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px;margin-right:8px}
 @keyframes spin{to{transform:rotate(360deg)}}
+.note{font-size:10.5px;line-height:1.5;color:var(--dim);text-align:center;margin-top:10px}
 
-/* ── COUNTER REACTS WHEN IT MOVES ─────────────────────── */
-.counter-n.bump{animation:bump .5s cubic-bezier(.2,1.6,.4,1)}
-@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.16);text-shadow:0 0 50px rgba(215,25,32,.9)}100%{transform:scale(1)}}
-.bar-fill::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:sheen 2.4s ease-in-out infinite}
-.bar{position:relative}
-.bar-fill{position:relative;overflow:hidden}
-@keyframes sheen{0%{transform:translateX(-100%)}60%,100%{transform:translateX(220%)}}
+/* ── details, now BELOW the form ─────────────────────── */
+.meta{display:flex;gap:12px;align-items:center;background:var(--soft);border:1px solid var(--line2);border-radius:12px;padding:12px;margin-top:12px}
+.meta img{width:62px;height:78px;object-fit:cover;border-radius:8px;flex-shrink:0;display:block}
+.meta-t{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.3}
+.meta-s{font-size:12px;color:var(--ink2);line-height:1.5;margin-top:3px}
+.meta-n{font-size:11px;color:var(--dim);line-height:1.5;margin-top:6px}
 
-/* ── FIELD FOCUS ──────────────────────────────────────── */
-.field input:focus{box-shadow:0 0 0 3px rgba(215,25,32,.14)}
-
-/* ── SUCCESS ──────────────────────────────────────────── */
-#done{display:none;padding:46px 28px;text-align:center;border-top:1px solid rgba(255,255,255,0.06)}
-.pos-wrap{position:relative;display:inline-block}
-.pos-ring{position:absolute;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;border:2px solid rgba(215,25,32,.5);animation:ring 1.5s cubic-bezier(.2,.8,.3,1) .25s both}
-.pos-ring.two{animation-delay:.5s}
+/* ── success / closed ────────────────────────────────── */
+#done,#shut{display:none;text-align:center;padding:30px 16px}
+.pos-w{position:relative;display:inline-block}
+.ring{position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;border-radius:50%;
+      border:2px solid rgba(215,25,32,.45);animation:ring 1.5s cubic-bezier(.2,.8,.3,1) .2s both}
+.ring.b{animation-delay:.45s}
 @keyframes ring{0%{transform:scale(.35);opacity:0}30%{opacity:1}100%{transform:scale(1.5);opacity:0}}
-.pos{position:relative;font-family:'Aesthet Nova','Figtree',sans-serif;font-size:clamp(62px,17vw,92px);font-weight:900;color:var(--acc);line-height:1;letter-spacing:-0.03em;text-shadow:0 0 44px rgba(215,25,32,0.5);animation:pop .75s cubic-bezier(.2,1.5,.4,1) both}
+.pos{position:relative;font-family:var(--display);font-weight:900;font-size:clamp(54px,16vw,76px);line-height:1;color:var(--acc);letter-spacing:-.03em;
+     animation:pop .7s cubic-bezier(.2,1.5,.4,1) both}
 @keyframes pop{0%{transform:scale(.3);opacity:0}60%{transform:scale(1.07)}100%{transform:scale(1);opacity:1}}
-#done h3{font-family:'Aesthet Nova','Figtree',sans-serif;font-size:26px;font-weight:900;color:var(--ink);line-height:1.1;margin:14px 0 12px}
-#done p{font-size:13.5px;font-weight:300;color:rgba(240,237,232,0.58);line-height:1.7;max-width:380px;margin:0 auto 8px}
-#done p strong{color:var(--cream);font-weight:600}
-.done-pass{margin-top:22px;padding:18px;background:rgba(215,25,32,0.07);border:1px dashed rgba(215,25,32,0.4);border-radius:10px}
-.done-pass-l{font-size:8.5px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,160,164,0.9);margin-bottom:7px}
-.done-pass-v{font-size:14px;font-weight:600;color:var(--ink);line-height:1.6}
+#done h3,#shut h3{font-family:var(--display);font-size:22px;font-weight:900;color:var(--ink);margin:12px 0 9px;line-height:1.15}
+#done p,#shut p{font-size:13px;line-height:1.6;color:var(--ink2);max-width:330px;margin:0 auto}
+#done p b{color:var(--ink)}
+.pass{margin-top:16px;padding:14px;background:rgba(215,25,32,.07);border:1px dashed rgba(215,25,32,.38);border-radius:10px}
+.pass-l{font-size:8px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,154,158,.9);margin-bottom:5px}
+.pass-v{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5}
 
-/* ── CLOSED ───────────────────────────────────────────── */
-#closed{display:none;padding:46px 28px;text-align:center;border-top:1px solid rgba(255,255,255,0.06)}
-#closed h3{font-family:'Aesthet Nova','Figtree',sans-serif;font-size:27px;font-weight:900;color:var(--ink);margin-bottom:12px}
-#closed p{font-size:13.5px;font-weight:300;color:rgba(240,237,232,0.58);line-height:1.7;max-width:380px;margin:0 auto}
-
-@media(max-width:600px){
-  .hero{min-height:210px;height:46vw}
-  .hero-txt{padding:0 20px 22px}
-  .wrap{margin:-40px auto 0;padding:0 14px 56px}
-  .card-top{grid-template-columns:128px 1fr}
-  .card-intro{padding:18px 16px;gap:10px}
-  .card-intro h2{font-size:18px}
-  .meta-row{font-size:11.5px}
-  .note{font-size:11.5px;padding:10px 12px}
-  .form{padding:20px 16px}
-  .row{grid-template-columns:1fr}
-  .counter{padding:22px 16px 18px}
-  .clock{padding:14px;gap:10px}
-  .cd{min-width:42px;padding:7px 4px}
-  .cd-n{font-size:18px}
+@media(min-width:620px){
+  .wrap{padding-bottom:70px}
+  .hero{height:160px}
+  .meta img{width:74px;height:93px}
 }
 @media(max-width:400px){
-  .card-top{grid-template-columns:1fr}
-  .card-flyer{aspect-ratio:16/10}
-  .card-intro{border-left:none;border-top:1px solid rgba(255,255,255,0.06)}
-  .clock{justify-content:center}
+  .row{grid-template-columns:1fr}
+  .strip-row{gap:8px}
+  .cnt{font-size:22px}
+  .clock b{font-size:15px}
 }
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="hero-bg" id="heroBg"></div>
-  <div class="hero-grad"></div>
-  <div class="hero-txt">
-    <div class="hero-eyebrow">Halloween Community Movie Night</div>
-    <div class="hero-title">Clayface<span>with TheChibyVerse</span></div>
-  </div>
-</div>
-
 <div class="wrap">
 
-  <!-- LIVE COUNTER -->
-  <div class="counter">
-    <div class="counter-lbl">Seats claimed</div>
-    <div class="counter-nums">
-      <span class="counter-n" id="cNum">0</span>
-      <span class="counter-of">/ 80</span>
-    </div>
-    <div class="counter-sub" id="cSub">Checking the list&hellip;</div>
-    <div class="bar"><div class="bar-fill" id="cBar"></div></div>
+  <div class="bar">
+    <a href="https://afrocue.xyz" style="text-decoration:none;display:block">
+      <img id="logo" src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span class="fb" style="display:none">afro.cue</span>
+    </a>
+    <span class="tag">80 seats only</span>
   </div>
 
-  <!-- COUNTDOWN -->
-  <div class="clock">
-    <div class="clock-lbl">Registration closes<b>8:00AM Friday</b></div>
-    <div class="clock-digits">
-      <div class="cd"><div class="cd-n" id="dH">--</div><div class="cd-l">Hrs</div></div>
-      <div class="cd"><div class="cd-n" id="dM">--</div><div class="cd-l">Min</div></div>
-      <div class="cd"><div class="cd-n" id="dS">--</div><div class="cd-l">Sec</div></div>
+  <div class="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-grad"></div>
+    <div class="hero-txt">
+      <div class="kick">Halloween community movie night</div>
+      <h1>Clayface</h1>
     </div>
+  </div>
+
+  <!-- ONE strip. Count and countdown used to be two separate blocks. -->
+  <div class="strip">
+    <div class="strip-row">
+      <div>
+        <div class="cnt" id="cNum">0<small>/80</small></div>
+        <div class="cnt-l" id="cSub">Seats claimed</div>
+      </div>
+      <div class="clock">
+        <b id="cd">--:--:--</b>
+        <span>Until it closes</span>
+      </div>
+    </div>
+    <div class="bar-t"><div class="bar-f" id="cBar"></div></div>
   </div>
 
   <div class="card">
-    <div class="card-top">
-      <div class="card-flyer">
-        <img id="flyer" alt="Clayface Community Screening"/>
-      </div>
-      <div class="card-intro">
-        <span class="badge">80 seats only</span>
-        <h2>Claim your seat for <em>Clayface</em>.</h2>
 
-        <div class="meta">
-          <div class="meta-row">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            <span><strong>Friday, October 23rd</strong> &middot; 8PM</span>
-          </div>
-          <div class="meta-row">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span><strong>Filmhouse Cinemas</strong><br>Palms Mall, Lekki</span>
-          </div>
-        </div>
-
-        <div class="note">
-          <strong>We have exactly 80 seats.</strong> Claim yours and we will send your access pass by email. The list closes at 8AM Friday, or as soon as all 80 are gone.
-        </div>
-      </div>
-    </div>
-
-    <!-- FORM -->
-    <div class="form" id="formWrap">
-      <p class="form-intro">
-        One claim per email. Put in the <strong>same email</strong> you want your access pass sent to.
-      </p>
+    <div id="form">
+      <p class="lead">Friday 8PM at <b>Filmhouse, Palms Lekki</b>. Claim a seat and your pass lands in your inbox.</p>
       <div class="row">
-        <div class="field">
-          <label>Your name</label>
-          <input type="text" id="fname" placeholder="First and last name" autocomplete="name"/>
-          <span class="err" id="eName">Please enter your name</span>
+        <div class="f">
+          <label>Name</label>
+          <input type="text" id="fname" placeholder="First and last" autocomplete="name"/>
+          <span class="err" id="eName">Enter your name</span>
         </div>
-        <div class="field">
-          <label>Your email</label>
-          <input type="email" id="femail" placeholder="your@email.com" autocomplete="email" inputmode="email"/>
-          <span class="err" id="eMail">Please enter a valid email</span>
+        <div class="f">
+          <label>Email</label>
+          <input type="email" id="femail" placeholder="you@email.com" autocomplete="email" inputmode="email"/>
+          <span class="err" id="eMail">Enter a valid email</span>
         </div>
       </div>
       <button class="btn" id="btn">Claim My Seat</button>
-      <p class="foot" id="foot">Your seat is held the moment you claim it.</p>
+      <p class="note" id="note">One per email. Closes 8AM Friday or when all 80 are gone.</p>
     </div>
 
-    <!-- SUCCESS -->
     <div id="done">
-      <div class="pos-wrap">
-        <span class="pos-ring"></span><span class="pos-ring two"></span>
-        <div class="pos" id="posNum">#0</div>
+      <div class="pos-w"><span class="ring"></span><span class="ring b"></span><div class="pos" id="posN">#0</div></div>
+      <h3 id="posW">You're in.</h3>
+      <p id="doneL"></p>
+      <div class="pass">
+        <div class="pass-l">Friday 23 October</div>
+        <div class="pass-v">8PM &middot; Filmhouse Cinemas<br>Palms Mall, Lekki</div>
       </div>
-      <h3 id="posWord">You're in.</h3>
-      <p id="doneLine"></p>
-      <div class="done-pass">
-        <div class="done-pass-l">Friday 23 October</div>
-        <div class="done-pass-v">8PM &middot; Filmhouse Cinemas<br>Palms Mall, Lekki</div>
-      </div>
-      <p style="margin-top:18px">Your access pass is on its way to <strong id="doneMail"></strong>. Bring it to the door.</p>
+      <p style="margin-top:14px">Pass sent to <b id="doneM"></b>. Bring it to the door.</p>
     </div>
 
-    <!-- CLOSED -->
-    <div id="closed">
-      <h3 id="closedH">That's a wrap.</h3>
-      <p id="closedP"></p>
+    <div id="shut">
+      <h3 id="shutH">That's a wrap.</h3>
+      <p id="shutP"></p>
     </div>
 
   </div>
+
+  <!-- Details sit BELOW the form now. Nice to have, not a gate. -->
+  <div class="meta" id="meta">
+    <img id="flyer" alt="Clayface"/>
+    <div>
+      <div class="meta-t">Friday, October 23rd &middot; 8PM</div>
+      <div class="meta-s">Filmhouse Cinemas, Palms Mall, Lekki</div>
+      <div class="meta-n">80 free seats for our film community. First come, first served.</div>
+    </div>
+  </div>
+
 </div>
 
 <script>
 /* ══════════════════════════════════════════════════════════════
-   CONFIG
+   ⚠️  PASTE THE GUESTLIST /exec URL BETWEEN THE QUOTES  ⚠️
+   From the STANDALONE Guestlist script.
+   Deploy > New deployment > Web app
+     Execute as: Me      Who has access: Anyone   <- plain "Anyone"
+   glCheck() prints the URL too.
+   Leave empty to fall back to AFROCUE_GUESTLIST_URL from afrocue.js.
    ══════════════════════════════════════════════════════════════ */
-
-/* ⚠️ PASTE THE /exec URL FROM THE STANDALONE SCRIPT HERE.
-   Deploy > New deployment > Web app > Execute as: Me,
-   Who has access: Anyone. Then copy the /exec URL.
-   glCheck() prints it too.
-
-   This page has no other dependency. Not afrocue.js, not the main
-   AfroCue script, nothing shared that can break it. */
 var GAS_URL = '';
 
-var CAP        = 80;
-var CLOSES_AT  = new Date('2026-10-23T08:00:00+01:00'); /* 8AM Fri, Lagos */
-/* TWO images, not one.
-   HERO  = the Chibyverse banner across the top.
-   FLYER = the Clayface poster in the card.
-   They were both the poster before, which is why the top looked like a
-   blown-up version of the thing directly below it. */
-var HERO       = 'chibyverse_hero.jpg';   /* <<< CONFIRM THIS PATH.
-                                              Your old invite pages used this
-                                              filename relative to the page, so
-                                              it must sit next to
-                                              chibyverse-guest-list.html on
-                                              afrocue.xyz. Absolute URL is
-                                              safer if you have one. */
-var FLYER      = 'https://i.ibb.co/qYwLdjXM/clayface-poster-80-4x5680.jpg';
-var SOURCE     = 'clayface_guestlist';
+GAS_URL = (GAS_URL
+        || window.AFROCUE_GUESTLIST_URL
+        || (window.AFROCUE_CONFIG && window.AFROCUE_CONFIG.guestlistUrl)
+        || '').trim();
+
+var CAP    = 80;
+var CLOSES = new Date('2026-10-23T08:00:00+01:00');   /* 8AM Fri, Lagos */
+var SOURCE = 'clayface_guestlist';
+
+/* HERO is the Chibyverse banner, FLYER is the Clayface poster. Two
+   different images: using the poster for both made the top look like a
+   blown-up copy of the thumbnail below it. */
+var HERO  = 'chibyverse_hero.jpg';    /* <<< CONFIRM THIS PATH */
+var FLYER = 'https://i.ibb.co/qYwLdjXM/clayface-poster-80-4x5680.jpg';
 
 document.getElementById('flyer').src = FLYER;
-
-/* If HERO 404s the band would go flat black and look broken, so probe it
-   first and keep a deep-red gradient as the fallback. Same trick your old
-   invite pages used with onerror on the hero img. */
 (function(){
-  var bg = document.getElementById('heroBg');
-  var probe = new Image();
-  probe.onload  = function(){ bg.style.backgroundImage = 'url(' + HERO + ')'; };
-  probe.onerror = function(){
-    console.warn('[guestlist] hero image not found at ' + HERO + ', using the gradient');
-    bg.style.background = 'radial-gradient(ellipse at 50% 30%, #3a0d10 0%, #16100F 55%, #050508 100%)';
+  var bg = document.getElementById('heroBg'), p = new Image();
+  p.onload  = function(){ bg.style.backgroundImage = 'url(' + HERO + ')'; };
+  p.onerror = function(){
+    console.warn('[guestlist] hero not found at ' + HERO + ', using gradient');
+    bg.style.background = 'radial-gradient(ellipse at 50% 35%,#3a0d10 0%,#16100F 55%,#0b0a09 100%)';
     bg.style.filter = 'none';
-    bg.style.transform = 'none';
   };
-  probe.src = HERO;
+  p.src = HERO;
 })();
 
 /* ══════════════════════════════════════════════════════════════
-   JSONP
-   Apps Script + fetch is a CORS minefield: a POST gets redirected to
-   googleusercontent.com and the redirect frequently arrives without the
-   headers the browser wants, which is exactly why the old pages used
-   mode:'no-cors' and threw the response away. We need the response here
-   (the live count, and the person's position), so every call goes out as
-   JSONP instead. It is old, it is boring, and it does not break.
+   JSONP. Apps Script + fetch is a CORS minefield: a POST redirects to
+   googleusercontent.com and the redirect often lands without the headers
+   the browser wants, which is why the other pages use mode:'no-cors' and
+   discard the reply. We need the reply here, so every call is JSONP.
    ══════════════════════════════════════════════════════════════ */
-var jsonpSeq = 0;
-
-/* What the visitor reads.
-   Every realistic failure here is OURS: GAS_URL unset, the script not
-   deployed, access not set to Anyone. So none of these blame the
-   visitor's connection. Nobody about to lose a seat should be told to go
-   check their wifi over something they cannot fix. The real cause and the
-   failing URL go to the console for you. */
-var FAIL_MSG = {
-  no_url  : 'Something went wrong on our end. Try again in a moment.',
-  timeout : 'That is taking longer than it should. Tap once more.',
-  network : 'We could not reach our server. Try again in a moment.',
-  parse   : 'Something went wrong on our end. Try again in a moment.'
+var seq = 0;
+var FAIL = {
+  no_url : 'Something went wrong on our end. Try again in a moment.',
+  timeout: 'That is taking longer than it should. Tap once more.',
+  network: 'We could not reach our server. Try again in a moment.',
+  parse  : 'Something went wrong on our end. Try again in a moment.'
 };
+var FAILS = 0;
+var HELP  = 'Still stuck? Message us on <a href="https://instagram.com/afro.cue" target="_blank" style="color:#FF9A9E">Instagram</a> and we will hold your seat.';
 
-/* After two failures, stop repeating ourselves and give them a human. */
-var FAIL_COUNT = 0;
-var FAIL_HELP  = 'Still stuck? Message us on <a href="https://instagram.com/afro.cue" ' +
-                 'target="_blank" style="color:#FF9A9E;text-decoration:underline;">Instagram</a> ' +
-                 'and we will hold your seat.';
-
-function jsonp(params, done, fail, isRetry){
+function jsonp(params, done, fail, retry){
   if(!GAS_URL){
     console.error('[guestlist] GAS_URL is empty. Paste the standalone /exec URL into this page.');
-    fail && fail('no_url');
-    return;
+    fail && fail('no_url'); return;
   }
+  var cb = 'glcb_' + (++seq) + '_' + Date.now();
+  var s = document.createElement('script'), settled = false;
 
-  var cb = 'glcb_' + (++jsonpSeq) + '_' + Date.now();
-  var s  = document.createElement('script');
-  var settled = false;
   var timer = setTimeout(function(){
-    if(settled) return;
-    cleanup();
-    console.error('[guestlist] timed out after 15s:', s.src);
-    /* one automatic retry: Apps Script cold starts can be slow */
-    if(!isRetry) { jsonp(params, done, fail, true); return; }
+    if(settled) return; clean();
+    console.error('[guestlist] timeout:', s.src);
+    if(!retry){ jsonp(params, done, fail, true); return; }
     fail && fail('timeout');
   }, 15000);
 
-  function cleanup(){
-    settled = true;
-    clearTimeout(timer);
+  function clean(){
+    settled = true; clearTimeout(timer);
     try{ delete window[cb]; }catch(e){ window[cb] = undefined; }
     if(s.parentNode) s.parentNode.removeChild(s);
   }
-
-  window[cb] = function(res){ cleanup(); done(res); };
+  window[cb] = function(r){ clean(); done(r); };
 
   var q = ['callback=' + cb];
-  for(var k in params){
-    if(Object.prototype.hasOwnProperty.call(params,k)){
-      q.push(encodeURIComponent(k) + '=' + encodeURIComponent(params[k]));
-    }
-  }
+  for(var k in params) if(Object.prototype.hasOwnProperty.call(params,k))
+    q.push(encodeURIComponent(k) + '=' + encodeURIComponent(params[k]));
   s.src = GAS_URL + (GAS_URL.indexOf('?') > -1 ? '&' : '?') + q.join('&');
 
-  /* The script loaded but never called our callback. That means the
-     endpoint answered with plain JSON or an HTML login page instead of
-     JSONP, which is the signature of "not deployed" or "access is not
-     set to Anyone". */
+  /* Loaded but never called back = the endpoint returned plain JSON or an
+     HTML login page instead of JSONP. Signature of "not deployed" or
+     "access is not Anyone". */
   s.onload = function(){
     setTimeout(function(){
-      if(settled) return;
-      cleanup();
-      console.error('[guestlist] loaded but no callback fired. ' +
-                    'The endpoint is not returning JSONP. URL:', s.src);
+      if(settled) return; clean();
+      console.error('[guestlist] no callback fired. Not returning JSONP:', s.src);
       fail && fail('parse');
     }, 60);
   };
   s.onerror = function(){
-    if(settled) return;
-    cleanup();
-    console.error('[guestlist] script failed to load:', s.src);
-    if(!isRetry) { jsonp(params, done, fail, true); return; }
+    if(settled) return; clean();
+    console.error('[guestlist] script failed:', s.src);
+    if(!retry){ jsonp(params, done, fail, true); return; }
     fail && fail('network');
   };
-
   document.head.appendChild(s);
 }
 
-/* ══════════════════════════════════════════════════════════════
-   COUNTER
-   ══════════════════════════════════════════════════════════════ */
+/* ── counter ─────────────────────────────────────────── */
 var shown = 0;
-function ordinal(n){
-  var s = ['th','st','nd','rd'], v = n % 100;
-  return n + (s[(v - 20) % 10] || s[v] || s[0]);
-}
+function ord(n){ var s=['th','st','nd','rd'], v=n%100; return n+(s[(v-20)%10]||s[v]||s[0]); }
+
 function animateTo(target){
-  var from = shown, diff = target - from;
-  if(diff === 0){ paintSub(target); return; }
-  var t0 = null, dur = Math.min(1500, 420 + Math.abs(diff) * 26);
-  function step(ts){
+  var from = shown, d = target - from;
+  var el = document.getElementById('cNum');
+  if(d === 0){ sub(target); return; }
+  var t0 = null, dur = Math.min(1400, 400 + Math.abs(d)*24);
+  (function step(ts){
     if(!t0) t0 = ts;
-    var p = Math.min(1, (ts - t0) / dur);
-    var e = 1 - Math.pow(1 - p, 3);              /* easeOutCubic */
-    shown = Math.round(from + diff * e);
-    document.getElementById('cNum').textContent = shown;
-    if(p < 1) requestAnimationFrame(step);
-    else {
-      shown = target; paintSub(target);
-      var el = document.getElementById('cNum');
-      el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump');
-    }
-  }
-  requestAnimationFrame(step);
-  document.getElementById('cBar').style.width = Math.min(100, target / CAP * 100) + '%';
+    var p = Math.min(1,(ts-t0)/dur), e = 1-Math.pow(1-p,3);
+    shown = Math.round(from + d*e);
+    el.innerHTML = shown + '<small>/' + CAP + '</small>';
+    if(p<1) requestAnimationFrame(step);
+    else { shown = target; sub(target); el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); }
+  })();
+  document.getElementById('cBar').style.width = Math.min(100, target/CAP*100) + '%';
 }
-function paintSub(n){
-  var left = Math.max(0, CAP - n);
-  var el = document.getElementById('cSub');
-  if(left === 0)      el.innerHTML = '<b>All 80 seats are gone.</b>';
-  else if(left <= 10) el.innerHTML = 'Only <b>' + left + '</b> left. Claim yours now.';
-  else                el.innerHTML = '<b>' + left + '</b> seats still open.';
+function sub(n){
+  var left = Math.max(0, CAP-n), el = document.getElementById('cSub');
+  el.textContent = left === 0 ? 'All gone' : (left <= 10 ? 'Only ' + left + ' left' : 'Seats claimed');
 }
 
-/* ══════════════════════════════════════════════════════════════
-   COUNTDOWN
-   ══════════════════════════════════════════════════════════════ */
-function tick(){
-  var ms = CLOSES_AT - new Date();
-  if(ms <= 0){
-    document.getElementById('dH').textContent = '00';
-    document.getElementById('dM').textContent = '00';
-    document.getElementById('dS').textContent = '00';
-    shut('closed');
-    return;
-  }
-  var s = Math.floor(ms / 1000);
-  var pad = function(v){ return (v < 10 ? '0' : '') + v; };
-  document.getElementById('dH').textContent = pad(Math.floor(s / 3600));
-  document.getElementById('dM').textContent = pad(Math.floor(s % 3600 / 60));
-  document.getElementById('dS').textContent = pad(s % 60);
-}
-setInterval(tick, 1000); tick();
+/* ── countdown ───────────────────────────────────────── */
+(function tick(){
+  var ms = CLOSES - new Date(), el = document.getElementById('cd');
+  if(ms <= 0){ el.textContent = '00:00:00'; shut('closed'); return; }
+  var s = Math.floor(ms/1000), p = function(v){ return (v<10?'0':'')+v; };
+  el.textContent = p(Math.floor(s/3600)) + ':' + p(Math.floor(s%3600/60)) + ':' + p(s%60);
+  setTimeout(tick, 1000);
+})();
 
-/* ══════════════════════════════════════════════════════════════
-   STATES
-   ══════════════════════════════════════════════════════════════ */
+/* ── states ──────────────────────────────────────────── */
 function shut(why){
   if(document.getElementById('done').style.display === 'block') return;
-  document.getElementById('formWrap').style.display = 'none';
-  document.getElementById('closed').style.display   = 'block';
+  document.getElementById('form').style.display = 'none';
+  document.getElementById('shut').style.display = 'block';
   if(why === 'full'){
-    document.getElementById('closedH').textContent = 'All 80 seats are gone.';
-    document.getElementById('closedP').textContent = 'The list filled up. Keep an eye on your inbox, we release returns if anything opens back up.';
-  }else{
-    document.getElementById('closedH').textContent = 'Registration has closed.';
-    document.getElementById('closedP').textContent = 'The list shut at 8AM. If seats open up we will email the film community first.';
+    document.getElementById('shutH').textContent = 'All 80 seats are gone.';
+    document.getElementById('shutP').textContent = 'The list filled up. We will email the film community first if anything opens back up.';
+  } else {
+    document.getElementById('shutH').textContent = 'Registration has closed.';
+    document.getElementById('shutP').textContent = 'The list shut at 8AM. We will email the film community first if seats open up.';
   }
 }
 
@@ -485,98 +370,68 @@ function refresh(){
     animateTo(r.count);
     if(r.count >= CAP) shut('full');
     else if(r.closed)  shut('closed');
-  }, function(why){
-    console.warn('[guestlist] count unavailable:', why);
-    document.getElementById('cSub').textContent = '80 seats. Claim yours below.';
-  });
+  }, function(w){ console.warn('[guestlist] count unavailable:', w); });
 }
-if(!GAS_URL){
-  /* Nothing visible on the page: this is a subscriber-facing page and a
-     setup warning is not their problem. The console carries it. */
-  console.error('[guestlist] GAS_URL is empty. Paste the standalone /exec URL into this page.');
-  document.getElementById('cSub').textContent = '80 seats. Claim yours below.';
-}else{
-  refresh();
-  setInterval(refresh, 20000);   /* keeps the number honest while people sit on the page */
-}   /* keeps the number honest while people sit on the page */
+if(GAS_URL){ refresh(); setInterval(refresh, 20000); }
+else console.error('[guestlist] GAS_URL is empty. Paste the standalone /exec URL into this page.');
 
-/* ══════════════════════════════════════════════════════════════
-   CLAIM
-   ══════════════════════════════════════════════════════════════ */
+/* ── claim ───────────────────────────────────────────── */
 function utm(){
-  var p = new URLSearchParams(window.location.search);
-  return {
-    utm_source:   p.get('utm_source')   || '',
-    utm_medium:   p.get('utm_medium')   || '',
-    utm_campaign: p.get('utm_campaign') || ''
-  };
+  var p = new URLSearchParams(location.search);
+  return { utm_source:p.get('utm_source')||'', utm_medium:p.get('utm_medium')||'', utm_campaign:p.get('utm_campaign')||'' };
 }
 
 document.getElementById('btn').addEventListener('click', claim);
-document.getElementById('femail').addEventListener('keydown', function(e){ if(e.key === 'Enter') claim(); });
+document.getElementById('femail').addEventListener('keydown', function(e){ if(e.key==='Enter') claim(); });
 
 function claim(){
-  var name  = document.getElementById('fname').value.trim();
-  var email = document.getElementById('femail').value.trim();
-  var btn   = document.getElementById('btn');
-  var foot  = document.getElementById('foot');
+  var name = document.getElementById('fname').value.trim();
+  var mail = document.getElementById('femail').value.trim();
+  var btn = document.getElementById('btn'), note = document.getElementById('note');
 
   document.getElementById('eName').style.display = 'none';
   document.getElementById('eMail').style.display = 'none';
 
   var ok = true;
-  if(!name){ document.getElementById('eName').style.display = 'block'; ok = false; }
-  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ document.getElementById('eMail').style.display = 'block'; ok = false; }
-  if(!ok){ btn.classList.add('shake'); setTimeout(function(){ btn.classList.remove('shake'); }, 450); return; }
+  if(!name){ document.getElementById('eName').style.display='block'; ok=false; }
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)){ document.getElementById('eMail').style.display='block'; ok=false; }
+  if(!ok){ btn.classList.add('shake'); setTimeout(function(){btn.classList.remove('shake');},450); return; }
 
   btn.disabled = true;
   btn.innerHTML = '<span class="spin"></span>Claiming&hellip;';
 
   var u = utm();
-  jsonp({
-    action: 'gl_claim',
-    name: name, email: email, source: SOURCE,
-    utm_source: u.utm_source, utm_medium: u.utm_medium, utm_campaign: u.utm_campaign
-  }, function(r){
-    if(!r){ failBack('Something went wrong. Try again.'); return; }
+  jsonp({ action:'gl_claim', name:name, email:mail, source:SOURCE,
+          utm_source:u.utm_source, utm_medium:u.utm_medium, utm_campaign:u.utm_campaign },
+    function(r){
+      if(!r){ back('Something went wrong. Try again.'); return; }
+      if(r.ok){
+        animateTo(r.count);
+        document.getElementById('posN').textContent = '#' + r.position;
+        document.getElementById('posW').textContent = r.already ? 'Already claimed.' : 'You are the ' + ord(r.position) + '.';
+        document.getElementById('doneL').innerHTML = r.already
+          ? 'This email is already on the list at <b>#' + r.position + '</b> of ' + CAP + '.'
+          : 'You have one of the <b>' + CAP + ' seats</b>.';
+        document.getElementById('doneM').textContent = mail;
+        document.getElementById('form').style.display = 'none';
+        document.getElementById('done').style.display = 'block';
+        try{ window.dataLayer = window.dataLayer || [];
+             window.dataLayer.push({event:'order_created_before_payment',source:SOURCE,name:name,email:mail,position:r.position}); }catch(e){}
+        return;
+      }
+      if(r.error === 'full')   { animateTo(r.count || CAP); shut('full');   return; }
+      if(r.error === 'closed') { shut('closed'); return; }
+      if(r.error === 'email')  { document.getElementById('eMail').style.display='block'; back('Check that email.'); return; }
+      if(r.error === 'name')   { document.getElementById('eName').style.display='block'; back('Check your name.'); return; }
+      back('Could not claim that. Try again.');
+    },
+    function(w){ back(FAIL[w] || 'Could not reach our server. Try once more.'); });
 
-    if(r.ok){
-      animateTo(r.count);
-      document.getElementById('posNum').textContent  = '#' + r.position;
-      document.getElementById('posWord').textContent = r.already
-        ? 'You already claimed this one.'
-        : 'You are the ' + ordinal(r.position) + '.';
-      document.getElementById('doneLine').innerHTML = r.already
-        ? 'This email is already on the list at <strong>#' + r.position + '</strong> of 80. No need to claim twice.'
-        : 'You have one of the <strong>80 seats</strong> for Clayface.';
-      document.getElementById('doneMail').textContent = email;
-      document.getElementById('formWrap').style.display = 'none';
-      document.getElementById('done').style.display = 'block';
-
-      try{
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event:'order_created_before_payment', source:SOURCE, name:name, email:email, position:r.position });
-      }catch(e){}
-      return;
-    }
-
-    if(r.error === 'full')   { animateTo(r.count || CAP); shut('full');   return; }
-    if(r.error === 'closed') { shut('closed'); return; }
-    if(r.error === 'email')  { document.getElementById('eMail').style.display = 'block'; failBack('Check that email address.'); return; }
-    if(r.error === 'name')   { document.getElementById('eName').style.display = 'block'; failBack('Check your name.'); return; }
-    failBack('Could not claim that. Try again.');
-  }, function(why){
-    /* FAIL_MSG tells you which of the four setup steps is missing.
-       The browser console carries the full URL that failed. */
-    failBack(FAIL_MSG[why] || 'Could not reach the server. Try once more.');
-  });
-
-  function failBack(msg){
+  function back(msg){
     btn.disabled = false;
     btn.textContent = 'Claim My Seat';
-    FAIL_COUNT++;
-    foot.innerHTML = '<span style="color:#f87171">' + msg + '</span>' +
-                     (FAIL_COUNT >= 2 ? '<br>' + FAIL_HELP : '');
+    FAILS++;
+    note.innerHTML = '<span style="color:#f87171">' + msg + '</span>' + (FAILS >= 2 ? '<br>' + HELP : '');
     btn.classList.add('shake');
     setTimeout(function(){ btn.classList.remove('shake'); }, 450);
   }
