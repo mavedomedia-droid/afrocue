@@ -13,7 +13,7 @@ var AFROCUE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbytD9zLAaBoa7b
    Paste the /exec URL from the standalone Guestlist script here.
    Deploy > New deployment > Web app > Execute as: Me,
    Who has access: Anyone. glCheck() in that script prints the URL too. */
-var AFROCUE_GUESTLIST_URL = 'https://script.google.com/macros/s/AKfycbxlLV61NwHbQXZ5n8vkPqo8dtTY47lVwKyMf8YvvLfN2J1zkjzhrY59F3lxWsio6o-kkQ/exec';
+var AFROCUE_GUESTLIST_URL = 'https://script.google.com/macros/s/AKfycbyKl4_nzG8jQsJKVFVyyndgm7mIaTNTrdj8KEGhge17GiZmue_ey-cwwO9aIIWS_Ggx6w/exec';
 
 // Expose it for pages that expect different names
 window.AFROCUE_SCRIPT_URL    = AFROCUE_SCRIPT_URL;
