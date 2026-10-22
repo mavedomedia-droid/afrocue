@@ -5,10 +5,22 @@
 // 👇 Set your Google Apps Script URL once here
 var AFROCUE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbytD9zLAaBoa7beMSlA_fB6KTUI7pYvf-3uBhfYRS-mxVWggmovUx8C7jmXcD7baP2R/exec';
 
+/* 👇 The Clayface guestlist runs on its OWN deployment, bound to its own
+   spreadsheet, so it has its own URL. Keeping it separate means the
+   guestlist cannot break the main site and a main-site redeploy cannot
+   break the guestlist.
+
+   Paste the /exec URL from the standalone Guestlist script here.
+   Deploy > New deployment > Web app > Execute as: Me,
+   Who has access: Anyone. glCheck() in that script prints the URL too. */
+var AFROCUE_GUESTLIST_URL = '';
+
 // Expose it for pages that expect different names
-window.AFROCUE_SCRIPT_URL = AFROCUE_SCRIPT_URL;
+window.AFROCUE_SCRIPT_URL    = AFROCUE_SCRIPT_URL;
+window.AFROCUE_GUESTLIST_URL = AFROCUE_GUESTLIST_URL;
 window.AFROCUE_CONFIG = {
-  scriptUrl: AFROCUE_SCRIPT_URL
+  scriptUrl:    AFROCUE_SCRIPT_URL,
+  guestlistUrl: AFROCUE_GUESTLIST_URL
 };
 
 // Helper to get the URL from any page
@@ -16,7 +28,12 @@ function getAfroCueScriptUrl() {
   return AFROCUE_SCRIPT_URL;
 }
 
-// Simple submit function (URL‑encoded, no‑cors)
+// Same, for the guestlist deployment
+function getAfroCueGuestlistUrl() {
+  return AFROCUE_GUESTLIST_URL;
+}
+
+// Simple submit function (URL-encoded, no-cors)
 function submitToGAS(data) {
   var body = 'payload=' + encodeURIComponent(JSON.stringify(data));
   return fetch(AFROCUE_SCRIPT_URL, {
