@@ -303,11 +303,38 @@ if (!GAS_URL) {
 
 var CAP        = 80;
 var CLOSES_AT  = new Date('2026-10-23T08:00:00+01:00'); /* 8AM Fri, Lagos */
+/* TWO images, not one.
+   HERO  = the Chibyverse banner across the top.
+   FLYER = the Clayface poster in the card.
+   They were both the poster before, which is why the top looked like a
+   blown-up version of the thing directly below it. */
+var HERO       = 'chibyverse_hero.jpg';   /* <<< CONFIRM THIS PATH.
+                                              Your old invite pages used this
+                                              filename relative to the page, so
+                                              it must sit next to
+                                              chibyverse-guest-list.html on
+                                              afrocue.xyz. Absolute URL is
+                                              safer if you have one. */
 var FLYER      = 'https://i.ibb.co/qYwLdjXM/clayface-poster-80-4x5680.jpg';
 var SOURCE     = 'clayface_guestlist';
 
 document.getElementById('flyer').src = FLYER;
-document.getElementById('heroBg').style.backgroundImage = 'url(' + FLYER + ')';
+
+/* If HERO 404s the band would go flat black and look broken, so probe it
+   first and keep a deep-red gradient as the fallback. Same trick your old
+   invite pages used with onerror on the hero img. */
+(function(){
+  var bg = document.getElementById('heroBg');
+  var probe = new Image();
+  probe.onload  = function(){ bg.style.backgroundImage = 'url(' + HERO + ')'; };
+  probe.onerror = function(){
+    console.warn('[guestlist] hero image not found at ' + HERO + ', using the gradient');
+    bg.style.background = 'radial-gradient(ellipse at 50% 30%, #3a0d10 0%, #16100F 55%, #050508 100%)';
+    bg.style.filter = 'none';
+    bg.style.transform = 'none';
+  };
+  probe.src = HERO;
+})();
 
 /* ══════════════════════════════════════════════════════════════
    JSONP
