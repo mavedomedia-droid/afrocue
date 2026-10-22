@@ -121,8 +121,10 @@
     .party-card-ig{font-size:10px;font-weight:400;color:rgba(240,237,232,0.4);margin-bottom:8px;letter-spacing:0.05em}
     .party-card-meta{font-size:11px;font-weight:300;color:rgba(240,237,232,0.45)}
 
-    .party-card-stats{display:none;align-items:center;gap:10px;margin-top:6px}
-    .card-stat{display:flex;align-items:center;gap:3px;font-size:10px;font-weight:400;color:rgba(240,237,232,0.4)}
+    /* shown on every width now. Views and interested are the draw. */
+    .party-card-stats{display:flex;align-items:center;gap:12px;margin-top:8px}
+    .card-stat{display:flex;align-items:center;gap:4px;font-size:11px;font-weight:500;color:rgba(240,237,232,0.7);font-variant-numeric:tabular-nums}
+    .card-stat svg{opacity:.8}
 
     /* ---- v2 additions, using the page's existing tokens ---- */
 
@@ -437,6 +439,7 @@
     .like-btn.liked{background:rgba(200,224,0,0.1);border-color:var(--yellow);color:var(--yellow)}
     .like-btn svg{width:13px;height:13px;transition:fill .18s}
     .like-btn.liked svg{fill:currentColor}
+    .card-togo.past{color:var(--silver)}
     .like-btn.pop svg{animation:heartPop .5s ease}
     @keyframes heartPop{0%{transform:scale(1)}30%{transform:scale(1.45)}60%{transform:scale(.9)}100%{transform:scale(1)}}
     @media (prefers-reduced-motion:reduce){.like-btn.pop svg{animation:none}}
@@ -585,6 +588,108 @@
       .hero{grid-template-columns:5fr 4fr}
       .parties-grid{grid-template-columns:1fr 1fr}
       .modal-hero{height:160px}
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SHAPE AND MOTION
+       One rule for corners: anything that holds a picture is curved,
+       anything that is a word stays square. Cards, flyers, posts and
+       the modal round off at 14px. Tags, badges, countdowns, filters
+       and buttons keep a hard edge, so type still reads as type. The
+       two round pills in the modal stay the only fully round things.
+       ══════════════════════════════════════════════════════════════ */
+    :root{ --r-img:14px; --r-sm:10px; --ease:cubic-bezier(.2,.7,.2,1) }
+
+    /* curved: imagery */
+    .party-card,.rail-card,.featured-slot,.modal,.m-post,
+    .latest-post-thumb,.modal-other-card{border-radius:var(--r-img)}
+    .featured-flyer,.upcoming-flyer-img{border-radius:var(--r-sm)}
+    .rail-img{border-radius:0}
+
+    /* square: words */
+    .tag,.card-flag,.card-cd,.featured-label,.m-post-k,.card-reel,
+    .filter-select,.search-input,.upcoming-btn,.int-btn,.nav-cta,
+    .add-event-btn,.modal-dj,.int-f input,.int-f button{border-radius:0}
+
+    /* the grid breathes now that the cards are rounded */
+    .parties-grid{gap:16px}
+
+    /* ── cards ─────────────────────────────────────────────────── */
+    .party-card{
+      transition:transform .45s var(--ease), box-shadow .45s var(--ease);
+      /* backwards, not both: a kept end state would pin the card and kill the hover lift */
+      animation:cardIn .6s var(--ease) backwards;
+      animation-delay:calc(min(var(--i,0), 8) * 55ms);
+      isolation:isolate;
+    }
+    .party-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.55)}
+    .party-card-img{transition:transform .9s var(--ease), filter .45s}
+    .party-card:hover .party-card-img{transform:scale(1.07)}
+    .party-card-grad{transition:opacity .45s}
+    .party-card:hover .party-card-grad{opacity:.82}
+    .party-card-name{transition:transform .45s var(--ease)}
+    .party-card:hover .party-card-name{transform:translateY(-3px)}
+    /* the watermark only when you are looking at that card */
+    .party-card-logo{opacity:0;transition:opacity .35s}
+    .party-card:hover .party-card-logo{opacity:.5}
+    @keyframes cardIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+    /* a night three days out or closer breathes */
+    .card-cd.soon{animation:soonGlow 2.2s ease-in-out infinite}
+    .card-cd.live{animation:liveGlow 1.4s ease-in-out infinite}
+    @keyframes soonGlow{0%,100%{box-shadow:0 0 0 0 rgba(200,224,0,0)}50%{box-shadow:0 0 0 5px rgba(200,224,0,.18)}}
+    @keyframes liveGlow{0%,100%{box-shadow:0 0 0 0 rgba(255,61,204,0)}50%{box-shadow:0 0 0 6px rgba(255,61,204,.28)}}
+
+    /* ── featured slot and the band under it ───────────────────── */
+    .featured-slot{transition:transform .45s var(--ease), box-shadow .45s var(--ease)}
+    .featured-slot:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(0,0,0,.6)}
+    .featured-slot-img{animation:drift 14s ease-in-out infinite alternate}
+    @keyframes drift{from{transform:scale(1)}to{transform:scale(1.07) translate(-1%,-1%)}}
+    .featured-flyer{transition:transform .45s var(--ease)}
+    .featured-slot:hover .featured-flyer{transform:translateY(-4px) rotate(-2deg)}
+
+    .upcoming-flyer-img{transition:transform .5s var(--ease), box-shadow .5s}
+    .upcoming:hover .upcoming-flyer-img{transform:translateX(-50%) rotate(0deg) scale(1.04)}
+    .upcoming-btn{transition:background .2s, color .2s, transform .2s}
+    .upcoming-btn:hover{opacity:1;background:var(--white);transform:translateY(-1px)}
+
+    /* ── rail ──────────────────────────────────────────────────── */
+    .rail-card{transition:transform .4s var(--ease), border-color .3s, box-shadow .4s var(--ease)}
+    .rail-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,.5)}
+    .rail-img{transition:filter .3s, transform .8s var(--ease)}
+    .rail-card:hover .rail-img{transform:scale(1.06)}
+
+    /* ── modal ─────────────────────────────────────────────────── */
+    .modal{animation:modalIn .45s var(--ease)}
+    .modal-wrap.open .modal-hero-img{animation:heroSettle 1.4s var(--ease) both}
+    @keyframes heroSettle{from{transform:scale(1.08)}to{transform:scale(1)}}
+    .modal-wrap.open .modal-body > *{animation:rise .5s var(--ease) both}
+    .modal-wrap.open .modal-body > *:nth-child(2){animation-delay:.05s}
+    .modal-wrap.open .modal-body > *:nth-child(3){animation-delay:.09s}
+    .modal-wrap.open .modal-body > *:nth-child(4){animation-delay:.13s}
+    .modal-wrap.open .modal-body > *:nth-child(n+5){animation-delay:.17s}
+    @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+    .m-post,.latest-post-card,.modal-other-card{transition:transform .4s var(--ease)}
+    .m-post:hover,.latest-post-card:hover{transform:translateY(-3px)}
+    .latest-post-thumb img{transition:transform .8s var(--ease)}
+    .latest-post-card:hover .latest-post-thumb img{transform:scale(1.06)}
+    .modal-other-card:hover{opacity:1;transform:translateY(-3px)}
+    .modal-other-img{transition:transform .8s var(--ease)}
+    .modal-other-card:hover .modal-other-img{transform:scale(1.06)}
+    .like-btn,.share-btn{transition:transform .2s var(--ease), background .2s, border-color .2s, color .2s}
+    .like-btn:active,.share-btn:active{transform:scale(.94)}
+
+    @media (hover:none){
+      .party-card:hover,.rail-card:hover,.featured-slot:hover{transform:none;box-shadow:none}
+      .party-card-logo{opacity:.4}
+    }
+    @media (max-width:768px){ .parties-grid{gap:10px} }
+    @media (prefers-reduced-motion:reduce){
+      .party-card,.featured-slot-img,.card-cd.soon,.card-cd.live,
+      .modal,.modal-wrap.open .modal-hero-img,.modal-wrap.open .modal-body > *{animation:none !important}
+      .party-card:hover,.rail-card:hover,.featured-slot:hover,
+      .m-post:hover,.latest-post-card:hover,.modal-other-card:hover{transform:none}
     }
   </style>
 </head>
@@ -751,15 +856,6 @@
   <section id="parties">
     <div class="parties-header">
       <div class="filter-bar">
-        <select class="filter-select" id="filterArea" onchange="applyFilters()">
-          <option value="">Area</option>
-        </select>
-        <select class="filter-select" id="filterEntry" onchange="applyFilters()">
-          <option value="">Entry</option><option value="free">Free</option><option value="paid">Paid</option>
-        </select>
-        <select class="filter-select" id="filterVibe" onchange="applyFilters()">
-          <option value="">Vibe</option>
-        </select>
         <select class="filter-select" id="filterSort" onchange="applyFilters()">
           <option value="soon">Soonest</option><option value="views">Most viewed</option>
           <option value="active">Recently active</option><option value="az">A to Z</option>
@@ -1028,8 +1124,8 @@
           post3_url: C_POST3_URL > -1 ? cols[C_POST3_URL].trim() : '',
           post3_timestamp: C_POST3_TIMESTAMP > -1 ? cols[C_POST3_TIMESTAMP].trim() : '',
           post3_type: C_POST3_TYPE > -1 ? cols[C_POST3_TYPE].trim() : '',
-          last_party_date: C_LAST_PARTY_DATE > -1 ? cols[C_LAST_PARTY_DATE].trim() : '',
-          next_party_date: C_NEXT_PARTY_DATE > -1 ? cols[C_NEXT_PARTY_DATE].trim() : '',
+          last_party_date: C_LAST_PARTY_DATE > -1 ? acIso(cols[C_LAST_PARTY_DATE]) : '',
+          next_party_date: C_NEXT_PARTY_DATE > -1 ? acIso(cols[C_NEXT_PARTY_DATE]) : '',
           pulse_confidence: C_PULSE_CONFIDENCE > -1 ? cols[C_PULSE_CONFIDENCE].trim() : '',
           area: C_AREA > -1 ? cols[C_AREA].trim() : '',
           venue: C_VENUE > -1 ? cols[C_VENUE].trim() : '',
@@ -1039,8 +1135,8 @@
           recurrence: C_RECURRENCE > -1 ? cols[C_RECURRENCE].trim() : '',
           next_party_time: C_NEXT_PARTY_TIME > -1 ? cols[C_NEXT_PARTY_TIME].trim() : '',
           vibe_tags: C_VIBE_TAGS > -1 ? cols[C_VIBE_TAGS].trim().split(',').map(function(s){ return s.trim(); }).filter(Boolean) : [],
-          last_success_at: C_LAST_SUCCESS > -1 ? cols[C_LAST_SUCCESS].trim().slice(0,10) : '',
-          last_scraped_at: C_LAST_SCRAPED > -1 ? cols[C_LAST_SCRAPED].trim().slice(0,10) : ''
+          last_success_at: C_LAST_SUCCESS > -1 ? acIso(cols[C_LAST_SUCCESS]) : '',
+          last_scraped_at: C_LAST_SCRAPED > -1 ? acIso(cols[C_LAST_SCRAPED]) : ''
         };
         if(isFeatured) featured = p;
         if(status === 'Active' || status === '') parties.push(p);
@@ -1374,17 +1470,12 @@
         el.innerHTML = '<option value="">' + label + '</option>'
           + uniq.map(function(v){ return '<option>' + v + '</option>'; }).join('');
       }
-      fill('filterArea',   PARTIES.map(function(p){ return p.area; }),   'Area');
-      var vibes = [];
-      PARTIES.forEach(function(p){ (p.vibe_tags || []).forEach(function(v){ vibes.push(v); }); });
-      fill('filterVibe', vibes, 'Vibe');
+      /* Area, entry and vibe filters were removed: the data behind them
+         is not reliable enough to filter on. Sort and search remain. */
     }
 
     function getFilters(){
       return {
-        area: document.getElementById('filterArea').value,
-        entry: document.getElementById('filterEntry').value,
-        vibe: document.getElementById('filterVibe').value,
         sort: document.getElementById('filterSort').value,
         search: document.getElementById('searchInput').value.trim().toLowerCase()
       };
@@ -1404,29 +1495,22 @@
     }
 
     function partyMatchesFilters(party, filters){
-      if(filters.area && (party.area || '') !== filters.area) return false;
-      if(filters.entry === 'free' && !party.entry_free) return false;
-      if(filters.entry === 'paid' && party.entry_free) return false;
-      if(filters.vibe && (party.vibe_tags || []).indexOf(filters.vibe) === -1) return false;
-      if(filters.search && party.name.toLowerCase().indexOf(filters.search) === -1) return false;
+      /* search the night's name, its party, and the organiser */
+      if(filters.search){
+        var hay = [party.name, party.franchise, party.organiser].join(' ').toLowerCase();
+        if(hay.indexOf(filters.search) === -1) return false;
+      }
       return true;
     }
 
     function applyFilters(){
       var filters = getFilters();
-      var hasAny = filters.area || filters.entry || filters.vibe || filters.search;
       var reset = document.getElementById('filterReset');
-      if(reset) reset.className = 'filter-reset' + (hasAny ? ' visible' : '');
-      ['filterArea','filterVibe','filterEntry'].forEach(function(id){
-        var el = document.getElementById(id); if(el) el.className = 'filter-select' + (el.value ? ' has-value' : '');
-      });
+      if(reset) reset.className = 'filter-reset' + (filters.search ? ' visible' : '');
       renderCards(filters);
     }
 
     function resetFilters(){
-      ['filterArea','filterVibe','filterEntry'].forEach(function(id){
-        var el = document.getElementById(id); if(el){ el.value = ''; el.className = 'filter-select'; }
-      });
       document.getElementById('searchInput').value = '';
       var reset = document.getElementById('filterReset'); if(reset) reset.className = 'filter-reset';
       renderCards({});
@@ -1440,11 +1524,40 @@
        ══════════════════════════════════════════════════════════════ */
     var V2 = { vibe:'', view:'editions', today:new Date() };
 
-    function v2Days(d){ if(!d) return null;
+    /* ── DATES ──────────────────────────────────────────────────
+       Two shapes arrive. Editions send yyyy-mm-dd. The Parties CSV
+       sends a date cell as Apps Script prints it, "Sat Sep 27 2026
+       00:00:00 GMT+0100 (...)". Everything is turned into yyyy-mm-dd
+       first, read as a Lagos date, then shown as "Mon. 15th Oct". */
+    function acIso(v){
+      if(!v) return '';
+      var s = String(v).trim();
+      if(/^\d{4}-\d{2}-\d{2}/.test(s)) return s.slice(0,10);
+      var t = new Date(s); if(isNaN(t)) return '';
+      var l = new Date(t.getTime() + 3600e3);           /* Lagos is UTC+1 */
+      return l.getUTCFullYear() + '-' + ('0'+(l.getUTCMonth()+1)).slice(-2) + '-' + ('0'+l.getUTCDate()).slice(-2);
+    }
+    function acOrd(n){
+      var v = n % 100;
+      if(v >= 11 && v <= 13) return n + 'th';
+      return n + (['th','st','nd','rd'][n % 10] || 'th');
+    }
+    /* "Mon. 15th Oct", plus the year when it is not this year. Built from
+       the date's own parts so a viewer abroad never sees the wrong day. */
+    function acDay(iso){
+      var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso || ''); if(!m) return '';
+      var x = new Date(Date.UTC(+m[1], +m[2]-1, +m[3]));
+      var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+      var mons = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var out = days[x.getUTCDay()] + '. ' + acOrd(x.getUTCDate()) + ' ' + mons[x.getUTCMonth()];
+      if(+m[1] !== new Date().getFullYear()) out += ' ' + m[1];
+      return out;
+    }
+
+    function v2Days(d){ d = acIso(d); if(!d) return null;
       var t=new Date(d+'T00:00:00+01:00'); if(isNaN(t)) return null;
       return Math.round((t - new Date(V2.today.toDateString()))/864e5); }
-    function v2Fmt(d){ if(!d) return ''; var x=new Date(d+'T00:00:00+01:00'); if(isNaN(x)) return '';
-      return x.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'}); }
+    function v2Fmt(d){ return acDay(acIso(d)); }
     function v2Dormant(p){ var n=v2Days(p.last_party_date); return n!==null && n < -60; }
     function v2Stale(p){ var n=v2Days(p.last_success_at); return n!==null && n < -14; }
 
@@ -1479,7 +1592,9 @@
       var f={
         soon:function(a,b){ var x=v2Days(a.next_party_date), y=v2Days(b.next_party_date);
           if(x===null&&y===null) return 0; if(x===null) return 1; if(y===null) return -1;
-          if(x<0&&y>=0) return 1; if(y<0&&x>=0) return -1; return x-y; },
+          if(x<0&&y>=0) return 1; if(y<0&&x>=0) return -1;
+          if(x<0&&y<0) return y-x;   /* past: most recent first */
+          return x-y; },
         views:function(a,b){ return (b.views||0)-(a.views||0); },
         active:function(a,b){ return (v2Days(b.last_party_date)||-9e9)-(v2Days(a.last_party_date)||-9e9); },
         az:function(a,b){ return a.name.localeCompare(b.name); }
@@ -1687,8 +1802,11 @@
        editions = one card per night, the what's-on answer
        parties  = one card per franchise, the directory answer
        ──────────────────────────────────────────────────────────── */
+    /* Every night the server sends, past ones included. The server
+       already stops at 120 days back. A night that happened last week
+       is still the best reason to look at a party. */
     function liveEditions(){
-      return EDITIONS.filter(function(e){ return e.state !== 'past'; })
+      return EDITIONS.slice()
         .map(function(e){
           var f = fx(e.party_id) || {};
           return {
@@ -2037,6 +2155,7 @@
       visible.forEach(function(party){
         var card = document.createElement('div');
         card.className = 'party-card';
+        card.style.setProperty('--i', grid.children.length);
         card.onclick = function(){ openModal(party.id); };
 
         var metaTags = [party.time, party.access, party.setting].filter(Boolean);
@@ -2058,7 +2177,7 @@
         var content = document.createElement('div'); content.className = 'party-card-content';
 
         var handle = getHandleFromUrl(party.instagram);
-        var views = party.views || 0; var likes = party.likes || 0;
+        var views = party.views || 0; var likes = party.interested || 0;
         var statsHtml = (views || likes) ? '<div class="party-card-stats">'
           + (views ? '<span class="card-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10" height="10"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>'+views+'</span>' : '')
           + (likes ? '<span class="card-stat"><svg viewBox="0 0 24 24" fill="currentColor" width="10" height="10"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>'+likes+'</span>' : '')
@@ -2075,16 +2194,23 @@
           + '<div class="party-card-meta">'+(party.area || 'Lagos')+'</div>'
           + (party._kind === 'edition'
               ? (function(){ var g = toGo(party.next_party_date, party.next_party_time, party.cancelled);
+                  var pd = v2Days(party.next_party_date);
+                  if(!party.cancelled && pd !== null && pd < 0){
+                    var ago = v2Ago(party.next_party_date);
+                    g = { t: ago.charAt(0).toUpperCase() + ago.slice(1), cls:'past' };
+                  }
                   return '<div class="card-togo '+g.cls+'">'+g.t
-                    + (party.next_party_time && g.cls !== 'dim' && g.cls !== 'off'
+                    + (party.next_party_time && g.cls !== 'dim' && g.cls !== 'off' && g.cls !== 'past'
                         ? '<small>'+party.next_party_time+'</small>' : '') + '</div>'; })()
-              : '<div class="party-card-when">'+v2When(party)+'</div>');
+              : '<div class="party-card-when">'+v2When(party)+'</div>')
+          /* views and interested were worked out above and never placed */
+          + statsHtml;
 
         /* the countdown is the point of an edition card */
         var cdv = party.cancelled ? null : v2Countdown(party.next_party_date, party.next_party_time);
         if(cdv && !cdv.past && cdv.d <= 30){
           var cd = document.createElement('div');
-          cd.className = 'card-cd' + (cdv.d === 0 ? ' live' : '');
+          cd.className = 'card-cd' + (cdv.d === 0 ? ' live' : (cdv.d <= 3 ? ' soon' : ''));
           cd.innerHTML = cdv.d > 0 ? '<b>'+cdv.d+'</b><i>day'+(cdv.d===1?'':'s')+'</i>'
                                    : '<b>'+cdv.h+'</b><i>hrs</i>';
           card.appendChild(cd);
@@ -2345,8 +2471,8 @@
       var pulseLast = document.getElementById('pulseLastParty');
       var pulseNext = document.getElementById('pulseNextParty');
       var pulseCount = document.getElementById('pulseCountdown');
-      pulseLast.textContent = party.last_party_date || 'unavailable';
-      pulseNext.textContent = party.next_party_date || 'unavailable';
+      pulseLast.textContent = v2Fmt(party.last_party_date) || 'unavailable';
+      pulseNext.textContent = v2Fmt(party.next_party_date) || 'unavailable';
       if(party.next_party_date){
         try{
           var nextDate = new Date(party.next_party_date);
@@ -2469,7 +2595,7 @@
         if(diff === 1) return 'Yesterday';
         if(diff < 7) return diff+'d ago';
         if(diff < 30) return Math.floor(diff/7)+'w ago';
-        return d.toLocaleDateString();
+        return v2Fmt(d);
       } catch(e){ return ''; }
     }
 
@@ -2479,8 +2605,11 @@
        signup means "tell me when they announce one". */
     function heartTarget(p){
       if(!p) return '';
-      if(p._kind === 'edition') return p.id;
-      var nx = edOf(p.id).filter(function(e){
+      var pd = v2Days(p.next_party_date);
+      if(p._kind === 'edition' && (pd === null || pd >= 0)) return p.id;
+      /* a past night, or a party: borrow the party's next announced one */
+      var pid = p._kind === 'edition' ? p.party_id : p.id;
+      var nx = edOf(pid).filter(function(e){
         return e.state === 'announced' && v2Days(e.date) >= 0;
       }).pop();
       return nx ? nx.id : '';
@@ -2612,4 +2741,4 @@
     loadParties();
   </script>
 </body>
-</html>s
+</html>
