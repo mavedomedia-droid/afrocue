@@ -8,13 +8,9 @@
 <meta name="theme-color" content="#050508"/>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<!--
-  OPTIONAL. Only needed if you want GTM / the shared helpers on this page.
-  The page does NOT depend on it, it talks to Apps Script directly.
-  You said the file might be at /js/afroq.js but weren't sure, so set the
-  real path before you uncomment it. A wrong path here is a silent 404.
-  <script src="/js/afrocue.js"></script>
--->
+<!-- Sets window.AFROCUE_SCRIPT_URL, which is where this page gets the
+     Apps Script URL from. Must load BEFORE the script at the bottom. -->
+<script src="/js/afrocue.js"></script>
 
 <style>
   @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');font-weight:900;font-display:swap}
@@ -109,11 +105,6 @@ html,body{min-height:100%;background:var(--bg);color:var(--ink);font-family:'Fig
 @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
 .foot{font-size:10px;font-weight:300;color:rgba(240,237,232,0.26);text-align:center;margin-top:12px;line-height:1.6}
 
-/* ── SETUP WARNING (dev only, hidden once GAS_URL is set) ─ */
-#setup{display:none;background:#2a1205;border:1px solid #ff9a3c;border-radius:12px;padding:16px 18px;margin-bottom:14px;font-size:13px;line-height:1.6;color:#ffd4a8}
-#setup b{color:#ff9a3c;display:block;margin-bottom:4px;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
-#setup code{background:rgba(0,0,0,.4);padding:2px 6px;border-radius:4px;font-size:12px;color:#fff}
-
 /* ── BUTTON SPINNER ───────────────────────────────────── */
 .spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px;margin-right:9px}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -185,14 +176,6 @@ html,body{min-height:100%;background:var(--bg);color:var(--ink);font-family:'Fig
 </div>
 
 <div class="wrap">
-
-  <!-- Shows only while GAS_URL is unset. Invisible once it is. -->
-  <div id="setup">
-    <b>Not connected yet</b>
-    No <code>GAS_URL</code> resolved. Set <code>window.AFROCUE_SCRIPT_URL</code> in
-    afrocue.js, or put the deployed <code>/exec</code> URL in the fallback at the
-    top of this page's script. Nothing can submit until one of them is set.
-  </div>
 
   <!-- LIVE COUNTER -->
   <div class="counter">
@@ -291,15 +274,11 @@ html,body{min-height:100%;background:var(--bg);color:var(--ink);font-family:'Fig
    CONFIG
    ══════════════════════════════════════════════════════════════ */
 
-/* Same wiring as parties.html: the global set by afrocue.js wins, with the
-   current deployment as the fallback so this page works on its own.
-   Deploying a NEW VERSION of the existing deployment keeps this URL, so
-   there is normally nothing to change here. */
-var GAS_URL = window.AFROCUE_SCRIPT_URL || '';
-if (!GAS_URL) {
-  console.warn('AfroCue: AFROCUE_SCRIPT_URL not set, using fallback');
-  GAS_URL = 'https://script.google.com/macros/s/AKfycbyeARt-_vK9lDvdki3hLhQ89wcE1NC3ElHXvdKfbp71w3D0HujWse8DgMe4qnz-aite/exec';
-}
+/* The URL lives in ONE place: AFROCUE_SCRIPT_URL in /js/afrocue.js.
+   No hardcoded fallback here on purpose. A stale one would quietly hit
+   the wrong deployment and every claim would vanish into a script that
+   has no gl_claim. If the global is missing the page says so instead. */
+var GAS_URL = (window.AFROCUE_SCRIPT_URL || (window.AFROCUE_CONFIG && window.AFROCUE_CONFIG.scriptUrl) || '').trim();
 
 var CAP        = 80;
 var CLOSES_AT  = new Date('2026-10-23T08:00:00+01:00'); /* 8AM Fri, Lagos */
@@ -347,18 +326,19 @@ document.getElementById('flyer').src = FLYER;
    ══════════════════════════════════════════════════════════════ */
 var jsonpSeq = 0;
 
-/* Reasons a call can fail, each with a message that tells you what to
-   actually fix instead of a generic "network error". */
+/* What the visitor reads. Plain and non-technical: they cannot fix a
+   deployment, so telling them about one only worries them. The real
+   cause is logged to the console for you, with the failing URL. */
 var FAIL_MSG = {
-  no_url  : 'This page is not connected to the backend yet (GAS_URL is empty).',
-  timeout : 'The server did not answer. Check the deployment is live and set to "Anyone".',
-  network : 'Could not reach the server. Check the /exec URL is correct and deployed.',
-  parse   : 'The server replied with something unexpected. Did you deploy a NEW VERSION?'
+  no_url  : 'We could not reach us just then. Please try again in a moment.',
+  timeout : 'That took too long. Tap the button once more.',
+  network : 'Connection dropped. Check your network and try again.',
+  parse   : 'Something went wrong on our end. Try again in a moment.'
 };
 
 function jsonp(params, done, fail, isRetry){
   if(!GAS_URL){
-    console.error('[guestlist] GAS_URL is empty. Paste your deployed /exec URL into the page.');
+    console.error('[guestlist] no Apps Script URL. Is /js/afrocue.js loading on this page?');
     fail && fail('no_url');
     return;
   }
@@ -500,7 +480,9 @@ function refresh(){
   });
 }
 if(!GAS_URL){
-  document.getElementById('setup').style.display = 'block';
+  /* Nothing visible on the page: this is a subscriber-facing page and a
+     setup warning is not their problem. The console carries it. */
+  console.error('[guestlist] no Apps Script URL. Is /js/afrocue.js loading?');
   document.getElementById('cSub').textContent = '80 seats. Claim yours below.';
 }else{
   refresh();
