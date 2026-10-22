@@ -109,9 +109,33 @@ html,body{min-height:100%;background:var(--bg);color:var(--ink);font-family:'Fig
 @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
 .foot{font-size:10px;font-weight:300;color:rgba(240,237,232,0.26);text-align:center;margin-top:12px;line-height:1.6}
 
+/* ── SETUP WARNING (dev only, hidden once GAS_URL is set) ─ */
+#setup{display:none;background:#2a1205;border:1px solid #ff9a3c;border-radius:12px;padding:16px 18px;margin-bottom:14px;font-size:13px;line-height:1.6;color:#ffd4a8}
+#setup b{color:#ff9a3c;display:block;margin-bottom:4px;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+#setup code{background:rgba(0,0,0,.4);padding:2px 6px;border-radius:4px;font-size:12px;color:#fff}
+
+/* ── BUTTON SPINNER ───────────────────────────────────── */
+.spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px;margin-right:9px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── COUNTER REACTS WHEN IT MOVES ─────────────────────── */
+.counter-n.bump{animation:bump .5s cubic-bezier(.2,1.6,.4,1)}
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.16);text-shadow:0 0 50px rgba(215,25,32,.9)}100%{transform:scale(1)}}
+.bar-fill::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:sheen 2.4s ease-in-out infinite}
+.bar{position:relative}
+.bar-fill{position:relative;overflow:hidden}
+@keyframes sheen{0%{transform:translateX(-100%)}60%,100%{transform:translateX(220%)}}
+
+/* ── FIELD FOCUS ──────────────────────────────────────── */
+.field input:focus{box-shadow:0 0 0 3px rgba(215,25,32,.14)}
+
 /* ── SUCCESS ──────────────────────────────────────────── */
 #done{display:none;padding:46px 28px;text-align:center;border-top:1px solid rgba(255,255,255,0.06)}
-.pos{font-family:'Aesthet Nova','Figtree',sans-serif;font-size:clamp(62px,17vw,92px);font-weight:900;color:var(--acc);line-height:1;letter-spacing:-0.03em;text-shadow:0 0 44px rgba(215,25,32,0.5);animation:pop .75s cubic-bezier(.2,1.5,.4,1) both}
+.pos-wrap{position:relative;display:inline-block}
+.pos-ring{position:absolute;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;border:2px solid rgba(215,25,32,.5);animation:ring 1.5s cubic-bezier(.2,.8,.3,1) .25s both}
+.pos-ring.two{animation-delay:.5s}
+@keyframes ring{0%{transform:scale(.35);opacity:0}30%{opacity:1}100%{transform:scale(1.5);opacity:0}}
+.pos{position:relative;font-family:'Aesthet Nova','Figtree',sans-serif;font-size:clamp(62px,17vw,92px);font-weight:900;color:var(--acc);line-height:1;letter-spacing:-0.03em;text-shadow:0 0 44px rgba(215,25,32,0.5);animation:pop .75s cubic-bezier(.2,1.5,.4,1) both}
 @keyframes pop{0%{transform:scale(.3);opacity:0}60%{transform:scale(1.07)}100%{transform:scale(1);opacity:1}}
 #done h3{font-family:'Aesthet Nova','Figtree',sans-serif;font-size:26px;font-weight:900;color:var(--ink);line-height:1.1;margin:14px 0 12px}
 #done p{font-size:13.5px;font-weight:300;color:rgba(240,237,232,0.58);line-height:1.7;max-width:380px;margin:0 auto 8px}
@@ -161,6 +185,14 @@ html,body{min-height:100%;background:var(--bg);color:var(--ink);font-family:'Fig
 </div>
 
 <div class="wrap">
+
+  <!-- Shows only while GAS_URL is unset. Invisible once it is. -->
+  <div id="setup">
+    <b>Not connected yet</b>
+    No <code>GAS_URL</code> resolved. Set <code>window.AFROCUE_SCRIPT_URL</code> in
+    afrocue.js, or put the deployed <code>/exec</code> URL in the fallback at the
+    top of this page's script. Nothing can submit until one of them is set.
+  </div>
 
   <!-- LIVE COUNTER -->
   <div class="counter">
@@ -232,7 +264,10 @@ html,body{min-height:100%;background:var(--bg);color:var(--ink);font-family:'Fig
 
     <!-- SUCCESS -->
     <div id="done">
-      <div class="pos" id="posNum">#0</div>
+      <div class="pos-wrap">
+        <span class="pos-ring"></span><span class="pos-ring two"></span>
+        <div class="pos" id="posNum">#0</div>
+      </div>
       <h3 id="posWord">You're in.</h3>
       <p id="doneLine"></p>
       <div class="done-pass">
@@ -256,14 +291,15 @@ html,body{min-height:100%;background:var(--bg);color:var(--ink);font-family:'Fig
    CONFIG
    ══════════════════════════════════════════════════════════════ */
 
-/* ⚠️ PASTE YOUR LIVE /exec URL HERE BEFORE THIS GOES ANYWHERE.
-   You said the AfroCue one may not have been updated in ~5 months, so
-   confirm it rather than trusting the old value. The URL sitting in your
-   old guestlist page was:
-   https://script.google.com/macros/s/AKfycbwHG7r4U-22EzjFCw2N0yFzDVNjPWr6Q_uPMk6-LyBjjfM4Edd6tB8RwdRp-bbX-lKY/exec
-   That was a DEDICATED deployment, not the shared AfroCue one. Use
-   whichever deployment now holds the patched code. */
-var GAS_URL = '';
+/* Same wiring as parties.html: the global set by afrocue.js wins, with the
+   current deployment as the fallback so this page works on its own.
+   Deploying a NEW VERSION of the existing deployment keeps this URL, so
+   there is normally nothing to change here. */
+var GAS_URL = window.AFROCUE_SCRIPT_URL || '';
+if (!GAS_URL) {
+  console.warn('AfroCue: AFROCUE_SCRIPT_URL not set, using fallback');
+  GAS_URL = 'https://script.google.com/macros/s/AKfycbyeARt-_vK9lDvdki3hLhQ89wcE1NC3ElHXvdKfbp71w3D0HujWse8DgMe4qnz-aite/exec';
+}
 
 var CAP        = 80;
 var CLOSES_AT  = new Date('2026-10-23T08:00:00+01:00'); /* 8AM Fri, Lagos */
@@ -283,17 +319,42 @@ document.getElementById('heroBg').style.backgroundImage = 'url(' + FLYER + ')';
    JSONP instead. It is old, it is boring, and it does not break.
    ══════════════════════════════════════════════════════════════ */
 var jsonpSeq = 0;
-function jsonp(params, done, fail){
-  if(!GAS_URL){ fail && fail('no_url'); return; }
+
+/* Reasons a call can fail, each with a message that tells you what to
+   actually fix instead of a generic "network error". */
+var FAIL_MSG = {
+  no_url  : 'This page is not connected to the backend yet (GAS_URL is empty).',
+  timeout : 'The server did not answer. Check the deployment is live and set to "Anyone".',
+  network : 'Could not reach the server. Check the /exec URL is correct and deployed.',
+  parse   : 'The server replied with something unexpected. Did you deploy a NEW VERSION?'
+};
+
+function jsonp(params, done, fail, isRetry){
+  if(!GAS_URL){
+    console.error('[guestlist] GAS_URL is empty. Paste your deployed /exec URL into the page.');
+    fail && fail('no_url');
+    return;
+  }
+
   var cb = 'glcb_' + (++jsonpSeq) + '_' + Date.now();
   var s  = document.createElement('script');
-  var timer = setTimeout(function(){ cleanup(); fail && fail('timeout'); }, 15000);
+  var settled = false;
+  var timer = setTimeout(function(){
+    if(settled) return;
+    cleanup();
+    console.error('[guestlist] timed out after 15s:', s.src);
+    /* one automatic retry: Apps Script cold starts can be slow */
+    if(!isRetry) { jsonp(params, done, fail, true); return; }
+    fail && fail('timeout');
+  }, 15000);
 
   function cleanup(){
+    settled = true;
     clearTimeout(timer);
     try{ delete window[cb]; }catch(e){ window[cb] = undefined; }
     if(s.parentNode) s.parentNode.removeChild(s);
   }
+
   window[cb] = function(res){ cleanup(); done(res); };
 
   var q = ['callback=' + cb];
@@ -303,7 +364,28 @@ function jsonp(params, done, fail){
     }
   }
   s.src = GAS_URL + (GAS_URL.indexOf('?') > -1 ? '&' : '?') + q.join('&');
-  s.onerror = function(){ cleanup(); fail && fail('network'); };
+
+  /* The script loaded but never called our callback. That means the
+     endpoint answered with plain JSON or an HTML login page instead of
+     JSONP, which is the signature of "not deployed" or "access is not
+     set to Anyone". */
+  s.onload = function(){
+    setTimeout(function(){
+      if(settled) return;
+      cleanup();
+      console.error('[guestlist] loaded but no callback fired. ' +
+                    'The endpoint is not returning JSONP. URL:', s.src);
+      fail && fail('parse');
+    }, 60);
+  };
+  s.onerror = function(){
+    if(settled) return;
+    cleanup();
+    console.error('[guestlist] script failed to load:', s.src);
+    if(!isRetry) { jsonp(params, done, fail, true); return; }
+    fail && fail('network');
+  };
+
   document.head.appendChild(s);
 }
 
@@ -325,7 +407,12 @@ function animateTo(target){
     var e = 1 - Math.pow(1 - p, 3);              /* easeOutCubic */
     shown = Math.round(from + diff * e);
     document.getElementById('cNum').textContent = shown;
-    if(p < 1) requestAnimationFrame(step); else { shown = target; paintSub(target); }
+    if(p < 1) requestAnimationFrame(step);
+    else {
+      shown = target; paintSub(target);
+      var el = document.getElementById('cNum');
+      el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump');
+    }
   }
   requestAnimationFrame(step);
   document.getElementById('cBar').style.width = Math.min(100, target / CAP * 100) + '%';
@@ -380,12 +467,18 @@ function refresh(){
     animateTo(r.count);
     if(r.count >= CAP) shut('full');
     else if(r.closed)  shut('closed');
-  }, function(){
+  }, function(why){
+    console.warn('[guestlist] count unavailable:', why);
     document.getElementById('cSub').textContent = '80 seats. Claim yours below.';
   });
 }
-refresh();
-setInterval(refresh, 20000);   /* keeps the number honest while people sit on the page */
+if(!GAS_URL){
+  document.getElementById('setup').style.display = 'block';
+  document.getElementById('cSub').textContent = '80 seats. Claim yours below.';
+}else{
+  refresh();
+  setInterval(refresh, 20000);   /* keeps the number honest while people sit on the page */
+}   /* keeps the number honest while people sit on the page */
 
 /* ══════════════════════════════════════════════════════════════
    CLAIM
@@ -417,7 +510,7 @@ function claim(){
   if(!ok){ btn.classList.add('shake'); setTimeout(function(){ btn.classList.remove('shake'); }, 450); return; }
 
   btn.disabled = true;
-  btn.textContent = 'Claiming…';
+  btn.innerHTML = '<span class="spin"></span>Claiming&hellip;';
 
   var u = utm();
   jsonp({
@@ -452,14 +545,16 @@ function claim(){
     if(r.error === 'email')  { document.getElementById('eMail').style.display = 'block'; failBack('Check that email address.'); return; }
     if(r.error === 'name')   { document.getElementById('eName').style.display = 'block'; failBack('Check your name.'); return; }
     failBack('Could not claim that. Try again.');
-  }, function(){
-    failBack('Network hiccup. Try once more.');
+  }, function(why){
+    /* FAIL_MSG tells you which of the four setup steps is missing.
+       The browser console carries the full URL that failed. */
+    failBack(FAIL_MSG[why] || 'Could not reach the server. Try once more.');
   });
 
   function failBack(msg){
     btn.disabled = false;
     btn.textContent = 'Claim My Seat';
-    foot.textContent = msg;
+    foot.innerHTML = '<span style="color:#f87171">' + msg + '</span>';
     btn.classList.add('shake');
     setTimeout(function(){ btn.classList.remove('shake'); }, 450);
   }
