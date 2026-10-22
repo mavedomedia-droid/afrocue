@@ -8,9 +8,8 @@
 <meta name="theme-color" content="#050508"/>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- Sets window.AFROCUE_SCRIPT_URL, which is where this page gets the
-     Apps Script URL from. Must load BEFORE the script at the bottom. -->
-<script src="/js/afrocue.js"></script>
+<!-- No afrocue.js. This page talks to its own standalone Apps Script,
+     so it has one dependency and one URL. -->
 
 <style>
   @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');font-weight:900;font-display:swap}
@@ -274,11 +273,14 @@ html,body{min-height:100%;background:var(--bg);color:var(--ink);font-family:'Fig
    CONFIG
    ══════════════════════════════════════════════════════════════ */
 
-/* The URL lives in ONE place: AFROCUE_SCRIPT_URL in /js/afrocue.js.
-   No hardcoded fallback here on purpose. A stale one would quietly hit
-   the wrong deployment and every claim would vanish into a script that
-   has no gl_claim. If the global is missing the page says so instead. */
-var GAS_URL = (window.AFROCUE_SCRIPT_URL || (window.AFROCUE_CONFIG && window.AFROCUE_CONFIG.scriptUrl) || '').trim();
+/* ⚠️ PASTE THE /exec URL FROM THE STANDALONE SCRIPT HERE.
+   Deploy > New deployment > Web app > Execute as: Me,
+   Who has access: Anyone. Then copy the /exec URL.
+   glCheck() prints it too.
+
+   This page has no other dependency. Not afrocue.js, not the main
+   AfroCue script, nothing shared that can break it. */
+var GAS_URL = '';
 
 var CAP        = 80;
 var CLOSES_AT  = new Date('2026-10-23T08:00:00+01:00'); /* 8AM Fri, Lagos */
@@ -326,19 +328,28 @@ document.getElementById('flyer').src = FLYER;
    ══════════════════════════════════════════════════════════════ */
 var jsonpSeq = 0;
 
-/* What the visitor reads. Plain and non-technical: they cannot fix a
-   deployment, so telling them about one only worries them. The real
-   cause is logged to the console for you, with the failing URL. */
+/* What the visitor reads.
+   Every realistic failure here is OURS: GAS_URL unset, the script not
+   deployed, access not set to Anyone. So none of these blame the
+   visitor's connection. Nobody about to lose a seat should be told to go
+   check their wifi over something they cannot fix. The real cause and the
+   failing URL go to the console for you. */
 var FAIL_MSG = {
-  no_url  : 'We could not reach us just then. Please try again in a moment.',
-  timeout : 'That took too long. Tap the button once more.',
-  network : 'Connection dropped. Check your network and try again.',
+  no_url  : 'Something went wrong on our end. Try again in a moment.',
+  timeout : 'That is taking longer than it should. Tap once more.',
+  network : 'We could not reach our server. Try again in a moment.',
   parse   : 'Something went wrong on our end. Try again in a moment.'
 };
 
+/* After two failures, stop repeating ourselves and give them a human. */
+var FAIL_COUNT = 0;
+var FAIL_HELP  = 'Still stuck? Message us on <a href="https://instagram.com/afro.cue" ' +
+                 'target="_blank" style="color:#FF9A9E;text-decoration:underline;">Instagram</a> ' +
+                 'and we will hold your seat.';
+
 function jsonp(params, done, fail, isRetry){
   if(!GAS_URL){
-    console.error('[guestlist] no Apps Script URL. Is /js/afrocue.js loading on this page?');
+    console.error('[guestlist] GAS_URL is empty. Paste the standalone /exec URL into this page.');
     fail && fail('no_url');
     return;
   }
@@ -482,7 +493,7 @@ function refresh(){
 if(!GAS_URL){
   /* Nothing visible on the page: this is a subscriber-facing page and a
      setup warning is not their problem. The console carries it. */
-  console.error('[guestlist] no Apps Script URL. Is /js/afrocue.js loading?');
+  console.error('[guestlist] GAS_URL is empty. Paste the standalone /exec URL into this page.');
   document.getElementById('cSub').textContent = '80 seats. Claim yours below.';
 }else{
   refresh();
@@ -563,7 +574,9 @@ function claim(){
   function failBack(msg){
     btn.disabled = false;
     btn.textContent = 'Claim My Seat';
-    foot.innerHTML = '<span style="color:#f87171">' + msg + '</span>';
+    FAIL_COUNT++;
+    foot.innerHTML = '<span style="color:#f87171">' + msg + '</span>' +
+                     (FAIL_COUNT >= 2 ? '<br>' + FAIL_HELP : '');
     btn.classList.add('shake');
     setTimeout(function(){ btn.classList.remove('shake'); }, 450);
   }
