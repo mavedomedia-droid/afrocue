@@ -8,8 +8,10 @@
 <meta name="theme-color" content="#0b0a09"/>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<!-- OPTIONAL. Only if you prefer the URL in afrocue.js. Works without it. -->
-<!-- <script src="/js/afrocue.js"></script> -->
+<!-- The guestlist /exec URL lives in afrocue.js, nowhere else.
+     This must load BEFORE the inline script at the bottom of the body,
+     which is why it sits here in the head and is not deferred. -->
+<script src="/js/afrocue.js"></script>
 
 <style>
 @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');font-weight:900;font-display:swap}
@@ -219,12 +221,9 @@ html,body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-
 
 <script>
 /* ══════════════════════════════════════════════════════════════
-   ⚠️  PASTE THE GUESTLIST /exec URL BETWEEN THE QUOTES  ⚠️
-   From the STANDALONE Guestlist script.
-   Deploy > New deployment > Web app
-     Execute as: Me      Who has access: Anyone   <- plain "Anyone"
-   glCheck() prints the URL too.
-   Leave empty to fall back to AFROCUE_GUESTLIST_URL from afrocue.js.
+   The URL lives in /js/afrocue.js, line 16. Not here.
+   Leave this empty. It exists only as a local override if you ever
+   need to test one page against a different deployment.
    ══════════════════════════════════════════════════════════════ */
 var GAS_URL = '';
 
@@ -326,14 +325,25 @@ function animateTo(target){
   var el = document.getElementById('cNum');
   if(d === 0){ sub(target); return; }
   var t0 = null, dur = Math.min(1400, 400 + Math.abs(d)*24);
-  (function step(ts){
-    if(!t0) t0 = ts;
-    var p = Math.min(1,(ts-t0)/dur), e = 1-Math.pow(1-p,3);
-    shown = Math.round(from + d*e);
-    el.innerHTML = shown + '<small>/' + CAP + '</small>';
-    if(p<1) requestAnimationFrame(step);
-    else { shown = target; sub(target); el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); }
-  })();
+  var paint = function(n){ el.innerHTML = n + '<small>/' + CAP + '</small>'; };
+
+  function step(ts){
+    /* ts comes from requestAnimationFrame. Starting the loop by calling
+       step() directly leaves it undefined, which makes every later
+       (ts - t0) NaN and paints "NaN/80". Always enter through rAF. */
+    if(t0 === null) t0 = ts;
+    var p = Math.min(1, (ts - t0) / dur), e = 1 - Math.pow(1-p, 3);
+    if(p < 1){
+      paint(Math.round(from + d*e));
+      requestAnimationFrame(step);
+    } else {
+      shown = target;
+      paint(target);                 /* always land on the real number */
+      sub(target);
+      el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump');
+    }
+  }
+  requestAnimationFrame(step);
   document.getElementById('cBar').style.width = Math.min(100, target/CAP*100) + '%';
 }
 function sub(n){
@@ -372,8 +382,17 @@ function refresh(){
     else if(r.closed)  shut('closed');
   }, function(w){ console.warn('[guestlist] count unavailable:', w); });
 }
-if(GAS_URL){ refresh(); setInterval(refresh, 20000); }
-else console.error('[guestlist] GAS_URL is empty. Paste the standalone /exec URL into this page.');
+/* Console only, never on the page. Tells the two failure causes apart
+   instead of leaving you guessing which one it is. */
+if(GAS_URL){
+  console.log('[guestlist] using ' + GAS_URL);
+  refresh(); setInterval(refresh, 20000);
+} else if(typeof AFROCUE_SCRIPT_URL === 'undefined'){
+  console.error('[guestlist] /js/afrocue.js did NOT load. Check the path and that the file is deployed.');
+} else {
+  console.error('[guestlist] afrocue.js loaded, but AFROCUE_GUESTLIST_URL is empty. ' +
+                'Paste the standalone Guestlist /exec URL into it.');
+}
 
 /* ── claim ───────────────────────────────────────────── */
 function utm(){
