@@ -189,7 +189,7 @@ html,body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-
         </div>
       </div>
       <button class="btn" id="btn">Claim My Seat</button>
-      <p class="note" id="note">One per email. Closes 9AM Friday or when all 80 are gone.</p>
+      <p class="note" id="note">One per email. Closes 10AM Friday or when all 80 are gone.</p>
     </div>
 
     <div id="done">
@@ -237,7 +237,7 @@ GAS_URL = (GAS_URL
         || '').trim();
 
 var CAP    = 80;
-var CLOSES = new Date('2026-10-23T09:00:00+01:00');   /* 9AM Fri, Lagos */
+var CLOSES = new Date('2026-10-23T10:00:00+01:00');   /* 10AM Fri, Lagos */
 var SOURCE = 'clayface_guestlist';
 
 /* HERO is the Chibyverse banner, FLYER is the Clayface poster. Two
@@ -424,7 +424,7 @@ function shut(why){
     document.getElementById('shutP').textContent = 'The list filled up. We will email the film community first if anything opens back up.';
   } else {
     document.getElementById('shutH').textContent = 'Registration has closed.';
-    document.getElementById('shutP').textContent = 'The list shut at 9AM. We will email the film community first if seats open up.';
+    document.getElementById('shutP').textContent = 'The list shut at 10AM. We will email the film community first if seats open up.';
   }
 }
 
