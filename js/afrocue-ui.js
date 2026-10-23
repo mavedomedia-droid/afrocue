@@ -25,6 +25,7 @@
 
     nav: [
       { label: 'Home',    href: 'index.html'   },
+      { label: 'Nights',  href: 'nights.html'  },
       { label: 'Parties', href: 'parties.html' },
       { label: 'DJs',     href: 'dj.html'      },
       { label: 'Culture', href: 'blog.html'    }
@@ -43,6 +44,7 @@
         title: 'Explore',
         links: [
           { label: 'Home',    href: 'index.html'   },
+          { label: 'Nights',  href: 'nights.html'  },
           { label: 'Parties', href: 'parties.html' },
           { label: 'Culture', href: 'blog.html'    },
           { label: 'DJs',     href: 'dj.html'      }
