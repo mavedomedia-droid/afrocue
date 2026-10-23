@@ -1227,158 +1227,15 @@
        to. Both live in the same sheet as two tabs.
        ══════════════════════════════════════════════════════════════ */
 
-    /* Flip this to true to show the sample set instead of the sheet. */
-    var USE_SAMPLE_DATA = false;
 
     var FRANCHISES = [];
     var EDITIONS   = [];
 
-    var SAMPLE_FRANCHISES = [
-      { id:'south-social', name:'South Social', handle:'southsocialhouse', city:'Lagos', ticked:true,
-        organiser:'The Chibyverse', area:'Victoria Island', home_venue:'Praia Lagos',
-        bio:'Rooftop sessions in VI. Amapiano, afrohouse, and whatever the floor asks for. Monthly.',
-        recurrence:'Monthly', day_of_week:'Saturday',
-        genres:['Amapiano','Afrohouse'], vibe_tags:['rooftop','late','dressy'],
-        hero_img:'audience_partygoers.jpg', followers:18400, editions_seen:11,
-        first_seen:'2025-11-08', views:1284, likes:96, last_success_at:'2026-10-20' },
-
-      { id:'amapiano-district', name:'Amapiano District', handle:'amapianodistrict', city:'Lagos', ticked:true,
-        organiser:'AD Collective', area:'Lekki', home_venue:'Hard Rock Cafe',
-        bio:'The amapiano night. Beachside, monthly, loud.',
-        recurrence:'Monthly', day_of_week:'Friday',
-        genres:['Amapiano'], vibe_tags:['amapiano','beachside'],
-        hero_img:'audience_djs.jpg', followers:31200, editions_seen:14,
-        first_seen:'2025-08-22', views:2140, likes:187, last_success_at:'2026-10-20' },
-
-      { id:'sunday-service', name:'Sunday Service', handle:'blackmarketlagos', city:'Lagos', ticked:true,
-        organiser:'Black Market', area:'Ikoyi', home_venue:'The Garden',
-        bio:'Daytime afrohouse every Sunday. Free before six.',
-        recurrence:'Weekly', day_of_week:'Sunday',
-        genres:['Afrohouse','3step'], vibe_tags:['daytime','free','outdoor'],
-        hero_img:'hero_dj.jpg', followers:9800, editions_seen:38,
-        first_seen:'2025-09-14', views:3012, likes:241, last_success_at:'2026-10-21' },
-
-      { id:'group-therapy', name:'Group Therapy', handle:'kvltwrld', city:'Lagos', ticked:true,
-        organiser:'KVLTWRLD', area:'Yaba', home_venue:'',
-        bio:'Basement techno and afrohouse. Venue announced on the day.',
-        recurrence:'Fortnightly', day_of_week:'Saturday',
-        genres:['Afrohouse','Techno'], vibe_tags:['techno','basement','underground'],
-        hero_img:'content_dj.jpeg', followers:6400, editions_seen:9,
-        first_seen:'2026-02-14', views:874, likes:63, last_success_at:'2026-10-20' },
-
-      { id:'element-house', name:'Element House', handle:'elementhouse', city:'Lagos', ticked:true,
-        organiser:'Element', area:'Lekki', home_venue:'Element Rooftop',
-        bio:'Rooftop afrobeats in Lekki.',
-        recurrence:'Monthly', day_of_week:'Saturday',
-        genres:['Afrobeats','Amapiano'], vibe_tags:['rooftop','afrobeats'],
-        hero_img:'content_creative_events.jpeg', followers:4100, editions_seen:5,
-        first_seen:'2026-05-02', views:412, likes:28, last_success_at:'2026-10-19' },
-
-      { id:'dance-eko', name:'DanceEko', handle:'danceeko', city:'Lagos', ticked:true,
-        organiser:'DanceEko', area:'Surulere', home_venue:'',
-        bio:'Intimate afrohouse. Irregular.',
-        recurrence:'Irregular', day_of_week:'',
-        genres:['Afrohouse'], vibe_tags:['afrohouse','intimate'],
-        hero_img:'content_weekly_top5.jpeg', followers:2200, editions_seen:4,
-        first_seen:'2026-01-20', views:138, likes:9, last_success_at:'2026-08-02' }
-    ];
-
-    /* One row per night. state: announced | past | cancelled */
-    var SAMPLE_EDITIONS = [
-      { id:'ss-2026-10-25', views:1284, interested:86, last_read:'2026-10-21T06:10:00Z', party_id:'south-social', title:'South Social', state:'announced',
-        date:'2026-10-25', time:'10:00 PM', venue:'Praia Lagos', area:'Victoria Island',
-        entry:'₦10,000 presale / ₦15,000 door', entry_free:false,
-        flyer:'chibyverse_flyer.jpg', flyer_confidence:'High',
-        lineup:[{name:'Six7even',handle:'six7even',known:true},{name:'Tobi Peter',handle:'tobipeter',known:true},{name:'DJ Lambo',handle:'djlambo',known:false},{name:'Nezzy Beatz',handle:'nezzybeatz',known:false},{name:'Yammy Svibe',handle:'yammysvibe',known:false}],
-        lineup_source:'flyer', palette:'rgb(214,166,94)',
-        summary:'Presale closes Friday, and they have said the door price goes up after that. Five names on the flyer, two more than the caption lists.',
-        posts:[
-          {img:'chibyverse_flyer.jpg', kind:'flyer', cap:'25.10 · Six7even, Tobi Peter, DJ Lambo. Presale closes Friday.', url:'#'},
-          {img:'audience_partygoers.jpg', kind:'post', cap:'Last edition was full by midnight. Get in early.', url:'#'},
-          {img:'content_dj.jpeg', kind:'reel', cap:'Six7even closing the September roof.', url:'#'}
-        ] },
-
-      { id:'ad-2026-10-24', views:940, interested:61, last_read:'2026-10-21T06:10:00Z', party_id:'amapiano-district', title:'Amapiano District', state:'announced',
-        date:'2026-10-24', time:'9:00 PM', venue:'Hard Rock Cafe', area:'Lekki',
-        entry:'₦7,500', entry_free:false,
-        flyer:'', flyer_confidence:'Medium',
-        lineup:[{name:'Yanfssss',handle:'yanfssss',known:true},{name:'Smeez',handle:'smeez',known:true}],
-        lineup_source:'caption', palette:'rgb(226,122,62)',
-        summary:'Anniversary edition. Second ticket release is nearly gone as of yesterday. Only two names announced so far, and they have added more in the last 48 hours before each of their recent editions.',
-        posts:[
-          {img:'audience_djs.jpg', kind:'flyer', cap:'ANNIVERSARY. Friday 24th. Hard Rock. Second release almost gone.', url:'#'},
-          {img:'content_monthly_recap.jpeg', kind:'post', cap:'One year of District.', url:'#'}
-        ] },
-
-      { id:'sund-2026-10-26', views:2012, interested:148, last_read:'2026-10-21T06:10:00Z', party_id:'sunday-service', title:'Sunday Service', state:'announced',
-        date:'2026-10-26', time:'4:00 PM', venue:'The Garden', area:'Ikoyi',
-        entry:'Free before 6pm', entry_free:true,
-        flyer:'sunday_service_flyer.jpg', flyer_confidence:'High',
-        lineup:[{name:'Marrz',handle:'marrz',known:true},{name:'Millar',handle:'millar',known:true},{name:'Swayvee',handle:'swayvee',known:true}],
-        lineup_source:'flyer', palette:'rgb(198,86,74)',
-        summary:'Running as usual. Free before six, three DJs on the flyer.',
-        posts:[
-          {img:'sunday_service_flyer.jpg', kind:'flyer', cap:'Sunday. Marrz, Millar, Swayvee. Free before 6.', url:'#'},
-          {img:'hero_dj.jpg', kind:'post', cap:'Golden hour last week.', url:'#'}
-        ] },
-
-      { id:'gt-2026-11-08', views:604, interested:44, last_read:'2026-10-20T06:10:00Z', party_id:'group-therapy', title:'Group Therapy', state:'announced',
-        date:'2026-11-08', time:'', venue:'', venue_held:true, area:'Yaba',
-        entry:'₦12,000', entry_free:false,
-        flyer:'', flyer_confidence:'Low',
-        lineup:[{name:'Zhus',handle:'zhus',known:true}],
-        summary:'Zhus on an all-night set. The address goes out on the day, as it has for their last four.',
-        posts:[
-          {img:'content_dj.jpeg', kind:'post', cap:'08.11. Zhus all night. Address on the day.', url:'#'}
-        ] },
-
-      { id:'eh-2026-11-21', views:238, interested:12, party_id:'element-house', title:'Element House', state:'announced',
-        date:'2026-11-21', time:'', venue:'Element Rooftop', area:'Lekki', last_read:'2026-10-20T19:40:00Z',
-        entry:'₦5,000', entry_free:false,
-        flyer:'', flyer_confidence:'Low',
-        lineup:[],
-        summary:'This date came from the organiser, not from their page. Nothing posted in three weeks.',
-        posts:[] },
-
-      /* past editions, built from six months of scraped history */
-      { id:'ss-2026-09-27', party_id:'south-social', title:'South Social', state:'past', views:2152, interested:161,
-        date:'2026-09-27', time:'10:00 PM', venue:'Praia Lagos', area:'Victoria Island',
-        entry:'₦10,000', entry_free:false, flyer:'', lineup:[{name:'Six7even',handle:'six7even',known:true}],
-        summary:'', posts:[] },
-      { id:'ss-2026-08-30', party_id:'south-social', title:'South Social', state:'past', views:2207, interested:133,
-        date:'2026-08-30', time:'10:00 PM', venue:'Praia Lagos', area:'Victoria Island',
-        entry:'₦8,000', entry_free:false, flyer:'', lineup:[], summary:'', posts:[] },
-      { id:'ad-2026-09-26', party_id:'amapiano-district', title:'Amapiano District', state:'past', views:2380, interested:168,
-        date:'2026-09-26', time:'9:00 PM', venue:'Hard Rock Cafe', area:'Lekki',
-        entry:'₦7,500', entry_free:false, flyer:'', lineup:[], summary:'', posts:[] },
-      { id:'sund-2026-10-19', party_id:'sunday-service', title:'Sunday Service', state:'past', views:1077, interested:65,
-        date:'2026-10-19', time:'4:00 PM', venue:'The Garden', area:'Ikoyi',
-        entry:'Free before 6pm', entry_free:true, flyer:'', lineup:[], summary:'', posts:[] },
-      { id:'gt-2026-10-11', party_id:'group-therapy', title:'Group Therapy', state:'past', views:2396, interested:139,
-        date:'2026-10-11', time:'', venue:'Secret, Yaba', area:'Yaba',
-        entry:'₦12,000', entry_free:false, flyer:'', lineup:[], summary:'', posts:[] },
-      { id:'sund-2026-10-12', party_id:'sunday-service', title:'Sunday Service', state:'past', views:1062, interested:42,
-        date:'2026-10-12', time:'4:00 PM', venue:'The Garden', area:'Ikoyi',
-        entry:'Free before 6pm', entry_free:true, flyer:'', lineup:[], summary:'', posts:[] },
-      { id:'sund-2026-10-05', party_id:'sunday-service', title:'Sunday Service', state:'past', views:2129, interested:95,
-        date:'2026-10-05', time:'4:00 PM', venue:'The Garden', area:'Ikoyi',
-        entry:'Free before 6pm', entry_free:true, flyer:'', lineup:[], summary:'', posts:[] },
-      { id:'sund-2026-09-28', party_id:'sunday-service', title:'Sunday Service', state:'past', views:880, interested:41,
-        date:'2026-09-28', time:'4:00 PM', venue:'The Garden', area:'Ikoyi',
-        entry:'Free before 6pm', entry_free:true, flyer:'', lineup:[], summary:'', posts:[] },
-      { id:'sund-2026-09-21', party_id:'sunday-service', title:'Sunday Service', state:'past', views:2506, interested:180,
-        date:'2026-09-21', time:'4:00 PM', venue:'The Garden', area:'Ikoyi',
-        entry:'Free before 6pm', entry_free:true, flyer:'', lineup:[], summary:'', posts:[] },
-      { id:'de-2026-06-14', party_id:'dance-eko', title:'DanceEko', state:'past', views:471, interested:170,
-        date:'2026-06-14', time:'', venue:'', area:'Surulere',
-        entry:'Free', entry_free:true, flyer:'', lineup:[], summary:'', posts:[] },
-
-      { id:'dr-2026-12-24', party_id:'amapiano-district', title:'Detty Sexy Rave', state:'cancelled',
-        date:'2026-12-24', time:'9:00 PM', venue:'Balmoral Convention Centre', area:'Victoria Island',
-        entry:'₦20,000', entry_free:false, flyer:'', flyer_confidence:'Medium', lineup:[],
-        summary:'Called off. Refunds open Monday, new date to follow.',
-        posts:[{img:'content_monthly_recap.jpeg', kind:'post', cap:'December 24th is off. New date coming, refunds open Monday.', url:'#'}] }
-    ];
+    /* The sample FRANCHISES and EDITIONS sets lived here and are
+       gone. A page that can fall back to invented parties will do
+       it silently on the day the endpoint breaks, and you cannot
+       tell a quiet failure from a quiet week. Nothing renders now
+       unless the sheet sent it. */
 
     /* joins */
     function fx(id){ for(var i=0;i<FRANCHISES.length;i++) if(FRANCHISES[i].id===id) return FRANCHISES[i]; return null; }
@@ -1475,59 +1332,108 @@
       };
     }
 
+    /* ONE call. ?export=editions returns { parties, editions, build }
+       from the Editions and Parties tabs together, so the CSV fetch is
+       gone: it was a second read of the same spreadsheet, and matching
+       editions against CSV parties by id meant a party row created
+       today had no match and its nights rendered as nothing.
+
+       There is no fallback of any kind. The old version caught a failed
+       editions fetch and carried on with an empty list, which made
+       liveEditions() empty, which made setView flip to party cards. A
+       dead endpoint therefore looked exactly like a quiet week. If the
+       payload is not what it should be, this now says so and names the
+       build it got, because that is the one fact that identifies which
+       deployment answered. */
     function loadParties(){
       renderSkeletons();
 
-      if(USE_SAMPLE_DATA){
-        FRANCHISES = SAMPLE_FRANCHISES;
-        EDITIONS   = SAMPLE_EDITIONS;
-        setTimeout(function(){ setView(V2.view, true); initFeatured(); }, 260);
+      var url = getGasUrl();
+      if(!url){
+        showEmptyState('Not configured: AFROCUE_SCRIPT_URL is missing. Did afrocue.js load?');
         return;
       }
 
-      var getCSV = fetch(CSV_URL).then(function(r){
-        if(!r.ok) throw new Error('parties HTTP ' + r.status);
-        return r.text();
-      });
-      var getEds = fetch(GAS_WEBAPP_URL + '?export=editions').then(function(r){
-        if(!r.ok) throw new Error('editions HTTP ' + r.status);
-        return r.json();
-      }).catch(function(err){
-        /* A party with no nights is still a party worth showing. */
-        console.warn('AfroCue: editions unavailable (' + err + ')');
-        return { editions: [] };
-      });
+      fetch(url + '?export=editions')
+        .then(function(r){
+          if(!r.ok) throw new Error('HTTP ' + r.status);
+          return r.text();
+        })
+        .then(function(txt){
+          var d;
+          try { d = JSON.parse(txt); }
+          catch(e){
+            /* An HTML sign-in page lands here. That means the
+               deployment's access is "Anyone with a Google account"
+               and needs to be "Anyone". */
+            throw new Error(/^\s*</.test(txt)
+              ? 'the endpoint returned a web page, not JSON. Set the deployment access to Anyone.'
+              : 'the endpoint returned something that is not JSON.');
+          }
 
-      Promise.all([getCSV, getEds]).then(function(got){
-        var parsed = parseCSV(got[0]);
-        FRANCHISES = parsed.parties.map(csvToFranchise);
+          if(!d || !d.editions){
+            throw new Error('the endpoint answered but sent no editions. '
+              + (d && d.build ? 'It reported build "' + d.build + '". '
+                              : 'It reported no build. ')
+              + 'That deployment does not have serveEditions, so it is running older code than the editor.');
+          }
 
-        var byId = {};
-        FRANCHISES.forEach(function(f){ byId[f.id] = f; });
+          FRANCHISES = (d.parties || []).map(apiToFranchise);
+          var byId = {};
+          FRANCHISES.forEach(function(f){ byId[f.id] = f; });
 
-        EDITIONS = ((got[1] && got[1].editions) || []).map(function(e){
-          return apiToEdition(e, byId);
+          EDITIONS = (d.editions || []).map(function(e){ return apiToEdition(e, byId); });
+
+          FRANCHISES.forEach(function(f){
+            f.editions_seen = EDITIONS.filter(function(e){ return e.party_id === f.id; }).length;
+          });
+
+          console.log('AfroCue: build ' + (d.build || '?') + ', '
+            + FRANCHISES.length + ' parties, ' + EDITIONS.length + ' editions');
+
+          if(!EDITIONS.length && !FRANCHISES.length){
+            showEmptyState('The sheet answered with no parties and no nights.');
+            return;
+          }
+
+          setView('editions', true);
+          renderUpcoming(FRANCHISES.filter(function(f){ return f.featured; })[0] || null);
+          initFeatured();
+          buildEHero();
+        })
+        .catch(function(err){
+          console.error('AfroCue parties:', err);
+          showEmptyState('Could not load the parties: ' + (err && err.message ? err.message : err));
         });
+    }
 
-        FRANCHISES.forEach(function(f){
-          f.editions_seen = EDITIONS.filter(function(e){
-            return e.party_id === f.id;
-          }).length;
-        });
-
-        if(!FRANCHISES.length){
-          showEmptyState('No parties listed yet. Check back soon.');
-          return;
-        }
-
-        setView(V2.view, true);
-        renderUpcoming(parsed.featured);
-        initFeatured();
-        buildEHero();
-      }).catch(function(err){
-        console.warn('AfroCue: load failed (' + err + ')');
-        showEmptyState('Could not load parties right now. Try again shortly.');
-      });
+    /* The API's party shape to the one the cards already expect. The
+       CSV equivalent, csvToFranchise, is left in the file unused
+       rather than deleted, in case you want the CSV path back. */
+    function apiToFranchise(p){
+      return {
+        id: p.id, name: p.name, handle: p.handle,
+        city: p.city || 'Lagos', ticked: true,
+        organiser: p.organiser, area: p.area, home_venue: p.home_venue,
+        bio: p.bio, recurrence: p.recurrence, day_of_week: p.day_of_week,
+        genres: p.genres || [], vibe_tags: p.vibe_tags || [],
+        hero_img: p.hero_img, flyer_img: p.flyer_img,
+        instagram: p.instagram, website: p.website, ticket_url: p.ticket_url,
+        views: p.views || 0, likes: p.likes || 0,
+        interested: p.interested || 0,
+        featured: !!p.featured,
+        next_party_date: p.next_date, next_party_time: p.next_time,
+        last_party_date: p.last_date,
+        upcoming_flyer: p.upcoming_flyer, upcoming_date: p.upcoming_date,
+        pulse_confidence: p.pulse_confidence,
+        last_success_at: p.last_success_at || p.last_scraped_at || '',
+        /* paPosts sends {img,cap,url,at,kind}; the cards read the same. */
+        posts: (p.posts || []).map(function(o){
+          return { img: o.img, cap: o.cap || '', url: o.url || '#',
+                   kind: o.kind === 'reel' ? 'reel' : 'post' };
+        }),
+        editions_seen: 0
+      };
     }
 
     // ─── FILTERS ─────────────────────────────────────────────────────────
@@ -1973,7 +1879,11 @@
       var live = liveEditions();
       /* Nights when there are nights, parties when there are not. A
          blank grid would otherwise be the first thing anyone sees. */
-      V2.view = (v === 'parties' || !live.length) ? 'parties' : 'editions';
+      /* Was: flip to parties when there are no live editions. That
+         turned a broken endpoint into a page that looked fine. The
+         view is now whatever was asked for, and an empty editions
+         grid is allowed to look empty. */
+      V2.view = (v === 'parties') ? 'parties' : 'editions';
       PARTIES = V2.view === 'parties' ? franchiseRows() : live;
       if(boot) buildFilterOptions();
       renderCards(getFilters());
@@ -2588,9 +2498,10 @@
 
     // ─── STATS (views/likes) — FIXED ───────────────────────────────────
     function incrementStat(id, action, displayId) {
-      /* The sample ids match real Party IDs, so counting here would add
-         views and likes to the live sheet. */
-      if(USE_SAMPLE_DATA) return;
+      /* Every tap counts now. The sample-data guard that used to sit
+         here existed because the demo ids matched real Party IDs, and
+         there is no demo set any more. */
+
       var gasUrl = getGasUrl();
       if (!gasUrl) {
         console.warn('AfroCue: no script URL for stats');
@@ -2879,7 +2790,7 @@
          "You are in" email. no-cors because Apps Script answers POSTs
          through a redirect the browser will not let us read; the row
          is written either way. Sample mode sends nothing. */
-      if(!USE_SAMPLE_DATA){
+      {
         fetch(getGasUrl(), {
           method: 'POST',
           mode: 'no-cors',
