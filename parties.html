@@ -62,7 +62,7 @@
     .hero-slide img{width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.05)}
     .hero-grad{position:absolute;inset:0;background:
       linear-gradient(to top,var(--black) 2%,rgba(10,10,10,.82) 38%,rgba(10,10,10,.25) 72%,rgba(10,10,10,.55) 100%)}
-    .hero-in{position:relative;width:100%;padding:0 0 42px}
+    .hero-in{position:relative;width:100%;padding:var(--ac-nav-h,76px) 0 42px}
     .hero-kicker{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin-bottom:14px}
     .hero-dot{width:6px;height:6px;border-radius:50%;background:var(--yellow);box-shadow:0 0 0 4px rgba(200,224,0,.14)}
     .hero-title{font-size:clamp(34px,7vw,74px);margin:0 0 10px;max-width:16ch}
@@ -77,7 +77,11 @@
     .hero-pip.on{background:var(--yellow)}
 
     /* ─── CONTROLS ───────────────────────────────────────────── */
-    .bar{position:sticky;top:0;z-index:40;background:rgba(10,10,10,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--dark2)}
+    /* afrocue-ui.js renders the shared nav as position:fixed at
+       z-index 1000 and publishes its height as --ac-nav-h. Sticking
+       this at top:0 put it underneath that nav, invisible the moment
+       you scrolled. */
+    .bar{position:sticky;top:var(--ac-nav-h,76px);z-index:40;background:rgba(10,10,10,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--dark2)}
     .bar-in{display:flex;align-items:center;gap:12px;padding:12px var(--gut);max-width:var(--max);margin:0 auto}
     .tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1}
     .tabs::-webkit-scrollbar{display:none}
@@ -277,12 +281,15 @@
        together, which is why the old CSV fetch is gone: it matched
        editions against CSV parties by id, so a party row created
        today had no match and its nights rendered as nothing. */
-    var URL_BASE = window.AFROCUE_SCRIPT_URL || '';
-    if (!URL_BASE) {
-      console.warn('AfroCue: AFROCUE_SCRIPT_URL not set, using the fallback');
-      URL_BASE = 'https://script.google.com/macros/s/AKfycbyeARt-_vK9lDvdki3hLhQ89wcE1NC3ElHXvdKfbp71w3D0HujWse8DgMe4qnz-aite/exec';
-    }
-    var API = URL_BASE + '?export=editions';
+    /* The URL lives in afrocue.js and nowhere else. There is no
+       hardcoded fallback on purpose: the one that used to be in here
+       pointed at an older deployment than the config did, so if
+       afrocue.js ever failed to load the page would quietly query a
+       dead endpoint and render "no nights listed yet", which looks
+       like an empty directory rather than a broken one. */
+    var URL_BASE = window.AFROCUE_SCRIPT_URL ||
+      (window.AFROCUE_CONFIG && window.AFROCUE_CONFIG.scriptUrl) || '';
+    var API = URL_BASE ? URL_BASE + '?export=editions' : '';
 
     /* If a standalone per-party page ever exists, put it here and the
        party link points at it instead of the in-page panel. */
@@ -484,7 +491,9 @@
     window.acSetView = function (k) {
       VIEW = k;
       render();
-      window.scrollTo({ top: document.querySelector('.bar').offsetTop - 1, behavior: 'smooth' });
+      var navH = parseInt(getComputedStyle(document.documentElement)
+        .getPropertyValue('--ac-nav-h'), 10) || 76;
+      window.scrollTo({ top: document.querySelector('.bar').offsetTop - navH - 1, behavior: 'smooth' });
     };
 
     /* ─── EDITION SHEET ───────────────────────────────────────
@@ -710,6 +719,15 @@
     }
 
     function boot() {
+      if (!API) {
+        document.getElementById('grid').innerHTML = '';
+        document.getElementById('state').innerHTML =
+          '<div class="msg"><div class="msg-t">Not configured</div>' +
+          '<div class="msg-s">AFROCUE_SCRIPT_URL is missing, so there is no ' +
+          'directory to read. Check that afrocue.js loaded.</div></div>';
+        buildHero();
+        return;
+      }
       skeletons();
       fetch(API)
         .then(function (r) {
