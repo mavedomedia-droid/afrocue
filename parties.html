@@ -199,6 +199,49 @@
     .bio{font-size:14.5px;line-height:1.6;color:var(--off);margin-bottom:18px}
     .bio.none{color:var(--grey);font-style:italic}
 
+    /* ─── FEATURED SLOT ─────────────────────────────────────── */
+    .feat{position:relative;display:grid;grid-template-columns:1.15fr 1fr;gap:0;
+      border:1px solid var(--dark2);border-radius:var(--r-img);overflow:hidden;
+      background:var(--dark);margin-bottom:26px;text-align:left;width:100%}
+    @media(max-width:660px){ .feat{grid-template-columns:1fr} }
+    .feat-img{position:relative;aspect-ratio:16/10;background:var(--dark2);overflow:hidden}
+    .feat-img img{width:100%;height:100%;object-fit:cover}
+    .feat-b{padding:22px;display:flex;flex-direction:column;justify-content:center;gap:7px}
+    .feat-k{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--yellow)}
+    .feat-n{font-size:clamp(20px,3.4vw,27px);font-family:'Aesthet Nova','Figtree',sans-serif;
+      font-weight:900;color:var(--white);line-height:1.04}
+    .feat-m{font-size:13px;color:var(--silver)}
+    .feat-bio{font-size:13.5px;color:var(--off);line-height:1.55;
+      display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+    /* ─── COUNTDOWN ─────────────────────────────────────────── */
+    .cd{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;
+      letter-spacing:.04em;padding:6px 11px;border-radius:var(--r-pill);
+      border:1px solid var(--mid);color:var(--silver)}
+    .cd.today{border-color:var(--yellow);color:var(--yellow)}
+    .cd.soon{border-color:rgba(255,61,204,.5);color:var(--pink)}
+    .cd.dim{color:var(--grey)}
+
+    /* ─── PULSE + POSTS on the party panel ──────────────────── */
+    .pulse{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px}
+    .tag{font-size:11.5px;background:var(--dark2);border:1px solid var(--mid);
+      color:var(--silver);padding:5px 10px;border-radius:var(--r-pill)}
+    .tag.quiet{color:#ffb38a;border-color:rgba(255,179,138,.35)}
+    .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+    @media(max-width:520px){ .posts{grid-template-columns:repeat(2,1fr)} }
+    .post{display:block;border-radius:var(--r-sm);overflow:hidden;background:var(--dark2);
+      border:1px solid var(--dark2)}
+    .post img{width:100%;aspect-ratio:1;object-fit:cover}
+    .post-c{padding:7px 8px;font-size:11px;color:var(--grey);line-height:1.35;
+      display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+    /* ─── INTERESTED ────────────────────────────────────────── */
+    .int{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;
+      padding:11px 17px;border-radius:var(--r-pill);border:1px solid var(--mid);color:var(--white)}
+    .int:hover{border-color:var(--pink);color:var(--pink)}
+    .int.on{background:var(--pink);border-color:var(--pink);color:#fff}
+    .int svg{width:15px;height:15px}
+
     /* ─── STATES ─────────────────────────────────────────────── */
     .msg{text-align:center;padding:66px 20px;color:var(--silver)}
     .msg-t{font-size:17px;color:var(--white);margin-bottom:7px}
@@ -256,6 +299,7 @@
       <div class="sec-t" id="secT">Upcoming</div>
       <div class="sec-c" id="secC"></div>
     </div>
+    <div id="feat"></div>
     <div class="grid" id="grid"></div>
     <div id="state"></div>
   </section>
@@ -359,6 +403,55 @@
       var A = iso(d);
       var w = new Date(Date.UTC(+A.slice(0,4), +A.slice(5,7) - 1, +A.slice(8,10))).getUTCDay();
       return w === 5 || w === 6 || w === 0;
+    }
+
+    /* A live countdown, not just a date. The old page had this and it
+       is the single most useful thing on a listing: a reader scanning
+       wants to know how long they have, not what day it is. Doors
+       default to 21:00 when a time was not announced, because a Lagos
+       party at an unstated hour is a night party. */
+    function parseTime(t) {
+      var m = /(\d{1,2})(?::(\d{2}))?\s*(am|pm)?/i.exec(String(t || ''));
+      if (!m) return '';
+      var h = +m[1], mi = m[2] ? +m[2] : 0, ap = (m[3] || '').toLowerCase();
+      if (ap === 'pm' && h < 12) h += 12;
+      if (ap === 'am' && h === 12) h = 0;
+      if (h > 23 || mi > 59) return '';
+      return (h < 10 ? '0' : '') + h + ':' + (mi < 10 ? '0' : '') + mi;
+    }
+    function countdown(d, t) {
+      var A = iso(d);
+      if (!A) return null;
+      var when = new Date(A + 'T' + (parseTime(t) || '21:00') + ':00+01:00');
+      if (isNaN(when)) return null;
+      var ms = when - new Date();
+      if (ms <= 0) return { past: true };
+      return { d: Math.floor(ms / 864e5), h: Math.floor(ms % 864e5 / 36e5), past: false };
+    }
+    function toGo(e) {
+      if (e.state === 'cancelled') return { t: 'Cancelled', c: 'dim' };
+      var c = countdown(e.date, e.time);
+      if (!c) return { t: 'Date not announced', c: 'dim' };
+      if (c.past) return { t: 'Finished', c: 'dim' };
+      if (c.d === 0) return { t: c.h < 6 ? 'Happening now' : 'Tonight', c: 'today' };
+      if (c.d === 1) return { t: 'Tomorrow', c: 'today' };
+      if (c.d <= 14) return { t: c.d + ' days to go', c: 'soon' };
+      if (c.d <= 31) return { t: 'In ' + Math.ceil(c.d / 7) + ' weeks', c: '' };
+      return { t: fmt(e.date), c: '' };
+    }
+    /* Whether a party is alive. 60 days with no night, or a fortnight
+       since the scraper last managed to read them, is worth saying out
+       loud rather than letting a reader assume a dead page is current. */
+    function pulseTags(p) {
+      var out = [];
+      if (p.recurrence || p.day_of_week) {
+        out.push([p.recurrence, p.day_of_week].filter(Boolean).join(', '));
+      }
+      (p.genres || []).slice(0, 3).forEach(function (g) { out.push(g); });
+      (p.vibe_tags || []).slice(0, 2).forEach(function (g) { out.push(g); });
+      var n = daysOut(p.last_date);
+      if (n !== null && n < -60) out.push({ quiet: 'Nothing since ' + fmt(p.last_date) });
+      return out;
     }
 
     function esc(s) {
@@ -469,8 +562,44 @@
       }).join('');
     }
 
+    /* The Featured column on Parties, which is your editorial slot. It
+       only shows on Upcoming, and only when that party actually has a
+       night coming: a featured party with nothing announced is an
+       advert for an empty page. */
+    function renderFeatured() {
+      var host = document.getElementById('feat');
+      host.innerHTML = '';
+      if (VIEW !== 'upcoming' || QUERY) return;
+
+      var ids = Object.keys(PARTIES).filter(function (k) { return PARTIES[k].featured; });
+      if (!ids.length) return;
+
+      var pick = null, night = null;
+      for (var i = 0; i < ids.length && !pick; i++) {
+        var up = listFor('upcoming').filter(function (e) { return e.party_id === ids[i]; });
+        if (up.length) { pick = PARTIES[ids[i]]; night = up[0]; }
+      }
+      if (!pick || !night) return;
+
+      var img = edImage(night) || safeUrl(pick.hero_img) || safeUrl(pick.upcoming_flyer);
+      var go = toGo(night);
+
+      host.innerHTML = '<button class="feat" onclick="acOpenEdition(\'' + esc(night.id) + '\')">' +
+        (img ? '<div class="feat-img"><img src="' + esc(img) + '" alt=""/></div>' : '') +
+        '<div class="feat-b">' +
+          '<div class="feat-k">Featured</div>' +
+          '<div class="feat-n">' + esc(edTitle(night)) + '</div>' +
+          (edNamed(night) ? '<div class="feat-m">by ' + esc(pick.name) + '</div>' : '') +
+          '<div class="feat-m">' + esc(span(night.date, night.end_date)) +
+            (night.venue ? ' &middot; ' + esc(night.venue) : '') + '</div>' +
+          (pick.bio ? '<div class="feat-bio">' + esc(pick.bio) + '</div>' : '') +
+          '<div style="margin-top:6px"><span class="cd ' + go.c + '">' + esc(go.t) + '</span></div>' +
+        '</div></button>';
+    }
+
     function render() {
       renderTabs();
+      renderFeatured();
       var rows = listFor(VIEW);
       var v = VIEWS.filter(function (x) { return x.k === VIEW; })[0] || VIEWS[0];
       document.getElementById('secT').textContent = v.t;
@@ -511,8 +640,9 @@
         h += '<div class="sheet-hero"><img src="' + esc(img) + '" alt=""/><div class="sheet-hero-g"></div></div>';
       }
 
+      var go = toGo(e);
       h += '<div class="sheet-b">' +
-        (c ? '<div class="sheet-kick">' + c.t + '</div>' : '') +
+        '<div class="sheet-kick"><span class="cd ' + go.c + '">' + esc(go.t) + '</span></div>' +
         '<h2 class="sheet-t">' + esc(edTitle(e)) + '</h2>' +
         '<div class="sheet-sub">' +
           (edNamed(e)
@@ -545,11 +675,47 @@
 
       h += '<div class="btns">' +
         (tickets ? '<a class="btn btn-y" href="' + esc(tickets) + '" target="_blank" rel="noopener">Tickets</a>' : '') +
+        '<button class="int' + (marked(e.id) ? ' on' : '') + '" id="intBtn" onclick="acInterested(\'' + esc(e.id) + '\')">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+          '<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>' +
+          '<span id="intN">' + (Number(e.interested) || 0) + '</span></button>' +
         (source ? '<a class="btn btn-o" href="' + esc(source) + '" target="_blank" rel="noopener">The post</a>' : '') +
         (p.name ? '<button class="btn btn-o" onclick="acOpenParty(\'' + esc(e.party_id) + '\')">More on ' + esc(p.name) + '</button>' : '') +
       '</div></div>';
 
       openSheet(h, 'e-' + e.id);
+      ping('edview', e.id);
+    };
+
+    /* ?action=edview and ?action=edinterested have been sitting in
+       PartiesApi.gs unused, which is why the Editions tab's Views and
+       Interested columns are all zero. JSONP via a script tag because
+       Apps Script does not send CORS headers on a web app GET. */
+    function ping(action, id) {
+      if (!URL_BASE || !id) return;
+      try {
+        var cb = 'acCb' + Math.random().toString(36).slice(2, 8);
+        window[cb] = function () { try { delete window[cb]; } catch (err) {} };
+        var sc = document.createElement('script');
+        sc.src = URL_BASE + '?action=' + action + '&id=' + encodeURIComponent(id) + '&callback=' + cb;
+        sc.onload = sc.onerror = function () { sc.remove(); };
+        document.body.appendChild(sc);
+      } catch (err) { /* a stat is never worth an error on the page */ }
+    }
+    /* One per browser, so a reader cannot run the count up by tapping.
+       Wrapped because Safari in private mode throws on localStorage. */
+    function marked(id) {
+      try { return !!localStorage.getItem('ac_int_' + id); } catch (err) { return false; }
+    }
+    window.acInterested = function (id) {
+      if (marked(id)) return;
+      try { localStorage.setItem('ac_int_' + id, '1'); } catch (err) {}
+      var e = EDITIONS.filter(function (x) { return x.id === id; })[0];
+      if (e) e.interested = (Number(e.interested) || 0) + 1;
+      var b = document.getElementById('intBtn'), n = document.getElementById('intN');
+      if (b) b.classList.add('on');
+      if (n && e) n.textContent = Number(e.interested) || 0;
+      ping('edinterested', id);
     };
 
     function fact(k, v, cls) {
@@ -584,6 +750,15 @@
           (ig ? ' &middot; <a href="' + esc(ig) + '" target="_blank" rel="noopener">@' + esc(p.handle || '') + '</a>' : '') +
         '</div>';
 
+      var tags = pulseTags(p);
+      if (tags.length) {
+        h += '<div class="pulse">' + tags.map(function (t) {
+          return typeof t === 'string'
+            ? '<span class="tag">' + esc(t) + '</span>'
+            : '<span class="tag quiet">' + esc(t.quiet) + '</span>';
+        }).join('') + '</div>';
+      }
+
       h += p.bio
         ? '<div class="bio">' + esc(p.bio) + '</div>'
         : '<div class="bio none">No description yet.</div>';
@@ -597,11 +772,28 @@
           past.slice(0, 8).map(function (e) { return prow(e, true); }).join('') + '</div></div>';
       }
 
+      /* Ten columns on the Parties tab feed these three slots and the
+         rebuilt page rendered none of them, because the endpoint was
+         not sending them either. */
+      if ((p.posts || []).length) {
+        h += '<div class="blk"><div class="blk-k">Latest from ' + esc(p.name || pid) + '</div>' +
+          '<div class="posts">' + p.posts.slice(0, 3).map(function (po) {
+            var u = safeUrl(po.url);
+            return '<' + (u ? 'a class="post" href="' + esc(u) + '" target="_blank" rel="noopener"' : 'div class="post"') + '>' +
+              '<img src="' + esc(po.img) + '" alt="" loading="lazy"/>' +
+              (po.cap ? '<div class="post-c">' + esc(po.cap) + '</div>' : '') +
+              '</' + (u ? 'a' : 'div') + '>';
+          }).join('') + '</div></div>';
+      }
+
       h += '<div class="btns">' +
+        (safeUrl(p.ticket_url) ? '<a class="btn btn-y" href="' + esc(safeUrl(p.ticket_url)) + '" target="_blank" rel="noopener">Tickets</a>' : '') +
         (ig ? '<a class="btn btn-o" href="' + esc(ig) + '" target="_blank" rel="noopener">Instagram</a>' : '') +
+        (safeUrl(p.website) ? '<a class="btn btn-o" href="' + esc(safeUrl(p.website)) + '" target="_blank" rel="noopener">Website</a>' : '') +
       '</div></div>';
 
       openSheet(h, 'p-' + pid);
+      ping('view', pid);
     };
 
     function prow(e, isPast) {
