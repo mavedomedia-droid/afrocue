@@ -1813,7 +1813,11 @@
             /* The card always wears the franchise's identity image. A flyer is
                text-heavy and often light, so the party name becomes unreadable
                over it; the flyer belongs in the modal and the post grid. */
-            hero_img: f.hero_img,
+            /* A party with no identity image is an unclaimed page Donna
+               built. A flyer is a worse card than a proper hero, and far
+               better than an empty box, so it stands in until someone
+               claims the page and uploads one. */
+            hero_img: f.hero_img || e.flyer || f.upcoming_flyer || f.flyer_img || '',
             flyer_img:e.flyer, instagram:'https://instagram.com/'+(f.handle||''),
             /* the modal hero and the card show the same picture: the party's
                own image, never a post that happened to be scraped that week */
@@ -1840,7 +1844,8 @@
           next_party_date: next ? next.date : '', next_party_time: next ? next.time : '',
           last_party_date: last ? last.date : '',
           recurrence:provenRecurrence(f.id) || '', day_of_week:'',
-          hero_img:f.hero_img,
+          hero_img: f.hero_img || f.upcoming_flyer || f.flyer_img ||
+                    (next && next.flyer) || (eds[0] && eds[0].flyer) || '',
           instagram:'https://instagram.com/'+f.handle,
           /* a franchise does not have views of its own. It has the sum of
              what its nights pulled, which is the number that actually says
