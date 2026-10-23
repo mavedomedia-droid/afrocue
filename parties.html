@@ -55,6 +55,49 @@
     .nav-cta:hover{border-color:var(--off);background:rgba(212,212,208,0.08);color:var(--white)}
 
     /* HERO */
+    /* ── THE NIGHT HERO ───────────────────────────────────────
+       Full bleed, rotating through the next few announced nights.
+       Everything is .eh- prefixed so none of the existing .hero,
+       .featured or .upcoming rules below are touched. */
+    .eh{position:relative;min-height:60vh;display:flex;align-items:flex-end;overflow:hidden;
+      border-bottom:1px solid rgba(255,255,255,0.06)}
+    .eh-slides{position:absolute;inset:0;z-index:0}
+    .eh-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.1s cubic-bezier(.2,.7,.2,1)}
+    .eh-slide.on{opacity:1}
+    .eh-slide img{width:100%;height:100%;object-fit:cover;filter:saturate(.92) contrast(1.04)}
+    .eh-grad{position:absolute;inset:0;z-index:1;background:linear-gradient(to top,
+      var(--black) 2%,rgba(10,10,10,.84) 36%,rgba(10,10,10,.22) 72%,rgba(10,10,10,.5) 100%)}
+    .eh-tex{position:absolute;inset:0;z-index:1;background-image:url('texture.jpg');
+      background-size:cover;background-position:center;opacity:.18;pointer-events:none}
+    .eh-in{position:relative;z-index:2;width:100%;padding:104px 48px 44px}
+    .eh-k{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--yellow);margin-bottom:14px}
+    .eh-dot{width:6px;height:6px;border-radius:50%;background:var(--yellow);
+      box-shadow:0 0 0 4px rgba(200,224,0,.14)}
+    .eh-t{font-family:'Aesthet Nova',sans-serif;font-weight:900;color:var(--yellow);
+      text-shadow:var(--yts);line-height:.92;font-size:clamp(34px,6.4vw,76px);
+      margin:0 0 10px;max-width:17ch}
+    .eh-by{font-size:15px;color:rgba(240,237,232,.62);margin-bottom:7px}
+    .eh-by b{color:var(--white);font-weight:500}
+    .eh-m{font-size:13px;color:rgba(240,237,232,.45);display:flex;flex-wrap:wrap;
+      gap:6px 13px;margin-bottom:22px}
+    .eh-cta{display:inline-flex;align-items:center;gap:9px;background:var(--yellow);
+      color:#0a0a0a;font-weight:600;font-size:13px;padding:12px 21px;border-radius:2px;
+      border:0;cursor:pointer;transition:transform .18s cubic-bezier(.2,.7,.2,1)}
+    .eh-cta:hover{transform:translateY(-2px)}
+    .eh-pips{position:absolute;right:48px;bottom:48px;z-index:3;display:flex;gap:7px}
+    .eh-pip{width:22px;height:3px;border-radius:2px;border:0;padding:0;cursor:pointer;
+      background:rgba(240,237,232,.26);transition:background .3s}
+    .eh-pip.on{background:var(--yellow)}
+    @media(max-width:768px){
+      .eh{min-height:52vh}
+      .eh-in{padding:84px 16px 28px}
+      .eh-m{font-size:11.5px;margin-bottom:16px}
+      .eh-by{font-size:13px}
+      .eh-pips{right:16px;bottom:16px}
+    }
+    @media(prefers-reduced-motion:reduce){ .eh-slide{transition:none} .eh-cta:hover{transform:none} }
+
     .hero{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:100px 48px 52px;overflow:hidden;border-bottom:1px solid rgba(255,255,255,0.06)}
     .hero-photo{position:absolute;inset:-20px;z-index:0;background-size:cover;background-position:center;filter:blur(28px) brightness(0.35) saturate(0.6);transform:scale(1.08);transition:background-image 0.4s ease}
     .hero-bg{position:absolute;inset:0;z-index:1;background-image:url('texture.jpg');background-size:cover;background-position:center;opacity:0.4}
@@ -805,8 +848,25 @@
     </div>
   </div>
 
+  <!-- NIGHT HERO: rotates through the next announced nights -->
+  <section class="eh" id="eh" aria-label="Next up">
+    <div class="eh-slides" id="ehSlides"></div>
+    <div class="eh-grad"></div>
+    <div class="eh-tex"></div>
+    <div class="eh-in">
+      <div class="eh-k"><span class="eh-dot"></span><span id="ehKick">Next up</span></div>
+      <h1 class="eh-t" id="ehTitle">Parties.</h1>
+      <div class="eh-by" id="ehBy"></div>
+      <div class="eh-m" id="ehMeta"></div>
+      <button class="eh-cta" id="ehCta" type="button">See the night
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+    <div class="eh-pips" id="ehPips"></div>
+  </section>
+
   <!-- HERO -->
-  <div class="hero">
+  <div class="hero" style="padding-top:52px">
     <div class="hero-photo" id="heroBg"></div>
     <div class="hero-bg"></div>
     <div class="hero-content">
@@ -1322,6 +1382,13 @@
 
     /* joins */
     function fx(id){ for(var i=0;i<FRANCHISES.length;i++) if(FRANCHISES[i].id===id) return FRANCHISES[i]; return null; }
+    function byIdLookup(pid){
+      for(var i = 0; i < FRANCHISES.length; i++){
+        if(FRANCHISES[i].id === pid) return FRANCHISES[i];
+      }
+      return null;
+    }
+
     function edOf(pid){ return EDITIONS.filter(function(e){ return e.party_id===pid; })
       .sort(function(a,b){ return a.date < b.date ? 1 : -1; }); }
     function edById(id){ for(var i=0;i<EDITIONS.length;i++) if(EDITIONS[i].id===id) return EDITIONS[i]; return null; }
@@ -1385,6 +1452,9 @@
       var f = byId[e.party_id] || {};
       return {
         id: e.id, party_id: e.party_id, title: f.name || e.party_id,
+        /* The edition's own name, which apiToEdition was dropping. The
+           card still shows title, the night hero prefers this. */
+        ed_name: e.name || '',
         state: e.state, date: e.date, time: e.time,
         /* A two day party is ONE night with an end, not two nights.
            serveEditions has always sent this and the page threw it
@@ -1453,6 +1523,7 @@
         setView(V2.view, true);
         renderUpcoming(parsed.featured);
         initFeatured();
+        buildEHero();
       }).catch(function(err){
         console.warn('AfroCue: load failed (' + err + ')');
         showEmptyState('Could not load parties right now. Try again shortly.');
@@ -2169,6 +2240,95 @@
       closeModal();
       setTimeout(function(){ openModal(id); }, 180);
     }
+    /* ─── THE NIGHT HERO ──────────────────────────────────────
+       Reuses the page's own EDITIONS, v2Fmt, v2Span, toGo and
+       openEdition, so it stays in step with everything below it and
+       adds no second source of truth. */
+    var EH = { at: 0, list: [], timer: null, MS: 6000, MAX: 5 };
+
+    function ehName(e){ return e.ed_name || e.title || e.party_id || 'Untitled night'; }
+    function ehImg(e){
+      var f = (typeof byIdLookup === 'function' ? byIdLookup(e.party_id) : null) || {};
+      return e.flyer || f.upcoming_flyer || f.flyer_img || f.hero_img || '';
+    }
+    function ehPlace(e){
+      if(e.venue) return e.venue;
+      if(e.venue_held) return 'Address on the night';
+      return e.area || '';
+    }
+
+    function buildEHero(){
+      var today = v2Days ? null : null;
+      EH.list = EDITIONS.filter(function(e){
+        var n = v2Days(e.date);
+        return n !== null && n >= 0 && e.state === 'announced';
+      }).sort(function(a,b){ return a.date < b.date ? -1 : 1; });
+
+      var withArt = EH.list.filter(ehImg);
+      if(withArt.length) EH.list = withArt;
+      EH.list = EH.list.slice(0, EH.MAX);
+
+      var slides = document.getElementById('ehSlides');
+      var pips   = document.getElementById('ehPips');
+      if(!slides || !pips) return;
+
+      if(!EH.list.length){
+        document.getElementById('ehKick').textContent = 'Lagos';
+        document.getElementById('ehTitle').textContent = 'Parties.';
+        document.getElementById('ehBy').textContent = '';
+        document.getElementById('ehMeta').textContent = 'Nothing announced right now.';
+        document.getElementById('ehCta').style.display = 'none';
+        pips.innerHTML = '';
+        return;
+      }
+
+      slides.innerHTML = EH.list.map(function(e, i){
+        var img = ehImg(e);
+        return '<div class="eh-slide' + (i === 0 ? ' on' : '') + '">'
+          + (img ? '<img src="' + img + '" alt=""/>' : '') + '</div>';
+      }).join('');
+      pips.innerHTML = EH.list.map(function(_, i){
+        return '<button class="eh-pip' + (i === 0 ? ' on' : '') + '" type="button" '
+          + 'onclick="ehGo(' + i + ')" aria-label="Slide ' + (i + 1) + '"></button>';
+      }).join('');
+
+      EH.at = 0;
+      paintEHero();
+      if(EH.list.length > 1){
+        clearInterval(EH.timer);
+        EH.timer = setInterval(function(){ ehGo((EH.at + 1) % EH.list.length); }, EH.MS);
+      }
+    }
+
+    function paintEHero(){
+      var e = EH.list[EH.at];
+      if(!e) return;
+      var go = toGo(e.date, e.time, e.state === 'cancelled');
+
+      document.getElementById('ehKick').textContent = go.t;
+      document.getElementById('ehTitle').textContent = ehName(e);
+      document.getElementById('ehBy').innerHTML =
+        (e.ed_name && e.title && e.ed_name !== e.title) ? 'by <b>' + e.title + '</b>' : '';
+      document.getElementById('ehMeta').innerHTML = [
+        (typeof v2Span === 'function' ? v2Span(e.date, e.end_date) : v2Fmt(e.date))
+          + (e.time ? ' &middot; ' + e.time : ''),
+        ehPlace(e),
+        e.entry_free ? 'Free entry' : (e.entry || '')
+      ].filter(Boolean).join('<span style="color:var(--mid)">/</span>');
+
+      var cta = document.getElementById('ehCta');
+      cta.style.display = '';
+      cta.onclick = function(){ openEdition(e.id); };
+
+      [].forEach.call(document.querySelectorAll('.eh-slide'), function(x, i){
+        x.classList.toggle('on', i === EH.at);
+      });
+      [].forEach.call(document.querySelectorAll('.eh-pip'), function(x, i){
+        x.classList.toggle('on', i === EH.at);
+      });
+    }
+    function ehGo(i){ EH.at = i; paintEHero(); }
+
     function openEdition(id){
       var e = edById(id); if(!e || e.state === 'past') return;
       closeModal();
