@@ -1380,6 +1380,10 @@
       return {
         id: e.id, party_id: e.party_id, title: f.name || e.party_id,
         state: e.state, date: e.date, time: e.time,
+        /* A two day party is ONE night with an end, not two nights.
+           serveEditions has always sent this and the page threw it
+           away, so 19th-and-20th showed only the 19th. */
+        end_date: e.end_date || '',
         venue: e.venue, venue_held: !!e.venue_held, area: e.area,
         entry: e.entry, entry_free: !!e.entry_free,
         flyer: e.flyer || f.upcoming_flyer || f.flyer_img || '',
@@ -1558,6 +1562,29 @@
       var t=new Date(d+'T00:00:00+01:00'); if(isNaN(t)) return null;
       return Math.round((t - new Date(V2.today.toDateString()))/864e5); }
     function v2Fmt(d){ return acDay(acIso(d)); }
+
+    /* One party across two days reads as a range, not two dates.
+       The month is dropped from the first half when both fall in the
+       same one: "Sat. 19th - Sun. 20th Oct" rather than repeating it.
+       Falls back to the start date alone if the end is missing or not
+       actually after it, because a backwards range is a data error and
+       should not become a rendering bug. */
+    function v2Span(a, b){
+      var A = acIso(a), B = acIso(b);
+      if(!A) return '';
+      if(!B || B <= A) return v2Fmt(A);
+      var fa = acDay(A), fb = acDay(B);
+      if(!fa) return '';
+      if(!fb) return fa;
+      var ma = A.slice(0,7), mb = B.slice(0,7);
+      if(ma === mb){
+        /* strip the trailing month (and any year) off the first half */
+        var cut = fa.replace(/\s+\S+$/, '');
+        if(/\d{4}$/.test(fa)) cut = fa.replace(/\s+\S+\s+\d{4}$/, '');
+        if(cut && cut !== fa) return cut + ' - ' + fb;
+      }
+      return fa + ' - ' + fb;
+    }
     function v2Dormant(p){ var n=v2Days(p.last_party_date); return n!==null && n < -60; }
     function v2Stale(p){ var n=v2Days(p.last_success_at); return n!==null && n < -14; }
 
@@ -2070,7 +2097,7 @@
             +  '<span class="cd-line '+fg.cls+'" id="cdLine">'+fg.t
             +  (next.time ? '<small>'+next.time+'</small>' : '')+'</span></div>';
         h += '<div class="m-next">'
-          + factCell('Date', v2Fmt(next.date) + (next.time ? ' &middot; '+next.time : ''), PH.date, 'hl')
+          + factCell('Date', v2Span(next.date, next.end_date) + (next.time ? ' &middot; '+next.time : ''), PH.date, 'hl')
           + factCell('Venue', next.venue, next.venue_held ? PH.venueHeld : PH.venue,
               '', (!next.venue && next.area) ? 'in '+next.area : '')
           + factCell('Entry', next.entry, PH.entry, next.entry_free ? 'hl' : '')
@@ -2090,7 +2117,7 @@
           + eds.slice(0,10).map(function(e){
               var up = v2Days(e.date) >= 0 && e.state==='announced';
               return '<div class="m-hist-row'+(up?' next':'')+'" onclick="openEdition(\''+e.id+'\')">'
-                +  '<span class="m-hist-d">'+v2Fmt(e.date)+'</span>'
+                +  '<span class="m-hist-d">'+v2Span(e.date, e.end_date)+'</span>'
                 +  '<span class="m-hist-n">'+(e.venue || e.area || '<span class="ph ph-'+(e.venue_held?'held':'pending')+'">'
                    +(e.venue_held?PH.venueHeld.t:PH.venue.t)+'</span>')+'</span>'
                 +  '<span class="m-hist-t">'+(e.state==='cancelled'?'Cancelled':(up?'Upcoming':(e.entry||'')))+'</span>'
