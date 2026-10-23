@@ -1007,7 +1007,6 @@
     if (!GAS_WEBAPP_URL) {
       console.error('AfroCue: AFROCUE_SCRIPT_URL is not set. Did afrocue.js load?');
     }
-    var CSV_URL = GAS_WEBAPP_URL + '?export=csv';
 
     function getGasUrl(){ return GAS_WEBAPP_URL; }
 
@@ -1251,57 +1250,11 @@
     function edById(id){ for(var i=0;i<EDITIONS.length;i++) if(EDITIONS[i].id===id) return EDITIONS[i]; return null; }
 
     /* ── Sheet to page ────────────────────────────────────────────
-       Two sources. The Parties tab arrives as CSV and carries every
-       column including the three scraped posts. The nights arrive as
-       JSON from ?export=editions, which already drops anything past
-       the 120 day window.
+       One source. ?export=editions returns the Parties and Editions
+       tabs together, already trimmed to the 120 day window. The CSV
+       path that used to sit here is gone: publishing the Parties tab
+       would have exposed its Contact Email column permanently.
        ──────────────────────────────────────────────────────────── */
-
-    function csvHandle(url){
-      var m = String(url || '').match(/instagram\.com\/([^\/?#]+)/i);
-      return m ? m[1].toLowerCase() : '';
-    }
-
-    /* The three posts the pull rehosted, newest first. Latest Post has
-       no Type column of its own, so a filled Latest Reel URL is what
-       marks the newest one as a reel. */
-    function csvPosts(p){
-      var out = [];
-      var slots = [
-        [p.latest_post_image, p.latest_post_caption, p.latest_post_url,
-         p.latest_reel_url ? 'reel' : 'post'],
-        [p.post2_image, p.post2_caption, p.post2_url, p.post2_type],
-        [p.post3_image, p.post3_caption, p.post3_url, p.post3_type]
-      ];
-      slots.forEach(function(s){
-        if(!s[0]) return;
-        out.push({
-          img: s[0], cap: s[1] || '', url: s[2] || '#',
-          kind: String(s[3] || '').toLowerCase() === 'reel' ? 'reel' : 'post'
-        });
-      });
-      return out;
-    }
-
-    function csvToFranchise(p){
-      return {
-        id: p.id, name: p.name, handle: csvHandle(p.instagram),
-        city: p.city || 'Lagos', ticked: true,
-        organiser: p.organiser, area: p.area, home_venue: p.venue,
-        bio: p.description, recurrence: p.recurrence, day_of_week: p.day_of_week,
-        genres: p.genres || [], vibe_tags: p.vibe_tags || [],
-        hero_img: p.hero_img, flyer_img: p.flyer_img,
-        website: p.website, ticket_url: p.ticket_url,
-        views: p.views, likes: p.likes, featured: p.featured,
-        next_party_date: p.next_party_date, next_party_time: p.next_party_time,
-        last_party_date: p.last_party_date,
-        upcoming_flyer: p.upcoming_flyer, upcoming_date: p.upcoming_date,
-        pulse_confidence: p.pulse_confidence,
-        last_success_at: p.last_success_at || p.last_scraped_at || '',
-        posts: csvPosts(p),
-        editions_seen: 0        /* counted once the nights are in */
-      };
-    }
 
     /* serveEditions names it confidence, the card reads flyer_confidence,
        and its lineup is plain names where the card wants objects. */
@@ -1310,9 +1263,21 @@
       return {
         id: e.id, party_id: e.party_id, title: f.name || e.party_id,
         /* The edition's own name, which apiToEdition was dropping. The
-           card still shows title, the night hero prefers this. */
+           card leads with this and puts the franchise above it. */
         ed_name: e.name || '',
-        state: e.state, date: e.date, time: e.time,
+        /* The Time column on Editions carries date formatting, so an
+           empty cell comes through as the Sheets zero date and the
+           page would print "12/30/1899" as the door time. Three rows
+           are like that today. */
+        _time_raw: e.time || '',
+        state: e.state, date: e.date,
+        time: (function (t) {
+          t = String(t == null ? '' : t).trim();
+          if (!t) return '';
+          if (/1899/.test(t)) return '';                      // Sheets zero date
+          if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(t)) return '';  // a bare date is not a time
+          return t;
+        })(e.time),
         /* A two day party is ONE night with an end, not two nights.
            serveEditions has always sent this and the page threw it
            away, so 19th-and-20th showed only the 19th. */
@@ -1371,6 +1336,14 @@
               : 'the endpoint returned something that is not JSON.');
           }
 
+          /* serveEditions wraps its whole body in a try/catch and returns
+             { error } on a throw, with no editions and no build. Reading
+             that as "old code is deployed" blamed the deployment for a
+             fault in the sheet. Print what the server actually said. */
+          if(d && d.error){
+            throw new Error('the sheet refused: ' + d.error);
+          }
+
           if(!d || !d.editions){
             throw new Error('the endpoint answered but sent no editions. '
               + (d && d.build ? 'It reported build "' + d.build + '". '
@@ -1407,9 +1380,7 @@
         });
     }
 
-    /* The API's party shape to the one the cards already expect. The
-       CSV equivalent, csvToFranchise, is left in the file unused
-       rather than deleted, in case you want the CSV path back. */
+    /* The API's party shape to the one the cards already expect. */
     function apiToFranchise(p){
       return {
         id: p.id, name: p.name, handle: p.handle,
@@ -1690,7 +1661,9 @@
       var c = v2Countdown(dateStr, timeStr);
       if(!c) return {t:'Date not announced', cls:'dim'};
       if(c.past) return {t:'Finished', cls:'dim'};
-      if(c.d === 0) return {t:(c.h < 6 ? 'Happening now' : 'Happening today'), cls:'today'};
+      /* "Happening now" at 4pm for a 9pm door is wrong. A night is
+         today until it is finished, whatever the clock says. */
+      if(c.d === 0) return {t:'Happening today', cls:'today'};
       if(c.d === 1) return {t:'Tomorrow', cls:'today'};
       if(c.d <= 14) return {t:c.d + ' days to go', cls:''};
       if(c.d <= 31) return {t:'In ' + Math.ceil(c.d/7) + ' weeks', cls:''};
@@ -1820,14 +1793,23 @@
         .map(function(e){
           var f = fx(e.party_id) || {};
           return {
-            _kind:'edition', id:e.id, name:e.title, party_id:e.party_id,
+            /* The night's own name is the card: "Mi Casa", not "Our House
+               NG". Two Kultur People nights in one week were otherwise two
+               identical cards. The franchise goes on the line beneath. */
+            _kind:'edition', id:e.id, name:(e.ed_name || e.title), party_id:e.party_id,
             franchise:f.name, organiser:f.organiser,
             city:f.city || 'Lagos', area:e.area || f.area, venue:e.venue,
             venue_held:!!e.venue_held, last_read:e.last_read, ticked:f.ticked,
             genres:f.genres || [], vibe_tags:f.vibe_tags || [],
             entry:e.entry, entry_free:e.entry_free,
             next_party_date:e.date, next_party_time:e.time,
-            last_party_date:'', recurrence:'', day_of_week:'',
+            /* A night has no "last party" of its own, so Party Pulse reads
+               the franchise's: when this party last ran, and how far Donna
+               trusts what she scraped. Without these the panel said
+               "unavailable" three times over, which is why it was hidden. */
+            last_party_date: f.last_party_date || '',
+            pulse_confidence: f.pulse_confidence || '',
+            recurrence:'', day_of_week:'',
             /* The card always wears the franchise's identity image. A flyer is
                text-heavy and often light, so the party name becomes unreadable
                over it; the flyer belongs in the modal and the post grid. */
@@ -2290,7 +2272,8 @@
            is a reason to open it, not something to read in the grid. */
         var sub = party._kind === 'franchise'
           ? (partyWhen(party) || party.organiser || '')
-          : (party.organiser || '');
+          : ((party.franchise && party.franchise !== party.name)
+              ? party.franchise : (party.organiser || ''));
         content.innerHTML = '<div class="party-card-tags">'+tagHTML+'</div>'
           + (sub ? '<div class="card-franchise">'+sub+'</div>' : '')
           + '<div class="party-card-name">'+party.name+'</div>'
@@ -2558,12 +2541,13 @@
       document.getElementById('modalCity').textContent = party.city;
       document.getElementById('modalDesc').textContent = party.description;
       v2FillModal(party);
-      /* The countdown band and post grid now carry what Party Pulse and the
-         single flyer slot used to. Both stay for a franchise, where there is
-         no edition-level countdown above them. */
+      /* Party Pulse was hidden on a night because the countdown band above
+         repeats the date. It carries two things that band does not: when the
+         party last ran, and the confidence on what was read. Both belong on
+         a night page, so it stays on both now. */
       var isEdition = party._kind === 'edition';
       var pulse = document.getElementById('partyPulse');
-      if(pulse) pulse.style.display = isEdition ? 'none' : '';
+      if(pulse) pulse.style.display = '';
       var lower = document.querySelector('.modal-lower');
       if(lower) lower.style.display = (isEdition && (party.posts||[]).length) ? 'none' : '';
       document.getElementById('viewCountNum').textContent = party.views || 0;
