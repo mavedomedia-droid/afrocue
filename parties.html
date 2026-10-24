@@ -514,6 +514,15 @@
     .party-pulse-key { display:block;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:#555;margin-bottom:6px; }
     .party-pulse-value { display:block;font-size:16px;font-weight:500;color:#f0ede8;opacity:0;animation:fadeInValue 0.6s ease forwards; }
     @keyframes fadeInValue { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
+    .party-pulse-value.is-now { color:var(--yellow);font-weight:700;text-shadow:var(--yts); }
+    .cd-tonight { font-family:'Figtree',sans-serif;font-size:10px;font-weight:800;
+      letter-spacing:.12em;text-transform:uppercase;font-style:normal;color:var(--yellow); }
+    .m-parent-img { width:52px;height:52px;flex-shrink:0;border-radius:6px;object-fit:cover;
+      background:#0d0d0d;border:1px solid rgba(255,255,255,0.08); }
+    .m-parent-main { flex:1;min-width:140px; }
+    .m-parent-stats { margin-top:6px;font-size:11px;color:var(--grey);line-height:1.5; }
+    .m-parent-stats b { color:var(--silver);font-weight:600; }
+    .m-parent-sep { color:rgba(255,255,255,0.18);margin:0 7px; }
     .party-pulse-confidence { margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:8px;font-size:10px;position:relative;z-index:2;flex-wrap:wrap; }
     .confidence-label { letter-spacing:0.15em;text-transform:uppercase;color:#555; }
     .confidence-badge { font-weight:600;padding:2px 8px;border-radius:10px;letter-spacing:0.06em; }
@@ -785,12 +794,12 @@
           <div class="party-pulse-scan"></div>
           <div class="party-pulse-grid">
             <div class="party-pulse-col">
-              <span class="party-pulse-key">Last party</span>
-              <span class="party-pulse-value" id="pulseLastParty">unavailable</span>
+              <span class="party-pulse-key" id="pulseKeyLast">Last party</span>
+              <span class="party-pulse-value" id="pulseLastParty">Not available</span>
             </div>
             <div class="party-pulse-col">
-              <span class="party-pulse-key">Next party</span>
-              <span class="party-pulse-value" id="pulseNextParty">unavailable</span>
+              <span class="party-pulse-key" id="pulseKeyNext">Next party</span>
+              <span class="party-pulse-value" id="pulseNextParty">Not available</span>
             </div>
             <div class="party-pulse-col">
               <span class="party-pulse-key">Countdown</span>
@@ -1660,7 +1669,15 @@
       if(cancelled) return {t:'Cancelled', cls:'off'};
       var c = v2Countdown(dateStr, timeStr);
       if(!c) return {t:'Date not announced', cls:'dim'};
-      if(c.past) return {t:'Finished', cls:'dim'};
+      /* "Finished" the morning after is useless. For two days a night
+         says when it was, so the weekend still reads as a weekend. */
+      if(c.past){
+        var was = v2Days(dateStr);
+        if(was === 0)  return {t:'Ended earlier',        cls:'past'};
+        if(was === -1) return {t:'Finished last night',  cls:'past'};
+        if(was === -2) return {t:'Finished ' + v2Weekday(dateStr), cls:'past'};
+        return {t:'Finished', cls:'dim'};
+      }
       /* "Happening now" at 4pm for a 9pm door is wrong. A night is
          today until it is finished, whatever the clock says. */
       if(c.d === 0) return {t:'Happening today', cls:'today'};
@@ -1723,11 +1740,16 @@
        the detail is what is missing. */
     var PH = {
       nextDate:  {t:'Next date not announced',    k:'pending'},
-      venue:     {t:'Not announced yet',          k:'pending'},
-      venueHeld: {t:'Given out on the night',     k:'held'},
-      entry:     {t:'Not announced yet',          k:'pending'},
-      city:      {t:'Not confirmed',              k:'pending'},
-      lineup:    {t:'No lineup announced yet',    k:'pending'},
+      /* These said "Not announced yet", which claims to know what the
+         organiser has done. They almost certainly have announced it; we
+         just do not hold it. Say that, and point at the only place that
+         is the final word. */
+      venue:     {t:'Not available, check their profile', k:'pending'},
+      venueHeld: {t:'Given out on the night',             k:'held'},
+      entry:     {t:'Not available, check their profile', k:'pending'},
+      city:      {t:'Not available, check their profile', k:'pending'},
+      lineup:    {t:'Not available, check their profile', k:'pending'},
+      doors:     {t:'Not available, check their profile', k:'pending'},
       summary:   {t:'Nothing new on their page since the announcement', k:'looking'}
     };
     function phHTML(ph){ return '<span class="ph ph-'+ph.k+'">'+ph.t+'</span>'; }
@@ -1789,7 +1811,12 @@
        already stops at 120 days back. A night that happened last week
        is still the best reason to look at a party. */
     function liveEditions(){
+      /* serveEditions sends 120 days of history so the party pages have
+         something to show. The directory is about what is on, so a night
+         stays for two more days and then goes: a Friday is still there on
+         Sunday, gone on Monday. */
       return EDITIONS.slice()
+        .filter(function(e){ var n = v2Days(e.date); return n === null || n >= -2; })
         .map(function(e){
           var f = fx(e.party_id) || {};
           return {
@@ -1906,12 +1933,18 @@
     /* countdown, recomputed on open and ticked once a minute */
     function v2Countdown(dateStr, timeStr){
       if(!dateStr) return null;
-      var t = new Date(dateStr + 'T' + (parseTime(timeStr) || '21:00') + ':00+01:00');
+      /* No door time means no door time. Anchoring an unknown start at
+         21:00 made the page print "9 HRS" on a night nobody had given us
+         a time for, which is an invented fact dressed as precision. An
+         untimed night runs to the end of its own day, and `timed` tells
+         the card never to show an hour count for it. */
+      var hhmm = parseTime(timeStr);
+      var t = new Date(dateStr + 'T' + (hhmm || '23:59') + ':00+01:00');
       if(isNaN(t)) return null;
       var ms = t - new Date();
-      if(ms <= 0) return {past:true};
+      if(ms <= 0) return {past:true, timed:!!hhmm};
       var d = Math.floor(ms/864e5), h = Math.floor(ms%864e5/36e5), m = Math.floor(ms%36e5/6e4);
-      return {d:d, h:h, m:m, past:false};
+      return {d:d, h:h, m:m, past:false, timed:!!hhmm};
     }
     function parseTime(t){
       if(!t) return null;
@@ -1940,6 +1973,22 @@
       var dd = Math.round(hh/24);
       return dd===1 ? 'yesterday' : dd+' days ago';
     }
+    /* "3 hours ago" from an ISO timestamp, for how fresh a read is. */
+    function v2Since(iso){
+      var t = new Date(iso); if(isNaN(t)) return '';
+      var mins = Math.round((new Date() - t) / 60000);
+      if(mins < 2)    return 'just now';
+      if(mins < 60)   return mins + ' minutes ago';
+      var hrs = Math.round(mins / 60);
+      if(hrs < 24)    return hrs + ' hour' + (hrs === 1 ? '' : 's') + ' ago';
+      var days = Math.round(hrs / 24);
+      return days + ' day' + (days === 1 ? '' : 's') + ' ago';
+    }
+    function v2Weekday(d){
+      var iso = acIso(d); if(!iso) return '';
+      var t = new Date(iso + 'T12:00:00+01:00'); if(isNaN(t)) return '';
+      return ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][t.getDay()];
+    }
     function v2Ago(d){
       var n=v2Days(d); if(n===null) return '';
       if(n===0) return 'today'; if(n===-1) return 'yesterday';
@@ -1954,6 +2003,13 @@
       var w=document.createElement('div'); w.id='v2ModalBlock';
       w.innerHTML = (p._kind === 'franchise') ? franchiseBody(p) : editionBody(p);
       host.parentNode.insertBefore(w, host.nextSibling);
+
+      /* Party Pulse sat under the facts, repeating the date that block
+         had already printed. Above them it becomes the header: when they
+         last ran, this night highlighted, and how long to go. */
+      var pulseEl = document.getElementById('partyPulse');
+      if(pulseEl) w.parentNode.insertBefore(pulseEl, w);
+
       startTick(p);
       /* mirror the flyer's dominant colour onto AfroCue's furniture */
       applyAccent(p.palette || null);
@@ -1996,17 +2052,16 @@
           +  ' Their own page is the final word.</div>';
       }
 
-      /* the facts. Date, venue, entry, city. Area rides under the
-         venue when we know it, because "Lekki" is useful even on a
-         night where the room itself is still a secret. */
-      h += '<div class="m-next">'
-        + factCell('Date',
-            p.next_party_date ? v2Fmt(p.next_party_date)
-              + (p.next_party_time ? ' &middot; '+p.next_party_time : '') : '',
-            PH.date, 'hl')
+      /* Venue, tickets, city. The date is gone from here: Party Pulse
+         now sits above this block and already carries it, highlighted,
+         so printing it twice was just noise. Area rides under the venue
+         when we know it, because "Lekki" is useful even on a night where
+         the room itself is still a secret. */
+      h += '<div class="m-next m-next-3">'
+        + factCell('Doors', p.next_party_time, PH.doors, 'hl')
         + factCell('Venue', p.venue, p.venue_held ? PH.venueHeld : PH.venue,
             '', (!p.venue && p.area) ? 'in '+p.area : '')
-        + factCell('Entry', p.entry, PH.entry, p.entry_free ? 'hl' : '')
+        + factCell('Tickets', p.entry, PH.entry, p.entry_free ? 'hl' : '')
         + factCell('City',  p.city,  PH.city)
         + '</div>';
 
@@ -2035,11 +2090,30 @@
       var f = fx(p.party_id);
       if(f){
         var same = (f.name || '').toLowerCase() === (p.name || '').toLowerCase();
-        h += '<div class="m-parent"><div>'
-          +    '<div class="m-parent-l">'+(same ? 'The party' : 'Part of')+'</div>'
-          +    '<div class="m-parent-n">'+f.name+'</div></div>'
-          +  '<button class="m-parent-b" onclick="openFranchise(\''+f.id+'\')">'
-          +    (same ? 'Every edition' : 'See the party') + '</button>'
+
+        /* This block was a name and a button, which told a reader nothing
+           they could not already see. The party's activity lives here now,
+           so the block is worth looking at without opening it. */
+        var bits = [];
+        if(f.editions_seen) bits.push('<b>'+f.editions_seen+'</b> night'
+          + (f.editions_seen === 1 ? '' : 's') + ' tracked');
+        if(f.views)      bits.push('<b>'+f.views+'</b> view' + (f.views === 1 ? '' : 's'));
+        if(f.interested) bits.push('<b>'+f.interested+'</b> interested');
+        var read = p.last_read ? v2Since(p.last_read) : '';
+        if(read) bits.push('read ' + read);
+
+        var art = f.hero_img || p.flyer || '';
+        h += '<div class="m-parent">'
+          + (art ? '<img class="m-parent-img" src="'+art+'" alt="" loading="lazy" '
+                 + 'onerror="this.style.display=\'none\'"/>' : '')
+          + '<div class="m-parent-main">'
+          +   '<div class="m-parent-l">'+(same ? 'The party' : 'Organisers')+'</div>'
+          +   '<div class="m-parent-n">'+f.name+'</div>'
+          +   (bits.length ? '<div class="m-parent-stats">'
+                + bits.join('<span class="m-parent-sep">/</span>') + '</div>' : '')
+          + '</div>'
+          + '<button class="m-parent-b" onclick="openFranchise(\''+f.id+'\')">'
+          +   (same ? 'Every edition' : 'See the party') + '</button>'
           + '</div>';
       }
       return h;
@@ -2074,7 +2148,7 @@
           + factCell('Date', v2Span(next.date, next.end_date) + (next.time ? ' &middot; '+next.time : ''), PH.date, 'hl')
           + factCell('Venue', next.venue, next.venue_held ? PH.venueHeld : PH.venue,
               '', (!next.venue && next.area) ? 'in '+next.area : '')
-          + factCell('Entry', next.entry, PH.entry, next.entry_free ? 'hl' : '')
+          + factCell('Tickets', next.entry, PH.entry, next.entry_free ? 'hl' : '')
           + factCell('City',  p.city,     PH.city)
           + '</div>';
         if(next.summary) h += '<div class="donna-k"><span class="sig-dot"></span>What <b>Donna</b> knows</div>'
@@ -2285,11 +2359,9 @@
           + '<div class="party-card-meta">'+(party.area || 'Lagos')+'</div>'
           + (party._kind === 'edition'
               ? (function(){ var g = toGo(party.next_party_date, party.next_party_time, party.cancelled);
-                  var pd = v2Days(party.next_party_date);
-                  if(!party.cancelled && pd !== null && pd < 0){
-                    var ago = v2Ago(party.next_party_date);
-                    g = { t: ago.charAt(0).toUpperCase() + ago.slice(1), cls:'past' };
-                  }
+                  /* This used to overwrite toGo with "Yesterday", which says
+                     when but not what. toGo now owns the past wording and
+                     says "Finished last night", so the override is gone. */
                   return '<div class="card-togo '+g.cls+'">'+g.t
                     + (party.next_party_time && g.cls !== 'dim' && g.cls !== 'off' && g.cls !== 'past'
                         ? '<small>'+party.next_party_time+'</small>' : '') + '</div>'; })()
@@ -2302,8 +2374,10 @@
         if(cdv && !cdv.past && cdv.d <= 30){
           var cd = document.createElement('div');
           cd.className = 'card-cd' + (cdv.d === 0 ? ' live' : (cdv.d <= 3 ? ' soon' : ''));
-          cd.innerHTML = cdv.d > 0 ? '<b>'+cdv.d+'</b><i>day'+(cdv.d===1?'':'s')+'</i>'
-                                   : '<b>'+cdv.h+'</b><i>hrs</i>';
+          cd.innerHTML = cdv.d > 0
+            ? '<b>'+cdv.d+'</b><i>day'+(cdv.d===1?'':'s')+'</i>'
+            : (cdv.timed ? '<b>'+cdv.h+'</b><i>hrs</i>'
+                         : '<i class="cd-tonight">Tonight</i>');
           card.appendChild(cd);
         }
 
@@ -2564,8 +2638,15 @@
       var pulseLast = document.getElementById('pulseLastParty');
       var pulseNext = document.getElementById('pulseNextParty');
       var pulseCount = document.getElementById('pulseCountdown');
-      pulseLast.textContent = v2Fmt(party.last_party_date) || 'unavailable';
-      pulseNext.textContent = v2Fmt(party.next_party_date) || 'unavailable';
+      /* On a night, the middle column IS this night, so it is labelled
+         and lit as such. On a party page it is still the next one. */
+      var kLast = document.getElementById('pulseKeyLast');
+      var kNext = document.getElementById('pulseKeyNext');
+      if(kLast) kLast.textContent = isEdition ? 'They last ran' : 'Last party';
+      if(kNext) kNext.textContent = isEdition ? 'This night'    : 'Next party';
+      pulseLast.textContent = v2Fmt(party.last_party_date) || 'Not available';
+      pulseNext.textContent = v2Fmt(party.next_party_date) || 'Not available';
+      pulseNext.className = 'party-pulse-value' + (isEdition ? ' is-now' : '');
       if(party.next_party_date){
         try{
           var nextDate = new Date(party.next_party_date);
