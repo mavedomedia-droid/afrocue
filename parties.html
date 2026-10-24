@@ -743,6 +743,389 @@
       .party-card:hover,.rail-card:hover,.featured-slot:hover,
       .m-post:hover,.latest-post-card:hover,.modal-other-card:hover{transform:none}
     }
+
+    /* ══ ONE HERO, AND A CARD DENSE ENOUGH TO SCAN ═══════════════════
+       Everything below overrides rules written when this page had two
+       heroes and a two-up phone grid. Kept as a block at the end rather
+       than edited in place, so what changed is readable in one go.
+       ═══════════════════════════════════════════════════════════════ */
+
+    .hero { padding:96px 48px 56px; align-items:center }
+    .hero-desc { margin-bottom:0 }
+
+    .featured-col { gap:0 }
+    .featured-slot {
+      aspect-ratio:4/3; border-radius:16px;
+      border:1px solid rgba(255,255,255,.09);
+      box-shadow:0 24px 60px rgba(0,0,0,.45);
+    }
+    .featured-slot-grad {
+      background:linear-gradient(to top,
+        rgba(8,8,7,.94) 0%, rgba(8,8,7,.74) 34%,
+        rgba(8,8,7,.22) 62%, transparent 100%);
+    }
+    .featured-slot-content {
+      padding:0 26px 24px; padding-right:26px;
+      display:flex; flex-direction:column; align-items:flex-start; gap:0;
+    }
+    .featured-k {
+      display:inline-flex; align-items:center; gap:8px; margin-bottom:10px;
+      font-size:10px; font-weight:700; letter-spacing:.18em;
+      text-transform:uppercase; color:var(--yellow);
+    }
+    .featured-livedot {
+      width:5px; height:5px; border-radius:50%; background:var(--yellow);
+      box-shadow:0 0 0 0 rgba(200,224,0,.55);
+    }
+    .featured-slot.is-today .featured-livedot { animation:fPulse 1.8s infinite }
+    @keyframes fPulse {
+      0%   { box-shadow:0 0 0 0 rgba(200,224,0,.5) }
+      70%  { box-shadow:0 0 0 7px rgba(200,224,0,0) }
+      100% { box-shadow:0 0 0 0 rgba(200,224,0,0) }
+    }
+    .featured-name {
+      font-size:clamp(26px,3.4vw,46px); line-height:.94; margin:0;
+      letter-spacing:-.01em;
+    }
+    .featured-by {
+      margin-top:9px; font-size:13px; font-weight:300;
+      color:rgba(240,237,232,.62);
+    }
+    .featured-by b { color:var(--white); font-weight:600 }
+    .featured-meta {
+      margin-top:7px; font-size:11.5px; font-weight:300; letter-spacing:.02em;
+      color:rgba(240,237,232,.46); line-height:1.5;
+    }
+    .featured-sep { color:rgba(255,255,255,.18); margin:0 9px }
+    .featured-cta {
+      margin-top:18px; display:inline-flex; align-items:center; gap:7px;
+      font-family:'Figtree',sans-serif; font-size:11px; font-weight:800;
+      letter-spacing:.1em; text-transform:uppercase;
+      color:var(--black); background:var(--yellow);
+      border:0; border-radius:3px; padding:11px 16px; cursor:pointer;
+      transition:transform .2s var(--ease), background .2s;
+    }
+    .featured-cta:hover { transform:translateY(-1px); background:var(--white) }
+    .featured-slot.is-promo .featured-k { color:#E8C547 }
+    .featured-slot.is-promo .featured-livedot { background:#E8C547 }
+    .featured-slot.is-promo .featured-name { color:var(--white); text-shadow:2px 3px 0 rgba(0,0,0,.9) }
+    .featured-slot.is-promo .featured-cta { background:#E8C547 }
+
+    /* Bars, not dots. They read as progress rather than decoration. */
+    .featured-pips {
+      position:absolute; z-index:5; right:22px; bottom:26px;
+      display:flex; gap:5px;
+    }
+    .featured-pip {
+      width:16px; height:3px; border-radius:2px; border:0; padding:0;
+      background:rgba(255,255,255,.26); cursor:pointer;
+      transition:background .25s, width .25s var(--ease);
+    }
+    .featured-pip.on { background:var(--yellow); width:26px }
+
+    /* ── PHONE ──────────────────────────────────────────────────────
+       The hero stacks, and the grid goes to three across. At ~115px a
+       card cannot carry tags or the AfroCue watermark, so those go and
+       everything that identifies the night stays: countdown, party,
+       name, area, how long to go. */
+    @media(max-width:768px){
+      .hero { grid-template-columns:1fr; gap:22px; padding:92px 16px 26px }
+      .hero h1 { font-size:clamp(34px,11vw,52px); margin-bottom:10px }
+      .hero-desc { font-size:12px; max-width:none }
+      .featured-col { padding-top:0 }
+      .featured-slot { aspect-ratio:16/10; max-height:none; border-radius:14px }
+      .featured-slot-content { padding:0 18px 18px }
+      .featured-name { font-size:clamp(24px,7.4vw,34px) }
+      .featured-by { font-size:12px; margin-top:7px }
+      .featured-meta { font-size:10.5px }
+      .featured-cta { margin-top:14px; padding:10px 14px; font-size:10px }
+      .featured-pips { right:16px; bottom:16px }
+
+      .parties-grid { grid-template-columns:repeat(3,1fr); gap:5px }
+      .party-card-content { padding:9px 7px 10px }
+      .party-card-tags,
+      .party-card-logo,
+      .party-card-stats { display:none }
+      .card-franchise { font-size:7px; letter-spacing:.1em; margin-bottom:2px }
+      .party-card-name { font-size:13px; line-height:1.04; margin-bottom:3px }
+      .party-card-meta { font-size:8px; margin-bottom:2px }
+      .card-togo { font-size:8.5px; letter-spacing:.01em }
+      .card-togo small { display:none }
+      .card-cd { top:6px; left:6px; padding:3px 5px }
+      .card-cd b { font-size:12px }
+      .card-cd i { font-size:6.5px }
+      .card-cd .cd-tonight { font-size:7px; letter-spacing:.08em }
+      .card-flag { font-size:6.5px; padding:2px 4px; top:6px; right:6px }
+      .pr-card-flag { font-size:6.5px; padding:2px 4px; top:6px; left:6px }
+      .pr-card .party-card-name { font-size:13px }
+      .pr-card-cta { font-size:8px; margin-top:6px }
+      /* only the card is too small for a line of body copy; the
+         banner and the strip still want theirs. */
+      .pr-card .pr-x { display:none }
+    }
+
+    @media(max-width:400px){
+      .parties-grid { grid-template-columns:repeat(3,1fr); gap:4px }
+      .party-card-name { font-size:11.5px }
+      .card-franchise { font-size:6.5px }
+    }
+
+    /* ══ CARD: ART ON TOP, WORDS UNDERNEATH ═════════════════════════
+       Four across on a desktop, three on a phone. The flyer is cropped
+       to a square rather than running the full height, so the title,
+       the party and the countdown are read on solid background instead
+       of over artwork that changes every week.
+       ═══════════════════════════════════════════════════════════════ */
+    .parties-grid { grid-template-columns:repeat(4,1fr); gap:14px }
+
+    .party-card {
+      aspect-ratio:auto; display:flex; flex-direction:column;
+      background:#0d0d0d; border:1px solid rgba(255,255,255,.06);
+      border-radius:10px; overflow:hidden;
+    }
+    .party-card-media {
+      position:relative; width:100%; aspect-ratio:1/1;
+      overflow:hidden; background:#141210; flex-shrink:0;
+    }
+    /* The gradient only has to lift the bottom edge of the art now,
+       not carry a headline, so it drops to a hairline of shade. */
+    .party-card-grad {
+      background:linear-gradient(to top, rgba(8,8,7,.55) 0%, transparent 42%);
+    }
+    .party-card-tint { opacity:.25 }
+    .party-card-logo { opacity:.5 }
+
+    /* Cards in a row stretch to the tallest. Without this the spare
+       height went into the square, so a card with tags had a bigger
+       picture than its neighbour. The text block absorbs it instead
+       and every flyer is cropped identically. */
+    .party-card-content {
+      position:static; z-index:auto; padding:12px 13px 14px;
+      display:flex; flex-direction:column; flex:1 1 auto;
+    }
+    .party-card-content .card-togo,
+    .party-card-content .party-card-when { margin-top:auto; padding-top:4px }
+    .party-card-tags { margin-bottom:8px }
+    .card-franchise {
+      font-size:8.5px; font-weight:700; letter-spacing:.16em;
+      text-transform:uppercase; color:var(--grey); margin-bottom:4px;
+    }
+    .party-card-name {
+      font-size:clamp(16px,1.35vw,21px); line-height:1.02; margin-bottom:5px;
+    }
+    .party-card-meta { font-size:10px; margin-bottom:5px }
+    .card-togo { font-size:10.5px }
+
+    /* The chip and the flag belong to the art, so they stay pinned to
+       the media box rather than the card. */
+    .card-cd, .card-flag, .pr-card-flag { z-index:4 }
+
+    .pr-card .party-card-name { font-size:clamp(16px,1.35vw,21px) }
+    .pr-card-art { position:absolute; inset:0 }
+
+    @media(max-width:1100px){ .parties-grid { grid-template-columns:repeat(3,1fr) } }
+
+    @media(max-width:768px){
+      .parties-grid { grid-template-columns:repeat(3,1fr); gap:7px }
+      .party-card { border-radius:8px }
+      .party-card-content { padding:8px 8px 10px }
+      .party-card-tags, .party-card-logo, .party-card-stats { display:none }
+      .card-franchise { font-size:6.5px; letter-spacing:.1em; margin-bottom:2px }
+      .party-card-name { font-size:12.5px; line-height:1.05; margin-bottom:3px }
+      .party-card-meta { font-size:8px; margin-bottom:2px }
+      .card-togo { font-size:8.5px }
+      .card-togo small { display:none }
+      .card-cd { top:5px; left:5px; padding:2px 5px }
+      .card-cd b { font-size:11px }
+      .card-cd i { font-size:6px }
+      .card-cd .cd-tonight { font-size:6.5px; letter-spacing:.06em }
+      .card-flag, .pr-card-flag { font-size:6px; padding:2px 4px; top:5px }
+      .pr-card .party-card-name { font-size:12.5px }
+      .pr-card-cta { font-size:7.5px; margin-top:5px }
+      /* only the card is too small for a line of body copy; the
+         banner and the strip still want theirs. */
+      .pr-card .pr-x { display:none }
+    }
+
+    @media(max-width:400px){
+      .parties-grid { grid-template-columns:repeat(3,1fr); gap:5px }
+      .party-card-name { font-size:11px }
+      .card-franchise { font-size:6px }
+      .party-card-content { padding:7px 6px 9px }
+    }
+
+    /* ══ PROMO ══════════════════════════════════════════════════════
+       Paid placement has to be legible AS paid. AfroCue's own voice is
+       the yellow; anything bought is gold and white, so a reader can
+       tell who is talking without reading a word.
+       ═══════════════════════════════════════════════════════════════ */
+    .pr-k { display:flex;align-items:center;gap:9px;margin-bottom:7px;flex-wrap:wrap }
+    .pr-tag { font-size:9px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
+      color:#0a0a0a;background:var(--yellow);padding:3px 7px;border-radius:2px }
+    .pr-tag.is-paid { color:#E8C547;background:transparent;
+      border:1px solid rgba(232,197,71,.45);padding:2px 7px }
+    .pr-by { font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+      color:var(--grey) }
+    .pr-x { font-size:12px;line-height:1.55;color:var(--grey);margin-top:5px }
+    .pr-t { font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:21px;
+      color:var(--white);line-height:1.05 }
+    .pr-s { font-size:12px;color:var(--silver);margin-top:3px }
+    .pr-btn { flex-shrink:0;font-size:11px;font-weight:800;letter-spacing:.1em;
+      text-transform:uppercase;color:#0a0a0a;background:#E8C547;padding:11px 16px;
+      border-radius:3px;white-space:nowrap }
+
+    .pr-banner { display:flex;align-items:center;gap:18px;margin:0 0 20px;padding:16px 20px;
+      text-decoration:none;background:#0d0d0d;border:1px solid rgba(255,255,255,.06);
+      border-left:3px solid #E8C547;border-radius:10px;transition:border-color .2s,background .2s }
+    .pr-banner:hover { background:#111;border-color:rgba(232,197,71,.35) }
+    .pr-banner-art { width:64px;height:64px;flex-shrink:0;border-radius:6px;overflow:hidden;
+      background:#161412;border:1px solid rgba(255,255,255,.06) }
+    .pr-banner-art img { width:100%;height:100%;object-fit:cover;display:block }
+    .pr-banner-main { flex:1;min-width:0 }
+    #promoFooter .pr-banner { margin:20px 0 0 }
+
+    .pr-card { text-decoration:none;border-color:rgba(232,197,71,.3) }
+    .pr-card .party-card-name { color:var(--white);text-shadow:none }
+    .pr-card-flag { position:absolute;top:10px;left:10px;z-index:4;font-size:9px;
+      font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#E8C547;
+      border:1px solid rgba(232,197,71,.45);background:rgba(10,10,10,.78);
+      padding:4px 8px;border-radius:2px }
+    .pr-card-art { position:absolute;inset:0;overflow:hidden;background:#141210 }
+    .pr-card-art img { width:100%;height:100%;object-fit:cover;display:block;opacity:.75 }
+    .pr-card-cta { margin-top:auto;padding-top:6px;font-size:10px;font-weight:800;
+      letter-spacing:.1em;text-transform:uppercase;color:#E8C547 }
+
+    .pr-strip { display:flex;align-items:center;gap:14px;margin:22px 0 4px;padding:14px 16px;
+      text-decoration:none;background:#0d0d0d;border:1px solid rgba(255,255,255,.06);
+      border-left:3px solid #E8C547;border-radius:8px }
+    .pr-strip:hover { background:#111 }
+    .pr-strip-art { width:46px;height:46px;flex-shrink:0;border-radius:5px;overflow:hidden;
+      background:#161412 }
+    .pr-strip-art img { width:100%;height:100%;object-fit:cover;display:block }
+    .pr-strip-main { flex:1;min-width:0 }
+    .pr-strip-t { font-size:15px;font-weight:700;color:var(--white);line-height:1.3 }
+    .pr-strip-go { flex-shrink:0;font-size:11px;font-weight:800;letter-spacing:.1em;
+      text-transform:uppercase;color:#E8C547;white-space:nowrap }
+
+    .pr-empty { display:block;max-width:460px;margin:22px auto 0;padding:26px 24px;
+      text-align:center;text-decoration:none;background:#0d0d0d;
+      border:1px solid rgba(232,197,71,.22);border-radius:12px }
+    .pr-empty .pr-k { justify-content:center }
+    .pr-empty .pr-btn { display:inline-block;margin-top:16px }
+
+    .pr-chip { display:inline-flex;align-items:center;gap:9px;margin-top:10px;padding:8px 13px;
+      text-decoration:none;border:1px solid rgba(232,197,71,.3);border-radius:999px;
+      background:rgba(232,197,71,.05) }
+    .pr-chip-k { font-size:8px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+      color:#E8C547 }
+    .pr-chip-t { font-size:12px;font-weight:600;color:var(--silver) }
+
+    .pr-tile { position:relative;display:block;text-decoration:none;overflow:hidden;
+      border:1px solid rgba(232,197,71,.3);border-radius:8px;background:#0d0d0d;
+      aspect-ratio:1/1 }
+    .pr-tile-art { position:absolute;inset:0 }
+    .pr-tile-art img { width:100%;height:100%;object-fit:cover;opacity:.6 }
+    .pr-tile-flag { position:absolute;top:8px;left:8px;z-index:3;font-size:7px;font-weight:800;
+      letter-spacing:.16em;text-transform:uppercase;color:#E8C547;
+      border:1px solid rgba(232,197,71,.45);background:rgba(10,10,10,.8);padding:2px 5px;
+      border-radius:2px }
+    .pr-tile .modal-other-name { color:#E8C547 }
+
+    @media(max-width:700px){
+      .pr-banner { flex-wrap:wrap;gap:12px;padding:14px }
+      .pr-banner-art { width:48px;height:48px }
+      .pr-btn, .pr-strip-go { width:100%;text-align:center }
+      .pr-strip { flex-wrap:wrap }
+      .pr-t { font-size:18px }
+    }
+
+    /* ══ TIGHTER, AND NOT SO OBVIOUSLY A TEMPLATE ═══════════════════
+       Three things were taking space they had not earned: a full
+       button in the hero, a filter bar with a 40px gap under it, and
+       a promo banner wearing a coloured stripe down one side. The
+       stripe in particular is the thing every generated page does.
+       ═══════════════════════════════════════════════════════════════ */
+
+    /* The CTA is a link, not a block. The whole card is already
+       clickable, so the button was repeating an affordance at the
+       cost of four lines of height. */
+    .featured-cta {
+      margin-top:14px; padding:0; background:none; border:0;
+      color:var(--yellow); font-size:12px; font-weight:700;
+      letter-spacing:.04em; text-transform:none;
+      gap:6px; border-radius:0;
+      border-bottom:1px solid rgba(200,224,0,.3);
+      padding-bottom:3px; transition:border-color .2s, gap .2s var(--ease);
+    }
+    .featured-cta:hover {
+      background:none; transform:none; gap:10px;
+      border-bottom-color:var(--yellow);
+    }
+    .featured-slot.is-promo .featured-cta {
+      background:none; color:#E8C547; border-bottom-color:rgba(232,197,71,.35);
+    }
+    .featured-slot.is-promo .featured-cta:hover { border-bottom-color:#E8C547 }
+
+    /* The bar was a row of boxes with a 40px gap under it. Now it is
+       one line that sits close to what it filters. */
+    .parties-header { margin-bottom:18px; align-items:center }
+    .filter-bar { gap:6px }
+    .filter-select, .search-input {
+      font-size:10.5px; padding:7px 10px; border-radius:6px;
+      background:rgba(255,255,255,.03); border-color:rgba(255,255,255,.08);
+    }
+    .filter-select { padding-right:26px; min-width:0 }
+    .search-input { max-width:300px }
+    .filter-select:hover, .search-input:hover { border-color:rgba(255,255,255,.18) }
+
+    /* ── THE PROMO BANNER, LIGHT ─────────────────────────────────────
+       A pale block on a dark page separates itself without any
+       decoration at all, which is the whole trick the stripe was
+       trying and failing to do. Everything inside flips to dark ink. */
+    .pr-banner {
+      gap:20px; padding:18px 20px; border-radius:14px; border:0;
+      border-left:0;
+      background:linear-gradient(135deg,#F4F1EB 0%,#E6E2D9 100%);
+      box-shadow:0 10px 30px rgba(0,0,0,.35);
+      transition:transform .25s var(--ease), box-shadow .25s;
+    }
+    .pr-banner:hover {
+      background:linear-gradient(135deg,#F7F5F0 0%,#EAE6DE 100%);
+      transform:translateY(-2px); box-shadow:0 16px 38px rgba(0,0,0,.45);
+      border:0;
+    }
+    .pr-banner .pr-banner-art {
+      border:1px solid rgba(20,18,15,.1); background:rgba(20,18,15,.05);
+      border-radius:8px;
+    }
+    .pr-banner .pr-tag {
+      background:rgba(20,18,15,.08); color:rgba(20,18,15,.58);
+      border:0; padding:3px 8px; border-radius:999px; letter-spacing:.16em;
+    }
+    .pr-banner .pr-tag.is-paid {
+      background:rgba(20,18,15,.08); color:rgba(20,18,15,.58); border:0;
+    }
+    .pr-banner .pr-by { color:rgba(20,18,15,.42) }
+    .pr-banner .pr-t { color:#14120F; letter-spacing:-.01em }
+    .pr-banner .pr-s { color:rgba(20,18,15,.6) }
+    .pr-banner .pr-x { color:rgba(20,18,15,.52) }
+    .pr-banner .pr-btn {
+      background:#14120F; color:#F4F1EB; border-radius:999px;
+      padding:12px 20px; letter-spacing:.08em;
+    }
+
+    /* The strip inside a night keeps the dark surface it sits on, but
+       loses the stripe for a hairline ring. */
+    .pr-strip { border-left:1px solid rgba(255,255,255,.06); border-radius:10px }
+    .pr-strip:hover { border-color:rgba(232,197,71,.3) }
+    .pr-empty { border-radius:14px }
+
+    @media(max-width:768px){
+      .parties-header { gap:8px; margin-bottom:14px }
+      .featured-cta { margin-top:12px; font-size:11.5px }
+      .pr-banner { gap:14px; padding:15px 16px; border-radius:12px }
+      .pr-banner .pr-btn { padding:11px 16px }
+    }
   </style>
 </head>
 <body>
@@ -857,22 +1240,6 @@
     </div>
   </div>
 
-  <!-- NIGHT HERO: rotates through the next announced nights -->
-  <section class="eh" id="eh" aria-label="Next up">
-    <div class="eh-slides" id="ehSlides"></div>
-    <div class="eh-grad"></div>
-    <div class="eh-tex"></div>
-    <div class="eh-in">
-      <div class="eh-k"><span class="eh-dot"></span><span id="ehKick">Next up</span></div>
-      <h1 class="eh-t" id="ehTitle">Parties.</h1>
-      <div class="eh-by" id="ehBy"></div>
-      <div class="eh-m" id="ehMeta"></div>
-      <button class="eh-cta" id="ehCta" type="button">See the night
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </button>
-    </div>
-    <div class="eh-pips" id="ehPips"></div>
-  </section>
 
   <!-- HERO -->
   <div class="hero" style="padding-top:52px">
@@ -883,20 +1250,25 @@
       <h1>Parties.</h1>
       <p class="hero-desc">Parties, raves and experiences worth knowing about in Afrobeats, Amapiano, EDM and dance music generally in Lagos and Nigeria.</p>
     </div>
+    <!-- The one hero. This card used to show a franchise and a city
+         while a second, full-bleed hero above it showed the actual
+         night. Two heroes competing is one hero too many, so the night
+         moved in here: the same rounded card over the same blurred art,
+         now carrying what is actually on. -->
     <div class="featured-col">
-      <div class="featured-col-label">&#9733; Featured</div>
       <div class="featured-slot" id="featuredSlot" onclick="openFeaturedModal()">
         <div class="featured-slot-bg" id="featuredBg"></div>
         <img class="featured-slot-img" id="featuredImg" src="" alt=""/>
         <div class="featured-slot-grad"></div>
-        <div class="featured-dots" id="featuredDots"></div>
+        <div class="featured-pips" id="featuredDots"></div>
         <div class="featured-slot-content">
-          <span class="featured-label">Trending</span>
+          <div class="featured-k"><span class="featured-livedot"></span><span id="featuredKick">Next up</span></div>
           <div class="featured-name" id="featuredName">—</div>
-          <div class="featured-city" id="featuredCity"></div>
-        </div>
-        <div class="featured-flyer" id="featuredFlyer" style="display:none;">
-          <img id="featuredFlyerImg" src="" alt=""/>
+          <div class="featured-by" id="featuredBy"></div>
+          <div class="featured-meta" id="featuredMeta"></div>
+          <button class="featured-cta" id="featuredCta" type="button">See the night
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
         </div>
       </div>
     </div>
@@ -933,8 +1305,11 @@
         <button class="filter-reset" id="filterReset" onclick="resetFilters()">Clear</button>
       </div>
     </div>
+    <div id="promoBanner"></div>
     <div class="parties-grid" id="partiesGrid"></div>
     <div class="no-results" id="noResults">No parties match this filter yet.</div>
+    <div id="promoEmpty"></div>
+    <div id="promoFooter"></div>
 
     <!-- The franchises, as a rail. Smaller, scrollable, clearly a
          different kind of thing from a night. -->
@@ -1319,6 +1694,149 @@
        payload is not what it should be, this now says so and names the
        build it got, because that is the one fact that identifies which
        deployment answered. */
+
+    /* ══ PROMO ══════════════════════════════════════════════════════
+       Every placement on this page comes from one Promo row and one
+       fetch. Slot picks the surface, Placement Target narrows it to a
+       party, Priority breaks a tie, and the date window is enforced
+       server side. Nothing here invents a placement, and a dead promo
+       endpoint must never take the directory down with it, so every
+       failure below is silent.
+       ═══════════════════════════════════════════════════════════════ */
+    var PROMO = [], PROMO_SEEN = {};
+
+    function loadPromos(){
+      var url = getGasUrl();
+      if(!url) return;
+      fetch(url + '?export=promo')
+        .then(function(r){ return r.ok ? r.json() : []; })
+        .then(function(rows){
+          PROMO = Array.isArray(rows) ? rows : [];
+          paintStaticPromos();
+          if(PROMO.length && typeof getFilters === 'function') renderCards(getFilters());
+        })
+        .catch(function(){ /* the directory does not depend on this */ });
+    }
+
+    /* The hero and the featured card are one surface now, so a row
+       written for either name lands in the same place. */
+    function promoFor(slot, target){
+      var names = slot === 'parties_featured'
+        ? ['parties_featured', 'parties_hero'] : [slot];
+      return PROMO.filter(function(p){
+        if(names.indexOf(p.slot) === -1) return false;
+        if(!p.target || p.target === 'all') return true;
+        return !target || String(p.target).toLowerCase() === String(target).toLowerCase();
+      }).sort(function(a, b){ return (b.priority || 0) - (a.priority || 0); })[0] || null;
+    }
+
+    /* Counted the way a night is. Without these you cannot tell a
+       sponsor what they bought. */
+    function promoSeen(id){
+      if(!id || PROMO_SEEN[id]) return;
+      PROMO_SEEN[id] = 1;
+      var u = getGasUrl();
+      if(u) fetch(u + '?action=promoview&id=' + encodeURIComponent(id)).catch(function(){});
+    }
+    function promoClick(id){
+      var u = getGasUrl();
+      if(u) fetch(u + '?action=promoclick&id=' + encodeURIComponent(id)).catch(function(){});
+      return true;
+    }
+
+    function promoAttrs(p){
+      return 'href="' + (p.url || '#') + '" target="_blank" rel="noopener sponsored" '
+        + 'onclick="promoClick(\'' + p.id + '\')"';
+    }
+    function promoLabel(p){
+      return '<span class="pr-tag' + (p.sponsored ? ' is-paid' : '') + '">'
+        + (p.label || (p.sponsored ? 'Sponsored' : 'AfroCue')) + '</span>'
+        + (p.sponsor ? '<span class="pr-by">' + p.sponsor + '</span>' : '');
+    }
+    function promoArt(p, cls){
+      return '<div class="' + cls + '">' + (p.image
+        ? '<img src="' + p.image + '" alt="' + (p.imageAlt || '') + '" loading="lazy" '
+          + 'onerror="this.style.display=\'none\'"/>' : '') + '</div>';
+    }
+
+    function promoBannerHTML(p){
+      if(!p) return '';
+      promoSeen(p.id);
+      return '<a class="pr-banner" ' + promoAttrs(p) + '>'
+        + promoArt(p, 'pr-banner-art')
+        + '<div class="pr-banner-main">'
+        +   '<div class="pr-k">' + promoLabel(p) + '</div>'
+        +   '<div class="pr-t">' + p.title + '</div>'
+        +   (p.subtitle ? '<div class="pr-s">' + p.subtitle + '</div>' : '')
+        +   (p.text ? '<div class="pr-x">' + p.text + '</div>' : '')
+        + '</div>'
+        + '<span class="pr-btn">' + (p.linkText || 'See more') + '</span></a>';
+    }
+
+    /* Same box as a night so the grid rhythm never breaks, deliberately
+       different furniture so it is never mistaken for one. */
+    function promoCardHTML(p){
+      promoSeen(p.id);
+      return '<a class="party-card pr-card" ' + promoAttrs(p) + '>'
+        + '<div class="party-card-media">'
+        +   '<div class="pr-card-flag">' + (p.sponsored ? 'Sponsored' : 'AfroCue') + '</div>'
+        +   promoArt(p, 'pr-card-art')
+        + '</div>'
+        + '<div class="party-card-content">'
+        +   (p.sponsor ? '<div class="card-franchise">' + p.sponsor + '</div>' : '')
+        +   '<div class="party-card-name">' + p.title + '</div>'
+        +   (p.subtitle ? '<div class="party-card-meta">' + p.subtitle + '</div>' : '')
+        +   '<div class="pr-card-cta">' + (p.linkText || 'See more') + ' &rarr;</div>'
+        + '</div></a>';
+    }
+
+    function promoStripHTML(p){
+      if(!p) return '';
+      promoSeen(p.id);
+      return '<a class="pr-strip" ' + promoAttrs(p) + '>'
+        + promoArt(p, 'pr-strip-art')
+        + '<div class="pr-strip-main">'
+        +   '<div class="pr-k">' + promoLabel(p) + '</div>'
+        +   '<div class="pr-strip-t">' + p.title + '</div>'
+        +   (p.text ? '<div class="pr-x">' + p.text + '</div>' : '')
+        + '</div>'
+        + '<span class="pr-strip-go">' + (p.linkText || 'See more') + ' &rarr;</span></a>';
+    }
+
+    /* A search filtered down to nothing is the highest intent dead end
+       on the site. A promo there is a rescue, not an interruption. */
+    function promoEmptyHTML(p){
+      if(!p) return '';
+      promoSeen(p.id);
+      return '<a class="pr-empty" ' + promoAttrs(p) + '>'
+        + '<div class="pr-k">' + promoLabel(p) + '</div>'
+        + '<div class="pr-t">' + p.title + '</div>'
+        + (p.text ? '<div class="pr-x">' + p.text + '</div>' : '')
+        + '<span class="pr-btn">' + (p.linkText || 'See more') + '</span></a>';
+    }
+
+    function promoTileHTML(p){
+      if(!p) return '';
+      promoSeen(p.id);
+      return '<a class="modal-other pr-tile" ' + promoAttrs(p) + '>'
+        + promoArt(p, 'pr-tile-art')
+        + '<div class="pr-tile-flag">' + (p.sponsored ? 'Ad' : 'AfroCue') + '</div>'
+        + '<div class="modal-other-name">' + p.title + '</div></a>';
+    }
+
+    /* The slots that do not sit inside a render pass. */
+    function paintStaticPromos(){
+      var set = function(id, html){
+        var el = document.getElementById(id);
+        if(el) el.innerHTML = html || '';
+      };
+      set('promoBanner', promoBannerHTML(promoFor('parties_banner')));
+      set('promoFooter', promoBannerHTML(promoFor('parties_footer')));
+      /* The featured card rotates, so a paid row joins the rotation
+         rather than replacing it. */
+      if(promoFor('parties_featured') && EDITIONS.length) buildEHero();
+    }
+
     function loadParties(){
       renderSkeletons();
 
@@ -1379,8 +1897,10 @@
           }
 
           setView('editions', true);
-          renderUpcoming(FRANCHISES.filter(function(f){ return f.featured; })[0] || null);
+          /* .upcoming was a third hero-ish band repeating the featured
+             party under the hero. One hero means one hero. */
           initFeatured();
+          loadPromos();
           buildEHero();
         })
         .catch(function(err){
@@ -2084,6 +2604,9 @@
       }
 
       h += interestedHTML(p);
+      /* Placement Target carries a Party ID, so a promoter can buy
+         their own nights and nobody else's. */
+      h += promoStripHTML(promoFor('parties_modal', p.party_id));
       h += postsHTML(p.posts, 'From their page');
 
       /* back to the franchise */
@@ -2219,6 +2742,7 @@
 
     function ehName(e){ return e.ed_name || e.title || e.party_id || 'Untitled night'; }
     function ehImg(e){
+      if(e._promo) return e._promo.image || '';
       var f = (typeof byIdLookup === 'function' ? byIdLookup(e.party_id) : null) || {};
       return e.flyer || f.upcoming_flyer || f.flyer_img || f.hero_img || '';
     }
@@ -2228,39 +2752,49 @@
       return e.area || '';
     }
 
+    /* ── THE HERO ─────────────────────────────────────────────────
+       Picks the next announced nights, newest first, and rotates the
+       featured card through them. Nothing here paints a franchise any
+       more: the card is about what is on, and the party behind it is a
+       by-line, which is the order a reader actually wants.
+       ──────────────────────────────────────────────────────────── */
     function buildEHero(){
-      var today = v2Days ? null : null;
       EH.list = EDITIONS.filter(function(e){
         var n = v2Days(e.date);
         return n !== null && n >= 0 && e.state === 'announced';
-      }).sort(function(a,b){ return a.date < b.date ? -1 : 1; });
+      }).sort(function(a, b){ return a.date < b.date ? -1 : 1; });
 
       var withArt = EH.list.filter(ehImg);
       if(withArt.length) EH.list = withArt;
       EH.list = EH.list.slice(0, EH.MAX);
 
-      var slides = document.getElementById('ehSlides');
-      var pips   = document.getElementById('ehPips');
-      if(!slides || !pips) return;
+      /* Third slide, never first. The hero's job is tonight; a paid
+         slide earns a turn in the rotation, not the opening frame. */
+      var ph = promoFor('parties_featured');
+      if(ph && EH.list.length > 1){
+        EH.list.splice(Math.min(2, EH.list.length), 0,
+          { _promo: ph, id: ph.id, date: '', state: 'announced' });
+      }
+
+      var pips = document.getElementById('featuredDots');
+      var slot = document.getElementById('featuredSlot');
+      if(!pips || !slot) return;
 
       if(!EH.list.length){
-        document.getElementById('ehKick').textContent = 'Lagos';
-        document.getElementById('ehTitle').textContent = 'Parties.';
-        document.getElementById('ehBy').textContent = '';
-        document.getElementById('ehMeta').textContent = 'Nothing announced right now.';
-        document.getElementById('ehCta').style.display = 'none';
+        document.getElementById('featuredKick').textContent = 'Lagos';
+        document.getElementById('featuredName').textContent = 'Nothing announced';
+        document.getElementById('featuredBy').innerHTML = '';
+        document.getElementById('featuredMeta').innerHTML =
+          'As soon as a party posts, it lands here.';
+        document.getElementById('featuredCta').style.display = 'none';
         pips.innerHTML = '';
         return;
       }
 
-      slides.innerHTML = EH.list.map(function(e, i){
-        var img = ehImg(e);
-        return '<div class="eh-slide' + (i === 0 ? ' on' : '') + '">'
-          + (img ? '<img src="' + img + '" alt=""/>' : '') + '</div>';
-      }).join('');
       pips.innerHTML = EH.list.map(function(_, i){
-        return '<button class="eh-pip' + (i === 0 ? ' on' : '') + '" type="button" '
-          + 'onclick="ehGo(' + i + ')" aria-label="Slide ' + (i + 1) + '"></button>';
+        return '<button class="featured-pip' + (i === 0 ? ' on' : '') + '" type="button" '
+          + 'onclick="event.stopPropagation();ehGo(' + i + ')" '
+          + 'aria-label="Night ' + (i + 1) + '"></button>';
       }).join('');
 
       EH.at = 0;
@@ -2274,27 +2808,50 @@
     function paintEHero(){
       var e = EH.list[EH.at];
       if(!e) return;
-      var go = toGo(e.date, e.time, e.state === 'cancelled');
 
-      document.getElementById('ehKick').textContent = go.t;
-      document.getElementById('ehTitle').textContent = ehName(e);
-      document.getElementById('ehBy').innerHTML =
-        (e.ed_name && e.title && e.ed_name !== e.title) ? 'by <b>' + e.title + '</b>' : '';
-      document.getElementById('ehMeta').innerHTML = [
-        (typeof v2Span === 'function' ? v2Span(e.date, e.end_date) : v2Fmt(e.date))
-          + (e.time ? ' &middot; ' + e.time : ''),
-        ehPlace(e),
-        e.entry_free ? 'Free entry' : (e.entry || '')
-      ].filter(Boolean).join('<span style="color:var(--mid)">/</span>');
+      var slot = document.getElementById('featuredSlot');
+      var img  = document.getElementById('featuredImg');
+      var bg   = document.getElementById('featuredBg');
+      var cta  = document.getElementById('featuredCta');
+      var art  = ehImg(e);
 
-      var cta = document.getElementById('ehCta');
-      cta.style.display = '';
-      cta.onclick = function(){ openEdition(e.id); };
+      if(img){ img.src = art || ''; img.style.opacity = art ? 1 : 0; }
+      if(bg) bg.style.backgroundImage = art ? "url('" + art + "')" : 'none';
 
-      [].forEach.call(document.querySelectorAll('.eh-slide'), function(x, i){
-        x.classList.toggle('on', i === EH.at);
-      });
-      [].forEach.call(document.querySelectorAll('.eh-pip'), function(x, i){
+      if(e._promo){
+        var pr = e._promo;
+        slot.classList.add('is-promo');
+        document.getElementById('featuredKick').textContent =
+          pr.sponsored ? 'Sponsored' : 'From AfroCue';
+        document.getElementById('featuredName').textContent = pr.title;
+        document.getElementById('featuredBy').innerHTML =
+          pr.sponsor ? 'by <b>' + pr.sponsor + '</b>' : '';
+        document.getElementById('featuredMeta').innerHTML =
+          [pr.subtitle, pr.text].filter(Boolean)
+            .join('<span class="featured-sep">/</span>');
+        cta.style.display = '';
+        cta.firstChild.nodeValue = (pr.linkText || 'See more') + ' ';
+      } else {
+        slot.classList.remove('is-promo');
+        var go = toGo(e.date, e.time, e.state === 'cancelled');
+        slot.className = slot.className.replace(/\s*is-(today|soon)\b/g, '');
+        if(go.cls === 'today') slot.classList.add('is-today');
+
+        document.getElementById('featuredKick').textContent = go.t;
+        document.getElementById('featuredName').textContent = ehName(e);
+        document.getElementById('featuredBy').innerHTML =
+          (e.ed_name && e.title && e.ed_name !== e.title) ? 'by <b>' + e.title + '</b>' : '';
+        document.getElementById('featuredMeta').innerHTML = [
+          (typeof v2Span === 'function' ? v2Span(e.date, e.end_date) : v2Fmt(e.date))
+            + (e.time ? ' &middot; ' + e.time : ''),
+          ehPlace(e),
+          e.entry_free ? 'Free entry' : (e.entry || '')
+        ].filter(Boolean).join('<span class="featured-sep">/</span>');
+        cta.style.display = '';
+        cta.firstChild.nodeValue = 'See the night ';
+      }
+
+      [].forEach.call(document.querySelectorAll('.featured-pip'), function(x, i){
         x.classList.toggle('on', i === EH.at);
       });
     }
@@ -2313,8 +2870,14 @@
       var noResults = document.getElementById('noResults');
       grid.innerHTML = '';
       var visible = v2Sort(PARTIES.filter(function(p){ return partyMatchesFilters(p, filters); }), filters.sort);
-      if(visible.length === 0){ noResults.style.display = 'block'; return; }
+      var pEmpty = document.getElementById('promoEmpty');
+      if(visible.length === 0){
+        noResults.style.display = 'block';
+        if(pEmpty) pEmpty.innerHTML = promoEmptyHTML(promoFor('parties_empty'));
+        return;
+      }
       noResults.style.display = 'none';
+      if(pEmpty) pEmpty.innerHTML = '';
 
       visible.forEach(function(party){
         var card = document.createElement('div');
@@ -2386,134 +2949,46 @@
         if(v2Dormant(party)) card.className += ' is-dormant';
         if(party.cancelled)  card.className += ' is-off';
 
-        card.appendChild(bg); card.appendChild(img); card.appendChild(tint); card.appendChild(grad);
-        card.appendChild(tex); card.appendChild(logo); card.appendChild(content);
+        /* The art used to fill the card with the text floated over it,
+           which meant every title was read against whatever the flyer
+           happened to be doing behind it. The image now has its own
+           square box and the text sits under it on solid ground. */
+        var media = document.createElement('div');
+        media.className = 'party-card-media';
+        media.appendChild(bg); media.appendChild(img); media.appendChild(tint);
+        media.appendChild(grad); media.appendChild(tex); media.appendChild(logo);
+        card.appendChild(media);
+        card.appendChild(content);
         grid.appendChild(card);
+
+        /* The paid card rides in the flow rather than above it, so a
+           quiet week never strands it alone at the top. */
+        if(grid.children.length === 3){
+          var pg = promoFor('parties_grid');
+          if(pg) grid.insertAdjacentHTML('beforeend', promoCardHTML(pg));
+        }
       });
-      if(!featuredList.length) initFeatured();
+      if(!EH.list.length) buildEHero();
     }
 
     // ─── FEATURED CAROUSEL ──────────────────────────────────────────────
-    function initFeatured(){
-      var slot = document.getElementById('featuredSlot');
-      if(!slot) return;
-      
-      /* The carousel is the what's-on slot: parties with a date in the next
-         7 days lead, soonest first, then the rest by views. The weekend
-         answer lives here rather than in a band of its own. */
-      var withImg = PARTIES.filter(function(p){
-        return !p.cancelled && p.hero_img && p.hero_img.trim() !== ''; });
-      var soon = withImg.filter(function(p){ var n=v2Days(p.next_party_date);
-        return n!==null && n>=0 && n<=7; })
-        .sort(function(a,b){ return v2Days(a.next_party_date)-v2Days(b.next_party_date); });
-      var rest = withImg.filter(function(p){ return soon.indexOf(p)===-1; })
-        .sort(function(a,b){ return (b.views||0)-(a.views||0); });
-      featuredList = soon.concat(rest).slice(0,5);
-      
-      if(featuredList.length === 0){
-        featuredList = PARTIES.slice().sort(function(a,b){ 
-          return (b.views||0) - (a.views||0); 
-        }).slice(0,5);
-      }
-      
-      if(featuredList.length === 0){
-        document.getElementById('featuredName').textContent = 'No parties yet';
-        return;
-      }
-      
-      var dotsWrap = document.getElementById('featuredDots');
-      dotsWrap.innerHTML = '';
-      featuredList.forEach(function(_, i){
-        var d = document.createElement('div');
-        d.className = 'featured-dot' + (i === 0 ? ' active' : '');
-        d.onclick = function(e){ e.stopPropagation(); goFeatured(i); };
-        dotsWrap.appendChild(d);
-      });
-      
-      showFeatured(0);
-      
-      clearInterval(featuredTimer);
-      featuredTimer = setInterval(function(){ 
-        goFeatured((featuredIndex + 1) % featuredList.length); 
-      }, 3500);
-    }
-
-    function showFeatured(i){
-      var p = featuredList[i];
-      if(!p) return;
-      
-      featuredIndex = i;
-      
-      var img = document.getElementById('featuredImg');
-      var bg = document.getElementById('featuredBg');
-      var nm = document.getElementById('featuredName');
-      var ct = document.getElementById('featuredCity');
-      var flyerImg = document.getElementById('featuredFlyerImg');
-      var flyerWrap = document.getElementById('featuredFlyer');
-      var heroBg = document.getElementById('heroBg');
-      
-      img.style.opacity = '0';
-      if(flyerWrap) flyerWrap.style.opacity = '0';
-      
-      setTimeout(function(){
-        if(p.hero_img && p.hero_img.trim() !== ''){
-          bg.style.backgroundImage = "url('" + p.hero_img + "')";
-          img.src = p.hero_img;
-          img.alt = p.name || 'Featured party';
-          img.style.display = 'block';
-          if(heroBg) heroBg.style.backgroundImage = "url('" + p.hero_img + "')";
-        } else {
-          bg.style.backgroundImage = 'none';
-          img.src = '';
-          img.alt = '';
-          img.style.display = 'none';
-          if(heroBg) heroBg.style.backgroundImage = 'none';
-        }
-        
-        nm.textContent = p.name || 'Untitled Party';
-        /* In a what's-on slot the date beats the city */
-        var fWhen = v2When(p);
-        ct.textContent = (fWhen && fWhen !== 'Date not announced') ? fWhen : (p.city || '');
-        
-        if(flyerImg && flyerWrap){
-          var hasFlyer = p.flyer_img && p.flyer_img.trim() !== '';
-          if(hasFlyer){
-            flyerImg.src = p.flyer_img;
-            flyerImg.alt = p.name + ' flyer';
-            flyerWrap.style.display = 'block';
-            flyerWrap.style.opacity = '1';
-          } else {
-            flyerWrap.style.display = 'none';
-          }
-        }
-        
-        img.style.opacity = '1';
-        if(flyerWrap && flyerWrap.style.display !== 'none') {
-          flyerWrap.style.opacity = '1';
-        }
-        
-      }, 220);
-      
-      document.querySelectorAll('.featured-dot').forEach(function(d, idx){
-        d.className = 'featured-dot' + (idx === i ? ' active' : '');
-      });
-    }
-
-    function goFeatured(i){
-      clearInterval(featuredTimer);
-      showFeatured(i);
-      featuredTimer = setInterval(function(){ 
-        goFeatured((featuredIndex + 1) % featuredList.length); 
-      }, 3500);
-    }
+    /* initFeatured used to rotate FRANCHISES through this card while the
+       old night hero rotated EDITIONS above it: two rotations, two
+       sources of truth, one of them showing a party name where the
+       reader wanted a night. buildEHero is now the only one, and it
+       paints this card. These three stay as thin shims because
+       renderCards and the card's own onclick still call them. */
+    function initFeatured(){ if(!EH.list.length) buildEHero(); }
+    function showFeatured(i){ ehGo(i); }
+    function goFeatured(i){ ehGo(i); }
 
     function openFeaturedModal(){
-      var p = featuredList[featuredIndex];
-      if(p) openModal(p.id);
+      var e = EH.list[EH.at];
+      if(!e) return;
+      if(e._promo){ window.open(e._promo.url, '_blank', 'noopener'); return; }
+      openEdition(e.id);
     }
 
-    // ─── UPCOMING ────────────────────────────────────────────────────────
-    var FEATURED_PARTY = null;
     function renderUpcoming(party){
       var sec = document.getElementById('upcomingSection');
       if(!party || !party.name){
@@ -2743,6 +3218,8 @@
         el.appendChild(obg); el.appendChild(oimg); el.appendChild(ograd); el.appendChild(onm);
         othersGrid.appendChild(el);
       });
+      var po = promoFor('parties_others', party.party_id || party.id);
+      if(po) othersGrid.insertAdjacentHTML('beforeend', promoTileHTML(po));
 
       document.getElementById('partyModal').classList.add('open');
       document.getElementById('partyModal').scrollTop = 0;
@@ -2874,9 +3351,13 @@
         ? 'We will message you on the day, and sooner if anything changes.'
         : 'We will tell you as soon as they announce their next night.');
       if(b) lines.push('One round-up a week, nothing else.');
+      /* They have just said yes to a night. A sponsor of the alert
+          reaches them here and again in the confirmation email, which
+          is one Promo row buying two surfaces. */
       document.getElementById('heartAsk').innerHTML =
         '<div class="int-ask"><div class="int-ask-t">You are in.</div>'
         + lines.map(function(l){ return '<div class="int-done">' + l + '</div>'; }).join('')
+        + promoStripHTML(promoFor('parties_alert'))
         + '</div>';
     }
 
