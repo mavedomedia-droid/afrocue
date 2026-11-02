@@ -760,7 +760,18 @@
     .ncard.on.ending{border-color:rgba(232,197,71,.45)}
     .ncard.done{opacity:.52}
     .ncard.done .ncard-img{filter:grayscale(.5)}
-    .ncard-media{position:relative;background:var(--dark)}
+    /* These are spans because a <button> may only contain phrasing
+       content. A span is inline, which ignores aspect-ratio, padding
+       and width, so every card collapsed and the flyer box had no
+       height at all. They have to be told to behave as blocks. */
+    .ncard-media{display:block;position:relative;background:var(--dark)}
+    .ncard-b{display:block}
+    .ncard-v{display:block}
+    .nprog{display:block}
+    .lcard-t{display:block;min-width:0}
+    .lcard-n{display:block}
+    .lcard-bar{display:block}
+    span.ncard-img{display:block;aspect-ratio:4/5;background:var(--dark2)}
     .ncard-img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
     .nprog{position:absolute;left:0;right:0;bottom:0;height:3px;
       background:rgba(10,10,10,.62)}
@@ -824,6 +835,19 @@
       .nrail{margin:0 -16px;padding-left:16px;padding-right:16px}
       .lbar-row{padding:0 12px}
     }
+
+    /* ══ MODAL, TRIMMED ═══════════════════════════════════════
+       The pulse block carried a label, a live dot, three key-value
+       columns, a confidence label, a confidence badge and a note:
+       eight elements answering two questions. Source confidence is
+       plumbing, and nobody outside the sheet knows what it means.
+       Presentation only, so every id the script writes to still
+       exists and nothing in the JS had to change. */
+    .party-pulse-label{display:none}
+    .party-pulse-confidence{display:none!important}
+    .party-pulse{padding:14px 16px}
+    .party-pulse-key{font-size:9.5px;letter-spacing:.12em}
+    .party-pulse-value{font-size:15px;line-height:1.25}
 
     @media (max-width:768px){ .parties-grid{gap:10px} }
     /* Three columns at 360px is a 115px card carrying 6px type, which
@@ -1231,7 +1255,19 @@
       .pr-banner { gap:14px; padding:15px 16px; border-radius:12px }
       .pr-banner .pr-btn { padding:11px 16px }
     }
-  </style>
+  
+    /* ══ THE NAV ═══════════════════════════════════════════════
+       afrocue-ui.js injects a FIXED nav and publishes its height as
+       --ac-nav-h. Three separate rules set the hero's padding at this
+       breakpoint and the winner resolved to 52px against a 73px nav,
+       so the eyebrow and the top of the headline sat underneath it.
+       Measured, not guessed, and tied to the nav's own variable so it
+       cannot drift again. Last in the file, so it wins. */
+    .hero{padding-top:calc(var(--ac-nav-h, 76px) + 30px)}
+    @media (max-width:768px){
+      .hero{padding-top:calc(var(--ac-nav-h, 76px) + 22px)}
+    }
+</style>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -1247,7 +1283,10 @@
     <div class="modal">
       <div class="modal-hero">
         <div class="modal-hero-bg" id="modalHeroBg"></div>
-        <img class="modal-hero-img" id="modalHeroImg" src="" alt=""/>
+        <!-- A party with no artwork used to render a broken-image icon
+             with the party name beside it, at the top of its own modal. -->
+        <img class="modal-hero-img" id="modalHeroImg" src="" alt=""
+             onerror="this.style.display='none'"/>
         <div class="modal-hero-texture"></div>
         <div class="modal-hero-grad"></div>
         <div class="modal-hero-logo"><img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none'"/></div>
@@ -1347,7 +1386,12 @@
 
 
   <!-- HERO -->
-  <div class="hero" style="padding-top:52px">
+  <!-- The inline padding-top:52px that used to sit here put the
+       eyebrow and the top of the headline under a 73px fixed nav, and
+       being inline it beat every stylesheet rule, so no CSS could fix
+       it. The padding now comes from the stylesheet, tied to the nav's
+       own --ac-nav-h. -->
+  <div class="hero">
     <div class="hero-photo" id="heroBg"></div>
     <div class="hero-bg"></div>
     <div class="hero-content">
@@ -2980,7 +3024,10 @@
       if(next){
         var fg = toGo(next.date, next.time, next.state==='cancelled');
         if(fg.cls !== 'dim' && fg.cls !== 'off')
-          h += '<div class="sig-row"><span class="sig-l">Next edition</span>'
+          /* A night that has happened is not the next one. Past
+             editions reach this modal now that they can be opened. */
+          h += '<div class="sig-row"><span class="sig-l">'
+            +  (fg.cls === 'past' ? 'Last edition' : 'Next edition') + '</span>'
             +  '<span class="cd-line '+fg.cls+'" id="cdLine">'+fg.t
             +  (next.time ? '<small>'+next.time+'</small>' : '')+'</span></div>';
         h += '<div class="m-next">'
