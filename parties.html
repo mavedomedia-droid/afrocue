@@ -736,7 +736,112 @@
       .party-card:hover,.rail-card:hover,.featured-slot:hover{transform:none;box-shadow:none}
       .party-card-logo{opacity:.4}
     }
+    /* ══ NIGHT RAILS ═══════════════════════════════════════════
+       Horizontal, because a rail holds fifteen nights in the vertical
+       space of one grid row and a thumb is already moving sideways.
+       Own class prefix so none of this touches the franchise rail
+       styles that are still in this file. */
+    .nsec{margin-top:30px}
+    .nsec-h{display:flex;align-items:baseline;gap:9px;margin-bottom:11px}
+    .nsec-t{font-family:'Aesthet Nova',Georgia,serif;font-weight:900;
+      font-size:clamp(19px,2.3vw,25px);color:var(--white);line-height:1}
+    .nsec-t.on{color:var(--yellow);text-shadow:var(--yts)}
+    .nsec-n{font-size:11.5px;font-weight:700;color:var(--grey);
+      font-variant-numeric:tabular-nums}
+    .nrail{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;padding-bottom:6px;scrollbar-width:none}
+    .nrail::-webkit-scrollbar{display:none}
+    .ncard{flex:0 0 176px;scroll-snap-align:start;border-radius:10px;
+      overflow:hidden;background:var(--dark2);border:1px solid rgba(255,255,255,.07);
+      position:relative;text-align:left;padding:0;cursor:pointer;
+      font-family:inherit;color:inherit;display:block}
+    .ncard:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+    .ncard.on{border-color:rgba(200,224,0,.45);background:#201f1d}
+    .ncard.on.ending{border-color:rgba(232,197,71,.45)}
+    .ncard.done{opacity:.52}
+    .ncard.done .ncard-img{filter:grayscale(.5)}
+    .ncard-media{position:relative;background:var(--dark)}
+    .ncard-img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+    .nprog{position:absolute;left:0;right:0;bottom:0;height:3px;
+      background:rgba(10,10,10,.62)}
+    .nprog i{display:block;height:100%;background:var(--yellow)}
+    .ncard.ending .nprog i{background:var(--gold)}
+    .ncard-b{padding:9px 10px 11px}
+    .ncard-s{display:flex;align-items:center;gap:5px;font-size:10px;
+      font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+      color:var(--grey);margin-bottom:5px;min-height:13px}
+    .ncard.on .ncard-s{color:var(--yellow)}
+    .ncard.on.ending .ncard-s{color:var(--gold)}
+    .ncard-n{font-size:13px;font-weight:700;line-height:1.22;color:var(--white);
+      overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;
+      -webkit-box-orient:vertical;min-height:32px}
+    .ncard-v{font-size:11px;font-weight:300;color:var(--grey);margin-top:4px;
+      overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+    .ndot{width:6px;height:6px;border-radius:50%;background:var(--yellow);
+      display:inline-block;flex-shrink:0;box-shadow:0 0 0 0 rgba(200,224,0,.5);
+      animation:npulse 2.2s infinite}
+    .ending .ndot{background:var(--gold);animation:none;box-shadow:none}
+    @keyframes npulse{70%{box-shadow:0 0 0 7px rgba(200,224,0,0)}
+      100%{box-shadow:0 0 0 0 rgba(200,224,0,0)}}
+    @media(prefers-reduced-motion:reduce){.ndot{animation:none}}
+
+    /* The live bar. Only exists while something is on. */
+    #liveBar{margin-top:26px}
+    .lbar{border:1px solid rgba(200,224,0,.4);border-radius:13px;
+      background:linear-gradient(180deg,rgba(200,224,0,.09),rgba(200,224,0,.02));
+      padding:12px 0 13px}
+    .lbar.ending{border-color:rgba(232,197,71,.4);
+      background:linear-gradient(180deg,rgba(232,197,71,.09),rgba(232,197,71,.02))}
+    .lbar-h{display:flex;align-items:center;gap:7px;padding:0 14px 11px;
+      font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;
+      color:var(--yellow)}
+    .lbar.ending .lbar-h{color:var(--gold)}
+    .lbar-row{display:flex;gap:9px;overflow-x:auto;padding:0 14px;
+      scrollbar-width:none;scroll-snap-type:x mandatory}
+    .lbar-row::-webkit-scrollbar{display:none}
+    .lcard{flex:0 0 auto;scroll-snap-align:start;display:flex;align-items:center;
+      gap:10px;background:var(--dark2);border:1px solid rgba(255,255,255,.08);
+      border-radius:11px;padding:8px 14px 8px 8px;max-width:258px;
+      text-align:left;cursor:pointer;font-family:inherit;color:inherit}
+    .lcard:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+    .lcard-art{width:46px;height:46px;border-radius:7px;object-fit:cover;flex-shrink:0}
+    .lcard-t{min-width:0}
+    .lcard-n{font-size:13.5px;font-weight:700;line-height:1.2;color:var(--white);
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .lcard-s{font-size:10px;font-weight:800;letter-spacing:.07em;
+      text-transform:uppercase;color:var(--yellow);margin-top:3px;
+      display:flex;align-items:center;gap:5px}
+    .lcard.ending .lcard-s{color:var(--gold)}
+    .lcard-bar{margin-top:6px;height:2.5px;border-radius:2px;
+      background:rgba(255,255,255,.1)}
+    .lcard-bar i{display:block;height:100%;border-radius:2px;background:var(--yellow)}
+    .lcard.ending .lcard-bar i{background:var(--gold)}
+
+    @media(max-width:768px){
+      .nsec{margin-top:24px}
+      .ncard{flex:0 0 156px}
+      .nrail{margin:0 -16px;padding-left:16px;padding-right:16px}
+      .lbar-row{padding:0 12px}
+    }
+
     @media (max-width:768px){ .parties-grid{gap:10px} }
+    /* Three columns at 360px is a 115px card carrying 6px type, which
+       nobody can read. Two columns, and nothing below 11px. These sit
+       last in the file on purpose: two earlier blocks set the same
+       properties at the same breakpoints and the later one wins. */
+    @media(max-width:768px){
+      .parties-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+      .party-card-name{font-size:13px;line-height:1.25}
+      .card-franchise{font-size:9.5px;letter-spacing:.1em}
+      .party-card-content{padding:9px 10px 11px}
+    }
+    @media(max-width:400px){
+      .parties-grid{grid-template-columns:repeat(2,1fr);gap:7px}
+      .party-card-name{font-size:12.5px}
+      .card-franchise{font-size:9.5px}
+      .party-card-content{padding:8px 9px 10px}
+    }
     @media (prefers-reduced-motion:reduce){
       .party-card,.featured-slot-img,.card-cd.soon,.card-cd.live,
       .modal,.modal-wrap.open .modal-hero-img,.modal-wrap.open .modal-body > *{animation:none !important}
@@ -1295,7 +1400,15 @@
 
   <!-- PARTIES -->
   <section id="parties">
-    <div class="parties-header">
+    <!-- WHAT IS ON. Nights first, brands second. The live bar only
+         renders while something is actually running. -->
+    <div id="liveBar"></div>
+    <div id="railTonight"></div>
+    <div id="railComing"></div>
+    <div id="railConcluded"></div>
+
+    <!-- THE DIRECTORY. Franchises, with the filters, below the nights. -->
+    <div class="parties-header" style="margin-top:38px">
       <div class="filter-bar">
         <select class="filter-select" id="filterSort" onchange="applyFilters()">
           <option value="soon">Soonest</option><option value="views">Most viewed</option>
@@ -1311,15 +1424,9 @@
     <div id="promoEmpty"></div>
     <div id="promoFooter"></div>
 
-    <!-- The franchises, as a rail. Smaller, scrollable, clearly a
-         different kind of thing from a night. -->
-    <div class="rail-wrap" id="railWrap">
-      <div class="rail-head">
-        <h2 class="rail-h">The parties.</h2>
-        <span class="rail-n" id="railCount"></span>
-      </div>
-      <div class="rail" id="partyRail"></div>
-    </div>
+    <!-- The franchise rail used to live here, filled from the same
+         FRANCHISES array as the grid above it. Two ways of saying one
+         thing, stacked. The grid kept the filters, so the rail went. -->
   </section>
 
   <!-- LIST YOUR PARTY CTA -->
@@ -2423,7 +2530,194 @@
       PARTIES = V2.view === 'parties' ? franchiseRows() : live;
       if(boot) buildFilterOptions();
       renderCards(getFilters());
-      buildRail();
+      buildNightRails();
+    }
+
+    /* ══ A NIGHT'S ARC ════════════════════════════════════════════
+       A party that opens at 10pm Friday is still running at 2am
+       Saturday, so none of this keys off the calendar date. The
+       AfroCue day runs 06:00 to 06:00 and a night belongs to the
+       evening it opened.
+
+       Two defaults, both failing the safe way. Nothing in the data
+       says when a night ends, so take 4am. And where there is no door
+       time we say nothing about one: that night never claims to be on
+       and never claims to have ended early.
+       ════════════════════════════════════════════════════════════ */
+    var NIGHT_ENDS = '04:00', DAY_ENDS = '06:00', ENDING_MIN = 90;
+
+    function nextDay(iso){
+      var d = new Date(iso + 'T00:00:00Z');
+      d.setUTCDate(d.getUTCDate() + 1);
+      return d.toISOString().slice(0, 10);
+    }
+    function lagos(iso, hhmm){ return new Date(iso + 'T' + hhmm + ':00+01:00'); }
+
+    function nightClock(e){
+      var d = acIso(e.date);
+      if(!d) return null;
+      var hhmm = parseTime(e.time);
+      var nd = nextDay(d);
+      return {
+        dayStart: lagos(d, '06:00'),
+        doors:    hhmm ? lagos(d, hhmm) : null,
+        ends:     lagos(nd, NIGHT_ENDS),
+        dayEnd:   lagos(nd, DAY_ENDS),
+        timed:    !!hhmm
+      };
+    }
+
+    /* future | tonight | open | ending | done | past */
+    function nightState(e){
+      var c = nightClock(e);
+      if(!c) return 'future';
+      var now = new Date();
+      if(now >= c.dayEnd)   return 'past';
+      if(now <  c.dayStart) return 'future';
+      /* No claim about whether it was on. But the evening ending is a
+         fact even when the start was not, so it retires with the rest. */
+      if(!c.timed)          return now >= c.ends ? 'done' : 'tonight';
+      if(now <  c.doors)    return 'tonight';
+      if(now >= c.ends)     return 'done';
+      if(now >= new Date(c.ends.getTime() - ENDING_MIN * 60000)) return 'ending';
+      return 'open';
+    }
+    function nightIsOn(st){ return st === 'open' || st === 'ending'; }
+
+    /* 0 to 1 from doors to 4am. The hairline under the flyer, which is
+       the part somebody reads without reading. */
+    function nightProgress(e){
+      var c = nightClock(e);
+      if(!c || !c.timed) return 0;
+      var span = c.ends - c.doors;
+      if(span <= 0) return 1;
+      return Math.max(0, Math.min(1, (new Date() - c.doors) / span));
+    }
+
+    function nightLabel(e){
+      var st = nightState(e), c = nightClock(e);
+      if(st === 'tonight') return c && c.timed
+        ? 'Doors ' + doorTime(e.time) : 'Tonight';
+      if(st === 'done' || st === 'past') return toGo(e.date, e.time, false).t;
+      if(st === 'future') return toGo(e.date, e.time, false).t;
+      if(st === 'ending'){
+        var left = (c.ends - new Date()) / 60000;
+        return left <= 60 ? 'Under an hour left' : 'Ending soon';
+      }
+      var mins = (new Date() - c.doors) / 60000;
+      if(mins < 45) return 'Doors just opened';
+      var hrs = Math.floor(mins / 60);
+      return hrs < 1 ? 'Under an hour in' : hrs + 'hr' + (hrs > 1 ? 's' : '') + ' in';
+    }
+
+    /* 21:00 -> 9PM, 23:30 -> 11:30PM. parseTime already normalised it. */
+    function doorTime(raw){
+      var hhmm = parseTime(raw);
+      if(!hhmm) return '';
+      var h = Number(hhmm.slice(0, 2)), m = Number(hhmm.slice(3, 5));
+      return (h % 12 || 12) + (m ? ':' + ('0' + m).slice(-2) : '')
+        + (h < 12 ? 'AM' : 'PM');
+    }
+
+    function nightCard(e){
+      var st = nightState(e), on = nightIsOn(st);
+      var cls = 'ncard' + (on ? ' on' : '') + (st === 'ending' ? ' ending' : '')
+              + (st === 'done' || st === 'past' ? ' done' : '');
+      var art = e.flyer || '';
+      var sub = [e.venue_held ? '' : e.venue, e.area].filter(Boolean).join(' \u00b7 ');
+      return '<button class="' + cls + '" onclick="openModal(\''
+        + String(e.party_id).replace(/'/g, "\\'") + '\')">'
+        + '<span class="ncard-media">'
+        +   (art ? '<img class="ncard-img" src="' + art + '" alt="" loading="lazy" '
+                 + 'onerror="this.style.visibility=\'hidden\'"/>'
+                 : '<span class="ncard-img"></span>')
+        +   (on ? '<span class="nprog"><i style="width:'
+                  + Math.round(nightProgress(e) * 100) + '%"></i></span>' : '')
+        + '</span>'
+        + '<span class="ncard-b">'
+        +   '<span class="ncard-s">' + (on ? '<span class="ndot"></span>' : '')
+        +     nightLabel(e) + '</span>'
+        +   '<span class="ncard-n">' + (e.ed_name || e.title) + '</span>'
+        +   (sub ? '<span class="ncard-v">' + sub + '</span>' : '')
+        + '</span></button>';
+    }
+
+    function nightRail(elId, title, list, on){
+      var el = document.getElementById(elId);
+      if(!el) return;
+      /* A rail with nothing in it is not rendered at all. That is what
+         stops the page looking broken five nights a week. */
+      if(!list.length){ el.innerHTML = ''; return; }
+      el.innerHTML = '<div class="nsec"><div class="nsec-h">'
+        + '<span class="nsec-t' + (on ? ' on' : '') + '">' + title + '</span>'
+        + '<span class="nsec-n">' + list.length + '</span></div>'
+        + '<div class="nrail">' + list.map(nightCard).join('') + '</div></div>';
+    }
+
+    function liveBar(list){
+      var el = document.getElementById('liveBar');
+      if(!el) return;
+      if(!list.length){ el.innerHTML = ''; return; }
+      var allEnding = list.every(function(e){ return nightState(e) === 'ending'; });
+      el.innerHTML = '<div class="lbar' + (allEnding ? ' ending' : '') + '">'
+        + '<div class="lbar-h"><span class="ndot"></span>On now &middot; '
+        + list.length + '</div><div class="lbar-row">'
+        + list.map(function(e){
+            var ending = nightState(e) === 'ending';
+            return '<button class="lcard' + (ending ? ' ending' : '') + '" onclick="openModal(\''
+              + String(e.party_id).replace(/'/g, "\\'") + '\')">'
+              + (e.flyer ? '<img class="lcard-art" src="' + e.flyer + '" alt="" '
+                         + 'onerror="this.style.visibility=\'hidden\'"/>' : '')
+              + '<span class="lcard-t"><span class="lcard-n">' + e.title + '</span>'
+              + '<span class="lcard-s"><span class="ndot"></span>' + nightLabel(e) + '</span>'
+              + '<span class="lcard-bar"><i style="width:'
+              + Math.round(nightProgress(e) * 100) + '%"></i></span></span></button>';
+          }).join('') + '</div></div>';
+    }
+
+    /* Nights first, brands second. */
+    function buildNightRails(){
+      var all = (EDITIONS || []).filter(function(e){ return e.state !== 'cancelled'; });
+      var by = { open:[], ending:[], tonight:[], future:[], done:[], past:[] };
+      all.forEach(function(e){ (by[nightState(e)] || by.future).push(e); });
+
+      var live = by.open.concat(by.ending);
+      var byDate = function(a, b){ return (a.date || '').localeCompare(b.date || ''); };
+
+      /* The bar is what is on, the rail is what is still to come, and
+         the heading says which. Nothing appears twice on one screen. */
+      liveBar(live.sort(function(a, b){
+        return nightProgress(b) - nightProgress(a); }));
+
+      nightRail('railTonight', live.length ? 'Later tonight' : 'Tonight',
+                by.tonight.sort(byDate), !!live.length);
+
+      nightRail('railComing', 'Coming up',
+                by.future.sort(byDate).slice(0, 16), false);
+
+      /* Newest first, and only what is recent enough to still matter. */
+      var over = by.done.concat(by.past)
+        .sort(function(a, b){ return (b.date || '').localeCompare(a.date || ''); })
+        .slice(0, 12);
+      nightRail('railConcluded', 'Just concluded', over, false);
+
+      heroCount(live.length, by.tonight.length, by.future.length);
+    }
+
+    /* The hero loses its genre list and gains the one fact somebody
+       arrived for. Everything else about the hero is untouched. */
+    function heroCount(live, tonight, soon){
+      var el = document.querySelector('.hero-desc');
+      if(!el) return;
+      var t;
+      if(live)          t = '<b>' + live + ' on right now'
+                            + (tonight ? '</b>, ' + tonight + ' more tonight' : '</b>');
+      else if(tonight)  t = '<b>' + tonight + ' tonight</b>'
+                            + (soon ? ', ' + soon + ' coming up' : '');
+      else if(soon)     t = '<b>' + soon + ' night' + (soon > 1 ? 's' : '')
+                            + ' announced</b>';
+      else              t = 'Nothing announced yet.';
+      el.innerHTML = t;
     }
 
     /* The rail: every franchise, with its next date if there is one. */
@@ -2470,12 +2764,32 @@
     }
     function parseTime(t){
       if(!t) return null;
-      var m = String(t).match(/^(\d{1,2}):(\d{2})\s*(AM|PM)?$/i);
-      if(!m) return null;
-      var hh = parseInt(m[1],10);
-      if(m[3] && /pm/i.test(m[3]) && hh < 12) hh += 12;
-      if(m[3] && /am/i.test(m[3]) && hh === 12) hh = 0;
-      return (hh<10?'0':'')+hh+':'+m[2];
+      var s = String(t).trim();
+
+      /* This used to demand HH:MM and nothing else, while the extract
+         prompt asks the model for the door time "as written, e.g.
+         10PM". So almost every night failed to parse, v2Countdown fell
+         back to 23:59 and marked it untimed, and no card has ever shown
+         an hour count. The sheet holds 10PM, 10:30 PM, 22:00 and the
+         odd phrase like "Doors 10PM till late". */
+      var m = s.match(/(\d{1,2})(?::([0-5]\d))?\s*(a\.?m\.?|p\.?m\.?)/i);
+      if(m){
+        var hh = parseInt(m[1],10);
+        if(hh < 1 || hh > 12) return null;
+        var pm = /p/i.test(m[3]);
+        if(pm && hh < 12) hh += 12;
+        if(!pm && hh === 12) hh = 0;
+        return (hh<10?'0':'')+hh+':'+(m[2]||'00');
+      }
+
+      /* 24 hour. A bare number with no colon and no meridiem is
+         ambiguous, and we do not guess at a door time. */
+      m = s.match(/\b([01]?\d|2[0-3]):([0-5]\d)\b/);
+      if(m){
+        var h2 = parseInt(m[1],10);
+        return (h2<10?'0':'')+h2+':'+m[2];
+      }
+      return null;
     }
 
     /* ── MODAL: state first, then the next edition ──────────────────
@@ -2860,7 +3174,9 @@
     function ehGo(i){ EH.at = i; paintEHero(); }
 
     function openEdition(id){
-      var e = edById(id); if(!e || e.state === 'past') return;
+      /* A past night used to return here, which made Just concluded
+         a rail you could look at and not click. */
+      var e = edById(id); if(!e) return;
       closeModal();
       setTimeout(function(){ openModal(id); }, 180);
     }
@@ -2992,7 +3308,9 @@
     }
 
     function renderUpcoming(party){
-      var sec = document.getElementById('upcomingSection');
+      /* Folded into the Coming up rail. It was a separate 200px band
+         showing the one night that rail now leads with. */
+      var sec = null && document.getElementById('upcomingSection');
       if(!party || !party.name){
         var fallback = PARTIES.find(function(p){ 
           return (p.upcoming_flyer && p.upcoming_flyer.trim() !== '') || (p.upcoming_date && p.upcoming_date.trim() !== '');
