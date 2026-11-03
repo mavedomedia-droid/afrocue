@@ -832,7 +832,10 @@
     @media(max-width:768px){
       .nsec{margin-top:24px}
       .ncard{flex:0 0 156px}
-      .nrail{margin:0 -16px;padding-left:16px;padding-right:16px}
+      /* The bleed has to MATCH the section's own padding, which is
+         12px here, not 16. Four pixels over and the whole page scrolls
+         sideways. */
+      .nrail{margin:0 -12px;padding-left:12px;padding-right:12px}
       .lbar-row{padding:0 12px}
     }
 
@@ -1267,6 +1270,70 @@
     @media (max-width:768px){
       .hero{padding-top:calc(var(--ac-nav-h, 76px) + 22px)}
     }
+
+    /* ══ THE DIRECTORY, AS A RAIL ═══════════════════════════════
+       Everything on this page scrolls left to right now, so the
+       franchise grid does too. renderCards still builds the same
+       .party-card elements into the same #partiesGrid, and the search
+       and sort still filter them: only the container changed, which is
+       why none of the script needed touching.
+
+       The card is LANDSCAPE here. A night is a portrait flyer; a party
+       is a brand. They should not look like the same object. */
+    .parties-grid{
+      display:flex;
+      grid-template-columns:none;
+      gap:10px;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+      padding-bottom:6px;
+      scrollbar-width:none;
+    }
+    .parties-grid::-webkit-scrollbar{display:none}
+    .party-card{
+      flex:0 0 248px;
+      scroll-snap-align:start;
+      aspect-ratio:4/3;
+      border-radius:10px;
+    }
+    /* 32px type on a 248px card does not fit. */
+    .party-card-name{font-size:19px;line-height:1.05;margin-bottom:4px}
+    .party-card-content{padding:14px 14px 13px}
+    .card-franchise{font-size:9.5px;letter-spacing:.1em;margin-bottom:4px}
+
+    @media (max-width:768px){
+      .parties-grid{
+        display:flex;
+        grid-template-columns:none;
+        gap:9px;
+        margin:0 -12px;
+        padding-left:12px;
+        padding-right:12px;
+      }
+      .party-card{flex:0 0 214px;aspect-ratio:4/3}
+      .party-card-name{font-size:17px}
+      .party-card-content{padding:12px 12px 11px}
+      .card-franchise{font-size:9.5px}
+    }
+
+    /* The directory header is a space-between flex row holding the
+       heading and the filter bar, which centred both once they
+       wrapped at phone width. Stack them and pin them left, so this
+       heading sits exactly where Tonight and Coming up sit. */
+    .parties-header{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:12px;
+      margin-bottom:14px;
+    }
+    .parties-header .nsec-h{justify-content:flex-start;margin-bottom:0}
+    .parties-header .filter-bar{justify-content:flex-start;flex:0 0 auto;width:100%}
+
+    /* An empty src never fires an error event, so the listener below
+       cannot catch it. A party with no artwork was rendering its own
+       name as alt text in the middle of a card. */
+    img[src=""], img:not([src]){visibility:hidden}
 </style>
 </head>
 <body>
@@ -1453,6 +1520,13 @@
 
     <!-- THE DIRECTORY. Franchises, with the filters, below the nights. -->
     <div class="parties-header" style="margin-top:38px">
+      <!-- A franchise is not a night, so this rail reads differently:
+           landscape cards, the party's own name, and how often it runs
+           rather than when the next one is. -->
+      <div class="nsec-h">
+        <span class="nsec-t">The parties</span>
+        <span class="nsec-n" id="dirCount"></span>
+      </div>
       <div class="filter-bar">
         <select class="filter-select" id="filterSort" onchange="applyFilters()">
           <option value="soon">Soonest</option><option value="views">Most viewed</option>
@@ -1523,6 +1597,16 @@
   <!-- FOOTER -->
   <!-- SHARED FOOTER (rendered by js/afrocue-ui.js) -->
 <div id="ac-footer"></div>
+<script>
+  /* A party with no artwork rendered a broken-image icon with its name
+     beside it, on cards and in its own modal. One capture phase
+     listener covers every image on the page, including the ones the
+     script builds later. */
+  document.addEventListener('error', function (e) {
+    var t = e.target;
+    if (t && t.tagName === 'IMG') t.style.visibility = 'hidden';
+  }, true);
+</script>
 <script src="js/afrocue-ui.js" data-nav="full" data-footer="full"></script>
 
   <!-- Shared config -->
@@ -3243,6 +3327,8 @@
       }
       noResults.style.display = 'none';
       if(pEmpty) pEmpty.innerHTML = '';
+      var dc = document.getElementById('dirCount');
+      if(dc) dc.textContent = visible.length;
 
       visible.forEach(function(party){
         var card = document.createElement('div');
