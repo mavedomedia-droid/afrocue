@@ -153,6 +153,20 @@
     .ferr.show{display:block}
     .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 
+    /* What they picked, played back quietly. It proves the quiz was read
+       and it invites a correction, which is a conversation starting. */
+    .picks{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+    .picks span{font-size:11px;font-weight:500;color:rgba(240,237,232,0.55);
+      background:rgba(255,255,255,0.05);border:1px solid var(--line);border-radius:4px;padding:5px 9px}
+    .opt-lbl{font-weight:400;letter-spacing:0;text-transform:none;color:rgba(240,237,232,0.3)}
+    /* The @ is locked so nobody types it twice or leaves it off. */
+    .at{display:grid;grid-template-columns:auto 1fr;align-items:stretch;
+      border:1.5px solid var(--line-hi);border-radius:9px;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+    .at:focus-within{border-color:var(--yellow);box-shadow:0 0 0 3px var(--y-ring)}
+    .at span{display:flex;align-items:center;padding:0 2px 0 14px;font-size:16px;color:rgba(240,237,232,0.4)}
+    .at input{border:none;border-radius:0;padding-left:2px}
+    .at input:focus{border:none;box-shadow:none}
+
     .btn{width:100%;padding:14px;background:var(--y-grad);color:#0a0a0a;border:none;border-radius:10px;
       font-family:var(--sans);font-size:15px;font-weight:700;cursor:pointer;margin-top:15px;
       box-shadow:0 6px 18px rgba(222,220,0,0.16);transition:transform .15s,box-shadow .2s,filter .2s}
@@ -275,6 +289,25 @@
       border:1px solid rgba(255,255,255,0.16);border-radius:2px;padding:10px 20px;transition:all .2s}
     .achero-ig:hover{border-color:var(--yellow);color:var(--yellow)}
 
+    /* ── The four answers, two up on a phone ── */
+    .wins{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:26px}
+    .win{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:rgba(255,255,255,0.025)}
+    .win-im{aspect-ratio:16/10;background-size:cover;background-position:center 38%;position:relative}
+    .win-im::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,0.75),rgba(10,10,10,0.1))}
+    .win-tick{position:absolute;left:8px;bottom:8px;z-index:2;width:19px;height:19px;border-radius:50%;
+      background:var(--yellow);display:flex;align-items:center;justify-content:center}
+    .win-tick svg{width:10px;height:10px;stroke:#0a0a0a;stroke-width:3.6;fill:none}
+    .win-t{padding:10px 11px 12px;font-size:12px;font-weight:600;color:var(--white);line-height:1.4;min-height:48px}
+    @media(max-width:700px){
+      .wins{grid-template-columns:1fr 1fr;gap:8px}
+      .win-im{aspect-ratio:3/2}
+      .win-t{font-size:11.5px;min-height:44px}
+    }
+
+    /* Room between the problem cards and the AfroCue band. */
+    .achero{margin-top:72px}
+    @media(max-width:700px){ .achero{margin-top:48px} }
+
     /* ── The offer, stated once ── */
     .offer{max-width:620px;margin:58px auto 0;text-align:center}
     .offer h2{font-family:var(--display);font-weight:900;font-size:clamp(24px,3.2vw,36px);line-height:1.05;
@@ -354,7 +387,7 @@
            ad group that brought them. -->
       <h1>Maximize your Lagos Nightlife Experience in December</h1>
 
-      <p class="hero-d">Use the Lagos Navigator by <b>AfroCue</b> service to curate an unforgettable Lagos nightlife experience for the amount you would have spent anyway.</p>
+      <p class="hero-d">Use Lagos Navigator by <b>AfroCue</b> to curate an unforgettable Lagos night, for the amount you would have spent anyway.</p>
 
       <div class="tags">
         <span><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Curated around the best moments</span>
@@ -422,14 +455,14 @@
         <div class="step" id="q4" data-n="4">
           <div class="slabel">Your dates</div>
           <div class="q">Which nights are you out?</div>
-          <div class="hint">The big ones are already named.</div>
+          <div class="hint">Pick as many as you like.</div>
           <div class="opts g2" id="g4">
-            <button class="opt" data-v="Dec 5 and 6" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">5 and 6</span></span></button>
-            <button class="opt" data-v="Dec 12 and 13" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">12 and 13</span></span></button>
-            <button class="opt" data-v="Dec 19 and 20" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">19 and 20</span></span></button>
-            <button class="opt" data-v="Christmas week" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">Christmas week</span><span class="opt-s">22 to 26</span></span></button>
-            <button class="opt" data-v="The peak" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">The peak</span><span class="opt-s">26 to 30</span></span></button>
-            <button class="opt" data-v="New Year's Eve" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">New Year's Eve</span></span></button>
+            <button class="opt" data-v="Weekend 1" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">Weekend 1</span><span class="opt-s">Fri 4, Sat 5, Sun 6</span></span></button>
+            <button class="opt" data-v="Weekend 2" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">Weekend 2</span><span class="opt-s">Fri 11, Sat 12, Sun 13</span></span></button>
+            <button class="opt" data-v="Weekend 3" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">Weekend 3</span><span class="opt-s">Fri 18, Sat 19, Sun 20</span></span></button>
+            <button class="opt" data-v="Weekend 4" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">Weekend 4</span><span class="opt-s">Fri 25, Sat 26, Sun 27</span></span></button>
+            <button class="opt" data-v="Christmas to New Year" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">Christmas to New Year</span><span class="opt-s">Mon 28 to Thu 31</span></span></button>
+            <button class="opt quiet" data-v="Before or after December" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">Before or after December</span></span></button>
             <button class="opt" data-v="All of it" data-all="true" onclick="togAll(this,'g4','n4')" style="grid-column:1/-1"><span class="box"></span><span class="opt-b"><span class="opt-t">All of it</span></span></button>
           </div>
           <button class="btn" id="n4" disabled onclick="adv('q4','q5')">Next</button>
@@ -441,9 +474,9 @@
           <div class="q">How do you prefer to have your nights?</div>
           <div class="hint">Select as many as you like.</div>
           <div class="opts" id="g5">
-            <button class="opt" data-v="floor" onclick="tog(this,'g5','n5')"><span class="box"></span><span class="opt-b"><span class="opt-t">In the crowd</span><span class="opt-s">On the dance floor, near the booth</span></span></button>
-            <button class="opt" data-v="stage" onclick="tog(this,'g5','n5')"><span class="box"></span><span class="opt-b"><span class="opt-t">Close to the stage</span><span class="opt-s">Where the night is actually happening</span></span></button>
-            <button class="opt" data-v="table" onclick="tog(this,'g5','n5')"><span class="box"></span><span class="opt-b"><span class="opt-t">At a table</span><span class="opt-s">Your own space, your own people</span></span></button>
+            <button class="opt" data-v="floor" onclick="tog(this,'g5','n5')"><span class="box"></span><span class="opt-b"><span class="opt-t">Regular access</span><span class="opt-s">Main dance floor, in the crowd</span></span></button>
+            <button class="opt" data-v="stage" onclick="tog(this,'g5','n5')"><span class="box"></span><span class="opt-b"><span class="opt-t">VIP or stage access</span><span class="opt-s">I like the VIP feeling, wanna be backstage</span></span></button>
+            <button class="opt" data-v="table" onclick="tog(this,'g5','n5')"><span class="box"></span><span class="opt-b"><span class="opt-t">Table or section</span><span class="opt-s">Come with your gang, your own bottle service</span></span></button>
           </div>
           <button class="btn" id="n5" disabled onclick="adv('q5','q6')">Next</button>
           <button class="back" onclick="go('q4')">&larr; Back</button>
@@ -464,8 +497,8 @@
 
         <div class="step" id="q7" data-n="7">
           <div class="slabel">The night itself</div>
-          <div class="q">What would you normally spend on one big night out in December?</div>
-          <div class="hint">For you and a plus one. We are asking what you spend, not what we charge.</div>
+          <div class="q">What would you normally spend on a big Lagos night out in December?</div>
+          <div class="hint">For you and a plus one, what do you think it will cost you on the average?</div>
           <div class="opts">
             <button class="opt quiet" onclick="pick('spend','under50',this)"><span class="opt-n">01</span><span class="opt-b"><span class="opt-t">Under N50,000</span></span><span class="opt-a">&rarr;</span></button>
             <button class="opt" onclick="pick('spend','50-150',this)"><span class="opt-n">02</span><span class="opt-b"><span class="opt-t">N50,000 to N150,000</span></span><span class="opt-a">&rarr;</span></button>
@@ -477,10 +510,10 @@
 
         <div class="step" id="q8" data-n="8">
           <div class="slabel">Last question</div>
-          <div class="q">Want us to put your December together?</div>
+          <div class="q">Would you like us to create a night for you, curated intentionally around the very best moments Lagos nightlife and dance music culture has to offer?</div>
           <div class="hint">We read every flyer in Lagos so you do not have to.</div>
           <div class="opts">
-            <button class="opt" onclick="pick('intent','yes',this)"><span class="opt-n">01</span><span class="opt-b"><span class="opt-t">Yes</span></span><span class="opt-a">&rarr;</span></button>
+            <button class="opt" onclick="pick('intent','yes',this)"><span class="opt-n">01</span><span class="opt-b"><span class="opt-t">Sounds interesting, yes</span></span><span class="opt-a">&rarr;</span></button>
             <button class="opt" onclick="pick('intent','maybe',this)"><span class="opt-n">02</span><span class="opt-b"><span class="opt-t">Maybe, show me</span></span><span class="opt-a">&rarr;</span></button>
             <button class="opt quiet" onclick="pick('intent','no',this)"><span class="opt-n">03</span><span class="opt-b"><span class="opt-t">Not interested</span></span><span class="opt-a">&rarr;</span></button>
           </div>
@@ -490,10 +523,13 @@
         <div class="step" id="cap" data-n="8">
           <div class="slabel">Where to send it</div>
           <div class="q">Almost done.</div>
-          <div class="asked" id="echo"></div>
-          <div class="ig"><label>First name</label><input type="text" id="fn" placeholder="What we call you" autocomplete="given-name" oninput="clr(this,'e-fn')"><div class="ferr" id="e-fn">We need a name for the email.</div></div>
+          <div class="hint">Give us your information and we will reach out with the details of how this works.</div>
+          <div class="picks" id="picks"></div>
+          <div class="ig"><label>First name</label><input type="text" id="fn" placeholder="What to call you" autocomplete="given-name" oninput="clr(this,'e-fn')"><div class="ferr" id="e-fn">We need a name for the email.</div></div>
           <div class="ig"><label>Email</label><input type="email" id="em" placeholder="you@example.com" autocomplete="email" inputmode="email" oninput="clr(this,'e-em')"><div class="ferr" id="e-em">That email does not look right.</div></div>
-          <div class="ig"><label>WhatsApp number</label><input type="tel" id="ph" placeholder="0801 234 5678" autocomplete="tel" inputmode="numeric" oninput="clr(this,'e-ph')"><div class="ferr" id="e-ph">A number we can reach you on.</div></div>
+          <div class="ig"><label>Phone number</label><input type="tel" id="ph" placeholder="+234 801 234 5678" autocomplete="tel" inputmode="tel" oninput="clr(this,'e-ph')"><div class="ferr" id="e-ph">A number we can reach you on.</div></div>
+          <div class="ig"><label>WhatsApp number</label><input type="tel" id="wa" placeholder="Same as above, or a different one" autocomplete="tel" inputmode="tel"></div>
+          <div class="ig"><label>Instagram <span class="opt-lbl">optional</span></label><div class="at"><span>@</span><input type="text" id="igh" placeholder="yourhandle" autocomplete="off" spellcheck="false"></div></div>
           <button class="btn" id="sub" onclick="submit()">Send me the details</button>
           <p class="fine">One email, built from your answers, with the full costs in it.</p>
           <button class="back" onclick="go('q8')">&larr; Back</button>
@@ -574,40 +610,35 @@
   </section>
 
   <!-- ══════════ WHAT WE ARE OFFERING ══════════
-       The service stated plainly, once, in his words. Sits between who we
-       are and how it works. -->
+       The answer to the problem section, card for card. "What we do"
+       used to sit here as a second section saying the same thing; it is
+       folded in, so the page goes problem, who we are, the offer. -->
   <section>
     <div class="inner">
       <div class="offer">
         <div class="eyebrow">What we are offering</div>
-        <h2>A way to enjoy Lagos without the sweat.</h2>
-        <p>Get a Navigator package and we will curate your night around the best moments, and take all the stress from you.</p>
+        <h2>Your Lagos nightlife experience, curated for maximum impact.</h2>
+        <p>Get a Navigator package and we create your night around the best moments, and take all the stress from you.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- ══════════ WHAT WE DO ABOUT IT ══════════
-       The same three, same order. The symmetry with the section above is
-       the point: every problem named gets answered. -->
-  <section>
-    <div class="inner">
-      <div class="head mid">
-        <div class="eyebrow">What we do</div>
-        <h2 class="bh">So we build the night out of what is already there.</h2>
-        <p class="sub">We take the planning away and leave you to focus on having a good time.</p>
-      </div>
-      <div class="cards">
-        <div class="pc">
-          <div class="tx" style="padding:18px 18px 20px"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="width:20px;height:20px;margin-bottom:10px"><path d="M3 21h18"/><path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/><circle cx="14.5" cy="12" r="1"/></svg><h3>The room that is actually moving</h3><p>Picked from the directory against your dates, not off whichever flyer shouted loudest.</p></div>
+      <div class="wins">
+        <div class="win">
+          <div class="win-im" style="background-image:url('assets/group_collective.jpg')"><span class="win-tick"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+          <div class="win-t">The best parties identified for you</div>
         </div>
-        <div class="pc">
-          <div class="tx" style="padding:18px 18px 20px"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="width:20px;height:20px;margin-bottom:10px"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/></svg><h3>The DJs playing it</h3><p>Who is on form and who is on the bill, including the international DJs flying in, often before the lineup is announced.</p></div>
+        <div class="win">
+          <div class="win-im" style="background-image:url('assets/content_dj.jpeg')"><span class="win-tick"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+          <div class="win-t">The city&rsquo;s best talents on your lineup</div>
         </div>
-        <div class="pc">
-          <div class="tx" style="padding:18px 18px 20px"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="width:20px;height:20px;margin-bottom:10px"><path d="M5 17H3.5v-5L5.5 7h13l2 5v5H19"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M9.5 17h5"/></svg><h3>A chauffeured ride, both ways</h3><p>Picked up from your place and taken home after. No surge, no parking, no 4am problem.</p></div>
+        <div class="win">
+          <div class="win-im" style="background-image:url('assets/roamers_bg.jpg')"><span class="win-tick"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+          <div class="win-t">Your movement, seamless</div>
+        </div>
+        <div class="win">
+          <div class="win-im" style="background-image:url('assets/audience_partygoers.jpg')"><span class="win-tick"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+          <div class="win-t">A night curated for maximum fun</div>
         </div>
       </div>
-      <p class="note">Some rooms we hold, some we ask for. We tell you which before you pay for anything.</p>
+      <p class="note" style="text-align:center;border-left:none;padding-left:0">Some rooms we hold, some we ask for. We tell you which before you pay for anything.</p>
     </div>
   </section>
 
@@ -956,14 +987,16 @@
     go(to);
   }
 
-  var NICE = { floor:'in the crowd', stage:'close to the stage', table:'at a table' };
+  var NICE = { floor:'Regular access', stage:'VIP or stage', table:'Table or section' };
   function writeEcho(){
-    var b = [];
-    if (S.tier) b.push(S.tier);
-    if (S.looking.length) b.push(S.looking.slice(0,2).join(' and ').toLowerCase());
-    if (S.often) b.push(S.often.toLowerCase());
-    if (S.nights.length) b.push(NICE[S.nights[0]] || S.nights[0]);
-    document.getElementById('echo').textContent = b.length ? 'You said ' + b.join(', ') + '.' : 'We have your answers.';
+    var box = document.getElementById('picks'); if (!box) return;
+    var bits = [];
+    if (S.tier) bits.push(S.tier);
+    S.nights.forEach(function(n){ bits.push(NICE[n] || n); });
+    if (S.dates.length) bits.push(S.dates.length > 2 ? S.dates.length + ' weekends' : S.dates.join(', '));
+    if (S.with) bits.push(S.with);
+    S.looking.slice(0,2).forEach(function(g){ bits.push(g); });
+    box.innerHTML = bits.map(function(b){ return '<span>' + esc(b) + '</span>'; }).join('');
   }
 
   /* Q5 sets the ladder, Q6 the rung, Q1 overrides, and a tier they
@@ -1002,7 +1035,12 @@
      and bid on separately. */
   var ABROAD = { Europe:1, 'North America':1, Africa:1, Elsewhere:1 };
   function thankYouPath(){
-    return (S.where === 'travelling' && ABROAD[S.from]) ? '/thank-you/an-abroad' : '/thank-you/an-nigerian';
+    /* Routes on where they are coming FROM, not on whether they have
+       booked a flight. Only travelling and undecided ever reach q1b, so
+       S.from is empty for anyone who stays in Lagos. Gating on
+       where === 'travelling' sent every undecided person to the Nigerian
+       page, including the ones in London who had not booked yet. */
+    return ABROAD[S.from] ? '/thank-you/an-abroad' : '/thank-you/an-nigerian';
   }
 
   function clr(el, id){ el.classList.remove('error'); document.getElementById(id).classList.remove('show'); }
@@ -1013,6 +1051,8 @@
     if (document.getElementById('hp').value) return;
     var fnEl = document.getElementById('fn'), emEl = document.getElementById('em'), phEl = document.getElementById('ph');
     var fn = fnEl.value.trim(), em = emEl.value.trim(), ph = phEl.value.trim(), ok = true;
+    var wa = document.getElementById('wa').value.trim();
+    var igh = document.getElementById('igh').value.trim().replace(/^@+/, '');
     if (!fn){ bad(fnEl,'e-fn'); ok = false; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){ bad(emEl,'e-em'); ok = false; }
     if (ph.replace(/\D/g,'').length < 10){ bad(phEl,'e-ph'); ok = false; }
@@ -1027,6 +1067,7 @@
     var data = {
       source:'navigator', type:'navigator_quiz',
       first_name:fn, email:em, phone:ph,
+      whatsapp: wa || ph, instagram: igh ? '@' + igh : '',
       where:S.where, from:S.from, often:S.often,
       looking:S.looking, dates:S.dates, nights:S.nights,
       group:S.with, intent:S.intent,
