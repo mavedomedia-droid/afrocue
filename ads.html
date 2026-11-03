@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-  <title>Advertise with AfroCue — For DJs, Parties & Brands</title>
+  <title>Advertise with AfroCue | For DJs, Parties & Brands</title>
   <link rel="icon" type="image/png" href="favicon.png"/>
   <link rel="apple-touch-icon" href="favicon.png"/>
   <meta name="description" content="Work with AfroCue. Promotion for DJs, content for parties, partnerships for brands."/>
@@ -17,8 +17,8 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Shared AfroCue config -->
-  <script src="https://afrocue.xyz/afrocue.js"></script>
+  <!-- Shared AfroCue config: the same file parties.html uses -->
+  <script src="/js/afrocue.js"></script>
 
   <style>
     @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
@@ -32,11 +32,12 @@
       --silver: #888888;
       --off:    #d4d4d0;
       --white:  #f0ede8;
-      --yellow: #C8E000;
-      --yts:    2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(200,224,0,0.06);
+      --yellow: #dedc00;
+      --yts:    2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(222,220,0,0.06);
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior:smooth; }
+    section[id] { scroll-margin-top: 72px; }
     body {
       background: var(--black); color: var(--white);
       font-family: 'Figtree', sans-serif;
@@ -242,7 +243,7 @@
       transition: all 0.2s;
     }
     .cat-tab.active .cat-tab-count {
-      background: rgba(200,224,0,0.15);
+      background: rgba(222,220,0,0.15);
       color: var(--yellow);
     }
 
@@ -285,7 +286,7 @@
       transition: border-color 0.25s;
       position: relative;
     }
-    .prod:hover { border-color: rgba(200,224,0,0.28); }
+    .prod:hover { border-color: rgba(222,220,0,0.28); }
 
     .prod-media {
       position: relative; background: #000;
@@ -297,6 +298,14 @@
       transition: transform 0.5s ease;
     }
     .prod:hover .prod-media img { transform: scale(1.03); }
+    .prod-media-blank {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(circle at 30% 20%, rgba(222,220,0,0.10) 0%, transparent 60%), #111;
+      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
+      font-size: 26px; letter-spacing: 0.06em; text-transform: uppercase;
+      color: rgba(240,237,232,0.22); text-align: center; padding: 20px;
+    }
     .prod-media-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(180deg, rgba(10,10,10,0.05) 0%, rgba(10,10,10,0.4) 100%);
@@ -313,7 +322,7 @@
       transition: all 0.25s;
     }
     .prod-play svg { width: 12px; height: 12px; fill: var(--white); margin-left: 2px; }
-    .prod:hover .prod-play { background: rgba(200,224,0,0.85); border-color: var(--yellow); }
+    .prod:hover .prod-play { background: rgba(222,220,0,0.85); border-color: var(--yellow); }
     .prod:hover .prod-play svg { fill: var(--black); }
 
     .prod-example-link {
@@ -330,7 +339,7 @@
       transition: all 0.2s;
     }
     .prod-example-link svg { width: 9px; height: 9px; stroke: currentColor; fill: none; stroke-width: 2; }
-    .prod:hover .prod-example-link { background: rgba(200,224,0,0.85); border-color: var(--yellow); color: var(--black); }
+    .prod:hover .prod-example-link { background: rgba(222,220,0,0.85); border-color: var(--yellow); color: var(--black); }
 
     .prod-body {
       padding: 24px 28px 20px;
@@ -379,8 +388,8 @@
     .prod-addon {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 7px 12px;
-      background: rgba(200,224,0,0.05);
-      border: 1px solid rgba(200,224,0,0.15);
+      background: rgba(222,220,0,0.05);
+      border: 1px solid rgba(222,220,0,0.15);
       border-radius: 100px;
       font-size: 11px; align-self: flex-start;
     }
@@ -395,7 +404,7 @@
       display: inline-flex; align-items: center; gap: 6px;
       padding: 8px 14px;
       background: transparent;
-      border: 1px solid rgba(200,224,0,0.35);
+      border: 1px solid rgba(222,220,0,0.35);
       border-radius: 100px;
       font-family: 'Figtree', sans-serif;
       font-size: 10px; font-weight: 700;
@@ -417,7 +426,7 @@
 
     .brand-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
     .brand-tile {
-      background: linear-gradient(155deg, rgba(200,224,0,0.04) 0%, rgba(255,255,255,0.01) 100%);
+      background: linear-gradient(155deg, rgba(222,220,0,0.04) 0%, rgba(255,255,255,0.01) 100%);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 12px;
       padding: 28px 26px 24px;
@@ -431,11 +440,11 @@
     .brand-tile::before {
       content: ''; position: absolute; top: -80px; right: -80px;
       width: 220px; height: 220px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(200,224,0,0.08) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(222,220,0,0.08) 0%, transparent 70%);
       pointer-events: none; opacity: 0.6; transition: opacity 0.3s;
     }
     .brand-tile:hover::before { opacity: 1; }
-    .brand-tile:hover { border-color: rgba(200,224,0,0.35); transform: translateY(-2px); }
+    .brand-tile:hover { border-color: rgba(222,220,0,0.35); transform: translateY(-2px); }
     .brand-icon { width: 28px; height: 28px; color: var(--yellow); position: relative; z-index: 1; }
     .brand-icon svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
     .brand-name {
@@ -459,8 +468,8 @@
     .brand-tile:hover .brand-foot .arrow { transform: translate(3px, -3px); }
     .brand-tile-wide {
       grid-column: 1 / -1;
-      background: linear-gradient(155deg, rgba(200,224,0,0.07) 0%, rgba(255,255,255,0.015) 100%);
-      border-color: rgba(200,224,0,0.25);
+      background: linear-gradient(155deg, rgba(222,220,0,0.07) 0%, rgba(255,255,255,0.015) 100%);
+      border-color: rgba(222,220,0,0.25);
     }
 
     .rates {
@@ -496,7 +505,7 @@
       margin-right: 4px; letter-spacing: 0.08em;
       text-transform: uppercase; font-weight: 500;
     }
-    .rate-table tr:hover td { background: rgba(200,224,0,0.02); }
+    .rate-table tr:hover td { background: rgba(222,220,0,0.02); }
     .rate-table tr:last-child td { border-bottom: none; }
     .rate-cat-row td {
       padding-top: 32px; padding-bottom: 12px;
@@ -520,7 +529,7 @@
     .amp::before {
       content: ''; position: absolute; top: -160px; right: -160px;
       width: 480px; height: 480px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(200,224,0,0.08) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(222,220,0,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
     .amp-inner { position: relative; z-index: 1; max-width: 1120px; margin: 0 auto; }
@@ -559,7 +568,7 @@
       padding: 18px 16px;
       transition: border-color 0.2s, background 0.2s;
     }
-    .amp-tile:hover { border-color: rgba(200,224,0,0.3); background: rgba(200,224,0,0.03); }
+    .amp-tile:hover { border-color: rgba(222,220,0,0.3); background: rgba(222,220,0,0.03); }
     .amp-tile-icon { width: 26px; height: 26px; color: var(--yellow); }
     .amp-tile-icon svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
     .amp-tile-name {
@@ -601,7 +610,7 @@
       color: var(--white);
       transition: all 0.2s;
     }
-    .build-block:hover { border-color: rgba(200,224,0,0.35); background: rgba(200,224,0,0.04); color: var(--yellow); }
+    .build-block:hover { border-color: rgba(222,220,0,0.35); background: rgba(222,220,0,0.04); color: var(--yellow); }
     .build-cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
 
     .final {
@@ -709,7 +718,7 @@
     }
     .inq-field textarea { min-height: 90px; line-height: 1.55; }
     .inq-field input:focus,
-    .inq-field textarea:focus { border-color: rgba(200,224,0,0.5); }
+    .inq-field textarea:focus { border-color: rgba(222,220,0,0.5); }
     .inq-field input::placeholder,
     .inq-field textarea::placeholder { color: rgba(240,237,232,0.32); }
 
@@ -750,7 +759,7 @@
       transition: all 0.15s; user-select: none;
       line-height: 1.3; text-align: left;
     }
-    .inq-opt:hover { border-color: rgba(200,224,0,0.3); background: rgba(255,255,255,0.04); }
+    .inq-opt:hover { border-color: rgba(222,220,0,0.3); background: rgba(255,255,255,0.04); }
     .inq-opt input { display: none; }
     .inq-opt .inq-box {
       width: 18px; height: 18px;
@@ -768,13 +777,14 @@
       border-bottom: 2px solid var(--black);
       transform: rotate(-45deg); margin-top: -2px;
     }
-    .inq-opt.checked { border-color: rgba(200,224,0,0.4); background: rgba(200,224,0,0.06); color: var(--white); }
+    .inq-opt.checked { border-color: rgba(222,220,0,0.4); background: rgba(222,220,0,0.06); color: var(--white); }
     .inq-summary {
       font-size: 13px; font-weight: 400;
       color: rgba(240,237,232,0.5);
       margin-bottom: 16px; min-height: 18px; line-height: 1.5;
     }
     .inq-summary strong { color: var(--yellow); font-weight: 600; }
+    .inq-error { font-size: 13px; color: #ff8080; margin: 4px 0 0; min-height: 18px; }
     .inq-submit {
       display: block; width: 100%;
       margin-top: 8px; padding: 16px 24px;
@@ -840,6 +850,198 @@
       .cat-tab { padding: 14px 16px 16px; font-size: 15px; gap: 8px; }
       .cat-tab-count { font-size: 10px; padding: 2px 6px; }
     }
+
+    /* ═══ COMPACT LAYOUT ═══════════════════════════════════════════
+       Layered over the rules above: tighter sections, the catalogue as
+       a grid, prices under the names, and less text before the offer. */
+    .inner { padding: 0; }            /* the sections carry the side padding, so edges line up with the hero */
+    .hero { padding: 120px 40px 48px; }
+    .hero-h1 { font-size: clamp(40px, 6.2vw, 76px); margin-bottom: 18px; }
+    .hero-sub { margin-bottom: 26px; }
+    .hero-eyebrow { margin-bottom: 18px; }
+    .hero-side { gap: 10px; max-width: 260px; }
+    .hero-stat { display: block; position: relative; padding: 14px 44px 14px 16px; transition: border-color .2s, background .2s; }
+    .hero-stat:hover { border-color: rgba(222,220,0,0.45); background: rgba(222,220,0,0.06); }
+    .hero-stat-num { font-size: 20px; margin-bottom: 4px; }
+    .hero-stat-go { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: var(--yellow); font-weight: 700; }
+
+    .pillars { padding: 0 40px; background: var(--dark); }
+    .pillars-inner { border: 0; border-radius: 0; background: transparent; gap: 0; }
+    .pillar { padding: 16px 18px; border-left: 1px solid rgba(255,255,255,0.06); background: transparent; }
+    .pillar:first-child { border-left: 0; padding-left: 0; }
+    .pillar-num { display: inline; margin: 0 8px 0 0; font-size: 11px; }
+    .pillar-name { display: inline; font-size: 15px; margin: 0; }
+    .pillar-desc { margin-top: 6px; font-size: 11.5px; }
+
+    .catalogue, .rates, .amp, .build { padding-top: 56px; padding-bottom: 56px; }
+    .final { padding: 56px 40px 64px; }
+    .cat-header { margin-bottom: 18px; }
+    .cat-header .label { margin-bottom: 10px; }
+    .cat-header .section-h { margin-bottom: 0; }
+
+    .cat-tabs {
+      position: sticky; top: 70px; z-index: 50;
+      background: var(--black); margin-bottom: 16px;
+    }
+    .cat-tab { padding: 14px 20px 15px; font-size: 16px; }
+    .aud-line { font-size: 14px; font-weight: 300; line-height: 1.6; color: rgba(240,237,232,0.6); margin: 0 0 18px; max-width: 680px; }
+
+    .cat-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .prod { grid-template-columns: 1fr; display: flex; flex-direction: column; border-radius: 10px; }
+    .prod-media { aspect-ratio: 16 / 11; }
+    .prod-tag {
+      position: absolute; top: 10px; left: 10px; z-index: 2;
+      padding: 4px 9px; border-radius: 100px;
+      background: rgba(10,10,10,0.7); backdrop-filter: blur(6px);
+      font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--white);
+    }
+    .prod-play { top: 10px; right: 10px; width: 30px; height: 30px; }
+    .prod-example-link { bottom: 10px; left: 10px; }
+    .prod-media-blank { font-size: 20px; }
+    .prod-body { padding: 14px 16px 14px; gap: 8px; flex: 1; min-height: 0; }
+    .prod-name { font-size: 19px; }
+    .prod-price { padding: 0; }
+    .prod-price-num { font-size: 22px; }
+    .prod-desc {
+      font-size: 12.5px; line-height: 1.5;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .prod-needs { font-size: 11.5px; gap: 6px; }
+    .prod-needs-items { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+    .prod-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin-top: auto; padding-top: 4px; }
+    .prod-addon { padding: 5px 10px; font-size: 10.5px; }
+    .prod-addon-label, .prod-addon-text { white-space: nowrap; }
+    .prod-inquire { margin: 0 0 0 auto; }
+    .prod-amp-note { margin-top: 0; padding-top: 0; font-size: 10.5px; }
+
+    .brand-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .brand-tile { min-height: 0; padding: 18px 18px 16px; gap: 10px; }
+    .brand-name { font-size: 18px; }
+    .brand-desc { font-size: 12.5px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .brand-tile-wide { grid-column: 1 / -1; }
+
+    .rates-head { margin-bottom: 18px; }
+    .rate-table { max-width: 760px; }
+    .rate-table td { padding: 10px 14px; }
+    .rate-cat-row td { padding-top: 22px; padding-bottom: 8px; }
+    .rate-note { margin-top: 14px; }
+
+    .amp-head { margin-bottom: 28px; }
+    .amp-main { gap: 32px; margin-bottom: 28px; padding-bottom: 28px; }
+    .amp-visual { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .amp-tile { aspect-ratio: auto; min-height: 96px; padding: 14px 12px; }
+    .amp-extras { display: flex; flex-wrap: wrap; gap: 8px; }
+    .amp-extra { padding: 9px 14px; border-radius: 100px; font-size: 12px; }
+
+    .build-head { margin-bottom: 22px; }
+    .build-blocks { margin-bottom: 22px; gap: 8px; }
+    .build-block { padding: 10px 16px; font-size: 12px; }
+
+    @media (max-width: 960px) {
+      .hero { padding: 104px 24px 36px; }
+      .hero-side { flex-direction: row; gap: 8px; }
+      .hero-stat { flex: 1 1 0; padding: 12px 30px 12px 12px; }
+      .hero-stat-num { font-size: 17px; }
+      .hero-stat-label { font-size: 9px; letter-spacing: 0.1em; }
+      .hero-stat-go { right: 10px; }
+      .pillars { padding: 0 24px; }
+      .pillar:nth-child(odd) { border-left: 0; padding-left: 0; }
+      .catalogue, .rates, .amp, .build { padding: 44px 24px; }
+      .final { padding: 44px 24px 52px; }
+      .cat-tabs { top: 66px; }
+      .cat-list { grid-template-columns: repeat(2, 1fr); }
+      .brand-grid { grid-template-columns: repeat(2, 1fr); }
+      .amp-main { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .hero-h1 { font-size: 40px; }
+      .hero-side { flex-direction: column; }
+      .hero-stat { display: flex; align-items: baseline; gap: 10px; padding: 11px 34px 11px 14px; }
+      .hero-stat-num { margin: 0; }
+      .pillars-inner { grid-template-columns: repeat(2, 1fr); }
+      .pillar { padding: 12px 12px 12px 0; }
+      .pillar-desc { display: none; }
+      .cat-tab { padding: 12px 10px 13px; font-size: 14px; gap: 6px; }
+      .prod-addon { padding: 4px 9px; }
+      .prod-addon-label { display: none; }
+      /* phones: one compact row per placement, picture on the left */
+      .cat-list { grid-template-columns: 1fr; gap: 10px; }
+      .prod { flex-direction: row; align-items: stretch; }
+      .prod-media { flex: 0 0 116px; aspect-ratio: auto; min-height: 150px; }
+      .prod-example-link, .prod-play { display: none; }
+      .prod-tag { top: 8px; left: 8px; font-size: 8px; padding: 3px 7px; }
+      .prod-media-blank { font-size: 14px; }
+      .prod-body { padding: 12px 12px 12px 14px; gap: 6px; }
+      .prod-name { font-size: 17px; }
+      .prod-price-num { font-size: 19px; }
+      .prod-desc { font-size: 12px; }
+      .prod-needs { display: none; }
+      .prod-inquire { padding: 7px 12px; }
+      .brand-grid { grid-template-columns: 1fr; gap: 8px; }
+      .brand-tile { flex-direction: row; flex-wrap: wrap; align-items: center; padding: 14px; gap: 6px 12px; }
+      .brand-icon { width: 22px; height: 22px; }
+      .brand-name { font-size: 16px; flex: 1; }
+      .brand-desc { flex-basis: 100%; -webkit-line-clamp: 2; }
+      .brand-foot { display: none; }
+      .amp-visual { grid-template-columns: repeat(2, 1fr); }
+      .amp-tile { min-height: 76px; }
+    }
+
+    /* ═══ ROUND 3: smaller headings, compact buttons side by side, a real rate table ═══ */
+    .hero-h1 { font-size: clamp(34px, 4.6vw, 58px); line-height: 0.95; }
+    .cat-header .section-h { font-size: clamp(24px, 2.8vw, 34px); }
+    .btn { padding: 12px 18px; min-height: 42px; font-size: 11px; letter-spacing: 0.12em; gap: 8px; }
+    .btn svg { width: 12px; height: 12px; }
+    .hero-ctas, .build-cta-row, .final-contacts { gap: 8px; }
+
+    .rates .section-h { font-size: clamp(24px, 2.8vw, 34px); }
+    .rate-table { max-width: none; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; border-collapse: separate; border-spacing: 0; overflow: hidden; font-size: 13.5px; }
+    .rate-table thead { border: 0; }
+    .rate-table th { background: #161616; padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .rate-table th:last-child, .rate-table td.rate-price { text-align: right; }
+    .rate-table td { padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .rate-table td + td, .rate-table th + th { border-left: 1px solid rgba(255,255,255,0.05); }
+    .rate-table tbody tr:not(.rate-cat-row):nth-child(even) td { background: rgba(255,255,255,0.015); }
+    .rate-table td.rate-fmt, .rate-table th.rate-fmt { color: var(--silver); width: 22%; }
+    .rate-table td.rate-price { font-variant-numeric: tabular-nums; width: 24%; color: var(--white); }
+    .rate-cat-row td { background: rgba(222,220,0,0.05); padding: 9px 16px; font-size: 11px; letter-spacing: 0.14em; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .rate-table tr:last-child td { border-bottom: 0; }
+
+    .amp { padding-top: 44px; padding-bottom: 44px; }
+    .amp-main { margin-bottom: 0; padding-bottom: 0; border-bottom: 0; align-items: center; }
+    .amp-main-copy .label { margin-bottom: 12px; }
+    .amp-lead { font-size: 14px; font-weight: 300; line-height: 1.7; color: rgba(240,237,232,0.72); margin: 0 0 14px; max-width: 520px; }
+    .amp-main-copy .amp-price-num { font-size: 28px; }
+
+    .build-head, .build .inner { text-align: center; }
+    .build-head { margin: 0 auto 20px; }
+    .build .label, .final .label { justify-content: center; }
+    .build .label::before { display: none; }
+    .build .label::after { content: ''; width: 20px; height: 1px; background: var(--silver); }
+    .build .section-sub { margin: 0 auto; }
+    .build-cta-row { justify-content: center; }
+    .final .section-h, .build-head .section-h { font-size: clamp(28px, 3.6vw, 44px); }
+    .final-emails { display: flex; gap: 8px 24px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
+    .final-emails .final-email { margin-top: 0; font-size: 15px; }
+    .footer-email { color: var(--grey); font-size: 11px; }
+
+    @media (max-width: 640px) {
+      .hero-h1 { font-size: 34px; }
+      .cat-header .section-h, .rates .section-h { font-size: 24px; }
+      /* buttons keep their own width and sit side by side */
+      .btn { width: auto; max-width: none; padding: 11px 14px; font-size: 10.5px; letter-spacing: 0.08em; }
+      .hero-ctas { flex-direction: row; flex-wrap: nowrap; align-items: center; justify-content: flex-start; }
+      .build-cta-row, .final-contacts { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center; }
+      .rate-table { font-size: 12.5px; }
+      .rate-table th, .rate-table td { padding: 9px 10px; }
+      .rate-table .rate-fmt { display: none; }
+      .rate-table td.rate-price { width: auto; }
+      .amp-visual { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+      .amp-tile { min-height: 70px; padding: 10px 8px; }
+      .amp-tile-name { font-size: 11px; }
+      .amp-tile-icon { width: 20px; height: 20px; }
+      .final .section-h, .build-head .section-h { font-size: 28px; }
+    }
   </style>
 </head>
 <body>
@@ -869,20 +1071,20 @@
     <div class="hero-copy">
       <div class="hero-eyebrow">Advertise with AfroCue</div>
       <h1 class="hero-h1">Put your brand<br><span class="alt">in the culture.</span></h1>
-      <p class="hero-sub">Work with AfroCue across editorial content, community placements and physical experiences. Whether you're a DJ, a party, or a brand — there's a way in.</p>
+      <p class="hero-sub">Work with AfroCue across editorial content, community placements and physical experiences.</p>
       <div class="hero-ctas">
-        <button class="btn btn-primary" onclick="openInquiry()">
+        <a class="btn btn-primary" href="#catalogue">
           See what's available
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
+        </a>
         <button class="btn btn-secondary" onclick="openInquiry()">Talk to us</button>
       </div>
     </div>
 
     <div class="hero-side">
-      <div class="hero-stat"><div class="hero-stat-num">DJs</div><div class="hero-stat-label">Promotion & spotlight</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">Parties</div><div class="hero-stat-label">Content for events</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">Brands</div><div class="hero-stat-label">Sponsorship & partnerships</div></div>
+      <a class="hero-stat" href="#catalogue" data-go="djs"><div class="hero-stat-num">DJs</div><div class="hero-stat-label">Promotion & spotlight</div><span class="hero-stat-go">→</span></a>
+      <a class="hero-stat" href="#catalogue" data-go="parties"><div class="hero-stat-num">Parties</div><div class="hero-stat-label">Content for events</div><span class="hero-stat-go">→</span></a>
+      <a class="hero-stat" href="#catalogue" data-go="brands"><div class="hero-stat-num">Brands</div><div class="hero-stat-label">Sponsorship & partnerships</div><span class="hero-stat-go">→</span></a>
     </div>
   </div>
 </section>
@@ -900,8 +1102,7 @@
   <div class="inner">
     <div class="cat-header">
       <div class="label">The Catalogue</div>
-      <h2 class="section-h">Three ways to work<br>with AfroCue.</h2>
-      <p class="section-sub">Whether you're a DJ, a party, or a brand — the placements below show exactly what we produce, how it goes out, and what we need from you. Full rates are at the bottom of the page.</p>
+      <h2 class="section-h">Three ways to work with AfroCue.</h2>
     </div>
 
     <div class="cat-status" id="catStatus"></div>
@@ -919,29 +1120,17 @@
     </div>
 
     <div class="cat-panel active" data-panel="djs">
-      <div class="aud-intro-block">
-        <div class="aud-eyebrow">For DJs</div>
-        <h3 class="aud-name">Promotion opportunities for DJs.</h3>
-        <p class="aud-intro">Whether you're managing yourself, working with a manager, or a friend helping you move — AfroCue is where the scene watches DJs. These are the formats built for you.</p>
-      </div>
+      <p class="aud-line">AfroCue is where the scene watches DJs. These are the formats built for you.</p>
       <div class="cat-list" id="djs-list"></div>
     </div>
 
     <div class="cat-panel" data-panel="parties">
-      <div class="aud-intro-block">
-        <div class="aud-eyebrow">For Parties & Events</div>
-        <h3 class="aud-name">Content for parties.</h3>
-        <p class="aud-intro">Video options for parties and events to creatively communicate their upcoming events — around Afrobeats, DJ-obsessed content styles and beyond.</p>
-      </div>
+      <p class="aud-line">Video options for parties and events to creatively communicate their upcoming events.</p>
       <div class="cat-list" id="parties-list"></div>
     </div>
 
     <div class="cat-panel" data-panel="brands">
-      <div class="aud-intro-block">
-        <div class="aud-eyebrow">For Brands</div>
-        <h3 class="aud-name">Sponsorship & partnerships.</h3>
-        <p class="aud-intro">For brands looking beyond a single placement — AfroCue works on longer, deeper collaborations. Slide placements, sponsorship, creative campaigns and content production. Tell us what you're trying to achieve.</p>
-      </div>
+      <p class="aud-line">For brands looking beyond a single placement, AfroCue works on longer, deeper collaborations. Tell us what you're trying to achieve.</p>
       <div class="brand-grid" id="brands-list"></div>
     </div>
 
@@ -957,7 +1146,7 @@
 
     <table class="rate-table" id="rate-table">
       <thead>
-        <tr><th>Placement</th><th>Price</th></tr>
+        <tr><th>Placement</th><th class="rate-fmt">Format</th><th>Price</th></tr>
       </thead>
       <tbody id="rate-table-body"></tbody>
     </table>
@@ -970,20 +1159,14 @@
 
 <section class="amp" id="amplification">
   <div class="amp-inner">
-    <div class="amp-head">
-      <div class="label">The reach play</div>
-      <h2 class="section-h yellow">This is what<br>we do best.</h2>
-      <p class="section-sub">Content gets you seen by people who already follow us. Amplification takes it further — Meta pixel, audience signal, travel reach — and puts your content in front of people who don't yet know you exist.</p>
-    </div>
-
     <div class="amp-main">
       <div class="amp-main-copy">
+        <div class="label">Amplification</div>
+        <p class="amp-lead">We can also add amplification through media buying and ads. Whatever we do for you, we can amplify it to a rich party audience we've been curating since the inception of AfroCue.</p>
         <div class="amp-price">
-          <span class="amp-price-num">₦30,000</span>
+          <span class="amp-price-num">₦50,000</span>
           <span class="amp-price-suffix">ad budget & up</span>
         </div>
-        <p>If you want to promote, we can. Ad budget starting from ₦30,000 upwards — with the same audience signal and pixel work we bring to every campaign.</p>
-        <p style="color: rgba(240,237,232,0.55); font-size: 13px;">Available on selected placements.</p>
       </div>
 
       <div class="amp-visual">
@@ -1006,13 +1189,6 @@
       </div>
     </div>
 
-    <div class="amp-extras-label">Additionally, we can do</div>
-    <div class="amp-extras">
-      <div class="amp-extra">Conversation starters</div>
-      <div class="amp-extra">Influencer & media partners</div>
-      <div class="amp-extra">Community collaboration</div>
-      <div class="amp-extra">Custom amplification plays</div>
-    </div>
   </div>
 </section>
 
@@ -1021,20 +1197,10 @@
     <div class="build-head">
       <div class="label">Build your own campaign</div>
       <h2 class="section-h yellow">Have something<br>bigger in mind?</h2>
-      <p class="section-sub">Tell us what you're trying to achieve and we'll recommend the right combination of AfroCue assets — media, content, DJ access, creators, community, events and amplification.</p>
-    </div>
-    <div class="build-blocks">
-      <div class="build-block">Media</div>
-      <div class="build-block">Content</div>
-      <div class="build-block">DJ Access</div>
-      <div class="build-block">Creators</div>
-      <div class="build-block">Community</div>
-      <div class="build-block">Events</div>
-      <div class="build-block">Amplification</div>
-      <div class="build-block">Set Club</div>
+      <p class="section-sub">Tell us what you're trying to achieve and we'll recommend the right combination of AfroCue assets.</p>
     </div>
     <div class="build-cta-row">
-      <button class="btn btn-primary" onclick="openInquiry()">
+      <button class="btn btn-secondary" onclick="openInquiry()">
         Talk to AfroCue
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </button>
@@ -1046,7 +1212,7 @@
   <div class="final-inner">
     <div class="label">Start a conversation</div>
     <h2 class="section-h yellow">Have a campaign<br>in mind?</h2>
-    <p class="section-sub">Tell us what you're trying to achieve. We'll come back with a recommendation — usually within 48 hours.</p>
+    <p class="section-sub">Tell us what you're trying to achieve. We'll come back with a recommendation, usually within 48 hours.</p>
     <div class="final-contacts">
       <button class="btn btn-primary" onclick="openInquiry()">
         Start an enquiry
@@ -1054,7 +1220,10 @@
       </button>
       <a href="mailto:afrocueonline@gmail.com" class="btn btn-secondary">Email directly</a>
     </div>
-    <a href="mailto:afrocueonline@gmail.com" class="final-email">afrocueonline@gmail.com</a>
+    <div class="final-emails">
+      <a href="mailto:afrocueonline@gmail.com" class="final-email">afrocueonline@gmail.com</a>
+      <a href="mailto:info@afrocue.xyz" class="final-email">info@afrocue.xyz</a>
+    </div>
   </div>
 </section>
 
@@ -1068,7 +1237,7 @@
     <a href="https://afrocue.xyz/set-club.html">Set Club</a>
     <a href="https://afrocue.xyz/roamers.html">Roamers</a>
   </div>
-  <div class="footer-email"><a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a></div>
+  <div class="footer-email"><a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a> · <a href="mailto:info@afrocue.xyz">info@afrocue.xyz</a></div>
 </footer>
 
 <div class="inq-overlay" id="inqOverlay">
@@ -1076,7 +1245,7 @@
     <button class="inq-close" onclick="closeInquiry()" aria-label="Close">✕</button>
     <div class="inq-label">Partnership Enquiry</div>
     <h2 class="inq-h" id="inqTitle">Let's talk.</h2>
-    <p class="inq-sub">Pick what you're interested in. We'll come back with a proposal — usually within 48 hours.</p>
+    <p class="inq-sub">Pick what you're interested in. We'll come back with a proposal, usually within 48 hours.</p>
 
     <form id="inqForm" onsubmit="return false;">
       <div class="inq-row">
@@ -1103,12 +1272,13 @@
 
       <div class="inq-field">
         <label>Notes (optional)</label>
-        <textarea id="inqNotes" placeholder="Anything we should know — budget, timing, objective..."></textarea>
+        <textarea id="inqNotes" placeholder="Anything we should know: budget, timing, objective..."></textarea>
       </div>
 
+      <p class="inq-error" id="inqError" role="alert"></p>
       <button type="button" class="inq-submit" onclick="submitInquiry()">Send Enquiry</button>
 
-      <p class="inq-foot">Prefer email? <a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a></p>
+      <p class="inq-foot">Prefer email? <a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a> or <a href="mailto:info@afrocue.xyz">info@afrocue.xyz</a></p>
     </form>
   </div>
 </div>
@@ -1116,44 +1286,60 @@
 <script>
   const INQUIRY_EMAIL = 'afrocueonline@gmail.com';
 
-  // afrocue.js declares window.AFROCUE_SCRIPT_URL — use a different local name
+  // The live URL comes from afrocue.js, every time. No copy kept here.
   const ADS_SCRIPT_URL = (typeof AFROCUE_SCRIPT_URL !== 'undefined' && AFROCUE_SCRIPT_URL)
     ? AFROCUE_SCRIPT_URL
-    : (typeof getAfroCueScriptUrl === 'function' ? getAfroCueScriptUrl() : 'https://script.google.com/macros/s/AKfycbzOY0qvume6bE3S_XWyMShb1xK81ZxzpOD2moZb48qWFcDtSmZhis8g-E2g2v_5hOM-/exec');
+    : (typeof getAfroCueScriptUrl === 'function' ? getAfroCueScriptUrl() : '');
 
-  console.log('[AfroCue Ads] Using GAS URL:', ADS_SCRIPT_URL);
+  // Add ?debug=1 to the address to see the loading status on the page.
+  const DEBUG = /[?&]debug=1\b/.test(location.search);
+  const log = (...a) => { if (DEBUG) console.log('[AfroCue Ads]', ...a); };
 
+  // Sheet text is inserted as text, never as markup.
+  const esc = v => String(v == null ? '' : v)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+  // 30000 -> 30,000. Anything that is not a plain number is left as typed.
+  const money = v => {
+    const raw = String(v == null ? '' : v).trim(), n = raw.replace(/,/g, '');
+    return /^\d+(\.\d+)?$/.test(n) ? Number(n).toLocaleString('en-US') : raw;
+  };
+
+  log('Using GAS URL:', ADS_SCRIPT_URL);
+
+  // Shown until the sheet answers, and kept if it never does. A copy of the Ads tab.
   const DJ_PRODUCTS_FALLBACK = [
-    { id:'TOP_5', name:'Top 5', format:'Slideshow', price:'30,000', priceType:'fixed', description:"AfroCue's weekly Top 5 sets from the weekend. Your moment, standing out from everything else.", needs:['HD video of the DJ','Party flyer'], addon:{name:'Media coverage',price:'+₦50K'}, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_top5_sample.jpg', exampleType:'video' },
-    { id:'INCOMING_SETS', name:'Incoming Sets', format:'Video', price:'50,000', priceType:'fixed', description:"Spotlight on a DJ playing or headlining an upcoming event, in AfroCue's editorial style.", needs:['HD video of the DJ','Event info + flyer'], addon:null, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_top5_sample2.jpg', exampleType:'video' },
-    { id:'DJ_SPOTLIGHT', name:'DJ Spotlight', format:'Editorial', price:'Custom', priceType:'custom', description:"Longer-form spotlight on a DJ — their story, their sound, the rooms they hold.", needs:['Brief on the DJ','Access for shoot / interview'], addon:null, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_who.jpg', exampleType:'image' },
-    { id:'DJ_DEBUT', name:'DJ Debut', format:'Editorial', price:'Custom', priceType:'custom', description:"A first-look spotlight for a DJ stepping into a bigger room. Framed as the moment their career shifts.", needs:['Access for the shoot','Event details'], addon:null, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_who.jpg', exampleType:'image' },
-    { id:'SET_MOMENTS', name:'Set Moments', format:'Video', price:'Custom', priceType:'custom', description:"One moment from a set that deserves its own frame. Short-form editorial for the clips that hit.", needs:['One clean clip','DJ + party context'], addon:null, amplification:false, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_top5_sample3.jpg', exampleType:'video' }
+    { id:'TOP_5', name:'Top 5', format:'Slideshow', price:'30000', priceType:'fixed', description:"AfroCue's weekly Top 5 sets from the weekend. Your moment, standing out from everything else.", needs:['HD video of the DJ','Party flyer'], addon:{name:'Media coverage',price:'+₦50K'}, amplification:true, sampleLink:'https://www.instagram.com/p/DaLCmTNgvcd/', exampleImage:'https://i.ibb.co/nqPhvh84/top-5.jpg', exampleType:'video' },
+    { id:'INCOMING_SETS', name:'Incoming Sets', format:'Video', price:'50000', priceType:'fixed', description:"Spotlight on a DJ playing or headlining an upcoming event, in AfroCue's editorial style.", needs:['HD video of the DJ','Event info + flyer'], addon:null, amplification:true, sampleLink:'https://www.instagram.com/p/Dck9lxMC_mR/', exampleImage:'https://i.ibb.co/1t4gpfJv/photo-4.jpg', exampleType:'video' },
+    { id:'DJ_SPOTLIGHT', name:'DJ Spotlight', format:'Editorial', price:'Custom', priceType:'custom', description:"Longer-form spotlight on a DJ, their story, their sound, the rooms they hold. Premium content", needs:['Brief on the DJ','Access for shoot / interview'], addon:null, amplification:true, sampleLink:'https://www.instagram.com/p/DcNwKZqgh0F/', exampleImage:'https://i.ibb.co/DHQV3T6B/we.jpg', exampleType:'image' },
+    { id:'DJ_DEBUT', name:'DJ Debut', format:'Editorial', price:'Custom', priceType:'custom', description:"A first-look spotlight for a DJ stepping into a bigger room. Framed as the moment their career shifts.", needs:['Access for the shoot','Event details'], addon:null, amplification:true, sampleLink:'https://www.instagram.com/afro.cue/reel/DafGpMYoJwU/', exampleImage:'https://i.ibb.co/j9s5Z4h7/photo.jpg', exampleType:'image' },
+    { id:'SET_MOMENTS', name:'Set Moments', format:'Video', price:'Custom', priceType:'custom', description:"One moment from a set that deserves its own frame. Short-form editorial for the clips that hit.", needs:['One clean clip','DJ + party context'], addon:null, amplification:false, sampleLink:'https://www.instagram.com/reel/DcEb7XkCyzC/', exampleImage:'https://i.ibb.co/QvgJs6kL/swe.jpg', exampleType:'video' }
   ];
 
   const PARTY_PRODUCTS_FALLBACK = [
-    { id:'LINEUP_RADAR', name:'Lineup Radar', format:'Image', price:'40,000', priceType:'from', description:"AfroCue's weekly post of DJ lineups for parties happening that weekend.", needs:['Flyer with full DJ lineup only'], addon:null, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_who.jpg', exampleType:'image' },
-    { id:'INCOMING_DJ', name:'Incoming DJ', format:'Video', price:'50,000', priceType:'fixed', description:"DJ-focused pre-event content for your party. Points people at the room before doors open.", needs:['HD video of the DJ','DJ + event info'], addon:null, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_top5_sample.jpg', exampleType:'video' },
-    { id:'DJ_TOP_5_PARTY', name:'DJ Top 5', format:'Slideshow', price:'30,000', priceType:'fixed', description:"The same Top 5 format, positioned around your party — a spot for a DJ moment from your event.", needs:['HD video moment from your party','Party flyer'], addon:{name:'Media coverage',price:'+₦50K'}, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_top5_sample2.jpg', exampleType:'video' },
-    { id:'PARTY_EDITORIAL', name:'Party Editorial', format:'Editorial', price:'70,000', priceType:'fixed', description:"Editorial interpretation of your party — how it went, what the room felt like.", needs:['Event brief','Photos, video or flyer'], addon:{name:'Post + Amplification',price:'From ₦100K'}, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_what.jpg', exampleType:'image' },
-    { id:'CREATIVE_PARTNER', name:'Creative Partner Content', format:'Custom', price:'Custom', priceType:'custom', description:"AfroCue's creative expression with the right creator and videographer, built for your party audience.", needs:['The idea or brief'], addon:null, amplification:true, sampleLink:'https://instagram.com/afro.cue', exampleImage:'https://afrocue.xyz/roamers_top5_sample3.jpg', exampleType:'image' }
+    { id:'LINEUP_RADAR', name:'Lineup Radar', format:'Image', price:'40000', priceType:'from', description:"AfroCue's weekly post of DJ lineups for parties happening that weekend.", needs:['Flyer with full DJ lineup only'], addon:null, amplification:true, sampleLink:'https://www.instagram.com/afro.cue/p/Dc6CwoDAldU/', exampleImage:'https://i.ibb.co/XdvM1zG/rasrd.jpg', exampleType:'image' },
+    { id:'INCOMING_DJ', name:'Incoming DJ', format:'Video', price:'50000', priceType:'fixed', description:"DJ-focused pre-event content for your party. Points people at the room before doors open.", needs:['HD video of the DJ','DJ + event info'], addon:null, amplification:true, sampleLink:'https://www.instagram.com/reel/DcbvyRlRv5g/', exampleImage:'https://i.ibb.co/G3QrPPLz/unvio.jpg', exampleType:'video' },
+    { id:'DJ_TOP_5_PARTY', name:'DJ Top 5', format:'Slideshow', price:'30000', priceType:'fixed', description:"The same Top 5 format, positioned around your party, a spot for a DJ moment from your event.", needs:['HD video moment from your party','Party flyer'], addon:{name:'Media coverage',price:'+₦50K'}, amplification:true, sampleLink:'https://www.instagram.com/p/DXqxaN0gkow/', exampleImage:'https://i.ibb.co/d0tSKkSF/dj-op.jpg', exampleType:'video' },
+    { id:'PARTY_EDITORIAL', name:'Party Editorial', format:'Editorial', price:'70000', priceType:'fixed', description:"Editorial interpretation of your party: how it went, what the room felt like.", needs:['Event brief','Photos, video or flyer'], addon:{name:'Post + Amplification',price:'From ₦100K'}, amplification:true, sampleLink:'https://www.instagram.com/p/DZ5U5QjgsvW/', exampleImage:'https://i.ibb.co/dJcBQYZX/se.jpg', exampleType:'image' },
+    { id:'CREATIVE_PARTNER', name:'Creative Partner Content', format:'Custom', price:'Custom', priceType:'custom', description:"AfroCue's creative expression with the right creator and videographer, built for your party audience.", needs:['The idea or brief'], addon:null, amplification:true, sampleLink:'', exampleImage:'', exampleType:'image' }
   ];
 
   const BRAND_PARTNERSHIPS_FALLBACK = [
-    { name:'Slide Placements', desc:'Your brand woven into AfroCue editorial slides — the Top 5, incoming events, party roundups.', icon:'slide' },
-    { name:'Brand Sponsorship', desc:"Tiered sponsorship of AfroCue content, series or events. Multiple tiers — we'll match the right one to your objective.", icon:'sponsor' },
+    { name:'Slide Placements', desc:'Your brand woven into AfroCue editorial slides: the Top 5, incoming events, party roundups.', icon:'slide' },
+    { name:'Brand Sponsorship', desc:"Tiered sponsorship of AfroCue content, series or events. Multiple tiers; we'll match the right one to your objective.", icon:'sponsor' },
     { name:'DJ × Brand', desc:'A DJ or creator-led collaboration produced by AfroCue, with your brand at the centre.', icon:'dj' },
-    { name:'Creative City Campaign', desc:'We use our network — rich audience, media relationships, party tastemakers, creators — to build you a culturally relevant creative campaign.', icon:'city' },
+    { name:'Creative City Campaign', desc:'We use our network (rich audience, media relationships, party tastemakers, creators) to build you a culturally relevant creative campaign.', icon:'city' },
     { name:'Content Production', desc:'AfroCue creative expression using rich and relevant media assets to produce content that lands with your audience.', icon:'content' },
-    { name:'Set Club 01 Partnership', desc:"We're building something interesting. If your brand is serious about it, send a proposal document — reach out here.", icon:'star', wide:true }
+    { name:'Set Club 01 Partnership', desc:"We're building something interesting. If your brand is serious about it, send a proposal document. Reach out here.", icon:'star', wide:true }
   ];
 
   const RATE_ADDONS = [
-    { category:'Add-on', name:'Media Coverage', price:'50,000', priceType:'addon' }
+    { category:'Add-ons', name:'Media Coverage', format:'Add-on', price:'50,000', priceType:'addon' }
   ];
   const RATE_AMPLIFICATION = [
-    { category:'Amplification', name:'Ads', price:'30,000', priceType:'from' },
-    { category:'Amplification', name:'Post Amplification', price:'100,000', priceType:'from' }
+    { category:'Amplification', name:'Ads', format:'Media buy', price:'50,000', priceType:'from' },
+    { category:'Amplification', name:'Post Amplification', format:'Media buy', price:'100,000', priceType:'from' }
   ];
 
   const BRAND_ICONS = {
@@ -1176,63 +1362,66 @@
       return `<div class="prod-price"><span class="prod-price-num">Let's talk</span></div>`;
     }
     if (pt === 'from') {
-      return `<div class="prod-price"><span class="prod-price-prefix">From</span><span class="prod-price-num">₦${product.price}</span></div>`;
+      return `<div class="prod-price"><span class="prod-price-prefix">From</span><span class="prod-price-num">₦${esc(money(product.price))}</span></div>`;
     }
-    return `<div class="prod-price"><span class="prod-price-num">₦${product.price}</span></div>`;
+    return `<div class="prod-price"><span class="prod-price-num">₦${esc(money(product.price))}</span></div>`;
   }
 
   function renderProduct(product) {
-    const playIcon = product.exampleType === 'video' ? `
+    const hasLink = !!String(product.sampleLink || '').trim();
+    const hasImage = !!String(product.exampleImage || '').trim();
+
+    const playIcon = (hasLink && product.exampleType === 'video') ? `
       <div class="prod-play" aria-hidden="true">
         <svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
       </div>` : '';
 
-    const exampleLink = `
+    const exampleLink = hasLink ? `
       <span class="prod-example-link">
         See example
         <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg>
-      </span>`;
+      </span>` : '';
 
-    const needs = product.needs && product.needs.length ? `
+    const picture = hasImage
+      ? `<img src="${esc(product.exampleImage)}" alt="${esc(product.name)}" loading="lazy"/>`
+      : `<div class="prod-media-blank">${esc(product.format || 'Custom')}</div>`;
+
+
+    const needsList = Array.isArray(product.needs) ? product.needs : String(product.needs || '').split('|').map(x => x.trim()).filter(Boolean);
+    const needs = needsList.length ? `
       <div class="prod-needs">
         <span class="prod-needs-label">Needs</span>
-        <span class="prod-needs-items">${product.needs.join('<span class="sep">·</span>')}</span>
+        <span class="prod-needs-items">${needsList.map(esc).join('<span class="sep">·</span>')}</span>
       </div>` : '';
 
-    const addon = product.addon ? `
+    const addon = product.addon && product.addon.name ? `
       <div class="prod-addon">
         <span class="prod-addon-label">Add-on</span>
-        <span class="prod-addon-text">${product.addon.name}<strong>${product.addon.price}</strong></span>
+        <span class="prod-addon-text">${esc(product.addon.name)}<strong>${esc(product.addon.price)}</strong></span>
       </div>` : '';
 
-    const ampNote = product.amplification ? `
-      <div class="prod-amp-note">Amplification available</div>` : '';
+    const ampNote = product.amplification ? `<div class="prod-amp-note">Amplification available</div>` : '';
 
-    const safeName = (product.name || '').replace(/'/g, "\\'");
+    const tag = `<span class="prod-tag">${esc(product.format)}</span>`;
+    const mediaTop = hasLink
+      ? `<a href="${esc(product.sampleLink)}" target="_blank" rel="noopener" class="prod-media">${picture}<div class="prod-media-overlay"></div>${tag}${playIcon}${exampleLink}</a>`
+      : `<div class="prod-media">${picture}<div class="prod-media-overlay"></div>${tag}</div>`;
 
     return `
       <div class="prod">
-        <a href="${product.sampleLink}" target="_blank" rel="noopener" class="prod-media">
-          <img src="${product.exampleImage}" alt="${product.name}" loading="lazy"/>
-          <div class="prod-media-overlay"></div>
-          ${playIcon}
-          ${exampleLink}
-        </a>
+        ${mediaTop}
         <div class="prod-body">
-          <div class="prod-meta">
-            <span>${product.format}</span>
-            <span class="dot"></span>
-            <span>${product.id}</span>
-          </div>
-          <h3 class="prod-name">${product.name}</h3>
-          <p class="prod-desc">${product.description}</p>
+          <h3 class="prod-name">${esc(product.name)}</h3>
           ${renderPrice(product)}
+          <p class="prod-desc">${esc(product.description)}</p>
           ${needs}
-          ${addon}
-          <button class="prod-inquire" onclick="openInquiry('${safeName}')">
-            Inquire
-            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </button>
+          <div class="prod-foot">
+            ${addon}
+            <button class="prod-inquire" data-inquire="${esc(product.name)}">
+              Inquire
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </div>
           ${ampNote}
         </div>
       </div>`;
@@ -1241,12 +1430,11 @@
   function renderBrandTile(p) {
     const wide = p.wide ? ' brand-tile-wide' : '';
     const icon = BRAND_ICONS[p.icon] || BRAND_ICONS.sponsor;
-    const safeName = (p.name || '').replace(/'/g, "\\'");
     return `
-      <button class="brand-tile${wide}" onclick="openInquiry('${safeName}')">
+      <button class="brand-tile${wide}" data-inquire="${esc(p.name)}">
         <div class="brand-icon">${icon}</div>
-        <div class="brand-name">${p.name}</div>
-        <div class="brand-desc">${p.desc}</div>
+        <div class="brand-name">${esc(p.name)}</div>
+        <div class="brand-desc">${esc(p.desc)}</div>
         <div class="brand-foot">Talk to us <span class="arrow">↗</span></div>
       </button>`;
   }
@@ -1255,17 +1443,16 @@
     const rows = [];
     (DJ_PRODUCTS || []).forEach(p => {
       rows.push({
-        category: 'Editorial · DJ',
-        name: p.name,
+        category: 'For DJs',
+        name: p.name, format: p.format,
         price: p.priceType === 'custom' ? 'Let\u2019s talk' : (p.price || ''),
         priceType: p.priceType || 'fixed'
       });
     });
     (PARTY_PRODUCTS || []).forEach(p => {
-      const cat = p.priceType === 'custom' ? 'Custom · Party' : 'Editorial · Party';
       rows.push({
-        category: cat,
-        name: p.name,
+        category: 'For Parties',
+        name: p.name, format: p.format,
         price: p.priceType === 'custom' ? 'Let\u2019s talk' : (p.price || ''),
         priceType: p.priceType || 'fixed'
       });
@@ -1281,14 +1468,15 @@
     rows.forEach(r => {
       if (r.category !== currentCategory) {
         currentCategory = r.category;
-        html += `<tr class="rate-cat-row"><td colspan="2">${currentCategory}</td></tr>`;
+        html += `<tr class="rate-cat-row"><td colspan="3">${esc(currentCategory)}</td></tr>`;
       }
+      const amount = esc(money(r.price));
       let priceHtml;
-      if (r.priceType === 'custom')      priceHtml = r.price;
-      else if (r.priceType === 'from')   priceHtml = `<span class="prefix">From</span>₦${r.price}`;
-      else if (r.priceType === 'addon')  priceHtml = `<span class="prefix">+</span>₦${r.price}`;
-      else                                priceHtml = `₦${r.price}`;
-      html += `<tr><td class="rate-name">${r.name}</td><td class="rate-price">${priceHtml}</td></tr>`;
+      if (r.priceType === 'custom')      priceHtml = esc(r.price);
+      else if (r.priceType === 'from')   priceHtml = `<span class="prefix">From</span>₦${amount}`;
+      else if (r.priceType === 'addon')  priceHtml = `<span class="prefix">+</span>₦${amount}`;
+      else                                priceHtml = `₦${amount}`;
+      html += `<tr><td class="rate-name">${esc(r.name)}</td><td class="rate-fmt">${esc(r.format || '')}</td><td class="rate-price">${priceHtml}</td></tr>`;
     });
     return html;
   }
@@ -1304,6 +1492,8 @@
   }
 
   function setStatus(msg, isError) {
+    if (isError) console.warn('[AfroCue Ads]', msg);
+    if (!DEBUG) return;              // visitors never see loading messages
     const el = document.getElementById('catStatus');
     if (!el) return;
     el.textContent = msg;
@@ -1333,10 +1523,10 @@
     grid.innerHTML = items.map(name => {
       const checked = inqSelected.has(name);
       return `
-        <label class="inq-opt${checked ? ' checked' : ''}" data-name="${name}">
-          <input type="checkbox" value="${name}"${checked ? ' checked' : ''}/>
+        <label class="inq-opt${checked ? ' checked' : ''}" data-name="${esc(name)}">
+          <input type="checkbox" value="${esc(name)}"${checked ? ' checked' : ''}/>
           <span class="inq-box"></span>
-          <span>${name}</span>
+          <span>${esc(name)}</span>
         </label>`;
     }).join('');
 
@@ -1364,7 +1554,7 @@
     const preview = names.length <= 3
       ? names.join(' · ')
       : `${names.slice(0, 3).join(' · ')} +${names.length - 3} more`;
-    summary.innerHTML = `<strong>${count} selected</strong> — ${preview}`;
+    summary.innerHTML = `<strong>${count} selected</strong> · ${esc(preview)}`;
   }
 
   function switchInqTab(tab) {
@@ -1392,6 +1582,7 @@
     renderInqGrid();
     renderInqSummary();
 
+    document.getElementById('inqError').textContent = '';
     document.getElementById('inqOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
     setTimeout(() => {
@@ -1410,13 +1601,16 @@
     const email = document.getElementById('inqEmail').value.trim();
     const notes = document.getElementById('inqNotes').value.trim();
 
-    if (!name) { document.getElementById('inqName').focus(); return; }
-    if (!email) { document.getElementById('inqEmail').focus(); return; }
+    const err = document.getElementById('inqError');
+    const fail = (msg, id) => { err.textContent = msg; if (id) document.getElementById(id).focus(); };
+    err.textContent = '';
+
+    if (!name) return fail('Add your name.', 'inqName');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail('Add a valid email address.', 'inqEmail');
 
     const selected = Array.from(inqSelected);
-    if (selected.length === 0) {
-      alert('Please select at least one placement, or add a note if you want to discuss something custom.');
-      return;
+    if (selected.length === 0 && !notes) {
+      return fail('Pick at least one placement, or add a note if you want to discuss something custom.', 'inqNotes');
     }
 
     const grouped = { djs: [], parties: [], brands: [] };
@@ -1426,15 +1620,15 @@
       else if (INQ_GROUPS.brands.includes(n)) grouped.brands.push(n);
     });
 
-    const subject = `AfroCue Partnership Enquiry — ${name}`;
-    const lines = ['Hi AfroCue,', '', "I'd like to enquire about the following:", ''];
+    const subject = `AfroCue Partnership Enquiry: ${name}`;
+    const lines = ['Hi AfroCue,', '', selected.length ? "I'd like to enquire about the following:" : "I'd like to talk about something custom.", ''];
     if (grouped.djs.length)     { lines.push('For DJs:'); grouped.djs.forEach(s => lines.push(`• ${s}`)); lines.push(''); }
     if (grouped.parties.length) { lines.push('For Parties:'); grouped.parties.forEach(s => lines.push(`• ${s}`)); lines.push(''); }
     if (grouped.brands.length)  { lines.push('For Brands:'); grouped.brands.forEach(s => lines.push(`• ${s}`)); lines.push(''); }
     lines.push(`Name: ${name}`);
     lines.push(`Email: ${email}`);
     if (notes) lines.push('', 'Notes:', notes);
-    lines.push('', '— Sent from afrocue.xyz/ads');
+    lines.push('', 'Sent from afrocue.xyz/ads');
 
     const body = lines.join('\r\n');
     const mailtoUrl = `mailto:${INQUIRY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
@@ -1451,6 +1645,18 @@
     }, 800);
   }
 
+  // The hero's DJs / Parties / Brands cards open that tab.
+  document.addEventListener('click', (e) => {
+    const g = e.target.closest('[data-go]');
+    if (g) switchCatTab(g.dataset.go);
+  });
+
+  // Inquire buttons and brand tiles carry the placement name in data-inquire.
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-inquire]');
+    if (b) openInquiry(b.dataset.inquire);
+  });
+
   document.addEventListener('click', (e) => { if (e.target.id === 'inqOverlay') closeInquiry(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeInquiry(); });
 
@@ -1465,7 +1671,7 @@
 
       const timer = setTimeout(() => {
         cleanup();
-        reject(new Error('JSONP timeout — GAS did not respond within 15s'));
+        reject(new Error('JSONP timeout: GAS did not respond within 15s'));
       }, 15000);
 
       function cleanup() {
@@ -1490,14 +1696,13 @@
   }
 
   document.addEventListener('DOMContentLoaded', async () => {
-    console.log('[AfroCue Ads] DOMContentLoaded — rendering fallback first');
     renderAll();
-
-    console.log('[AfroCue Ads] Loading via JSONP:', ADS_SCRIPT_URL + '?export=ads');
+    if (!ADS_SCRIPT_URL) { setStatus('afrocue.js did not load, so there is no sheet URL. Showing the copy on the page.', true); return; }
+    log('Loading via JSONP:', ADS_SCRIPT_URL + '?export=ads');
 
     try {
       const data = await loadAdsViaJsonp();
-      console.log('[AfroCue Ads] JSONP response:', data);
+      log('JSONP response:', data);
 
       if (data.error) {
         setStatus('GAS error: ' + data.error, true);
@@ -1505,7 +1710,7 @@
       }
 
       const ok = Array.isArray(data.djs) && Array.isArray(data.parties) && Array.isArray(data.brands);
-      console.log('[AfroCue Ads] Data shape:', {
+      log('Data shape:', {
         djs: Array.isArray(data.djs) ? data.djs.length : 'missing',
         parties: Array.isArray(data.parties) ? data.parties.length : 'missing',
         brands: Array.isArray(data.brands) ? data.brands.length : 'missing'
@@ -1526,10 +1731,10 @@
       BRAND_PARTNERSHIPS = data.brands;
       renderAll();
       setStatus('Loaded ' + data.djs.length + ' DJ · ' + data.parties.length + ' Party · ' + data.brands.length + ' Brand placements.');
-      console.log('[AfroCue Ads] Live data rendered successfully');
+      log('Live data rendered');
 
     } catch (err) {
-      console.error('[AfroCue Ads] JSONP failed:', err);
+      
       setStatus('Could not reach the sheet: ' + err.message, true);
     }
   });
