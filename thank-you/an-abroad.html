@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>That is December sorted | Lagos Navigator by AfroCue</title>
+  <!-- Conversions fire on arrival at this URL, so it must never appear in search. -->
+  <meta name="robots" content="noindex, nofollow"/>
+  <link rel="canonical" href="https://afrocue.xyz/thank-you/an-abroad"/>
+  <meta name="theme-color" content="#0a0a0a"/>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="/js/afrocue.js"></script>
+
+  <style>
+    @font-face{font-family:'Aesthet Nova';src:url('/fonnts.com-Aesthet-Nova-Black.otf') format('opentype');font-weight:900;font-display:swap}
+    @font-face{font-family:'Aesthet Nova';src:url('/fonnts.com-Aesthet-Nova-Medium.otf') format('opentype');font-weight:500;font-display:swap}
+
+    :root{
+      --black:#0a0a0a; --white:#f0ede8; --yellow:#dedc00;
+      --y-grad:linear-gradient(135deg,#e9e700 0%,#dedc00 45%,#c2c000 100%);
+      --line:rgba(255,255,255,0.09); --line-hi:rgba(255,255,255,0.2);
+      --display:'Aesthet Nova',sans-serif; --sans:'Figtree',sans-serif;
+      --r:12px; --r-img:14px;
+      --pad:max(18px, calc((100vw - 880px) / 2));
+    }
+    @media(min-width:769px){ :root{ --pad:max(44px, calc((100vw - 880px) / 2)) } }
+
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{background:var(--black);color:var(--white);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    :focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+
+    .bg-texture{position:fixed;inset:0;z-index:1;background:url('/assets/texture.jpg') center/cover;opacity:0.3;pointer-events:none}
+    main{position:relative;z-index:3;padding:0 var(--pad)}
+    .inner{max-width:880px;margin:0 auto}
+
+    .eyebrow{font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(240,237,232,0.45);margin-bottom:10px}
+
+    /* ── 1. The confirmation ── */
+    .top{padding-top:calc(var(--ac-nav-h,76px) + 50px);text-align:center}
+    h1{font-family:var(--display);font-weight:900;font-size:clamp(34px,5.6vw,54px);line-height:1;
+      color:var(--yellow);text-shadow:2px 3px 0 rgba(0,0,0,0.85);margin-bottom:16px}
+    h1 .nm{color:var(--white)}
+    .lede{font-size:15.5px;font-weight:300;line-height:1.7;color:rgba(240,237,232,0.7);max-width:44ch;margin:0 auto}
+    .sel{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:20px auto 0;max-width:560px}
+    .sel:empty{display:none}
+    .sel span{font-size:11.5px;font-weight:600;color:var(--white);background:rgba(255,255,255,0.05);
+      border:1px solid var(--line-hi);border-radius:4px;padding:6px 11px}
+    .next{margin:20px auto 0;max-width:44ch;font-size:13px;line-height:1.6;color:rgba(240,237,232,0.5)}
+
+    /* ── 2a. Fun facts ── */
+    .ff{margin-top:64px}
+    /* All cards share one grid cell, so the box is as tall as the longest fact and never jumps. */
+    .ff-stage{position:relative;display:grid;border-radius:16px;overflow:hidden;
+      box-shadow:0 24px 60px rgba(0,0,0,0.65),0 0 0 1px rgba(222,220,0,0.18),0 0 48px rgba(222,220,0,0.06)}
+    .ff-card{grid-area:1/1;position:relative;min-height:236px;opacity:0;visibility:hidden;transition:opacity .7s ease,visibility .7s;display:flex;align-items:flex-end;
+      background-size:cover;background-position:center 35%}
+    .ff-card.on{opacity:1;visibility:visible}
+    .ff-card::before{content:'';position:absolute;inset:0;
+      background:linear-gradient(100deg,rgba(10,10,10,0.96) 0%,rgba(10,10,10,0.82) 48%,rgba(10,10,10,0.45) 100%)}
+    .ff-card::after{content:'';position:absolute;inset:0;background:url('/assets/texture.jpg') center/cover;opacity:0.22;pointer-events:none}
+    .ff-in{position:relative;z-index:2;padding:26px 28px 28px;max-width:600px}
+    .ff-lbl{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-size:10px;font-weight:700;
+      letter-spacing:0.2em;text-transform:uppercase;color:var(--yellow)}
+    .ff-lbl i{width:22px;height:1px;background:rgba(222,220,0,0.5)}
+    .ff-lbl em{font-style:normal;color:rgba(240,237,232,0.4);letter-spacing:0.12em}
+    .ff-h{font-family:var(--display);font-weight:900;font-size:clamp(22px,3.2vw,30px);line-height:1.05;
+      color:var(--white);text-shadow:2px 3px 0 rgba(0,0,0,0.85);margin-bottom:10px}
+    .ff-p{font-size:14px;font-weight:300;line-height:1.7;color:rgba(240,237,232,0.78)}
+    .ff-p b{font-weight:700;color:var(--white)}
+    .ff-dots{display:flex;justify-content:center;gap:8px;margin-top:14px}
+    .ff-dots button{width:7px;height:7px;border-radius:50%;border:none;padding:0;cursor:pointer;
+      background:rgba(240,237,232,0.22);transition:background .3s,width .3s}
+    .ff-dots button.on{background:var(--yellow);width:22px;border-radius:4px}
+    @media(max-width:620px){
+      .ff-card{min-height:300px}
+      .ff-in{padding:22px 20px 24px}
+      .ff-card::before{background:linear-gradient(to top,rgba(10,10,10,0.97) 0%,rgba(10,10,10,0.9) 60%,rgba(10,10,10,0.62) 100%)}
+    }
+
+    /* ── 2b. The four, solved ── */
+    .wins{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:40px}
+    .win{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:rgba(255,255,255,0.025)}
+    .win-im{aspect-ratio:16/10;background-size:cover;background-position:center 38%;position:relative}
+    .win-im::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,0.75),rgba(10,10,10,0.1))}
+    .win-tick{position:absolute;left:8px;bottom:8px;z-index:2;width:19px;height:19px;border-radius:50%;
+      background:var(--yellow);display:flex;align-items:center;justify-content:center}
+    .win-tick svg{width:10px;height:10px;stroke:#0a0a0a;stroke-width:3.6;fill:none}
+    .win-t{padding:10px 11px 12px;font-size:11.5px;font-weight:600;color:var(--white);line-height:1.4;min-height:48px}
+    @media(max-width:620px){
+      .wins{grid-template-columns:1fr 1fr;gap:8px;margin-top:30px}
+      .win-im{aspect-ratio:3/2}
+      .win-t{padding:9px 10px 11px;font-size:11px;line-height:1.38;min-height:44px}
+    }
+
+
+    /* ── 5. Their nights ── */
+    .board{margin-top:44px}
+    .board h2{font-family:var(--display);font-weight:900;font-size:21px;color:var(--white);margin-bottom:5px}
+    .board .sub{font-size:13px;font-weight:300;color:rgba(240,237,232,0.45);margin-bottom:18px}
+    .rail{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;
+      scrollbar-width:none;-ms-overflow-style:none}
+    .rail::-webkit-scrollbar{display:none}
+    .fly{flex:0 0 auto;width:clamp(132px,16vw,158px);scroll-snap-align:start;text-decoration:none;color:inherit}
+    .fly .art{aspect-ratio:4/5;border-radius:10px;overflow:hidden;border:1px solid var(--line);
+      background:#141414 center/cover;position:relative;transition:border-color .2s,transform .2s}
+    .fly:hover .art{border-color:rgba(222,220,0,0.5);transform:translateY(-3px)}
+    .fly .when{position:absolute;left:7px;top:7px;font-size:10px;font-weight:700;letter-spacing:0.04em;
+      text-transform:uppercase;color:#0a0a0a;background:var(--yellow);border-radius:4px;padding:3px 7px}
+    .fly .nm{font-size:12.5px;font-weight:600;color:var(--white);margin-top:7px;line-height:1.3;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .fly .vn{font-size:11px;font-weight:300;color:rgba(240,237,232,0.38);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+    /* ── 6. Where to find us ── */
+    .foot{margin-top:48px;padding-bottom:72px;text-align:center}
+    .foot p{font-size:13.5px;font-weight:300;color:rgba(240,237,232,0.45);margin-bottom:16px}
+    .ig{display:inline-block;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+      color:rgba(240,237,232,0.6);text-decoration:none;border:1px solid var(--line-hi);
+      border-radius:4px;padding:12px 24px;transition:all .2s}
+    .ig:hover{border-color:var(--yellow);color:var(--yellow)}
+
+    @media(max-width:620px){
+      .top{padding-top:calc(var(--ac-nav-h,76px) + 30px)}
+    }
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+
+<div class="bg-texture"></div>
+<div id="ac-nav"></div>
+
+<main>
+  <div class="inner">
+
+    <!-- 1. The confirmation -->
+    <section class="top">
+      <h1>Thank you<span class="nm" id="nm"></span>.</h1>
+      <p class="lede">Lagos Navigator will help you anchor your Lagos nightlife experience around the moments that matter. We are excited to help you find something based on your selections.</p>
+      <div class="sel" id="sel"></div>
+      <p class="next">Check your email for the full details and how to proceed next. We look forward to having you.</p>
+    </section>
+
+
+    <!-- 2b. The four, solved -->
+    <section class="wins">
+        <div class="win">
+          <div class="win-im" style="background-image:url('/assets/group_collective.jpg')">
+            <span class="win-tick"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          </div>
+          <div class="win-t">The best parties identified for you</div>
+        </div>
+        <div class="win">
+          <div class="win-im" style="background-image:url('/assets/content_dj.jpeg')">
+            <span class="win-tick"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          </div>
+          <div class="win-t">The city&rsquo;s best talents on your lineup</div>
+        </div>
+        <div class="win">
+          <div class="win-im" style="background-image:url('/assets/roamers_bg.jpg')">
+            <span class="win-tick"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          </div>
+          <div class="win-t">Your movement, seamless</div>
+        </div>
+        <div class="win">
+          <div class="win-im" style="background-image:url('/assets/audience_partygoers.jpg')">
+            <span class="win-tick"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          </div>
+          <div class="win-t">A night curated for maximum fun</div>
+        </div>
+    </section>
+
+
+    <!-- 5. Their nights, from the board -->
+    <section class="board" id="board" style="display:none">
+      <h2 id="board-h">The nights you picked.</h2>
+      <p class="sub">Yours either way, whether you book with us or not.</p>
+      <div class="rail" id="rail"></div>
+    </section>
+
+    <!-- 5b. Fun facts. Three, rotating, at the bottom after the board. -->
+    <section class="ff" id="ff" aria-roledescription="carousel" aria-label="Fun facts">
+      <div class="ff-stage" id="ff-stage"></div>
+      <div class="ff-dots" id="ff-dots"></div>
+    </section>
+
+    <!-- 6. Where to find us -->
+    <section class="foot">
+      <p>The DJs, the rooms and the nights, all year, not just December.</p>
+      <a class="ig" href="https://instagram.com/afro.cue" target="_blank" rel="noopener">@afro.cue &rarr;</a>
+    </section>
+
+  </div>
+</main>
+
+<div id="ac-footer"></div>
+<script src="/js/afrocue-ui.js" data-nav="slim" data-footer="slim"></script>
+
+<script>
+(function(){
+  'use strict';
+
+  var p = new URLSearchParams(location.search);
+  var fn     = (p.get('fn')     || '').trim();
+  var seg    = (p.get('seg')    || '').trim();
+  var intent = (p.get('intent') || '').trim();
+  var dates  = (p.get('dates')  || '').split('|').filter(Boolean);
+
+  function esc(t){ return String(t).replace(/[&<>"']/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+
+  /* Name in the headline when we have one. */
+  if (fn) document.getElementById('nm').textContent = ', ' + fn;
+
+  /* Their selections, played back. */
+  var STYLE = { floor:'Regular access', stage:'VIP or stage', table:'Table or section' };
+  var style = (p.get('style') || '').split('|').filter(Boolean);
+  var chips = dates.filter(function(d){ return d !== 'All of it'; })
+    .concat(dates.indexOf('All of it') > -1 ? ['All of December'] : [])
+    .concat(style.map(function(x){ return STYLE[x] || x; }));
+  document.getElementById('sel').innerHTML = chips.map(function(c){ return '<span>' + esc(c) + '</span>'; }).join('');
+
+
+  /* ─────────────────────────────────────────────────────────────
+     FUN FACTS. Every one from the AfroCue archive. This block exists to
+     prove AfroCue knows the scene, so a wrong name does more damage than
+     a missing fact.
+
+     draft: true keeps a fact off the live page until its blanks are
+     filled. Add ?drafts=1 to the URL to see drafts while editing.
+
+     img is the photo for that fact; fallback shows if img is missing,
+     so a fact never sits on a blank card.
+     ───────────────────────────────────────────────────────────── */
+  var FACTS = [
+    { draft: true, title: 'Dance Eko 2026',
+      img: '/assets/fact_dance_eko.jpg', fallback: '/assets/audience_partygoers.jpg',
+      text: '<b>Wizkid</b> has appeared at both editions of Dance Eko with a [SET NAME] set, and this year we are expecting a return.' },
+    { title: 'Smeez and D3an',
+      img: '/assets/fact_smeez_d3an.jpg', fallback: '/assets/content_dj.jpeg',
+      text: 'Did you know <b>Smeez and D3an</b>, the amapiano duo, produced the global viral hit Nakupenda with TxC, Shoday and Davido? They have also produced amapiano records for South African legends Kabza De Small and DJ Maphorisa, and they play often at places like Groove Factory, Amapiano District and Yanos Theory. We can find you the next place they are playing.' },
+    { draft: true, title: '[TRACK], Jimmy Black',
+      img: '/assets/fact_jimmy_black.jpg', fallback: '/assets/navigator_hero.jpg',
+      text: 'A viral dance track that has been making waves all through 2026, and the <b>[REMIX]</b> is the latest addition. It premiered at Group Therapy and Monochroma on the same night, played by Jimmy Black and Proton, and you will be hearing a lot of it this December.' }
+  ];
+  var showDrafts = p.get('drafts') === '1';
+  FACTS = FACTS.filter(function (f) { return showDrafts || !f.draft; });
+
+  (function funFacts(){
+    var stage = document.getElementById('ff-stage'), dots = document.getElementById('ff-dots');
+    if (!FACTS.length){ document.getElementById('ff').style.display = 'none'; return; }
+    stage.innerHTML = FACTS.map(function (f, i) {
+      /* Stacked backgrounds: if the photo is missing the fallback paints. */
+      var bg = "url('" + f.img + "'), url('" + f.fallback + "')";
+      return '<div class="ff-card' + (i ? '' : ' on') + '" style="background-image:' + bg + '" role="group" aria-label="' + (i+1) + ' of ' + FACTS.length + '">' +
+        '<div class="ff-in"><div class="ff-lbl">Fun fact<i></i><em>' + (i+1) + ' / ' + FACTS.length + '</em></div>' +
+        '<div class="ff-h">' + esc(f.title) + '</div><p class="ff-p">' + f.text + '</p></div></div>';
+    }).join('');
+    dots.innerHTML = FACTS.length > 1 ? FACTS.map(function (f, i) {
+      return '<button' + (i ? '' : ' class="on"') + ' aria-label="Fun fact ' + (i+1) + '"></button>';
+    }).join('') : '';
+
+    var cards = stage.children, btns = dots.children, cur = 0, t = null;
+    function show(n){
+      cards[cur].classList.remove('on'); if (btns[cur]) btns[cur].classList.remove('on');
+      cur = (n + cards.length) % cards.length;
+      cards[cur].classList.add('on'); if (btns[cur]) btns[cur].classList.add('on');
+    }
+    Array.prototype.forEach.call(btns, function (b, i) { b.onclick = function(){ show(i); restart(); }; });
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function restart(){ clearInterval(t); if (!still && cards.length > 1) t = setInterval(function(){ show(cur + 1); }, 7000); }
+    stage.onmouseenter = function(){ clearInterval(t); };
+    stage.onmouseleave = restart;
+    /* Swipe on a phone. */
+    var x0 = null;
+    stage.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, { passive:true });
+    stage.addEventListener('touchend', function(e){
+      if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40){ show(cur + (dx < 0 ? 1 : -1)); restart(); }
+    });
+    restart();
+  })();
+
+
+  /* ── 5. The board, filtered to the nights they picked ──
+     Same ?export=editions call the Navigator and parties.html make. */
+  var RANGES = {
+    'Weekend 1': [4, 6],   'Weekend 2': [11, 13],
+    'Weekend 3': [18, 20], 'Weekend 4': [25, 27],
+    'Christmas to New Year': [28, 31]
+  };
+  function wanted(day){
+    if (!dates.length || dates.indexOf('All of it') > -1) return true;
+    return dates.some(function(k){
+      var r = RANGES[k]; return r && day >= r[0] && day <= r[1];
+    });
+  }
+
+  var DAY = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  (function board(){
+    var u = (typeof getAfroCueScriptUrl === 'function') ? getAfroCueScriptUrl()
+          : (window.AFROCUE_SCRIPT_URL || '');
+    if (!u) return;
+    fetch(u + '?export=editions')
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        if (!d || !Array.isArray(d.editions)) return;
+        var byId = {};
+        (d.parties || []).forEach(function(x){ byId[x.id] = x; });
+        var today = new Date(new Date().toDateString());
+        var rows = d.editions.filter(function(e){
+          if (!e.date || e.state === 'cancelled') return false;
+          var t = new Date(e.date);
+          if (isNaN(t) || t < today) return false;
+          return t.getMonth() === 11 ? wanted(t.getDate()) : true;
+        }).sort(function(a,b){ return a.date < b.date ? -1 : 1; }).slice(0, 12);
+        if (!rows.length) return;
+
+        document.getElementById('rail').innerHTML = rows.map(function(e){
+          var x = byId[e.party_id] || {};
+          var art = e.flyer || x.upcoming_flyer || x.flyer_img || x.hero_img || '';
+          var t = new Date(e.date);
+          var place = e.venue_hint || x.city || '';
+          return '<a class="fly" href="/parties.html" target="_blank" rel="noopener">' +
+            '<div class="art"' + (art ? ' style="background-image:url(\'' + esc(art) + '\')"' : '') + '>' +
+            '<span class="when">' + DAY[t.getDay()] + ' ' + t.getDate() + '</span></div>' +
+            '<div class="nm">' + esc(x.name || e.title || 'Night') + '</div>' +
+            '<div class="vn">' + esc(place) + '</div></a>';
+        }).join('');
+        document.getElementById('board').style.display = 'block';
+        if (dates.length && dates.indexOf('All of it') === -1)
+          document.getElementById('board-h').textContent = 'The nights you picked.';
+        else
+          document.getElementById('board-h').textContent = 'What December already looks like.';
+      })
+      .catch(function(){});
+  })();
+})();
+</script>
+</body>
+</html>
