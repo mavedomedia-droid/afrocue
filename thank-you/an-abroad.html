@@ -233,15 +233,15 @@
      so a fact never sits on a blank card.
      ───────────────────────────────────────────────────────────── */
   var FACTS = [
-    { draft: true, title: 'Dance Eko 2026',
+    { title: 'Dance Eko 2026',
       img: '/assets/fact_dance_eko.jpg', fallback: '/assets/audience_partygoers.jpg',
-      text: '<b>Wizkid</b> has appeared at both editions of Dance Eko with a [SET NAME] set, and this year we are expecting a return.' },
+      text: '<b>Wizkid</b> has appeared at both editions of Dance Eko, and this year we are expecting a return.' },
     { title: 'Smeez and D3an',
       img: '/assets/fact_smeez_d3an.jpg', fallback: '/assets/content_dj.jpeg',
       text: 'Did you know <b>Smeez and D3an</b>, the amapiano duo, produced the global viral hit Nakupenda with TxC, Shoday and Davido? They have also produced amapiano records for South African legends Kabza De Small and DJ Maphorisa, and they play often at places like Groove Factory, Amapiano District and Yanos Theory. We can find you the next place they are playing.' },
-    { draft: true, title: '[TRACK], Jimmy Black',
+    { title: 'Jamie Black',
       img: '/assets/fact_jimmy_black.jpg', fallback: '/assets/navigator_hero.jpg',
-      text: 'A viral dance track that has been making waves all through 2026, and the <b>[REMIX]</b> is the latest addition. It premiered at Group Therapy and Monochroma on the same night, played by Jimmy Black and Proton, and you will be hearing a lot of it this December.' }
+      text: 'A viral dance track that has been making waves all through 2026, and a new remix is the latest addition. It premiered at Group Therapy and Monochroma on the same night, played by Jamie Black and Proton, and you will be hearing a lot of it this December.' }
   ];
   var showDrafts = p.get('drafts') === '1';
   FACTS = FACTS.filter(function (f) { return showDrafts || !f.draft; });
