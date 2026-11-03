@@ -1076,7 +1076,9 @@
       tier:S.tier,
       segment:seg, audience:audience,
       multi_night: (S.often === 'Every weekend' || S.often === 'Every night I can'),
-      submitted_at: new Date().toISOString()
+      submitted_at: new Date().toISOString(),
+      landing_page: location.origin + location.pathname,
+      referrer: document.referrer || ''
     };
     Object.keys(UTM).forEach(function(k){ data[k] = UTM[k]; });
     track('navigator_complete', { segment:seg, audience:audience, intent:S.intent,
@@ -1095,7 +1097,8 @@
           + '?seg='    + encodeURIComponent(seg)
           + '&fn='     + encodeURIComponent(fn)
           + '&intent=' + encodeURIComponent(S.intent)
-          + '&dates='  + encodeURIComponent(S.dates.join('|'));
+          + '&dates='  + encodeURIComponent(S.dates.join('|'))
+          + '&style='  + encodeURIComponent(S.nights.join('|'));
         return;
       }
       document.getElementById('dh').textContent = fn + ', that is December sorted.';
