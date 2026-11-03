@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Lagos Navigator by AfroCue: Navigate Detty December</title>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="apple-touch-icon" href="favicon.png"/>
+  <meta name="description" content="The night already exists in Lagos. We just know where it is. Lagos Navigator curates it for roughly what you would have spent anyway."/>
+  <meta name="theme-color" content="#0a0a0a"/>
+
+  <meta property="og:title" content="Navigate Detty December"/>
+  <meta property="og:description" content="Lagos Navigator by AfroCue. The best of Lagos nightlife, curated around the nights you are free."/>
+  <meta property="og:image" content="assets/hero_dj.jpg"/>
+  <meta property="og:type" content="website"/>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Shared config. The /exec URL lives here and nowhere else on this page. -->
+  <script src="js/afrocue.js"></script>
+
+  <style>
+    @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');font-weight:900;font-display:swap}
+    @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype');font-weight:500;font-display:swap}
+    @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-.otf') format('opentype');font-weight:400;font-display:swap}
+
+    :root{
+      --black:#0a0a0a; --dark:#111111; --white:#f0ede8;
+      --yellow:#dedc00; --green:#2ee440;
+      --y-soft:rgba(222,220,0,0.12); --y-line:rgba(222,220,0,0.4); --y-ring:rgba(222,220,0,0.18);
+      --y-grad:linear-gradient(135deg,#e9e700 0%,#dedc00 45%,#c2c000 100%);
+      --line:rgba(255,255,255,0.10); --line-hi:rgba(255,255,255,0.20);
+      --r:12px; --r-img:14px;
+      --display:'Aesthet Nova',sans-serif;
+      --sans:'Figtree',sans-serif;
+      --pad:max(20px, calc((100vw - 1100px) / 2));
+    }
+    @media(min-width:769px){ :root{ --pad:max(44px, calc((100vw - 1100px) / 2)) } }
+
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{background:var(--black);color:var(--white);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    :focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+    img{max-width:100%;display:block}
+
+    .bg-image{position:fixed;inset:0;z-index:0;background:url('assets/hero_dj.jpg') center 26%/cover;opacity:0.09;pointer-events:none}
+    .bg-scrim{position:fixed;inset:0;z-index:1;background:rgba(10,10,10,0.8);pointer-events:none}
+    .bg-texture{position:fixed;inset:0;z-index:2;background:url('assets/texture.jpg') center/cover;opacity:0.3;pointer-events:none}
+
+    main{position:relative;z-index:3}
+    section{padding:0 var(--pad)}
+    .inner{max-width:1100px;margin:0 auto}
+    .bleed{margin-left:calc(-1 * var(--pad));margin-right:calc(-1 * var(--pad))}
+
+    /* One sans for everything. Labels are uppercase Figtree, not mono. */
+    .eyebrow{font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--yellow);margin-bottom:9px}
+    h2.bh{font-family:var(--display);font-weight:900;font-size:clamp(21px,2.4vw,27px);line-height:1.12;color:var(--white)}
+    .sub{font-size:13.5px;font-weight:300;color:rgba(240,237,232,0.5);line-height:1.6;margin-top:7px;max-width:54ch}
+    .head{margin:56px 0 20px}
+    .head.mid{text-align:center}
+    .head.mid .sub{margin-left:auto;margin-right:auto}
+
+    /* Gradient action button, used for every real CTA on the page. */
+    .cta{display:inline-block;width:100%;padding:13px 18px;background:var(--y-grad);color:#0a0a0a;
+      border:none;border-radius:10px;font-family:var(--sans);font-size:14px;font-weight:700;
+      cursor:pointer;text-align:center;text-decoration:none;
+      box-shadow:0 6px 18px rgba(222,220,0,0.16);transition:transform .15s,box-shadow .2s,filter .2s}
+    .cta:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(222,220,0,0.26);filter:brightness(1.05)}
+    .cta.ghost{background:transparent;color:var(--white);border:1.5px solid var(--line-hi);box-shadow:none}
+    .cta.ghost:hover{border-color:var(--yellow);color:var(--yellow);box-shadow:none}
+
+    /* ═══════════════════ HERO ═══════════════════ */
+    .hero{position:relative;padding-top:calc(var(--ac-nav-h,76px) + 34px);padding-bottom:30px}
+    .hero::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+      background:linear-gradient(to bottom,rgba(10,10,10,0.60) 0%,rgba(10,10,10,0.88) 58%,rgba(10,10,10,0.99) 100%),
+                 url('assets/navigator_hero.jpg') center 28%/cover}
+    .hero::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+      background:url('assets/texture.jpg') center/cover;opacity:0.5}
+    .hero-in{position:relative;z-index:2}
+    .hero-in{max-width:640px;margin:0 auto;text-align:center}
+    .kicker{display:inline-block;font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;
+      color:var(--yellow);border:1px solid rgba(222,220,0,0.3);border-radius:4px;padding:5px 11px;margin-bottom:20px}
+    
+    h1{font-family:var(--display);font-weight:900;font-size:clamp(27px,4.6vw,42px);line-height:1.02;
+      letter-spacing:-0.015em;color:var(--yellow);text-shadow:2px 3px 0 rgba(0,0,0,0.85);
+      max-width:30ch;margin:0 auto 14px}
+    .hero-d{font-size:15.5px;font-weight:300;color:rgba(240,237,232,0.62);line-height:1.65;max-width:46ch;margin:0 auto 18px}
+    .hero-d b{font-weight:600;color:var(--white)}
+    .tags{display:flex;flex-wrap:wrap;gap:7px 24px;justify-content:center;margin-bottom:26px}
+    .tags span{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:500;
+      letter-spacing:0.01em;color:rgba(240,237,232,0.55);white-space:nowrap}
+    .tags svg{width:12px;height:12px;stroke:var(--yellow);stroke-width:2.8;fill:none;flex-shrink:0}
+
+    /* ── Quiz card ── */
+    .card{background:rgba(9,9,9,0.93);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+      border:1px solid var(--line);border-radius:var(--r-img);padding:24px 22px 26px;text-align:left;
+      box-shadow:0 20px 50px rgba(0,0,0,0.6);position:relative;overflow:hidden}
+    .card::before{content:'';position:absolute;inset:0;background:url('assets/texture.jpg') center/cover;opacity:0.17;pointer-events:none}
+    .card > *{position:relative}
+    .card.flash{animation:flash .9s ease}
+    @keyframes flash{0%,100%{box-shadow:0 20px 50px rgba(0,0,0,0.6)}35%{box-shadow:0 0 0 3px var(--y-ring),0 20px 50px rgba(0,0,0,0.6)}}
+    .prog{display:flex;align-items:center;gap:11px;margin-bottom:15px}
+    .prog-bar{flex:1;height:3px;background:rgba(255,255,255,0.12);border-radius:2px;overflow:hidden}
+    .prog-fill{height:100%;width:14%;background:var(--y-grad);border-radius:2px;transition:width .4s ease}
+    .prog-lbl{font-size:11px;font-weight:500;color:rgba(240,237,232,0.4);white-space:nowrap}
+    .step{display:none;animation:fadeUp .28s ease both}
+    .step.active{display:block}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+    .slabel{font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--yellow);opacity:0.8;margin-bottom:6px}
+    .q{font-family:var(--display);font-weight:900;font-size:19px;line-height:1.22;color:var(--white);margin-bottom:4px}
+    .hint{font-size:13px;font-weight:300;color:rgba(240,237,232,0.5);line-height:1.5;margin-bottom:13px}
+    .asked{font-size:12.5px;font-weight:400;color:var(--yellow);background:var(--y-soft);
+      border:1px solid rgba(222,220,0,0.22);border-radius:8px;padding:9px 11px;margin-bottom:13px;line-height:1.45}
+
+    .opts{display:flex;flex-direction:column;gap:8px}
+    .opts.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .opt{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;width:100%;
+      border:1.5px solid var(--line);border-radius:var(--r);padding:13px 14px;cursor:pointer;
+      background:rgba(255,255,255,0.04);text-align:left;font-family:var(--sans);
+      transition:border-color .18s,background .18s,box-shadow .18s}
+    .opt:hover,.opt.selected{border-color:var(--yellow);background:var(--y-soft);box-shadow:0 0 14px rgba(222,220,0,0.14)}
+    .opt-n{font-size:11px;font-weight:700;color:rgba(240,237,232,0.3);min-width:18px}
+    .opt:hover .opt-n,.opt.selected .opt-n{color:var(--yellow)}
+    .opt-b{min-width:0}
+    .opt-t{display:block;font-size:15px;font-weight:600;color:var(--white);line-height:1.25}
+    .opt-s{display:block;font-size:12.5px;font-weight:300;color:rgba(240,237,232,0.5);line-height:1.4;margin-top:2px}
+    .opt-a{font-size:17px;color:rgba(240,237,232,0.22);transition:color .18s,transform .18s}
+    .opt:hover .opt-a,.opt.selected .opt-a{color:var(--yellow);transform:translateX(3px)}
+    .opt.quiet .opt-t{color:rgba(240,237,232,0.6);font-weight:500}
+    .opt .box{width:17px;height:17px;border-radius:4px;border:1.5px solid var(--line-hi);flex-shrink:0;transition:all .18s}
+    .opt.selected .box{border-color:var(--yellow);background:var(--yellow)}
+    .opt.selected .box::after{content:'';display:block;width:9px;height:4px;border-left:2px solid #0a0a0a;border-bottom:2px solid #0a0a0a;transform:rotate(-45deg);margin:3px auto 0}
+
+    /* 16px is deliberate: smaller zooms the viewport on iOS. */
+    .ig{margin-bottom:12px}
+    .ig label{display:block;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,237,232,0.45);margin-bottom:5px}
+    .ig input{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:9px;
+      font-family:var(--sans);font-size:16px;color:var(--white);background:rgba(255,255,255,0.06);
+      outline:none;transition:border-color .2s,box-shadow .2s}
+    .ig input::placeholder{color:rgba(240,237,232,0.35)}
+    .ig input:focus{border-color:var(--yellow);box-shadow:0 0 0 3px var(--y-ring)}
+    .ig input.error{border-color:#f87171;box-shadow:0 0 0 3px rgba(248,113,113,0.15)}
+    .ferr{font-size:12px;color:#f87171;margin-top:4px;display:none}
+    .ferr.show{display:block}
+    .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+
+    .btn{width:100%;padding:14px;background:var(--y-grad);color:#0a0a0a;border:none;border-radius:10px;
+      font-family:var(--sans);font-size:15px;font-weight:700;cursor:pointer;margin-top:15px;
+      box-shadow:0 6px 18px rgba(222,220,0,0.16);transition:transform .15s,box-shadow .2s,filter .2s}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(222,220,0,0.26);filter:brightness(1.05)}
+    .btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+    .btn.loading{color:transparent;position:relative;pointer-events:none}
+    .btn.loading::after{content:'';position:absolute;top:50%;left:50%;width:17px;height:17px;margin:-8.5px 0 0 -8.5px;
+      border:2px solid rgba(0,0,0,0.3);border-top-color:#0a0a0a;border-radius:50%;animation:spin .6s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .back{display:inline-flex;gap:4px;font-size:13px;color:rgba(240,237,232,0.35);background:none;border:none;cursor:pointer;font-family:var(--sans);padding:0;margin-top:11px}
+    .back:hover{color:rgba(240,237,232,0.65)}
+    .fine{font-size:11.5px;font-weight:300;color:rgba(240,237,232,0.35);line-height:1.5;margin-top:10px;text-align:center}
+
+    .rcard{text-align:center}
+    .rcard .tick{width:46px;height:46px;border-radius:12px;background:var(--y-soft);display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+    .rcard .tick svg{width:22px;height:22px;stroke:var(--yellow);stroke-width:2.4;fill:none}
+    .rcard h3{font-family:var(--display);font-weight:900;font-size:19px;color:var(--white);margin-bottom:7px}
+    .rcard p{font-size:13.5px;font-weight:300;color:rgba(240,237,232,0.55);line-height:1.65}
+    .rcard .cta{margin-top:16px}
+
+    /* ═══════════ CURATION CARDS ═══════════ */
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .cards.four{grid-template-columns:1fr 1fr;gap:10px}
+    .cards.four .pc{display:grid;grid-template-columns:auto 1fr;align-items:start;gap:14px;padding:14px}
+    .cards.four .im{width:72px;height:72px;aspect-ratio:auto;border-radius:9px;flex-shrink:0}
+    .cards.four .tx{padding:0}
+    .cards.four h3{font-size:13.5px;line-height:1.25;margin-bottom:4px}
+    .cards.four p{font-size:12px;line-height:1.5}
+    .cards.four p b{font-weight:600;color:var(--yellow)}
+    @media(max-width:700px){
+      .cards.four{grid-template-columns:1fr 1fr;gap:8px}
+      .cards.four .pc{grid-template-columns:1fr;gap:10px;padding:10px}
+      .cards.four .im{width:100%;height:76px;border-radius:7px}
+      .cards.four h3{font-size:12.5px}
+      .cards.four p{font-size:11.5px;line-height:1.45}
+    }
+    .pc{border:1px solid var(--line);border-radius:var(--r-img);overflow:hidden;background:rgba(255,255,255,0.03);transition:border-color .2s}
+    .pc:hover{border-color:var(--y-line)}
+    .pc .im{aspect-ratio:2/1;background-size:cover;background-position:center;position:relative}
+    .pc .im::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,0.8),transparent 60%)}
+    .pc .tx{padding:15px 16px 17px}
+    .pc h3{font-family:var(--display);font-weight:900;font-size:15px;color:var(--white);margin-bottom:5px}
+    .pc p{font-size:12.5px;font-weight:300;color:rgba(240,237,232,0.5);line-height:1.55}
+    .note{margin-top:14px;font-size:12.5px;font-weight:300;color:rgba(240,237,232,0.42);border-left:2px solid var(--y-line);padding-left:12px;line-height:1.55}
+
+    /* ═══════════ PACKAGES. Shared once, then the differences. ═══════════ */
+    .ladder{margin-top:26px}
+    .ladder-lbl{margin:0 0 14px}
+    .ladder-lbl h3{font-family:var(--display);font-weight:900;font-size:17px;color:var(--yellow);margin-bottom:5px}
+    .ladder-lbl p{font-size:13.5px;font-weight:300;color:rgba(240,237,232,0.5);line-height:1.6;max-width:62ch}
+
+    /* Everything common to the three, stated once. */
+    .base{border:1px solid var(--line);border-radius:var(--r-img);padding:18px 20px;
+      background:rgba(255,255,255,0.025);margin-bottom:10px}
+    .base .bl{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+      color:rgba(240,237,232,0.4);margin-bottom:12px}
+    .base ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:11px 20px}
+
+    .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-items:stretch}
+    .tier{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--r-img);
+      padding:20px 18px 18px;background:rgba(255,255,255,0.03);transition:border-color .2s,background .2s}
+    .tier:hover{border-color:var(--y-line);background:rgba(255,255,255,0.05)}
+    .tier.pick{border-color:rgba(222,220,0,0.5);background:var(--y-soft)}
+    .tier-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+    .tier h4{font-family:var(--display);font-weight:900;font-size:18px;color:var(--white);line-height:1.15}
+    .tier .flag{font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+      color:#0a0a0a;background:var(--y-grad);border-radius:100px;padding:3px 8px;white-space:nowrap}
+    .tier .who{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,237,232,0.4);margin-bottom:14px}
+    .tier .plus{font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+      color:var(--yellow);opacity:0.8;margin-bottom:10px}
+    .tier ul{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-direction:column;gap:11px;flex:1}
+
+    li.pl{display:grid;grid-template-columns:auto 1fr;gap:10px;font-size:13px;font-weight:300;
+      color:rgba(240,237,232,0.74);line-height:1.45}
+    li.pl b{font-weight:600;color:var(--white)}
+    .ic{width:17px;height:17px;flex-shrink:0;margin-top:2px;stroke:var(--yellow);stroke-width:1.7;
+      fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:0.9}
+
+    .wonder{margin-top:20px;border:1px dashed rgba(222,220,0,0.3);border-radius:var(--r-img);
+      padding:18px 20px;background:rgba(222,220,0,0.04)}
+    .wonder h4{font-family:var(--display);font-weight:900;font-size:15px;color:var(--white);margin-bottom:6px}
+    .wonder p{font-size:13px;font-weight:300;color:rgba(240,237,232,0.55);line-height:1.6;max-width:70ch}
+    .price-foot{margin-top:14px;font-size:12px;font-weight:300;color:rgba(240,237,232,0.38);line-height:1.55}
+
+    /* ═══════════ THE MONEY ═══════════ */
+    .money{margin-top:56px;border-radius:var(--r-img);
+      padding:48px 32px;text-align:center;background:var(--y-grad);position:relative;overflow:hidden}
+    .money::before{content:'';position:absolute;inset:0;background:url('assets/texture.jpg') center/cover;opacity:0.18;mix-blend-mode:multiply;pointer-events:none}
+    .money .eyebrow{color:rgba(10,10,10,0.6)}
+    .money > *{position:relative}
+    .money h2{font-family:var(--display);font-weight:900;font-size:clamp(22px,3vw,32px);line-height:1.1;
+      color:#0a0a0a;max-width:24ch;margin:0 auto 12px}
+    .money p{font-size:14.5px;font-weight:500;color:rgba(10,10,10,0.74);line-height:1.6;max-width:46ch;margin:0 auto}
+    .incl{list-style:none;margin:30px auto 0;padding:0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:840px}
+    .incl li{font-size:12.5px;font-weight:600;color:#0a0a0a;background:rgba(10,10,10,0.10);
+      border:1px solid rgba(10,10,10,0.18);border-radius:3px;padding:8px 15px;white-space:nowrap}
+    .ngn{width:0.60em;height:0.60em;display:inline-block;vertical-align:-0.01em;margin:0 0.05em;
+      fill:none;stroke:currentColor;stroke-width:14;stroke-linecap:square}
+    .incl-foot{margin-top:18px;font-size:13.5px;font-weight:700;color:rgba(10,10,10,0.72)}
+
+    /* ═══════════ OUR CONTENT ═══════════ */
+
+    /* ── The AfroCue masthead, as a contained band ── */
+    .achero{position:relative;overflow:hidden;border-radius:var(--r-img);border:1px solid var(--line);
+      padding:46px 40px}
+    .achero-img{position:absolute;inset:0;background:url('assets/hero_dj.jpg') center 55%/cover;opacity:0.55}
+    .achero-tex{position:absolute;inset:0;background:url('assets/texture.jpg') center/cover;opacity:0.24;pointer-events:none}
+    .achero-grad{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,10,0.93) 0%,rgba(10,10,10,0.74) 52%,rgba(10,10,10,0.58) 100%)}
+    .achero-in{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center;text-align:left}
+    .achero-r{display:flex;flex-direction:column;align-items:flex-start}
+    .achero-eye{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+    .achero-eye i{width:28px;height:1px;background:rgba(240,237,232,0.4);flex-shrink:0}
+    .achero-eye span{font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:rgba(240,237,232,0.58)}
+    .achero-h{font-family:var(--display);font-weight:900;font-size:clamp(30px,4vw,46px);line-height:0.92;
+      color:var(--yellow);text-shadow:2px 3px 0 rgba(0,0,0,0.9);margin-bottom:16px}
+    .achero-h .ol{-webkit-text-stroke:1.5px var(--yellow);color:transparent;text-shadow:none}
+    .achero-d{font-size:14px;font-weight:300;line-height:1.75;color:rgba(240,237,232,0.72);max-width:42ch;margin:0}
+    .achero-ig{display:inline-block;margin-top:22px;font-size:11px;font-weight:600;letter-spacing:0.12em;
+      text-transform:uppercase;color:rgba(240,237,232,0.5);text-decoration:none;
+      border:1px solid rgba(255,255,255,0.16);border-radius:2px;padding:10px 20px;transition:all .2s}
+    .achero-ig:hover{border-color:var(--yellow);color:var(--yellow)}
+
+    /* ── The offer, stated once ── */
+    .offer{max-width:620px;margin:58px auto 0;text-align:center}
+    .offer h2{font-family:var(--display);font-weight:900;font-size:clamp(24px,3.2vw,36px);line-height:1.05;
+      color:var(--yellow);text-shadow:2px 3px 0 rgba(0,0,0,0.85);margin:0 0 12px}
+    .offer p{font-size:15px;font-weight:300;line-height:1.7;color:rgba(240,237,232,0.62);max-width:50ch;margin:0 auto}
+
+    /* ═══════════ THE BOARD ═══════════ */
+    .rail{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;
+      padding:0 var(--pad) 6px;scrollbar-width:none;-ms-overflow-style:none}
+    .rail::-webkit-scrollbar{display:none}
+    .fly{flex:0 0 auto;width:clamp(132px,16vw,164px);scroll-snap-align:start;text-decoration:none;color:inherit}
+    .fly .art{aspect-ratio:4/5;border-radius:10px;overflow:hidden;border:1px solid var(--line);
+      background:#141414 center/cover;position:relative;transition:border-color .2s,transform .2s}
+    .fly:hover .art{border-color:var(--y-line);transform:translateY(-3px)}
+    .fly .art .when{position:absolute;left:7px;top:7px;font-size:10px;font-weight:700;
+      letter-spacing:0.04em;text-transform:uppercase;color:#0a0a0a;background:var(--yellow);border-radius:4px;padding:3px 7px}
+    .fly .nm{font-size:12.5px;font-weight:600;color:var(--white);margin-top:7px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .fly .vn{font-size:11px;font-weight:300;color:rgba(240,237,232,0.38);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .live{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,237,232,0.4)}
+    .live i{width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 7px rgba(46,228,64,0.7)}
+
+    /* ═══════════ WHY ═══════════ */
+
+    /* ═══════════ FAQ ═══════════ */
+    .faq{display:flex;flex-direction:column}
+    .fq{border-bottom:1px solid var(--line);padding:16px 0}
+    .fq:first-child{border-top:1px solid var(--line)}
+    .fq b{display:block;font-size:14.5px;font-weight:600;color:var(--white);margin-bottom:5px}
+    .fq span{font-size:13px;font-weight:300;color:rgba(240,237,232,0.5);line-height:1.6}
+
+    /* ═══════════ CLOSING ═══════════ */
+    .closing{margin-top:56px;padding-bottom:80px}
+    .closing-in{max-width:640px;margin:0 auto;text-align:center}
+    .closing h2{font-family:var(--display);font-weight:900;font-size:clamp(22px,2.9vw,30px);line-height:1.1;color:var(--yellow);text-shadow:2px 3px 0 rgba(0,0,0,0.85);margin-bottom:9px}
+    .closing p{font-size:14px;font-weight:300;color:rgba(240,237,232,0.5);max-width:40ch;margin:0 auto 22px}
+
+    @media(max-width:880px){
+      .cards,.tiers{grid-template-columns:1fr}
+      .money{padding:30px 20px}
+      .base ul{grid-template-columns:1fr 1fr}
+      .achero{padding:30px 22px}
+      .achero-in{grid-template-columns:1fr;gap:24px}
+      .offer{margin-top:40px}
+      .pc .im{aspect-ratio:16/7}
+      .tier{padding:20px 18px 18px}
+      .base ul{grid-template-columns:1fr}
+    }
+    @media(max-width:560px){
+      .hero{padding-top:calc(var(--ac-nav-h,76px) + 20px)}
+      .card{padding:20px 15px 22px}
+      .opts.g2{grid-template-columns:1fr}
+      .tags{gap:6px 18px}
+    }
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div class="bg-image"></div>
+<div class="bg-scrim"></div>
+<div class="bg-texture"></div>
+
+<div id="ac-nav"></div>
+
+<main>
+
+  <!-- ══════════ HERO ══════════ -->
+  <section class="hero" id="top">
+    <div class="hero-in">
+
+      <span class="kicker">Lagos Navigator by AfroCue</span>
+
+      <!-- Rotating line. Each one is a search query stated the way the
+           visitor would state it, so the headline can be matched to the
+           ad group that brought them. -->
+      <h1>Maximize your Lagos Nightlife Experience in December</h1>
+
+      <p class="hero-d">Use the Lagos Navigator by <b>AfroCue</b> service to curate an unforgettable Lagos nightlife experience for the amount you would have spent anyway.</p>
+
+      <div class="tags">
+        <span><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Curated around the best moments</span>
+        <span><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Exclusive access</span>
+        <span><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Chauffeured ride both ways</span>
+        <span><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>The best of Lagos dance music</span>
+      </div>
+
+      <div class="card" id="quiz">
+        <div class="prog"><div class="prog-bar"><div class="prog-fill" id="pfill"></div></div><span class="prog-lbl" id="plbl">1 / 8</span></div>
+        <input type="text" class="hp" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="step active" id="q1" data-n="1">
+          <div class="slabel">Where you are</div>
+          <div class="q">Where are you spending December?</div>
+          <div class="asked" id="asked" style="display:none"></div>
+          <div class="opts">
+            <button class="opt" onclick="pick('where','lagos',this)"><span class="opt-n">01</span><span class="opt-b"><span class="opt-t">I stay in Lagos</span></span><span class="opt-a">&rarr;</span></button>
+            <button class="opt" onclick="pick('where','travelling',this)"><span class="opt-n">02</span><span class="opt-b"><span class="opt-t">Travelling to Lagos</span><span class="opt-s">Flying in for Detty December</span></span><span class="opt-a">&rarr;</span></button>
+            <button class="opt" onclick="pick('where','undecided',this)"><span class="opt-n">03</span><span class="opt-b"><span class="opt-t">Not decided yet</span><span class="opt-s">Plans firm up in November. Answer anyway.</span></span><span class="opt-a">&rarr;</span></button>
+            <button class="opt quiet" onclick="pick('where','out',this)"><span class="opt-n">04</span><span class="opt-b"><span class="opt-t">Not in Lagos this December</span></span><span class="opt-a">&rarr;</span></button>
+          </div>
+        </div>
+
+        <div class="step" id="q1b" data-n="1">
+          <div class="slabel">Where you are</div>
+          <div class="q">Coming in from where?</div>
+          <div class="opts g2">
+            <button class="opt" onclick="pick('from','Nigeria',this)"><span class="opt-b"><span class="opt-t">Nigeria</span></span></button>
+            <button class="opt" onclick="pick('from','Europe',this)"><span class="opt-b"><span class="opt-t">Europe</span></span></button>
+            <button class="opt" onclick="pick('from','North America',this)"><span class="opt-b"><span class="opt-t">North America</span></span></button>
+            <button class="opt" onclick="pick('from','Africa',this)"><span class="opt-b"><span class="opt-t">Elsewhere in Africa</span></span></button>
+            <button class="opt" onclick="pick('from','Elsewhere',this)" style="grid-column:1/-1"><span class="opt-b"><span class="opt-t">Somewhere else</span></span></button>
+          </div>
+          <button class="back" onclick="go('q1')">&larr; Back</button>
+        </div>
+
+        <div class="step" id="q2" data-n="2">
+          <div class="slabel">How you move</div>
+          <div class="q">How often do you plan to be outside?</div>
+          <div class="opts g2">
+            <button class="opt" onclick="pick('often','Once in a while',this)"><span class="opt-b"><span class="opt-t">Once in a while</span></span></button>
+            <button class="opt" onclick="pick('often','Once every weekend',this)"><span class="opt-b"><span class="opt-t">Once a weekend</span></span></button>
+            <button class="opt" onclick="pick('often','Every weekend',this)"><span class="opt-b"><span class="opt-t">Every weekend</span></span></button>
+            <button class="opt" onclick="pick('often','Every night I can',this)"><span class="opt-b"><span class="opt-t">Every night I can</span></span></button>
+          </div>
+          <button class="back" onclick="backOne()">&larr; Back</button>
+        </div>
+
+        <div class="step" id="q3" data-n="3">
+          <div class="slabel">What you are here for</div>
+          <div class="q">What are you looking forward to?</div>
+          <div class="hint">Select as many as you like.</div>
+          <div class="opts" id="g3">
+            <button class="opt" data-v="Afrobeats" onclick="tog(this,'g3','n3')"><span class="box"></span><span class="opt-b"><span class="opt-t">Afrobeats parties</span><span class="opt-s">South Social, Compound O, PM2AM, etc</span></span></button>
+            <button class="opt" data-v="Amapiano" onclick="tog(this,'g3','n3')"><span class="box"></span><span class="opt-b"><span class="opt-t">Amapiano</span><span class="opt-s">Amapiano District, Groove Station, etc</span></span></button>
+            <button class="opt" data-v="House" onclick="tog(this,'g3','n3')"><span class="box"></span><span class="opt-b"><span class="opt-t">House music</span><span class="opt-s">Monochroma, Element House, Ardour, etc</span></span></button>
+            <button class="opt" data-v="Club nights" onclick="tog(this,'g3','n3')"><span class="box"></span><span class="opt-b"><span class="opt-t">Club nights</span><span class="opt-s">FOMO, Proxy, etc</span></span></button>
+            <button class="opt" data-v="Festivals" onclick="tog(this,'g3','n3')"><span class="box"></span><span class="opt-b"><span class="opt-t">Dance festivals</span><span class="opt-s">Dance Eko, etc</span></span></button>
+          </div>
+          <button class="btn" id="n3" disabled onclick="adv('q3','q4')">Next</button>
+          <button class="back" onclick="go('q2')">&larr; Back</button>
+        </div>
+
+        <div class="step" id="q4" data-n="4">
+          <div class="slabel">Your dates</div>
+          <div class="q">Which nights are you out?</div>
+          <div class="hint">The big ones are already named.</div>
+          <div class="opts g2" id="g4">
+            <button class="opt" data-v="Dec 5 and 6" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">5 and 6</span></span></button>
+            <button class="opt" data-v="Dec 12 and 13" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">12 and 13</span></span></button>
+            <button class="opt" data-v="Dec 19 and 20" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">19 and 20</span></span></button>
+            <button class="opt" data-v="Christmas week" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">Christmas week</span><span class="opt-s">22 to 26</span></span></button>
+            <button class="opt" data-v="The peak" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">The peak</span><span class="opt-s">26 to 30</span></span></button>
+            <button class="opt" data-v="New Year's Eve" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">New Year's Eve</span></span></button>
+            <button class="opt" data-v="All of it" data-all="true" onclick="togAll(this,'g4','n4')" style="grid-column:1/-1"><span class="box"></span><span class="opt-b"><span class="opt-t">All of it</span></span></button>
+          </div>
+          <button class="btn" id="n4" disabled onclick="adv('q4','q5')">Next</button>
+          <button class="back" onclick="go('q3')">&larr; Back</button>
+        </div>
+
+        <div class="step" id="q5" data-n="5">
+          <div class="slabel">How you like it</div>
+          <div class="q">How do you prefer to have your nights?</div>
+          <div class="hint">Select as many as you like.</div>
+          <div class="opts" id="g5">
+            <button class="opt" data-v="floor" onclick="tog(this,'g5','n5')"><span class="box"></span><span class="opt-b"><span class="opt-t">In the crowd</span><span class="opt-s">On the dance floor, near the booth</span></span></button>
+            <button class="opt" data-v="stage" onclick="tog(this,'g5','n5')"><span class="box"></span><span class="opt-b"><span class="opt-t">Close to the stage</span><span class="opt-s">Where the night is actually happening</span></span></button>
+            <button class="opt" data-v="table" onclick="tog(this,'g5','n5')"><span class="box"></span><span class="opt-b"><span class="opt-t">At a table</span><span class="opt-s">Your own space, your own people</span></span></button>
+          </div>
+          <button class="btn" id="n5" disabled onclick="adv('q5','q6')">Next</button>
+          <button class="back" onclick="go('q4')">&larr; Back</button>
+        </div>
+
+        <div class="step" id="q6" data-n="6">
+          <div class="slabel">Your people</div>
+          <div class="q">Who are you doing December with?</div>
+          <div class="opts g2">
+            <button class="opt" onclick="pick('with','Just me',this)"><span class="opt-b"><span class="opt-t">Just me</span></span></button>
+            <button class="opt" onclick="pick('with','Me and one other',this)"><span class="opt-b"><span class="opt-t">Me and one</span></span></button>
+            <button class="opt" onclick="pick('with','3 to 4 people',this)"><span class="opt-b"><span class="opt-t">3 to 4 of us</span></span></button>
+            <button class="opt" onclick="pick('with','Group of 5+',this)"><span class="opt-b"><span class="opt-t">5 or more</span></span></button>
+            <button class="opt" onclick="pick('with','It varies by night',this)" style="grid-column:1/-1"><span class="opt-b"><span class="opt-t">It varies by night</span></span></button>
+          </div>
+          <button class="back" onclick="go('q5')">&larr; Back</button>
+        </div>
+
+        <div class="step" id="q7" data-n="7">
+          <div class="slabel">The night itself</div>
+          <div class="q">What would you normally spend on one big night out in December?</div>
+          <div class="hint">For you and a plus one. We are asking what you spend, not what we charge.</div>
+          <div class="opts">
+            <button class="opt quiet" onclick="pick('spend','under50',this)"><span class="opt-n">01</span><span class="opt-b"><span class="opt-t">Under N50,000</span></span><span class="opt-a">&rarr;</span></button>
+            <button class="opt" onclick="pick('spend','50-150',this)"><span class="opt-n">02</span><span class="opt-b"><span class="opt-t">N50,000 to N150,000</span></span><span class="opt-a">&rarr;</span></button>
+            <button class="opt" onclick="pick('spend','150-500',this)"><span class="opt-n">03</span><span class="opt-b"><span class="opt-t">N150,000 to N500,000</span></span><span class="opt-a">&rarr;</span></button>
+            <button class="opt" onclick="pick('spend','500plus',this)"><span class="opt-n">04</span><span class="opt-b"><span class="opt-t">N500,000 and above</span></span><span class="opt-a">&rarr;</span></button>
+          </div>
+          <button class="back" onclick="go('q6')">&larr; Back</button>
+        </div>
+
+        <div class="step" id="q8" data-n="8">
+          <div class="slabel">Last question</div>
+          <div class="q">Want us to put your December together?</div>
+          <div class="hint">We read every flyer in Lagos so you do not have to.</div>
+          <div class="opts">
+            <button class="opt" onclick="pick('intent','yes',this)"><span class="opt-n">01</span><span class="opt-b"><span class="opt-t">Yes</span></span><span class="opt-a">&rarr;</span></button>
+            <button class="opt" onclick="pick('intent','maybe',this)"><span class="opt-n">02</span><span class="opt-b"><span class="opt-t">Maybe, show me</span></span><span class="opt-a">&rarr;</span></button>
+            <button class="opt quiet" onclick="pick('intent','no',this)"><span class="opt-n">03</span><span class="opt-b"><span class="opt-t">Not interested</span></span><span class="opt-a">&rarr;</span></button>
+          </div>
+          <button class="back" onclick="go('q7')">&larr; Back</button>
+        </div>
+
+        <div class="step" id="cap" data-n="8">
+          <div class="slabel">Where to send it</div>
+          <div class="q">Almost done.</div>
+          <div class="asked" id="echo"></div>
+          <div class="ig"><label>First name</label><input type="text" id="fn" placeholder="What we call you" autocomplete="given-name" oninput="clr(this,'e-fn')"><div class="ferr" id="e-fn">We need a name for the email.</div></div>
+          <div class="ig"><label>Email</label><input type="email" id="em" placeholder="you@example.com" autocomplete="email" inputmode="email" oninput="clr(this,'e-em')"><div class="ferr" id="e-em">That email does not look right.</div></div>
+          <div class="ig"><label>WhatsApp number</label><input type="tel" id="ph" placeholder="0801 234 5678" autocomplete="tel" inputmode="numeric" oninput="clr(this,'e-ph')"><div class="ferr" id="e-ph">A number we can reach you on.</div></div>
+          <button class="btn" id="sub" onclick="submit()">Send me the details</button>
+          <p class="fine">One email, built from your answers, with the full costs in it.</p>
+          <button class="back" onclick="go('q8')">&larr; Back</button>
+        </div>
+
+        <div class="step" id="exit" data-n="8">
+          <div class="rcard">
+            <h3>Thank you for your interest.</h3>
+            <p id="xp">You can check us out on Instagram for the Lagos scene all year.</p>
+            <a class="cta ghost" href="https://instagram.com/afro.cue" target="_blank" rel="noopener">Check us out on Instagram</a>
+          </div>
+        </div>
+
+        <div class="step" id="done" data-n="8">
+          <div class="rcard">
+            <div class="tick"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <h3 id="dh">That is December sorted.</h3>
+            <p id="dp">Check your email. Your nights and the full costs are on the way.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ WHAT GOES WRONG ══════════
+       The agitation the page was missing. Positive headings so it names what
+       we deliver, with the factual line from the scripts underneath. -->
+  <section>
+    <div class="inner">
+      <div class="head mid" style="margin-top:44px">
+        <div class="eyebrow">The problem</div>
+        <h2 class="bh">Too many things can stand between you and a good night in Lagos.</h2>
+      </div>
+      <div class="cards four">
+        <div class="pc">
+          <div class="im" style="background-image:url('assets/group_collective.jpg')"></div>
+          <div class="tx"><h3>Too many parties to choose from in December</h3><p>We sift through the noise to find one worth your time, around your schedule.</p></div>
+        </div>
+        <div class="pc">
+          <div class="im" style="background-image:url('assets/content_dj.jpeg')"></div>
+          <div class="tx"><h3>Where the best DJ talents are playing</h3><p>We spotlight DJs, so we know a thing or plenty about where the best talents play.</p></div>
+        </div>
+        <div class="pc">
+          <div class="im" style="background-image:url('assets/roamers_bg.jpg')"></div>
+          <div class="tx"><h3>Movement in Lagos</h3><p>Driving is hectic, and knowing the roads is another headache. A chauffeur ride comes with <b>every package</b>.</p></div>
+        </div>
+        <div class="pc">
+          <div class="im" style="background-image:url('assets/audience_partygoers.jpg')"></div>
+          <div class="tx"><h3>A soft landing</h3><p>If the scene is strange to you, a good night means the right people and the right rooms. We engineer that, with a section or a <b>ROAMER</b> or two to ease you in.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ WHO WE ARE ══════════
+       A narrow adaptation of the afrocue.xyz hero, so the Navigator reads as
+       sitting under the masthead it comes from. Contained and softened: the
+       photograph at 40%, the gradient doing most of the work. -->
+  <section>
+    <div class="inner">
+      <div class="achero">
+        <div class="achero-img"></div>
+        <div class="achero-tex"></div>
+        <div class="achero-grad"></div>
+        <div class="achero-in">
+          <div class="achero-l">
+            <div class="achero-eye"><i></i><span>About AfroCue</span></div>
+            <h2 class="achero-h">Documenting<br><span class="ol">Nigeria's</span><br>Dance Floor.</h2>
+          </div>
+          <div class="achero-r">
+            <p class="achero-d">We document the rise of the Nigerian electronic scene, through the DJs who power it, the places they play at, and the music they play.</p>
+            <a class="achero-ig" href="https://instagram.com/afro.cue" target="_blank" rel="noopener">@afro.cue &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ WHAT WE ARE OFFERING ══════════
+       The service stated plainly, once, in his words. Sits between who we
+       are and how it works. -->
+  <section>
+    <div class="inner">
+      <div class="offer">
+        <div class="eyebrow">What we are offering</div>
+        <h2>A way to enjoy Lagos without the sweat.</h2>
+        <p>Get a Navigator package and we will curate your night around the best moments, and take all the stress from you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ WHAT WE DO ABOUT IT ══════════
+       The same three, same order. The symmetry with the section above is
+       the point: every problem named gets answered. -->
+  <section>
+    <div class="inner">
+      <div class="head mid">
+        <div class="eyebrow">What we do</div>
+        <h2 class="bh">So we build the night out of what is already there.</h2>
+        <p class="sub">We take the planning away and leave you to focus on having a good time.</p>
+      </div>
+      <div class="cards">
+        <div class="pc">
+          <div class="tx" style="padding:18px 18px 20px"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="width:20px;height:20px;margin-bottom:10px"><path d="M3 21h18"/><path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/><circle cx="14.5" cy="12" r="1"/></svg><h3>The room that is actually moving</h3><p>Picked from the directory against your dates, not off whichever flyer shouted loudest.</p></div>
+        </div>
+        <div class="pc">
+          <div class="tx" style="padding:18px 18px 20px"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="width:20px;height:20px;margin-bottom:10px"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/></svg><h3>The DJs playing it</h3><p>Who is on form and who is on the bill, including the international DJs flying in, often before the lineup is announced.</p></div>
+        </div>
+        <div class="pc">
+          <div class="tx" style="padding:18px 18px 20px"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="width:20px;height:20px;margin-bottom:10px"><path d="M5 17H3.5v-5L5.5 7h13l2 5v5H19"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M9.5 17h5"/></svg><h3>A chauffeured ride, both ways</h3><p>Picked up from your place and taken home after. No surge, no parking, no 4am problem.</p></div>
+        </div>
+      </div>
+      <p class="note">Some rooms we hold, some we ask for. We tell you which before you pay for anything.</p>
+    </div>
+  </section>
+
+  <!-- ══════════ THE MONEY ══════════
+       The line from every UGC script, and the one thing the page did not
+       say. It sits alone so it is read. -->
+  <section>
+    <div class="inner">
+      <div class="money">
+        <div class="eyebrow">What it costs</div>
+        <h2>For roughly the same <svg class="ngn" viewBox="0 0 100 100" role="img" aria-label="naira"><path d="M19 11V89M19 11L81 89M81 11V89M5 41H95M5 61H95"/></svg> you would have spent on that night anyway.</h2>
+        <ul class="incl">
+          <li>Your ride, both ways</li>
+          <li>Tickets and entry</li>
+          <li>Bottles and mixers</li>
+          <li>Table bookings</li>
+          <li>The meal after</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ THE PACKAGES ══════════
+       Everything the three share is stated once, above them. Each column
+       then carries only what makes it different, so the ladder can be read
+       in one pass. No prices anywhere: the button records the package and
+       starts the quiz, and the costs follow by email. -->
+  <section id="packages">
+    <div class="inner">
+      <div class="head mid" style="margin-top:34px">
+        <div class="eyebrow">The service</div>
+        <h2 class="bh">Two ways to navigate December.</h2>
+        <p class="sub">Tell us which fits and we send the full details, the nights we would pick for you, and what it costs.</p>
+      </div>
+
+      <div class="ladder">
+        <div class="ladder-lbl">
+          <h3>In the room</h3>
+          <p>For people who want to be in the room, on the floor, in VIP or by the stage. Priced for two, because a party starts from two.</p>
+        </div>
+
+        <div class="base">
+          <div class="bl">In all three</div>
+          <ul>
+            <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2 2 2 0 0 0 0 5 2 2 0 0 1-2 2H5a2 2 0 0 1-2-2 2 2 0 0 0 0-5z"/><path d="M13.5 7.5v9"/></svg><span><b>Two tickets</b>, for you and a plus one of your choosing, or an AfroCue Roamer to guide you</span></li>
+            <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/><circle cx="14.5" cy="12" r="1"/></svg><span>General, VIP or stage access, depending on the event</span></li>
+            <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="9" width="17" height="12" rx="1.2"/><path d="M12 9v12"/><path d="M3.5 13.5h17"/><path d="M12 9S9.8 4.5 7.6 6.3C5.8 7.8 12 9 12 9zM12 9s2.2-4.5 4.4-2.7C18.2 7.8 12 9 12 9z"/></svg><span>An AfroCue souvenir</span></li>
+          </ul>
+        </div>
+        <div class="tiers">
+          <div class="tier">
+            <div class="tier-top"><h4>Guest</h4></div>
+            <div class="who">For you and a plus one</div>
+            <div class="plus">What is different</div>
+            <ul>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17H3.5v-5L5.5 7h13l2 5v5H19"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M9.5 17h5"/></svg><span>A chauffeur ride <b>to the party</b></span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6.5-5.2 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 15.8 12 21 12 21z"/><circle cx="12" cy="10" r="2.3"/></svg><span>One stop on the way</span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l1.8 5.1 5.2 1.8-5.2 1.8L12 17.3l-1.8-5.1L5 10.4l5.2-1.8z"/></svg><span>The ride home as an optional add-on</span></li>
+            </ul>
+            <button class="cta ghost" onclick="enquire('Guest')">Make an enquiry</button>
+          </div>
+          <div class="tier pick">
+            <div class="tier-top"><h4>Special Guest</h4><span class="flag">Most taken</span></div>
+            <div class="who">For you and a plus one</div>
+            <div class="plus">What is different</div>
+            <ul>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17H3.5v-5L5.5 7h13l2 5v5H19"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M9.5 17h5"/></svg><span>A chauffeur ride <b>to and fro</b></span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6.5-5.2 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 15.8 12 21 12 21z"/><circle cx="12" cy="10" r="2.3"/></svg><span>Two stops</span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14l-7 8z"/><path d="M12 12v7"/><path d="M8.5 20h7"/></svg><span>Pregame drinks in the car</span></li>
+            </ul>
+            <button class="cta" onclick="enquire('Special Guest')">Make an enquiry</button>
+          </div>
+          <div class="tier">
+            <div class="tier-top"><h4>Guest of Honour</h4></div>
+            <div class="who">For you and a plus one</div>
+            <div class="plus">What is different</div>
+            <ul>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17H3.5v-5L5.5 7h13l2 5v5H19"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M9.5 17h5"/></svg><span>A chauffeur ride <b>to and fro</b></span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6.5-5.2 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 15.8 12 21 12 21z"/><circle cx="12" cy="10" r="2.3"/></svg><span>Up to three stops</span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14l-7 8z"/><path d="M12 12v7"/><path d="M8.5 20h7"/></svg><span>Pregame drinks in the car</span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v8"/><path d="M4.2 3v5a2.8 2.8 0 0 0 5.6 0V3"/><path d="M7 11v10"/><path d="M17 21V3c2 0 3 2 3 4.5S19 12 17 12"/></svg><span><b>Two post-event meals</b>, after the night is done</span></li>
+            </ul>
+            <button class="cta ghost" onclick="enquire('Guest of Honour')">Make an enquiry</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ladder">
+        <div class="ladder-lbl">
+          <h3>At a table</h3>
+          <p>Table and section packages, entry included for everyone, with drinks and food as the organisers are offering on the night.</p>
+        </div>
+
+        <div class="base">
+          <div class="bl">In all three</div>
+          <ul>
+            <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9.5" cy="8" r="3"/><path d="M3.5 20c0-3 2.7-5 6-5s6 2 6 5"/><path d="M16.5 6a3 3 0 0 1 0 6"/><path d="M18 20c0-2-.8-3.5-2.2-4.4"/></svg><span>A table with <b>entry included</b> for everyone on it</span></li>
+            <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h4v3l1.6 2.6V21H8.4V8.6L10 6z"/><path d="M8.4 13.5h7.2"/></svg><span><b>Bottles and mixers</b> on the table</span></li>
+            <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h4v3l1.6 2.6V21H8.4V8.6L10 6z"/><path d="M8.4 13.5h7.2"/></svg><span>Table service from the event, varying by the night</span></li>
+            <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17H3.5v-5L5.5 7h13l2 5v5H19"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M9.5 17h5"/></svg><span>Chauffeur pick up and drop off</span></li>
+            <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14l-7 8z"/><path d="M12 12v7"/><path d="M8.5 20h7"/></svg><span>Drinks in the car</span></li>
+            <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v8"/><path d="M4.2 3v5a2.8 2.8 0 0 0 5.6 0V3"/><path d="M7 11v10"/><path d="M17 21V3c2 0 3 2 3 4.5S19 12 17 12"/></svg><span>A post-event meal</span></li>
+          </ul>
+        </div>
+        <div class="tiers">
+          <div class="tier">
+            <div class="tier-top"><h4>Section</h4></div>
+            <div class="who">A table for 2 to 3</div>
+            <div class="plus">What is different</div>
+            <ul>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h4v3l1.6 2.6V21H8.4V8.6L10 6z"/><path d="M8.4 13.5h7.2"/></svg><span>At least <b>one bottle</b></span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17H3.5v-5L5.5 7h13l2 5v5H19"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M9.5 17h5"/></svg><span>One car, both ways</span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v8"/><path d="M4.2 3v5a2.8 2.8 0 0 0 5.6 0V3"/><path d="M7 11v10"/><path d="M17 21V3c2 0 3 2 3 4.5S19 12 17 12"/></svg><span>The meal after, for two</span></li>
+            </ul>
+            <button class="cta ghost" onclick="enquire('Section')">Make an enquiry</button>
+          </div>
+          <div class="tier">
+            <div class="tier-top"><h4>Section Chief</h4></div>
+            <div class="who">A table for 4 to 6</div>
+            <div class="plus">What is different</div>
+            <ul>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h4v3l1.6 2.6V21H8.4V8.6L10 6z"/><path d="M8.4 13.5h7.2"/></svg><span><b>One to two bottles</b></span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17H3.5v-5L5.5 7h13l2 5v5H19"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M9.5 17h5"/></svg><span>One car, both ways</span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v8"/><path d="M4.2 3v5a2.8 2.8 0 0 0 5.6 0V3"/><path d="M7 11v10"/><path d="M17 21V3c2 0 3 2 3 4.5S19 12 17 12"/></svg><span>The meal after, for two</span></li>
+            </ul>
+            <button class="cta ghost" onclick="enquire('Section Chief')">Make an enquiry</button>
+          </div>
+          <div class="tier">
+            <div class="tier-top"><h4>Chairman</h4></div>
+            <div class="who">A table for 7 to 10</div>
+            <div class="plus">What is different</div>
+            <ul>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h4v3l1.6 2.6V21H8.4V8.6L10 6z"/><path d="M8.4 13.5h7.2"/></svg><span><b>Up to four bottles</b></span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17H3.5v-5L5.5 7h13l2 5v5H19"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M9.5 17h5"/></svg><span><b>Two cars.</b> One waits for you all night</span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="2"/><path d="M9.5 17V8h3.3a2.6 2.6 0 0 1 0 5.2H9.5"/></svg><span>Parking secured at the venue</span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v8"/><path d="M4.2 3v5a2.8 2.8 0 0 0 5.6 0V3"/><path d="M7 11v10"/><path d="M17 21V3c2 0 3 2 3 4.5S19 12 17 12"/></svg><span>A well-stocked platter for chops, and the meal after for four</span></li>
+            </ul>
+            <button class="cta ghost" onclick="enquire('Chairman')">Make an enquiry</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="wonder">
+        <h4>Anything else you want for a night, ask.</h4>
+        <p>Somewhere to stay near the venue, a second table, a car for the weekend, something we have not thought of. The harder it is to get in December, the more worth asking us.</p>
+      </div>
+
+      <p class="price-foot">Make an enquiry and the full costs come by email, with the nights we would put you on. A night runs once there are enough bookings, and we tell you before you pay if a date is not going ahead. Islands are included in the ride; the mainland is quoted.</p>
+    </div>
+  </section>
+
+  <!-- ══════════ THE BOARD ══════════ -->
+  <section>
+    <div class="inner">
+      <div class="head" style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <div>
+          <div class="eyebrow">On the board</div>
+          <h2 class="bh">What December already looks like.</h2>
+          <p class="sub">We track these whether you book with us or not. Curation is deciding which one is your night, and getting you through the door.</p>
+        </div>
+        <span class="live"><i></i><span id="freshness">Updated four times a day</span></span>
+      </div>
+    </div>
+    <div class="bleed">
+      <div class="rail" id="rail">
+        <a class="fly" href="parties.html"><div class="art" style="background-image:url('assets/chibyverse_flyer.jpg')"><span class="when">Fri 5</span></div><div class="nm">South Social</div><div class="vn">Victoria Island</div></a>
+        <a class="fly" href="parties.html"><div class="art" style="background-image:url('assets/sunday_service_flyer.jpg')"><span class="when">Sun 7</span></div><div class="nm">Sunday Service</div><div class="vn">Lekki</div></a>
+        <a class="fly" href="parties.html"><div class="art" style="background-image:url('assets/v6_flyer.jpg')"><span class="when">Sat 12</span></div><div class="nm">V6 Group Collective</div><div class="vn">Venue on the night</div></a>
+        <a class="fly" href="parties.html"><div class="art" style="background-image:url('assets/content_weekly_top5.jpeg')"><span class="when">Fri 19</span></div><div class="nm">Monochroma</div><div class="vn">Island</div></a>
+        <a class="fly" href="parties.html"><div class="art" style="background-image:url('assets/pregame_img_1.jpg')"><span class="when">Sat 20</span></div><div class="nm">Group Therapy</div><div class="vn">Mainland</div></a>
+        <a class="fly" href="parties.html"><div class="art" style="background-image:url('assets/content_dj.jpeg')"><span class="when">Sat 26</span></div><div class="nm">Amapiano District</div><div class="vn">Victoria Island</div></a>
+        <a class="fly" href="parties.html"><div class="art" style="background-image:url('assets/setsclub_hero.jpg')"><span class="when">Sun 27</span></div><div class="nm">Element House</div><div class="vn">Venue on the night</div></a>
+        <a class="fly" href="parties.html"><div class="art" style="background-image:url('assets/group_collective.jpg')"><span class="when">Thu 31</span></div><div class="nm">New Year's Eve</div><div class="vn">Across Lagos</div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FAQ ══════════ -->
+  <section>
+    <div class="inner">
+      <div class="head mid">
+        <div class="eyebrow">Before you ask</div>
+        <h2 class="bh">The short answers.</h2>
+      </div>
+      <div class="faq">
+        <div class="fq"><b>Does it cost anything to answer the quiz?</b><span>No. The nights we pick for you are free and yours either way.</span></div>
+        <div class="fq"><b>Do I have to book anything?</b><span>No. Answer the quiz and the nights we picked for you come by email, with the costs, and you decide from there.</span></div>
+        <div class="fq"><b>Can I split a table with people I do not know?</b><span>Yes. That is what the Section is for, and we tell you who is on it before you commit.</span></div>
+        <div class="fq"><b>Why is the table priced from rather than at?</b><span>Venue minimums move by the night. The 27th is not the 3rd. We quote the night you pick.</span></div>
+        <div class="fq"><b>Is this only Lagos?</b><span>Only Lagos. That is the point.</span></div>
+        <div class="fq"><b>When do I hear back?</b><span>The email lands within the minute. Anything we are arranging by hand, a person replies within the day.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ CLOSING ══════════ -->
+  <section class="closing">
+    <div class="closing-in">
+      <h2>Start with where you will be.</h2>
+      <p>It takes about a minute, and the list of nights is yours either way.</p>
+      <div class="card">
+        <div class="slabel">Where you are</div>
+        <div class="q">Where are you spending December?</div>
+        <div class="opts" style="margin-top:12px">
+          <button class="opt" onclick="fromClose('lagos')"><span class="opt-n">01</span><span class="opt-b"><span class="opt-t">I stay in Lagos</span></span><span class="opt-a">&rarr;</span></button>
+          <button class="opt" onclick="fromClose('travelling')"><span class="opt-n">02</span><span class="opt-b"><span class="opt-t">Travelling to Lagos</span></span><span class="opt-a">&rarr;</span></button>
+          <button class="opt" onclick="fromClose('undecided')"><span class="opt-n">03</span><span class="opt-b"><span class="opt-t">Not decided yet</span></span><span class="opt-a">&rarr;</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="ac-footer"></div>
+
+<script src="js/afrocue-ui.js" data-nav="full" data-footer="full"></script>
+
+<script>
+(function(){
+  'use strict';
+
+  var S = { where:'', from:'', often:'', looking:[], dates:[], nights:[], with:'', spend:'', intent:'', tier:'' };
+  var sending = false;
+
+
+  /* UTM off the query string, merged into every row. This page sits
+     behind paid search: a row with no source cannot be optimised. */
+  var UTM = {};
+  (function(){
+    var p = new URLSearchParams(location.search);
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid'].forEach(function(k){
+      if (p.get(k)) UTM[k] = p.get(k);
+    });
+  })();
+
+  function url(){
+    if (typeof getAfroCueScriptUrl === 'function') return getAfroCueScriptUrl();
+    return window.AFROCUE_SCRIPT_URL || '';
+  }
+  function navH(){
+    var n = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--ac-nav-h'), 10);
+    return (isNaN(n) ? 76 : n) + 16;
+  }
+  function track(e, d){
+    try { window.dataLayer = window.dataLayer || []; var o = { event:e }; for (var k in d) o[k] = d[k]; window.dataLayer.push(o); } catch(x){}
+  }
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+
+  function go(id){
+    document.querySelectorAll('#quiz .step').forEach(function(s){ s.classList.remove('active'); });
+    var el = document.getElementById(id); if (!el) return;
+    el.classList.add('active');
+    /* Somebody who bowed out at question one has not reached question
+       eight, so the bar comes off rather than lying to them. */
+    var prog = document.querySelector('#quiz .prog');
+    if (id === 'exit'){ prog.style.display = 'none'; }
+    else {
+      prog.style.display = '';
+      var n = parseInt(el.getAttribute('data-n'), 10) || 1;
+      document.getElementById('pfill').style.width = Math.round(n / 8 * 100) + '%';
+      document.getElementById('plbl').textContent = n + ' / 8';
+    }
+    track('navigator_step', { step:id });
+  }
+  function toTop(){
+    var t = document.getElementById('top');
+    window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - navH(), behavior:'smooth' });
+  }
+
+  /* A tier button is an enquiry: it records what they clicked, carries it
+     through to the row, and starts the quiz rather than opening a form of
+     its own. One capture path, one place the answers land. */
+  function enquire(name){
+    S.tier = name;
+    var a = document.getElementById('asked');
+    a.textContent = 'Enquiring about ' + name + '. Answer these and the full details come to your inbox.';
+    a.style.display = 'block';
+    track('navigator_tier_enquiry', { tier:name });
+    go('q1');
+    toTop();
+    var card = document.getElementById('quiz');
+    card.classList.remove('flash');
+    void card.offsetWidth;
+    card.classList.add('flash');
+  }
+
+  function pick(key, val, btn){
+    var box = btn.parentElement;
+    box.querySelectorAll('.opt').forEach(function(o){ o.classList.remove('selected'); });
+    btn.classList.add('selected');
+    S[key] = val;
+    setTimeout(function(){
+      if (key === 'where'){
+        if (val === 'out') return bowOut('not_in_lagos',
+          'The Navigator is built around nights in Lagos this December. You can check us out on Instagram for the scene all year.');
+        /* Undecided gets asked where from too. Without it they default to
+           the Nigerian page, and in November that bucket is large. */
+        return go(val === 'lagos' ? 'q2' : 'q1b');
+      }
+      if (key === 'from')  return go('q2');
+      if (key === 'often') return go('q3');
+      if (key === 'with')  return go('q7');
+      if (key === 'spend'){
+        if (val === 'under50') return bowOut('below_floor',
+          'At that level we may not be able to create a night for you. You can check us out on Instagram for what is happening in Lagos.');
+        return go('q8');
+      }
+      if (key === 'intent'){
+        if (val === 'no') return bowOut('not_interested',
+          'No problem at all. You can check us out on Instagram for the Lagos scene all year.');
+        writeEcho(); return go('cap');
+      }
+    }, 160);
+  }
+  function backOne(){ go(S.where === 'lagos' ? 'q1' : 'q1b'); }
+
+  /* The three disqualifiers all land here. Nothing is captured, no thank
+     you page is reached, so none of them can count as a conversion. */
+  function bowOut(reason, line){
+    track('navigator_exit', { reason: reason });
+    document.getElementById('xp').textContent = line;
+    return go('exit');
+  }
+  function tog(btn, grid, next){
+    var all = document.querySelector('#' + grid + ' [data-all="true"]');
+    if (all) all.classList.remove('selected');
+    btn.classList.toggle('selected');
+    document.getElementById(next).disabled = !document.querySelector('#' + grid + ' .opt.selected');
+  }
+  function togAll(btn, grid, next){
+    var on = !btn.classList.contains('selected');
+    document.querySelectorAll('#' + grid + ' .opt').forEach(function(b){ b.classList.remove('selected'); });
+    if (on) btn.classList.add('selected');
+    document.getElementById(next).disabled = !on;
+  }
+  function grab(grid){
+    return Array.prototype.map.call(document.querySelectorAll('#' + grid + ' .opt.selected'),
+      function(b){ return b.getAttribute('data-v'); });
+  }
+  function adv(from, to){
+    if (from === 'q3') S.looking = grab('g3');
+    if (from === 'q4') S.dates   = grab('g4');
+    if (from === 'q5') S.nights  = grab('g5');
+    go(to);
+  }
+
+  var NICE = { floor:'in the crowd', stage:'close to the stage', table:'at a table' };
+  function writeEcho(){
+    var b = [];
+    if (S.tier) b.push(S.tier);
+    if (S.looking.length) b.push(S.looking.slice(0,2).join(' and ').toLowerCase());
+    if (S.often) b.push(S.often.toLowerCase());
+    if (S.nights.length) b.push(NICE[S.nights[0]] || S.nights[0]);
+    document.getElementById('echo').textContent = b.length ? 'You said ' + b.join(', ') + '.' : 'We have your answers.';
+  }
+
+  /* Q5 sets the ladder, Q6 the rung, Q1 overrides, and a tier they
+     clicked on the pricing table beats all of it, because that is a
+     stated intent rather than an inference. Never shown on the page:
+     it rides on the row so the email opens on the right version. */
+  var PROMOTE = { floor:'front', floor_group:'table', front:'table', table:'table_raised', table_raised:'table_raised' };
+  var TIER_SEG = { 'Guest':'floor', 'Special Guest':'floor', 'Guest of Honour':'front',
+                   'Section':'table', 'Section Chief':'table', 'Chairman':'table_raised' };
+  /* Taste picks the ladder, group size picks the rung, spend confirms it.
+     Where spend and taste disagree, spend wins: the table ladder is not
+     reachable below N150,000 however much somebody wants a table. */
+  function suggestTier(){
+    var wantsTable = S.nights.indexOf('table') > -1;
+    var big = (S.with === '3 to 4 people' || S.with === 'Group of 5+');
+    if (wantsTable && S.spend === '500plus') return S.with === 'Group of 5+' ? 'Chairman' : 'Section Chief';
+    if (wantsTable && S.spend === '150-500') return big ? 'Section Chief' : 'Section';
+    if (S.spend === '500plus')  return 'Guest of Honour';
+    if (S.spend === '150-500')  return S.nights.indexOf('stage') > -1 ? 'Guest of Honour' : 'Special Guest';
+    return 'Guest';
+  }
+
+  function segment(){
+    if (S.tier && TIER_SEG[S.tier]) return TIER_SEG[S.tier];
+    if (S.with === 'It varies by night') return 'mixed';
+    var n = S.nights, has = function(v){ return n.indexOf(v) > -1; };
+    var group = (S.with === '3 to 4 people' || S.with === 'Group of 5+');
+    var seg = has('table') ? (S.with === 'Group of 5+' ? 'table_raised' : 'table')
+            : has('stage') ? 'front'
+            : (group ? 'floor_group' : 'floor');
+    if (S.where === 'travelling') seg = PROMOTE[seg] || seg;
+    return seg;
+  }
+
+  /* Each audience lands on its own thank you page so it can be tracked
+     and bid on separately. */
+  var ABROAD = { Europe:1, 'North America':1, Africa:1, Elsewhere:1 };
+  function thankYouPath(){
+    return (S.where === 'travelling' && ABROAD[S.from]) ? '/thank-you/an-abroad' : '/thank-you/an-nigerian';
+  }
+
+  function clr(el, id){ el.classList.remove('error'); document.getElementById(id).classList.remove('show'); }
+  function bad(el, id){ el.classList.add('error'); document.getElementById(id).classList.add('show'); }
+
+  function submit(){
+    if (sending) return;
+    if (document.getElementById('hp').value) return;
+    var fnEl = document.getElementById('fn'), emEl = document.getElementById('em'), phEl = document.getElementById('ph');
+    var fn = fnEl.value.trim(), em = emEl.value.trim(), ph = phEl.value.trim(), ok = true;
+    if (!fn){ bad(fnEl,'e-fn'); ok = false; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){ bad(emEl,'e-em'); ok = false; }
+    if (ph.replace(/\D/g,'').length < 10){ bad(phEl,'e-ph'); ok = false; }
+    if (!ok) return;
+
+    sending = true;
+    var btn = document.getElementById('sub');
+    btn.disabled = true; btn.classList.add('loading');
+
+    var seg = segment();
+    var audience = thankYouPath().indexOf('abroad') > -1 ? 'abroad' : 'nigerian';
+    var data = {
+      source:'navigator', type:'navigator_quiz',
+      first_name:fn, email:em, phone:ph,
+      where:S.where, from:S.from, often:S.often,
+      looking:S.looking, dates:S.dates, nights:S.nights,
+      group:S.with, intent:S.intent,
+      spend_band:S.spend, table_spender:(S.nights.indexOf('table') > -1),
+      suggested_tier:suggestTier(),
+      tier:S.tier,
+      segment:seg, audience:audience,
+      multi_night: (S.often === 'Every weekend' || S.often === 'Every night I can'),
+      submitted_at: new Date().toISOString()
+    };
+    Object.keys(UTM).forEach(function(k){ data[k] = UTM[k]; });
+    track('navigator_complete', { segment:seg, audience:audience, intent:S.intent,
+      tier:S.tier, where:S.where, group:S.with, name:fn, email:em });
+
+    var went = false;
+    function finish(){
+      if (went) return; went = true;
+      /* On the live site each audience gets its own thank you URL, which
+         is what makes them separately trackable and biddable. Anywhere
+         else the card below stands in, so the flow can still be walked. */
+      if (/(^|\.)afrocue\.xyz$/i.test(location.hostname)){
+        /* The thank you page reads these. No email in the URL: GTM reads the
+           full query string, and that would put PII into analytics. */
+        location.href = thankYouPath()
+          + '?seg='    + encodeURIComponent(seg)
+          + '&fn='     + encodeURIComponent(fn)
+          + '&intent=' + encodeURIComponent(S.intent)
+          + '&dates='  + encodeURIComponent(S.dates.join('|'));
+        return;
+      }
+      document.getElementById('dh').textContent = fn + ', that is December sorted.';
+      if (S.tier) document.getElementById('dp').textContent = 'Check your email. Your nights are in there with the full costs for ' + S.tier + ', and a person will follow up.';
+      go('done'); toTop();
+    }
+
+    /* A hanging Apps Script call must never strand anyone on a spinner. */
+    var failsafe = setTimeout(finish, 8000);
+    var u = url();
+    if (!u){ clearTimeout(failsafe); console.warn('Navigator: no script URL. Did js/afrocue.js load?'); return finish(); }
+    fetch(u, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body:JSON.stringify(data) })
+      .finally(function(){ clearTimeout(failsafe); finish(); });
+  }
+
+  function fromClose(v){
+    S.where = v;
+    var i = { lagos:0, travelling:1, undecided:2 }[v];
+    var b = document.querySelectorAll('#q1 .opt');
+    b.forEach(function(x){ x.classList.remove('selected'); });
+    if (b[i]) b[i].classList.add('selected');
+    go(v === 'travelling' ? 'q1b' : 'q2');
+    toTop();
+  }
+
+  /* ── The board, live ────────────────────────────────────────
+     Same ?export=editions call parties.html makes. Replaces the
+     hardcoded rail only when four or more real upcoming nights come
+     back, because a thin rail is worse than the fallback. */
+  var DAY = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  (function loadBoard(){
+    var u = url(); if (!u) return;
+    fetch(u + '?export=editions')
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        if (!d || !Array.isArray(d.editions)) return;
+        var byId = {};
+        (d.parties || []).forEach(function(p){ byId[p.id] = p; });
+        var today = new Date(new Date().toDateString());
+        var rows = d.editions.filter(function(e){
+          if (!e.date || e.state === 'cancelled') return false;
+          var t = new Date(e.date);
+          return !isNaN(t) && t >= today;
+        }).sort(function(a,b){ return a.date < b.date ? -1 : 1; }).slice(0, 14);
+        if (rows.length < 4) return;
+
+        document.getElementById('rail').innerHTML = rows.map(function(e){
+          var p = byId[e.party_id] || {};
+          var art = e.flyer || p.upcoming_flyer || p.flyer_img || p.hero_img || '';
+          var t = new Date(e.date);
+          var place = e.venue_held ? (e.venue || '') : (e.area || p.area || 'Venue on the night');
+          return '<a class="fly" href="parties.html">'
+            + '<div class="art"' + (art ? ' style="background-image:url(\'' + esc(art) + '\')"' : '') + '>'
+            + '<span class="when">' + esc(DAY[t.getDay()] + ' ' + t.getDate()) + '</span></div>'
+            + '<div class="nm">' + esc(p.name || e.name || 'A night in Lagos') + '</div>'
+            + '<div class="vn">' + esc(place) + '</div></a>';
+        }).join('');
+        if (d.build) document.getElementById('freshness').textContent = 'Live from the directory';
+      })
+      .catch(function(){ /* the page does not depend on this */ });
+  })();
+
+  window.pick = pick; window.go = go; window.adv = adv; window.tog = tog; window.togAll = togAll;
+  window.backOne = backOne; window.submit = submit; window.fromClose = fromClose;
+  window.clr = clr; window.enquire = enquire;
+
+  track('navigator_view', {});
+})();
+</script>
+
+</body>
+</html>
