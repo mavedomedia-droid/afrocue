@@ -3,1741 +3,1170 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-  <title>Advertise with AfroCue | For DJs, Parties & Brands</title>
+  <title>Lagos Navigator by AfroCue: Navigate Detty December</title>
   <link rel="icon" type="image/png" href="favicon.png"/>
   <link rel="apple-touch-icon" href="favicon.png"/>
-  <meta name="description" content="Work with AfroCue. Promotion for DJs, content for parties, partnerships for brands."/>
-  <link rel="canonical" href="https://afrocue.xyz/ads"/>
+  <meta name="description" content="The night already exists in Lagos. We just know where it is. Lagos Navigator curates it for roughly what you would have spent anyway."/>
+  <meta name="theme-color" content="#0a0a0a"/>
 
+  <meta property="og:title" content="Navigate Detty December"/>
+  <meta property="og:description" content="Lagos Navigator by AfroCue. The best of Lagos nightlife, curated around the nights you are free."/>
+  <meta property="og:image" content="assets/hero_dj.jpg"/>
+  <meta property="og:type" content="website"/>
+
+  <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Shared AfroCue config: the same file parties.html uses -->
-  <script src="/js/afrocue.js"></script>
+  <!-- Shared config. The /exec URL lives here and nowhere else on this page. -->
+  <script src="js/afrocue.js"></script>
 
   <style>
-    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype'); font-weight: 900; }
-    @font-face { font-family: 'Aesthet Nova'; src: url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype'); font-weight: 500; }
+    @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');font-weight:900;font-display:swap}
+    @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype');font-weight:500;font-display:swap}
+    @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-.otf') format('opentype');font-weight:400;font-display:swap}
 
-    :root {
-      --black:  #0a0a0a;
-      --dark:   #111111;
-      --dark2:  #181818;
-      --grey:   #555555;
-      --silver: #888888;
-      --off:    #d4d4d0;
-      --white:  #f0ede8;
-      --yellow: #dedc00;
-      --yts:    2px 3px 0px rgba(0,0,0,0.9), 0 0 24px rgba(222,220,0,0.06);
+    :root{
+      --black:#0a0a0a; --dark:#111111; --white:#f0ede8;
+      --yellow:#dedc00; --green:#2ee440;
+      --y-soft:rgba(222,220,0,0.12); --y-line:rgba(222,220,0,0.4); --y-ring:rgba(222,220,0,0.18);
+      --y-grad:linear-gradient(135deg,#e9e700 0%,#dedc00 45%,#c2c000 100%);
+      --line:rgba(255,255,255,0.10); --line-hi:rgba(255,255,255,0.20);
+      --r:12px; --r-img:14px;
+      --display:'Aesthet Nova',sans-serif;
+      --sans:'Figtree',sans-serif;
+      --pad:max(20px, calc((100vw - 1100px) / 2));
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    section[id] { scroll-margin-top: 72px; }
-    body {
-      background: var(--black); color: var(--white);
-      font-family: 'Figtree', sans-serif;
-      overflow-x: hidden; -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; text-decoration: none; }
-    button { font-family: inherit; cursor: pointer; }
-    img { display: block; max-width: 100%; }
+    @media(min-width:769px){ :root{ --pad:max(44px, calc((100vw - 1100px) / 2)) } }
 
-    nav {
-      position: fixed; top:0; left:0; right:0; z-index:900;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 48px;
-      background: rgba(10,10,10,0.72); backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .nav-logo { display:flex; align-items:center; }
-    .nav-logo img { height: 38px; width: auto; }
-    .nav-logo-fallback { display:none; font-family:'Aesthet Nova',sans-serif; font-weight:900; font-size:17px; color:var(--yellow); letter-spacing:0.08em; }
-    .nav-links { display:flex; gap:28px; list-style:none; align-items:center; }
-    .nav-links a { font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(240,237,232,0.7); transition:color 0.2s; }
-    .nav-links a:hover { color: var(--white); }
-    .nav-cta {
-      font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
-      color: var(--black); background: var(--white);
-      padding: 10px 20px; border-radius: 2px;
-      transition: background 0.2s; white-space: nowrap;
-      border: none;
-    }
-    .nav-cta:hover { background: var(--off); }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{background:var(--black);color:var(--white);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    :focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+    img{max-width:100%;display:block}
 
-    .inner { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
-    .label {
-      font-size: 10px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase;
-      color: var(--silver); margin-bottom: 16px;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .label::before { content: ''; width: 20px; height: 1px; background: var(--silver); flex-shrink: 0; }
-    .section-h {
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: clamp(30px, 4.2vw, 46px); line-height: 0.98;
-      color: var(--white); margin-bottom: 14px;
-      letter-spacing: -0.005em;
-    }
-    .section-sub {
-      font-size: 15px; font-weight: 300; line-height: 1.7;
-      color: rgba(240,237,232,0.6); max-width: 620px;
-    }
-    .section-h.yellow { color: var(--yellow); text-shadow: var(--yts); }
+    .bg-image{position:fixed;inset:0;z-index:0;background:url('assets/hero_dj.jpg') center 26%/cover;opacity:0.09;pointer-events:none}
+    .bg-scrim{position:fixed;inset:0;z-index:1;background:rgba(10,10,10,0.8);pointer-events:none}
+    .bg-texture{position:fixed;inset:0;z-index:2;background:url('assets/texture.jpg') center/cover;opacity:0.3;pointer-events:none}
 
-    .cat-status {
-      display: none;
-      padding: 12px 16px;
-      margin-bottom: 24px;
-      font-size: 12px;
-      border-radius: 6px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.02);
-      color: rgba(240,237,232,0.6);
-    }
-    .cat-status.show { display: block; }
-    .cat-status.error { border-color: rgba(255,80,80,0.3); color: #ff8080; }
+    main{position:relative;z-index:3}
+    section{padding:0 var(--pad)}
+    .inner{max-width:1100px;margin:0 auto}
+    .bleed{margin-left:calc(-1 * var(--pad));margin-right:calc(-1 * var(--pad))}
 
-    .hero {
-      position: relative;
-      padding: 160px 40px 100px;
-      overflow: hidden;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .hero-bg { position: absolute; inset: 0; z-index: 0; }
-    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; opacity: 0.28; }
-    .hero-texture {
-      position: absolute; inset: 0; z-index: 1;
-      background-image: url('texture.jpg'); background-size: cover;
-      opacity: 0.3; mix-blend-mode: overlay; pointer-events: none;
-    }
-    .hero-scrim {
-      position: absolute; inset: 0; z-index: 2;
-      background: linear-gradient(180deg, rgba(10,10,10,0.6) 0%, rgba(10,10,10,0.4) 40%, rgba(10,10,10,0.95) 100%);
-      pointer-events: none;
-    }
-    .hero-inner {
-      position: relative; z-index: 3;
-      max-width: 1120px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr auto;
-      align-items: end; gap: 60px;
-    }
-    .hero-copy { max-width: 720px; }
-    .hero-eyebrow {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase;
-      color: var(--yellow); margin-bottom: 28px;
-      display: inline-flex; align-items: center; gap: 10px;
-    }
-    .hero-eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--yellow); }
-    .hero-h1 {
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: clamp(44px, 8vw, 96px); line-height: 0.9;
-      color: var(--yellow); text-shadow: var(--yts);
-      letter-spacing: -0.01em; margin-bottom: 24px;
-    }
-    .hero-h1 .alt { color: var(--white); text-shadow: 2px 3px 0px rgba(0,0,0,0.9); }
-    .hero-sub {
-      font-size: clamp(15px, 1.8vw, 18px); font-weight: 300; line-height: 1.65;
-      color: rgba(240,237,232,0.75); max-width: 560px; margin-bottom: 36px;
-    }
-    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    /* One sans for everything. Labels are uppercase Figtree, not mono. */
+    .eyebrow{font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--yellow);margin-bottom:9px}
+    h2.bh{font-family:var(--display);font-weight:900;font-size:clamp(21px,2.4vw,27px);line-height:1.12;color:var(--white)}
+    .sub{font-size:13.5px;font-weight:300;color:rgba(240,237,232,0.5);line-height:1.6;margin-top:7px;max-width:54ch}
+    .head{margin:56px 0 20px}
+    .head.mid{text-align:center}
+    .head.mid .sub{margin-left:auto;margin-right:auto}
 
-    .btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-family: 'Figtree', sans-serif; font-size: 12px; font-weight: 700;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      padding: 16px 28px; border-radius: 4px; border: none;
-      cursor: pointer; transition: all 0.2s; white-space: nowrap;
-      min-height: 48px;
-    }
-    .btn-primary { background: var(--yellow); color: var(--black); }
-    .btn-primary:hover { background: var(--off); transform: translateY(-1px); }
-    .btn-secondary { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.25); }
-    .btn-secondary:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
-    .btn svg { width: 14px; height: 14px; }
+    /* Gradient action button, used for every real CTA on the page. */
+    .cta{display:inline-block;width:100%;padding:13px 18px;background:var(--y-grad);color:#0a0a0a;
+      border:none;border-radius:10px;font-family:var(--sans);font-size:14px;font-weight:700;
+      cursor:pointer;text-align:center;text-decoration:none;
+      box-shadow:0 6px 18px rgba(222,220,0,0.16);transition:transform .15s,box-shadow .2s,filter .2s}
+    .cta:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(222,220,0,0.26);filter:brightness(1.05)}
+    .cta.ghost{background:transparent;color:var(--white);border:1.5px solid var(--line-hi);box-shadow:none}
+    .cta.ghost:hover{border-color:var(--yellow);color:var(--yellow);box-shadow:none}
 
-    .hero-side { align-self: end; display: flex; flex-direction: column; gap: 20px; max-width: 240px; }
-    .hero-stat {
-      padding: 18px 20px;
-      background: rgba(17,17,17,0.7);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 8px;
-      backdrop-filter: blur(10px);
-    }
-    .hero-stat-num {
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: 24px; line-height: 1; color: var(--yellow); margin-bottom: 6px;
-    }
-    .hero-stat-label {
-      font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--silver);
-    }
+    /* ═══════════════════ HERO ═══════════════════ */
+    .hero{position:relative;padding-top:calc(var(--ac-nav-h,76px) + 34px);padding-bottom:30px}
+    .hero::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+      background:linear-gradient(to bottom,rgba(10,10,10,0.60) 0%,rgba(10,10,10,0.88) 58%,rgba(10,10,10,0.99) 100%),
+                 url('assets/navigator_hero.jpg') center 28%/cover}
+    .hero::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+      background:url('assets/texture.jpg') center/cover;opacity:0.5}
+    .hero-in{position:relative;z-index:2}
+    .hero-in{max-width:640px;margin:0 auto;text-align:center}
+    .kicker{display:inline-block;font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;
+      color:var(--yellow);border:1px solid rgba(222,220,0,0.3);border-radius:4px;padding:5px 11px;margin-bottom:20px}
+    
+    h1{font-family:var(--display);font-weight:900;font-size:clamp(27px,4.6vw,42px);line-height:1.02;
+      letter-spacing:-0.015em;color:var(--yellow);text-shadow:2px 3px 0 rgba(0,0,0,0.85);
+      max-width:30ch;margin:0 auto 14px}
+    .hero-d{font-size:15.5px;font-weight:300;color:rgba(240,237,232,0.62);line-height:1.65;max-width:46ch;margin:0 auto 18px}
+    .hero-d b{font-weight:600;color:var(--white)}
+    .tags{display:flex;flex-wrap:wrap;gap:7px 24px;justify-content:center;margin-bottom:26px}
+    .tags span{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:500;
+      letter-spacing:0.01em;color:rgba(240,237,232,0.55);white-space:nowrap}
+    .tags svg{width:12px;height:12px;stroke:var(--yellow);stroke-width:2.8;fill:none;flex-shrink:0}
 
-    .pillars { padding: 64px 40px; border-bottom: 1px solid rgba(255,255,255,0.06); background: var(--dark); }
-    .pillars-inner {
-      max-width: 1120px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 1px; background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 10px; overflow: hidden;
-    }
-    .pillar { padding: 28px 24px; background: var(--dark); transition: background 0.2s; }
-    .pillar:hover { background: var(--dark2); }
-    .pillar-num {
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: 12px; color: var(--yellow);
-      letter-spacing: 0.14em; margin-bottom: 14px; display: block;
-    }
-    .pillar-name {
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: 20px; line-height: 1; color: var(--white);
-      margin-bottom: 10px; letter-spacing: 0.02em;
-    }
-    .pillar-desc { font-size: 12px; font-weight: 300; line-height: 1.55; color: rgba(240,237,232,0.5); }
+    /* ── Quiz card ── */
+    .card{background:rgba(9,9,9,0.93);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+      border:1px solid var(--line);border-radius:var(--r-img);padding:24px 22px 26px;text-align:left;
+      box-shadow:0 20px 50px rgba(0,0,0,0.6);position:relative;overflow:hidden}
+    .card::before{content:'';position:absolute;inset:0;background:url('assets/texture.jpg') center/cover;opacity:0.17;pointer-events:none}
+    .card > *{position:relative}
+    .card.flash{animation:flash .9s ease}
+    @keyframes flash{0%,100%{box-shadow:0 20px 50px rgba(0,0,0,0.6)}35%{box-shadow:0 0 0 3px var(--y-ring),0 20px 50px rgba(0,0,0,0.6)}}
+    .prog{display:flex;align-items:center;gap:11px;margin-bottom:15px}
+    .prog-bar{flex:1;height:3px;background:rgba(255,255,255,0.12);border-radius:2px;overflow:hidden}
+    .prog-fill{height:100%;width:14%;background:var(--y-grad);border-radius:2px;transition:width .4s ease}
+    .prog-lbl{font-size:11px;font-weight:500;color:rgba(240,237,232,0.4);white-space:nowrap}
+    .step{display:none;animation:fadeUp .28s ease both}
+    .step.active{display:block}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+    .slabel{font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--yellow);opacity:0.8;margin-bottom:6px}
+    .q{font-family:var(--display);font-weight:900;font-size:19px;line-height:1.22;color:var(--white);margin-bottom:4px}
+    .hint{font-size:13px;font-weight:300;color:rgba(240,237,232,0.5);line-height:1.5;margin-bottom:13px}
+    .asked{font-size:12.5px;font-weight:400;color:var(--yellow);background:var(--y-soft);
+      border:1px solid rgba(222,220,0,0.22);border-radius:8px;padding:9px 11px;margin-bottom:13px;line-height:1.45}
 
-    .catalogue { padding: 96px 40px; }
-    .cat-header { margin-bottom: 56px; }
-    .cat-header .label { margin-bottom: 20px; }
-    .cat-header .section-h { margin-bottom: 18px; }
-    .cat-header .section-sub { font-size: 16px; }
+    .opts{display:flex;flex-direction:column;gap:8px}
+    .opts.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .opt{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;width:100%;
+      border:1.5px solid var(--line);border-radius:var(--r);padding:13px 14px;cursor:pointer;
+      background:rgba(255,255,255,0.04);text-align:left;font-family:var(--sans);
+      transition:border-color .18s,background .18s,box-shadow .18s}
+    .opt:hover,.opt.selected{border-color:var(--yellow);background:var(--y-soft);box-shadow:0 0 14px rgba(222,220,0,0.14)}
+    .opt-n{font-size:11px;font-weight:700;color:rgba(240,237,232,0.3);min-width:18px}
+    .opt:hover .opt-n,.opt.selected .opt-n{color:var(--yellow)}
+    .opt-b{min-width:0}
+    .opt-t{display:block;font-size:15px;font-weight:600;color:var(--white);line-height:1.25}
+    .opt-s{display:block;font-size:12.5px;font-weight:300;color:rgba(240,237,232,0.5);line-height:1.4;margin-top:2px}
+    .opt-a{font-size:17px;color:rgba(240,237,232,0.22);transition:color .18s,transform .18s}
+    .opt:hover .opt-a,.opt.selected .opt-a{color:var(--yellow);transform:translateX(3px)}
+    .opt.quiet .opt-t{color:rgba(240,237,232,0.6);font-weight:500}
+    .opt .box{width:17px;height:17px;border-radius:4px;border:1.5px solid var(--line-hi);flex-shrink:0;transition:all .18s}
+    .opt.selected .box{border-color:var(--yellow);background:var(--yellow)}
+    .opt.selected .box::after{content:'';display:block;width:9px;height:4px;border-left:2px solid #0a0a0a;border-bottom:2px solid #0a0a0a;transform:rotate(-45deg);margin:3px auto 0}
 
-    .cat-tabs {
-      display: flex; gap: 4px;
-      margin-bottom: 40px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-    .cat-tabs::-webkit-scrollbar { display: none; }
-    .cat-tab {
-      position: relative;
-      display: inline-flex; align-items: center; gap: 12px;
-      padding: 18px 24px 20px;
-      background: transparent; border: none;
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: 18px; letter-spacing: 0.02em;
-      color: rgba(240,237,232,0.42);
-      cursor: pointer; transition: color 0.2s;
-      white-space: nowrap;
-    }
-    .cat-tab:hover { color: var(--white); }
-    .cat-tab.active { color: var(--yellow); }
-    .cat-tab.active::after {
-      content: '';
-      position: absolute;
-      left: 0; right: 0; bottom: -1px;
-      height: 2px;
-      background: var(--yellow);
-    }
-    .cat-tab-count {
-      font-family: 'Figtree', sans-serif; font-weight: 600;
-      font-size: 11px;
-      padding: 3px 8px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 100px;
-      letter-spacing: 0.04em;
-      color: rgba(240,237,232,0.55);
-      transition: all 0.2s;
-    }
-    .cat-tab.active .cat-tab-count {
-      background: rgba(222,220,0,0.15);
-      color: var(--yellow);
-    }
+    /* 16px is deliberate: smaller zooms the viewport on iOS. */
+    .ig{margin-bottom:12px}
+    .ig label{display:block;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,237,232,0.45);margin-bottom:5px}
+    .ig input{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:9px;
+      font-family:var(--sans);font-size:16px;color:var(--white);background:rgba(255,255,255,0.06);
+      outline:none;transition:border-color .2s,box-shadow .2s}
+    .ig input::placeholder{color:rgba(240,237,232,0.35)}
+    .ig input:focus{border-color:var(--yellow);box-shadow:0 0 0 3px var(--y-ring)}
+    .ig input.error{border-color:#f87171;box-shadow:0 0 0 3px rgba(248,113,113,0.15)}
+    .ferr{font-size:12px;color:#f87171;margin-top:4px;display:none}
+    .ferr.show{display:block}
+    .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 
-    .cat-panel { display: none; animation: catFade 0.35s ease both; }
-    .cat-panel.active { display: block; }
-    @keyframes catFade {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    /* What they picked, played back quietly. It proves the quiz was read
+       and it invites a correction, which is a conversation starting. */
+    .picks{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+    .picks span{font-size:11px;font-weight:500;color:rgba(240,237,232,0.55);
+      background:rgba(255,255,255,0.05);border:1px solid var(--line);border-radius:4px;padding:5px 9px}
+    .opt-lbl{font-weight:400;letter-spacing:0;text-transform:none;color:rgba(240,237,232,0.3)}
+    /* The @ is locked so nobody types it twice or leaves it off. */
+    .at{display:grid;grid-template-columns:auto 1fr;align-items:stretch;
+      border:1.5px solid var(--line-hi);border-radius:9px;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+    .at:focus-within{border-color:var(--yellow);box-shadow:0 0 0 3px var(--y-ring)}
+    .at span{display:flex;align-items:center;padding:0 2px 0 14px;font-size:16px;color:rgba(240,237,232,0.4)}
+    .at input{border:none;border-radius:0;padding-left:2px}
+    .at input:focus{border:none;box-shadow:none}
 
-    .aud-intro-block {
-      margin-bottom: 32px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .aud-eyebrow {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase;
-      color: var(--silver); margin-bottom: 12px;
-    }
-    .aud-name {
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: clamp(24px, 3vw, 32px); line-height: 1;
-      color: var(--white); margin-bottom: 14px;
-      letter-spacing: -0.005em;
-    }
-    .aud-intro {
-      font-size: 15px; font-weight: 300; line-height: 1.75;
-      color: rgba(240,237,232,0.65); max-width: 640px;
-    }
+    .btn{width:100%;padding:14px;background:var(--y-grad);color:#0a0a0a;border:none;border-radius:10px;
+      font-family:var(--sans);font-size:15px;font-weight:700;cursor:pointer;margin-top:15px;
+      box-shadow:0 6px 18px rgba(222,220,0,0.16);transition:transform .15s,box-shadow .2s,filter .2s}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(222,220,0,0.26);filter:brightness(1.05)}
+    .btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+    .btn.loading{color:transparent;position:relative;pointer-events:none}
+    .btn.loading::after{content:'';position:absolute;top:50%;left:50%;width:17px;height:17px;margin:-8.5px 0 0 -8.5px;
+      border:2px solid rgba(0,0,0,0.3);border-top-color:#0a0a0a;border-radius:50%;animation:spin .6s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .back{display:inline-flex;gap:4px;font-size:13px;color:rgba(240,237,232,0.35);background:none;border:none;cursor:pointer;font-family:var(--sans);padding:0;margin-top:11px}
+    .back:hover{color:rgba(240,237,232,0.65)}
+    .fine{font-size:11.5px;font-weight:300;color:rgba(240,237,232,0.35);line-height:1.5;margin-top:10px;text-align:center}
 
-    .cat-list { display: flex; flex-direction: column; gap: 18px; }
+    .rcard{text-align:center}
+    .rcard .tick{width:46px;height:46px;border-radius:12px;background:var(--y-soft);display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+    .rcard .tick svg{width:22px;height:22px;stroke:var(--yellow);stroke-width:2.4;fill:none}
+    .rcard h3{font-family:var(--display);font-weight:900;font-size:19px;color:var(--white);margin-bottom:7px}
+    .rcard p{font-size:13.5px;font-weight:300;color:rgba(240,237,232,0.55);line-height:1.65}
+    .rcard .cta{margin-top:16px}
 
-    .prod {
-      display: grid;
-      grid-template-columns: 320px 1fr;
-      background: var(--dark2);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: border-color 0.25s;
-      position: relative;
+    /* ═══════════ CURATION CARDS ═══════════ */
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .cards.four{grid-template-columns:1fr 1fr;gap:10px}
+    .cards.four .pc{display:grid;grid-template-columns:auto 1fr;align-items:start;gap:14px;padding:14px}
+    .cards.four .im{width:72px;height:72px;aspect-ratio:auto;border-radius:9px;flex-shrink:0}
+    .cards.four .tx{padding:0}
+    .cards.four h3{font-size:13.5px;line-height:1.25;margin-bottom:4px}
+    .cards.four p{font-size:12px;line-height:1.5}
+    .cards.four p b{font-weight:600;color:var(--yellow)}
+    @media(max-width:700px){
+      .cards.four{grid-template-columns:1fr 1fr;gap:8px}
+      .cards.four .pc{grid-template-columns:1fr;gap:10px;padding:10px}
+      .cards.four .im{width:100%;height:76px;border-radius:7px}
+      .cards.four h3{font-size:12.5px}
+      .cards.four p{font-size:11.5px;line-height:1.45}
     }
-    .prod:hover { border-color: rgba(222,220,0,0.28); }
+    .pc{border:1px solid var(--line);border-radius:var(--r-img);overflow:hidden;background:rgba(255,255,255,0.03);transition:border-color .2s}
+    .pc:hover{border-color:var(--y-line)}
+    .pc .im{aspect-ratio:2/1;background-size:cover;background-position:center;position:relative}
+    .pc .im::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,0.8),transparent 60%)}
+    .pc .tx{padding:15px 16px 17px}
+    .pc h3{font-family:var(--display);font-weight:900;font-size:15px;color:var(--white);margin-bottom:5px}
+    .pc p{font-size:12.5px;font-weight:300;color:rgba(240,237,232,0.5);line-height:1.55}
+    .note{margin-top:14px;font-size:12.5px;font-weight:300;color:rgba(240,237,232,0.42);border-left:2px solid var(--y-line);padding-left:12px;line-height:1.55}
 
-    .prod-media {
-      position: relative; background: #000;
-      aspect-ratio: 4 / 5;
-      overflow: hidden; display: block;
-    }
-    .prod-media img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      transition: transform 0.5s ease;
-    }
-    .prod:hover .prod-media img { transform: scale(1.03); }
-    .prod-media-blank {
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      background: radial-gradient(circle at 30% 20%, rgba(222,220,0,0.10) 0%, transparent 60%), #111;
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: 26px; letter-spacing: 0.06em; text-transform: uppercase;
-      color: rgba(240,237,232,0.22); text-align: center; padding: 20px;
-    }
-    .prod-media-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(10,10,10,0.05) 0%, rgba(10,10,10,0.4) 100%);
-      pointer-events: none;
-    }
-    .prod-play {
-      position: absolute; top: 14px; right: 14px;
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      background: rgba(10,10,10,0.55);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.22);
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.25s;
-    }
-    .prod-play svg { width: 12px; height: 12px; fill: var(--white); margin-left: 2px; }
-    .prod:hover .prod-play { background: rgba(222,220,0,0.85); border-color: var(--yellow); }
-    .prod:hover .prod-play svg { fill: var(--black); }
+    /* ═══════════ PACKAGES. Shared once, then the differences. ═══════════ */
+    .ladder{margin-top:26px}
+    .ladder-lbl{margin:0 0 14px}
+    .ladder-lbl h3{font-family:var(--display);font-weight:900;font-size:17px;color:var(--yellow);margin-bottom:5px}
+    .ladder-lbl p{font-size:13.5px;font-weight:300;color:rgba(240,237,232,0.5);line-height:1.6;max-width:62ch}
 
-    .prod-example-link {
-      position: absolute; bottom: 12px; left: 12px;
-      padding: 6px 11px;
-      background: rgba(10,10,10,0.65);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 100px;
-      font-size: 9px; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--white);
-      display: inline-flex; align-items: center; gap: 5px;
-      transition: all 0.2s;
-    }
-    .prod-example-link svg { width: 9px; height: 9px; stroke: currentColor; fill: none; stroke-width: 2; }
-    .prod:hover .prod-example-link { background: rgba(222,220,0,0.85); border-color: var(--yellow); color: var(--black); }
+    /* Everything common to the three, stated once. */
+    .base{border:1px solid var(--line);border-radius:var(--r-img);padding:18px 20px;
+      background:rgba(255,255,255,0.025);margin-bottom:10px}
+    .base .bl{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+      color:rgba(240,237,232,0.4);margin-bottom:12px}
+    .base ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:11px 20px}
 
-    .prod-body {
-      padding: 24px 28px 20px;
-      display: flex; flex-direction: column;
-      gap: 12px; min-height: 100%;
-    }
-    .prod-meta {
-      display: flex; align-items: center; gap: 10px;
-      font-size: 9px; font-weight: 700;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--silver);
-    }
-    .prod-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--grey); }
-    .prod-name {
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: 22px; line-height: 1.05;
-      color: var(--white); letter-spacing: -0.005em;
-    }
-    .prod-desc { font-size: 13px; font-weight: 300; line-height: 1.6; color: rgba(240,237,232,0.68); }
+    .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-items:stretch}
+    .tier{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--r-img);
+      padding:20px 18px 18px;background:rgba(255,255,255,0.03);transition:border-color .2s,background .2s}
+    .tier:hover{border-color:var(--y-line);background:rgba(255,255,255,0.05)}
+    .tier.pick{border-color:rgba(222,220,0,0.5);background:var(--y-soft)}
+    .tier-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+    .tier h4{font-family:var(--display);font-weight:900;font-size:18px;color:var(--white);line-height:1.15}
+    .tier .flag{font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+      color:#0a0a0a;background:var(--y-grad);border-radius:100px;padding:3px 8px;white-space:nowrap}
+    .tier .who{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,237,232,0.4);margin-bottom:14px}
+    .tier .plus{font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+      color:var(--yellow);opacity:0.8;margin-bottom:10px}
+    .tier ul{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-direction:column;gap:11px;flex:1}
 
-    .prod-price {
-      display: flex; align-items: baseline; gap: 8px;
-      padding: 4px 0;
-    }
-    .prod-price-prefix {
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--silver);
-    }
-    .prod-price-num {
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: 26px; line-height: 1;
-      color: var(--yellow);
-      letter-spacing: -0.01em;
+    li.pl{display:grid;grid-template-columns:auto 1fr;gap:10px;font-size:13px;font-weight:300;
+      color:rgba(240,237,232,0.74);line-height:1.45}
+    li.pl b{font-weight:600;color:var(--white)}
+    .ic{width:17px;height:17px;flex-shrink:0;margin-top:2px;stroke:var(--yellow);stroke-width:1.7;
+      fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:0.9}
+
+    .wonder{margin-top:20px;border:1px dashed rgba(222,220,0,0.3);border-radius:var(--r-img);
+      padding:18px 20px;background:rgba(222,220,0,0.04)}
+    .wonder h4{font-family:var(--display);font-weight:900;font-size:15px;color:var(--white);margin-bottom:6px}
+    .wonder p{font-size:13px;font-weight:300;color:rgba(240,237,232,0.55);line-height:1.6;max-width:70ch}
+    .price-foot{margin-top:14px;font-size:12px;font-weight:300;color:rgba(240,237,232,0.38);line-height:1.55}
+
+    /* ═══════════ THE MONEY ═══════════ */
+    .money{margin-top:56px;border-radius:var(--r-img);
+      padding:48px 32px;text-align:center;background:var(--y-grad);position:relative;overflow:hidden}
+    .money::before{content:'';position:absolute;inset:0;background:url('assets/texture.jpg') center/cover;opacity:0.18;mix-blend-mode:multiply;pointer-events:none}
+    .money .eyebrow{color:rgba(10,10,10,0.6)}
+    .money > *{position:relative}
+    .money h2{font-family:var(--display);font-weight:900;font-size:clamp(22px,3vw,32px);line-height:1.1;
+      color:#0a0a0a;max-width:24ch;margin:0 auto 12px}
+    .money p{font-size:14.5px;font-weight:500;color:rgba(10,10,10,0.74);line-height:1.6;max-width:46ch;margin:0 auto}
+    .incl{list-style:none;margin:30px auto 0;padding:0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:840px}
+    .incl li{font-size:12.5px;font-weight:600;color:#0a0a0a;background:rgba(10,10,10,0.10);
+      border:1px solid rgba(10,10,10,0.18);border-radius:3px;padding:8px 15px;white-space:nowrap}
+    .ngn{width:0.60em;height:0.60em;display:inline-block;vertical-align:-0.01em;margin:0 0.05em;
+      fill:none;stroke:currentColor;stroke-width:14;stroke-linecap:square}
+    .incl-foot{margin-top:18px;font-size:13.5px;font-weight:700;color:rgba(10,10,10,0.72)}
+
+    /* ═══════════ OUR CONTENT ═══════════ */
+
+    /* ── The AfroCue masthead, as a contained band ── */
+    .achero{position:relative;overflow:hidden;border-radius:var(--r-img);border:1px solid var(--line);
+      padding:46px 40px}
+    .achero-img{position:absolute;inset:0;background:url('assets/hero_dj.jpg') center 55%/cover;opacity:0.55}
+    .achero-tex{position:absolute;inset:0;background:url('assets/texture.jpg') center/cover;opacity:0.24;pointer-events:none}
+    .achero-grad{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,10,0.93) 0%,rgba(10,10,10,0.74) 52%,rgba(10,10,10,0.58) 100%)}
+    .achero-in{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center;text-align:left}
+    .achero-r{display:flex;flex-direction:column;align-items:flex-start}
+    .achero-eye{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+    .achero-eye i{width:28px;height:1px;background:rgba(240,237,232,0.4);flex-shrink:0}
+    .achero-eye span{font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:rgba(240,237,232,0.58)}
+    .achero-h{font-family:var(--display);font-weight:900;font-size:clamp(30px,4vw,46px);line-height:0.92;
+      color:var(--yellow);text-shadow:2px 3px 0 rgba(0,0,0,0.9);margin-bottom:16px}
+    .achero-h .ol{-webkit-text-stroke:1.5px var(--yellow);color:transparent;text-shadow:none}
+    .achero-d{font-size:14px;font-weight:300;line-height:1.75;color:rgba(240,237,232,0.72);max-width:42ch;margin:0}
+    .achero-ig{display:inline-block;margin-top:22px;font-size:11px;font-weight:600;letter-spacing:0.12em;
+      text-transform:uppercase;color:rgba(240,237,232,0.5);text-decoration:none;
+      border:1px solid rgba(255,255,255,0.16);border-radius:2px;padding:10px 20px;transition:all .2s}
+    .achero-ig:hover{border-color:var(--yellow);color:var(--yellow)}
+
+    /* ── The four answers, two up on a phone ── */
+    .wins{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:26px}
+    .win{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:rgba(255,255,255,0.025)}
+    .win-im{aspect-ratio:16/10;background-size:cover;background-position:center 38%;position:relative}
+    .win-im::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,0.75),rgba(10,10,10,0.1))}
+    .win-tick{position:absolute;left:8px;bottom:8px;z-index:2;width:19px;height:19px;border-radius:50%;
+      background:var(--yellow);display:flex;align-items:center;justify-content:center}
+    .win-tick svg{width:10px;height:10px;stroke:#0a0a0a;stroke-width:3.6;fill:none}
+    .win-t{padding:10px 11px 12px;font-size:12px;font-weight:600;color:var(--white);line-height:1.4;min-height:48px}
+    @media(max-width:700px){
+      .wins{grid-template-columns:1fr 1fr;gap:8px}
+      .win-im{aspect-ratio:3/2}
+      .win-t{font-size:11.5px;min-height:44px}
     }
 
-    .prod-needs { display: flex; gap: 8px; font-size: 12px; line-height: 1.5; padding-top: 2px; }
-    .prod-needs-label {
-      font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-      font-size: 9px; color: var(--silver);
-      padding-top: 2px; flex-shrink: 0;
-    }
-    .prod-needs-items { color: rgba(240,237,232,0.7); font-weight: 400; }
-    .prod-needs-items .sep { color: var(--grey); margin: 0 4px; }
+    /* Room between the problem cards and the AfroCue band. */
+    .achero{margin-top:72px}
+    @media(max-width:700px){ .achero{margin-top:48px} }
 
-    .prod-addon {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 7px 12px;
-      background: rgba(222,220,0,0.05);
-      border: 1px solid rgba(222,220,0,0.15);
-      border-radius: 100px;
-      font-size: 11px; align-self: flex-start;
-    }
-    .prod-addon-label {
-      font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-      font-size: 9px; color: var(--yellow);
-    }
-    .prod-addon-text { color: rgba(240,237,232,0.8); font-weight: 400; }
-    .prod-addon-text strong { color: var(--yellow); font-weight: 600; margin-left: 4px; }
+    /* ── The offer, stated once ── */
+    .offer{max-width:620px;margin:58px auto 0;text-align:center}
+    .offer h2{font-family:var(--display);font-weight:900;font-size:clamp(24px,3.2vw,36px);line-height:1.05;
+      color:var(--yellow);text-shadow:2px 3px 0 rgba(0,0,0,0.85);margin:0 0 12px}
+    .offer p{font-size:15px;font-weight:300;line-height:1.7;color:rgba(240,237,232,0.62);max-width:50ch;margin:0 auto}
 
-    .prod-inquire {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 8px 14px;
-      background: transparent;
-      border: 1px solid rgba(222,220,0,0.35);
-      border-radius: 100px;
-      font-family: 'Figtree', sans-serif;
-      font-size: 10px; font-weight: 700;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--yellow);
-      cursor: pointer; transition: all 0.2s;
-      align-self: flex-start;
-      margin-top: 4px;
-    }
-    .prod-inquire:hover { background: var(--yellow); color: var(--black); border-color: var(--yellow); }
-    .prod-inquire svg { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    /* ═══════════ THE BOARD ═══════════ */
+    .rail{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;
+      padding:0 var(--pad) 6px;scrollbar-width:none;-ms-overflow-style:none}
+    .rail::-webkit-scrollbar{display:none}
+    .fly{flex:0 0 auto;width:clamp(132px,16vw,164px);scroll-snap-align:start;text-decoration:none;color:inherit}
+    .fly .art{aspect-ratio:4/5;border-radius:10px;overflow:hidden;border:1px solid var(--line);
+      background:#141414 center/cover;position:relative;transition:border-color .2s,transform .2s}
+    .fly:hover .art{border-color:var(--y-line);transform:translateY(-3px)}
+    .fly .art .when{position:absolute;left:7px;top:7px;font-size:10px;font-weight:700;
+      letter-spacing:0.04em;text-transform:uppercase;color:#0a0a0a;background:var(--yellow);border-radius:4px;padding:3px 7px}
+    .fly .nm{font-size:12.5px;font-weight:600;color:var(--white);margin-top:7px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .fly .vn{font-size:11px;font-weight:300;color:rgba(240,237,232,0.38);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .live{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,237,232,0.4)}
+    .live i{width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 7px rgba(46,228,64,0.7)}
 
-    .prod-amp-note {
-      font-size: 11px; font-style: italic;
-      color: rgba(240,237,232,0.42);
-      margin-top: auto; padding-top: 8px;
-      letter-spacing: 0.01em;
-    }
+    /* ═══════════ WHY ═══════════ */
 
-    .brand-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-    .brand-tile {
-      background: linear-gradient(155deg, rgba(222,220,0,0.04) 0%, rgba(255,255,255,0.01) 100%);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      padding: 28px 26px 24px;
-      display: flex; flex-direction: column;
-      gap: 14px; position: relative;
-      min-height: 200px;
-      transition: border-color 0.25s, transform 0.25s;
-      overflow: hidden; cursor: pointer;
-      text-align: left; font-family: inherit; color: inherit;
-    }
-    .brand-tile::before {
-      content: ''; position: absolute; top: -80px; right: -80px;
-      width: 220px; height: 220px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(222,220,0,0.08) 0%, transparent 70%);
-      pointer-events: none; opacity: 0.6; transition: opacity 0.3s;
-    }
-    .brand-tile:hover::before { opacity: 1; }
-    .brand-tile:hover { border-color: rgba(222,220,0,0.35); transform: translateY(-2px); }
-    .brand-icon { width: 28px; height: 28px; color: var(--yellow); position: relative; z-index: 1; }
-    .brand-icon svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-    .brand-name {
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: 22px; line-height: 1; color: var(--white);
-      letter-spacing: -0.005em; position: relative; z-index: 1;
-    }
-    .brand-desc {
-      font-size: 13px; font-weight: 300; line-height: 1.6;
-      color: rgba(240,237,232,0.58); position: relative; z-index: 1;
-    }
-    .brand-foot {
-      margin-top: auto;
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--yellow);
-      display: flex; align-items: center; gap: 8px;
-      position: relative; z-index: 1;
-    }
-    .brand-foot .arrow { transition: transform 0.2s; }
-    .brand-tile:hover .brand-foot .arrow { transform: translate(3px, -3px); }
-    .brand-tile-wide {
-      grid-column: 1 / -1;
-      background: linear-gradient(155deg, rgba(222,220,0,0.07) 0%, rgba(255,255,255,0.015) 100%);
-      border-color: rgba(222,220,0,0.25);
-    }
+    /* ═══════════ FAQ ═══════════ */
+    .faq{display:flex;flex-direction:column}
+    .fq{border-bottom:1px solid var(--line);padding:16px 0}
+    .fq:first-child{border-top:1px solid var(--line)}
+    .fq b{display:block;font-size:14.5px;font-weight:600;color:var(--white);margin-bottom:5px}
+    .fq span{font-size:13px;font-weight:300;color:rgba(240,237,232,0.5);line-height:1.6}
 
-    .rates {
-      padding: 96px 40px;
-      background: var(--dark);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .rates-head { margin-bottom: 40px; }
-    .rate-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-    .rate-table thead { border-bottom: 1px solid rgba(255,255,255,0.12); }
-    .rate-table th {
-      text-align: left; padding: 14px 16px 18px;
-      font-size: 10px; font-weight: 700;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--silver);
-    }
-    .rate-table th:last-child { text-align: right; }
-    .rate-table td {
-      padding: 14px 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      font-weight: 400; color: rgba(240,237,232,0.85);
-    }
-    .rate-table td.rate-name { font-weight: 500; color: var(--white); }
-    .rate-table td.rate-price {
-      text-align: right;
-      font-weight: 500; font-size: 14px;
-      color: rgba(240,237,232,0.72);
-      white-space: nowrap; letter-spacing: 0.02em;
-    }
-    .rate-table td.rate-price .prefix {
-      font-size: 11px; color: var(--silver);
-      margin-right: 4px; letter-spacing: 0.08em;
-      text-transform: uppercase; font-weight: 500;
-    }
-    .rate-table tr:hover td { background: rgba(222,220,0,0.02); }
-    .rate-table tr:last-child td { border-bottom: none; }
-    .rate-cat-row td {
-      padding-top: 32px; padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: 14px; letter-spacing: 0.06em;
-      text-transform: uppercase; color: var(--yellow);
-    }
-    .rate-cat-row:hover td { background: transparent; }
-    .rate-note {
-      font-size: 12px; font-weight: 300;
-      color: rgba(240,237,232,0.45);
-      margin-top: 24px; line-height: 1.7;
-    }
+    /* ═══════════ CLOSING ═══════════ */
+    .closing{margin-top:56px;padding-bottom:80px}
+    .closing-in{max-width:640px;margin:0 auto;text-align:center}
+    .closing h2{font-family:var(--display);font-weight:900;font-size:clamp(22px,2.9vw,30px);line-height:1.1;color:var(--yellow);text-shadow:2px 3px 0 rgba(0,0,0,0.85);margin-bottom:9px}
+    .closing p{font-size:14px;font-weight:300;color:rgba(240,237,232,0.5);max-width:40ch;margin:0 auto 22px}
 
-    .amp {
-      background: linear-gradient(155deg, #101608 0%, #0a0a0a 65%);
-      padding: 96px 40px;
-      position: relative; overflow: hidden;
+    @media(max-width:880px){
+      .cards,.tiers{grid-template-columns:1fr}
+      .money{padding:30px 20px}
+      .base ul{grid-template-columns:1fr 1fr}
+      .achero{padding:30px 22px}
+      .achero-in{grid-template-columns:1fr;gap:24px}
+      .offer{margin-top:40px}
+      .pc .im{aspect-ratio:16/7}
+      .tier{padding:20px 18px 18px}
+      .base ul{grid-template-columns:1fr}
     }
-    .amp::before {
-      content: ''; position: absolute; top: -160px; right: -160px;
-      width: 480px; height: 480px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(222,220,0,0.08) 0%, transparent 70%);
-      pointer-events: none;
+    @media(max-width:560px){
+      .hero{padding-top:calc(var(--ac-nav-h,76px) + 20px)}
+      .card{padding:20px 15px 22px}
+      .opts.g2{grid-template-columns:1fr}
+      .tags{gap:6px 18px}
     }
-    .amp-inner { position: relative; z-index: 1; max-width: 1120px; margin: 0 auto; }
-    .amp-head { max-width: 720px; margin-bottom: 56px; }
-    .amp-head .label { margin-bottom: 20px; }
-    .amp-head .section-h { font-size: clamp(34px, 4.8vw, 56px); margin-bottom: 20px; }
-    .amp-head .section-sub { font-size: 16px; }
-    .amp-main {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 60px; align-items: center;
-      margin-bottom: 72px; padding-bottom: 72px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    .amp-main-copy .amp-price {
-      display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;
-    }
-    .amp-main-copy .amp-price-num {
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: 40px; line-height: 1; color: var(--yellow);
-      text-shadow: var(--yts);
-    }
-    .amp-main-copy .amp-price-suffix {
-      font-size: 13px; font-weight: 500; color: rgba(240,237,232,0.6);
-      letter-spacing: 0.04em;
-    }
-    .amp-main-copy p { font-size: 15px; font-weight: 300; line-height: 1.75; color: rgba(240,237,232,0.7); margin-bottom: 12px; }
-
-    .amp-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .amp-tile {
-      aspect-ratio: 1 / 1;
-      border-radius: 8px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.07);
-      display: flex; flex-direction: column;
-      justify-content: space-between;
-      padding: 18px 16px;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .amp-tile:hover { border-color: rgba(222,220,0,0.3); background: rgba(222,220,0,0.03); }
-    .amp-tile-icon { width: 26px; height: 26px; color: var(--yellow); }
-    .amp-tile-icon svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-    .amp-tile-name {
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: 15px; line-height: 1.1; color: var(--white);
-      margin-top: auto;
-    }
-    .amp-extras-label {
-      font-size: 10px; font-weight: 700;
-      letter-spacing: 0.24em; text-transform: uppercase;
-      color: var(--silver); margin-bottom: 20px;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .amp-extras-label::before { content: ''; width: 20px; height: 1px; background: var(--silver); }
-    .amp-extras { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-    .amp-extra {
-      padding: 20px 18px;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 8px;
-      font-size: 13px; font-weight: 500;
-      color: rgba(240,237,232,0.8);
-      line-height: 1.4;
-    }
-
-    .build { padding: 96px 40px; }
-    .build-head { max-width: 720px; margin-bottom: 48px; }
-    .build-head .section-h { font-size: clamp(32px, 4.5vw, 52px); }
-    .build-head .section-h.yellow { margin-bottom: 20px; }
-    .build-head .section-sub { font-size: 16px; }
-    .build-blocks { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
-    .build-block {
-      padding: 14px 22px;
-      background: var(--dark2);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 100px;
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--white);
-      transition: all 0.2s;
-    }
-    .build-block:hover { border-color: rgba(222,220,0,0.35); background: rgba(222,220,0,0.04); color: var(--yellow); }
-    .build-cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
-
-    .final {
-      padding: 96px 40px 104px;
-      background: linear-gradient(160deg, #0d0d0d 0%, #0a0a0a 100%);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      text-align: center;
-    }
-    .final-inner { max-width: 720px; margin: 0 auto; }
-    .final .label { justify-content: center; }
-    .final .label::before { display: none; }
-    .final .label::after { content: ''; width: 20px; height: 1px; background: var(--silver); }
-    .final .section-h { font-size: clamp(38px, 5.5vw, 64px); margin-bottom: 20px; }
-    .final .section-sub { font-size: 16px; margin: 0 auto 36px; }
-    .final-contacts { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
-    .final-email {
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: 18px; letter-spacing: 0.06em;
-      color: var(--yellow);
-      margin-top: 28px; display: block;
-    }
-    .final-email:hover { color: var(--off); }
-
-    footer {
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding: 40px 40px;
-      display: flex; flex-direction: column; align-items: center; gap: 18px;
-      background: var(--dark); text-align: center;
-    }
-    .footer-brand img { height: 38px; width: auto; }
-    .footer-links { display: flex; gap: 22px; flex-wrap: wrap; justify-content: center; }
-    .footer-links a { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); transition: color 0.2s; }
-    .footer-links a:hover { color: var(--white); }
-    .footer-email a { font-size: 11px; color: var(--grey); }
-    .footer-email a:hover { color: var(--white); }
-
-    .inq-overlay {
-      display: none;
-      position: fixed; inset: 0; z-index: 9999;
-      background: rgba(10,10,10,0.88);
-      backdrop-filter: blur(16px);
-      align-items: center; justify-content: center;
-      padding: 20px; overflow-y: auto;
-    }
-    .inq-overlay.open { display: flex; }
-    .inq-modal {
-      position: relative;
-      background: var(--dark2);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 14px;
-      max-width: 640px; width: 100%;
-      padding: 32px 32px 28px;
-      max-height: 90vh; overflow-y: auto;
-      animation: inqFadeUp 0.3s ease both;
-    }
-    @keyframes inqFadeUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .inq-close {
-      position: absolute; top: 14px; right: 14px;
-      width: 36px; height: 36px;
-      background: transparent; border: none;
-      color: var(--silver); font-size: 20px;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 6px; transition: all 0.2s;
-    }
-    .inq-close:hover { background: rgba(255,255,255,0.06); color: var(--white); }
-    .inq-label {
-      font-size: 11px; font-weight: 700;
-      letter-spacing: 0.24em; text-transform: uppercase;
-      color: var(--yellow); margin-bottom: 10px;
-    }
-    .inq-h {
-      font-family: 'Aesthet Nova', sans-serif; font-weight: 900;
-      font-size: 28px; line-height: 1.05;
-      color: var(--white); margin-bottom: 8px;
-      letter-spacing: -0.005em;
-    }
-    .inq-sub {
-      font-size: 15px; font-weight: 300; line-height: 1.6;
-      color: rgba(240,237,232,0.55);
-      margin-bottom: 24px;
-    }
-    .inq-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
-    .inq-field { margin-bottom: 16px; }
-    .inq-field label {
-      display: block;
-      font-size: 11px; font-weight: 700;
-      letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--silver); margin-bottom: 8px;
-    }
-    .inq-field input,
-    .inq-field textarea {
-      width: 100%; padding: 14px 16px;
-      background: rgba(255,255,255,0.04);
-      border: 1.5px solid rgba(255,255,255,0.1);
-      border-radius: 8px;
-      color: var(--white);
-      font-family: 'Figtree', sans-serif;
-      font-size: 16px; outline: none;
-      transition: border-color 0.2s;
-      resize: vertical;
-    }
-    .inq-field textarea { min-height: 90px; line-height: 1.55; }
-    .inq-field input:focus,
-    .inq-field textarea:focus { border-color: rgba(222,220,0,0.5); }
-    .inq-field input::placeholder,
-    .inq-field textarea::placeholder { color: rgba(240,237,232,0.32); }
-
-    .inq-tabs {
-      display: grid; grid-template-columns: 1fr 1fr 1fr;
-      gap: 6px; padding: 4px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 10px;
-      margin-bottom: 14px;
-    }
-    .inq-tab {
-      padding: 11px 12px;
-      background: transparent; border: none;
-      border-radius: 6px;
-      font-family: 'Figtree', sans-serif;
-      font-size: 13px; font-weight: 600;
-      letter-spacing: 0.04em;
-      color: rgba(240,237,232,0.55);
-      cursor: pointer; transition: all 0.18s;
-      text-align: center; white-space: nowrap;
-    }
-    .inq-tab:hover { color: var(--white); }
-    .inq-tab.active { background: var(--yellow); color: var(--black); }
-
-    .inq-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 8px; margin-bottom: 16px; min-height: 120px;
-    }
-    .inq-opt {
-      display: flex; align-items: center; gap: 10px;
-      padding: 12px 14px;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 8px; cursor: pointer;
-      font-size: 16px; font-weight: 500;
-      color: rgba(240,237,232,0.85);
-      transition: all 0.15s; user-select: none;
-      line-height: 1.3; text-align: left;
-    }
-    .inq-opt:hover { border-color: rgba(222,220,0,0.3); background: rgba(255,255,255,0.04); }
-    .inq-opt input { display: none; }
-    .inq-opt .inq-box {
-      width: 18px; height: 18px;
-      border-radius: 5px;
-      border: 1.5px solid rgba(255,255,255,0.25);
-      flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.15s;
-    }
-    .inq-opt.checked .inq-box { background: var(--yellow); border-color: var(--yellow); }
-    .inq-opt.checked .inq-box::after {
-      content: '';
-      width: 10px; height: 5px;
-      border-left: 2px solid var(--black);
-      border-bottom: 2px solid var(--black);
-      transform: rotate(-45deg); margin-top: -2px;
-    }
-    .inq-opt.checked { border-color: rgba(222,220,0,0.4); background: rgba(222,220,0,0.06); color: var(--white); }
-    .inq-summary {
-      font-size: 13px; font-weight: 400;
-      color: rgba(240,237,232,0.5);
-      margin-bottom: 16px; min-height: 18px; line-height: 1.5;
-    }
-    .inq-summary strong { color: var(--yellow); font-weight: 600; }
-    .inq-error { font-size: 13px; color: #ff8080; margin: 4px 0 0; min-height: 18px; }
-    .inq-submit {
-      display: block; width: 100%;
-      margin-top: 8px; padding: 16px 24px;
-      background: var(--yellow); color: var(--black);
-      border: none; border-radius: 8px;
-      font-family: 'Figtree', sans-serif;
-      font-size: 13px; font-weight: 700;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      cursor: pointer; transition: all 0.2s;
-    }
-    .inq-submit:hover { background: var(--off); transform: translateY(-1px); }
-    .inq-foot {
-      font-size: 12px; font-weight: 300;
-      color: rgba(240,237,232,0.42);
-      text-align: center; margin-top: 14px; line-height: 1.5;
-    }
-    .inq-foot a { color: var(--yellow); text-decoration: none; }
-    .inq-foot a:hover { text-decoration: underline; }
-
-    @media (max-width: 960px) {
-      nav { padding: 14px 24px; }
-      .nav-links { display: none; }
-      .hero { padding: 130px 24px 72px; }
-      .hero-inner { grid-template-columns: 1fr; gap: 40px; align-items: start; }
-      .hero-side { max-width: 100%; flex-direction: row; flex-wrap: wrap; }
-      .hero-stat { flex: 1 1 160px; }
-      .inner { padding: 0 24px; }
-      .pillars { padding: 48px 24px; }
-      .pillars-inner { grid-template-columns: repeat(2, 1fr); }
-      .catalogue { padding: 72px 24px; }
-      .prod { grid-template-columns: 280px 1fr; }
-      .brand-grid { grid-template-columns: 1fr; }
-      .rates { padding: 72px 24px; }
-      .amp { padding: 72px 24px; }
-      .amp-main { grid-template-columns: 1fr; gap: 40px; padding-bottom: 48px; margin-bottom: 48px; }
-      .amp-extras { grid-template-columns: 1fr 1fr; }
-      .build { padding: 72px 24px; }
-      .final { padding: 72px 24px 80px; }
-      footer { padding: 32px 24px; }
-      .cat-tab { padding: 16px 20px 18px; font-size: 16px; }
-    }
-    @media (max-width: 640px) {
-      .hero-h1 { font-size: 44px; }
-      .pillars-inner { grid-template-columns: 1fr; }
-      .prod { grid-template-columns: 1fr; gap: 0; }
-      .prod-media { aspect-ratio: 16 / 10; }
-      .prod-body { padding: 20px 20px 18px; }
-      .amp-visual { grid-template-columns: 1fr 1fr; }
-      .amp-extras { grid-template-columns: 1fr; }
-      .btn { width: 100%; justify-content: center; max-width: 320px; }
-      .hero-ctas, .build-cta-row, .final-contacts { flex-direction: column; align-items: center; }
-      .rate-table { font-size: 13px; }
-      .rate-table th, .rate-table td { padding: 12px 10px; }
-      .rate-table td.rate-price { font-size: 13px; }
-      .inq-modal { padding: 24px 20px 22px; border-radius: 12px; }
-      .inq-h { font-size: 24px; }
-      .inq-row { grid-template-columns: 1fr; gap: 0; }
-      .inq-row .inq-field { margin-bottom: 16px; }
-      .inq-grid { grid-template-columns: 1fr; }
-      .inq-tabs { padding: 3px; }
-      .inq-tab { padding: 10px 8px; font-size: 12px; }
-      .cat-tabs { gap: 0; }
-      .cat-tab { padding: 14px 16px 16px; font-size: 15px; gap: 8px; }
-      .cat-tab-count { font-size: 10px; padding: 2px 6px; }
-    }
-
-    /* ═══ COMPACT LAYOUT ═══════════════════════════════════════════
-       Layered over the rules above: tighter sections, the catalogue as
-       a grid, prices under the names, and less text before the offer. */
-    .inner { padding: 0; }            /* the sections carry the side padding, so edges line up with the hero */
-    .hero { padding: 120px 40px 48px; }
-    .hero-h1 { font-size: clamp(40px, 6.2vw, 76px); margin-bottom: 18px; }
-    .hero-sub { margin-bottom: 26px; }
-    .hero-eyebrow { margin-bottom: 18px; }
-    .hero-side { gap: 10px; max-width: 260px; }
-    .hero-stat { display: block; position: relative; padding: 14px 44px 14px 16px; transition: border-color .2s, background .2s; }
-    .hero-stat:hover { border-color: rgba(222,220,0,0.45); background: rgba(222,220,0,0.06); }
-    .hero-stat-num { font-size: 20px; margin-bottom: 4px; }
-    .hero-stat-go { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: var(--yellow); font-weight: 700; }
-
-    .pillars { padding: 0 40px; background: var(--dark); }
-    .pillars-inner { border: 0; border-radius: 0; background: transparent; gap: 0; }
-    .pillar { padding: 16px 18px; border-left: 1px solid rgba(255,255,255,0.06); background: transparent; }
-    .pillar:first-child { border-left: 0; padding-left: 0; }
-    .pillar-num { display: inline; margin: 0 8px 0 0; font-size: 11px; }
-    .pillar-name { display: inline; font-size: 15px; margin: 0; }
-    .pillar-desc { margin-top: 6px; font-size: 11.5px; }
-
-    .catalogue, .rates, .amp, .build { padding-top: 56px; padding-bottom: 56px; }
-    .final { padding: 56px 40px 64px; }
-    .cat-header { margin-bottom: 18px; }
-    .cat-header .label { margin-bottom: 10px; }
-    .cat-header .section-h { margin-bottom: 0; }
-
-    .cat-tabs {
-      position: sticky; top: 70px; z-index: 50;
-      background: var(--black); margin-bottom: 16px;
-    }
-    .cat-tab { padding: 14px 20px 15px; font-size: 16px; }
-    .aud-line { font-size: 14px; font-weight: 300; line-height: 1.6; color: rgba(240,237,232,0.6); margin: 0 0 18px; max-width: 680px; }
-
-    .cat-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .prod { grid-template-columns: 1fr; display: flex; flex-direction: column; border-radius: 10px; }
-    .prod-media { aspect-ratio: 16 / 11; }
-    .prod-tag {
-      position: absolute; top: 10px; left: 10px; z-index: 2;
-      padding: 4px 9px; border-radius: 100px;
-      background: rgba(10,10,10,0.7); backdrop-filter: blur(6px);
-      font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--white);
-    }
-    .prod-play { top: 10px; right: 10px; width: 30px; height: 30px; }
-    .prod-example-link { bottom: 10px; left: 10px; }
-    .prod-media-blank { font-size: 20px; }
-    .prod-body { padding: 14px 16px 14px; gap: 8px; flex: 1; min-height: 0; }
-    .prod-name { font-size: 19px; }
-    .prod-price { padding: 0; }
-    .prod-price-num { font-size: 22px; }
-    .prod-desc {
-      font-size: 12.5px; line-height: 1.5;
-      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-    }
-    .prod-needs { font-size: 11.5px; gap: 6px; }
-    .prod-needs-items { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
-    .prod-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin-top: auto; padding-top: 4px; }
-    .prod-addon { padding: 5px 10px; font-size: 10.5px; }
-    .prod-addon-label, .prod-addon-text { white-space: nowrap; }
-    .prod-inquire { margin: 0 0 0 auto; }
-    .prod-amp-note { margin-top: 0; padding-top: 0; font-size: 10.5px; }
-
-    .brand-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .brand-tile { min-height: 0; padding: 18px 18px 16px; gap: 10px; }
-    .brand-name { font-size: 18px; }
-    .brand-desc { font-size: 12.5px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-    .brand-tile-wide { grid-column: 1 / -1; }
-
-    .rates-head { margin-bottom: 18px; }
-    .rate-table { max-width: 760px; }
-    .rate-table td { padding: 10px 14px; }
-    .rate-cat-row td { padding-top: 22px; padding-bottom: 8px; }
-    .rate-note { margin-top: 14px; }
-
-    .amp-head { margin-bottom: 28px; }
-    .amp-main { gap: 32px; margin-bottom: 28px; padding-bottom: 28px; }
-    .amp-visual { grid-template-columns: repeat(4, 1fr); gap: 8px; }
-    .amp-tile { aspect-ratio: auto; min-height: 96px; padding: 14px 12px; }
-    .amp-extras { display: flex; flex-wrap: wrap; gap: 8px; }
-    .amp-extra { padding: 9px 14px; border-radius: 100px; font-size: 12px; }
-
-    .build-head { margin-bottom: 22px; }
-    .build-blocks { margin-bottom: 22px; gap: 8px; }
-    .build-block { padding: 10px 16px; font-size: 12px; }
-
-    @media (max-width: 960px) {
-      .hero { padding: 104px 24px 36px; }
-      .hero-side { flex-direction: row; gap: 8px; }
-      .hero-stat { flex: 1 1 0; padding: 12px 30px 12px 12px; }
-      .hero-stat-num { font-size: 17px; }
-      .hero-stat-label { font-size: 9px; letter-spacing: 0.1em; }
-      .hero-stat-go { right: 10px; }
-      .pillars { padding: 0 24px; }
-      .pillar:nth-child(odd) { border-left: 0; padding-left: 0; }
-      .catalogue, .rates, .amp, .build { padding: 44px 24px; }
-      .final { padding: 44px 24px 52px; }
-      .cat-tabs { top: 66px; }
-      .cat-list { grid-template-columns: repeat(2, 1fr); }
-      .brand-grid { grid-template-columns: repeat(2, 1fr); }
-      .amp-main { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 640px) {
-      .hero-h1 { font-size: 40px; }
-      .hero-side { flex-direction: column; }
-      .hero-stat { display: flex; align-items: baseline; gap: 10px; padding: 11px 34px 11px 14px; }
-      .hero-stat-num { margin: 0; }
-      .pillars-inner { grid-template-columns: repeat(2, 1fr); }
-      .pillar { padding: 12px 12px 12px 0; }
-      .pillar-desc { display: none; }
-      .cat-tab { padding: 12px 10px 13px; font-size: 14px; gap: 6px; }
-      .prod-addon { padding: 4px 9px; }
-      .prod-addon-label { display: none; }
-      /* phones: one compact row per placement, picture on the left */
-      .cat-list { grid-template-columns: 1fr; gap: 10px; }
-      .prod { flex-direction: row; align-items: stretch; }
-      .prod-media { flex: 0 0 116px; aspect-ratio: auto; min-height: 150px; }
-      .prod-example-link, .prod-play { display: none; }
-      .prod-tag { top: 8px; left: 8px; font-size: 8px; padding: 3px 7px; }
-      .prod-media-blank { font-size: 14px; }
-      .prod-body { padding: 12px 12px 12px 14px; gap: 6px; }
-      .prod-name { font-size: 17px; }
-      .prod-price-num { font-size: 19px; }
-      .prod-desc { font-size: 12px; }
-      .prod-needs { display: none; }
-      .prod-inquire { padding: 7px 12px; }
-      .brand-grid { grid-template-columns: 1fr; gap: 8px; }
-      .brand-tile { flex-direction: row; flex-wrap: wrap; align-items: center; padding: 14px; gap: 6px 12px; }
-      .brand-icon { width: 22px; height: 22px; }
-      .brand-name { font-size: 16px; flex: 1; }
-      .brand-desc { flex-basis: 100%; -webkit-line-clamp: 2; }
-      .brand-foot { display: none; }
-      .amp-visual { grid-template-columns: repeat(2, 1fr); }
-      .amp-tile { min-height: 76px; }
-    }
-
-    /* ═══ ROUND 3: smaller headings, compact buttons side by side, a real rate table ═══ */
-    .hero-h1 { font-size: clamp(34px, 4.6vw, 58px); line-height: 0.95; }
-    .cat-header .section-h { font-size: clamp(24px, 2.8vw, 34px); }
-    .btn { padding: 12px 18px; min-height: 42px; font-size: 11px; letter-spacing: 0.12em; gap: 8px; }
-    .btn svg { width: 12px; height: 12px; }
-    .hero-ctas, .build-cta-row, .final-contacts { gap: 8px; }
-
-    .rates .section-h { font-size: clamp(24px, 2.8vw, 34px); }
-    .rate-table { max-width: none; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; border-collapse: separate; border-spacing: 0; overflow: hidden; font-size: 13.5px; }
-    .rate-table thead { border: 0; }
-    .rate-table th { background: #161616; padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-    .rate-table th:last-child, .rate-table td.rate-price { text-align: right; }
-    .rate-table td { padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .rate-table td + td, .rate-table th + th { border-left: 1px solid rgba(255,255,255,0.05); }
-    .rate-table tbody tr:not(.rate-cat-row):nth-child(even) td { background: rgba(255,255,255,0.015); }
-    .rate-table td.rate-fmt, .rate-table th.rate-fmt { color: var(--silver); width: 22%; }
-    .rate-table td.rate-price { font-variant-numeric: tabular-nums; width: 24%; color: var(--white); }
-    .rate-cat-row td { background: rgba(222,220,0,0.05); padding: 9px 16px; font-size: 11px; letter-spacing: 0.14em; border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .rate-table tr:last-child td { border-bottom: 0; }
-
-    .amp { padding-top: 44px; padding-bottom: 44px; }
-    .amp-main { margin-bottom: 0; padding-bottom: 0; border-bottom: 0; align-items: center; }
-    .amp-main-copy .label { margin-bottom: 12px; }
-    .amp-lead { font-size: 14px; font-weight: 300; line-height: 1.7; color: rgba(240,237,232,0.72); margin: 0 0 14px; max-width: 520px; }
-    .amp-main-copy .amp-price-num { font-size: 28px; }
-
-    .build-head, .build .inner { text-align: center; }
-    .build-head { margin: 0 auto 20px; }
-    .build .label, .final .label { justify-content: center; }
-    .build .label::before { display: none; }
-    .build .label::after { content: ''; width: 20px; height: 1px; background: var(--silver); }
-    .build .section-sub { margin: 0 auto; }
-    .build-cta-row { justify-content: center; }
-    .final .section-h, .build-head .section-h { font-size: clamp(28px, 3.6vw, 44px); }
-    .final-emails { display: flex; gap: 8px 24px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
-    .final-emails .final-email { margin-top: 0; font-size: 15px; }
-    .footer-email { color: var(--grey); font-size: 11px; }
-
-    @media (max-width: 640px) {
-      .hero-h1 { font-size: 34px; }
-      .cat-header .section-h, .rates .section-h { font-size: 24px; }
-      /* buttons keep their own width and sit side by side */
-      .btn { width: auto; max-width: none; padding: 11px 14px; font-size: 10.5px; letter-spacing: 0.08em; }
-      .hero-ctas { flex-direction: row; flex-wrap: nowrap; align-items: center; justify-content: flex-start; }
-      .build-cta-row, .final-contacts { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center; }
-      .rate-table { font-size: 12.5px; }
-      .rate-table th, .rate-table td { padding: 9px 10px; }
-      .rate-table .rate-fmt { display: none; }
-      .rate-table td.rate-price { width: auto; }
-      .amp-visual { grid-template-columns: repeat(4, 1fr); gap: 6px; }
-      .amp-tile { min-height: 70px; padding: 10px 8px; }
-      .amp-tile-name { font-size: 11px; }
-      .amp-tile-icon { width: 20px; height: 20px; }
-      .final .section-h, .build-head .section-h { font-size: 28px; }
-    }
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
   </style>
 </head>
 <body>
 
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<nav>
-  <a class="nav-logo" href="https://afrocue.xyz/index.html">
-    <img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue"
-      onerror="this.style.display='none'; document.querySelector('.nav-logo-fallback').style.display='block'"/>
-    <span class="nav-logo-fallback">afro.cue</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#catalogue">Catalogue</a></li>
-    <li><a href="#rates">Rate Card</a></li>
-    <li><a href="#amplification">Amplification</a></li>
-  </ul>
-  <button class="nav-cta" onclick="openInquiry()">Start a conversation</button>
-</nav>
+<div class="bg-image"></div>
+<div class="bg-scrim"></div>
+<div class="bg-texture"></div>
 
-<section class="hero">
-  <div class="hero-bg"><img src="https://afrocue.xyz/hero_dj.jpg" alt="AfroCue"/></div>
-  <div class="hero-texture"></div>
-  <div class="hero-scrim"></div>
+<div id="ac-nav"></div>
 
-  <div class="hero-inner">
-    <div class="hero-copy">
-      <div class="hero-eyebrow">Advertise with AfroCue</div>
-      <h1 class="hero-h1">Put your brand<br><span class="alt">in the culture.</span></h1>
-      <p class="hero-sub">Work with AfroCue across editorial content, community placements and physical experiences.</p>
-      <div class="hero-ctas">
-        <a class="btn btn-primary" href="#catalogue">
-          See what's available
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-        <button class="btn btn-secondary" onclick="openInquiry()">Talk to us</button>
-      </div>
-    </div>
+<main>
 
-    <div class="hero-side">
-      <a class="hero-stat" href="#catalogue" data-go="djs"><div class="hero-stat-num">DJs</div><div class="hero-stat-label">Promotion & spotlight</div><span class="hero-stat-go">→</span></a>
-      <a class="hero-stat" href="#catalogue" data-go="parties"><div class="hero-stat-num">Parties</div><div class="hero-stat-label">Content for events</div><span class="hero-stat-go">→</span></a>
-      <a class="hero-stat" href="#catalogue" data-go="brands"><div class="hero-stat-num">Brands</div><div class="hero-stat-label">Sponsorship & partnerships</div><span class="hero-stat-go">→</span></a>
-    </div>
-  </div>
-</section>
+  <!-- ══════════ HERO ══════════ -->
+  <section class="hero" id="top">
+    <div class="hero-in">
 
-<section class="pillars">
-  <div class="pillars-inner">
-    <div class="pillar"><span class="pillar-num">01</span><div class="pillar-name">MEDIA</div><div class="pillar-desc">Editorial placements across Instagram, YouTube and our newsletter.</div></div>
-    <div class="pillar"><span class="pillar-num">02</span><div class="pillar-name">CONTENT</div><div class="pillar-desc">Branded content, DJ collaborations, creator-led work.</div></div>
-    <div class="pillar"><span class="pillar-num">03</span><div class="pillar-name">COMMUNITY</div><div class="pillar-desc">Giveaways, newsletter features, community campaigns.</div></div>
-    <div class="pillar"><span class="pillar-num">04</span><div class="pillar-name">EXPERIENCES</div><div class="pillar-desc">Set Club integrations, event activations, physical moments.</div></div>
-  </div>
-</section>
+      <span class="kicker">Lagos Navigator by AfroCue</span>
 
-<section class="catalogue" id="catalogue">
-  <div class="inner">
-    <div class="cat-header">
-      <div class="label">The Catalogue</div>
-      <h2 class="section-h">Three ways to work with AfroCue.</h2>
-    </div>
+      <!-- Rotating line. Each one is a search query stated the way the
+           visitor would state it, so the headline can be matched to the
+           ad group that brought them. -->
+      <h1>Maximize your Lagos Nightlife Experience in December</h1>
 
-    <div class="cat-status" id="catStatus"></div>
+      <p class="hero-d">Use Lagos Navigator by <b>AfroCue</b> to curate an unforgettable Lagos night, for the amount you would have spent anyway.</p>
 
-    <div class="cat-tabs" role="tablist">
-      <button class="cat-tab active" data-tab="djs" onclick="switchCatTab('djs')">
-        For DJs <span class="cat-tab-count" id="count-djs">5</span>
-      </button>
-      <button class="cat-tab" data-tab="parties" onclick="switchCatTab('parties')">
-        For Parties <span class="cat-tab-count" id="count-parties">5</span>
-      </button>
-      <button class="cat-tab" data-tab="brands" onclick="switchCatTab('brands')">
-        For Brands <span class="cat-tab-count" id="count-brands">6</span>
-      </button>
-    </div>
-
-    <div class="cat-panel active" data-panel="djs">
-      <p class="aud-line">AfroCue is where the scene watches DJs. These are the formats built for you.</p>
-      <div class="cat-list" id="djs-list"></div>
-    </div>
-
-    <div class="cat-panel" data-panel="parties">
-      <p class="aud-line">Video options for parties and events to creatively communicate their upcoming events.</p>
-      <div class="cat-list" id="parties-list"></div>
-    </div>
-
-    <div class="cat-panel" data-panel="brands">
-      <p class="aud-line">For brands looking beyond a single placement, AfroCue works on longer, deeper collaborations. Tell us what you're trying to achieve.</p>
-      <div class="brand-grid" id="brands-list"></div>
-    </div>
-
-  </div>
-</section>
-
-<section class="rates" id="rates">
-  <div class="inner">
-    <div class="rates-head">
-      <div class="label">Rate Card</div>
-      <h2 class="section-h">Placements and pricing.</h2>
-    </div>
-
-    <table class="rate-table" id="rate-table">
-      <thead>
-        <tr><th>Placement</th><th class="rate-fmt">Format</th><th>Price</th></tr>
-      </thead>
-      <tbody id="rate-table-body"></tbody>
-    </table>
-
-    <p class="rate-note">
-      Prices in Nigerian Naira. Media coverage add-on available on selected DJ placements. Rates update as our inventory updates. For custom work, reach out and we'll come back with a proposal.
-    </p>
-  </div>
-</section>
-
-<section class="amp" id="amplification">
-  <div class="amp-inner">
-    <div class="amp-main">
-      <div class="amp-main-copy">
-        <div class="label">Amplification</div>
-        <p class="amp-lead">We can also add amplification through media buying and ads. Whatever we do for you, we can amplify it to a rich party audience we've been curating since the inception of AfroCue.</p>
-        <div class="amp-price">
-          <span class="amp-price-num">₦50,000</span>
-          <span class="amp-price-suffix">ad budget & up</span>
-        </div>
+      <div class="tags">
+        <span><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Curated around the best moments</span>
+        <span><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Exclusive access</span>
+        <span><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Chauffeured ride both ways</span>
+        <span><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>The best of Lagos dance music</span>
       </div>
 
-      <div class="amp-visual">
-        <div class="amp-tile">
-          <div class="amp-tile-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></div>
-          <div class="amp-tile-name">Meta Pixel</div>
+      <div class="card" id="quiz">
+        <div class="prog"><div class="prog-bar"><div class="prog-fill" id="pfill"></div></div><span class="prog-lbl" id="plbl">1 / 8</span></div>
+        <input type="text" class="hp" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="step active" id="q1" data-n="1">
+          <div class="slabel">Where you are</div>
+          <div class="q">Where are you spending December?</div>
+          <div class="asked" id="asked" style="display:none"></div>
+          <div class="opts">
+            <button class="opt" onclick="pick('where','lagos',this)"><span class="opt-n">01</span><span class="opt-b"><span class="opt-t">I stay in Lagos</span></span><span class="opt-a">&rarr;</span></button>
+            <button class="opt" onclick="pick('where','travelling',this)"><span class="opt-n">02</span><span class="opt-b"><span class="opt-t">Travelling to Lagos</span><span class="opt-s">Flying in for Detty December</span></span><span class="opt-a">&rarr;</span></button>
+            <button class="opt" onclick="pick('where','undecided',this)"><span class="opt-n">03</span><span class="opt-b"><span class="opt-t">Not decided yet</span><span class="opt-s">Plans firm up in November. Answer anyway.</span></span><span class="opt-a">&rarr;</span></button>
+            <button class="opt quiet" onclick="pick('where','out',this)"><span class="opt-n">04</span><span class="opt-b"><span class="opt-t">Not in Lagos this December</span></span><span class="opt-a">&rarr;</span></button>
+          </div>
         </div>
-        <div class="amp-tile">
-          <div class="amp-tile-icon"><svg viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="16 7 21 7 21 12"/></svg></div>
-          <div class="amp-tile-name">Travel Reach</div>
+
+        <div class="step" id="q1b" data-n="1">
+          <div class="slabel">Where you are</div>
+          <div class="q">Coming in from where?</div>
+          <div class="opts g2">
+            <button class="opt" onclick="pick('from','Nigeria',this)"><span class="opt-b"><span class="opt-t">Nigeria</span></span></button>
+            <button class="opt" onclick="pick('from','Europe',this)"><span class="opt-b"><span class="opt-t">Europe</span></span></button>
+            <button class="opt" onclick="pick('from','North America',this)"><span class="opt-b"><span class="opt-t">North America</span></span></button>
+            <button class="opt" onclick="pick('from','Africa',this)"><span class="opt-b"><span class="opt-t">Elsewhere in Africa</span></span></button>
+            <button class="opt" onclick="pick('from','Elsewhere',this)" style="grid-column:1/-1"><span class="opt-b"><span class="opt-t">Somewhere else</span></span></button>
+          </div>
+          <button class="back" onclick="go('q1')">&larr; Back</button>
         </div>
-        <div class="amp-tile">
-          <div class="amp-tile-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg></div>
-          <div class="amp-tile-name">Audience Signal</div>
+
+        <div class="step" id="q2" data-n="2">
+          <div class="slabel">How you move</div>
+          <div class="q">How often do you plan to be outside?</div>
+          <div class="opts g2">
+            <button class="opt" onclick="pick('often','Once in a while',this)"><span class="opt-b"><span class="opt-t">Once in a while</span></span></button>
+            <button class="opt" onclick="pick('often','Once every weekend',this)"><span class="opt-b"><span class="opt-t">Once a weekend</span></span></button>
+            <button class="opt" onclick="pick('often','Every weekend',this)"><span class="opt-b"><span class="opt-t">Every weekend</span></span></button>
+            <button class="opt" onclick="pick('often','Every night I can',this)"><span class="opt-b"><span class="opt-t">Every night I can</span></span></button>
+          </div>
+          <button class="back" onclick="backOne()">&larr; Back</button>
         </div>
-        <div class="amp-tile">
-          <div class="amp-tile-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><polygon points="10 11 15 14 10 17 10 11"/></svg></div>
-          <div class="amp-tile-name">Boosted Posts</div>
+
+        <div class="step" id="q3" data-n="3">
+          <div class="slabel">What you are here for</div>
+          <div class="q">What are you looking forward to?</div>
+          <div class="hint">Select as many as you like.</div>
+          <div class="opts" id="g3">
+            <button class="opt" data-v="Afrobeats" onclick="tog(this,'g3','n3')"><span class="box"></span><span class="opt-b"><span class="opt-t">Afrobeats parties</span><span class="opt-s">South Social, Compound O, PM2AM, etc</span></span></button>
+            <button class="opt" data-v="Amapiano" onclick="tog(this,'g3','n3')"><span class="box"></span><span class="opt-b"><span class="opt-t">Amapiano</span><span class="opt-s">Amapiano District, Groove Station, etc</span></span></button>
+            <button class="opt" data-v="House" onclick="tog(this,'g3','n3')"><span class="box"></span><span class="opt-b"><span class="opt-t">House music</span><span class="opt-s">Monochroma, Element House, Ardour, etc</span></span></button>
+            <button class="opt" data-v="Club nights" onclick="tog(this,'g3','n3')"><span class="box"></span><span class="opt-b"><span class="opt-t">Club nights</span><span class="opt-s">FOMO, Proxy, etc</span></span></button>
+            <button class="opt" data-v="Festivals" onclick="tog(this,'g3','n3')"><span class="box"></span><span class="opt-b"><span class="opt-t">Dance festivals</span><span class="opt-s">Dance Eko, etc</span></span></button>
+          </div>
+          <button class="btn" id="n3" disabled onclick="adv('q3','q4')">Next</button>
+          <button class="back" onclick="go('q2')">&larr; Back</button>
+        </div>
+
+        <div class="step" id="q4" data-n="4">
+          <div class="slabel">Your dates</div>
+          <div class="q">Which nights are you out?</div>
+          <div class="hint">Pick as many as you like.</div>
+          <div class="opts g2" id="g4">
+            <button class="opt" data-v="Weekend 1" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">Weekend 1</span><span class="opt-s">Fri 4, Sat 5, Sun 6</span></span></button>
+            <button class="opt" data-v="Weekend 2" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">Weekend 2</span><span class="opt-s">Fri 11, Sat 12, Sun 13</span></span></button>
+            <button class="opt" data-v="Weekend 3" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">Weekend 3</span><span class="opt-s">Fri 18, Sat 19, Sun 20</span></span></button>
+            <button class="opt" data-v="Weekend 4" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">Weekend 4</span><span class="opt-s">Fri 25, Sat 26, Sun 27</span></span></button>
+            <button class="opt" data-v="Christmas to New Year" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">Christmas to New Year</span><span class="opt-s">Mon 28 to Thu 31</span></span></button>
+            <button class="opt quiet" data-v="Before or after December" onclick="tog(this,'g4','n4')"><span class="box"></span><span class="opt-b"><span class="opt-t">Before or after December</span></span></button>
+            <button class="opt" data-v="All of it" data-all="true" onclick="togAll(this,'g4','n4')" style="grid-column:1/-1"><span class="box"></span><span class="opt-b"><span class="opt-t">All of it</span></span></button>
+          </div>
+          <button class="btn" id="n4" disabled onclick="adv('q4','q5')">Next</button>
+          <button class="back" onclick="go('q3')">&larr; Back</button>
+        </div>
+
+        <div class="step" id="q5" data-n="5">
+          <div class="slabel">How you like it</div>
+          <div class="q">How do you prefer to have your nights?</div>
+          <div class="hint">Select as many as you like.</div>
+          <div class="opts" id="g5">
+            <button class="opt" data-v="floor" onclick="tog(this,'g5','n5')"><span class="box"></span><span class="opt-b"><span class="opt-t">Regular access</span><span class="opt-s">Main dance floor, in the crowd</span></span></button>
+            <button class="opt" data-v="stage" onclick="tog(this,'g5','n5')"><span class="box"></span><span class="opt-b"><span class="opt-t">VIP or stage access</span><span class="opt-s">I like the VIP feeling, wanna be backstage</span></span></button>
+            <button class="opt" data-v="table" onclick="tog(this,'g5','n5')"><span class="box"></span><span class="opt-b"><span class="opt-t">Table or section</span><span class="opt-s">Come with your gang, your own bottle service</span></span></button>
+          </div>
+          <button class="btn" id="n5" disabled onclick="adv('q5','q6')">Next</button>
+          <button class="back" onclick="go('q4')">&larr; Back</button>
+        </div>
+
+        <div class="step" id="q6" data-n="6">
+          <div class="slabel">Your people</div>
+          <div class="q">Who are you doing December with?</div>
+          <div class="opts g2">
+            <button class="opt" onclick="pick('with','Just me',this)"><span class="opt-b"><span class="opt-t">Just me</span></span></button>
+            <button class="opt" onclick="pick('with','Me and one other',this)"><span class="opt-b"><span class="opt-t">Me and one</span></span></button>
+            <button class="opt" onclick="pick('with','3 to 4 people',this)"><span class="opt-b"><span class="opt-t">3 to 4 of us</span></span></button>
+            <button class="opt" onclick="pick('with','Group of 5+',this)"><span class="opt-b"><span class="opt-t">5 or more</span></span></button>
+            <button class="opt" onclick="pick('with','It varies by night',this)" style="grid-column:1/-1"><span class="opt-b"><span class="opt-t">It varies by night</span></span></button>
+          </div>
+          <button class="back" onclick="go('q5')">&larr; Back</button>
+        </div>
+
+        <div class="step" id="q7" data-n="7">
+          <div class="slabel">The night itself</div>
+          <div class="q">What would you normally spend on a big Lagos night out in December?</div>
+          <div class="hint">For you and a plus one, what do you think it will cost you on the average?</div>
+          <div class="opts">
+            <button class="opt quiet" onclick="pick('spend','under50',this)"><span class="opt-n">01</span><span class="opt-b"><span class="opt-t">Under N50,000</span></span><span class="opt-a">&rarr;</span></button>
+            <button class="opt" onclick="pick('spend','50-150',this)"><span class="opt-n">02</span><span class="opt-b"><span class="opt-t">N50,000 to N150,000</span></span><span class="opt-a">&rarr;</span></button>
+            <button class="opt" onclick="pick('spend','150-500',this)"><span class="opt-n">03</span><span class="opt-b"><span class="opt-t">N150,000 to N500,000</span></span><span class="opt-a">&rarr;</span></button>
+            <button class="opt" onclick="pick('spend','500plus',this)"><span class="opt-n">04</span><span class="opt-b"><span class="opt-t">N500,000 and above</span></span><span class="opt-a">&rarr;</span></button>
+          </div>
+          <button class="back" onclick="go('q6')">&larr; Back</button>
+        </div>
+
+        <div class="step" id="q8" data-n="8">
+          <div class="slabel">Last question</div>
+          <div class="q">Would you like us to create a night for you, curated intentionally around the very best moments Lagos nightlife and dance music culture has to offer?</div>
+          <div class="hint">We read every flyer in Lagos so you do not have to.</div>
+          <div class="opts">
+            <button class="opt" onclick="pick('intent','yes',this)"><span class="opt-n">01</span><span class="opt-b"><span class="opt-t">Sounds interesting, yes</span></span><span class="opt-a">&rarr;</span></button>
+            <button class="opt" onclick="pick('intent','maybe',this)"><span class="opt-n">02</span><span class="opt-b"><span class="opt-t">Maybe, show me</span></span><span class="opt-a">&rarr;</span></button>
+            <button class="opt quiet" onclick="pick('intent','no',this)"><span class="opt-n">03</span><span class="opt-b"><span class="opt-t">Not interested</span></span><span class="opt-a">&rarr;</span></button>
+          </div>
+          <button class="back" onclick="go('q7')">&larr; Back</button>
+        </div>
+
+        <div class="step" id="cap" data-n="8">
+          <div class="slabel">Where to send it</div>
+          <div class="q">Almost done.</div>
+          <div class="hint">Give us your information and we will reach out with the details of how this works.</div>
+          <div class="picks" id="picks"></div>
+          <div class="ig"><label>First name</label><input type="text" id="fn" placeholder="What to call you" autocomplete="given-name" oninput="clr(this,'e-fn')"><div class="ferr" id="e-fn">We need a name for the email.</div></div>
+          <div class="ig"><label>Email</label><input type="email" id="em" placeholder="you@example.com" autocomplete="email" inputmode="email" oninput="clr(this,'e-em')"><div class="ferr" id="e-em">That email does not look right.</div></div>
+          <div class="ig"><label>Phone number</label><input type="tel" id="ph" placeholder="+234 801 234 5678" autocomplete="tel" inputmode="tel" oninput="clr(this,'e-ph')"><div class="ferr" id="e-ph">A number we can reach you on.</div></div>
+          <div class="ig"><label>WhatsApp number</label><input type="tel" id="wa" placeholder="Same as above, or a different one" autocomplete="tel" inputmode="tel"></div>
+          <div class="ig"><label>Instagram <span class="opt-lbl">optional</span></label><div class="at"><span>@</span><input type="text" id="igh" placeholder="yourhandle" autocomplete="off" spellcheck="false"></div></div>
+          <button class="btn" id="sub" onclick="submit()">Send me the details</button>
+          <p class="fine">One email, built from your answers, with the full costs in it.</p>
+          <button class="back" onclick="go('q8')">&larr; Back</button>
+        </div>
+
+        <div class="step" id="exit" data-n="8">
+          <div class="rcard">
+            <h3>Thank you for your interest.</h3>
+            <p id="xp">You can check us out on Instagram for the Lagos scene all year.</p>
+            <a class="cta ghost" href="https://instagram.com/afro.cue" target="_blank" rel="noopener">Check us out on Instagram</a>
+          </div>
+        </div>
+
+        <div class="step" id="done" data-n="8">
+          <div class="rcard">
+            <div class="tick"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <h3 id="dh">That is December sorted.</h3>
+            <p id="dp">Check your email. Your nights and the full costs are on the way.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ WHAT GOES WRONG ══════════
+       The agitation the page was missing. Positive headings so it names what
+       we deliver, with the factual line from the scripts underneath. -->
+  <section>
+    <div class="inner">
+      <div class="head mid" style="margin-top:44px">
+        <div class="eyebrow">The problem</div>
+        <h2 class="bh">Too many things can stand between you and a good night in Lagos.</h2>
+      </div>
+      <div class="cards four">
+        <div class="pc">
+          <div class="im" style="background-image:url('assets/group_collective.jpg')"></div>
+          <div class="tx"><h3>Too many parties to choose from in December</h3><p>We sift through the noise to find one worth your time, around your schedule.</p></div>
+        </div>
+        <div class="pc">
+          <div class="im" style="background-image:url('assets/content_dj.jpeg')"></div>
+          <div class="tx"><h3>Where the best DJ talents are playing</h3><p>We spotlight DJs, so we know a thing or plenty about where the best talents play.</p></div>
+        </div>
+        <div class="pc">
+          <div class="im" style="background-image:url('assets/roamers_bg.jpg')"></div>
+          <div class="tx"><h3>Movement in Lagos</h3><p>Driving is hectic, and knowing the roads is another headache. A chauffeur ride comes with <b>every package</b>.</p></div>
+        </div>
+        <div class="pc">
+          <div class="im" style="background-image:url('assets/audience_partygoers.jpg')"></div>
+          <div class="tx"><h3>A soft landing</h3><p>If the scene is strange to you, a good night means the right people and the right rooms. We engineer that, with a section or a <b>ROAMER</b> or two to ease you in.</p></div>
         </div>
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
-
-<section class="build" id="build">
-  <div class="inner">
-    <div class="build-head">
-      <div class="label">Build your own campaign</div>
-      <h2 class="section-h yellow">Have something<br>bigger in mind?</h2>
-      <p class="section-sub">Tell us what you're trying to achieve and we'll recommend the right combination of AfroCue assets.</p>
-    </div>
-    <div class="build-cta-row">
-      <button class="btn btn-secondary" onclick="openInquiry()">
-        Talk to AfroCue
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </button>
-    </div>
-  </div>
-</section>
-
-<section class="final" id="contact">
-  <div class="final-inner">
-    <div class="label">Start a conversation</div>
-    <h2 class="section-h yellow">Have a campaign<br>in mind?</h2>
-    <p class="section-sub">Tell us what you're trying to achieve. We'll come back with a recommendation, usually within 48 hours.</p>
-    <div class="final-contacts">
-      <button class="btn btn-primary" onclick="openInquiry()">
-        Start an enquiry
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </button>
-      <a href="mailto:afrocueonline@gmail.com" class="btn btn-secondary">Email directly</a>
-    </div>
-    <div class="final-emails">
-      <a href="mailto:afrocueonline@gmail.com" class="final-email">afrocueonline@gmail.com</a>
-      <a href="mailto:info@afrocue.xyz" class="final-email">info@afrocue.xyz</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-brand">
-    <a href="https://afrocue.xyz/index.html"><img src="https://afrocue.xyz/logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none'"></a>
-  </div>
-  <div class="footer-links">
-    <a href="https://afrocue.xyz/index.html">Home</a>
-    <a href="https://afrocue.xyz/parties.html">Parties</a>
-    <a href="https://afrocue.xyz/set-club.html">Set Club</a>
-    <a href="https://afrocue.xyz/roamers.html">Roamers</a>
-  </div>
-  <div class="footer-email"><a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a> · <a href="mailto:info@afrocue.xyz">info@afrocue.xyz</a></div>
-</footer>
-
-<div class="inq-overlay" id="inqOverlay">
-  <div class="inq-modal" role="dialog" aria-labelledby="inqTitle">
-    <button class="inq-close" onclick="closeInquiry()" aria-label="Close">✕</button>
-    <div class="inq-label">Partnership Enquiry</div>
-    <h2 class="inq-h" id="inqTitle">Let's talk.</h2>
-    <p class="inq-sub">Pick what you're interested in. We'll come back with a proposal, usually within 48 hours.</p>
-
-    <form id="inqForm" onsubmit="return false;">
-      <div class="inq-row">
-        <div class="inq-field" style="margin-bottom: 0;">
-          <label>Name</label>
-          <input type="text" id="inqName" placeholder="Your name" required/>
+  <!-- ══════════ WHO WE ARE ══════════
+       A narrow adaptation of the afrocue.xyz hero, so the Navigator reads as
+       sitting under the masthead it comes from. Contained and softened: the
+       photograph at 40%, the gradient doing most of the work. -->
+  <section>
+    <div class="inner">
+      <div class="achero">
+        <div class="achero-img"></div>
+        <div class="achero-tex"></div>
+        <div class="achero-grad"></div>
+        <div class="achero-in">
+          <div class="achero-l">
+            <div class="achero-eye"><i></i><span>About AfroCue</span></div>
+            <h2 class="achero-h">Documenting<br><span class="ol">Nigeria's</span><br>Dance Floor.</h2>
+          </div>
+          <div class="achero-r">
+            <p class="achero-d">We document the rise of the Nigerian electronic scene, through the DJs who power it, the places they play at, and the music they play.</p>
+            <a class="achero-ig" href="https://instagram.com/afro.cue" target="_blank" rel="noopener">@afro.cue &rarr;</a>
+          </div>
         </div>
-        <div class="inq-field" style="margin-bottom: 0;">
-          <label>Email</label>
-          <input type="email" id="inqEmail" placeholder="you@example.com" required/>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ WHAT WE ARE OFFERING ══════════
+       The answer to the problem section, card for card. "What we do"
+       used to sit here as a second section saying the same thing; it is
+       folded in, so the page goes problem, who we are, the offer. -->
+  <section>
+    <div class="inner">
+      <div class="offer">
+        <div class="eyebrow">What we are offering</div>
+        <h2>Your Lagos nightlife experience, curated for maximum impact.</h2>
+        <p>Get a Navigator package and we create your night around the best moments, and take all the stress from you.</p>
+      </div>
+      <div class="wins">
+        <div class="win">
+          <div class="win-im" style="background-image:url('assets/group_collective.jpg')"><span class="win-tick"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+          <div class="win-t">The best parties identified for you</div>
+        </div>
+        <div class="win">
+          <div class="win-im" style="background-image:url('assets/content_dj.jpeg')"><span class="win-tick"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+          <div class="win-t">The city&rsquo;s best talents on your lineup</div>
+        </div>
+        <div class="win">
+          <div class="win-im" style="background-image:url('assets/roamers_bg.jpg')"><span class="win-tick"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+          <div class="win-t">Your movement, seamless</div>
+        </div>
+        <div class="win">
+          <div class="win-im" style="background-image:url('assets/audience_partygoers.jpg')"><span class="win-tick"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+          <div class="win-t">A night curated for maximum fun</div>
+        </div>
+      </div>
+      <p class="note" style="text-align:center;border-left:none;padding-left:0">Some rooms we hold, some we ask for. We tell you which before you pay for anything.</p>
+    </div>
+  </section>
+
+  <!-- ══════════ THE MONEY ══════════
+       The line from every UGC script, and the one thing the page did not
+       say. It sits alone so it is read. -->
+  <section>
+    <div class="inner">
+      <div class="money">
+        <div class="eyebrow">What it costs</div>
+        <h2>For roughly the same <svg class="ngn" viewBox="0 0 100 100" role="img" aria-label="naira"><path d="M19 11V89M19 11L81 89M81 11V89M5 41H95M5 61H95"/></svg> you would have spent on that night anyway.</h2>
+        <ul class="incl">
+          <li>Your ride, both ways</li>
+          <li>Tickets and entry</li>
+          <li>Bottles and mixers</li>
+          <li>Table bookings</li>
+          <li>The meal after</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ THE PACKAGES ══════════
+       Everything the three share is stated once, above them. Each column
+       then carries only what makes it different, so the ladder can be read
+       in one pass. No prices anywhere: the button records the package and
+       starts the quiz, and the costs follow by email. -->
+  <section id="packages">
+    <div class="inner">
+      <div class="head mid" style="margin-top:34px">
+        <div class="eyebrow">The service</div>
+        <h2 class="bh">Two ways to navigate December.</h2>
+        <p class="sub">Tell us which fits and we send the full details, the nights we would pick for you, and what it costs.</p>
+      </div>
+
+      <div class="ladder">
+        <div class="ladder-lbl">
+          <h3>In the room</h3>
+          <p>For people who want to be in the room, on the floor, in VIP or by the stage. Priced for two, because a party starts from two.</p>
+        </div>
+
+        <div class="base">
+          <div class="bl">In all three</div>
+          <ul>
+            <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2 2 2 0 0 0 0 5 2 2 0 0 1-2 2H5a2 2 0 0 1-2-2 2 2 0 0 0 0-5z"/><path d="M13.5 7.5v9"/></svg><span><b>Two tickets</b>, for you and a plus one of your choosing, or an AfroCue Roamer to guide you</span></li>
+            <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/><circle cx="14.5" cy="12" r="1"/></svg><span>General, VIP or stage access, depending on the event</span></li>
+            <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="9" width="17" height="12" rx="1.2"/><path d="M12 9v12"/><path d="M3.5 13.5h17"/><path d="M12 9S9.8 4.5 7.6 6.3C5.8 7.8 12 9 12 9zM12 9s2.2-4.5 4.4-2.7C18.2 7.8 12 9 12 9z"/></svg><span>An AfroCue souvenir</span></li>
+          </ul>
+        </div>
+        <div class="tiers">
+          <div class="tier">
+            <div class="tier-top"><h4>Guest</h4></div>
+            <div class="who">For you and a plus one</div>
+            <div class="plus">What is different</div>
+            <ul>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17H3.5v-5L5.5 7h13l2 5v5H19"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M9.5 17h5"/></svg><span>A chauffeur ride <b>to the party</b></span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6.5-5.2 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 15.8 12 21 12 21z"/><circle cx="12" cy="10" r="2.3"/></svg><span>One stop on the way</span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l1.8 5.1 5.2 1.8-5.2 1.8L12 17.3l-1.8-5.1L5 10.4l5.2-1.8z"/></svg><span>No ride home on this one, it is the only package without it</span></li>
+            </ul>
+            <button class="cta ghost" onclick="enquire('Guest')">Make an enquiry</button>
+          </div>
+          <div class="tier pick">
+            <div class="tier-top"><h4>Special Guest</h4><span class="flag">Most taken</span></div>
+            <div class="who">For you and a plus one</div>
+            <div class="plus">What is different</div>
+            <ul>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17H3.5v-5L5.5 7h13l2 5v5H19"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M9.5 17h5"/></svg><span>A chauffeur ride <b>to and fro</b></span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6.5-5.2 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 15.8 12 21 12 21z"/><circle cx="12" cy="10" r="2.3"/></svg><span>Two stops</span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14l-7 8z"/><path d="M12 12v7"/><path d="M8.5 20h7"/></svg><span>Pregame drinks in the car</span></li>
+            </ul>
+            <button class="cta" onclick="enquire('Special Guest')">Make an enquiry</button>
+          </div>
+          <div class="tier">
+            <div class="tier-top"><h4>Guest of Honour</h4></div>
+            <div class="who">For you and a plus one</div>
+            <div class="plus">What is different</div>
+            <ul>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17H3.5v-5L5.5 7h13l2 5v5H19"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M9.5 17h5"/></svg><span>A chauffeur ride <b>to and fro</b></span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6.5-5.2 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 15.8 12 21 12 21z"/><circle cx="12" cy="10" r="2.3"/></svg><span>Up to three stops</span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14l-7 8z"/><path d="M12 12v7"/><path d="M8.5 20h7"/></svg><span>Pregame drinks in the car</span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v8"/><path d="M4.2 3v5a2.8 2.8 0 0 0 5.6 0V3"/><path d="M7 11v10"/><path d="M17 21V3c2 0 3 2 3 4.5S19 12 17 12"/></svg><span><b>Two post-event meals</b>, after the night is done</span></li>
+            </ul>
+            <button class="cta ghost" onclick="enquire('Guest of Honour')">Make an enquiry</button>
+          </div>
         </div>
       </div>
 
-      <div class="inq-field" style="margin-top: 16px;">
-        <label>What are you interested in?</label>
-        <div class="inq-tabs" role="tablist">
-          <button type="button" class="inq-tab active" data-tab="djs" onclick="switchInqTab('djs')">For DJs</button>
-          <button type="button" class="inq-tab" data-tab="parties" onclick="switchInqTab('parties')">For Parties</button>
-          <button type="button" class="inq-tab" data-tab="brands" onclick="switchInqTab('brands')">For Brands</button>
+      <div class="ladder">
+        <div class="ladder-lbl">
+          <h3>At a table</h3>
+          <p>Table and section packages, entry included for everyone, with drinks and food as the organisers are offering on the night.</p>
         </div>
-        <div class="inq-grid" id="inqGrid"></div>
-        <div class="inq-summary" id="inqSummary"></div>
+
+        <div class="base">
+          <div class="bl">In all three</div>
+          <ul>
+            <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9.5" cy="8" r="3"/><path d="M3.5 20c0-3 2.7-5 6-5s6 2 6 5"/><path d="M16.5 6a3 3 0 0 1 0 6"/><path d="M18 20c0-2-.8-3.5-2.2-4.4"/></svg><span>A table with <b>entry included</b> for everyone on it</span></li>
+            <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h4v3l1.6 2.6V21H8.4V8.6L10 6z"/><path d="M8.4 13.5h7.2"/></svg><span><b>Bottles and mixers</b> on the table</span></li>
+            <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h4v3l1.6 2.6V21H8.4V8.6L10 6z"/><path d="M8.4 13.5h7.2"/></svg><span>Table service from the event, varying by the night</span></li>
+            <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17H3.5v-5L5.5 7h13l2 5v5H19"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M9.5 17h5"/></svg><span>Chauffeur pick up and drop off</span></li>
+            <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14l-7 8z"/><path d="M12 12v7"/><path d="M8.5 20h7"/></svg><span>Drinks in the car</span></li>
+            <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v8"/><path d="M4.2 3v5a2.8 2.8 0 0 0 5.6 0V3"/><path d="M7 11v10"/><path d="M17 21V3c2 0 3 2 3 4.5S19 12 17 12"/></svg><span>A post-event meal</span></li>
+          </ul>
+        </div>
+        <div class="tiers">
+          <div class="tier">
+            <div class="tier-top"><h4>Section</h4></div>
+            <div class="who">A table for 2 to 3</div>
+            <div class="plus">What is different</div>
+            <ul>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h4v3l1.6 2.6V21H8.4V8.6L10 6z"/><path d="M8.4 13.5h7.2"/></svg><span>At least <b>one bottle</b></span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17H3.5v-5L5.5 7h13l2 5v5H19"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M9.5 17h5"/></svg><span>One car, both ways</span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v8"/><path d="M4.2 3v5a2.8 2.8 0 0 0 5.6 0V3"/><path d="M7 11v10"/><path d="M17 21V3c2 0 3 2 3 4.5S19 12 17 12"/></svg><span>The meal after, for two</span></li>
+            </ul>
+            <button class="cta ghost" onclick="enquire('Section')">Make an enquiry</button>
+          </div>
+          <div class="tier">
+            <div class="tier-top"><h4>Section Chief</h4></div>
+            <div class="who">A table for 4 to 6</div>
+            <div class="plus">What is different</div>
+            <ul>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h4v3l1.6 2.6V21H8.4V8.6L10 6z"/><path d="M8.4 13.5h7.2"/></svg><span><b>One to two bottles</b></span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17H3.5v-5L5.5 7h13l2 5v5H19"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M9.5 17h5"/></svg><span>One car, both ways</span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v8"/><path d="M4.2 3v5a2.8 2.8 0 0 0 5.6 0V3"/><path d="M7 11v10"/><path d="M17 21V3c2 0 3 2 3 4.5S19 12 17 12"/></svg><span>The meal after, for two</span></li>
+            </ul>
+            <button class="cta ghost" onclick="enquire('Section Chief')">Make an enquiry</button>
+          </div>
+          <div class="tier">
+            <div class="tier-top"><h4>Chairman</h4></div>
+            <div class="who">A table for 7 to 10</div>
+            <div class="plus">What is different</div>
+            <ul>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h4v3l1.6 2.6V21H8.4V8.6L10 6z"/><path d="M8.4 13.5h7.2"/></svg><span><b>Up to four bottles</b></span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17H3.5v-5L5.5 7h13l2 5v5H19"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M9.5 17h5"/></svg><span><b>Two cars.</b> One waits for you all night</span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="2"/><path d="M9.5 17V8h3.3a2.6 2.6 0 0 1 0 5.2H9.5"/></svg><span>Parking secured at the venue</span></li>
+              <li class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v8"/><path d="M4.2 3v5a2.8 2.8 0 0 0 5.6 0V3"/><path d="M7 11v10"/><path d="M17 21V3c2 0 3 2 3 4.5S19 12 17 12"/></svg><span>A well-stocked platter for chops, and the meal after for four</span></li>
+            </ul>
+            <button class="cta ghost" onclick="enquire('Chairman')">Make an enquiry</button>
+          </div>
+        </div>
       </div>
 
-      <div class="inq-field">
-        <label>Notes (optional)</label>
-        <textarea id="inqNotes" placeholder="Anything we should know: budget, timing, objective..."></textarea>
+      <div class="wonder">
+        <h4>If there&rsquo;s anything else you would like to curate your night around, ask us, and we might be able to help.</h4>
+        <p>Somewhere to stay near the venue, a second table, a car for the weekend, something we have not thought of. The harder it is to get in December, the more worth asking us.</p>
       </div>
 
-      <p class="inq-error" id="inqError" role="alert"></p>
-      <button type="button" class="inq-submit" onclick="submitInquiry()">Send Enquiry</button>
+      <p class="price-foot">Make an enquiry and the full costs come by email, with the nights we would put you on. A night runs once there are enough bookings, and we tell you before you pay if a date is not going ahead. Islands are included in the ride; the mainland is quoted.</p>
+    </div>
+  </section>
 
-      <p class="inq-foot">Prefer email? <a href="mailto:afrocueonline@gmail.com">afrocueonline@gmail.com</a> or <a href="mailto:info@afrocue.xyz">info@afrocue.xyz</a></p>
-    </form>
-  </div>
-</div>
+  <!-- ══════════ THE BOARD ══════════ -->
+  <section>
+    <div class="inner">
+      <div class="head" style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <div>
+          <div class="eyebrow">On the board</div>
+          <h2 class="bh">What December already looks like.</h2>
+          <p class="sub">We track these whether you book with us or not. Curation is deciding which one is your night, and getting you through the door.</p>
+        </div>
+        <span class="live"><i></i><span id="freshness">Updated four times a day</span></span>
+      </div>
+    </div>
+    <div class="bleed">
+      <div class="rail" id="rail">
+        <a class="fly" href="parties.html"><div class="art" style="background-image:url('assets/chibyverse_flyer.jpg')"><span class="when">Fri 5</span></div><div class="nm">South Social</div><div class="vn">Victoria Island</div></a>
+        <a class="fly" href="parties.html"><div class="art" style="background-image:url('assets/sunday_service_flyer.jpg')"><span class="when">Sun 7</span></div><div class="nm">Sunday Service</div><div class="vn">Lekki</div></a>
+        <a class="fly" href="parties.html"><div class="art" style="background-image:url('assets/v6_flyer.jpg')"><span class="when">Sat 12</span></div><div class="nm">V6 Group Collective</div><div class="vn">Venue on the night</div></a>
+        <a class="fly" href="parties.html"><div class="art" style="background-image:url('assets/content_weekly_top5.jpeg')"><span class="when">Fri 19</span></div><div class="nm">Monochroma</div><div class="vn">Island</div></a>
+        <a class="fly" href="parties.html"><div class="art" style="background-image:url('assets/pregame_img_1.jpg')"><span class="when">Sat 20</span></div><div class="nm">Group Therapy</div><div class="vn">Mainland</div></a>
+        <a class="fly" href="parties.html"><div class="art" style="background-image:url('assets/content_dj.jpeg')"><span class="when">Sat 26</span></div><div class="nm">Amapiano District</div><div class="vn">Victoria Island</div></a>
+        <a class="fly" href="parties.html"><div class="art" style="background-image:url('assets/setsclub_hero.jpg')"><span class="when">Sun 27</span></div><div class="nm">Element House</div><div class="vn">Venue on the night</div></a>
+        <a class="fly" href="parties.html"><div class="art" style="background-image:url('assets/group_collective.jpg')"><span class="when">Thu 31</span></div><div class="nm">New Year's Eve</div><div class="vn">Across Lagos</div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FAQ ══════════ -->
+  <section>
+    <div class="inner">
+      <div class="head mid">
+        <div class="eyebrow">Before you ask</div>
+        <h2 class="bh">The short answers.</h2>
+      </div>
+      <div class="faq">
+        <div class="fq"><b>Who is behind Lagos Navigator?</b><span>AfroCue. We document the rise of the Nigerian electronic scene, through the DJs who power it, the places they play at, and the music they play. Lagos Navigator is built on the back of that.</span></div>
+        <div class="fq"><b>Does it cost anything to answer the quiz?</b><span>No. The nights we pick for you are free and yours either way.</span></div>
+        <div class="fq"><b>Do I have to book anything?</b><span>No. Answer the quiz and the nights we picked for you come by email, with the costs, and you decide from there.</span></div>
+        <div class="fq"><b>Can I split a table with people I do not know?</b><span>Yes. That is what the Section is for, and we tell you who is on it before you commit.</span></div>
+        <div class="fq"><b>Why is the table priced from rather than at?</b><span>Venue minimums move by the night. The 27th is not the 3rd. We quote the night you pick.</span></div>
+        <div class="fq"><b>When do I hear back?</b><span>The email lands within the minute. Check it for the full details and how to proceed next.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ CLOSING ══════════ -->
+  <section class="closing">
+    <div class="closing-in">
+      <h2>Start with where you will be.</h2>
+      <p>It takes about a minute, and the list of nights is yours either way.</p>
+      <div class="card">
+        <div class="slabel">Where you are</div>
+        <div class="q">Where are you spending December?</div>
+        <div class="opts" style="margin-top:12px">
+          <button class="opt" onclick="fromClose('lagos')"><span class="opt-n">01</span><span class="opt-b"><span class="opt-t">I stay in Lagos</span></span><span class="opt-a">&rarr;</span></button>
+          <button class="opt" onclick="fromClose('travelling')"><span class="opt-n">02</span><span class="opt-b"><span class="opt-t">Travelling to Lagos</span></span><span class="opt-a">&rarr;</span></button>
+          <button class="opt" onclick="fromClose('undecided')"><span class="opt-n">03</span><span class="opt-b"><span class="opt-t">Not decided yet</span></span><span class="opt-a">&rarr;</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="ac-footer"></div>
+
+<script src="js/afrocue-ui.js" data-nav="full" data-footer="full"></script>
 
 <script>
-  const INQUIRY_EMAIL = 'afrocueonline@gmail.com';
+(function(){
+  'use strict';
 
-  // The live URL comes from afrocue.js, every time. No copy kept here.
-  const ADS_SCRIPT_URL = (typeof AFROCUE_SCRIPT_URL !== 'undefined' && AFROCUE_SCRIPT_URL)
-    ? AFROCUE_SCRIPT_URL
-    : (typeof getAfroCueScriptUrl === 'function' ? getAfroCueScriptUrl() : '');
-
-  // Add ?debug=1 to the address to see the loading status on the page.
-  const DEBUG = /[?&]debug=1\b/.test(location.search);
-  const log = (...a) => { if (DEBUG) console.log('[AfroCue Ads]', ...a); };
-
-  // Sheet text is inserted as text, never as markup.
-  const esc = v => String(v == null ? '' : v)
-    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-
-  // 30000 -> 30,000. Anything that is not a plain number is left as typed.
-  const money = v => {
-    const raw = String(v == null ? '' : v).trim(), n = raw.replace(/,/g, '');
-    return /^\d+(\.\d+)?$/.test(n) ? Number(n).toLocaleString('en-US') : raw;
-  };
-
-  log('Using GAS URL:', ADS_SCRIPT_URL);
-
-  // Shown until the sheet answers, and kept if it never does. A copy of the Ads tab.
-  const DJ_PRODUCTS_FALLBACK = [
-    { id:'TOP_5', name:'Top 5', format:'Slideshow', price:'30000', priceType:'fixed', description:"AfroCue's weekly Top 5 sets from the weekend. Your moment, standing out from everything else.", needs:['HD video of the DJ','Party flyer'], addon:{name:'Media coverage',price:'+₦50K'}, amplification:true, sampleLink:'https://www.instagram.com/p/DaLCmTNgvcd/', exampleImage:'https://i.ibb.co/nqPhvh84/top-5.jpg', exampleType:'video' },
-    { id:'INCOMING_SETS', name:'Incoming Sets', format:'Video', price:'50000', priceType:'fixed', description:"Spotlight on a DJ playing or headlining an upcoming event, in AfroCue's editorial style.", needs:['HD video of the DJ','Event info + flyer'], addon:null, amplification:true, sampleLink:'https://www.instagram.com/p/Dck9lxMC_mR/', exampleImage:'https://i.ibb.co/1t4gpfJv/photo-4.jpg', exampleType:'video' },
-    { id:'DJ_SPOTLIGHT', name:'DJ Spotlight', format:'Editorial', price:'Custom', priceType:'custom', description:"Longer-form spotlight on a DJ, their story, their sound, the rooms they hold. Premium content", needs:['Brief on the DJ','Access for shoot / interview'], addon:null, amplification:true, sampleLink:'https://www.instagram.com/p/DcNwKZqgh0F/', exampleImage:'https://i.ibb.co/DHQV3T6B/we.jpg', exampleType:'image' },
-    { id:'DJ_DEBUT', name:'DJ Debut', format:'Editorial', price:'Custom', priceType:'custom', description:"A first-look spotlight for a DJ stepping into a bigger room. Framed as the moment their career shifts.", needs:['Access for the shoot','Event details'], addon:null, amplification:true, sampleLink:'https://www.instagram.com/afro.cue/reel/DafGpMYoJwU/', exampleImage:'https://i.ibb.co/j9s5Z4h7/photo.jpg', exampleType:'image' },
-    { id:'SET_MOMENTS', name:'Set Moments', format:'Video', price:'Custom', priceType:'custom', description:"One moment from a set that deserves its own frame. Short-form editorial for the clips that hit.", needs:['One clean clip','DJ + party context'], addon:null, amplification:false, sampleLink:'https://www.instagram.com/reel/DcEb7XkCyzC/', exampleImage:'https://i.ibb.co/QvgJs6kL/swe.jpg', exampleType:'video' }
-  ];
-
-  const PARTY_PRODUCTS_FALLBACK = [
-    { id:'LINEUP_RADAR', name:'Lineup Radar', format:'Image', price:'40000', priceType:'from', description:"AfroCue's weekly post of DJ lineups for parties happening that weekend.", needs:['Flyer with full DJ lineup only'], addon:null, amplification:true, sampleLink:'https://www.instagram.com/afro.cue/p/Dc6CwoDAldU/', exampleImage:'https://i.ibb.co/XdvM1zG/rasrd.jpg', exampleType:'image' },
-    { id:'INCOMING_DJ', name:'Incoming DJ', format:'Video', price:'50000', priceType:'fixed', description:"DJ-focused pre-event content for your party. Points people at the room before doors open.", needs:['HD video of the DJ','DJ + event info'], addon:null, amplification:true, sampleLink:'https://www.instagram.com/reel/DcbvyRlRv5g/', exampleImage:'https://i.ibb.co/G3QrPPLz/unvio.jpg', exampleType:'video' },
-    { id:'DJ_TOP_5_PARTY', name:'DJ Top 5', format:'Slideshow', price:'30000', priceType:'fixed', description:"The same Top 5 format, positioned around your party, a spot for a DJ moment from your event.", needs:['HD video moment from your party','Party flyer'], addon:{name:'Media coverage',price:'+₦50K'}, amplification:true, sampleLink:'https://www.instagram.com/p/DXqxaN0gkow/', exampleImage:'https://i.ibb.co/d0tSKkSF/dj-op.jpg', exampleType:'video' },
-    { id:'PARTY_EDITORIAL', name:'Party Editorial', format:'Editorial', price:'70000', priceType:'fixed', description:"Editorial interpretation of your party: how it went, what the room felt like.", needs:['Event brief','Photos, video or flyer'], addon:{name:'Post + Amplification',price:'From ₦100K'}, amplification:true, sampleLink:'https://www.instagram.com/p/DZ5U5QjgsvW/', exampleImage:'https://i.ibb.co/dJcBQYZX/se.jpg', exampleType:'image' },
-    { id:'CREATIVE_PARTNER', name:'Creative Partner Content', format:'Custom', price:'Custom', priceType:'custom', description:"AfroCue's creative expression with the right creator and videographer, built for your party audience.", needs:['The idea or brief'], addon:null, amplification:true, sampleLink:'', exampleImage:'', exampleType:'image' }
-  ];
-
-  const BRAND_PARTNERSHIPS_FALLBACK = [
-    { name:'Slide Placements', desc:'Your brand woven into AfroCue editorial slides: the Top 5, incoming events, party roundups.', icon:'slide' },
-    { name:'Brand Sponsorship', desc:"Tiered sponsorship of AfroCue content, series or events. Multiple tiers; we'll match the right one to your objective.", icon:'sponsor' },
-    { name:'DJ × Brand', desc:'A DJ or creator-led collaboration produced by AfroCue, with your brand at the centre.', icon:'dj' },
-    { name:'Creative City Campaign', desc:'We use our network (rich audience, media relationships, party tastemakers, creators) to build you a culturally relevant creative campaign.', icon:'city' },
-    { name:'Content Production', desc:'AfroCue creative expression using rich and relevant media assets to produce content that lands with your audience.', icon:'content' },
-    { name:'Set Club 01 Partnership', desc:"We're building something interesting. If your brand is serious about it, send a proposal document. Reach out here.", icon:'star', wide:true }
-  ];
-
-  const RATE_ADDONS = [
-    { category:'Add-ons', name:'Media Coverage', format:'Add-on', price:'50,000', priceType:'addon' }
-  ];
-  const RATE_AMPLIFICATION = [
-    { category:'Amplification', name:'Ads', format:'Media buy', price:'50,000', priceType:'from' },
-    { category:'Amplification', name:'Post Amplification', format:'Media buy', price:'100,000', priceType:'from' }
-  ];
-
-  const BRAND_ICONS = {
-    slide:'<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><line x1="8" y1="20" x2="16" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></svg>',
-    sponsor:'<svg viewBox="0 0 24 24"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z"/></svg>',
-    dj:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/><path d="M12 3v3.5M12 17.5V21"/></svg>',
-    city:'<svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V10l5-3 5 3v11"/><path d="M15 21V8l4-2v15"/><path d="M9 14h.01M9 17h.01"/></svg>',
-    content:'<svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="11" r="2"/><path d="M14 10h5M14 14h5M6 17l2-2 3 3"/></svg>',
-    star:'<svg viewBox="0 0 24 24"><polygon points="12 2 15.1 8.6 22 9.3 17 14 18.4 21 12 17.4 5.6 21 7 14 2 9.3 8.9 8.6 12 2"/></svg>'
-  };
-
-  let DJ_PRODUCTS = DJ_PRODUCTS_FALLBACK;
-  let PARTY_PRODUCTS = PARTY_PRODUCTS_FALLBACK;
-  let BRAND_PARTNERSHIPS = BRAND_PARTNERSHIPS_FALLBACK;
-
-  function renderPrice(product) {
-    if (!product.price && product.priceType !== 'custom') return '';
-    const pt = product.priceType || 'fixed';
-    if (pt === 'custom' || product.price === 'Custom') {
-      return `<div class="prod-price"><span class="prod-price-num">Let's talk</span></div>`;
-    }
-    if (pt === 'from') {
-      return `<div class="prod-price"><span class="prod-price-prefix">From</span><span class="prod-price-num">₦${esc(money(product.price))}</span></div>`;
-    }
-    return `<div class="prod-price"><span class="prod-price-num">₦${esc(money(product.price))}</span></div>`;
-  }
-
-  function renderProduct(product) {
-    const hasLink = !!String(product.sampleLink || '').trim();
-    const hasImage = !!String(product.exampleImage || '').trim();
-
-    const playIcon = (hasLink && product.exampleType === 'video') ? `
-      <div class="prod-play" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
-      </div>` : '';
-
-    const exampleLink = hasLink ? `
-      <span class="prod-example-link">
-        See example
-        <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg>
-      </span>` : '';
-
-    const picture = hasImage
-      ? `<img src="${esc(product.exampleImage)}" alt="${esc(product.name)}" loading="lazy"/>`
-      : `<div class="prod-media-blank">${esc(product.format || 'Custom')}</div>`;
+  var S = { where:'', from:'', often:'', looking:[], dates:[], nights:[], with:'', spend:'', intent:'', tier:'' };
+  var sending = false;
 
 
-    const needsList = Array.isArray(product.needs) ? product.needs : String(product.needs || '').split('|').map(x => x.trim()).filter(Boolean);
-    const needs = needsList.length ? `
-      <div class="prod-needs">
-        <span class="prod-needs-label">Needs</span>
-        <span class="prod-needs-items">${needsList.map(esc).join('<span class="sep">·</span>')}</span>
-      </div>` : '';
-
-    const addon = product.addon && product.addon.name ? `
-      <div class="prod-addon">
-        <span class="prod-addon-label">Add-on</span>
-        <span class="prod-addon-text">${esc(product.addon.name)}<strong>${esc(product.addon.price)}</strong></span>
-      </div>` : '';
-
-    const ampNote = product.amplification ? `<div class="prod-amp-note">Amplification available</div>` : '';
-
-    const tag = `<span class="prod-tag">${esc(product.format)}</span>`;
-    const mediaTop = hasLink
-      ? `<a href="${esc(product.sampleLink)}" target="_blank" rel="noopener" class="prod-media">${picture}<div class="prod-media-overlay"></div>${tag}${playIcon}${exampleLink}</a>`
-      : `<div class="prod-media">${picture}<div class="prod-media-overlay"></div>${tag}</div>`;
-
-    return `
-      <div class="prod">
-        ${mediaTop}
-        <div class="prod-body">
-          <h3 class="prod-name">${esc(product.name)}</h3>
-          ${renderPrice(product)}
-          <p class="prod-desc">${esc(product.description)}</p>
-          ${needs}
-          <div class="prod-foot">
-            ${addon}
-            <button class="prod-inquire" data-inquire="${esc(product.name)}">
-              Inquire
-              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </button>
-          </div>
-          ${ampNote}
-        </div>
-      </div>`;
-  }
-
-  function renderBrandTile(p) {
-    const wide = p.wide ? ' brand-tile-wide' : '';
-    const icon = BRAND_ICONS[p.icon] || BRAND_ICONS.sponsor;
-    return `
-      <button class="brand-tile${wide}" data-inquire="${esc(p.name)}">
-        <div class="brand-icon">${icon}</div>
-        <div class="brand-name">${esc(p.name)}</div>
-        <div class="brand-desc">${esc(p.desc)}</div>
-        <div class="brand-foot">Talk to us <span class="arrow">↗</span></div>
-      </button>`;
-  }
-
-  function buildRateTable() {
-    const rows = [];
-    (DJ_PRODUCTS || []).forEach(p => {
-      rows.push({
-        category: 'For DJs',
-        name: p.name, format: p.format,
-        price: p.priceType === 'custom' ? 'Let\u2019s talk' : (p.price || ''),
-        priceType: p.priceType || 'fixed'
-      });
+  /* UTM off the query string, merged into every row. This page sits
+     behind paid search: a row with no source cannot be optimised. */
+  var UTM = {};
+  (function(){
+    var p = new URLSearchParams(location.search);
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid'].forEach(function(k){
+      if (p.get(k)) UTM[k] = p.get(k);
     });
-    (PARTY_PRODUCTS || []).forEach(p => {
-      rows.push({
-        category: 'For Parties',
-        name: p.name, format: p.format,
-        price: p.priceType === 'custom' ? 'Let\u2019s talk' : (p.price || ''),
-        priceType: p.priceType || 'fixed'
-      });
-    });
-    rows.push(...RATE_ADDONS);
-    rows.push(...RATE_AMPLIFICATION);
-    return rows;
+  })();
+
+  function url(){
+    if (typeof getAfroCueScriptUrl === 'function') return getAfroCueScriptUrl();
+    return window.AFROCUE_SCRIPT_URL || '';
+  }
+  function navH(){
+    var n = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--ac-nav-h'), 10);
+    return (isNaN(n) ? 76 : n) + 16;
+  }
+  function track(e, d){
+    try { window.dataLayer = window.dataLayer || []; var o = { event:e }; for (var k in d) o[k] = d[k]; window.dataLayer.push(o); } catch(x){}
+  }
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+
+  function go(id){
+    document.querySelectorAll('#quiz .step').forEach(function(s){ s.classList.remove('active'); });
+    var el = document.getElementById(id); if (!el) return;
+    el.classList.add('active');
+    /* Somebody who bowed out at question one has not reached question
+       eight, so the bar comes off rather than lying to them. */
+    var prog = document.querySelector('#quiz .prog');
+    if (id === 'exit'){ prog.style.display = 'none'; }
+    else {
+      prog.style.display = '';
+      var n = parseInt(el.getAttribute('data-n'), 10) || 1;
+      document.getElementById('pfill').style.width = Math.round(n / 8 * 100) + '%';
+      document.getElementById('plbl').textContent = n + ' / 8';
+    }
+    track('navigator_step', { step:id });
+  }
+  function toTop(){
+    var t = document.getElementById('top');
+    window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - navH(), behavior:'smooth' });
   }
 
-  function renderRateTable(rows) {
-    let html = '';
-    let currentCategory = '';
-    rows.forEach(r => {
-      if (r.category !== currentCategory) {
-        currentCategory = r.category;
-        html += `<tr class="rate-cat-row"><td colspan="3">${esc(currentCategory)}</td></tr>`;
+  /* A tier button is an enquiry: it records what they clicked, carries it
+     through to the row, and starts the quiz rather than opening a form of
+     its own. One capture path, one place the answers land. */
+  function enquire(name){
+    S.tier = name;
+    var a = document.getElementById('asked');
+    a.textContent = 'Enquiring about ' + name + '. Answer these and the full details come to your inbox.';
+    a.style.display = 'block';
+    track('navigator_tier_enquiry', { tier:name });
+    go('q1');
+    toTop();
+    var card = document.getElementById('quiz');
+    card.classList.remove('flash');
+    void card.offsetWidth;
+    card.classList.add('flash');
+  }
+
+  function pick(key, val, btn){
+    var box = btn.parentElement;
+    box.querySelectorAll('.opt').forEach(function(o){ o.classList.remove('selected'); });
+    btn.classList.add('selected');
+    S[key] = val;
+    setTimeout(function(){
+      if (key === 'where'){
+        if (val === 'out') return bowOut('not_in_lagos',
+          'The Navigator is built around nights in Lagos this December. You can check us out on Instagram for the scene all year.');
+        /* Undecided gets asked where from too. Without it they default to
+           the Nigerian page, and in November that bucket is large. */
+        return go(val === 'lagos' ? 'q2' : 'q1b');
       }
-      const amount = esc(money(r.price));
-      let priceHtml;
-      if (r.priceType === 'custom')      priceHtml = esc(r.price);
-      else if (r.priceType === 'from')   priceHtml = `<span class="prefix">From</span>₦${amount}`;
-      else if (r.priceType === 'addon')  priceHtml = `<span class="prefix">+</span>₦${amount}`;
-      else                                priceHtml = `₦${amount}`;
-      html += `<tr><td class="rate-name">${esc(r.name)}</td><td class="rate-fmt">${esc(r.format || '')}</td><td class="rate-price">${priceHtml}</td></tr>`;
-    });
-    return html;
-  }
-
-  function renderAll() {
-    document.getElementById('djs-list').innerHTML = DJ_PRODUCTS.map(renderProduct).join('');
-    document.getElementById('parties-list').innerHTML = PARTY_PRODUCTS.map(renderProduct).join('');
-    document.getElementById('brands-list').innerHTML = BRAND_PARTNERSHIPS.map(renderBrandTile).join('');
-    document.getElementById('rate-table-body').innerHTML = renderRateTable(buildRateTable());
-    document.getElementById('count-djs').textContent = DJ_PRODUCTS.length;
-    document.getElementById('count-parties').textContent = PARTY_PRODUCTS.length;
-    document.getElementById('count-brands').textContent = BRAND_PARTNERSHIPS.length;
-  }
-
-  function setStatus(msg, isError) {
-    if (isError) console.warn('[AfroCue Ads]', msg);
-    if (!DEBUG) return;              // visitors never see loading messages
-    const el = document.getElementById('catStatus');
-    if (!el) return;
-    el.textContent = msg;
-    el.classList.add('show');
-    if (isError) el.classList.add('error');
-    else el.classList.remove('error');
-  }
-
-  function switchCatTab(tab) {
-    document.querySelectorAll('.cat-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
-    document.querySelectorAll('.cat-panel').forEach(p => p.classList.toggle('active', p.dataset.panel === tab));
-  }
-
-  const INQ_GROUPS = { djs: [], parties: [], brands: [] };
-  let inqActiveTab = 'djs';
-  let inqSelected = new Set();
-
-  function buildInqGroups() {
-    INQ_GROUPS.djs     = DJ_PRODUCTS.map(p => p.name);
-    INQ_GROUPS.parties = PARTY_PRODUCTS.map(p => p.name);
-    INQ_GROUPS.brands  = BRAND_PARTNERSHIPS.map(p => p.name);
-  }
-
-  function renderInqGrid() {
-    const grid = document.getElementById('inqGrid');
-    const items = INQ_GROUPS[inqActiveTab] || [];
-    grid.innerHTML = items.map(name => {
-      const checked = inqSelected.has(name);
-      return `
-        <label class="inq-opt${checked ? ' checked' : ''}" data-name="${esc(name)}">
-          <input type="checkbox" value="${esc(name)}"${checked ? ' checked' : ''}/>
-          <span class="inq-box"></span>
-          <span>${esc(name)}</span>
-        </label>`;
-    }).join('');
-
-    grid.querySelectorAll('.inq-opt').forEach(el => {
-      el.addEventListener('click', (e) => {
-        e.preventDefault();
-        const name = el.dataset.name;
-        if (el.classList.contains('checked')) {
-          el.classList.remove('checked');
-          inqSelected.delete(name);
-        } else {
-          el.classList.add('checked');
-          inqSelected.add(name);
-        }
-        renderInqSummary();
-      });
-    });
-  }
-
-  function renderInqSummary() {
-    const summary = document.getElementById('inqSummary');
-    const count = inqSelected.size;
-    if (count === 0) { summary.innerHTML = ''; return; }
-    const names = Array.from(inqSelected);
-    const preview = names.length <= 3
-      ? names.join(' · ')
-      : `${names.slice(0, 3).join(' · ')} +${names.length - 3} more`;
-    summary.innerHTML = `<strong>${count} selected</strong> · ${esc(preview)}`;
-  }
-
-  function switchInqTab(tab) {
-    inqActiveTab = tab;
-    document.querySelectorAll('.inq-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
-    renderInqGrid();
-  }
-
-  function openInquiry(preSelected) {
-    buildInqGroups();
-    inqSelected = new Set();
-
-    if (preSelected) {
-      const arr = Array.isArray(preSelected) ? preSelected : [preSelected];
-      arr.forEach(name => inqSelected.add(name));
-      const first = arr[0];
-      if (INQ_GROUPS.djs.includes(first)) inqActiveTab = 'djs';
-      else if (INQ_GROUPS.parties.includes(first)) inqActiveTab = 'parties';
-      else if (INQ_GROUPS.brands.includes(first)) inqActiveTab = 'brands';
-    } else {
-      inqActiveTab = 'djs';
-    }
-
-    document.querySelectorAll('.inq-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === inqActiveTab));
-    renderInqGrid();
-    renderInqSummary();
-
-    document.getElementById('inqError').textContent = '';
-    document.getElementById('inqOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-    setTimeout(() => {
-      const f = document.getElementById('inqName');
-      if (!f.value) f.focus();
-    }, 100);
-  }
-
-  function closeInquiry() {
-    document.getElementById('inqOverlay').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function submitInquiry() {
-    const name = document.getElementById('inqName').value.trim();
-    const email = document.getElementById('inqEmail').value.trim();
-    const notes = document.getElementById('inqNotes').value.trim();
-
-    const err = document.getElementById('inqError');
-    const fail = (msg, id) => { err.textContent = msg; if (id) document.getElementById(id).focus(); };
-    err.textContent = '';
-
-    if (!name) return fail('Add your name.', 'inqName');
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail('Add a valid email address.', 'inqEmail');
-
-    const selected = Array.from(inqSelected);
-    if (selected.length === 0 && !notes) {
-      return fail('Pick at least one placement, or add a note if you want to discuss something custom.', 'inqNotes');
-    }
-
-    const grouped = { djs: [], parties: [], brands: [] };
-    selected.forEach(n => {
-      if (INQ_GROUPS.djs.includes(n)) grouped.djs.push(n);
-      else if (INQ_GROUPS.parties.includes(n)) grouped.parties.push(n);
-      else if (INQ_GROUPS.brands.includes(n)) grouped.brands.push(n);
-    });
-
-    const subject = `AfroCue Partnership Enquiry: ${name}`;
-    const lines = ['Hi AfroCue,', '', selected.length ? "I'd like to enquire about the following:" : "I'd like to talk about something custom.", ''];
-    if (grouped.djs.length)     { lines.push('For DJs:'); grouped.djs.forEach(s => lines.push(`• ${s}`)); lines.push(''); }
-    if (grouped.parties.length) { lines.push('For Parties:'); grouped.parties.forEach(s => lines.push(`• ${s}`)); lines.push(''); }
-    if (grouped.brands.length)  { lines.push('For Brands:'); grouped.brands.forEach(s => lines.push(`• ${s}`)); lines.push(''); }
-    lines.push(`Name: ${name}`);
-    lines.push(`Email: ${email}`);
-    if (notes) lines.push('', 'Notes:', notes);
-    lines.push('', 'Sent from afrocue.xyz/ads');
-
-    const body = lines.join('\r\n');
-    const mailtoUrl = `mailto:${INQUIRY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event:'ads_inquiry_submit', placements:selected, placement_count:selected.length });
-
-    window.location.href = mailtoUrl;
-
-    setTimeout(() => {
-      closeInquiry();
-      document.getElementById('inqForm').reset();
-      inqSelected.clear();
-    }, 800);
-  }
-
-  // The hero's DJs / Parties / Brands cards open that tab.
-  document.addEventListener('click', (e) => {
-    const g = e.target.closest('[data-go]');
-    if (g) switchCatTab(g.dataset.go);
-  });
-
-  // Inquire buttons and brand tiles carry the placement name in data-inquire.
-  document.addEventListener('click', (e) => {
-    const b = e.target.closest('[data-inquire]');
-    if (b) openInquiry(b.dataset.inquire);
-  });
-
-  document.addEventListener('click', (e) => { if (e.target.id === 'inqOverlay') closeInquiry(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeInquiry(); });
-
-  // ═════════════════════════════════════════════════════════════════
-  //  JSONP LOADER — works around GAS CORS/redirect limitation
-  // ═════════════════════════════════════════════════════════════════
-
-  function loadAdsViaJsonp() {
-    return new Promise((resolve, reject) => {
-      const callbackName = 'afrocueAdsCb_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
-      const script = document.createElement('script');
-
-      const timer = setTimeout(() => {
-        cleanup();
-        reject(new Error('JSONP timeout: GAS did not respond within 15s'));
-      }, 15000);
-
-      function cleanup() {
-        clearTimeout(timer);
-        try { delete window[callbackName]; } catch (e) { window[callbackName] = undefined; }
-        if (script.parentNode) script.parentNode.removeChild(script);
+      if (key === 'from')  return go('q2');
+      if (key === 'often') return go('q3');
+      if (key === 'with')  return go('q7');
+      if (key === 'spend'){
+        if (val === 'under50') return bowOut('below_floor',
+          'At that level we may not be able to create a night for you. You can check us out on Instagram for what is happening in Lagos.');
+        return go('q8');
       }
+      if (key === 'intent'){
+        if (val === 'no') return bowOut('not_interested',
+          'No problem at all. You can check us out on Instagram for the Lagos scene all year.');
+        writeEcho(); return go('cap');
+      }
+    }, 160);
+  }
+  function backOne(){ go(S.where === 'lagos' ? 'q1' : 'q1b'); }
 
-      window[callbackName] = function (data) {
-        cleanup();
-        resolve(data);
-      };
-
-      script.onerror = function () {
-        cleanup();
-        reject(new Error('JSONP script load error'));
-      };
-
-      script.src = ADS_SCRIPT_URL + '?export=ads&callback=' + encodeURIComponent(callbackName);
-      document.head.appendChild(script);
-    });
+  /* The three disqualifiers all land here. Nothing is captured, no thank
+     you page is reached, so none of them can count as a conversion. */
+  function bowOut(reason, line){
+    track('navigator_exit', { reason: reason });
+    document.getElementById('xp').textContent = line;
+    return go('exit');
+  }
+  function tog(btn, grid, next){
+    var all = document.querySelector('#' + grid + ' [data-all="true"]');
+    if (all) all.classList.remove('selected');
+    btn.classList.toggle('selected');
+    document.getElementById(next).disabled = !document.querySelector('#' + grid + ' .opt.selected');
+  }
+  function togAll(btn, grid, next){
+    var on = !btn.classList.contains('selected');
+    document.querySelectorAll('#' + grid + ' .opt').forEach(function(b){ b.classList.remove('selected'); });
+    if (on) btn.classList.add('selected');
+    document.getElementById(next).disabled = !on;
+  }
+  function grab(grid){
+    return Array.prototype.map.call(document.querySelectorAll('#' + grid + ' .opt.selected'),
+      function(b){ return b.getAttribute('data-v'); });
+  }
+  function adv(from, to){
+    if (from === 'q3') S.looking = grab('g3');
+    if (from === 'q4') S.dates   = grab('g4');
+    if (from === 'q5') S.nights  = grab('g5');
+    go(to);
   }
 
-  document.addEventListener('DOMContentLoaded', async () => {
-    renderAll();
-    if (!ADS_SCRIPT_URL) { setStatus('afrocue.js did not load, so there is no sheet URL. Showing the copy on the page.', true); return; }
-    log('Loading via JSONP:', ADS_SCRIPT_URL + '?export=ads');
+  var NICE = { floor:'Regular access', stage:'VIP or stage', table:'Table or section' };
+  function writeEcho(){
+    var box = document.getElementById('picks'); if (!box) return;
+    var bits = [];
+    if (S.tier) bits.push(S.tier);
+    S.nights.forEach(function(n){ bits.push(NICE[n] || n); });
+    if (S.dates.length) bits.push(S.dates.length > 2 ? S.dates.length + ' weekends' : S.dates.join(', '));
+    if (S.with) bits.push(S.with);
+    S.looking.slice(0,2).forEach(function(g){ bits.push(g); });
+    box.innerHTML = bits.map(function(b){ return '<span>' + esc(b) + '</span>'; }).join('');
+  }
 
-    try {
-      const data = await loadAdsViaJsonp();
-      log('JSONP response:', data);
+  /* Q5 sets the ladder, Q6 the rung, Q1 overrides, and a tier they
+     clicked on the pricing table beats all of it, because that is a
+     stated intent rather than an inference. Never shown on the page:
+     it rides on the row so the email opens on the right version. */
+  var PROMOTE = { floor:'front', floor_group:'table', front:'table', table:'table_raised', table_raised:'table_raised' };
+  var TIER_SEG = { 'Guest':'floor', 'Special Guest':'floor', 'Guest of Honour':'front',
+                   'Section':'table', 'Section Chief':'table', 'Chairman':'table_raised' };
+  /* Taste picks the ladder, group size picks the rung, spend confirms it.
+     Where spend and taste disagree, spend wins: the table ladder is not
+     reachable below N150,000 however much somebody wants a table. */
+  function suggestTier(){
+    var wantsTable = S.nights.indexOf('table') > -1;
+    var big = (S.with === '3 to 4 people' || S.with === 'Group of 5+');
+    if (wantsTable && S.spend === '500plus') return S.with === 'Group of 5+' ? 'Chairman' : 'Section Chief';
+    if (wantsTable && S.spend === '150-500') return big ? 'Section Chief' : 'Section';
+    if (S.spend === '500plus')  return 'Guest of Honour';
+    if (S.spend === '150-500')  return S.nights.indexOf('stage') > -1 ? 'Guest of Honour' : 'Special Guest';
+    return 'Guest';
+  }
 
-      if (data.error) {
-        setStatus('GAS error: ' + data.error, true);
+  function segment(){
+    if (S.tier && TIER_SEG[S.tier]) return TIER_SEG[S.tier];
+    if (S.with === 'It varies by night') return 'mixed';
+    var n = S.nights, has = function(v){ return n.indexOf(v) > -1; };
+    var group = (S.with === '3 to 4 people' || S.with === 'Group of 5+');
+    var seg = has('table') ? (S.with === 'Group of 5+' ? 'table_raised' : 'table')
+            : has('stage') ? 'front'
+            : (group ? 'floor_group' : 'floor');
+    if (S.where === 'travelling') seg = PROMOTE[seg] || seg;
+    return seg;
+  }
+
+  /* Each audience lands on its own thank you page so it can be tracked
+     and bid on separately. */
+  var ABROAD = { Europe:1, 'North America':1, Africa:1, Elsewhere:1 };
+  function thankYouPath(){
+    /* Routes on where they are coming FROM, not on whether they have
+       booked a flight. Only travelling and undecided ever reach q1b, so
+       S.from is empty for anyone who stays in Lagos. Gating on
+       where === 'travelling' sent every undecided person to the Nigerian
+       page, including the ones in London who had not booked yet. */
+    return ABROAD[S.from] ? '/thank-you/an-abroad' : '/thank-you/an-nigerian';
+  }
+
+  function clr(el, id){ el.classList.remove('error'); document.getElementById(id).classList.remove('show'); }
+  function bad(el, id){ el.classList.add('error'); document.getElementById(id).classList.add('show'); }
+
+  function submit(){
+    if (sending) return;
+    if (document.getElementById('hp').value) return;
+    var fnEl = document.getElementById('fn'), emEl = document.getElementById('em'), phEl = document.getElementById('ph');
+    var fn = fnEl.value.trim(), em = emEl.value.trim(), ph = phEl.value.trim(), ok = true;
+    var wa = document.getElementById('wa').value.trim();
+    var igh = document.getElementById('igh').value.trim().replace(/^@+/, '');
+    if (!fn){ bad(fnEl,'e-fn'); ok = false; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){ bad(emEl,'e-em'); ok = false; }
+    if (ph.replace(/\D/g,'').length < 10){ bad(phEl,'e-ph'); ok = false; }
+    if (!ok) return;
+
+    sending = true;
+    var btn = document.getElementById('sub');
+    btn.disabled = true; btn.classList.add('loading');
+
+    var seg = segment();
+    var audience = thankYouPath().indexOf('abroad') > -1 ? 'abroad' : 'nigerian';
+    var data = {
+      source:'navigator', type:'navigator_quiz',
+      first_name:fn, email:em, phone:ph,
+      whatsapp: wa || ph, instagram: igh ? '@' + igh : '',
+      where:S.where, from:S.from, often:S.often,
+      looking:S.looking, dates:S.dates, nights:S.nights,
+      group:S.with, intent:S.intent,
+      spend_band:S.spend, table_spender:(S.nights.indexOf('table') > -1),
+      suggested_tier:suggestTier(),
+      tier:S.tier,
+      segment:seg, audience:audience,
+      multi_night: (S.often === 'Every weekend' || S.often === 'Every night I can'),
+      submitted_at: new Date().toISOString(),
+      landing_page: location.origin + location.pathname,
+      referrer: document.referrer || ''
+    };
+    Object.keys(UTM).forEach(function(k){ data[k] = UTM[k]; });
+    track('navigator_complete', { segment:seg, audience:audience, intent:S.intent,
+      tier:S.tier, where:S.where, group:S.with, name:fn, email:em });
+
+    var went = false;
+    function finish(){
+      if (went) return; went = true;
+      /* On the live site each audience gets its own thank you URL, which
+         is what makes them separately trackable and biddable. Anywhere
+         else the card below stands in, so the flow can still be walked. */
+      if (/(^|\.)afrocue\.xyz$/i.test(location.hostname)){
+        /* The thank you page reads these. No email in the URL: GTM reads the
+           full query string, and that would put PII into analytics. */
+        location.href = thankYouPath()
+          + '?seg='    + encodeURIComponent(seg)
+          + '&fn='     + encodeURIComponent(fn)
+          + '&intent=' + encodeURIComponent(S.intent)
+          + '&dates='  + encodeURIComponent(S.dates.join('|'))
+          + '&style='  + encodeURIComponent(S.nights.join('|'));
         return;
       }
-
-      const ok = Array.isArray(data.djs) && Array.isArray(data.parties) && Array.isArray(data.brands);
-      log('Data shape:', {
-        djs: Array.isArray(data.djs) ? data.djs.length : 'missing',
-        parties: Array.isArray(data.parties) ? data.parties.length : 'missing',
-        brands: Array.isArray(data.brands) ? data.brands.length : 'missing'
-      });
-
-      if (!ok) {
-        setStatus('Sheet response malformed. Using fallback content.', true);
-        return;
-      }
-
-      if (data.djs.length === 0 && data.parties.length === 0 && data.brands.length === 0) {
-        setStatus('Sheet returned empty arrays. Check the "Audience" column has DJ / Party / Brand.', true);
-        return;
-      }
-
-      DJ_PRODUCTS = data.djs;
-      PARTY_PRODUCTS = data.parties;
-      BRAND_PARTNERSHIPS = data.brands;
-      renderAll();
-      setStatus('Loaded ' + data.djs.length + ' DJ · ' + data.parties.length + ' Party · ' + data.brands.length + ' Brand placements.');
-      log('Live data rendered');
-
-    } catch (err) {
-      
-      setStatus('Could not reach the sheet: ' + err.message, true);
+      document.getElementById('dh').textContent = fn + ', that is December sorted.';
+      if (S.tier) document.getElementById('dp').textContent = 'Check your email. Your nights are in there with the full costs for ' + S.tier + ', and a person will follow up.';
+      go('done'); toTop();
     }
-  });
+
+    /* A hanging Apps Script call must never strand anyone on a spinner. */
+    var failsafe = setTimeout(finish, 8000);
+    var u = url();
+    if (!u){ clearTimeout(failsafe); console.warn('Navigator: no script URL. Did js/afrocue.js load?'); return finish(); }
+    fetch(u, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body:JSON.stringify(data) })
+      .finally(function(){ clearTimeout(failsafe); finish(); });
+  }
+
+  function fromClose(v){
+    S.where = v;
+    var i = { lagos:0, travelling:1, undecided:2 }[v];
+    var b = document.querySelectorAll('#q1 .opt');
+    b.forEach(function(x){ x.classList.remove('selected'); });
+    if (b[i]) b[i].classList.add('selected');
+    go(v === 'travelling' ? 'q1b' : 'q2');
+    toTop();
+  }
+
+  /* ── The board, live ────────────────────────────────────────
+     Same ?export=editions call parties.html makes. Replaces the
+     hardcoded rail only when four or more real upcoming nights come
+     back, because a thin rail is worse than the fallback. */
+  var DAY = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  (function loadBoard(){
+    var u = url(); if (!u) return;
+    fetch(u + '?export=editions')
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        if (!d || !Array.isArray(d.editions)) return;
+        var byId = {};
+        (d.parties || []).forEach(function(p){ byId[p.id] = p; });
+        var today = new Date(new Date().toDateString());
+        var rows = d.editions.filter(function(e){
+          if (!e.date || e.state === 'cancelled') return false;
+          var t = new Date(e.date);
+          return !isNaN(t) && t >= today;
+        }).sort(function(a,b){ return a.date < b.date ? -1 : 1; }).slice(0, 14);
+        if (rows.length < 4) return;
+
+        document.getElementById('rail').innerHTML = rows.map(function(e){
+          var p = byId[e.party_id] || {};
+          var art = e.flyer || p.upcoming_flyer || p.flyer_img || p.hero_img || '';
+          var t = new Date(e.date);
+          var place = e.venue_held ? (e.venue || '') : (e.area || p.area || 'Venue on the night');
+          return '<a class="fly" href="parties.html">'
+            + '<div class="art"' + (art ? ' style="background-image:url(\'' + esc(art) + '\')"' : '') + '>'
+            + '<span class="when">' + esc(DAY[t.getDay()] + ' ' + t.getDate()) + '</span></div>'
+            + '<div class="nm">' + esc(p.name || e.name || 'A night in Lagos') + '</div>'
+            + '<div class="vn">' + esc(place) + '</div></a>';
+        }).join('');
+        if (d.build) document.getElementById('freshness').textContent = 'Live from the directory';
+      })
+      .catch(function(){ /* the page does not depend on this */ });
+  })();
+
+  window.pick = pick; window.go = go; window.adv = adv; window.tog = tog; window.togAll = togAll;
+  window.backOne = backOne; window.submit = submit; window.fromClose = fromClose;
+  window.clr = clr; window.enquire = enquire;
+
+  track('navigator_view', {});
+})();
 </script>
 
 </body>
