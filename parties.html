@@ -1446,7 +1446,17 @@
     @media (max-width:768px){
       .modal-hero{height:auto;aspect-ratio:4/5;max-height:70vh}
     }
-    .modal-hero-img{object-position:center top}
+    /* The flyer is shown whole. object-fit:cover filled the 4:5 plate
+       by cropping, which ate the top or the bottom of anything that
+       was not 4:5, and Lagos flyers come square, 4:5 and 9:16. Contain
+       shows all of it and the blurred copy behind fills the sides. */
+    .modal-hero-img{object-fit:contain;object-position:center}
+    /* The gradient was there to carry a title that now sits below the
+       flyer, so it pulls back to the bottom edge and stops darkening
+       the artwork. */
+    .modal-hero-grad{background:linear-gradient(to top,
+      rgba(17,17,17,.96) 0%,rgba(17,17,17,.45) 9%,transparent 22%)}
+    .modal-hero-texture{opacity:.07}
 
     /* ── their other nights ──────────────────────────────────── */
     .sibs{margin:22px 0 4px}
