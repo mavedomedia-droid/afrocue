@@ -88,6 +88,28 @@
   @keyframes p{0%,100%{opacity:.25}50%{opacity:1}}
   @media (prefers-reduced-motion: reduce){ .pulse{animation:none; opacity:.6} }
 
+  /* ── the letters, one row each, on the manage screen ────────── */
+  .opts{margin:var(--block) 0 0; border-top:1px solid var(--edge)}
+  .opt{
+    display:flex; align-items:flex-start; gap:14px; padding:16px 2px;
+    border-bottom:1px solid var(--edge); cursor:pointer;
+  }
+  .opt input{
+    appearance:none; -webkit-appearance:none; flex:0 0 auto;
+    width:20px; height:20px; margin:3px 0 0; border-radius:5px;
+    border:1.5px solid var(--ghost); background:transparent; cursor:pointer;
+    display:grid; place-content:center;
+  }
+  .opt input::after{
+    content:""; width:10px; height:10px; border-radius:2px;
+    background:var(--ink); transform:scale(0); transition:transform .12s ease;
+  }
+  .opt input:checked{border-color:var(--ink)}
+  .opt input:checked::after{transform:scale(1)}
+  .opt input:focus-visible{outline:2px solid var(--ink); outline-offset:2px}
+  .opt b{display:block; font-size:15px; font-weight:700; line-height:1.4}
+  .opt span{display:block; font-size:12.5px; line-height:1.6; color:var(--mute)}
+
   .warn{
     margin:0; padding:12px var(--gut); background:#dedc00; color:#0d0d0c;
     font-size:12px; font-weight:700; line-height:1.5;
@@ -125,8 +147,8 @@
     </div>
 
     <p class="warn" id="cfgwarn" hidden>
-      Endpoint not configured. Set CFG.EXEC in this file to your Apps Script
-      /exec URL. Nothing on this page is being recorded.
+      Not connected. js/afrocue.js did not load, so this page cannot reach
+      the server and nothing here is being recorded.
     </p>
 
     <div class="body" id="view" aria-live="polite">
@@ -147,16 +169,21 @@
   </div>
 </div>
 
+<!-- The one place the Apps Script URL lives, the same file parties.html
+     loads. A page with its own copy of the URL is a second source of
+     truth, and the copy that used to sit in this file was never filled in. -->
+<script src="js/afrocue.js"></script>
 <script>
 (function () {
   "use strict";
 
   /* ───────────────────────────────────────────────────────────────
-     CONFIG. EXEC is the Apps Script /exec URL, the same one the forms
-     on the site already POST to.
+     CONFIG. EXEC comes from js/afrocue.js, the same URL the forms on
+     the site POST to.
      ─────────────────────────────────────────────────────────────── */
   var CFG = {
-    EXEC:  "PASTE_YOUR_APPS_SCRIPT_EXEC_URL_HERE",
+    EXEC:  window.AFROCUE_SCRIPT_URL ||
+           (window.AFROCUE_CONFIG && window.AFROCUE_CONFIG.scriptUrl) || "",
     SITE:  "https://afrocue.xyz",
     REPLY: "info@afrocue.xyz",
     WA:    "https://whatsapp.com/channel/0029Vb74IjxGufJ0irS1uq0u"
@@ -166,13 +193,39 @@
   if (!LIVE) document.getElementById("cfgwarn").hidden = false;
 
   var view = document.getElementById("view");
-  var KEY  = (new URLSearchParams(location.search)).get("k") || "";
+  var Q    = new URLSearchParams(location.search);
+  var KEY  = Q.get("k") || "";
+  /* Which letter the link came from: tuesday or friday. The Tuesday and
+     Friday emails send it. Older links and every other email do not,
+     and those mean everything. */
+  var LIST = (Q.get("l") || "").trim().toLowerCase();
+
+  /* What the server last told us: { email, lists: {tuesday:"on"}, names } */
+  var S = { email: "", lists: null, names: {} };
+
+  function keep(d) {
+    if (!d) return;
+    if (d.email) S.email = d.email;
+    if (d.lists) S.lists = d.lists;
+    if (d.names) S.names = d.names;
+  }
+  function keys()    { return S.lists ? Object.keys(S.names).filter(function (k) { return k in S.lists; }) : []; }
+  function nameOf(k) { return S.names[k] || "this email"; }
+  function isOff(k)  { return S.lists && S.lists[k] === "off"; }
+  /* The letters still coming, other than the one named. */
+  function stillOn(except) {
+    return keys().filter(function (k) { return k !== except && !isOff(k); });
+  }
+  function joinNames(ks) {
+    var n = ks.map(function (k) { return "<b>" + esc(nameOf(k)) + "</b>"; });
+    return n.length < 2 ? n.join("") : n.slice(0, -1).join(", ") + " and " + n[n.length - 1];
+  }
 
   /* JSONP, because an Apps Script /exec redirects to googleusercontent
      and a plain fetch trips CORS. serveAds, serveBlog and servePromo
      already answer this way, so the backend pattern is unchanged. */
   function call(params, done) {
-    if (!LIVE) { setTimeout(function () { done({ ok: true, email: "you@example.com" }); }, 400); return; }
+    if (!LIVE) { setTimeout(function () { done(preview(params)); }, 400); return; }
     var name = "ac_cb_" + Math.random().toString(36).slice(2);
     var s = document.createElement("script");
     var finished = false;
@@ -213,7 +266,33 @@
     return name.charAt(0) + "•••" + name.charAt(name.length - 1) + dom;
   }
 
+  /* Not connected: answer the way the server would, so the screens can
+     be seen, while the yellow bar says nothing is being recorded. */
+  var P = { tuesday: "on", friday: "on" };
+  function preview(p) {
+    var names = { tuesday: "Cue Weekly, every Tuesday", friday: "What's on this weekend, every Friday" };
+    var all = Object.keys(P), l = String(p.l || "");
+    if (p.action === "unsub" || p.action === "resub") {
+      (l && l !== "all" ? [l] : all).forEach(function (k) { if (k in P) P[k] = p.action === "unsub" ? "off" : "on"; });
+    }
+    if (p.action === "unsub_set") {
+      var on = String(p.on || "").split(",");
+      all.forEach(function (k) { P[k] = on.indexOf(k) > -1 ? "on" : "off"; });
+    }
+    return { ok: true, email: "you@example.com", lists: JSON.parse(JSON.stringify(P)), names: names };
+  }
+
   function render(html) { view.innerHTML = html; }
+
+  /* One write, then a screen. A failure keeps the same write ready to
+     try again, whatever it was. */
+  function write(params, then) {
+    busy("One moment");
+    call(params, function (d) {
+      if (d && d.ok) { keep(d); then(); }
+      else failed(params, then);
+    });
+  }
   function busy(label) {
     var b = view.querySelector("button.go");
     if (b) { b.disabled = true; b.textContent = label; }
@@ -221,53 +300,84 @@
 
   /* ── states ─────────────────────────────────────────────────── */
 
-  function confirmOff(email) {
+  /* From the Tuesday or Friday email: that letter, and only that one. */
+  function confirmOff(k) {
+    var others = stillOn(k);
+    render(
+      '<h1>Leaving ' + esc(nameOf(k)) + '?</h1>' +
+      '<p>We will stop sending it to <span class="addr">' + esc(mask(S.email)) + '</span>.</p>' +
+      (others.length ? '<p class="quiet">' + joinNames(others) + ' still comes. You can stop that too.</p>' : '') +
+      '<p class="quiet">Night alerts for a party you tapped interested on are separate. ' +
+      'Those stop on their own once the night has passed.</p>' +
+      '<div class="actions">' +
+        '<button class="go" type="button" id="off">Unsubscribe me</button>' +
+        '<button class="linkbtn" type="button" id="manage">Choose which emails</button>' +
+        '<button class="linkbtn" type="button" id="keep">Keep it coming</button>' +
+      '</div>'
+    );
+    view.querySelector("#off").onclick = function () {
+      write({ action: "unsub", k: KEY, l: k }, function () { done(k); });
+    };
+    view.querySelector("#manage").onclick = manage;
+    view.querySelector("#keep").onclick = function () { location.href = CFG.SITE; };
+  }
+
+  /* From any other email, or an older link: everything. */
+  function confirmOffAll() {
     render(
       '<h1>Leaving the list?</h1>' +
-      '<p>We will stop emailing <span class="addr">' + esc(mask(email)) + '</span>. ' +
+      '<p>We will stop emailing <span class="addr">' + esc(mask(S.email)) + '</span>. ' +
       'That covers the weekly round-up and anything else we send to the list.</p>' +
       '<p class="quiet">Night alerts for a party you tapped interested on are separate. ' +
       'Those stop on their own once the night has passed.</p>' +
       '<div class="actions">' +
         '<button class="go" type="button" id="off">Unsubscribe me</button>' +
+        (keys().length ? '<button class="linkbtn" type="button" id="manage">Choose which emails</button>' : '') +
         '<button class="linkbtn" type="button" id="keep">Keep me on the list</button>' +
       '</div>'
     );
     view.querySelector("#off").onclick = function () {
-      busy("One moment");
-      call({ action: "unsub", k: KEY }, function (d) {
-        if (d && d.ok) done(email); else failed("off", email);
-      });
+      write({ action: "unsub", k: KEY, l: "all" }, function () { done(""); });
     };
+    var m = view.querySelector("#manage");
+    if (m) m.onclick = manage;
     view.querySelector("#keep").onclick = function () { location.href = CFG.SITE; };
   }
 
-  function done(email) {
+  /* One letter, or everything when k is "". */
+  function done(k) {
+    var others = k ? stillOn(k) : [];
     render(
-      '<h1>You are off the list.</h1>' +
-      '<p>Nothing else will come to <span class="addr">' + esc(mask(email)) + '</span>. ' +
-      'It takes effect now.</p>' +
+      (k ? '<h1>You are off ' + esc(nameOf(k)) + '.</h1>' +
+           '<p>It will not come to <span class="addr">' + esc(mask(S.email)) + '</span> again. ' +
+           'It takes effect now.</p>'
+         : '<h1>You are off the list.</h1>' +
+           '<p>Nothing else will come to <span class="addr">' + esc(mask(S.email)) + '</span>. ' +
+           'It takes effect now.</p>') +
+      (others.length ? '<p>You still get ' + joinNames(others) + '.</p>' : '') +
       '<p class="quiet">If this was a mistake you can put yourself straight back on. ' +
       'Or keep up on <a href="' + CFG.WA + '">WhatsApp</a> instead, which is not email.</p>' +
       '<div class="actions">' +
         '<button class="go" type="button" id="back">Actually, keep me on</button>' +
+        (keys().length ? '<button class="linkbtn" type="button" id="manage">Choose which emails</button>' : '') +
         '<button class="linkbtn" type="button" id="site">Go to afrocue.xyz</button>' +
       '</div>'
     );
     view.querySelector("#back").onclick = function () {
-      busy("One moment");
-      call({ action: "resub", k: KEY }, function (d) {
-        if (d && d.ok) backOn(email); else failed("on", email);
-      });
+      write({ action: "resub", k: KEY, l: k || "all" }, function () { backOn(k); });
     };
+    var m = view.querySelector("#manage");
+    if (m) m.onclick = manage;
     view.querySelector("#site").onclick = function () { location.href = CFG.SITE; };
   }
 
-  function backOn(email) {
+  function backOn(k) {
     render(
       '<h1>You are back on.</h1>' +
-      '<p>We will keep writing to <span class="addr">' + esc(mask(email)) + '</span> ' +
-      'when there is something worth knowing.</p>' +
+      '<p>' + (k ? '<b>' + esc(nameOf(k)) + '</b> will keep coming to '
+                 : 'We will keep writing to ') +
+      '<span class="addr">' + esc(mask(S.email)) + '</span>' +
+      (k ? '.' : ' when there is something worth knowing.') + '</p>' +
       '<div class="actions">' +
         '<button class="go" type="button" id="site2">Go to afrocue.xyz</button>' +
       '</div>'
@@ -276,23 +386,67 @@
   }
 
   /* Already off, and they opened an older email's link. */
-  function alreadyOff(email) {
+  function alreadyOff(k) {
     render(
-      '<h1>You are already off.</h1>' +
-      '<p>We are not emailing <span class="addr">' + esc(mask(email)) + '</span>. ' +
+      '<h1>You are already off' + (k ? ' ' + esc(nameOf(k)) : '') + '.</h1>' +
+      '<p>We are not sending ' + (k ? 'it' : 'anything') + ' to <span class="addr">' + esc(mask(S.email)) + '</span>. ' +
       'Anything that reached you after you unsubscribed was already on its way.</p>' +
       '<div class="actions">' +
         '<button class="go" type="button" id="back2">Put me back on</button>' +
+        (keys().length ? '<button class="linkbtn" type="button" id="manage">Choose which emails</button>' : '') +
         '<button class="linkbtn" type="button" id="site3">Go to afrocue.xyz</button>' +
       '</div>'
     );
     view.querySelector("#back2").onclick = function () {
-      busy("One moment");
-      call({ action: "resub", k: KEY }, function (d) {
-        if (d && d.ok) backOn(email); else failed("on", email);
-      });
+      write({ action: "resub", k: KEY, l: k || "all" }, function () { backOn(k); });
     };
+    var m = view.querySelector("#manage");
+    if (m) m.onclick = manage;
     view.querySelector("#site3").onclick = function () { location.href = CFG.SITE; };
+  }
+
+  /* Both letters, ticked for on. Saving sends the whole picture at once,
+     so pressing it twice lands in the same place. */
+  function manage() {
+    var rows = keys().map(function (k) {
+      return '<label class="opt"><input type="checkbox" value="' + esc(k) + '"' + (isOff(k) ? '' : ' checked') + '>' +
+        '<div><b>' + esc(nameOf(k)) + '</b></div></label>';
+    }).join("");
+    render(
+      '<h1>Your emails from AfroCue.</h1>' +
+      '<p>Ticked keeps coming to <span class="addr">' + esc(mask(S.email)) + '</span>. ' +
+      'Untick what you do not want.</p>' +
+      '<div class="opts">' + rows + '</div>' +
+      '<div class="actions">' +
+        '<button class="go" type="button" id="save">Save</button>' +
+        '<button class="linkbtn" type="button" id="site4">Go to afrocue.xyz</button>' +
+      '</div>'
+    );
+    view.querySelector("#save").onclick = function () {
+      var on = [].slice.call(view.querySelectorAll(".opt input"))
+        .filter(function (i) { return i.checked; }).map(function (i) { return i.value; });
+      write({ action: "unsub_set", k: KEY, on: on.join(",") }, saved);
+    };
+    view.querySelector("#site4").onclick = function () { location.href = CFG.SITE; };
+  }
+
+  function saved() {
+    var on = keys().filter(function (k) { return !isOff(k); });
+    render(
+      '<h1>Saved.</h1>' +
+      (on.length
+        ? '<p>You get ' + joinNames(on) + ' at <span class="addr">' + esc(mask(S.email)) + '</span>. ' +
+          'Nothing else.</p>'
+        : '<p>Nothing else will come to <span class="addr">' + esc(mask(S.email)) + '</span>. ' +
+          'It takes effect now.</p>' +
+          '<p class="quiet">Or keep up on <a href="' + CFG.WA + '">WhatsApp</a> instead, which is not email.</p>') +
+      '<div class="actions">' +
+        '<button class="go" type="button" id="site5">Go to afrocue.xyz</button>' +
+        '<button class="linkbtn" type="button" id="again">Change it</button>' +
+      '</div>'
+    );
+    view.querySelector("#site5").onclick = function () { location.href = CFG.SITE; };
+    view.querySelector("#again").onclick = manage;
   }
 
   function badLink() {
@@ -313,7 +467,7 @@
   }
 
   /* The network, not the link. Worth separating: one is retryable. */
-  function failed(mode, email) {
+  function failed(params, then) {
     render(
       '<h1>That did not go through.</h1>' +
       '<p>We could not reach the server, so nothing changed. Your connection, or ours.</p>' +
@@ -325,11 +479,7 @@
       '</div>'
     );
     view.querySelector("#retry").onclick = function () {
-      busy("One moment");
-      call({ action: mode === "off" ? "unsub" : "resub", k: KEY }, function (d) {
-        if (d && d.ok) { mode === "off" ? done(email) : backOn(email); }
-        else failed(mode, email);
-      });
+      if (params) write(params, then); else start();
     };
     view.querySelector("#mail2").onclick = function () {
       location.href = "mailto:" + CFG.REPLY + "?subject=" + encodeURIComponent("Unsubscribe");
@@ -342,14 +492,26 @@
      anything that unsubscribes on page load unsubscribes people who
      never clicked. The button is the only thing that writes.
      ─────────────────────────────────────────────────────────────── */
-  if (!KEY) { badLink(); return; }
+  function start() {
+    call({ action: "unsub_check", k: KEY }, function (d) {
+      if (!d)    return failed(null, null);
+      if (!d.ok) return badLink();
+      keep(d);
 
-  call({ action: "unsub_check", k: KEY }, function (d) {
-    if (!d)         return failed("off", "");
-    if (!d.ok)      return badLink();
-    if (d.status === "off") return alreadyOff(d.email);
-    confirmOff(d.email);
-  });
+      /* A server still on the old Code.gs answers with one status and no
+         lists. It still works: one switch for everything. */
+      if (!d.lists) return d.status === "off" ? alreadyOff("") : confirmOffAll();
+
+      if (LIST && LIST in S.lists && S.names[LIST]) {
+        return isOff(LIST) ? alreadyOff(LIST) : confirmOff(LIST);
+      }
+      var on = keys().filter(function (k) { return !isOff(k); });
+      return keys().length && !on.length ? alreadyOff("") : confirmOffAll();
+    });
+  }
+
+  if (!KEY) { badLink(); return; }
+  start();
 
 })();
 </script>
