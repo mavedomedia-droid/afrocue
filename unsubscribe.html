@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="dark light">
+<title>Unsubscribe &middot; AfroCue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  /* Same two tones, same spacing scale and the same band as the v4 email,
+     so the page the link lands on is recognisably the same letter. */
+  :root{
+    --page:#000; --card:#0d0d0c; --ink:#ffffff; --mute:#a8a69c;
+    --edge:rgba(255,255,255,0.07); --line:rgba(255,255,255,0.14);
+    --btn:#ffffff; --btn-ink:#0d0d0c; --ghost:rgba(255,255,255,0.24);
+    --gut:24px; --tight:16px; --block:24px; --section:36px;
+    --sans:'Archivo',Verdana,Geneva,sans-serif;
+  }
+  /* The band keeps its colour in both modes, exactly as it does in the
+     email. Only the page and the card flip. */
+  @media (prefers-color-scheme: light){
+    :root{
+      --page:#f1f0ec; --card:#ffffff; --ink:#141412; --mute:#6b695f;
+      --edge:rgba(0,0,0,0.10); --line:rgba(0,0,0,0.14);
+      --btn:#141412; --btn-ink:#ffffff; --ghost:rgba(0,0,0,0.22);
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--page); color:var(--ink); font-family:var(--sans);
+    font-size:15px; line-height:1.8; -webkit-text-size-adjust:100%;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:600px; margin:0 auto; padding:24px 16px 40px}
+  .card{
+    background:var(--card); border:1px solid var(--edge);
+    border-radius:12px; overflow:hidden;
+  }
+
+  /* ── the band ───────────────────────────────────────────────── */
+  .band{
+    padding:24px 32px; background-color:#121210;
+    background-image:linear-gradient(118deg,#dedc00 -62%,#5c5b00 10%,#121110 34%,#0d0d0c 70%);
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+  }
+  .band img{display:block; width:44px; height:44px; border:0; border-radius:8px}
+  .band .mark{
+    font-size:19px; font-weight:900; color:#fff; text-decoration:none; letter-spacing:-.3px;
+  }
+
+  /* ── body ───────────────────────────────────────────────────── */
+  .body{padding:var(--section) var(--gut) var(--section)}
+  h1{
+    margin:0 0 var(--tight); font-size:22px; font-weight:900;
+    letter-spacing:-.5px; line-height:1.2; color:var(--ink);
+  }
+  p{margin:0 0 var(--tight); color:var(--ink)}
+  p.quiet{color:var(--mute); font-size:13.5px; line-height:1.7}
+  p:last-child{margin-bottom:0}
+  .addr{
+    font-weight:700; word-break:break-all;
+    border-bottom:1px solid var(--line); padding-bottom:2px;
+  }
+
+  .actions{display:flex; flex-wrap:wrap; gap:12px; margin:var(--section) 0 0; align-items:center}
+  button, .linkbtn{font-family:var(--sans); font-size:13px; font-weight:700; line-height:1}
+  button.go{
+    background:var(--btn); color:var(--btn-ink); border:1px solid transparent;
+    border-radius:8px; padding:14px 20px; cursor:pointer;
+  }
+  button.go:hover{opacity:.88}
+  button.go[disabled]{opacity:.5; cursor:default}
+  .linkbtn{
+    background:none; border:0; padding:14px 2px; color:var(--mute);
+    text-decoration:underline; cursor:pointer;
+  }
+  .linkbtn:hover{color:var(--ink)}
+  a{color:var(--ink)}
+
+  .pulse{
+    display:inline-block; width:34px; height:3px; border-radius:2px;
+    background:var(--mute); animation:p 1.1s ease-in-out infinite;
+  }
+  @keyframes p{0%,100%{opacity:.25}50%{opacity:1}}
+  @media (prefers-reduced-motion: reduce){ .pulse{animation:none; opacity:.6} }
+
+  .warn{
+    margin:0; padding:12px var(--gut); background:#dedc00; color:#0d0d0c;
+    font-size:12px; font-weight:700; line-height:1.5;
+  }
+
+  /* ── footer ─────────────────────────────────────────────────── */
+  .foot{
+    padding:var(--block) var(--gut); border-top:1px solid var(--edge);
+    font-size:11px; line-height:1.9;
+  }
+  .foot a{color:var(--mute); text-decoration:none; font-weight:500}
+  .foot a:hover{color:var(--ink)}
+  .foot .sep{color:var(--line)}
+  .foot .fine{color:var(--mute); font-size:10px; margin:8px 0 0}
+
+  @media (max-width:620px){
+    .wrap{padding:16px 12px 32px}
+    .body{padding:var(--block) 20px}
+    .band{padding:20px}
+    .foot{padding:var(--block) 20px}
+    .actions{gap:4px}
+    button.go{width:100%; text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="card">
+
+    <div class="band">
+      <a href="https://afrocue.xyz" class="mark" id="mark">
+        <img src="https://afrocue.xyz/logo_afrocue.png" width="44" height="44" alt="AfroCue">
+      </a>
+    </div>
+
+    <p class="warn" id="cfgwarn" hidden>
+      Endpoint not configured. Set CFG.EXEC in this file to your Apps Script
+      /exec URL. Nothing on this page is being recorded.
+    </p>
+
+    <div class="body" id="view" aria-live="polite">
+      <p class="quiet"><span class="pulse"></span></p>
+    </div>
+
+    <div class="foot">
+      <p style="margin:0">
+        <a href="https://afrocue.xyz/parties.html">Parties</a><span class="sep">&nbsp;&nbsp;/&nbsp;&nbsp;</span>
+        <a href="https://afrocue.xyz/blog.html">Culture</a><span class="sep">&nbsp;&nbsp;/&nbsp;&nbsp;</span>
+        <a href="https://afrocue.xyz/dj.html">DJs</a><span class="sep">&nbsp;&nbsp;/&nbsp;&nbsp;</span>
+        <a href="https://afrocue.xyz/ads.html">Advertise</a>
+      </p>
+      <p class="fine">Lagos, Nigeria &nbsp;&middot;&nbsp;
+        <a href="mailto:info@afrocue.xyz" style="text-decoration:underline">info@afrocue.xyz</a></p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ───────────────────────────────────────────────────────────────
+     CONFIG. EXEC is the Apps Script /exec URL, the same one the forms
+     on the site already POST to.
+     ─────────────────────────────────────────────────────────────── */
+  var CFG = {
+    EXEC:  "PASTE_YOUR_APPS_SCRIPT_EXEC_URL_HERE",
+    SITE:  "https://afrocue.xyz",
+    REPLY: "info@afrocue.xyz",
+    WA:    "https://whatsapp.com/channel/0029Vb74IjxGufJ0irS1uq0u"
+  };
+
+  var LIVE = CFG.EXEC.indexOf("http") === 0;
+  if (!LIVE) document.getElementById("cfgwarn").hidden = false;
+
+  var view = document.getElementById("view");
+  var KEY  = (new URLSearchParams(location.search)).get("k") || "";
+
+  /* JSONP, because an Apps Script /exec redirects to googleusercontent
+     and a plain fetch trips CORS. serveAds, serveBlog and servePromo
+     already answer this way, so the backend pattern is unchanged. */
+  function call(params, done) {
+    if (!LIVE) { setTimeout(function () { done({ ok: true, email: "you@example.com" }); }, 400); return; }
+    var name = "ac_cb_" + Math.random().toString(36).slice(2);
+    var s = document.createElement("script");
+    var finished = false;
+    var timer = setTimeout(function () { finish(null); }, 15000);
+
+    function finish(data) {
+      if (finished) return;
+      finished = true;
+      clearTimeout(timer);
+      try { delete window[name]; } catch (e) { window[name] = undefined; }
+      if (s.parentNode) s.parentNode.removeChild(s);
+      done(data);
+    }
+    window[name] = finish;
+    s.onerror = function () { finish(null); };
+
+    var q = [];
+    for (var k in params) q.push(encodeURIComponent(k) + "=" + encodeURIComponent(params[k]));
+    q.push("callback=" + name);
+    s.src = CFG.EXEC + (CFG.EXEC.indexOf("?") > -1 ? "&" : "?") + q.join("&");
+    document.head.appendChild(s);
+  }
+
+  function esc(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  /* Shown back so they can see which address this is, without putting a
+     full address on a page anyone holding the link can open. */
+  function mask(email) {
+    email = String(email || "");
+    var at = email.indexOf("@");
+    if (at < 1) return email;
+    var name = email.slice(0, at), dom = email.slice(at);
+    if (name.length <= 2) return name.charAt(0) + "•••" + dom;
+    return name.charAt(0) + "•••" + name.charAt(name.length - 1) + dom;
+  }
+
+  function render(html) { view.innerHTML = html; }
+  function busy(label) {
+    var b = view.querySelector("button.go");
+    if (b) { b.disabled = true; b.textContent = label; }
+  }
+
+  /* ── states ─────────────────────────────────────────────────── */
+
+  function confirmOff(email) {
+    render(
+      '<h1>Leaving the list?</h1>' +
+      '<p>We will stop emailing <span class="addr">' + esc(mask(email)) + '</span>. ' +
+      'That covers the weekly round-up and anything else we send to the list.</p>' +
+      '<p class="quiet">Night alerts for a party you tapped interested on are separate. ' +
+      'Those stop on their own once the night has passed.</p>' +
+      '<div class="actions">' +
+        '<button class="go" type="button" id="off">Unsubscribe me</button>' +
+        '<button class="linkbtn" type="button" id="keep">Keep me on the list</button>' +
+      '</div>'
+    );
+    view.querySelector("#off").onclick = function () {
+      busy("One moment");
+      call({ action: "unsub", k: KEY }, function (d) {
+        if (d && d.ok) done(email); else failed("off", email);
+      });
+    };
+    view.querySelector("#keep").onclick = function () { location.href = CFG.SITE; };
+  }
+
+  function done(email) {
+    render(
+      '<h1>You are off the list.</h1>' +
+      '<p>Nothing else will come to <span class="addr">' + esc(mask(email)) + '</span>. ' +
+      'It takes effect now.</p>' +
+      '<p class="quiet">If this was a mistake you can put yourself straight back on. ' +
+      'Or keep up on <a href="' + CFG.WA + '">WhatsApp</a> instead, which is not email.</p>' +
+      '<div class="actions">' +
+        '<button class="go" type="button" id="back">Actually, keep me on</button>' +
+        '<button class="linkbtn" type="button" id="site">Go to afrocue.xyz</button>' +
+      '</div>'
+    );
+    view.querySelector("#back").onclick = function () {
+      busy("One moment");
+      call({ action: "resub", k: KEY }, function (d) {
+        if (d && d.ok) backOn(email); else failed("on", email);
+      });
+    };
+    view.querySelector("#site").onclick = function () { location.href = CFG.SITE; };
+  }
+
+  function backOn(email) {
+    render(
+      '<h1>You are back on.</h1>' +
+      '<p>We will keep writing to <span class="addr">' + esc(mask(email)) + '</span> ' +
+      'when there is something worth knowing.</p>' +
+      '<div class="actions">' +
+        '<button class="go" type="button" id="site2">Go to afrocue.xyz</button>' +
+      '</div>'
+    );
+    view.querySelector("#site2").onclick = function () { location.href = CFG.SITE; };
+  }
+
+  /* Already off, and they opened an older email's link. */
+  function alreadyOff(email) {
+    render(
+      '<h1>You are already off.</h1>' +
+      '<p>We are not emailing <span class="addr">' + esc(mask(email)) + '</span>. ' +
+      'Anything that reached you after you unsubscribed was already on its way.</p>' +
+      '<div class="actions">' +
+        '<button class="go" type="button" id="back2">Put me back on</button>' +
+        '<button class="linkbtn" type="button" id="site3">Go to afrocue.xyz</button>' +
+      '</div>'
+    );
+    view.querySelector("#back2").onclick = function () {
+      busy("One moment");
+      call({ action: "resub", k: KEY }, function (d) {
+        if (d && d.ok) backOn(email); else failed("on", email);
+      });
+    };
+    view.querySelector("#site3").onclick = function () { location.href = CFG.SITE; };
+  }
+
+  function badLink() {
+    render(
+      '<h1>This link has expired.</h1>' +
+      '<p>We cannot tell which address it belongs to, so there is nothing for us ' +
+      'to act on here.</p>' +
+      '<p class="quiet">Reply to any email from us with the word STOP, or write to ' +
+      '<a href="mailto:' + CFG.REPLY + '">' + CFG.REPLY + '</a>, and a person will take ' +
+      'you off by hand.</p>' +
+      '<div class="actions">' +
+        '<button class="go" type="button" id="mail">Email us to unsubscribe</button>' +
+      '</div>'
+    );
+    view.querySelector("#mail").onclick = function () {
+      location.href = "mailto:" + CFG.REPLY + "?subject=" + encodeURIComponent("Unsubscribe");
+    };
+  }
+
+  /* The network, not the link. Worth separating: one is retryable. */
+  function failed(mode, email) {
+    render(
+      '<h1>That did not go through.</h1>' +
+      '<p>We could not reach the server, so nothing changed. Your connection, or ours.</p>' +
+      '<p class="quiet">Try again, or write to ' +
+      '<a href="mailto:' + CFG.REPLY + '">' + CFG.REPLY + '</a> and we will do it by hand.</p>' +
+      '<div class="actions">' +
+        '<button class="go" type="button" id="retry">Try again</button>' +
+        '<button class="linkbtn" type="button" id="mail2">Email us instead</button>' +
+      '</div>'
+    );
+    view.querySelector("#retry").onclick = function () {
+      busy("One moment");
+      call({ action: mode === "off" ? "unsub" : "resub", k: KEY }, function (d) {
+        if (d && d.ok) { mode === "off" ? done(email) : backOn(email); }
+        else failed(mode, email);
+      });
+    };
+    view.querySelector("#mail2").onclick = function () {
+      location.href = "mailto:" + CFG.REPLY + "?subject=" + encodeURIComponent("Unsubscribe");
+    };
+  }
+
+  /* ── start ──────────────────────────────────────────────────────
+     The lookup runs on load, the change does not. Mail clients and
+     security scanners fetch links in the background to check them, so
+     anything that unsubscribes on page load unsubscribes people who
+     never clicked. The button is the only thing that writes.
+     ─────────────────────────────────────────────────────────────── */
+  if (!KEY) { badLink(); return; }
+
+  call({ action: "unsub_check", k: KEY }, function (d) {
+    if (!d)         return failed("off", "");
+    if (!d.ok)      return badLink();
+    if (d.status === "off") return alreadyOff(d.email);
+    confirmOff(d.email);
+  });
+
+})();
+</script>
+</body>
+</html>
