@@ -1430,7 +1430,7 @@
     .modal-stats .like-btn svg{width:15px;height:15px}
     .modal-stats .like-btn.liked{
       background:var(--ev,var(--yellow));border-color:var(--ev,var(--yellow));
-      color:var(--black)}
+      color:var(--ev-ink,var(--black))}
     .modal-stats .stat-pill,
     .modal-stats .share-btn{
       font-size:12px;padding:8px 14px;min-height:36px;
@@ -1534,9 +1534,7 @@
         padding:15px;min-height:52px;border-radius:4px;
         font-size:12px;font-weight:800;letter-spacing:.12em;
         text-transform:uppercase;position:relative;overflow:hidden;
-        border-color:var(--ev-line,rgba(200,224,0,.45));
-        background:var(--ev-soft,rgba(200,224,0,.11));
-        color:var(--ev,var(--yellow));
+        border-color:var(--ev-line,rgba(200,224,0,.5));
       }
       .modal-stats .like-btn::after{
         content:'';position:absolute;top:-50%;left:-100%;
@@ -1547,7 +1545,7 @@
       }
       /* Once they are in, the beam has done its job. */
       .modal-stats .like-btn.liked{background:var(--ev,var(--yellow));
-        border-color:var(--ev,var(--yellow));color:var(--black)}
+        border-color:var(--ev,var(--yellow));color:var(--ev-ink,var(--black))}
       .modal-stats .like-btn.liked::after{display:none}
       .modal-stats .stat-pill,.modal-stats .share-btn{flex:0 0 auto}
 
@@ -1561,6 +1559,68 @@
     @media (prefers-reduced-motion:reduce){
       .modal-stats .like-btn::after{animation:none}
     }
+
+    /* ══ INTERESTED, THE GRADIENT ══════════════════════════════
+       A flat tint read as one more outlined pill. A gradient in the
+       night's own colour makes it the only filled thing on the
+       screen, which is the point: it is the only tap that is ours
+       to keep. The beam runs across the top of it. */
+    .modal-stats .like-btn{
+      background:linear-gradient(118deg,
+        var(--ev-fill,rgba(200,224,0,.34)) 0%,
+        var(--ev-fill2,rgba(200,224,0,.14)) 52%,
+        rgba(255,255,255,.04) 100%);
+      border-color:var(--ev-line,rgba(200,224,0,.5));
+      color:var(--white);
+    }
+    .modal-stats .like-btn svg{color:var(--ev,var(--yellow))}
+    .modal-stats .like-btn:hover{border-color:var(--ev,var(--yellow))}
+    .modal-stats .like-btn.liked,
+    .modal-stats .like-btn.liked svg{
+      background:linear-gradient(118deg,
+        var(--ev,var(--yellow)) 0%,
+        var(--ev,var(--yellow)) 58%,
+        rgba(255,255,255,.5) 150%);
+      color:var(--ev-ink,var(--black));
+    }
+    .modal-stats .like-btn.liked svg{background:none}
+    /* The word carries the button; the count rides behind it. */
+    .like-word{font-weight:800}
+    .like-btn.liked .like-word::after{content:'\2009\2713'}
+    #likeCountNum{opacity:.72;font-weight:600}
+    .modal-stats .like-btn #likeCountNum{
+      padding-left:9px;margin-left:2px;
+      border-left:1px solid currentColor;opacity:.5}
+
+    /* ══ WHAT MOVED ════════════════════════════════════════════
+       The Party Pulse panel, back as a gradient and carrying
+       something worth a panel. It only appears when a night has
+       actually changed. */
+    .moved{position:relative;overflow:hidden;border-radius:9px;
+      padding:14px 16px;margin:0 0 22px;
+      border:1px solid var(--ev-line,rgba(200,224,0,.4));
+      background:linear-gradient(118deg,
+        var(--ev-soft,rgba(200,224,0,.16)) 0%,
+        rgba(255,255,255,.035) 46%,
+        transparent 100%)}
+    .moved-wash{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+    .moved-wash::after{content:'';position:absolute;top:-50%;left:-100%;
+      width:55%;height:200%;transform:rotate(25deg);
+      background:linear-gradient(90deg,transparent,
+        rgba(255,255,255,.07),transparent);
+      animation:scanMove 4.5s linear infinite}
+    .moved-k{display:flex;align-items:center;gap:7px;position:relative;z-index:2;
+      font-size:9.5px;font-weight:800;letter-spacing:.17em;text-transform:uppercase;
+      color:var(--ev,var(--yellow));margin-bottom:7px}
+    .moved-ago{margin-left:auto;font-weight:600;letter-spacing:.08em;
+      color:var(--grey);text-transform:none}
+    .moved-v{position:relative;z-index:2;font-size:13.5px;font-weight:400;
+      line-height:1.5;color:var(--off)}
+    @media (max-width:768px){
+      .moved{padding:13px 14px;margin-bottom:18px}
+      .moved-v{font-size:12.5px}
+    }
+    @media (prefers-reduced-motion:reduce){ .moved-wash::after{animation:none} }
 
     @media (max-width:768px){
       .modal-foot{margin:22px -16px -24px}
@@ -1606,6 +1666,7 @@
           </div>
           <button class="like-btn" id="likeBtn" onclick="handleLike()" aria-label="Interested" title="Interested">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span class="like-word">Interested</span>
             <span id="likeCountNum">—</span>
           </button>
           <button class="share-btn" id="shareBtn" onclick="handleShare()">
@@ -2153,7 +2214,13 @@
         summary: e.summary || '',
         posts: f.posts || [],       /* posts live on the party, not the night */
         views: e.views || 0, interested: e.interested || 0,
-        last_read: e.last_read || '', palette: ''
+        last_read: e.last_read || '', palette: '',
+        /* serveEditions has always sent these two and the page threw
+           them away, which is why nothing has ever told anyone that a
+           night moved. Donna writes them when she re-reads a night and
+           the venue, time, lineup, date or state is different from what
+           she had. */
+        changed_at: e.changed_at || '', changed_what: e.changed_what || ''
       };
     }
 
@@ -2654,10 +2721,23 @@
     }
     function applyAccent(col){
       var root = document.documentElement.style;
-      if(!col){ root.removeProperty('--ev'); root.removeProperty('--ev-soft'); root.removeProperty('--ev-line'); return; }
+      if(!col){ ['--ev','--ev-soft','--ev-line','--ev-fill','--ev-fill2','--ev-ink']
+        .forEach(function(k){ root.removeProperty(k); }); return; }
       var m = col.match(/\d+/g);
       root.setProperty('--ev', col);
       root.setProperty('--ev-soft', 'rgba('+m[0]+','+m[1]+','+m[2]+',0.09)');
+      /* --ev-soft is a wash for panels. A button that has to be the
+         brightest thing on the screen needs real colour under it. */
+      root.setProperty('--ev-fill', 'rgba('+m[0]+','+m[1]+','+m[2]+',0.38)');
+      root.setProperty('--ev-fill2','rgba('+m[0]+','+m[1]+','+m[2]+',0.16)');
+      /* Once Interested is tapped the accent fills the button, and the
+         text sits on whatever colour the flyer happened to be. A dark
+         flyer gives a dark fill, and black on dark is unreadable, so
+         the ink is chosen from the accent rather than assumed. */
+      var lum = (0.2126*Math.pow(m[0]/255,2.2)
+               + 0.7152*Math.pow(m[1]/255,2.2)
+               + 0.0722*Math.pow(m[2]/255,2.2));
+      root.setProperty('--ev-ink', lum > 0.22 ? '#0a0a0a' : '#f5f2ec');
       root.setProperty('--ev-line', 'rgba('+m[0]+','+m[1]+','+m[2]+',0.34)');
     }
 
@@ -2829,6 +2909,10 @@
             genres:f.genres || [], vibe_tags:f.vibe_tags || [],
             entry:e.entry, entry_free:e.entry_free,
             next_party_date:e.date, next_party_time:e.time,
+            /* Donna writes these on the Editions row when she re-reads a
+               night and something is actually different: venue, time,
+               lineup, date or state. The page has never used them. */
+            changed_at:e.changed_at, changed_what:e.changed_what,
             /* A night has no "last party" of its own, so Party Pulse reads
                the franchise's: when this party last ran, and how far Donna
                trusts what she scraped. Without these the panel said
@@ -3348,6 +3432,59 @@
         function(b){ b.onclick = function(){ openEdition(b.getAttribute('data-ed')); }; });
     }
 
+    /* ── WHAT MOVED ────────────────────────────────────────────
+       Editions carries Changed At and Changed What, written whenever
+       a re-read finds the venue, time, lineup, date or state of a
+       live night has changed. The API has been sending both all
+       along and the page displayed neither, so the one thing a
+       reader most needs to know was arriving and being dropped.
+
+       It only renders when something actually moved. A night that
+       has not changed shows nothing, which is why this can be loud:
+       it is rare, and when it is there it matters. */
+    /* Donna already records this and the page has never shown it. It is
+       the one thing about a night nobody else in Lagos can tell you: the
+       flyer still says Hard Rock, the caption three days later says
+       somewhere else, and we are the ones who noticed. */
+    var MOVED_WORDS = { venue:'the venue', time:'the start time',
+      lineup:'the lineup', date:'the date', state:'the status' };
+    function movedHTML(p, g){
+      var what = String(p.changed_what || '').trim();
+      if(!what) return '';
+      /* Past, cancelled, or no date at all. "The venue changed" on a
+         night that already happened is trivia, not a warning. */
+      if(g && (g.cls === 'past' || g.cls === 'dim' || g.cls === 'off')) return '';
+
+      var ago = '';
+      if(p.changed_at){
+        var t = new Date(p.changed_at);
+        if(!isNaN(t)){
+          var mins = Math.round((Date.now() - t) / 60000);
+          if(mins > 21 * 1440) return '';   /* stale, not news */
+          ago = mins < 60 ? Math.max(1, mins) + ' min ago'
+              : mins < 1440 ? Math.round(mins / 60) + 'h ago'
+              : Math.round(mins / 1440) + 'd ago';
+        }
+      }
+
+      /* "venue, lineup" becomes "The venue and the lineup". */
+      var bits = what.split(/\s*,\s*/).filter(Boolean).map(function(w){
+        var k = w.toLowerCase().trim();
+        return MOVED_WORDS[k] || ('the ' + k);
+      });
+      var said = bits.length > 1
+        ? bits.slice(0, -1).join(', ') + ' and ' + bits[bits.length - 1]
+        : (bits[0] || 'something');
+      said = said.charAt(0).toUpperCase() + said.slice(1);
+
+      return '<div class="moved">'
+        + '<span class="moved-wash"></span>'
+        + '<div class="moved-k"><span class="sig-dot"></span>What moved'
+        +   (ago ? '<span class="moved-ago">' + ago + '</span>' : '') + '</div>'
+        + '<div class="moved-v">' + said + ' changed since this was announced.</div>'
+        + '</div>';
+    }
+
     /* ── AN EDITION: one night ─────────────────────────────────── */
     function editionBody(p){
       var h='';
@@ -3404,6 +3541,7 @@
           + '</div></div>';
       }
 
+      h += movedHTML(p, g);
       h += interestedHTML(p);
       /* Placement Target carries a Party ID, so a promoter can buy
          their own nights and nobody else's. */
