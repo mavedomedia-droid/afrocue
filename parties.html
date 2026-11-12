@@ -1508,11 +1508,68 @@
       text-transform:uppercase;color:var(--grey);margin-bottom:3px}
     .mf-v{display:block;font-size:11.5px;font-weight:600;color:var(--off);
       overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    /* ══ THE POST CARDS ════════════════════════════════════════
+       The caption was absolutely positioned over the bottom of the
+       picture, so it sat on the artwork and the first line was
+       usually unreadable. The picture becomes a square, which is
+       shorter than 4:5, and the caption takes the space that frees
+       up underneath it. */
+    .m-post{aspect-ratio:auto;display:flex;flex-direction:column;
+      border-radius:9px}
+    .m-post img{aspect-ratio:1;height:auto;flex:0 0 auto}
+    .m-post-cap{position:static;padding:9px 10px 11px;font-size:10.5px;
+      line-height:1.5;background:none;color:var(--off);
+      display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;
+      overflow:hidden}
+    .m-posts-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:9px}
+
+    /* ══ INTERESTED ════════════════════════════════════════════
+       On a phone it is the only thing in the modal worth tapping, so
+       it stops being one pill in a row of three and takes the width.
+       The sweep is the one that used to run across Party Pulse. */
+    @media (max-width:768px){
+      .modal-stats{gap:8px;margin-bottom:6px}
+      .modal-stats .like-btn{
+        order:-1;flex:1 0 100%;justify-content:center;gap:9px;
+        padding:15px;min-height:52px;border-radius:4px;
+        font-size:12px;font-weight:800;letter-spacing:.12em;
+        text-transform:uppercase;position:relative;overflow:hidden;
+        border-color:var(--ev-line,rgba(200,224,0,.45));
+        background:var(--ev-soft,rgba(200,224,0,.11));
+        color:var(--ev,var(--yellow));
+      }
+      .modal-stats .like-btn::after{
+        content:'';position:absolute;top:-50%;left:-100%;
+        width:60%;height:200%;pointer-events:none;
+        background:linear-gradient(90deg,transparent,
+          rgba(255,255,255,.16),transparent);
+        transform:rotate(25deg);animation:scanMove 3.2s linear infinite;
+      }
+      /* Once they are in, the beam has done its job. */
+      .modal-stats .like-btn.liked{background:var(--ev,var(--yellow));
+        border-color:var(--ev,var(--yellow));color:var(--black)}
+      .modal-stats .like-btn.liked::after{display:none}
+      .modal-stats .stat-pill,.modal-stats .share-btn{flex:0 0 auto}
+
+      /* room to breathe between the blocks */
+      .sub-note{margin:9px 0 20px;font-size:11px;line-height:1.5}
+      .modal-facts .fact{padding:12px 11px}
+      .modal-facts .fact-v,.modal-facts .fact-miss{font-size:12.5px;line-height:1.35}
+      .m-posts{margin-bottom:24px}
+      .modal-lineup-k,.modal-cta-label{margin-bottom:10px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .modal-stats .like-btn::after{animation:none}
+    }
+
     @media (max-width:768px){
       .modal-foot{margin:22px -16px -24px}
       .mf{padding:14px 12px;gap:8px;min-height:58px}
       .mf-v{font-size:10.5px}
-      .modal-stats .like-btn{padding:9px 15px;min-height:38px;font-size:10.5px}
+      /* This used to shrink it back to a pill. It is the one thing
+         worth tapping on a phone, so it keeps the size the block
+         above gives it. */
+      .modal-stats .like-btn{padding:15px;min-height:52px;font-size:12px}
     }
 </style>
 </head>
