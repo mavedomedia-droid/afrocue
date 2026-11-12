@@ -1442,18 +1442,20 @@
        flyer to a letterbox and throws away the half carrying the date
        and the lineup. Capped on desktop so it does not fill the
        screen before a single fact is visible. */
-    /* 4:5 is only the starting shape. The real one is set from the
-       picture itself once it loads, so a square flyer gets a square
-       plate and a tall one gets a tall plate. Nothing is cropped and
-       nothing sits in bars. */
-    .modal-hero{height:auto;aspect-ratio:4/5;max-height:66vh;
+    /* width:100% is the whole fix. Without it the box solves its own
+       aspect-ratio by changing its WIDTH, so on a wide screen a tall
+       flyer came out as a narrow column with the rest of the modal
+       full width beside it. Width is the modal's, always; only the
+       height moves. */
+    .modal-hero{width:100%;height:auto;aspect-ratio:4/5;max-height:66vh;
       transition:aspect-ratio .25s ease}
     @media (max-width:768px){
-      .modal-hero{height:auto;aspect-ratio:4/5;max-height:72vh}
+      .modal-hero{width:100%;height:auto;aspect-ratio:4/5;max-height:72vh}
     }
-    /* cover, not contain: the plate is already the right shape, so
-       there is nothing to crop away and the edges stay clean. */
-    .modal-hero-img{object-fit:cover;object-position:center}
+    /* contain, so nothing is ever cut off. The box is set close to the
+       flyer's own shape, so there is usually nothing to fill, and the
+       blurred copy behind covers it when there is. */
+    .modal-hero-img{object-fit:contain;object-position:center}
     @media (prefers-reduced-motion:reduce){ .modal-hero{transition:none} }
     /* The gradient was there to carry a title that now sits below the
        flyer, so it pulls back to the bottom edge and stops darkening
@@ -3862,7 +3864,12 @@
            banner cannot shrink to a strip. */
         var w = this.naturalWidth, h = this.naturalHeight;
         if(!w || !h || !heroBox) return;
-        var r = Math.max(0.62, Math.min(1.60, w / h));
+        /* A narrow band on purpose. The box only has to get CLOSE to
+           the flyer's shape, because contain does the rest and the
+           blur hides the remainder. Letting it go to 9:16 made the
+           plate a thousand pixels tall on a desktop modal and pushed
+           every fact off the screen. */
+        var r = Math.max(0.80, Math.min(1.40, w / h));
         heroBox.style.aspectRatio = r;
       };
 
