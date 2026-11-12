@@ -1442,15 +1442,19 @@
        flyer to a letterbox and throws away the half carrying the date
        and the lineup. Capped on desktop so it does not fill the
        screen before a single fact is visible. */
-    .modal-hero{height:auto;aspect-ratio:4/5;max-height:66vh}
+    /* 4:5 is only the starting shape. The real one is set from the
+       picture itself once it loads, so a square flyer gets a square
+       plate and a tall one gets a tall plate. Nothing is cropped and
+       nothing sits in bars. */
+    .modal-hero{height:auto;aspect-ratio:4/5;max-height:66vh;
+      transition:aspect-ratio .25s ease}
     @media (max-width:768px){
-      .modal-hero{height:auto;aspect-ratio:4/5;max-height:70vh}
+      .modal-hero{height:auto;aspect-ratio:4/5;max-height:72vh}
     }
-    /* The flyer is shown whole. object-fit:cover filled the 4:5 plate
-       by cropping, which ate the top or the bottom of anything that
-       was not 4:5, and Lagos flyers come square, 4:5 and 9:16. Contain
-       shows all of it and the blurred copy behind fills the sides. */
-    .modal-hero-img{object-fit:contain;object-position:center}
+    /* cover, not contain: the plate is already the right shape, so
+       there is nothing to crop away and the edges stay clean. */
+    .modal-hero-img{object-fit:cover;object-position:center}
+    @media (prefers-reduced-motion:reduce){ .modal-hero{transition:none} }
     /* The gradient was there to carry a title that now sits below the
        flyer, so it pulls back to the bottom edge and stops darkening
        the artwork. */
@@ -1526,8 +1530,7 @@
         <div class="modal-hero-bg" id="modalHeroBg"></div>
         <!-- A party with no artwork used to render a broken-image icon
              with the party name beside it, at the top of its own modal. -->
-        <img class="modal-hero-img" id="modalHeroImg" src="" alt=""
-             onerror="this.style.display='none'"/>
+        <img class="modal-hero-img" id="modalHeroImg" alt=""/>
         <div class="modal-hero-texture"></div>
         <div class="modal-hero-grad"></div>
         <div class="modal-hero-logo"><img src="logo_afrocue.png" alt="AfroCue" onerror="this.style.display='none'"/></div>
@@ -2793,7 +2796,16 @@
                the image and the headline stays legible either way.
                The hero still leads on a franchise card with no night
                announced, which is further down. */
-            hero_img: e.flyer || f.upcoming_flyer || f.hero_img || f.flyer_img || '',
+            /* Order matters and this is the order. The night's own
+               flyer first, because that is the artwork for THIS night.
+               Then the upcoming flyer. Then their most recent post,
+               which refreshPartyPosts rewrites every morning, so it is
+               the freshest thing we hold. Hero Image and Flyer Image
+               come last: they are written once and never again, so
+               they are the ones that rot and go to a dead host. */
+            hero_img: e.flyer || f.upcoming_flyer
+                      || ((f.posts || []).find(function(q){ return q && q.img; }) || {}).img
+                      || f.hero_img || f.flyer_img || '',
             flyer_img:e.flyer, instagram:'https://instagram.com/'+(f.handle||''),
             /* the modal hero and the card show the same picture: the party's
                own image, never a post that happened to be scraped that week */
@@ -3836,8 +3848,31 @@
          it for good. Every modal opened after that had no flyer. The
          src is set first and the display restored after, so a real
          picture always comes back. */
-      heroImg.src = party.hero_img || ''; heroImg.alt = party.name;
-      heroImg.style.display = party.hero_img ? '' : 'none';
+      heroImg.alt = party.name || '';
+      var heroBox = heroImg.closest ? heroImg.closest('.modal-hero') : null;
+
+      /* Back to 4:5 before every open, or the last flyer's shape is
+         still on the box while the new one loads. */
+      if(heroBox) heroBox.style.aspectRatio = '4 / 5';
+
+      heroImg.onerror = function(){ this.style.display = 'none'; };
+      heroImg.onload = function(){
+        /* The plate becomes the picture's own shape, clamped so a 9:16
+           story flyer cannot push every fact off the screen and a wide
+           banner cannot shrink to a strip. */
+        var w = this.naturalWidth, h = this.naturalHeight;
+        if(!w || !h || !heroBox) return;
+        var r = Math.max(0.62, Math.min(1.60, w / h));
+        heroBox.style.aspectRatio = r;
+      };
+
+      if(party.hero_img){
+        heroImg.style.display = '';
+        heroImg.src = party.hero_img;
+      } else {
+        heroImg.style.display = 'none';
+        heroImg.removeAttribute('src');
+      }
 
       var metaTags = [party.time, party.access, party.setting].filter(Boolean);
       var allTags = metaTags.concat(party.genres || []);
