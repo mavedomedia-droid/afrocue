@@ -487,6 +487,27 @@
     @keyframes heartPop{0%{transform:scale(1)}30%{transform:scale(1.45)}60%{transform:scale(.9)}100%{transform:scale(1)}}
     @media (prefers-reduced-motion:reduce){.like-btn.pop svg{animation:none}}
     #heartAsk:empty{display:none}
+    /* ══ THE BUTTON BECOMES THE BOX ════════════════════════════
+       Tapping Interested used to leave the button sitting there and
+       open a form underneath it, so the thing you had just pressed
+       and the thing you now had to fill in were two separate objects
+       competing for the same attention. Now the row hides and the
+       form takes the slot it was in, which is also why #heartAsk
+       moved above .modal-stats in the markup. */
+    .modal-stats.asking,.sub-note.asking{display:none}
+    .int-ask{margin:0 0 22px}
+    .int-ask-t{font-size:13px;line-height:1.5}
+    .int-f input{border-radius:6px}
+    .int-f button{border-radius:6px}
+    .int-back{background:none;border:none;padding:12px 0 0;cursor:pointer;
+      font-family:inherit;font-size:11px;font-weight:600;color:var(--grey);
+      letter-spacing:.04em}
+    .int-back:hover{color:var(--off)}
+    @media (max-width:768px){
+      .int-ask{margin:0 0 16px}
+      .int-f input{flex:1 1 100%;min-height:44px}
+      .int-f button{flex:1 1 100%;min-height:44px}
+    }
     .share-btn{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--silver);background:transparent;border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:6px 14px;cursor:pointer;transition:all 0.18s;font-family:'Figtree',sans-serif;letter-spacing:0.04em;min-height:36px}
     .share-btn:hover{border-color:rgba(255,255,255,0.3);color:var(--white)}
     .share-btn.copied{border-color:#4caf50;color:#4caf50}
@@ -615,7 +636,10 @@
       .modal-body{padding:0 16px 24px}
       .modal-tags{padding-top:14px;gap:4px}
       .modal-tags .tag{font-size:8px;padding:3px 6px}
-      .modal-name{font-size:clamp(28px,9vw,48px);margin-bottom:6px}
+      /* 9vw put two words on two lines at the size of a headline.
+         The flyer already carries the shout. */
+      .modal-name{font-size:clamp(21px,6.1vw,32px);line-height:1.04;
+        margin:10px 0 8px}
       .modal-ig{font-size:11px}
       .modal-city{margin-bottom:16px;font-size:10px}
       .modal-stats{gap:12px;margin-bottom:14px;flex-wrap:wrap}
@@ -1450,7 +1474,12 @@
     .modal-hero{width:100%;height:auto;aspect-ratio:4/5;max-height:66vh;
       transition:aspect-ratio .25s ease}
     @media (max-width:768px){
-      .modal-hero{width:100%;height:auto;aspect-ratio:4/5;max-height:72vh}
+      /* Inset to the same 16px the body uses, so the flyer reads as a
+         picture in a page rather than a page made of picture. Shorter
+         too: at 72vh the title and the one button worth tapping were
+         both below the fold on an iPhone. */
+      .modal-hero{width:auto;height:auto;aspect-ratio:4/5;
+        max-height:56vh;margin:0 16px;border-radius:10px}
     }
     /* contain, so nothing is ever cut off. The box is set close to the
        flyer's own shape, so there is usually nothing to fill, and the
@@ -1528,14 +1557,19 @@
        it stops being one pill in a row of three and takes the width.
        The sweep is the one that used to run across Party Pulse. */
     @media (max-width:768px){
-      .modal-stats{gap:8px;margin-bottom:6px}
+      .modal-stats{gap:10px;margin-bottom:10px;align-items:center}
+      /* Still the first thing and still the full width, because it is
+         the only tap in here that is ours to keep. Just not a slab:
+         44 instead of 52, and the type stops shouting. */
       .modal-stats .like-btn{
-        order:-1;flex:1 0 100%;justify-content:center;gap:9px;
-        padding:15px;min-height:52px;border-radius:4px;
-        font-size:12px;font-weight:800;letter-spacing:.12em;
+        order:-1;flex:1 0 100%;justify-content:center;gap:8px;
+        padding:0 18px;min-height:44px;border-radius:6px;
+        font-size:11px;font-weight:800;letter-spacing:.14em;
         text-transform:uppercase;position:relative;overflow:hidden;
         border-color:var(--ev-line,rgba(200,224,0,.5));
       }
+      .modal-stats .like-btn svg{width:15px;height:15px}
+      .modal-stats .like-btn #likeCountNum{padding-left:8px;font-size:10.5px}
       .modal-stats .like-btn::after{
         content:'';position:absolute;top:-50%;left:-100%;
         width:60%;height:200%;pointer-events:none;
@@ -1659,6 +1693,7 @@
         <div class="modal-name yh" id="modalName"></div>
         <div class="modal-ig" id="modalIg"></div>
         <div class="modal-city" id="modalCity"></div>
+        <div id="heartAsk"></div>
         <div class="modal-stats">
           <div class="stat-pill">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -1676,7 +1711,6 @@
         <div class="sub-note" id="subNote">
           We will remind you the day before, and if anything changes.
         </div>
-        <div id="heartAsk"></div>
         <p class="modal-desc" id="modalDesc"></p>
 
         <!-- Party Pulse -->
@@ -4106,6 +4140,7 @@
       document.getElementById('viewCountNum').textContent = party.views || 0;
       document.getElementById('likeCountNum').textContent = party.interested || 0;
       var ha = document.getElementById('heartAsk'); if(ha) ha.innerHTML = '';
+      askingMode(false);
       document.getElementById('likeBtn').className = 'like-btn' + (storeGet('int_'+(heartTarget(party)||id)) ? ' liked' : '');
 
       // Party Pulse
@@ -4305,9 +4340,51 @@
         + '<label class="int-opt"><input type="checkbox" id="optThis" checked/><span>' + thisLine + '</span></label>'
         + '<label class="int-opt"><input type="checkbox" id="optMore" checked/><span>Other parties worth knowing about, once a week</span></label>'
         + '<div class="int-fine" id="intFine">Only what you tick. One tap to stop, any time.</div>'
+        + '<button class="int-back" onclick="closeHeartAsk()">Not now</button>'
         + '</div>';
+
+      /* The row the button lived in steps aside so the form takes its
+         place rather than appearing underneath it. */
+      askingMode(true);
+      scrollAskIntoView();
+
       var i = document.getElementById('intWho');
       if(i){ try { i.focus({ preventScroll: true }); } catch(e){ i.focus(); } }
+    }
+
+    /** Hide or restore the button row, so the form occupies its slot. */
+    function askingMode(on){
+      ['.modal-stats', '.sub-note'].forEach(function(sel){
+        var el = document.querySelector(sel);
+        if(el) el.classList.toggle('asking', !!on);
+      });
+    }
+
+    /**
+     * Put the form at the top of what they can actually see.
+     *
+     * The modal is the scroller, so this is its scrollTop plus however
+     * far the form currently sits down the viewport, less a margin so
+     * it is not jammed against the top edge. Done after a frame,
+     * because the row has just been hidden and the layout has to
+     * settle before the measurement means anything.
+     */
+    function scrollAskIntoView(){
+      var modal = document.getElementById('partyModal');
+      var host  = document.getElementById('heartAsk');
+      if(!modal || !host) return;
+      requestAnimationFrame(function(){
+        var top = host.getBoundingClientRect().top - modal.getBoundingClientRect().top;
+        modal.scrollTo({ top: Math.max(0, modal.scrollTop + top - 14),
+                         behavior: 'smooth' });
+      });
+    }
+
+    /** Changed their mind before typing anything. */
+    function closeHeartAsk(){
+      var host = document.getElementById('heartAsk');
+      if(host) host.innerHTML = '';
+      askingMode(false);
     }
 
     function saveInterest(){
@@ -4356,6 +4433,7 @@
       /* They have just said yes to a night. A sponsor of the alert
           reaches them here and again in the confirmation email, which
           is one Promo row buying two surfaces. */
+      askingMode(true);
       document.getElementById('heartAsk').innerHTML =
         '<div class="int-ask"><div class="int-ask-t">You are in.</div>'
         + lines.map(function(l){ return '<div class="int-done">' + l + '</div>'; }).join('')
