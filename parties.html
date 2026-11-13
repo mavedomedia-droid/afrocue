@@ -22,12 +22,35 @@
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
   <!-- End Google Tag Manager -->
 
+  <!-- The handshake to Google's two hosts used to start only once the
+       parser reached the stylesheet. Warming them costs nothing and
+       takes a chunk off the 710 ms of render blocking. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype');font-weight:900}
-    @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype');font-weight:500}
-    @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthet-Nova-.otf') format('opentype');font-weight:400}
-    @font-face{font-family:'Aesthet Nova';src:url('fonnts.com-Aesthetet-Nova-Light.otf') format('opentype');font-weight:300}
+    /* woff2 first, otf behind it for anything that cannot read woff2.
+       Same three faces, 378 KB down to 162 KB.
+
+       font-display:swap so the page draws immediately in the fallback
+       and swaps when the face lands. Without it the browser holds the
+       text invisible while it waits, which is the 170 ms PageSpeed
+       calls out and part of why the layout jumps.
+
+       The Light face is gone. It pointed at
+       fonnts.com-Aesthetet-Nova-Light.otf, note the extra "et", and
+       no such file has ever been in the site folder. Every visitor
+       was taking a 404 for it. Weight 300 now falls to the regular,
+       which is what it has actually been rendering as all along. */
+    @font-face{font-family:'Aesthet Nova';font-weight:900;font-display:swap;
+      src:url('fonnts.com-Aesthet-Nova-Black.woff2') format('woff2'),
+          url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype')}
+    @font-face{font-family:'Aesthet Nova';font-weight:500;font-display:swap;
+      src:url('fonnts.com-Aesthet-Nova-Medium.woff2') format('woff2'),
+          url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype')}
+    @font-face{font-family:'Aesthet Nova';font-weight:300 400;font-display:swap;
+      src:url('fonnts.com-Aesthet-Nova-.woff2') format('woff2'),
+          url('fonnts.com-Aesthet-Nova-.otf') format('opentype')}
 
     :root{
       --black:#0a0a0a;--dark:#111111;--dark2:#1c1c1c;--mid:#2e2e2e;
@@ -44,7 +67,6 @@
     img{display:block;max-width:100%}
 
     /* NAV */
-    nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(10,10,10,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06)}
     .nav-logo{display:flex;align-items:center;text-decoration:none}
     .nav-logo img{height:48px;width:auto;display:block}
     .nav-logo-fallback{display:none;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:17px;color:var(--yellow);letter-spacing:0.08em}
@@ -136,7 +158,7 @@
     .filter-reset{font-size:10px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--grey);background:none;border:none;cursor:pointer;font-family:'Figtree',sans-serif;padding:9px 4px;transition:color 0.2s;display:none;min-height:44px}
     .filter-reset.visible{display:block}
     .filter-reset:hover{color:var(--white)}
-    .search-input{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:2px;padding:9px 12px;color:var(--white);font-family:'Figtree',sans-serif;font-size:11px;min-height:44px;min-width:180px;flex:1 1 auto;outline:none;transition:border-color 0.2s}
+    .search-input{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:2px;padding:9px 12px;color:var(--white);font-family:'Figtree',sans-serif;font-size:16px;min-height:44px;min-width:180px;flex:1 1 auto;outline:none;transition:border-color 0.2s}
     .search-input::placeholder{color:var(--grey)}
     .search-input:focus{border-color:rgba(200,224,0,0.4)}
     .add-event-btn{padding:10px 20px;background:transparent;border:1px solid rgba(255,255,255,0.15);border-radius:2px;color:var(--silver);font-family:'Figtree',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;text-decoration:none;white-space:nowrap;display:inline-block;min-height:44px}
@@ -376,9 +398,16 @@
     .int-ask{margin:14px 0 30px;max-width:60ch;animation:modalIn .22s ease}
     .int-ask-t{font-size:13px;font-weight:400;color:var(--white);margin-bottom:10px}
     .int-f{display:flex;gap:8px;flex-wrap:wrap}
+    /* ══ 16px, EVERYWHERE, ON EVERY INPUT ══════════════════════
+       Safari on iPhone zooms the entire page in when a focused input
+       is under 16px, and it does not zoom back out. Someone taps
+       Interested, the page jumps, and they are typing their email
+       into a page that is now wider than the screen. This is why
+       every form on the site has to be 16px, not because 16 reads
+       better. */
     .int-f input{flex:1 1 220px;padding:11px 13px;background:var(--dark2);
       border:1px solid rgba(255,255,255,.14);border-radius:2px;color:var(--white);
-      font-family:'Figtree',sans-serif;font-size:13px}
+      font-family:'Figtree',sans-serif;font-size:16px}
     .int-f input:focus{outline:none;border-color:var(--yellow)}
     .int-f button{padding:11px 22px;background:var(--yellow);border:none;border-radius:2px;
       color:var(--black);font-family:'Figtree',sans-serif;font-size:11px;font-weight:600;
@@ -530,7 +559,14 @@
     @keyframes pulseDot { 0%{transform:scale(1);opacity:1} 50%{transform:scale(1.8);opacity:0.4} 100%{transform:scale(1);opacity:1} }
     .party-pulse-scan { position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden; }
     .party-pulse-scan::after { content:'';position:absolute;top:-50%;left:-100%;width:60%;height:200%;background:linear-gradient(90deg,transparent,rgba(200,224,0,0.05),transparent);transform:rotate(25deg);animation:scanMove 3s linear infinite; }
-    @keyframes scanMove { 0%{left:-100%} 100%{left:150%} }
+    /* This animated `left`, which makes the browser run layout on
+       every single frame for every element using it. Four rules do,
+       including the Interested beam, which is why PageSpeed found ten
+       non composited animations. translateX is the same sweep on the
+       GPU for nothing. The elements keep left:-100% as their start
+       position and the transform does the travel. */
+    @keyframes scanMove { 0%{transform:translateX(0) rotate(25deg)}
+                          100%{transform:translateX(417%) rotate(25deg)} }
     .party-pulse-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:16px;position:relative;z-index:2; }
     .party-pulse-key { display:block;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:#555;margin-bottom:6px; }
     .party-pulse-value { display:block;font-size:16px;font-weight:500;color:#f0ede8;opacity:0;animation:fadeInValue 0.6s ease forwards; }
@@ -572,7 +608,6 @@
     .list-cta-btn:hover{opacity:0.88}
 
     /* FOOTER */
-    footer{border-top:1px solid rgba(255,255,255,0.06);padding:16px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;background:var(--dark)}
     .footer-logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
     .footer-logo img{height:26px;width:auto;display:block}
     .footer-logo-fallback{display:none;font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:13px;color:var(--yellow)}
@@ -621,7 +656,9 @@
       .parties-header{flex-direction:column;gap:12px;margin-bottom:24px}
       .filter-bar{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;gap:5px}
       .filter-bar::-webkit-scrollbar{display:none}
-      .filter-select,.search-input{font-size:10px;padding:7px 22px 7px 9px;flex-shrink:0;min-width:100px}
+      /* Same rule, same reason. The box stays small, only the text
+         inside it has to clear 16px or iOS zooms on focus. */
+      .filter-select,.search-input{font-size:16px;padding:7px 22px 7px 9px;flex-shrink:0;min-width:100px}
       .search-input{min-width:130px;flex:0 0 auto}
       .parties-grid{grid-template-columns:1fr 1fr;gap:2px}
       .party-card-tags .tag:not(.type){display:none}
@@ -653,10 +690,22 @@
       .upcoming-name{font-size:clamp(20px,5.5vw,30px)}
       .upcoming-left{padding:14px 18px;gap:5px}
       .upcoming-btn{padding:10px 16px;font-size:9px}
-      footer{padding:12px 16px;gap:8px;flex-wrap:wrap}
       .footer-links{gap:12px}
       .footer-email{display:none}
-      .list-cta-strip{padding:24px 16px}
+      .list-cta-strip{padding:20px 16px;margin-top:28px}
+      /* ══ THE BOTTOM OF THE PAGE ════════════════════════════════
+         Below the grid sat a call to action strip, then a WhatsApp
+         block almost a full phone screen tall, then the footer. Three
+         full screens of furniture after the thing people came for.
+         The WhatsApp section is styled inline, so these need
+         !important to reach it. */
+      #whatsapp-channel{padding:26px 16px!important}
+      #whatsapp-channel > div:first-child{display:none!important}
+      #whatsapp-channel > div:last-child{gap:16px!important}
+      #whatsapp-channel > div:last-child > div:first-child > div:nth-child(2){
+        font-size:26px!important;margin-bottom:10px!important}
+      #whatsapp-channel > div:last-child > div:first-child > div:first-child{
+        margin-bottom:8px!important}
       .list-cta-inner{flex-direction:column;align-items:flex-start;gap:14px}
       .list-cta-btn{width:100%;justify-content:center;padding:12px 20px}
     }
@@ -1459,7 +1508,7 @@
     .modal-stats .share-btn{
       font-size:12px;padding:8px 14px;min-height:36px;
       font-variant-numeric:tabular-nums}
-    .sub-note{font-size:10.5px;font-weight:300;color:var(--grey);
+    .sub-note{font-size:10.5px;font-weight:300;color:var(--grey);line-height:1.45;
       margin:10px 0 22px}
 
     /* The flyer leads. It was a 380px banner, which crops a portrait
@@ -1557,17 +1606,28 @@
        it stops being one pill in a row of three and takes the width.
        The sweep is the one that used to run across Party Pulse. */
     @media (max-width:768px){
-      .modal-stats{gap:10px;margin-bottom:10px;align-items:center}
+      /* ══ ONE ROW, NOT THREE ════════════════════════════════════
+         Interested took the full width, then the eye count and the
+         share button sat on a row of their own, then the reminder
+         note on a third. Three rows and a lot of empty space for one
+         decision, which is what made the whole thing feel cluttered.
+
+         Now they share a line. Interested takes whatever is left
+         after the two small controls, so it is still the biggest
+         thing on the row and still first, but it is no longer the
+         only thing on its row. */
+      .modal-stats{gap:8px;margin-bottom:10px;align-items:center;flex-wrap:nowrap}
       /* Still the first thing and still the full width, because it is
          the only tap in here that is ours to keep. Just not a slab:
          44 instead of 52, and the type stops shouting. */
       .modal-stats .like-btn{
-        order:-1;flex:1 0 100%;justify-content:center;gap:8px;
-        padding:0 18px;min-height:44px;border-radius:6px;
-        font-size:11px;font-weight:800;letter-spacing:.14em;
+        order:-1;flex:1 1 auto;min-width:0;justify-content:center;gap:8px;
+        padding:0 14px;min-height:44px;border-radius:6px;
+        font-size:11px;font-weight:800;letter-spacing:.12em;
         text-transform:uppercase;position:relative;overflow:hidden;
         border-color:var(--ev-line,rgba(200,224,0,.5));
       }
+      .modal-stats .stat-pill,.modal-stats .share-btn{flex:0 0 auto}
       .modal-stats .like-btn svg{width:15px;height:15px}
       .modal-stats .like-btn #likeCountNum{padding-left:8px;font-size:10.5px}
       .modal-stats .like-btn::after{
@@ -1639,7 +1699,7 @@
         transparent 100%)}
     .moved-wash{position:absolute;inset:0;pointer-events:none;overflow:hidden}
     .moved-wash::after{content:'';position:absolute;top:-50%;left:-100%;
-      width:55%;height:200%;transform:rotate(25deg);
+      width:60%;height:200%;transform:rotate(25deg);
       background:linear-gradient(90deg,transparent,
         rgba(255,255,255,.07),transparent);
       animation:scanMove 4.5s linear infinite}
@@ -1660,10 +1720,10 @@
       .modal-foot{margin:22px -16px -24px}
       .mf{padding:14px 12px;gap:8px;min-height:58px}
       .mf-v{font-size:10.5px}
-      /* This used to shrink it back to a pill. It is the one thing
-         worth tapping on a phone, so it keeps the size the block
-         above gives it. */
-      .modal-stats .like-btn{padding:15px;min-height:52px;font-size:12px}
+      /* This block sits after the one that lays the row out, so
+         anything it sets here wins. It used to force 52px back on,
+         which is what kept the button a slab after I had already
+         made it 44. Size now belongs to one place only. */
     }
 </style>
 </head>
@@ -1802,7 +1862,11 @@
     <div class="featured-col">
       <div class="featured-slot" id="featuredSlot" onclick="openFeaturedModal()">
         <div class="featured-slot-bg" id="featuredBg"></div>
-        <img class="featured-slot-img" id="featuredImg" src="" alt=""/>
+        <!-- No src attribute at all. src="" resolves to the page URL,
+             so the browser downloaded this whole HTML document as an
+             image, failed, and fired an error. Twice per load, with
+             the one below. -->
+        <img class="featured-slot-img" id="featuredImg" alt="" decoding="async"/>
         <div class="featured-slot-grad"></div>
         <div class="featured-pips" id="featuredDots"></div>
         <div class="featured-slot-content">
@@ -1825,7 +1889,7 @@
     <div class="upcoming-grad"></div>
     <div class="upcoming-inner">
       <div class="upcoming-flyer-wrap" id="upcomingFlyerWrap">
-        <img class="upcoming-flyer-img" id="upcomingFlyerImg" src="" alt="" style="visibility:hidden;"/>
+        <img class="upcoming-flyer-img" id="upcomingFlyerImg" alt="" decoding="async" style="visibility:hidden;"/>
       </div>
       <div class="upcoming-left">
         <span class="upcoming-badge">&#9733; Featured</span>
@@ -3230,7 +3294,7 @@
           + (st === 'ending' ? ' on ending' : '') + '" data-ed="'
           + String(e.id).replace(/"/g, '&quot;') + '">'
           + '<span class="chip-art">'
-          +   (art ? '<img src="' + art + '" alt="" loading="lazy"/>' : '')
+          +   (art ? '<img src="' + art + '" alt="" loading="lazy" decoding="async" width="400" height="500"/>' : '')
           + '</span>'
           + '<span class="chip-t">'
           +   '<span class="chip-n">' + (e.ed_name || e.title || e.name) + '</span>'
@@ -3449,7 +3513,7 @@
             return '<button class="sib' + (past ? ' past' : '') + '" '
               + 'data-ed="' + String(e.id).replace(/"/g, '&quot;') + '">'
               + '<span class="sib-i">'
-              +   (art ? '<img src="' + art + '" alt="" loading="lazy"/>' : '')
+              +   (art ? '<img src="' + art + '" alt="" loading="lazy" decoding="async" width="400" height="500"/>' : '')
               +   (past ? '<span class="sib-tag">Ran</span>' : '')
               + '</span>'
               + '<span class="sib-n">' + (e.ed_name || e.title || e.name || '') + '</span>'
@@ -3699,7 +3763,7 @@
       return '<div class="m-posts"><div class="modal-cta-label">'+label+'</div><div class="m-posts-grid">'
         + posts.map(function(o){
             return '<a class="m-post" href="'+(o.url||'#')+'" target="_blank" rel="noopener">'
-              + '<img src="'+o.img+'" alt="" loading="lazy" onerror="this.style.opacity=0"/>'
+              + '<img src="'+o.img+'" alt="" loading="lazy" decoding="async" width="400" height="400" onerror="this.style.opacity=0"/>'
               + '<span class="m-post-k'+(o.kind==='flyer'?' flyer':'')+'">'+o.kind+'</span>'
               + (o.cap ? '<span class="m-post-cap">'+o.cap+'</span>' : '')
               + '</a>';
@@ -4210,7 +4274,7 @@
           a.href = p.url || 'https://instagram.com/afro.cue';
           a.target = '_blank';
           a.rel = 'noopener';
-          a.innerHTML = '<div class="latest-post-thumb"><img src="'+p.image+'" alt="Latest post" loading="lazy" decoding="async"/></div>'
+          a.innerHTML = '<div class="latest-post-thumb"><img src="'+p.image+'" alt="Latest post" loading="lazy" decoding="async" width="200" height="200"/></div>'
             + '<div class="latest-post-caption">'+(p.caption||'')+'</div>'
             + '<div class="latest-post-time">'+(p.timestamp?formatDate(p.timestamp):'')+'</div>';
           latestGrid.appendChild(a);
