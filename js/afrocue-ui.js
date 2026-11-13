@@ -105,9 +105,13 @@
      Fonts + helpers. Injected at the top of <head> so page CSS still wins.
      ========================================================================== */
   var BASECSS = [
-    "@font-face{font-family:'Aesthet Nova';src:url('" + BASE + "fonnts.com-Aesthet-Nova-Black.otf') format('opentype');font-weight:900;font-display:swap}",
-    "@font-face{font-family:'Aesthet Nova';src:url('" + BASE + "fonnts.com-Aesthet-Nova-Medium.otf') format('opentype');font-weight:500;font-display:swap}",
-    "@font-face{font-family:'Aesthet Nova';src:url('" + BASE + "fonnts.com-Aesthet-Nova-.otf') format('opentype');font-weight:400;font-display:swap}",
+    /* woff2 first, otf behind it. 378 KB of lettering becomes 162 KB
+       on every page that mounts this file, not just parties.html.
+       The .otf line stays so nothing breaks if the woff2 files are
+       not uploaded yet. */
+    "@font-face{font-family:'Aesthet Nova';font-weight:900;font-display:swap;src:url('" + BASE + "fonnts.com-Aesthet-Nova-Black.woff2') format('woff2'),url('" + BASE + "fonnts.com-Aesthet-Nova-Black.otf') format('opentype')}",
+    "@font-face{font-family:'Aesthet Nova';font-weight:500;font-display:swap;src:url('" + BASE + "fonnts.com-Aesthet-Nova-Medium.woff2') format('woff2'),url('" + BASE + "fonnts.com-Aesthet-Nova-Medium.otf') format('opentype')}",
+    "@font-face{font-family:'Aesthet Nova';font-weight:300 400;font-display:swap;src:url('" + BASE + "fonnts.com-Aesthet-Nova-.woff2') format('woff2'),url('" + BASE + "fonnts.com-Aesthet-Nova-.otf') format('opentype')}",
     /* chrome-only variables, all prefixed so no page token is touched */
     ":root{",
     "--ac-bg:rgba(11,10,9,0.78);--ac-bg-solid:rgba(11,10,9,0.96);--ac-panel:#0b0a09;--ac-panel-2:#0f0e0c;",
@@ -188,10 +192,39 @@
     ".ac-links{display:none}",
     ".ac-right .ac-cta{display:none}",
     ".ac-burger{display:flex}",
-    ".ac-logo img{height:38px}",
-    ".ac-footer{padding:40px var(--ac-pad) 24px}",
-    ".ac-f-top{grid-template-columns:1fr;gap:28px}",
-    ".ac-f-bottom{flex-direction:column;align-items:flex-start;gap:12px}",
+    /* A phone screen is mostly height, and 67px of it was a logo and
+       a burger. 9px of padding and a 32px mark gives the same bar in
+       about 51px, which is roughly one more card of the page visible
+       on every screen. --ac-nav-h is redeclared because three rules
+       in parties.html pad the hero by it, and a stale value leaves a
+       gap under the bar. */
+    /* Measured, not guessed: 9 + 38 (the burger, which is taller than
+       the 32px mark) + 9 + 1px border. parties.html pads its hero by
+       this, so a wrong number leaves a gap under the bar. */
+    ":root{--ac-nav-h:57px}",
+    ".ac-nav{padding:9px var(--ac-pad)}",
+    ".ac-logo img{height:32px}",
+    ".ac-burger{width:38px;height:38px;gap:4px}",
+    ".ac-burger span{width:16px}",
+    /* The footer was 56px of padding, a four column grid stacked into
+       one, and 28px between each. On a phone that is most of a screen
+       of links under every page. Two columns side by side, tighter
+       type, and it is a footer again rather than a second page. */
+    ".ac-footer{padding:26px var(--ac-pad) 18px}",
+    ".ac-f-top{grid-template-columns:1fr 1fr;gap:18px 20px;padding-bottom:20px}",
+    ".ac-f-brand{grid-column:1 / -1}",
+    ".ac-f-logo{margin-bottom:8px}",
+    ".ac-f-logo img{height:34px}",
+    ".ac-f-brand p{font-size:11.5px;line-height:1.5;max-width:none}",
+    ".ac-f-col h4{font-size:9.5px;letter-spacing:.14em;margin:0 0 8px}",
+    ".ac-f-col ul{gap:7px}",
+    ".ac-f-col a{font-size:12.5px}",
+    ".ac-f-wa{padding:10px 14px;font-size:11px}",
+    ".ac-f-mail{margin-top:10px;font-size:12.5px}",
+    ".ac-f-bottom{flex-direction:column;align-items:flex-start;gap:8px;padding-top:14px}",
+    ".ac-f-bottom .copy{font-size:11px}",
+    ".ac-f-social{gap:12px}",
+    ".ac-f-social a{font-size:11px}",
     "}",
     "@media(prefers-reduced-motion:reduce){.ac-nav *,.ac-footer *,.ac-mm *{animation:none !important;transition:none !important}}"
   ].join('');
