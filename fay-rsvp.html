@@ -6,7 +6,7 @@
 <title>Fay Diamond &middot; Listening Party</title>
 <meta name="robots" content="noindex"/>
 <meta name="theme-color" content="#07080c"/>
-<meta name="description" content="Guest list only. Saturday 21 November, 7pm, Victoria Island."/>
+<meta name="description" content="Guest list only. Sunday 22 November, 7pm, Victoria Island."/>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -173,23 +173,11 @@ select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.o
 /* ══ BELOW THE ASK ═════════════════════════════════════════════
    Small titles, pictures doing the work. */
 .sec{margin-bottom:30px}
-.sec-t{font-size:10px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--dim);margin-bottom:12px;text-align:center}
 .shots{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .shot{position:relative;aspect-ratio:4/5;border-radius:11px;overflow:hidden;
   background:var(--soft);border:1px solid var(--line2)}
 .shot.wide{grid-column:1 / -1;aspect-ratio:16/10}
 .shot img{width:100%;height:100%;object-fit:cover}
-
-.facts{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);
-  border-radius:12px;overflow:hidden}
-.fact{padding:15px 16px;border-bottom:1px solid var(--line2)}
-.fact:nth-child(odd){border-right:1px solid var(--line2)}
-.fact:nth-last-child(-n+2){border-bottom:none}
-.fact-k{font-size:9.5px;font-weight:800;letter-spacing:.17em;text-transform:uppercase;
-  color:var(--dim);margin-bottom:5px}
-.fact-v{font-size:14px;font-weight:600;line-height:1.4;color:var(--ink)}
-.fact-v.soft{color:var(--ink2);font-weight:400;font-size:13px}
 
 .ep{display:flex;align-items:center;gap:13px;background:var(--card);
   border:1px solid var(--line);border-radius:12px;padding:14px;text-decoration:none}
@@ -230,7 +218,7 @@ select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.o
     <h1>Fay Diamond<small>Listening Party</small></h1>
 
     <p class="lede">
-      Saturday 21 November, 7pm, Victoria Island. Food, drinks, and
+      Sunday 22 November, 7pm, Victoria Island. Food, drinks, and
       <b>Diamond</b> played properly, start to finish.
     </p>
 
@@ -291,7 +279,6 @@ select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.o
 
   <!-- ══ PICTURES ════════════════════════════════════════════ -->
   <div class="sec">
-    <div class="sec-t">The night</div>
     <div class="shots">
       <div class="shot">
         <img id="shot1" alt=""/>
@@ -309,31 +296,6 @@ select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.o
   </div>
 
   <div class="sec">
-    <div class="sec-t">Where and when</div>
-    <div class="facts">
-      <div class="fact">
-        <div class="fact-k">Date</div>
-        <div class="fact-v">Sat 21 November</div>
-      </div>
-      <div class="fact">
-        <div class="fact-k">Doors</div>
-        <div class="fact-v">7:00PM</div>
-      </div>
-      <div class="fact">
-        <div class="fact-k">Venue</div>
-        <!-- VENUE PLACEHOLDER — replace this line and the two in
-             FayRsvp.gs (FAY.VENUE) and both emails pick it up. -->
-        <div class="fact-v soft">Victoria Island, Lagos. Exact address sent with your confirmation.</div>
-      </div>
-      <div class="fact">
-        <div class="fact-k">Entry</div>
-        <div class="fact-v soft">Guest list only</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="sec">
-    <div class="sec-t">Before you come</div>
     <a class="ep" href="https://open.spotify.com/album/1g7aRckBfudCKXhwEZywQA"
        target="_blank" rel="noopener">
       <div class="ep-art">
@@ -492,7 +454,7 @@ select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.o
           '<path d="M4 12.5l5.5 5.5L20 7" fill="none" stroke="currentColor" ' +
           'stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>' +
         '</svg></div>' +
-        '<div class="done-h">' + (first ? 'See you Saturday, ' + first + '.' : 'See you Saturday.') + '</div>' +
+        '<div class="done-h">' + (first ? 'See you Sunday, ' + first + '.' : 'See you Sunday.') + '</div>' +
         '<p class="done-p">You are on the list. Your confirmation is on its way, ' +
           '<b>bring it to the door</b>, it is what gets you in.</p>' +
         '<a class="btn done-ep" href="https://open.spotify.com/album/1g7aRckBfudCKXhwEZywQA" ' +
