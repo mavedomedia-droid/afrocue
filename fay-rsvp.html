@@ -139,6 +139,7 @@ input.bad,select.bad{border-color:var(--bad)}
 select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%23737b8a' stroke-width='2' fill='none'/></svg>");
   background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
 .err{display:none;font-size:11px;color:var(--bad);margin-top:6px}
+.hint{display:block;font-size:11px;line-height:1.45;color:#6B554E;margin-top:6px}
 .err.on{display:block}
 
 .two{display:flex;gap:11px}
@@ -274,9 +275,13 @@ select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.o
     </div>
 
     <div class="f">
-      <label for="fWith">Who are you with <span class="opt">optional</span></label>
-      <input type="text" id="fWith" placeholder="Media house, brand, label"
+      <!-- "Who are you with" sat directly under "Bringing a +1" and
+           read as a question about the plus one. It is about the
+           masthead, so it says so. -->
+      <label for="fWith">Media house or company <span class="opt">optional</span></label>
+      <input type="text" id="fWith" placeholder="Pulse, Serengeti, freelance"
              autocomplete="organization" autocapitalize="words"/>
+      <span class="hint">Only if you are coming for work. Leave it blank otherwise.</span>
     </div>
 
     <button class="btn" id="btn" type="button">Put me on the list</button>
