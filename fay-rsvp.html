@@ -367,17 +367,19 @@ select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.o
      The five webp files sit next to this page. Swap a filename here
      and that slot changes; empty it and the slot goes quiet rather
      than breaking. */
+  /* One prefix, so moving the folder is one line. */
+  var A = 'assets/';
   var ART = {
-    shot1:   'fay-press-1.webp',
-    shot2:   'fay-press-2.webp',
-    shot3:   'fay-room.webp',
-    shot4:   'fay-close.webp',
-    epArt:   'fay-ep.webp'
+    shot1:   A + 'fay-press-1.webp',
+    shot2:   A + 'fay-press-2.webp',
+    shot3:   A + 'fay-room.webp',
+    shot4:   A + 'fay-close.webp',
+    epArt:   A + 'fay-ep.webp'
   };
 
   /* The cover goes in as a background rather than an img, because it
      is behind the type rather than part of the flow. */
-  var HERO_ART = 'fay-ep.webp';
+  var HERO_ART = A + 'fay-ep.webp';
   var heroBg = document.getElementById('heroBg');
   if (heroBg && HERO_ART) heroBg.style.backgroundImage = "url('" + HERO_ART + "')";
   Object.keys(ART).forEach(function (id) {
