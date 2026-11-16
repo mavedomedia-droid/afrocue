@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Fay Diamond &middot; Listening Party</title>
+<meta name="robots" content="noindex"/>
+<meta name="theme-color" content="#07080c"/>
+<meta name="description" content="Guest list only. Saturday 21 November, 7pm, Victoria Island."/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- The /exec URL lives in afrocue.js and nowhere else, the same way
+     the Chibyverse guestlist does it. Head, not deferred, because the
+     inline script at the bottom reads it. -->
+<script src="/js/afrocue.js"></script>
+
+<style>
+@font-face{font-family:'Aesthet Nova';font-weight:900;font-display:swap;
+  src:url('fonnts.com-Aesthet-Nova-Black.woff2') format('woff2'),
+      url('fonnts.com-Aesthet-Nova-Black.otf') format('opentype')}
+@font-face{font-family:'Aesthet Nova';font-weight:500;font-display:swap;
+  src:url('fonnts.com-Aesthet-Nova-Medium.woff2') format('woff2'),
+      url('fonnts.com-Aesthet-Nova-Medium.otf') format('opentype')}
+</style>
+
+<style>
+/* ══════════════════════════════════════════════════════════════
+   FAY DIAMOND, LISTENING PARTY
+   Same bones as chibyverse-guestlist.html: slim chrome, short hero,
+   one card, everything else under it. The difference is that the
+   first field is live in the hero rather than below a fold, and the
+   thank you is a real page rather than a swapped div, because
+   conversions are counted by landing on a URL.
+
+   ── THE PALETTE ──────────────────────────────────────────────
+   No Fay brand colours were supplied, so this is read off the EP
+   title: ice white, deep ink, and one cold gem accent. Every colour
+   on the page comes from the eight lines below, so handing me the
+   real palette is an eight line change and nothing else moves.
+   ══════════════════════════════════════════════════════════════ */
+:root{
+  /* Read off the EPK rather than invented: the wine the deck sits on,
+     the gold of the Diamond wordmark, and its cream. */
+  --bg:#140609; --card:#231017; --soft:#1C0A10;
+  --ink:#F6ECE1; --ink2:#C9B3AA; --dim:#8A7169;
+  --acc:#E9B44C; --acc2:#F2C76A; --on-acc:#2A0D05;
+  --line:rgba(255,255,255,0.09); --line2:rgba(255,255,255,0.055);
+  --ok:#8ee6a8; --bad:#ff6b6b;
+  --sans:'Figtree',Arial,Helvetica,sans-serif;
+  --display:'Aesthet Nova','Figtree',sans-serif;
+  --nav:57px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--sans);
+  -webkit-text-size-adjust:100%;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+
+.wrap{max-width:600px;margin:0 auto;padding:calc(var(--nav) + 14px) 18px 60px}
+
+/* ══ HERO ══════════════════════════════════════════════════════
+   The EP cover is the page. It sits behind the whole hero rather
+   than in a frame above it, with the grain over the top and a scrim
+   under the words so they stay readable on a busy picture.
+
+   Full bleed, so it breaks out of the 18px gutter the rest of the
+   column keeps. Centred at every width, not only on a phone,
+   because the ask is one thing. */
+/* min-height, because the cover has to be seen. Without it the hero
+   collapses to the height of the words and the picture is a sliver.
+   The type is pushed to the bottom with flex so the top half of the
+   frame is just the record. */
+.hero{position:relative;text-align:center;overflow:hidden;
+  margin:0 -18px 24px;padding:30vh 24px 26px;
+  display:flex;flex-direction:column;justify-content:flex-end}
+.hero-bg{position:absolute;inset:0;background-size:cover;
+  background-position:center 32%;transform:scale(1.04)}
+/* The same texture the rest of the site uses, so this reads as one
+   family rather than a page that wandered in. */
+.hero-tex{position:absolute;inset:0;background-image:url('texture.jpg');
+  background-size:cover;background-position:center;opacity:.22;
+  mix-blend-mode:overlay;pointer-events:none}
+/* Light at the top so the cover is actually a picture, then heavy
+   from the title down, because that is where the words are and a
+   dark record will otherwise eat them. */
+.hero-scrim{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,
+    rgba(20,6,9,.12) 0%, rgba(20,6,9,.28) 34%,
+    rgba(20,6,9,.72) 56%, rgba(20,6,9,.93) 78%, var(--bg) 100%)}
+.hero-in{position:relative;z-index:2}
+/* The labelled slot A&R drops the artwork into. It shows only while
+   the image is missing, so nothing has to be deleted later. */
+.slot{position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:7px;text-align:center;
+  padding:20px;color:var(--dim);
+  background:repeating-linear-gradient(135deg,rgba(255,255,255,.022) 0 11px,transparent 11px 22px)}
+.slot b{font-size:10.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--acc)}
+.slot span{font-size:11.5px;line-height:1.5;max-width:240px}
+
+
+.kick{font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--acc);margin-bottom:10px}
+h1{font-family:var(--display);font-weight:900;line-height:.94;letter-spacing:-.01em;
+  font-size:clamp(34px,9.6vw,58px);margin-bottom:10px;
+  text-shadow:0 2px 24px rgba(20,6,9,.85)}
+h1 small{display:block;font-size:.42em;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink2);margin-top:9px;font-weight:500}
+.lede{font-size:14px;line-height:1.58;color:var(--ink2);
+  max-width:400px;margin:0 auto 20px}
+.lede b{color:var(--ink);font-weight:600}
+
+
+/* ══ FORM ══════════════════════════════════════════════════════
+   The first field sits in the hero. No button in the way of it. */
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:20px 18px;margin-bottom:34px}
+.card.lead-field{padding:16px 16px 18px;margin-bottom:0;
+  border-color:rgba(233,180,76,.42);
+  background:linear-gradient(160deg,rgba(233,180,76,.1),rgba(35,16,23,.9) 70%),rgba(20,6,9,.92);
+  backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+.f{text-align:left;margin-bottom:14px}
+.f:last-child{margin-bottom:0}
+label{display:block;font-size:10.5px;font-weight:800;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--dim);margin-bottom:7px}
+.opt{font-weight:600;letter-spacing:.06em;text-transform:none;color:#6B554E;
+  margin-left:5px}
+/* 16px is not a taste call. Safari on iPhone zooms the page in on any
+   focused field under it, and does not zoom back out. */
+input,select{width:100%;background:var(--soft);border:1px solid var(--line);
+  border-radius:9px;padding:0 13px;min-height:50px;color:var(--ink);
+  font-family:var(--sans);font-size:16px;font-weight:400;appearance:none;-webkit-appearance:none}
+input::placeholder{color:#5c636f}
+input:focus,select:focus{outline:none;border-color:var(--acc);
+  box-shadow:0 0 0 3px rgba(233,180,76,.16)}
+input.bad,select.bad{border-color:var(--bad)}
+select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%23737b8a' stroke-width='2' fill='none'/></svg>");
+  background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.err{display:none;font-size:11px;color:var(--bad);margin-top:6px}
+.err.on{display:block}
+
+.two{display:flex;gap:11px}
+.two .f{flex:1 1 0;min-width:0}
+
+.btn{width:100%;background:var(--acc);color:var(--on-acc);border:none;border-radius:9px;
+  min-height:54px;cursor:pointer;font-family:var(--sans);font-size:13px;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;transition:background .18s,opacity .18s}
+.btn:hover{background:var(--acc2)}
+.btn:disabled{opacity:.55;cursor:default}
+.note{font-size:11.5px;line-height:1.55;color:var(--dim);text-align:center;margin-top:12px}
+
+/* ══ CONFIRMED ═════════════════════════════════════════════════
+   The form card turns over rather than sending anyone to a second
+   page. */
+.done{text-align:center;padding:6px 0 2px}
+.done-tick{width:54px;height:54px;margin:0 auto 16px;border-radius:50%;
+  background:rgba(233,180,76,.13);border:1px solid rgba(233,180,76,.38);
+  color:var(--acc);display:flex;align-items:center;justify-content:center}
+.done-tick svg{width:23px;height:23px}
+.done-h{font-family:var(--display);font-weight:900;font-size:clamp(22px,6.4vw,30px);
+  line-height:1.05;margin-bottom:11px}
+.done-p{font-size:13.5px;line-height:1.62;color:var(--ink2);
+  max-width:330px;margin:0 auto 18px}
+.done-p b{color:var(--ink);font-weight:600}
+.done-ep{display:flex;align-items:center;justify-content:center;
+  text-decoration:none;margin-bottom:4px}
+.formerr{display:none;font-size:12.5px;color:var(--bad);text-align:center;margin-top:12px}
+.formerr.on{display:block}
+
+/* ══ BELOW THE ASK ═════════════════════════════════════════════
+   Small titles, pictures doing the work. */
+.sec{margin-bottom:30px}
+.sec-t{font-size:10px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--dim);margin-bottom:12px;text-align:center}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.shot{position:relative;aspect-ratio:4/5;border-radius:11px;overflow:hidden;
+  background:var(--soft);border:1px solid var(--line2)}
+.shot.wide{grid-column:1 / -1;aspect-ratio:16/10}
+.shot img{width:100%;height:100%;object-fit:cover}
+
+.facts{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);
+  border-radius:12px;overflow:hidden}
+.fact{padding:15px 16px;border-bottom:1px solid var(--line2)}
+.fact:nth-child(odd){border-right:1px solid var(--line2)}
+.fact:nth-last-child(-n+2){border-bottom:none}
+.fact-k{font-size:9.5px;font-weight:800;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--dim);margin-bottom:5px}
+.fact-v{font-size:14px;font-weight:600;line-height:1.4;color:var(--ink)}
+.fact-v.soft{color:var(--ink2);font-weight:400;font-size:13px}
+
+.ep{display:flex;align-items:center;gap:13px;background:var(--card);
+  border:1px solid var(--line);border-radius:12px;padding:14px;text-decoration:none}
+.ep-art{flex:0 0 58px;width:58px;height:58px;border-radius:7px;overflow:hidden;
+  background:var(--soft);border:1px solid var(--line2);position:relative}
+.ep-art .slot{padding:4px;gap:0}
+.ep-art .slot b{font-size:7.5px;letter-spacing:.1em}
+.ep-art .slot span{display:none}
+.ep-t{flex:1 1 auto;min-width:0}
+.ep-k{font-size:9.5px;font-weight:800;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--acc);margin-bottom:4px}
+.ep-n{font-size:14.5px;font-weight:700;line-height:1.3}
+.ep-s{font-size:11.5px;color:var(--dim);margin-top:3px}
+.ep-go{flex:0 0 auto;font-size:18px;color:var(--acc)}
+
+.foot{text-align:center;font-size:11px;color:var(--dim);line-height:1.6;padding-top:6px}
+
+@media (min-width:620px){
+  .hero{margin:0 -40px 28px;padding:38vh 40px 34px}
+  .hero-bg{background-position:center 26%}
+}
+@media (prefers-reduced-motion:reduce){ *{transition:none!important;animation:none!important} }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ══ HERO ════════════════════════════════════════════════ -->
+  <div class="hero">
+
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-tex"></div>
+    <div class="hero-scrim"></div>
+    <div class="hero-in">
+
+    <div class="kick">Guest list only</div>
+    <h1>Fay Diamond<small>Listening Party</small></h1>
+
+    <p class="lede">
+      Saturday 21 November, 7pm, Victoria Island. Food, drinks, and
+      <b>Diamond</b> played properly, start to finish.
+    </p>
+
+    <!-- The one thing we want, live, before anything else. -->
+    <div class="card lead-field">
+      <div class="f">
+        <label for="fName">Your name</label>
+        <input type="text" id="fName" placeholder="First and last" autocomplete="name"
+               autocapitalize="words"/>
+        <span class="err" id="eName">Tell us who to put on the list</span>
+      </div>
+    </div>
+
+    </div><!-- /hero-in -->
+  </div>
+
+  <!-- ══ THE REST OF IT ══════════════════════════════════════ -->
+  <div class="card" id="formCard">
+    <div class="f">
+      <label for="fEmail">Email</label>
+      <input type="email" id="fEmail" placeholder="you@email.com"
+             autocomplete="email" inputmode="email"/>
+      <span class="err" id="eEmail">We send your confirmation here</span>
+    </div>
+
+    <div class="two">
+      <div class="f">
+        <label for="fPhone">Phone</label>
+        <input type="tel" id="fPhone" placeholder="0801 234 5678"
+               autocomplete="tel" inputmode="tel"/>
+        <span class="err" id="ePhone">For the door</span>
+      </div>
+      <div class="f">
+        <label for="fPlus">Bringing a +1</label>
+        <select id="fPlus">
+          <option value="">Choose</option>
+          <option value="No">No, just me</option>
+          <option value="Yes">Yes, plus one</option>
+        </select>
+        <span class="err" id="ePlus">Pick one</span>
+      </div>
+    </div>
+
+    <div class="f">
+      <label for="fWith">Who are you with <span class="opt">optional</span></label>
+      <input type="text" id="fWith" placeholder="Media house, brand, label"
+             autocomplete="organization" autocapitalize="words"/>
+    </div>
+
+    <button class="btn" id="btn" type="button">Put me on the list</button>
+    <p class="note">Guest list only, not open entry. Your confirmation email is what gets you in.</p>
+    <p class="formerr" id="formErr"></p>
+  </div>
+
+  <!-- ══ PICTURES ════════════════════════════════════════════ -->
+  <div class="sec">
+    <div class="sec-t">The night</div>
+    <div class="shots">
+      <div class="shot">
+        <img id="shot1" alt=""/>
+        <div class="slot"><b>Fay Diamond</b><span></span></div>
+      </div>
+      <div class="shot">
+        <img id="shot2" alt=""/>
+        <div class="slot"><b>Fay Diamond</b><span></span></div>
+      </div>
+      <div class="shot wide">
+        <img id="shot3" alt=""/>
+        <div class="slot"><b>Fay Diamond</b><span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-t">Where and when</div>
+    <div class="facts">
+      <div class="fact">
+        <div class="fact-k">Date</div>
+        <div class="fact-v">Sat 21 November</div>
+      </div>
+      <div class="fact">
+        <div class="fact-k">Doors</div>
+        <div class="fact-v">7:00PM</div>
+      </div>
+      <div class="fact">
+        <div class="fact-k">Venue</div>
+        <!-- VENUE PLACEHOLDER — replace this line and the two in
+             FayRsvp.gs (FAY.VENUE) and both emails pick it up. -->
+        <div class="fact-v soft">Victoria Island, Lagos. Exact address sent with your confirmation.</div>
+      </div>
+      <div class="fact">
+        <div class="fact-k">Entry</div>
+        <div class="fact-v soft">Guest list only</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-t">Before you come</div>
+    <a class="ep" href="https://open.spotify.com/album/1g7aRckBfudCKXhwEZywQA"
+       target="_blank" rel="noopener">
+      <div class="ep-art">
+        <img id="epArt" alt=""/>
+        <div class="slot"><b>EP art</b><span></span></div>
+      </div>
+      <div class="ep-t">
+        <div class="ep-k">Out now</div>
+        <div class="ep-n">Diamond (The EP)</div>
+        <div class="ep-s">Listen on Spotify</div>
+      </div>
+      <div class="ep-go">&rarr;</div>
+    </a>
+  </div>
+
+  <div class="sec">
+    <div class="shot wide">
+      <img id="shot4" alt=""/>
+      <div class="slot"><b>Fay Diamond</b><span></span></div>
+    </div>
+  </div>
+
+  <p class="foot">Fay Diamond &middot; Lagos<br>Questions, reply to your confirmation email.</p>
+</div>
+
+<!-- The shared chrome. minimal, not full: a page whose whole job is
+     one form should not carry five links away from it. Change
+     data-nav to "full" if you want the whole menu. -->
+<script src="/js/afrocue-ui.js" data-nav="minimal" data-footer="slim"></script>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ══ IMAGES ══════════════════════════════════════════════════
+     The five webp files sit next to this page. Swap a filename here
+     and that slot changes; empty it and the slot goes quiet rather
+     than breaking. */
+  var ART = {
+    shot1:   'fay-press-1.webp',
+    shot2:   'fay-press-2.webp',
+    shot3:   'fay-room.webp',
+    shot4:   'fay-close.webp',
+    epArt:   'fay-ep.webp'
+  };
+
+  /* The cover goes in as a background rather than an img, because it
+     is behind the type rather than part of the flow. */
+  var HERO_ART = 'fay-ep.webp';
+  var heroBg = document.getElementById('heroBg');
+  if (heroBg && HERO_ART) heroBg.style.backgroundImage = "url('" + HERO_ART + "')";
+  Object.keys(ART).forEach(function (id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var slot = el.parentNode.querySelector('.slot');
+    if (ART[id]) {
+      el.src = ART[id];
+      el.alt = 'Fay Diamond';
+      /* The placeholder goes, rather than sitting over the picture.
+         Removed outright, not hidden, so there is no label to flash
+         if the file 404s. */
+      if (slot) slot.parentNode.removeChild(slot);
+    } else {
+      el.style.display = 'none';               // never an empty src
+    }
+  });
+
+  var $ = function (id) { return document.getElementById(id); };
+  var FIELDS = [
+    { id: 'fName',  err: 'eName',  ok: function (v) { return v.length > 1; } },
+    { id: 'fEmail', err: 'eEmail', ok: function (v) { return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v); } },
+    { id: 'fPhone', err: 'ePhone', ok: function (v) { return v.replace(/\D/g, '').length >= 7; } },
+    { id: 'fPlus',  err: 'ePlus',  ok: function (v) { return v === 'Yes' || v === 'No'; } }
+  ];
+
+  function clear(f) {
+    var el = $(f.id), e = $(f.err);
+    if (el) el.classList.remove('bad');
+    if (e) e.classList.remove('on');
+  }
+  FIELDS.forEach(function (f) {
+    var el = $(f.id);
+    if (el) el.addEventListener('input', function () { clear(f); });
+    if (el) el.addEventListener('change', function () { clear(f); });
+  });
+
+  function gasUrl() {
+    if (typeof window.AFROCUE_SCRIPT_URL === 'string' && window.AFROCUE_SCRIPT_URL) {
+      return window.AFROCUE_SCRIPT_URL;
+    }
+    if (window.AfroCue && window.AfroCue.scriptUrl) return window.AfroCue.scriptUrl;
+    return '';
+  }
+
+  function submit() {
+    var bad = null, values = {};
+    FIELDS.forEach(function (f) {
+      var el = $(f.id);
+      var v = ((el || {}).value || '').trim();
+      values[f.id] = v;
+      if (f.ok(v)) return;
+      if (el) el.classList.add('bad');
+      var e = $(f.err); if (e) e.classList.add('on');
+      if (!bad) bad = el;
+    });
+    if (bad) { bad.focus(); return; }
+
+    var btn = $('btn');
+    btn.disabled = true;
+    btn.textContent = 'Adding you...';
+    $('formErr').classList.remove('on');
+
+    var url = gasUrl();
+    if (!url) {
+      console.error('[fay] No script URL. Is /js/afrocue.js loading?');
+      $('formErr').textContent = 'Something is wrong on our side. Please try again shortly.';
+      $('formErr').classList.add('on');
+      btn.disabled = false; btn.textContent = 'Put me on the list';
+      return;
+    }
+
+    /* no-cors, like every other form on the site: Apps Script does not
+       return CORS headers, so the response cannot be read. The POST
+       still arrives. The thank you page is the receipt. */
+    fetch(url, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({
+        source: 'fay_rsvp',
+        name:   values.fName,
+        email:  values.fEmail,
+        phone:  values.fPhone,
+        plus_one: values.fPlus,
+        with:   (($('fWith') || {}).value || '').trim(),
+        source_page: location.pathname + location.search
+      })
+    }).catch(function (err) { console.warn('[fay] post failed', err); });
+
+    /* Confirmed in place. There is no response to wait on either:
+       no-cors means the reply cannot be read, so the card turns over
+       on its own rather than leaving anyone on a dead button. */
+    setTimeout(function () { done(values.fName.split(' ')[0] || ''); }, 450);
+  }
+
+  /** The form card becomes the confirmation. */
+  function done(first) {
+    var lead = document.querySelector('.lead-field');
+    if (lead) lead.style.display = 'none';
+    var card = document.getElementById('formCard');
+    if (!card) return;
+    card.innerHTML =
+      '<div class="done">' +
+        '<div class="done-tick"><svg viewBox="0 0 24 24" aria-hidden="true">' +
+          '<path d="M4 12.5l5.5 5.5L20 7" fill="none" stroke="currentColor" ' +
+          'stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '</svg></div>' +
+        '<div class="done-h">' + (first ? 'See you Saturday, ' + first + '.' : 'See you Saturday.') + '</div>' +
+        '<p class="done-p">You are on the list. Your confirmation is on its way, ' +
+          '<b>bring it to the door</b>, it is what gets you in.</p>' +
+        '<a class="btn done-ep" href="https://open.spotify.com/album/1g7aRckBfudCKXhwEZywQA" ' +
+          'target="_blank" rel="noopener">Hear Diamond</a>' +
+        '<p class="note">Not in your inbox in a few minutes? Check <b>Spam</b> or the ' +
+          '<b>Promotions</b> tab, so Saturday\'s reminder reaches you too.</p>' +
+      '</div>';
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  $('btn').addEventListener('click', submit);
+  ['fName', 'fEmail', 'fPhone'].forEach(function (id) {
+    var el = $(id);
+    if (el) el.addEventListener('keydown', function (e) { if (e.key === 'Enter') submit(); });
+  });
+})();
+</script>
+</body>
+</html>
