@@ -2400,6 +2400,82 @@
       return 'href="' + (p.url || '#') + '" target="_blank" rel="noopener sponsored" '
         + 'onclick="promoClick(\'' + p.id + '\')"';
     }
+
+    /* ══ POSTS ══════════════════════════════════════════════════════
+       ?export=posts, one row per Instagram post, already ranked by
+       the sheet with the flyer leading its own night.
+
+       The page used to see three posts per party, written into flat
+       columns called Latest Post Image, Post 2 Image, Post 3 Image.
+       Three pictures, no history, and nothing tying a post to a
+       night, which is why an edition had nothing of its own to show
+       and a party with no live date could not appear at all.
+
+       Posts carrying an edition_id belong to that night's run-up.
+       Posts with a blank one fell outside every window, and those
+       are what a party with no live date has to show for itself.
+       ─────────────────────────────────────────────────────────── */
+    var POSTS = [], POSTS_ED = {}, POSTS_HANDLE = {}, POSTS_READY = false;
+
+    function loadPosts(){
+      var url = getGasUrl();
+      if(!url) return;
+      fetch(url + '?export=posts&top=6')
+        .then(function(r){ return r.ok ? r.text() : ''; })
+        .then(function(txt){
+          if(!txt) return;
+          var d; try { d = JSON.parse(txt); } catch(e){ return; }
+          if(!d || d.error || !d.posts) {
+            if(d && d.error) console.warn('AfroCue posts:', d.error);
+            return;
+          }
+          POSTS = d.posts;
+          POSTS_ED = {}; POSTS_HANDLE = {};
+          POSTS.forEach(function(p){
+            if(p.edition_id) (POSTS_ED[p.edition_id] = POSTS_ED[p.edition_id] || []).push(p);
+            var h = (p.handle || '').toLowerCase();
+            if(h) (POSTS_HANDLE[h] = POSTS_HANDLE[h] || []).push(p);
+          });
+          POSTS_READY = true;
+          console.log('AfroCue: ' + POSTS.length + ' post(s) across '
+            + Object.keys(POSTS_ED).length + ' night(s)');
+          /* Repaint whatever is already on screen, since the posts
+             arrive after the first render and several sections are
+             empty without them. */
+          try { if(typeof renderCards === 'function' && typeof getFilters === 'function')
+                  renderCards(getFilters()); } catch(e){}
+          try { renderSideSections(); } catch(e){}
+        })
+        .catch(function(){ /* the page works without posts */ });
+    }
+
+    function postsForEdition(edId){
+      return (edId && POSTS_ED[edId]) ? POSTS_ED[edId] : [];
+    }
+
+    /* Everything this party has posted that did NOT belong to a
+       night's run-up, newest first. */
+    function postsLooseFor(handle){
+      var h = String(handle || '').toLowerCase();
+      return (POSTS_HANDLE[h] || []).filter(function(p){ return !p.edition_id; });
+    }
+
+    function postsAnyFor(handle){
+      var h = String(handle || '').toLowerCase();
+      return POSTS_HANDLE[h] || [];
+    }
+
+    /* A plate for a tile. Picks from the party's own stack rather
+       than repeating the flyer that is already the main image, and
+       picks the SAME one each time for a given party, because a tile
+       that changes picture on every repaint reads as a glitch. */
+    function plateFor(handle, seed){
+      var stack = postsAnyFor(handle).filter(function(p){ return p.img; });
+      if(!stack.length) return '';
+      var s = 0, str = String(seed || handle || '');
+      for(var i = 0; i < str.length; i++) s = (s * 31 + str.charCodeAt(i)) & 0x7fffffff;
+      return stack[s % stack.length].img;
+    }
     function promoLabel(p){
       return '<span class="pr-tag' + (p.sponsored ? ' is-paid' : '') + '">'
         + (p.label || (p.sponsored ? 'Sponsored' : 'AfroCue')) + '</span>'
@@ -2556,7 +2632,9 @@
           renderUpcoming(null);
           initFeatured();
           loadPromos();
+          loadPosts();
           buildEHero();
+          renderSideSections();
         })
         .catch(function(err){
           console.error('AfroCue parties:', err);
