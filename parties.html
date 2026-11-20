@@ -647,7 +647,16 @@
       .party-card-ig{font-size:9px}
       .party-card-meta{font-size:10px}
       .party-card-content{padding:14px 12px 12px}
-      .modal-wrap{padding:16px 8px}
+      /* A SHEET, not a takeover. The modal used to start at the very
+         top of a phone screen and read as a new page you were
+         trapped in. A strip of the grid now stays visible behind the
+         dimmer, the sheet has a rounded top with a grab line, and a
+         swipe down past the top closes it the way every phone sheet
+         does. The flyer inside is still edge to edge. */
+      .modal-wrap{padding:52px 0 0}
+      .modal{border-radius:16px 16px 0 0;border-bottom:none;min-height:calc(100vh - 52px)}
+      .modal::before{content:'';position:absolute;top:8px;left:50%;width:38px;height:4px;
+        margin-left:-19px;border-radius:2px;background:rgba(255,255,255,.28);z-index:12}
       .modal-hero{height:200px}
       .modal-body{padding:0 16px 24px}
       .modal-tags{padding-top:14px;gap:4px}
@@ -674,15 +683,9 @@
          Below the grid sat a call to action strip, then a WhatsApp
          block almost a full phone screen tall, then the footer. Three
          full screens of furniture after the thing people came for.
-         The WhatsApp section is styled inline, so these need
-         !important to reach it. */
-      #whatsapp-channel{padding:26px 16px!important}
-      #whatsapp-channel > div:first-child{display:none!important}
-      #whatsapp-channel > div:last-child{gap:16px!important}
-      #whatsapp-channel > div:last-child > div:first-child > div:nth-child(2){
-        font-size:26px!important;margin-bottom:10px!important}
-      #whatsapp-channel > div:last-child > div:first-child > div:first-child{
-        margin-bottom:8px!important}
+         The WhatsApp band is rebuilt on classes now (.wa-band), so
+         the nth-child overrides that used to poke at its inline
+         styles are gone. Its own media block lives beside it. */
       .list-cta-inner{flex-direction:column;align-items:flex-start;gap:14px}
       .list-cta-btn{width:100%;justify-content:center;padding:12px 20px}
     }
@@ -1191,6 +1194,93 @@
       .party-card-name { font-size:11px }
       .card-franchise { font-size:6px }
       .party-card-content { padding:7px 6px 9px }
+    }
+
+    /* ══ SIDE SECTIONS: Just concluded + Still running ═══════════════
+       Two shelves under the grid. The grid is only what is on; what
+       just happened and who has gone quiet each get a row of cards
+       whose plates come from the party's own post stack. */
+    .side-sec{margin:46px 0 0}
+    .side-sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:14px}
+    .side-sec-t{font-size:17px;font-weight:700;color:var(--white)}
+    .side-sec-sub{font-size:9.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--silver)}
+    .side-rail{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+    .side-card{position:relative;display:block;width:100%;text-align:left;padding:0;
+      border:1px solid rgba(255,255,255,.08);border-radius:10px;overflow:hidden;
+      background:var(--dark2);cursor:pointer}
+    .side-card-plate{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--dark2)}
+    .side-card-plate > img{width:100%;height:100%;object-fit:cover;display:block;
+      transition:transform .4s var(--ease)}
+    .side-card:hover .side-card-plate > img{transform:scale(1.04)}
+    .side-card-grad{position:absolute;inset:0;
+      background:linear-gradient(to top,rgba(10,10,10,.94) 0%,rgba(10,10,10,.25) 52%,transparent 100%)}
+    .side-card-k{position:absolute;top:8px;left:8px;font-size:8px;font-weight:700;
+      letter-spacing:.14em;text-transform:uppercase;background:rgba(10,10,10,.74);
+      color:var(--off);padding:3px 7px;border-radius:3px;backdrop-filter:blur(3px)}
+    .side-card-body{position:absolute;left:0;right:0;bottom:0;padding:12px}
+    .side-card-name{font-size:15px;font-weight:700;color:var(--white);line-height:1.22;margin-bottom:3px}
+    .side-card-meta{font-size:10.5px;color:var(--off);opacity:.85;line-height:1.4}
+    .side-card-strip{display:flex;gap:4px;margin-top:9px}
+    .side-card-strip img{width:30px;height:30px;object-fit:cover;border-radius:4px;
+      border:1px solid rgba(255,255,255,.16)}
+
+    /* ══ PAST EDITIONS, inside the night modal ═══════════════════════
+       A row of small chips, one per past night. Tapping one unfolds
+       the posts from its own run-up where you stand, rather than
+       sending you to another page. */
+    .m-past{margin-bottom:28px}
+    .m-past-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;
+      -webkit-overflow-scrolling:touch}
+    .m-past-row::-webkit-scrollbar{display:none}
+    .m-past-card{flex:0 0 auto;display:flex;align-items:center;gap:9px;
+      background:var(--dark2);border:1px solid rgba(255,255,255,.1);
+      border-radius:8px;padding:7px 12px 7px 7px;cursor:pointer;text-align:left}
+    .m-past-card img{width:34px;height:42px;object-fit:cover;border-radius:4px;display:block}
+    .m-past-card.on{border-color:var(--ev-line,var(--yellow))}
+    .m-past-meta{display:flex;flex-direction:column;gap:2px}
+    .m-past-meta b{font-size:11.5px;font-weight:700;color:var(--white);max-width:150px;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .m-past-meta i{font-style:normal;font-size:9.5px;color:var(--silver)}
+    .m-past-open{margin-top:10px}
+    .m-past-none{font-size:11px;color:var(--silver);padding:8px 2px}
+
+    /* ══ WHATSAPP BAND ═══════════════════════════════════════════════
+       One row on a wide screen, a clean stack on a phone, where the
+       button goes full width at a 50px tap height. */
+    .wa-band{background:#111;border-top:1px solid rgba(255,255,255,.06);padding:56px 48px}
+    .wa-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;
+      justify-content:space-between;gap:36px}
+    .wa-copy{min-width:0}
+    .wa-eyebrow{display:flex;align-items:center;gap:8px;font-size:9px;font-weight:700;
+      letter-spacing:.22em;text-transform:uppercase;color:#25D366;opacity:.75}
+    .wa-rule{width:14px;height:1px;background:#25D366;flex-shrink:0}
+    .wa-head{font-family:'Aesthet Nova',sans-serif;font-weight:900;
+      font-size:clamp(26px,3.6vw,46px);color:var(--white);line-height:1.02;
+      text-shadow:2px 3px 0 rgba(0,0,0,.9);margin:12px 0 10px}
+    .wa-head span{color:#25D366}
+    .wa-sub{font-size:12px;color:rgba(240,237,232,.45)}
+    .wa-btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;
+      background:#25D366;color:#0a0a0a;text-decoration:none;height:52px;padding:0 32px;
+      border-radius:4px;font-family:'Figtree',sans-serif;font-size:12px;font-weight:700;
+      letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;flex-shrink:0;
+      transition:opacity .2s}
+    .wa-btn:hover{opacity:.88}
+    @media (max-width:768px){
+      .wa-band{padding:36px 16px}
+      .wa-inner{flex-direction:column;align-items:stretch;gap:20px}
+      .wa-head{font-size:clamp(24px,7.4vw,30px)}
+      .wa-btn{width:100%;height:50px}
+    }
+    @media (max-width:768px){
+      .side-sec{margin-top:38px}
+      /* The title and its small line stack rather than fight for one
+         row that is not wide enough for both. */
+      .side-sec-head{flex-direction:column;align-items:flex-start;gap:3px}
+      /* One row you thumb through, not a tower of cards. */
+      .side-rail{display:flex;gap:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;
+        scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px 6px}
+      .side-rail::-webkit-scrollbar{display:none}
+      .side-card{flex:0 0 62%;max-width:240px;scroll-snap-align:start}
     }
 
     /* ══ PROMO ══════════════════════════════════════════════════════
@@ -1956,6 +2046,30 @@
     <!-- The franchise rail used to live here, filled from the same
          FRANCHISES array as the grid above it. Two ways of saying one
          thing, stacked. The grid kept the filters, so the rail went. -->
+
+    <!-- JUST CONCLUDED. Nights that happened in the last two weeks.
+         They used to sit in the main grid for two days looking like
+         something you could still go to; now the grid is only what is
+         on, and what just happened gets a shelf of its own, carrying
+         the posts from its own run-up. -->
+    <div class="side-sec" id="concludedSec" style="display:none">
+      <div class="side-sec-head">
+        <span class="side-sec-t">Just concluded</span>
+        <span class="side-sec-sub">The last two weeks</span>
+      </div>
+      <div class="side-rail" id="concludedRail"></div>
+    </div>
+
+    <!-- STILL RUNNING. Parties on the list with nothing announced
+         right now. They used to be invisible: no edition, no card.
+         Their recent posts are the proof of life. -->
+    <div class="side-sec" id="quietSec" style="display:none">
+      <div class="side-sec-head">
+        <span class="side-sec-t">Still running</span>
+        <span class="side-sec-sub">Nothing announced yet, watch this space</span>
+      </div>
+      <div class="side-rail" id="quietRail"></div>
+    </div>
   </section>
 
   <!-- LIST YOUR PARTY CTA -->
@@ -1969,35 +2083,21 @@
     </div>
   </div>
 
-  <!-- WHATSAPP CHANNEL -->
-  <section id="whatsapp-channel" style="background:#111111;border-top:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;padding:52px 48px;">
-    <div style="position:absolute;right:-40px;top:50%;transform:translateY(-50%);opacity:0.055;pointer-events:none;z-index:0;">
-      <svg width="420" height="420" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="0.4" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-      </svg>
-    </div>
-    <div style="position:relative;z-index:1;max-width:1100px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;">
-      <div style="flex:1;min-width:0;">
-        <div style="font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#25D366;opacity:0.7;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
-          <span style="width:14px;height:1px;background:#25D366;display:inline-block;flex-shrink:0;"></span>
-          WhatsApp Channel
-        </div>
-        <div style="font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:clamp(28px,4vw,52px);color:#f0ede8;line-height:0.92;text-shadow:2px 3px 0px rgba(0,0,0,0.9);margin-bottom:14px;">
-          Get the updates<br>on <span style="color:#25D366;">WhatsApp.</span>
-        </div>
-        <div style="font-size:12px;font-weight:300;color:rgba(240,237,232,0.35);display:flex;align-items:center;gap:8px;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" style="flex-shrink:0;opacity:0.6;">
-            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-          </svg>
-          Unmute notifications so you never miss a drop.
-        </div>
+  <!-- WHATSAPP CHANNEL. Rebuilt from inline styles into classes. The
+       old block put flex:1 and min-width:0 on the text column, which
+       let it shrink to a sliver beside the button instead of wrapping
+       under it, and the mobile fixes were nth-child selectors poking
+       at anonymous divs. Same copy, same green, a structure that
+       stacks. -->
+  <section id="whatsapp-channel" class="wa-band">
+    <div class="wa-inner">
+      <div class="wa-copy">
+        <div class="wa-eyebrow"><span class="wa-rule"></span>WhatsApp Channel</div>
+        <div class="wa-head">Get the updates on <span>WhatsApp.</span></div>
+        <div class="wa-sub">Unmute notifications so you never miss a drop.</div>
       </div>
-      <a href="https://whatsapp.com/channel/0029Vb74IjxGufJ0irS1uq0u" target="_blank" rel="noopener"
-         style="display:inline-flex;align-items:center;gap:14px;background:#25D366;color:#0a0a0a;text-decoration:none;padding:20px 36px;border-radius:3px;font-family:'Figtree',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;flex-shrink:0;min-height:52px;"
-         onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
-        <svg viewBox="0 0 24 24" width="22" height="22" style="flex-shrink:0;" fill="#0a0a0a">
+      <a class="wa-btn" href="https://whatsapp.com/channel/0029Vb74IjxGufJ0irS1uq0u" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="#0a0a0a" aria-hidden="true">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
         </svg>
         Follow on WhatsApp
@@ -2475,6 +2575,148 @@
       var s = 0, str = String(seed || handle || '');
       for(var i = 0; i < str.length; i++) s = (s * 31 + str.charCodeAt(i)) & 0x7fffffff;
       return stack[s % stack.length].img;
+    }
+
+    function escTxt(s){
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    /* ══ THE TWO SHELVES UNDER THE GRID ═════════════════════════════
+       Just concluded: nights of the last two weeks, each carrying the
+       posts from its own run-up. Still running: parties with nothing
+       announced right now, whose recent posts are the proof of life.
+       Both used to be invisible, the first because a passed night
+       simply fell off, the second because a party with no edition had
+       no card anywhere on the page. */
+    function renderSideSections(){
+      try { renderConcluded_(); } catch(e){ console.warn('AfroCue concluded:', e); }
+      try { renderQuiet_(); } catch(e){ console.warn('AfroCue quiet:', e); }
+    }
+
+    function sideCard_(opts){
+      var strip = (opts.strip || []).slice(0, 4).map(function(p){
+        return '<img src="' + escTxt(p.img) + '" alt="" loading="lazy" decoding="async">';
+      }).join('');
+      var open = opts.href
+        ? '<a class="side-card" href="' + escTxt(opts.href) + '" target="_blank" rel="noopener">'
+        : '<button class="side-card" type="button" onclick="openModal(\'' + escTxt(opts.id) + '\')">';
+      var close = opts.href ? '</a>' : '</button>';
+      return open +
+        '<div class="side-card-plate">' +
+          (opts.img ? '<img src="' + escTxt(opts.img) + '" alt="" loading="lazy" decoding="async">' : '') +
+          '<div class="side-card-grad"></div>' +
+          (opts.kick ? '<span class="side-card-k">' + escTxt(opts.kick) + '</span>' : '') +
+          '<div class="side-card-body">' +
+            '<div class="side-card-name">' + escTxt(opts.name) + '</div>' +
+            (opts.meta ? '<div class="side-card-meta">' + escTxt(opts.meta) + '</div>' : '') +
+            (strip ? '<div class="side-card-strip">' + strip + '</div>' : '') +
+          '</div>' +
+        '</div>' + close;
+    }
+
+    function renderConcluded_(){
+      var sec = document.getElementById('concludedSec');
+      var rail = document.getElementById('concludedRail');
+      if(!sec || !rail) return;
+
+      var rows = EDITIONS.slice().filter(function(e){
+        var n = v2Days(e.date);
+        if(n === null) return false;
+        var end = e.end_date ? v2Days(e.end_date) : null;
+        var last = (end !== null && end > n) ? end : n;
+        if(last >= 0) return false;
+        if(last === -1 && new Date().getHours() < 6) return false;  // still tonight's
+        return last >= -14;
+      }).sort(function(a, b){ return a.date < b.date ? 1 : -1; }).slice(0, 10);
+
+      if(!rows.length){ sec.style.display = 'none'; return; }
+      sec.style.display = '';
+      rail.innerHTML = rows.map(function(e){
+        var f = fx(e.party_id) || {};
+        return sideCard_({
+          id: e.party_id || e.id,
+          img: e.flyer || plateFor(f.handle, e.id) || f.hero_img || f.flyer_img || '',
+          kick: 'was ' + v2Fmt(e.date),
+          name: e.ed_name || e.title || f.name || '',
+          meta: [f.name !== (e.ed_name || '') ? f.name : '', e.venue || e.area || '']
+                  .filter(Boolean).join(' · '),
+          strip: postsForEdition(e.id)
+        });
+      }).join('');
+    }
+
+    function renderQuiet_(){
+      var sec = document.getElementById('quietSec');
+      var rail = document.getElementById('quietRail');
+      if(!sec || !rail) return;
+
+      /* Quiet means QUIET: nothing coming, and nothing in the last
+         two weeks either. A party whose night is sitting right above
+         in Just concluded is not gone quiet, and showing it on both
+         shelves read as a bug on the first render. */
+      var active = {};
+      EDITIONS.forEach(function(e){
+        var n = v2Days(e.date);
+        var end = e.end_date ? v2Days(e.end_date) : null;
+        var last = (end !== null && n !== null && end > n) ? end : n;
+        if(last !== null && last >= -14) active[e.party_id] = true;
+      });
+
+      /* Parties the payload knows, with nothing on the calendar. */
+      var seen = {}, cards = [];
+      FRANCHISES.forEach(function(f){
+        if(active[f.id]) return;
+        var stack = postsAnyFor(f.handle);
+        var plate = plateFor(f.handle) || f.hero_img || f.flyer_img;
+        if(!plate) return;                      // nothing to show is nothing to show
+        seen[String(f.handle || '').toLowerCase()] = true;
+        var newest = stack.length ? stack.reduce(function(a, b){
+          return String(a.at) > String(b.at) ? a : b; }) : null;
+        cards.push({
+          at: newest ? newest.at : (f.last_date || ''),
+          card: sideCard_({
+            id: f.id, img: plate,
+            kick: f.last_date ? 'last ran ' + v2Fmt(f.last_date) : 'on our radar',
+            name: f.name,
+            meta: [f.area || f.city || '', f.recurrence || ''].filter(Boolean).join(' · '),
+            strip: stack.filter(function(p){ return !p.edition_id; })
+          })
+        });
+      });
+
+      /* Handles the Posts tab carries that the parties payload does
+         not: a party we watch that has never had a night promoted.
+         It still gets a card, pointing at its Instagram, because
+         "we watch them and here is what they posted" is exactly what
+         this shelf is for. */
+      Object.keys(POSTS_HANDLE).forEach(function(h){
+        if(seen[h]) return;
+        var known = FRANCHISES.some(function(f){
+          return String(f.handle || '').toLowerCase() === h;
+        });
+        if(known) return;
+        var stack = POSTS_HANDLE[h].filter(function(p){ return p.img; });
+        if(!stack.length) return;
+        var newest = stack.reduce(function(a, b){ return String(a.at) > String(b.at) ? a : b; });
+        cards.push({
+          at: newest.at,
+          card: sideCard_({
+            href: 'https://www.instagram.com/' + h + '/',
+            img: plateFor(h),
+            kick: 'on our radar',
+            name: '@' + h,
+            meta: 'posting, nothing announced yet',
+            strip: stack
+          })
+        });
+      });
+
+      if(!cards.length){ sec.style.display = 'none'; return; }
+      cards.sort(function(a, b){ return String(a.at) < String(b.at) ? 1 : -1; });
+      sec.style.display = '';
+      rail.innerHTML = cards.slice(0, 12).map(function(c){ return c.card; }).join('');
     }
     function promoLabel(p){
       return '<span class="pr-tag' + (p.sponsored ? ' is-paid' : '') + '">'
@@ -3082,7 +3324,21 @@
          stays for two more days and then goes: a Friday is still there on
          Sunday, gone on Monday. */
       return EDITIONS.slice()
-        .filter(function(e){ var n = v2Days(e.date); return n === null || n >= -2; })
+        .filter(function(e){
+          var n = v2Days(e.date);
+          if(n === null) return true;
+          /* A two day party is on until its SECOND day has gone. */
+          var end = e.end_date ? v2Days(e.end_date) : null;
+          var last = (end !== null && end > n) ? end : n;
+          if(last >= 0) return true;
+          /* A Friday night at 1am Saturday is still on. The AfroCue
+             day ends at 06:00, so yesterday's night keeps its card
+             until then. After that it is not something you can go
+             to, so it leaves the grid and reappears below it, under
+             Just concluded. It used to linger here for two days
+             looking like a plan. */
+          return last === -1 && new Date().getHours() < 6;
+        })
         .map(function(e){
           var f = fx(e.party_id) || {};
           return {
@@ -3571,22 +3827,24 @@
       });
       if(!mine.length) return '';
 
-      var ahead = [], over = [];
+      /* Ahead only. The ran nights used to ride here too, which put
+         the same two nights on screen twice once the Past editions
+         strip below arrived, and a card here could not unfold its
+         posts the way that strip can. One job each: this row is what
+         is coming, that strip is what happened. */
+      var ahead = [];
       mine.forEach(function(e){
         var n = v2Days(e.date);
-        (n !== null && n < 0 ? over : ahead).push(e);
+        if(n === null || n >= 0) ahead.push(e);
       });
       ahead.sort(function(a, b){ return (a.date || '').localeCompare(b.date || ''); });
-      over.sort(function(a, b){ return (b.date || '').localeCompare(a.date || ''); });
 
-      var list = ahead.slice(0, 6).concat(over.slice(0, 6));
+      var list = ahead.slice(0, 6);
       if(!list.length) return '';
 
       return '<div class="sibs">'
         + '<div class="lineup-k"><span class="k">Their other nights</span>'
-        + (ahead.length && over.length
-            ? '<span class="src">' + ahead.length + ' ahead, '
-              + over.length + ' already run</span>' : '')
+        + (list.length > 1 ? '<span class="src">' + list.length + ' ahead</span>' : '')
         + '</div>'
         + '<div class="sib-row">'
         + list.map(function(e){
@@ -3727,8 +3985,9 @@
       /* Placement Target carries a Party ID, so a promoter can buy
          their own nights and nobody else's. */
       h += promoStripHTML(promoFor('parties_modal', p.party_id));
-      h += postsHTML(p.posts, 'From their page');
+      h += edPostsHTML(p);
       h += siblingNightsHTML(p);
+      h += pastNightsHTML(p);
 
       /* back to the franchise */
       var f = fx(p.party_id);
@@ -3852,6 +4111,92 @@
               + '</a>';
           }).join('') + '</div></div>';
     }
+
+    /* Posts from THIS night's own run-up, off the Posts tab. Until
+       that tab has synced, the party's three-slot rail stands in, so
+       the modal is never emptier than it was before. */
+    function edPostsHTML(p){
+      var own = postsForEdition(p.id).map(function(x){
+        return { img: x.img, url: x.url,
+                 kind: x.kind === 'event' ? 'flyer' : x.kind, cap: x.cap };
+      });
+      if(own.length) return postsHTML(own, 'The run-up');
+      return postsHTML(p.posts, 'From their page');
+    }
+
+    /* The party's past nights, inside the night modal. Tapping one
+       unfolds the posts from ITS run-up in place, which is the
+       archive: every post we ever pulled, shown under the edition it
+       was pulled for. */
+    function pastNightsHTML(p){
+      var past = EDITIONS.filter(function(e){
+        if(e.party_id !== p.party_id || e.id === p.id) return false;
+        var n = v2Days(e.date);
+        return n !== null && n < 0;
+      }).sort(function(a, b){ return a.date < b.date ? 1 : -1; }).slice(0, 6);
+      if(!past.length) return '';
+
+      var h = '<div class="m-past"><div class="modal-cta-label">Past editions</div>'
+            + '<div class="m-past-row">';
+      h += past.map(function(e){
+        var count = postsForEdition(e.id).length;
+        return '<button class="m-past-card" type="button" '
+          + 'onclick="togglePastNight(this,\'' + escTxt(e.id) + '\')">'
+          + (e.flyer ? '<img src="' + escTxt(e.flyer) + '" alt="" loading="lazy" decoding="async">' : '')
+          + '<span class="m-past-meta"><b>' + escTxt(e.ed_name || e.title || '') + '</b>'
+          + '<i>' + v2Fmt(e.date)
+          + (count ? ' · ' + count + ' post' + (count === 1 ? '' : 's') : '')
+          + '</i></span></button>';
+      }).join('');
+      h += '</div><div class="m-past-open" id="pastNightOpen"></div></div>';
+      return h;
+    }
+
+    function togglePastNight(btn, edId){
+      var box = document.getElementById('pastNightOpen');
+      if(!box) return;
+      var was = box.getAttribute('data-ed');
+      var cards = document.querySelectorAll('.m-past-card.on');
+      for(var i = 0; i < cards.length; i++) cards[i].classList.remove('on');
+      if(was === edId){
+        box.innerHTML = '';
+        box.removeAttribute('data-ed');
+        return;
+      }
+      var own = postsForEdition(edId).map(function(x){
+        return { img: x.img, url: x.url,
+                 kind: x.kind === 'event' ? 'flyer' : x.kind, cap: x.cap };
+      });
+      box.setAttribute('data-ed', edId);
+      if(btn && btn.classList) btn.classList.add('on');
+      box.innerHTML = own.length
+        ? postsHTML(own, 'From that run-up')
+        : '<div class="m-past-none">Nothing saved from that run-up.</div>';
+    }
+
+    /* The sheet gesture. When the sheet is already scrolled to its
+       top, dragging down keeps going past it on every phone sheet
+       people know, and lets go into a close. 90px of pull, only
+       downward, only from the top, so ordinary reading never
+       triggers it. */
+    (function(){
+      var wrap = document.getElementById('partyModal');
+      if(!wrap) return;
+      var y0 = null;
+      wrap.addEventListener('touchstart', function(ev){
+        y0 = (wrap.scrollTop <= 0 && ev.touches.length === 1)
+          ? ev.touches[0].clientY : null;
+      }, { passive: true });
+      wrap.addEventListener('touchmove', function(ev){
+        if(y0 === null) return;
+        if(wrap.scrollTop > 0){ y0 = null; return; }
+        if(ev.touches[0].clientY - y0 > 90){
+          y0 = null;
+          try { closeModal(); } catch(e){}
+        }
+      }, { passive: true });
+      wrap.addEventListener('touchend', function(){ y0 = null; });
+    })();
 
     /* cross-navigation between the two object types */
     function openFranchise(id){
