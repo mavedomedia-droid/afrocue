@@ -1804,35 +1804,9 @@
       padding-left:9px;margin-left:2px;
       border-left:1px solid currentColor;opacity:.5}
 
-    /* ══ WHAT MOVED ════════════════════════════════════════════
-       The Party Pulse panel, back as a gradient and carrying
-       something worth a panel. It only appears when a night has
-       actually changed. */
-    .moved{position:relative;overflow:hidden;border-radius:9px;
-      padding:14px 16px;margin:0 0 22px;
-      border:1px solid var(--ev-line,rgba(200,224,0,.4));
-      background:linear-gradient(118deg,
-        var(--ev-soft,rgba(200,224,0,.16)) 0%,
-        rgba(255,255,255,.035) 46%,
-        transparent 100%)}
-    .moved-wash{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-    .moved-wash::after{content:'';position:absolute;top:-50%;left:-100%;
-      width:60%;height:200%;transform:rotate(25deg);
-      background:linear-gradient(90deg,transparent,
-        rgba(255,255,255,.07),transparent);
-      animation:scanMove 4.5s linear infinite}
-    .moved-k{display:flex;align-items:center;gap:7px;position:relative;z-index:2;
-      font-size:9.5px;font-weight:800;letter-spacing:.17em;text-transform:uppercase;
-      color:var(--ev,var(--yellow));margin-bottom:7px}
-    .moved-ago{margin-left:auto;font-weight:600;letter-spacing:.08em;
-      color:var(--grey);text-transform:none}
-    .moved-v{position:relative;z-index:2;font-size:13.5px;font-weight:400;
-      line-height:1.5;color:var(--off)}
-    @media (max-width:768px){
-      .moved{padding:13px 14px;margin-bottom:18px}
-      .moved-v{font-size:12.5px}
-    }
-    @media (prefers-reduced-motion:reduce){ .moved-wash::after{animation:none} }
+    /* The "What moved" panel's styles lived here. Removed with the
+       panel itself. scanMove stays defined above: the Interested
+       button's beam still runs on it. */
 
 
     /* ══ THE SLOW ASK ══════════════════════════════════════════
@@ -4025,58 +3999,11 @@
         function(b){ b.onclick = function(){ openEdition(b.getAttribute('data-ed')); }; });
     }
 
-    /* ── WHAT MOVED ────────────────────────────────────────────
-       Editions carries Changed At and Changed What, written whenever
-       a re-read finds the venue, time, lineup, date or state of a
-       live night has changed. The API has been sending both all
-       along and the page displayed neither, so the one thing a
-       reader most needs to know was arriving and being dropped.
-
-       It only renders when something actually moved. A night that
-       has not changed shows nothing, which is why this can be loud:
-       it is rare, and when it is there it matters. */
-    /* Donna already records this and the page has never shown it. It is
-       the one thing about a night nobody else in Lagos can tell you: the
-       flyer still says Hard Rock, the caption three days later says
-       somewhere else, and we are the ones who noticed. */
-    var MOVED_WORDS = { venue:'the venue', time:'the start time',
-      lineup:'the lineup', date:'the date', state:'the status' };
-    function movedHTML(p, g){
-      var what = String(p.changed_what || '').trim();
-      if(!what) return '';
-      /* Past, cancelled, or no date at all. "The venue changed" on a
-         night that already happened is trivia, not a warning. */
-      if(g && (g.cls === 'past' || g.cls === 'dim' || g.cls === 'off')) return '';
-
-      var ago = '';
-      if(p.changed_at){
-        var t = new Date(p.changed_at);
-        if(!isNaN(t)){
-          var mins = Math.round((Date.now() - t) / 60000);
-          if(mins > 21 * 1440) return '';   /* stale, not news */
-          ago = mins < 60 ? Math.max(1, mins) + ' min ago'
-              : mins < 1440 ? Math.round(mins / 60) + 'h ago'
-              : Math.round(mins / 1440) + 'd ago';
-        }
-      }
-
-      /* "venue, lineup" becomes "The venue and the lineup". */
-      var bits = what.split(/\s*,\s*/).filter(Boolean).map(function(w){
-        var k = w.toLowerCase().trim();
-        return MOVED_WORDS[k] || ('the ' + k);
-      });
-      var said = bits.length > 1
-        ? bits.slice(0, -1).join(', ') + ' and ' + bits[bits.length - 1]
-        : (bits[0] || 'something');
-      said = said.charAt(0).toUpperCase() + said.slice(1);
-
-      return '<div class="moved">'
-        + '<span class="moved-wash"></span>'
-        + '<div class="moved-k"><span class="sig-dot"></span>What moved'
-        +   (ago ? '<span class="moved-ago">' + ago + '</span>' : '') + '</div>'
-        + '<div class="moved-v">' + said + ' changed since this was announced.</div>'
-        + '</div>';
-    }
+    /* The "What moved" panel lived here, reading Changed At and
+       Changed What into a banner saying the venue or time changed
+       since the night was announced. Removed at Femi's ask. The two
+       columns still flow through the API untouched, because the
+       it-moved email in alertsRun reads them on the server side. */
 
     /* ── AN EDITION: one night ─────────────────────────────────── */
     function editionBody(p){
@@ -4133,7 +4060,6 @@
           + '</div></div>';
       }
 
-      h += movedHTML(p, g);
       h += interestedHTML(p);
       /* Placement Target carries a Party ID, so a promoter can buy
          their own nights and nobody else's. */
