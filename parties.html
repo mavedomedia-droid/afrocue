@@ -299,8 +299,18 @@
       color:rgba(240,237,232,0.82);background:linear-gradient(to top,rgba(10,10,10,0.95),transparent)}
 
     /* the link between an edition and its franchise */
-    .m-parent{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
-      background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:16px 20px;margin-bottom:24px}
+    /* The party's own tile inside a night: a banner with the party's
+       body in it, not a grey row with a 52px logo. The plate comes
+       from the party's post stack, dimmed under a left-heavy gradient
+       so the name and the button always read. */
+    .m-parent{position:relative;display:flex;align-items:center;justify-content:space-between;
+      gap:16px;flex-wrap:wrap;overflow:hidden;border-radius:10px;min-height:118px;
+      background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);
+      padding:18px 20px;margin-bottom:24px}
+    .m-parent-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5}
+    .m-parent-grad{position:absolute;inset:0;
+      background:linear-gradient(90deg,rgba(10,10,10,.93) 0%,rgba(10,10,10,.72) 55%,rgba(10,10,10,.35) 100%)}
+    .m-parent-main,.m-parent-b{position:relative;z-index:2}
     .m-parent-l{font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--grey);margin-bottom:4px}
     .m-parent-n{font-family:'Aesthet Nova',sans-serif;font-weight:900;font-size:21px;color:var(--white);line-height:1}
     .m-parent-b{font-family:'Figtree',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.1em;
@@ -1276,24 +1286,27 @@
       color:var(--off);margin-top:2px}
 
     /* ══ PAST EDITIONS, inside the night modal ═══════════════════════
-       A row of small chips, one per past night. Tapping one unfolds
-       the posts from its own run-up where you stand, rather than
-       sending you to another page. */
+       Open by default: the last three nights, each with its date and
+       its best three pieces of media in a row, then one button into
+       the party for the rest. */
     .m-past{margin-bottom:28px}
-    .m-past-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;
-      -webkit-overflow-scrolling:touch}
-    .m-past-row::-webkit-scrollbar{display:none}
-    .m-past-card{flex:0 0 auto;display:flex;align-items:center;gap:9px;
-      background:var(--dark2);border:1px solid rgba(255,255,255,.1);
-      border-radius:8px;padding:7px 12px 7px 7px;cursor:pointer;text-align:left}
-    .m-past-card img{width:34px;height:42px;object-fit:cover;border-radius:4px;display:block}
-    .m-past-card.on{border-color:var(--ev-line,var(--yellow))}
-    .m-past-meta{display:flex;flex-direction:column;gap:2px}
-    .m-past-meta b{font-size:11.5px;font-weight:700;color:var(--white);max-width:150px;
+    .m-past-ed{margin-bottom:14px}
+    .m-past-head{display:flex;align-items:baseline;gap:10px;margin-bottom:7px;min-width:0}
+    .m-past-date{font-size:9.5px;font-weight:700;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--ev,var(--yellow));flex-shrink:0}
+    .m-past-name{font-size:12px;font-weight:600;color:var(--off);min-width:0;
       white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .m-past-meta i{font-style:normal;font-size:9.5px;color:var(--silver)}
-    .m-past-open{margin-top:10px}
-    .m-past-none{font-size:11px;color:var(--silver);padding:8px 2px}
+    .m-past-strip{display:flex;gap:7px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .m-past-strip::-webkit-scrollbar{display:none}
+    .m-past-shot{display:block;flex:0 0 auto;width:96px;height:96px;border-radius:8px;
+      overflow:hidden;border:1px solid rgba(255,255,255,.14)}
+    .m-past-shot img{width:100%;height:100%;object-fit:cover;display:block}
+    .m-past-more{display:inline-flex;align-items:center;gap:7px;margin-top:4px;
+      background:none;border:1px solid rgba(255,255,255,.2);color:var(--off);
+      font-family:'Figtree',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.1em;
+      text-transform:uppercase;padding:10px 16px;border-radius:999px;cursor:pointer;min-height:40px}
+    .m-past-more:hover{border-color:var(--ev,var(--yellow));color:var(--ev,var(--yellow))}
+    .m-past-none{font-size:11px;color:var(--silver);padding:2px 0 6px}
 
     /* ══ WHATSAPP BAND ═══════════════════════════════════════════════
        One row on a wide screen, a clean stack on a phone, where the
@@ -3219,7 +3232,13 @@
       var now = new Date();
       var toSun = (7 - now.getDay()) % 7 || 7;
       var dow = d.getDay();
-      if(n <= toSun && (dow === 5 || dow === 6 || dow === 0)) return 'This weekend';
+      /* Inside this calendar week, up to Sunday: a Fri, Sat or Sun
+         night is the weekend, and a Tue to Thu night is This week.
+         It used to fall through to Next week, which called a night
+         three days away next week on a Monday. */
+      if(n <= toSun){
+        return (dow === 5 || dow === 6 || dow === 0) ? 'This weekend' : 'This week';
+      }
       if(n <= toSun + 7) return 'Next week';
       var mons = ['January','February','March','April','May','June',
                   'July','August','September','October','November','December'];
@@ -4116,10 +4135,13 @@
         var read = p.last_read ? v2Since(p.last_read) : '';
         if(read) bits.push('read ' + read);
 
-        var art = f.hero_img || p.flyer || '';
+        /* The party's body as the plate: a photo from their own
+           stack first, their hero image after, this night's flyer
+           last, since the flyer is already above. */
+        var art = plateFor(f.handle || p.handle, p.party_id) || f.hero_img || p.flyer || '';
         h += '<div class="m-parent">'
-          + (art ? '<img class="m-parent-img" src="'+art+'" alt="" loading="lazy" '
-                 + 'onerror="this.style.display=\'none\'"/>' : '')
+          + (art ? '<img class="m-parent-bg" src="'+art+'" alt="" loading="lazy" decoding="async" '
+                 + 'onerror="this.style.display=\'none\'"/><div class="m-parent-grad"></div>' : '')
           + '<div class="m-parent-main">'
           +   '<div class="m-parent-l">'+(same ? 'The party' : 'Organisers')+'</div>'
           +   '<div class="m-parent-n">'+f.name+'</div>'
@@ -4249,54 +4271,42 @@
       return postsHTML(p.posts, 'From their page');
     }
 
-    /* The party's past nights, inside the night modal. Tapping one
-       unfolds the posts from ITS run-up in place, which is the
-       archive: every post we ever pulled, shown under the edition it
-       was pulled for. */
+    /* The party's past nights, inside the night modal, OPEN by
+       default. It used to be a row of chips you had to tap to unfold
+       one night at a time, which hid the archive behind a click
+       nobody knew to make. Now the last three nights each show their
+       date and their best three pieces of media, left to right, and
+       the way deeper is one button into the party itself. */
     function pastNightsHTML(p){
       var past = EDITIONS.filter(function(e){
         if(e.party_id !== p.party_id || e.id === p.id) return false;
         var n = v2Days(e.date);
         return n !== null && n < 0;
-      }).sort(function(a, b){ return a.date < b.date ? 1 : -1; }).slice(0, 6);
+      }).sort(function(a, b){ return a.date < b.date ? 1 : -1; });
       if(!past.length) return '';
 
-      var h = '<div class="m-past"><div class="modal-cta-label">Past editions</div>'
-            + '<div class="m-past-row">';
-      h += past.map(function(e){
-        var count = postsForEdition(e.id).length;
-        return '<button class="m-past-card" type="button" '
-          + 'onclick="togglePastNight(this,\'' + escTxt(e.id) + '\')">'
-          + (e.flyer ? '<img src="' + escTxt(e.flyer) + '" alt="" loading="lazy" decoding="async">' : '')
-          + '<span class="m-past-meta"><b>' + escTxt(e.ed_name || e.title || '') + '</b>'
-          + '<i>' + v2Fmt(e.date)
-          + (count ? ' · ' + count + ' post' + (count === 1 ? '' : 's') : '')
-          + '</i></span></button>';
+      var h = '<div class="m-past"><div class="modal-cta-label">Past editions</div>';
+      h += past.slice(0, 3).map(function(e){
+        var posts = postsForEdition(e.id).slice(0, 3);
+        return '<div class="m-past-ed">'
+          + '<div class="m-past-head">'
+          +   '<span class="m-past-date">' + v2Fmt(e.date) + '</span>'
+          +   '<span class="m-past-name">' + escTxt(e.ed_name || e.title || '') + '</span>'
+          + '</div>'
+          + (posts.length
+              ? '<div class="m-past-strip">' + posts.map(function(q){
+                  return '<a class="m-past-shot" href="' + escTxt(q.url || '#') + '" '
+                    + 'target="_blank" rel="noopener">'
+                    + '<img src="' + escTxt(q.img) + '" alt="" loading="lazy" decoding="async"></a>';
+                }).join('') + '</div>'
+              : '<div class="m-past-none">Nothing saved from that run-up.</div>')
+          + '</div>';
       }).join('');
-      h += '</div><div class="m-past-open" id="pastNightOpen"></div></div>';
+      h += '<button class="m-past-more" type="button" '
+        + 'onclick="openFranchise(\'' + escTxt(p.party_id) + '\')">'
+        + (past.length > 3 ? 'All ' + past.length + ' of their nights' : 'See the party')
+        + ' →</button></div>';
       return h;
-    }
-
-    function togglePastNight(btn, edId){
-      var box = document.getElementById('pastNightOpen');
-      if(!box) return;
-      var was = box.getAttribute('data-ed');
-      var cards = document.querySelectorAll('.m-past-card.on');
-      for(var i = 0; i < cards.length; i++) cards[i].classList.remove('on');
-      if(was === edId){
-        box.innerHTML = '';
-        box.removeAttribute('data-ed');
-        return;
-      }
-      var own = postsForEdition(edId).map(function(x){
-        return { img: x.img, url: x.url,
-                 kind: x.kind === 'event' ? 'flyer' : x.kind, cap: x.cap };
-      });
-      box.setAttribute('data-ed', edId);
-      if(btn && btn.classList) btn.classList.add('on');
-      box.innerHTML = own.length
-        ? postsHTML(own, 'From that run-up')
-        : '<div class="m-past-none">Nothing saved from that run-up.</div>';
     }
 
     /* The sheet gesture. When the sheet is already scrolled to its
@@ -4639,53 +4649,54 @@
     }
 
     function renderUpcoming(party){
-      /* Back. With the rails gone this is the only place a single
-         night gets room to be looked at, and it is the slot that
-         sells. */
+      /* The big placement belongs to the Featured column on Editions
+         now, the same mark that puts a night on the hero's second
+         frame and tags its card. This block used to pick whichever
+         FRANCHISE had an upcoming_flyer on the Parties tab, a third
+         promotion mechanism nobody could see into, which is how a
+         static Amapiano District card sat here on launch night with
+         no night attached. One mark, three placements, and with no
+         starred night the section simply stays hidden. */
       var sec = document.getElementById('upcomingSection');
-      if(!party || !party.name){
-        /* PARTIES holds whatever the current view holds, and the view
-           is editions, so this searched the nights for a field only a
-           franchise carries and always came back empty. */
-        var pool = (typeof FRANCHISES !== 'undefined' && FRANCHISES.length)
-                     ? FRANCHISES : PARTIES;
-        var fallback = pool.find(function(p){
-          return (p.upcoming_flyer && String(p.upcoming_flyer).trim() !== '')
-              || (p.upcoming_date  && String(p.upcoming_date).trim()  !== '');
-        });
-        if(fallback) party = fallback;
-      }
-      if(!party || !party.name){
+      var feat = (typeof EDITIONS !== 'undefined' ? EDITIONS : []).filter(function(e){
+        var n = v2Days(e.date);
+        return e.featured && n !== null && n >= 0 && e.state === 'announced';
+      }).sort(function(a, b){ return a.date < b.date ? -1 : 1; })[0];
+
+      if(!feat){
         sec.classList.remove('visible');
         return;
       }
-      FEATURED_PARTY = party;
+      var f = fx(feat.party_id) || {};
+      FEATURED_PARTY = feat;
       sec.classList.add('visible');
+
       var upBtn = document.getElementById('upcomingBtn');
       if(upBtn){
-        if(party.ticket_url || party.website){
-          upBtn.href = party.ticket_url || party.website;
+        if(f.ticket_url || f.website){
+          upBtn.href = f.ticket_url || f.website;
           upBtn.target = '_blank';
           upBtn.onclick = null;
         } else {
           upBtn.href = '#';
           upBtn.removeAttribute('target');
           upBtn.onclick = function(){ openUpcomingModal(); return false; };
+          upBtn.textContent = 'See the night';
         }
       }
       var bg = document.getElementById('upcomingBg');
-      if(party.hero_img) bg.style.backgroundImage = "url('"+party.hero_img+"')";
-      document.getElementById('upcomingName').textContent = party.name;
-      var metaTags = [party.time, party.access, party.setting].filter(Boolean);
-      var allTags = metaTags.concat(party.genres || []);
+      var art = feat.flyer || f.hero_img || '';
+      if(art) bg.style.backgroundImage = "url('"+art+"')";
+      document.getElementById('upcomingName').textContent =
+        feat.ed_name || feat.title || f.name || '';
+      var allTags = [feat.time].filter(Boolean).concat(f.genres || []);
       document.getElementById('upcomingTags').innerHTML = allTags.map(function(t){ return '<span class="upcoming-tag">'+t+'</span>'; }).join('');
-      var dateEl = document.getElementById('upcomingDate');
-      if(party.upcoming_date){ dateEl.textContent = String.fromCodePoint(0x1F4C5)+' '+party.upcoming_date; }
-      else { dateEl.textContent = party.city; }
+      /* The night's real facts, not the party's city. */
+      document.getElementById('upcomingDate').textContent =
+        [v2Fmt(feat.date), feat.venue || feat.area || ''].filter(Boolean).join(' · ');
       var flyerImg = document.getElementById('upcomingFlyerImg');
-      var flyerSrc = party.upcoming_flyer || party.flyer_img || '';
       if(flyerImg){
-        if(flyerSrc){ flyerImg.src = flyerSrc; flyerImg.style.visibility = 'visible'; flyerImg.onerror = function(){ this.style.visibility = 'hidden'; }; }
+        if(feat.flyer){ flyerImg.src = feat.flyer; flyerImg.style.visibility = 'visible'; flyerImg.onerror = function(){ this.style.visibility = 'hidden'; }; }
         else { flyerImg.style.visibility = 'hidden'; }
       }
     }
