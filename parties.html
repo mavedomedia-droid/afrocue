@@ -1285,6 +1285,38 @@
     .side-date i{font-style:normal;font-size:8px;font-weight:700;letter-spacing:.16em;
       color:var(--off);margin-top:2px}
 
+    /* ══ UP NEXT, the modal's closing beat ═══════════════════════════
+       Four real night cards ending the reading column, the starred
+       night first wearing Promoted. */
+    .m-more{margin:4px 0 30px}
+    .m-more-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .m-more-card{background:none;border:0;padding:0;text-align:left;cursor:pointer;min-width:0}
+    .m-more-plate{position:relative;display:block;aspect-ratio:4/5;border-radius:8px;
+      overflow:hidden;border:1px solid rgba(255,255,255,.12);background:var(--dark2)}
+    .m-more-plate img{width:100%;height:100%;object-fit:cover;display:block;
+      transition:transform .35s var(--ease)}
+    .m-more-card:hover .m-more-plate img{transform:scale(1.05)}
+    .m-more-date{position:absolute;top:6px;right:6px;display:flex;flex-direction:column;
+      align-items:center;background:rgba(10,10,10,.82);border:1px solid rgba(255,255,255,.16);
+      border-radius:5px;padding:4px 7px 3px}
+    .m-more-date b{font-size:13px;font-weight:800;color:var(--white);line-height:1}
+    .m-more-date i{font-style:normal;font-size:7px;font-weight:700;letter-spacing:.14em;
+      color:var(--off);margin-top:1px}
+    .m-more-promoted{position:absolute;top:6px;left:6px;background:var(--yellow);color:#0a0a0a;
+      font-size:7.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+      padding:3px 6px;border-radius:3px}
+    .m-more-n{margin-top:7px;font-size:12px;font-weight:700;color:var(--off);line-height:1.25;
+      overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+    .m-more-g{display:block;margin-top:3px;font-size:9.5px;font-weight:600;letter-spacing:.06em;
+      text-transform:uppercase;color:var(--silver)}
+    .m-more-card:hover .m-more-n{color:var(--ev,var(--yellow))}
+    @media (max-width:768px){
+      .m-more-row{display:flex;gap:9px;overflow-x:auto;-webkit-overflow-scrolling:touch;
+        margin:0 -16px;padding:0 16px 4px}
+      .m-more-row::-webkit-scrollbar{display:none}
+      .m-more-card{flex:0 0 32%;min-width:112px}
+    }
+
     /* ══ PAST EDITIONS, inside the night modal ═══════════════════════
        Open by default: the last three nights, each with its date and
        its best three pieces of media in a row, then one button into
@@ -1997,10 +2029,17 @@
            subheading and a button, for one follow. It is now half of
            the split foot above, beside their Instagram. -->
 
-      <!-- Other Parties -->
-      <div class="modal-others">
-        <div class="modal-others-label">Other Parties</div>
-        <div class="modal-others-grid" id="modalOthers"></div>
+      <!-- UP NEXT. The modal's closing beat, inside the body so it
+           ends the reading column instead of stranding itself under
+           the sticky flyer as a third grid cell, which is what the
+           old Other Parties block did: three cramped tiles in the
+           left column and a sea of black under the right. Real night
+           cards, the starred night first wearing its Promoted tag,
+           which is the sponsored slot at the exact moment a reader
+           finishes one night and decides what else. -->
+      <div class="m-more" id="mMoreSec" style="display:none">
+        <div class="latest-posts-label">Up next in Lagos</div>
+        <div class="m-more-row" id="mMoreRow"></div>
       </div>
     </div>
   </div>
@@ -4909,25 +4948,49 @@
       document.getElementById('modalLink').href = linkUrl;
       document.getElementById('modalLinkText').textContent = linkUrl.indexOf('instagram') > -1 ? 'Instagram' : (party.website ? 'Website' : 'Instagram');
 
-      // Others
-      var others = PARTIES.filter(function(p){ return p.id !== id; }).slice(0,3);
-      var othersGrid = document.getElementById('modalOthers'); othersGrid.innerHTML = '';
-      others.forEach(function(op){
-        var el = document.createElement('div'); el.className = 'modal-other-card';
-        el.onclick = function(){ openModal(op.id); };
-        var obg = document.createElement('div'); obg.className = 'modal-other-bg';
-        if(op.hero_img) obg.style.backgroundImage = "url('"+op.hero_img+"')";
-        var oimg = document.createElement('img'); oimg.className = 'modal-other-img';
-        if(op.hero_img) { oimg.src = op.hero_img; oimg.loading = 'lazy'; oimg.decoding = 'async'; }
-        oimg.alt = op.name;
-        oimg.onerror = function(){ this.style.opacity = 0; };
-        var ograd = document.createElement('div'); ograd.className = 'modal-other-grad';
-        var onm = document.createElement('div'); onm.className = 'modal-other-name'; onm.textContent = op.name;
-        el.appendChild(obg); el.appendChild(oimg); el.appendChild(ograd); el.appendChild(onm);
-        othersGrid.appendChild(el);
-      });
-      var po = promoFor('parties_others', party.party_id || party.id);
-      if(po) othersGrid.insertAdjacentHTML('beforeend', promoTileHTML(po));
+      // Up next: the closing beat. Real night cards, featured first.
+      var moreSec = document.getElementById('mMoreSec');
+      var moreRow = document.getElementById('mMoreRow');
+      if(moreSec && moreRow){
+        var mineP = party.party_id || party.id;
+        var pool = EDITIONS.filter(function(e){
+          if(e.id === id) return false;
+          if(e.party_id && (e.party_id === mineP)) return false;
+          var n = v2Days(e.date);
+          return n !== null && n >= 0 && e.state === 'announced' && ehHome(e);
+        }).sort(function(a, b){
+          if(!!b.featured !== !!a.featured) return b.featured ? 1 : -1;
+          return a.date < b.date ? -1 : 1;
+        }).slice(0, 4);
+
+        if(pool.length){
+          var MMON = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+          moreSec.style.display = '';
+          moreRow.innerHTML = pool.map(function(e){
+            var f2 = fx(e.party_id) || {};
+            var art2 = e.flyer || f2.hero_img ||
+              (typeof plateFor === 'function' ? plateFor(f2.handle, e.id) : '') || '';
+            var g2 = toGo(e.date, e.time, false);
+            var dd2 = new Date(e.date + 'T12:00:00');
+            return '<button class="m-more-card" type="button" data-ed="'
+              + String(e.id).replace(/"/g, '&quot;') + '">'
+              + '<span class="m-more-plate">'
+              +   (art2 ? '<img src="' + escTxt(art2) + '" alt="" loading="lazy" decoding="async">' : '')
+              +   (e.featured ? '<span class="m-more-promoted">Promoted</span>' : '')
+              +   (isNaN(dd2) ? '' : '<span class="m-more-date"><b>' + dd2.getDate() + '</b>'
+                   + '<i>' + MMON[dd2.getMonth()] + '</i></span>')
+              + '</span>'
+              + '<span class="m-more-n">' + escTxt(e.ed_name || e.title || '') + '</span>'
+              + '<span class="m-more-g">' + escTxt(g2.t || '') + '</span>'
+              + '</button>';
+          }).join('');
+          Array.prototype.forEach.call(moreRow.querySelectorAll('.m-more-card'), function(b){
+            b.onclick = function(){ openEdition(b.getAttribute('data-ed')); };
+          });
+        } else {
+          moreSec.style.display = 'none';
+        }
+      }
 
       document.getElementById('partyModal').classList.add('open');
       document.getElementById('partyModal').scrollTop = 0;
