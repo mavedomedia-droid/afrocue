@@ -310,15 +310,26 @@
 
     /* franchise history */
     .m-hist{margin-bottom:28px}
-    .m-hist-row{display:flex;align-items:center;gap:14px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.05);
+    /* One block per edition, the date demarcating it. The old row was
+       a three-cell flex line that put a full street address in the
+       middle cell, where it wrapped a word to a line, and past rows
+       printed their whole price list in the right cell. */
+    .m-hist-row{display:block;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);
       font-size:12px;cursor:pointer}
+    .m-hist-top{display:flex;align-items:baseline;gap:14px}
     .m-hist-row:hover .m-hist-n{color:var(--yellow)}
-    .m-hist-d{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--grey);
-      width:92px;flex-shrink:0}
-    .m-hist-n{color:var(--off);font-weight:500;flex:1;transition:color .2s}
+    .m-hist-d{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--grey);
+      width:96px;flex-shrink:0}
+    .m-hist-n{color:var(--off);font-weight:500;flex:1;min-width:0;transition:color .2s}
+    .m-hist-n i{display:block;font-style:normal;font-size:10.5px;color:var(--grey);
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
     .m-hist-t{font-size:10px;color:var(--grey);white-space:nowrap}
     .m-hist-row.next .m-hist-d{color:var(--yellow)}
     .m-hist-row.next .m-hist-n{color:var(--white);font-weight:600}
+    .m-hist-media{display:flex;gap:6px;margin:9px 0 2px 110px}
+    .m-hist-media img{width:56px;height:56px;object-fit:cover;border-radius:6px;
+      border:1px solid rgba(255,255,255,.14);display:block}
+    @media (max-width:768px){ .m-hist-media{margin-left:0} }
 
     .m-bio{font-size:13px;font-weight:300;line-height:1.75;color:rgba(240,237,232,0.6);margin-bottom:22px}
     .m-ig-stats{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:24px;padding-bottom:22px;
@@ -3559,6 +3570,7 @@
         var last = eds.filter(function(e){ return v2Days(e.date) < 0; })[0];
         return {
           _kind:'franchise', id:f.id, name:f.name, organiser:f.organiser,
+          handle:f.handle,
           city:f.city || 'Lagos', area:f.area, venue:f.home_venue,
           last_read:f.last_success_at, ticked:f.ticked,
           genres:f.genres||[], vibe_tags:f.vibe_tags||[],
@@ -4163,16 +4175,31 @@
           +  '<div class="m-now-src">Last ran '+(past.length?v2Fmt(past[0].date):'unknown')+'</div></div>';
       }
 
-      /* the history, which is what six months of scraping buys you */
+      /* The history, which is what six months of scraping buys you.
+         Each edition is its own clearly dated block now: the date
+         leads, the venue sits under the name on one truncating line
+         instead of wrapping letter by letter in a flex column, the
+         entry prices are gone from the row (they sprawled across the
+         whole modal for past nights and they live one tap away), and
+         up to three pieces of media from THAT night's own window sit
+         under it, off the Posts tab. */
       if(eds.length){
         h += '<div class="m-hist"><div class="modal-cta-label">Editions</div>'
           + eds.slice(0,10).map(function(e){
               var up = v2Days(e.date) >= 0 && e.state==='announced';
+              var strip = postsForEdition(e.id).slice(0, 3).map(function(q){
+                return '<img src="'+escTxt(q.img)+'" alt="" loading="lazy" decoding="async">';
+              }).join('');
+              var venue = e.venue || e.area || '';
               return '<div class="m-hist-row'+(up?' next':'')+'" onclick="openEdition(\''+e.id+'\')">'
-                +  '<span class="m-hist-d">'+v2Span(e.date, e.end_date)+'</span>'
-                +  '<span class="m-hist-n">'+(e.venue || e.area || '<span class="ph ph-'+(e.venue_held?'held':'pending')+'">'
-                   +(e.venue_held?PH.venueHeld.t:PH.venue.t)+'</span>')+'</span>'
-                +  '<span class="m-hist-t">'+(e.state==='cancelled'?'Cancelled':(up?'Upcoming':(e.entry||'')))+'</span>'
+                +  '<div class="m-hist-top">'
+                +    '<span class="m-hist-d">'+v2Span(e.date, e.end_date)+'</span>'
+                +    '<span class="m-hist-n">'+escTxt(e.ed_name || e.title || venue || '')
+                +      (venue && (e.ed_name || e.title) ? '<i>'+escTxt(venue)+'</i>' : '')
+                +    '</span>'
+                +    '<span class="m-hist-t">'+(e.state==='cancelled' ? 'Cancelled' : (up ? 'Upcoming' : ''))+'</span>'
+                +  '</div>'
+                +  (strip ? '<div class="m-hist-media">'+strip+'</div>' : '')
                 + '</div>';
             }).join('') + '</div>';
       }
@@ -4794,7 +4821,23 @@
          posts array, so read that first and keep the flat column names
          as a fallback for anything still carrying the raw CSV shape. */
       var posts = [];
-      if((party.posts || []).length){
+      /* The Posts tab first, sorted by when the post actually went
+         up, newest at the front, every time. The old source was the
+         three flat columns on the Parties tab, which only move when
+         refreshPartyPosts runs at 06:00, so a dead trigger froze the
+         rail on whatever was newest the last time it fired. The
+         flat columns stay below as the fallback. */
+      var hkey = String(party.handle ||
+        (typeof getHandleFromUrl === 'function' ? getHandleFromUrl(party.instagram) : '') || '')
+        .toLowerCase();
+      postsAnyFor(hkey).slice()
+        .sort(function(a, b){ return String(a.at) < String(b.at) ? 1 : -1; })
+        .slice(0, 3).forEach(function(q){
+          if(!q.img) return;
+          posts.push({ image: q.img, caption: q.cap || '', url: q.url || '',
+                       timestamp: q.at || '', kind: q.kind || '' });
+        });
+      if(!posts.length && (party.posts || []).length){
         party.posts.slice(0,3).forEach(function(q){
           if(!q) return;
           var img = q.image || q.img;
