@@ -2463,6 +2463,7 @@
            away, so 19th-and-20th showed only the 19th. */
         end_date: e.end_date || '',
         venue: e.venue, venue_held: !!e.venue_held, area: e.area,
+        city: e.city || '',
         entry: e.entry, entry_free: !!e.entry_free,
         flyer: e.flyer || f.upcoming_flyer || f.flyer_img || '',
         flyer_confidence: e.confidence || '',
@@ -2883,7 +2884,12 @@
         var el = document.getElementById(id);
         if(el) el.innerHTML = html || '';
       };
-      set('promoBanner', promoBannerHTML(promoFor('parties_banner')));
+      /* The banner above the grid is retired. It was the Promo tab's
+         slot, which is how a static Amapiano District card sat
+         pinned over the directory. Promotion is the Featured column
+         on Editions now: the hero's second frame and the tag on the
+         night's own card. One system, real nights only. The footer
+         slot below the grid stays for house ads. */
       set('promoFooter', promoBannerHTML(promoFor('parties_footer')));
       /* The featured card rotates, so a paid row joins the rotation
          rather than replacing it. */
@@ -4319,10 +4325,21 @@
        more: the card is about what is on, and the party behind it is a
        by-line, which is the order a reader actually wants.
        ──────────────────────────────────────────────────────────── */
+    /* The hero fronts the page, and the page is Lagos. Elektrack's
+       Tulum and Mexico City dates are real tracked nights and stay in
+       the directory, but Circoloco Mexico City leading the Lagos hero
+       on announcement day is the wrong first impression. A blank city
+       is kept: most rows are Lagos by default. */
+    function ehHome(e){
+      var c = String(e.city || '').toLowerCase();
+      if(!c) return true;
+      return /nigeria|lagos|abuja|ibadan|port harcourt|benin|enugu|abeokuta|kano|kaduna/.test(c);
+    }
+
     function buildEHero(){
       EH.list = EDITIONS.filter(function(e){
         var n = v2Days(e.date);
-        return n !== null && n >= 0 && e.state === 'announced';
+        return n !== null && n >= 0 && e.state === 'announced' && ehHome(e);
       }).sort(function(a, b){ return a.date < b.date ? -1 : 1; });
 
       var withArt = EH.list.filter(ehImg);
