@@ -3813,7 +3813,12 @@
 
       document.getElementById('stripRow').innerHTML = row.map(function(e){
         var st = nightState(e), on = nightIsOn(st);
-        var art = e.flyer || '';
+        /* A night with no flyer yet borrows its party's face, then a
+           photo from their stack, rather than sitting in the strip
+           as an empty dark square. */
+        var _f = fx(e.party_id) || {};
+        var art = e.flyer || _f.hero_img ||
+          (typeof plateFor === 'function' ? plateFor(_f.handle, e.id) : '') || '';
         return '<button class="chip' + (st === 'open' ? ' on' : '')
           + (st === 'ending' ? ' on ending' : '') + '" data-ed="'
           + String(e.id).replace(/"/g, '&quot;') + '">'
