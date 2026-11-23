@@ -1196,6 +1196,16 @@
       .party-card-content { padding:7px 6px 9px }
     }
 
+    /* ══ PROMOTED ════════════════════════════════════════════════════
+       The mark a featured night wears in the grid. Quiet but legible
+       as paid: the reader deserves to know, the promoter deserves it
+       visible. The card keeps its place in the date order; buying a
+       slot buys the hero's second frame and this tag, not a jump in
+       the queue. */
+    .card-promoted{display:inline-block;margin-bottom:7px;padding:3px 8px;border-radius:3px;
+      background:var(--yellow);color:#0a0a0a;font-size:8px;font-weight:800;
+      letter-spacing:.16em;text-transform:uppercase}
+
     /* ══ DATE CHIPS + GROUP LABELS on the grid ═══════════════════════ */
     .when-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
     .when-chip{background:none;border:1px solid rgba(255,255,255,.16);color:var(--off);
@@ -2469,7 +2479,10 @@
            night moved. Donna writes them when she re-reads a night and
            the venue, time, lineup, date or state is different from what
            she had. */
-        changed_at: e.changed_at || '', changed_what: e.changed_what || ''
+        changed_at: e.changed_at || '', changed_what: e.changed_what || '',
+        /* The Featured column on Editions. One marked night rides the
+           hero as Promoted. */
+        featured: !!e.featured
       };
     }
 
@@ -3484,6 +3497,7 @@
                night and something is actually different: venue, time,
                lineup, date or state. The page has never used them. */
             changed_at:e.changed_at, changed_what:e.changed_what,
+            featured:!!e.featured,
             /* A night has no "last party" of its own, so Party Pulse reads
                the franchise's: when this party last ran, and how far Donna
                trusts what she scraped. Without these the panel said
@@ -4323,6 +4337,23 @@
          frames belong to what is actually on. The is-promo branch in
          paintEHero stays dormant in case a promo ever rides again. */
 
+      /* A promoted night is still a REAL night, which is the whole
+         difference from the old promo slide. The Featured column on
+         Editions marks it; the soonest marked upcoming night rides
+         second, behind tonight, wearing a Promoted tag. One only:
+         further marks wait their turn. */
+      var feat = EH.list.filter(function(e){ return e.featured; })[0]
+        || EDITIONS.filter(function(e){
+             var n = v2Days(e.date);
+             return e.featured && n !== null && n >= 0 && e.state === 'announced';
+           }).sort(function(a, b){ return a.date < b.date ? -1 : 1; })[0];
+      if(feat){
+        var at = EH.list.indexOf(feat);
+        if(at > -1) EH.list.splice(at, 1);
+        EH.list.splice(Math.min(1, EH.list.length), 0, feat);
+        EH.list = EH.list.slice(0, EH.MAX);
+      }
+
       var pips = document.getElementById('featuredDots');
       var slot = document.getElementById('featuredSlot');
       if(!pips || !slot) return;
@@ -4384,7 +4415,11 @@
         slot.className = slot.className.replace(/\s*is-(today|soon)\b/g, '');
         if(go.cls === 'today') slot.classList.add('is-today');
 
-        document.getElementById('featuredKick').textContent = go.t;
+        /* A featured night says so, in front of the countdown. The
+           reader deserves to know the order was paid for, and the
+           promoter deserves the word Promoted actually appearing. */
+        document.getElementById('featuredKick').textContent =
+          e.featured ? 'Promoted · ' + go.t : go.t;
         document.getElementById('featuredName').textContent = ehName(e);
         document.getElementById('featuredBy').innerHTML =
           (e.ed_name && e.title && e.ed_name !== e.title) ? 'by <b>' + e.title + '</b>' : '';
@@ -4486,6 +4521,7 @@
           : ((party.franchise && party.franchise !== party.name)
               ? party.franchise : (party.organiser || ''));
         content.innerHTML = '<div class="party-card-tags">'+tagHTML+'</div>'
+          + (party.featured ? '<div class="card-promoted">Promoted</div>' : '')
           + (sub ? '<div class="card-franchise">'+sub+'</div>' : '')
           + '<div class="party-card-name">'+party.name+'</div>'
           + '<div class="party-card-meta">'+(party.area || 'Lagos')+'</div>'
