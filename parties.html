@@ -1462,6 +1462,11 @@
     .pr-card-cta { margin-top:auto;padding-top:6px;font-size:10px;font-weight:800;
       letter-spacing:.1em;text-transform:uppercase;color:#E8C547 }
 
+    .nav-mini{display:block;margin:22px 0 4px;padding:12px 2px 0;border-top:1px solid rgba(255,255,255,.08);text-decoration:none}
+    .nav-mini-k{display:block;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--silver);margin-bottom:4px}
+    .nav-mini-t{display:block;font-size:14px;line-height:1.45;color:var(--off)}
+    .nav-mini-go{display:inline-block;margin-top:6px;font-size:13px;color:var(--white);border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:1px}
+    .nav-mini:hover .nav-mini-go{border-color:var(--white)}
     .pr-strip { display:flex;align-items:center;gap:14px;margin:22px 0 4px;padding:14px 16px;
       text-decoration:none;background:#0d0d0d;border:1px solid rgba(255,255,255,.06);
       border-left:3px solid #E8C547;border-radius:8px }
@@ -3228,12 +3233,10 @@
     /* Lagos Navigator as the house placement for the modal slot. Same
        strip as a sponsor's, so a paid one can take its place unchanged. */
     function navStripHTML(){
-      return '<a class="pr-strip" href="/lagos-navigator.html">'
-        + '<div class="pr-strip-art"><img src="/assets/lagos-navigator-hero.jpg" alt="" loading="lazy" onerror="this.style.display=\'none\'"/></div>'
-        + '<div class="pr-strip-main"><div class="pr-k"><span class="pr-tag">AfroCue</span></div>'
-        + '<div class="pr-strip-t">Lagos Navigator</div>'
-        + '<div class="pr-x">Curate your December nights, ride included.</div></div>'
-        + '<span class="pr-strip-go">Plan my December &rarr;</span></a>';
+      return '<a class="nav-mini" href="/lagos-navigator.html">'
+        + '<span class="nav-mini-k">AfroCue Lagos Navigator</span>'
+        + '<span class="nav-mini-t">Going out this December? Let us curate your nights, ride included.</span>'
+        + '<span class="nav-mini-go">Plan my December &rarr;</span></a>';
     }
 
     function promoStripHTML(p){
@@ -4640,8 +4643,9 @@
       /* A bought placement wins. With none, the modal carries Lagos
          Navigator, so the slot is never empty. */
       var mp = promoFor('parties_modal', p.party_id);
-      h += mp ? promoStripHTML(mp) : navStripHTML();
+      if(mp) h += promoStripHTML(mp);
       h += edPostsHTML(p);
+      if(!mp) h += navStripHTML();
       h += siblingNightsHTML(p);
       h += pastNightsHTML(p);
 
