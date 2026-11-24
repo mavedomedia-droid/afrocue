@@ -27,13 +27,15 @@
        takes a chunk off the 710 ms of render blocking. -->
   <!-- Images come through wsrv.nl (resized, WebP); data comes from Apps Script.
        Opening these connections early saves a round trip each. -->
-  <link rel="preconnect" href="https://wsrv.nl" crossorigin>
-  <link rel="preconnect" href="https://i.ibb.co" crossorigin>
   <link rel="preconnect" href="https://script.google.com">
-  <link rel="preconnect" href="https://script.googleusercontent.com">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://wsrv.nl" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="dns-prefetch" href="https://script.googleusercontent.com">
+  <link rel="dns-prefetch" href="https://i.ibb.co">
+  <!-- Figtree no longer blocks the first paint: the page draws in the
+       fallback face and swaps when the font arrives. -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap"></noscript>
   <style>
     /* woff2 first, otf behind it for anything that cannot read woff2.
        Same three faces, 378 KB down to 162 KB.
@@ -2248,6 +2250,11 @@
        Rounded, faint fill, hairline border, no lines between cells. */
     .m-next,.m-next.m-next-3{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);
       border-radius:12px;padding:16px 18px 6px;gap:0 18px}
+
+    /* Reserve the Featured band's height until the data says whether
+       it exists, so the page below does not jump when it arrives. */
+    .upcoming.pending:not(.visible){display:block;min-height:150px;visibility:hidden}
+    @media (min-width:641px){ .upcoming.pending:not(.visible){min-height:282px} }
 </style>
 </head>
 <body>
@@ -2397,7 +2404,7 @@
           <div class="featured-name" id="featuredName">—</div>
           <div class="featured-by" id="featuredBy"></div>
           <div class="featured-meta" id="featuredMeta"></div>
-          <button class="featured-cta" id="featuredCta" type="button">See the night
+          <button class="featured-cta" id="featuredCta" type="button">See the party
             <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
         </div>
@@ -2406,7 +2413,7 @@
   </div>
 
   <!-- UPCOMING FEATURED PARTY -->
-  <div class="upcoming" id="upcomingSection">
+  <div class="upcoming pending" id="upcomingSection">
     <div class="upcoming-bg" id="upcomingBg"></div>
     <div class="upcoming-texture"></div>
     <div class="upcoming-grad"></div>
@@ -2421,7 +2428,7 @@
         <div class="upcoming-tags" id="upcomingTags"></div>
       </div>
       <div class="upcoming-cta">
-        <a class="upcoming-btn" id="upcomingBtn" href="#" onclick="openUpcomingModal();return false;">See the night</a>
+        <a class="upcoming-btn" id="upcomingBtn" href="#" onclick="openUpcomingModal();return false;">See the party</a>
       </div>
     </div>
     <div class="upcoming-dots" id="upcomingDots" role="tablist" aria-label="Featured"></div>
@@ -2576,6 +2583,15 @@
 
   <!-- Shared config -->
   <script src="js/afrocue.js"></script>
+  <!-- The big call starts here, the moment the URL is known, not after
+       the whole page has parsed. loadParties picks it up. -->
+  <script>
+    (function(){
+      var u = window.AFROCUE_SCRIPT_URL || (window.AFROCUE_CONFIG && window.AFROCUE_CONFIG.scriptUrl);
+      if(!u || !window.fetch) return;
+      try { window.__ACE = { url: u, ed: fetch(u + '?export=editions') }; } catch(e){}
+    })();
+  </script>
 
   <!-- Main page script -->
   <script>
@@ -2710,6 +2726,7 @@
     }
 
     function showEmptyState(msg){
+      var pu = document.getElementById('upcomingSection'); if(pu) pu.classList.remove('pending');
       var grid = document.getElementById('partiesGrid');
       grid.innerHTML = '';
       var noResults = document.getElementById('noResults');
@@ -3495,7 +3512,8 @@
         } catch(e){ painted = false; }
       }
 
-      fetch(url + '?export=editions')
+      var edReq = (window.__ACE && window.__ACE.url === url && window.__ACE.ed) ? window.__ACE.ed : fetch(url + '?export=editions');
+      edReq
         .then(function(r){
           if(!r.ok) throw new Error('HTTP ' + r.status);
           return r.text();
@@ -5105,7 +5123,7 @@
           e.entry_free ? 'Free entry' : (e.entry || '')
         ].filter(Boolean).join('<span class="featured-sep">/</span>');
         cta.style.display = '';
-        cta.firstChild.nodeValue = 'See the night ';
+        cta.firstChild.nodeValue = 'See the party ';
       }
 
       [].forEach.call(document.querySelectorAll('.featured-pip'), function(x, i){
@@ -5325,6 +5343,7 @@
 
     function renderUpcoming(party){
       var sec = document.getElementById('upcomingSection');
+      sec.classList.remove('pending');
       var feats = (typeof EDITIONS !== 'undefined' ? EDITIONS : []).filter(function(e){
         var n = v2Days(e.date);
         return e.featured && n !== null && n >= 0 && e.state === 'announced';
@@ -5385,7 +5404,7 @@
             btn.textContent = 'Get tickets';
             btn.href = f.ticket_url || f.website; btn.target = '_blank'; btn.rel = 'noopener'; btn.onclick = null;
           } else {
-            btn.textContent = 'See the night';
+            btn.textContent = 'See the party';
             btn.href = '#'; btn.removeAttribute('target');
             btn.onclick = function(){ openModal(feat.id); return false; };
           }
@@ -5999,6 +6018,7 @@
 
     // ─── START ──────────────────────────────────────────────────────────
     loadParties();
+    setTimeout(function(){ var pu = document.getElementById('upcomingSection'); if(pu) pu.classList.remove('pending'); }, 8000);
   </script>
 </body>
 </html>
