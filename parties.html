@@ -3225,6 +3225,17 @@
         + '</div></a>';
     }
 
+    /* Lagos Navigator as the house placement for the modal slot. Same
+       strip as a sponsor's, so a paid one can take its place unchanged. */
+    function navStripHTML(){
+      return '<a class="pr-strip" href="/lagos-navigator.html">'
+        + '<div class="pr-strip-art"><img src="/assets/lagos-navigator-hero.jpg" alt="" loading="lazy" onerror="this.style.display=\'none\'"/></div>'
+        + '<div class="pr-strip-main"><div class="pr-k"><span class="pr-tag">AfroCue</span></div>'
+        + '<div class="pr-strip-t">Lagos Navigator</div>'
+        + '<div class="pr-x">Curate your December nights, ride included.</div></div>'
+        + '<span class="pr-strip-go">Plan my December &rarr;</span></a>';
+    }
+
     function promoStripHTML(p){
       if(!p) return '';
       promoSeen(p.id);
@@ -4626,7 +4637,10 @@
       h += interestedHTML(p);
       /* Placement Target carries a Party ID, so a promoter can buy
          their own nights and nobody else's. */
-      h += promoStripHTML(promoFor('parties_modal', p.party_id));
+      /* A bought placement wins. With none, the modal carries Lagos
+         Navigator, so the slot is never empty. */
+      var mp = promoFor('parties_modal', p.party_id);
+      h += mp ? promoStripHTML(mp) : navStripHTML();
       h += edPostsHTML(p);
       h += siblingNightsHTML(p);
       h += pastNightsHTML(p);
