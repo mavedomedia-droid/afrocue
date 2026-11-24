@@ -2020,6 +2020,11 @@
       .hstat-dot{width:6px;height:6px}
       .hstat:nth-child(3){padding-left:0;border-left:0}
     }
+
+    /* ══ FOUR ACROSS ══ four cards a row on a laptop or wider, three on
+       a tablet, two on a phone. Last in the file, so it wins. */
+    @media (min-width:1101px){ .parties-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px} }
+    @media (min-width:769px) and (max-width:1100px){ .parties-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px} }
 </style>
 </head>
 <body>
