@@ -229,6 +229,51 @@
     body.shot .gal{padding:12px;margin-top:8px}
   }
 
+  /* ── one screen on a phone ──────────────────────────────────
+     Every step fits the screen and the page itself never scrolls.
+     The one exception is the form step, which scrolls inside its own
+     card so the keyboard can never hide the button. Steps 2 onward
+     drop the hero to give the question the room. */
+  @media (max-width:700px){
+    body.lock{overflow:hidden;overscroll-behavior:none}
+    body.lock .wrap{height:100vh;height:100dvh;display:flex;flex-direction:column;
+      padding:calc(var(--ac-nav-h,57px) + 10px) var(--pad) 12px}
+    body.lock #ac-footer,body.lock .partners{display:none}
+    body.lock .hero{padding:0;flex:0 0 auto}
+    body.lock .at-line{margin:0 0 8px}
+    body.lock h1{font-size:clamp(30px,9vw,38px);margin:0 0 8px}
+    body.lock .sub{font-size:14px;line-height:1.45}
+    body.lock .tags{margin:10px 0 0}
+    body.lock.later .hero{display:none}
+    body.lock .card{flex:1;min-height:0;display:flex;flex-direction:column;margin-top:14px;padding:16px 16px 14px}
+    body.lock.later .card{margin-top:0}
+    body.lock .prog{margin-bottom:14px;flex:0 0 auto}
+    body.lock .step.active{flex:1;min-height:0;display:flex;flex-direction:column}
+    body.lock .q{font-size:clamp(21px,5.6vw,26px);margin-bottom:8px}
+    body.lock .hint{margin-bottom:12px;font-size:13.5px}
+    body.lock .opts{flex:1;min-height:0;overflow-y:auto;gap:8px}
+    body.lock .opt{padding:12px 14px}
+    /* the form step is the one place that scrolls */
+    body.lock #q4.active{overflow-y:auto;-webkit-overflow-scrolling:touch}
+    body.lock .ig{margin-bottom:10px}
+    body.lock .ig input{padding:13px 14px}
+    /* the result */
+    body.lock #q5.active{overflow:hidden}
+    body.lock .done-h{font-size:clamp(24px,6.5vw,30px);margin-bottom:6px}
+    body.lock .done-s{display:none}
+    body.lock .cardwrap.show{flex:1;min-height:0;display:flex;flex-direction:column;margin-bottom:10px}
+    body.lock .cardwrap img{flex:1;min-height:0;width:auto;max-width:100%;margin:0 auto;object-fit:contain}
+    body.lock .cardnote{margin-top:6px}
+    body.lock .in-strip{display:none}
+    body.lock .cta{flex:0 0 auto}
+  }
+  @media (max-width:700px) and (max-height:700px){
+    body.lock .tags{display:none}
+    body.lock .sub{font-size:13px}
+    body.lock .opt{padding:10px 12px}
+    body.lock .opt-s{display:none}
+  }
+
   /* ── details ────────────────────────────────────────────── */
   .ig{margin-bottom:13px}
   .ig label{display:block;font-size:12px;font-weight:700;letter-spacing:.09em;
@@ -272,7 +317,7 @@
   canvas#cardCanvas{display:none}
 </style>
 </head>
-<body>
+<body class="lock">
 
 <!-- SHARED NAV (rendered by js/afrocue-ui.js) -->
 <div id="ac-nav"></div>
@@ -557,6 +602,7 @@ function go(n){
   current = n;
   paint();
   document.body.classList.toggle('shot', n === 3);
+  document.body.classList.toggle('later', n >= 2);
   if (n !== 3) stopCamera();      /* camera is opt-in; see openCamera */
   window.scrollTo({ top: 0, behavior: 'auto' });
 }
