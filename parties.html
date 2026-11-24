@@ -25,6 +25,11 @@
   <!-- The handshake to Google's two hosts used to start only once the
        parser reached the stylesheet. Warming them costs nothing and
        takes a chunk off the 710 ms of render blocking. -->
+  <!-- Images come through wsrv.nl (resized, WebP); data comes from Apps Script.
+       Opening these connections early saves a round trip each. -->
+  <link rel="preconnect" href="https://wsrv.nl" crossorigin>
+  <link rel="preconnect" href="https://script.google.com">
+  <link rel="preconnect" href="https://script.googleusercontent.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -2593,8 +2598,8 @@
     function loadPromos(){
       var url = getGasUrl();
       if(!url) return;
-      fetch(url + '?export=promo')
-        .then(function(r){ return r.ok ? r.json() : []; })
+      (EARLY.promo || fetch(url + '?export=promo')
+        .then(function(r){ return r.ok ? r.json() : []; }))
         .then(function(rows){
           PROMO = Array.isArray(rows) ? rows : [];
           paintStaticPromos();
@@ -2653,8 +2658,8 @@
     function loadPosts(){
       var url = getGasUrl();
       if(!url) return;
-      fetch(url + '?export=posts&top=6')
-        .then(function(r){ return r.ok ? r.text() : ''; })
+      (EARLY.posts || fetch(url + '?export=posts&top=6')
+        .then(function(r){ return r.ok ? r.text() : ''; }))
         .then(function(txt){
           if(!txt) return;
           var d; try { d = JSON.parse(txt); } catch(e){ return; }
@@ -2663,6 +2668,7 @@
             return;
           }
           POSTS = d.posts;
+          POSTS.forEach(function(p){ p.img = fastImg(p.img, FAST.THUMB); });
           POSTS_ED = {}; POSTS_HANDLE = {};
           POSTS.forEach(function(p){
             if(p.edition_id) (POSTS_ED[p.edition_id] = POSTS_ED[p.edition_id] || []).push(p);
@@ -2975,6 +2981,67 @@
       if(promoFor('parties_featured') && EDITIONS.length) buildEHero();
     }
 
+    /* ═══ SPEED ═════════════════════════════════════════════════
+       Every flyer and post on imgbb is the full Instagram original,
+       about 1080 by 1350 and up to a megabyte, even where a card shows
+       it at 300px. fastImg sends each one through wsrv.nl, an open
+       source image CDN on Cloudflare, which resizes it to the width
+       asked for and converts it to WebP: a 1MB flyer arrives as about
+       60KB. If wsrv ever fails, the error handler below swaps the
+       original back in, so the worst case is the old speed.
+       ═══════════════════════════════════════════════════════════ */
+    var FAST = { ON: true, FLYER: 1000, THUMB: 480, Q: 74 };
+    function fastImg(u, w){
+      u = String(u || '').trim();
+      if(!FAST.ON || !/^https?:\/\//i.test(u) || u.indexOf('wsrv.nl') !== -1) return u;
+      return 'https://wsrv.nl/?url=' + encodeURIComponent(u) +
+             '&w=' + (w || FAST.FLYER) + '&q=' + FAST.Q + '&output=webp&we';
+    }
+    /* The fallback, for every <img> on the page at once. */
+    window.addEventListener('error', function(ev){
+      var t = ev.target;
+      if(!t || t.tagName !== 'IMG') return;
+      var src = t.getAttribute('src') || '';
+      if(src.indexOf('wsrv.nl/?url=') === -1 || t.dataset.fastFailed) return;
+      var m = src.match(/[?&]url=([^&]+)/);
+      if(!m) return;
+      t.dataset.fastFailed = '1';
+      t.src = decodeURIComponent(m[1]);
+    }, true);
+    function fastenPayload_(d){
+      (d.parties || []).forEach(function(p){
+        p.hero_img = fastImg(p.hero_img, FAST.FLYER);
+        p.flyer_img = fastImg(p.flyer_img, FAST.FLYER);
+        p.upcoming_flyer = fastImg(p.upcoming_flyer, FAST.FLYER);
+        (p.posts || []).forEach(function(o){ o.img = fastImg(o.img, FAST.THUMB); });
+      });
+      (d.editions || []).forEach(function(e){
+        e.flyer = fastImg(e.flyer, FAST.FLYER);
+        if(Array.isArray(e.media)) e.media = e.media.map(function(m){ return fastImg(m, FAST.THUMB); });
+      });
+      return d;
+    }
+
+    /* A visitor who has been here in the last 12 hours sees the page at
+       once from what their browser kept, while the fresh copy loads
+       behind it. Browser storage can be missing or refuse; every touch
+       is guarded and the page works the same without it. */
+    var SNAP = { KEY: 'ac_parties_snap_v1', MAX_MS: 12 * 3600 * 1000 };
+    function snapRead_(){
+      try {
+        var o = JSON.parse(localStorage.getItem(SNAP.KEY) || 'null');
+        if(o && o.t && (Date.now() - o.t) < SNAP.MAX_MS && o.txt) return o.txt;
+      } catch(e){}
+      return '';
+    }
+    function snapWrite_(txt){
+      try { localStorage.setItem(SNAP.KEY, JSON.stringify({ t: Date.now(), txt: txt })); } catch(e){}
+    }
+
+    /* The three calls start together. They used to run one after the
+       other, so the posts waited for the nights to finish loading. */
+    var EARLY = { posts: null, promo: null };
+
     function loadParties(){
       renderSkeletons();
 
@@ -2982,6 +3049,19 @@
       if(!url){
         showEmptyState('Not configured: AFROCUE_SCRIPT_URL is missing. Did afrocue.js load?');
         return;
+      }
+
+      EARLY.posts = fetch(url + '?export=posts&top=6')
+        .then(function(r){ return r.ok ? r.text() : ''; }).catch(function(){ return ''; });
+      EARLY.promo = fetch(url + '?export=promo')
+        .then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; });
+
+      var snap = snapRead_(), painted = false;
+      if(snap){
+        try {
+          var sd = JSON.parse(snap);
+          if(sd && sd.editions && !sd.error){ paintPayload_(sd, true); painted = true; }
+        } catch(e){ painted = false; }
       }
 
       fetch(url + '?export=editions')
@@ -3016,40 +3096,62 @@
               + 'That deployment does not have serveEditions, so it is running older code than the editor.');
           }
 
-          FRANCHISES = (d.parties || []).map(apiToFranchise);
-          var byId = {};
-          FRANCHISES.forEach(function(f){ byId[f.id] = f; });
-
-          EDITIONS = (d.editions || []).map(function(e){ return apiToEdition(e, byId); });
-
-          FRANCHISES.forEach(function(f){
-            f.editions_seen = EDITIONS.filter(function(e){ return e.party_id === f.id; }).length;
-          });
-
-          console.log('AfroCue: build ' + (d.build || '?') + ', '
-            + FRANCHISES.length + ' parties, ' + EDITIONS.length + ' editions');
-
-          if(!EDITIONS.length && !FRANCHISES.length){
-            showEmptyState('The sheet answered with no parties and no nights.');
-            return;
-          }
-
-          setView('editions', true);
-          /* The band is back. With the three rails gone this is the
-             only place a single night gets room to be looked at, and
-             it is the slot that sells. Passing nothing lets it pick
-             the first party carrying an upcoming flyer or date. */
-          renderUpcoming(null);
-          initFeatured();
-          loadPromos();
-          loadPosts();
-          buildEHero();
-          renderSideSections();
+          snapWrite_(txt);
+          if(txt === snap && painted) return;          // nothing new since the saved copy
+          paintPayload_(d, !painted);
+          painted = true;
         })
         .catch(function(err){
           console.error('AfroCue parties:', err);
-          showEmptyState('Could not load the parties: ' + (err && err.message ? err.message : err));
+          /* A visitor already looking at the saved copy keeps it. */
+          if(!painted) showEmptyState('Could not load the parties: ' + (err && err.message ? err.message : err));
         });
+    }
+
+    /* Puts a payload on the page. full = the first paint: everything is
+       built. Otherwise the saved copy is already showing and the fresh
+       data only refreshes the grid and the side sections, so a visitor
+       who has started scrolling or opened a night is not thrown back to
+       the top of a rebuilt page. */
+    function paintPayload_(d, full){
+      fastenPayload_(d);
+      FRANCHISES = (d.parties || []).map(apiToFranchise);
+      var byId = {};
+      FRANCHISES.forEach(function(f){ byId[f.id] = f; });
+
+      EDITIONS = (d.editions || []).map(function(e){ return apiToEdition(e, byId); });
+
+      FRANCHISES.forEach(function(f){
+        f.editions_seen = EDITIONS.filter(function(e){ return e.party_id === f.id; }).length;
+      });
+
+      console.log('AfroCue: build ' + (d.build || '?') + ', '
+        + FRANCHISES.length + ' parties, ' + EDITIONS.length + ' editions'
+        + (full ? '' : ' (refreshed)'));
+
+      if(!EDITIONS.length && !FRANCHISES.length){
+        if(full) showEmptyState('The sheet answered with no parties and no nights.');
+        return;
+      }
+
+      if(!full){
+        try { if(typeof renderCards === 'function' && typeof getFilters === 'function')
+                renderCards(getFilters()); } catch(e){}
+        try { renderSideSections(); } catch(e){}
+        return;
+      }
+
+      setView('editions', true);
+      /* The band is back. With the three rails gone this is the
+         only place a single night gets room to be looked at, and
+         it is the slot that sells. Passing nothing lets it pick
+         the first party carrying an upcoming flyer or date. */
+      renderUpcoming(null);
+      initFeatured();
+      loadPromos();
+      loadPosts();
+      buildEHero();
+      renderSideSections();
     }
 
     /* The API's party shape to the one the cards already expect. */
