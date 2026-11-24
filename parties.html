@@ -3343,7 +3343,7 @@
         + '<span class="nav-mini-art"><img src="/assets/lagos-navigator-hero.jpg" alt="" loading="lazy" onerror="this.style.display=\'none\'"/></span>'
         + '<span class="nav-mini-body">'
         + '<span class="nav-mini-k">AfroCue Lagos Navigator</span>'
-        + '<span class="nav-mini-t">Going out this December? Let us curate your nights, ride included.</span>'
+        + '<span class="nav-mini-t">Going out this December? Let us curate your December, ride included.</span>'
         + '<span class="nav-mini-go">Plan my December &rarr;</span></span></a>';
     }
 
@@ -4043,7 +4043,7 @@
          reading it once per missing fact instead of a sentence per
          missing fact is most of what "simpler" means here. */
       venue:     {t:'On their page',          k:'pending'},
-      venueHeld: {t:'Given out on the night', k:'held'},
+      venueHeld: {t:'Given out on the day', k:'held'},
       entry:     {t:'On their page',          k:'pending'},
       city:      {t:'On their page',          k:'pending'},
       lineup:    {t:'On their page',          k:'pending'},
@@ -4657,7 +4657,7 @@
       if(!list.length) return '';
 
       return '<div class="sibs">'
-        + '<div class="lineup-k"><span class="k">Their other nights</span>'
+        + '<div class="lineup-k"><span class="k">Their other parties</span>'
         + (list.length > 1 ? '<span class="src">' + list.length + ' ahead</span>' : '')
         + '</div>'
         + '<div class="sib-row">'
@@ -4767,8 +4767,8 @@
            they could not already see. The party's activity lives here now,
            so the block is worth looking at without opening it. */
         var bits = [];
-        if(f.editions_seen) bits.push('<b>'+f.editions_seen+'</b> night'
-          + (f.editions_seen === 1 ? '' : 's') + ' tracked');
+        if(f.editions_seen) bits.push('<b>'+f.editions_seen+'</b> part'
+          + (f.editions_seen === 1 ? 'y' : 'ies') + ' tracked');
         if(f.views)      bits.push('<b>'+f.views+'</b> view' + (f.views === 1 ? '' : 's'));
         if(f.interested) bits.push('<b>'+f.interested+'</b> interested');
         var read = p.last_read ? v2Since(p.last_read) : '';
@@ -4943,7 +4943,7 @@
       }).join('');
       h += '<button class="m-past-more" type="button" '
         + 'onclick="openFranchise(\'' + escTxt(p.party_id) + '\')">'
-        + (past.length > 3 ? 'All ' + past.length + ' of their nights' : 'See the party')
+        + (past.length > 3 ? 'All ' + past.length + ' of their parties' : 'See the party')
         + ' →</button></div>';
       return h;
     }
@@ -4983,7 +4983,7 @@
        adds no second source of truth. */
     var EH = { at: 0, list: [], timer: null, MS: 6000, MAX: 5 };
 
-    function ehName(e){ return e.ed_name || e.title || e.party_id || 'Untitled night'; }
+    function ehName(e){ return e.ed_name || e.title || e.party_id || 'Untitled party'; }
     function ehImg(e){
       if(e._promo) return e._promo.image || '';
       var f = (typeof byIdLookup === 'function' ? byIdLookup(e.party_id) : null) || {};
@@ -4991,7 +4991,7 @@
     }
     function ehPlace(e){
       if(e.venue) return e.venue;
-      if(e.venue_held) return 'Address on the night';
+      if(e.venue_held) return 'Address on the day';
       return e.area || '';
     }
 
@@ -5765,7 +5765,7 @@
       var name = heartName(p);
       var thisLine = ed
         ? name + ', on the day, and if the date, venue or lineup changes'
-        : name + ', the moment they announce their next night';
+        : name + ', the moment they announce their next party';
       host.innerHTML = '<div class="int-ask">'
         + '<div class="int-ask-t">Interested? Get updates from us about ' + name + ' and other parties.</div>'
         + '<div class="int-f"><input type="text" id="intWho" placeholder="Email or phone" autocomplete="email"/>'
@@ -5972,7 +5972,7 @@
       var lines = [];
       if(a) lines.push(ed
         ? 'We will message you on the day, and sooner if anything changes.'
-        : 'We will tell you as soon as they announce their next night.');
+        : 'We will tell you as soon as they announce their next party.');
       if(b) lines.push('One round-up a week, nothing else.');
       /* They have just said yes to a night. A sponsor of the alert
           reaches them here and again in the confirmation email, which
@@ -6012,7 +6012,16 @@
     (function(){
       var hash = window.location.hash.replace('#',''); if(!hash) return;
       var check = setInterval(function(){
-        if(PARTIES.length > 0){ clearInterval(check); var match = PARTIES.find(function(p){ return p.id === hash; }); if(match) openModal(match.id); }
+        if(PARTIES.length > 0){
+          clearInterval(check);
+          /* An edition id (E0010) opens that night. A party's handle
+             (thechibyverse) opens that party's soonest one, so emails
+             can link to "their page" from the handle alone. */
+          var h = hash.toLowerCase().replace(/^@/, '');
+          var match = PARTIES.find(function(p){ return p.id === hash; }) ||
+                      PARTIES.find(function(p){ return String(p.handle || '').toLowerCase().replace(/^@/, '') === h; });
+          if(match) openModal(match.id);
+        }
       }, 100);
     })();
 
