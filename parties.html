@@ -2195,7 +2195,7 @@
       .nav-eye{font-size:10px;margin-bottom:10px}
       .nav-h{font-size:clamp(22px,6.6vw,28px);margin-bottom:8px}
       .nav-sub{font-size:14px;margin-bottom:12px}
-      .nav-note{display:none}
+      .nav-note{display:block;font-size:12px}
     }
 
     /* The night modal: the flyer is always the same shape, a touch
@@ -2224,6 +2224,30 @@
     .nav-mini-art{display:none}
     .nav-mini-k{color:rgba(200,224,0,.75)}
     .nav-mini:hover{border-color:rgba(200,224,0,.3);background:linear-gradient(90deg,rgba(8,20,8,.96) 0%,rgba(8,20,8,.8) 60%,rgba(8,20,8,.5) 100%)}
+
+    /* Bottom List your party: opens the same modal as the hero, and
+       sits as a quiet outline instead of a yellow block. */
+    .list-cta-btn{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.28);border-radius:999px;
+      padding:12px 26px;font-family:inherit;cursor:pointer;transition:border-color .2s,background .2s}
+    .list-cta-btn:hover{opacity:1;border-color:var(--white);background:rgba(255,255,255,.05)}
+
+    /* Featured band, web: a thin outline button on the right. Phones
+       keep the underlined link. */
+    @media (min-width:641px){
+      .upcoming-btn,.upcoming-btn:hover{border:1px solid rgba(255,255,255,.3);border-radius:999px;
+        padding:12px 24px;font-size:11px;color:var(--white);background:transparent}
+      .upcoming-btn:hover{border-color:var(--white);background:rgba(255,255,255,.06)}
+      .upcoming-btn::after{content:''}
+    }
+
+    /* Room under the Navigator section before the next date label. */
+    .nav-sec{margin-bottom:40px}
+    @media (max-width:640px){ .nav-sec{margin-bottom:32px} }
+
+    /* Doors, Venue, Tickets, City: back in a container, but a soft one.
+       Rounded, faint fill, hairline border, no lines between cells. */
+    .m-next,.m-next.m-next-3{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);
+      border-radius:12px;padding:16px 18px 6px;gap:0 18px}
 </style>
 </head>
 <body>
@@ -2489,7 +2513,7 @@
         <div class="list-cta-label">Is your party on here?</div>
         <div class="list-cta-text">Get your event in front of Lagos's nightlife audience.</div>
       </div>
-      <a href="list-party.html" class="list-cta-btn">List Your Party &rarr;</a>
+      <button type="button" class="list-cta-btn" data-lp onclick="openListParty()"><span data-lp-label>List your party</span></button>
     </div>
   </div>
 
@@ -5106,7 +5130,7 @@
         + '<div class="nav-h">Maximize your Lagos nightlife in December</div>'
         + '<p class="nav-sub">Curate an unforgettable Lagos night, for the amount you would have spent anyway.</p>'
         + '<div class="nav-foot"><a class="nav-go" href="/lagos-navigator.html">Plan my December <span aria-hidden="true">&rarr;</span></a>'
-        + '<span class="nav-note">The parties. The DJs. The ride. A soft landing.</span></div>'
+        + '<span class="nav-note">Exclusive access. Chauffeured movements. Curated experience.</span></div>'
         + '</div>';
     }
     function navSectionEl(){
