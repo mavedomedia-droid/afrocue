@@ -330,6 +330,10 @@
   .fine-note{font-size:12.5px;color:var(--fine);text-align:center;margin:12px 0 0;line-height:1.45}
   canvas#cardCanvas{display:none}
 
+  .testmode{position:fixed;left:50%;transform:translateX(-50%);top:calc(var(--ac-nav-h,57px) + 4px);z-index:60;
+    background:#dedc00;color:#121200;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+    padding:5px 11px;border-radius:100px;display:none;white-space:nowrap}
+  body.testing .testmode{display:block}
   .imgbox{position:relative}
   .btnrow{display:flex;gap:10px;margin-top:12px}
   .btnrow .cta{margin-top:0;flex:1 1 0;width:auto;min-width:0;padding:15px 10px}
@@ -350,6 +354,7 @@
 
 <!-- SHARED NAV (rendered by js/afrocue-ui.js) -->
 <div id="ac-nav"></div>
+<div class="testmode">Test mode: open any day</div>
 
 <div class="wrap">
 
@@ -633,6 +638,7 @@ function paintConfig(){
   }
   set('partnerLine','textContent', (EVENT.partners || []).join('  ·  '));
   set('fineNote','textContent', 'We email you now, and again when the draw is done at ' + EVENT.draw_time + '. We keep your details and photo to run it.');
+  document.body.classList.toggle('testing', !!EVENT.test_mode);
   if (EVENT.open === false) showClosed(EVENT.closed_note);
 }
 
@@ -932,14 +938,18 @@ function draw(g, cv, photo, tex, flyer, chiby, acue, simgs){
   v.addColorStop(0,'rgba(0,0,0,0)'); v.addColorStop(1,'rgba(0,0,0,0.5)');
   g.fillStyle = v; g.fillRect(0, CH*0.5, CW, CH*0.5);
 
-  if (chiby) {
+  /* Only a wide mark goes top right. A portrait image there is a flyer,
+     and the flyer lives in the panel, nowhere else. */
+  if (chiby && chiby.width / chiby.height >= 1.6) {
     var pw = 250, ph = pw*(chiby.height/chiby.width);
     g.save(); g.shadowColor='rgba(0,0,0,0.7)'; g.shadowBlur=24; g.shadowOffsetY=4;
     g.drawImage(chiby, CW-M-pw, 230, pw, ph);
     g.restore();
   }
 
-  var BW = CW - M*2, BH = 410, BY = CH - BH - 280, px = M + 42, tr = M + BW - 42, tw = tr - px;
+  var BW = CW - M*2, BH = 410, BY = CH - BH - 280, px = M + 42, tr = M + BW - 42;
+  var ffh = BH - 64, ffw = ffh * 0.8, fx = tr - ffw, fy = BY + 32;
+  var tw = (flyer ? fx - 36 : tr) - px;
 
   g.save(); rr(g,M,BY,BW,BH,26);
   g.shadowColor='rgba(0,0,0,0.38)'; g.shadowBlur=34; g.shadowOffsetY=10;
@@ -966,6 +976,12 @@ function draw(g, cv, photo, tex, flyer, chiby, acue, simgs){
   g.fillStyle = 'rgba(240,237,232,0.6)';
   g.font = '300 26px Figtree, Helvetica, Arial, sans-serif';
   g.fillText(EVENT.edition_venue + '  ·  ' + (EVENT.date_label || EVENT.edition_date), px, BY+258);
+
+  /* The flyer, right side of the panel. */
+  if (flyer) {
+    g.save(); rr(g,fx,fy,ffw,ffh,12); g.clip(); cover(g,flyer,fx,fy,ffw,ffh); g.restore();
+    g.save(); rr(g,fx,fy,ffw,ffh,12); g.strokeStyle='rgba(255,255,255,0.22)'; g.lineWidth=2; g.stroke(); g.restore();
+  }
 
   /* AfroCue bottom left, and the way back beside it. */
   var by = BY + BH - 38;
