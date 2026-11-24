@@ -206,6 +206,10 @@
     .card-flag.fresh{background:var(--pink);color:var(--black)}
     .card-flag.off{background:#7a1f30;color:var(--white)}
     .card-flag.quiet{background:rgba(10,10,10,0.8);color:var(--silver);border:1px solid rgba(255,255,255,0.18)}
+    /* the countdown and a flag both sit top-left; when a card has both,
+       the flag drops under the countdown instead of printing over it */
+    .party-card .card-cd + .card-flag{top:76px}
+    @media (max-width:768px){ .party-card .card-cd + .card-flag{top:48px} }
     .card-reel{position:absolute;bottom:14px;right:14px;z-index:7;display:flex;align-items:center;gap:4px;background:rgba(10,10,10,0.78);padding:4px 8px;border-radius:2px;font-size:8px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--white)}
     .card-reel svg{width:8px;height:8px;fill:var(--pink)}
     .party-card-when{font-size:11px;font-weight:500;color:var(--yellow);margin-top:3px;letter-spacing:0.02em}
@@ -2025,6 +2029,49 @@
        a tablet, two on a phone. Last in the file, so it wins. */
     @media (min-width:1101px){ .parties-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px} }
     @media (min-width:769px) and (max-width:1100px){ .parties-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px} }
+
+    /* ══ LIST YOUR PARTY ══ the hero button and the modal. One handle in, a spinner, then a tick, and the
+       buttons stay ticked afterwards so nobody sends it twice. */
+    .lp-btn{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:14px 22px;border:2px solid var(--yellow);
+      background:transparent;color:var(--yellow);font-family:inherit;font-size:13px;font-weight:700;letter-spacing:.06em;
+      text-transform:uppercase;border-radius:999px;cursor:pointer;transition:background .2s,color .2s}
+    .lp-btn:hover{background:var(--yellow);color:#000}
+    .lp-btn.done{border-color:rgba(255,255,255,.28);color:#fff;cursor:default}
+    .lp-btn.done:hover{background:transparent;color:#fff}
+    .lp-btn svg{flex-shrink:0}
+    .lp-ov{position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.78);display:none;align-items:center;justify-content:center;padding:20px}
+    .lp-ov.on{display:flex}
+    .lp-card{position:relative;width:100%;max-width:440px;box-sizing:border-box;padding:32px 28px 28px;background:#111110;
+      border:1px solid #2e2d29;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.8);animation:lpIn .3s ease}
+    @keyframes lpIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+    .lp-x{position:absolute;top:10px;right:12px;width:40px;height:40px;border:0;background:transparent;color:#8f8d86;font-size:28px;line-height:1;cursor:pointer}
+    .lp-k{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--yellow)}
+    .lp-h{margin:10px 0 8px;font-size:26px;font-weight:800;line-height:1.15;color:#fff}
+    .lp-p{margin:0 0 20px;font-size:15px;line-height:1.5;color:#b5b3ab}
+    .lp-field{display:flex;align-items:center;height:56px;box-sizing:border-box;padding:0 16px;border:2px solid #64625b;border-radius:12px;background:#000;transition:border-color .2s}
+    .lp-field:focus-within{border-color:var(--yellow)}
+    .lp-field.bad{border-color:#ff5d6c}
+    .lp-at{color:#8f8d86;font-size:18px;font-weight:700;margin-right:4px}
+    .lp-in{flex:1;min-width:0;border:0;outline:0;background:transparent;color:#fff;font-family:inherit;font-size:18px}
+    .lp-err{min-height:20px;margin:8px 2px 0;font-size:13px;color:#ff8b95}
+    .lp-go{position:relative;display:flex;align-items:center;justify-content:center;gap:12px;width:100%;height:56px;margin-top:10px;border:0;
+      border-radius:12px;background:var(--yellow);color:#000;font-family:inherit;font-size:15px;font-weight:800;letter-spacing:.04em;cursor:pointer;transition:background .25s,color .25s}
+    .lp-go[disabled]{cursor:default}
+    .lp-spin{display:none;width:22px;height:22px;border:3px solid rgba(0,0,0,.25);border-top-color:#000;border-radius:50%;animation:lpSpin .7s linear infinite}
+    @keyframes lpSpin{to{transform:rotate(360deg)}}
+    .lp-card.loading .lp-spin{display:block}
+    .lp-card.loading .lp-go{opacity:.85}
+    .lp-ok{display:none;flex-direction:column;align-items:center;text-align:center;padding:10px 0 4px}
+    .lp-card.done .lp-form{display:none}
+    .lp-card.done .lp-ok{display:flex}
+    .lp-ring{width:84px;height:84px;margin-bottom:18px}
+    .lp-ring circle{fill:none;stroke:var(--yellow);stroke-width:4;stroke-dasharray:226;stroke-dashoffset:226;transform:rotate(-90deg);transform-origin:50% 50%}
+    .lp-ring path{fill:none;stroke:var(--yellow);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:44;stroke-dashoffset:44}
+    .lp-card.done .lp-ring circle{animation:lpDraw .6s ease forwards}
+    .lp-card.done .lp-ring path{animation:lpDraw .4s .5s ease forwards}
+    @keyframes lpDraw{to{stroke-dashoffset:0}}
+    .lp-ok .lp-h{margin-top:0}
+    @media (max-width:768px){ .lp-card{padding:28px 20px 22px} }
 </style>
 </head>
 <body>
@@ -2152,6 +2199,7 @@
       <div class="label">Party Directory</div>
       <h1>Parties.</h1>
       <div class="hero-desc">Parties, raves and experiences worth knowing about in Afrobeats, Amapiano, EDM and dance music generally in Lagos and Nigeria.</div>
+      <button class="lp-btn" type="button" data-lp onclick="openListParty()"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" data-lp-plus><path d="M12 5v14M5 12h14"/></svg><span data-lp-label>List your party</span></button>
     </div>
     <!-- The one hero. This card used to show a franchise and a city
          while a second, full-bleed hero above it showed the actual
@@ -2312,6 +2360,26 @@
     </div>
   </section>
 
+  <!-- LIST YOUR PARTY: the modal the hero button opens -->
+  <div class="lp-ov" id="lpOv" role="dialog" aria-modal="true" aria-labelledby="lpTitle" onclick="if(event.target===this)closeListParty()">
+    <div class="lp-card" id="lpCard">
+      <button class="lp-x" type="button" aria-label="Close" onclick="closeListParty()">&times;</button>
+      <div class="lp-form">
+        <div class="lp-k">List your party</div>
+        <h2 class="lp-h" id="lpTitle">What is your party&rsquo;s Instagram handle?</h2>
+        <p class="lp-p">We add it to the directory and the information fills in on its own.</p>
+        <div class="lp-field" id="lpField"><span class="lp-at">@</span><input class="lp-in" id="lpIn" type="text" inputmode="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="yourparty" maxlength="60" onkeydown="if(event.key==='Enter')submitListParty()"></div>
+        <div class="lp-err" id="lpErr" aria-live="polite"></div>
+        <button class="lp-go" id="lpGo" type="button" onclick="submitListParty()"><span class="lp-spin"></span><span id="lpGoT">Add my party</span></button>
+      </div>
+      <div class="lp-ok">
+        <svg class="lp-ring" viewBox="0 0 84 84"><circle cx="42" cy="42" r="36"/><path d="M26 43l11 11 21-23"/></svg>
+        <h2 class="lp-h">Received.</h2>
+        <p class="lp-p" id="lpOkP" style="margin:0 0 4px">We will check it and add it to the directory.</p>
+      </div>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <!-- SHARED FOOTER (rendered by js/afrocue-ui.js) -->
 <div id="ac-footer"></div>
@@ -2346,6 +2414,76 @@
     }
 
     function getGasUrl(){ return GAS_WEBAPP_URL; }
+
+    /* ══ LIST YOUR PARTY ══ one handle to ?action=listhandle. The server
+       adds the Brands row and emails us. Once it goes through, the
+       handle is remembered in this browser, every List your party button
+       turns into a tick, and the modal opens straight on the tick, so
+       nobody sends it twice. */
+    var LP_KEY = 'ac_listed_v1';
+    function lpListed(){ try { return JSON.parse(localStorage.getItem(LP_KEY) || '[]'); } catch(e){ return []; } }
+    function lpRemember(h){ try { var a = lpListed(); if(a.indexOf(h) < 0) a.push(h); localStorage.setItem(LP_KEY, JSON.stringify(a)); } catch(e){} }
+    function lpSyncButtons(){
+      var done = lpListed().length > 0;
+      document.querySelectorAll('[data-lp]').forEach(function(b){
+        b.classList.toggle('done', done);
+        var l = b.querySelector('[data-lp-label]'); if(l) l.textContent = done ? 'Party received' : 'List your party';
+        var pl = b.querySelector('[data-lp-plus]');
+        if(pl) pl.innerHTML = done ? '<path d="M5 12.5l5 5L19.5 7"/>' : '<path d="M12 5v14M5 12h14"/>';
+      });
+    }
+    function lpShowDone(h){
+      var c = document.getElementById('lpCard'); c.classList.remove('loading'); c.classList.add('done');
+      var p = document.getElementById('lpOkP');
+      if(p) p.textContent = h ? ('@' + h + ' is with us. We will check it and add it to the directory.') : 'We will check it and add it to the directory.';
+    }
+    function openListParty(){
+      var ov = document.getElementById('lpOv'), c = document.getElementById('lpCard');
+      var l = lpListed();
+      if(l.length){ lpShowDone(l[l.length-1]); }
+      else { c.classList.remove('done','loading'); document.getElementById('lpErr').textContent=''; document.getElementById('lpField').classList.remove('bad'); }
+      ov.classList.add('on'); document.body.style.overflow = 'hidden';
+      if(!l.length) setTimeout(function(){ var i = document.getElementById('lpIn'); if(i) i.focus(); }, 60);
+    }
+    function closeListParty(){
+      document.getElementById('lpOv').classList.remove('on'); document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeListParty(); });
+    function lpClean(v){
+      v = String(v || '').trim();
+      var m = v.match(/instagram\.com\/([^\/?#\s]+)/i); if(m) v = m[1];
+      return v.replace(/^@+/, '').split('/')[0].split('?')[0].trim().toLowerCase();
+    }
+    function submitListParty(){
+      var c = document.getElementById('lpCard');
+      if(c.classList.contains('loading') || c.classList.contains('done')) return;
+      var h = lpClean(document.getElementById('lpIn').value);
+      var err = document.getElementById('lpErr'), f = document.getElementById('lpField');
+      if(!/^[a-z0-9._]{1,30}$/.test(h) || /^\.|\.\.|\.$/.test(h)){
+        f.classList.add('bad'); err.textContent = 'Enter the handle only, like yourparty.'; return;
+      }
+      f.classList.remove('bad'); err.textContent = '';
+      var url = getGasUrl();
+      if(!url){ err.textContent = 'Something is off on our side. Try again shortly.'; return; }
+      c.classList.add('loading');
+      document.getElementById('lpGo').disabled = true;
+      document.getElementById('lpGoT').textContent = 'Adding...';
+      var started = Date.now();
+      fetch(url + '?action=listhandle&handle=' + encodeURIComponent(h), { method:'GET', headers:{ 'Accept':'application/json' } })
+        .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+        .then(function(d){
+          if(!d || !d.ok) throw new Error((d && d.error) || 'failed');
+          /* hold the spinner long enough to read as work, not a flicker */
+          setTimeout(function(){ lpRemember(h); lpSyncButtons(); lpShowDone(h); }, Math.max(0, 900 - (Date.now() - started)));
+        })
+        .catch(function(e){
+          c.classList.remove('loading');
+          document.getElementById('lpGo').disabled = false;
+          document.getElementById('lpGoT').textContent = 'Add my party';
+          err.textContent = (e && e.message && e.message !== 'failed' && !/^HTTP|Failed to fetch|NetworkError/i.test(e.message)) ? e.message : 'That did not go through. Try again.';
+        });
+    }
+    document.addEventListener('DOMContentLoaded', lpSyncButtons);
 
     /* Opened from a file, or inside a sandboxed frame, the page has a
        null origin. history.replaceState then throws a SecurityError and
@@ -3422,7 +3560,14 @@
       }
       return fa + ' - ' + fb;
     }
-    function v2Dormant(p){ var n=v2Days(p.last_party_date); return n!==null && n < -60; }
+    /* Quiet means nothing announced AND nothing recent. A night with a
+       date still to come is by definition not quiet, even when the
+       party's last one was long ago (an annual festival, say). Without
+       this, Dance Eko on 19 Dec read "Quiet since 1st Jan" and dimmed. */
+    function v2Dormant(p){
+      var up=v2Days(p.next_party_date);
+      if(up!==null && up>=0) return false;
+      var n=v2Days(p.last_party_date); return n!==null && n < -60; }
     function v2Stale(p){ var n=v2Days(p.last_success_at); return n!==null && n < -14; }
 
     /* Next Party Date, finally used outside the modal */
