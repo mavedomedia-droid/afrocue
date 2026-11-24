@@ -347,6 +347,14 @@
   .coach .caret{display:inline-block;width:2px;height:1em;background:var(--yellow);
     margin-left:2px;vertical-align:-2px;animation:blink 1s steps(1) infinite}
   @keyframes blink{50%{opacity:0}}
+  .state{margin:12px auto 0;max-width:22em;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);
+    border-radius:12px;padding:10px 14px;text-align:center}
+  .state-t{font-size:14px;font-weight:600;line-height:1.4;color:var(--white)}
+  .state-c{font-family:var(--display);font-weight:900;font-size:22px;letter-spacing:.02em;margin-top:4px;
+    color:var(--white);font-variant-numeric:tabular-nums}
+  .state-c.sm{font-family:inherit;font-weight:600;font-size:13.5px;letter-spacing:0;color:var(--mute);line-height:1.5}
+  body.lock .state{margin-top:8px;padding:8px 12px}
+  body.lock .state-c{font-size:19px}
   .closed-h{font-family:var(--display);font-weight:900;font-size:clamp(24px,6.5vw,30px);line-height:1.1;margin:0 0 10px}
 </style>
 </head>
@@ -365,11 +373,12 @@
       <span id="evLogoFallback" class="fallback" style="display:none"></span>
     </div>
     <h1>Do a <span class="y">VybeChek™</span></h1>
+    <div class="state" id="stateBox" style="display:none"><div class="state-t" id="stateT"></div><div class="state-c" id="stateC"></div></div>
     <p class="sub" id="heroSub">
-      Win one of <b>5 gifts</b>. Answer a few questions about your night. Share the result on your story.
+      Win one of <b>5 cocktails</b>. Answer a few questions about your night. Share the result on your story.
     </p>
     <div class="tags">
-      <span class="tag"><svg viewBox="0 0 24 24"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg>5 winners</span>
+      <span class="tag" id="tagWin"><svg viewBox="0 0 24 24"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg><span id="tWinners">5 winners</span></span>
       <span class="tag"><svg viewBox="0 0 24 24"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg>Drawn at <b id="tDraw2">1AM</b></span>
       <span class="tag"><svg viewBox="0 0 24 24"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg>Free to enter</span>
     </div>
@@ -557,7 +566,10 @@ var EVENT = {
   edition_date:    'Friday 27 November',
   logo_url:        'chibyverse_logo.png',
   flyer_url:       'chibyverse_flyer.jpeg',
-  draw_prize:      '5 cocktails',
+  reward_name:     'cocktails',
+  reward_count:    5,
+  reward_line:     '5 cocktails',
+  state:           'live',
   draw_time:       '1AM',
   djs:             ['Tohbahd','Shawn','Titanium','Salt','Hayzee','Naffy'],
   sponsors:        [{name:'Pepsi'},{name:'Smirnoff Ice'},{name:'Chowdeck'},{name:'Munch It'}],
@@ -590,21 +602,29 @@ function set(id, prop, value){
 function boot(){
   paintConfig();
 
-  var party = qs('party') || EVENT.party_id;
-  if (GAS_URL && party) {
-    fetch(GAS_URL + '?action=vybechek_config&party=' + encodeURIComponent(party))
-      .then(function(r){ return r.json(); })
-      .then(function(cfg){
-        if (!cfg || cfg.ok === false) throw new Error(cfg && cfg.error || 'no config');
-        Object.keys(cfg).forEach(function(k){ if (cfg[k] !== '' && cfg[k] != null) EVENT[k] = cfg[k]; });
-        paintConfig();
-      })
-      .catch(function(e){ console.warn('[vybechek] config fetch failed, using local block:', e.message); });
-  }
+  loadConfig();
+  /* The party moves through its states by the clock (live, closing, drawn),
+     so the page asks again every minute. */
+  setInterval(loadConfig, 60000);
+  setInterval(tickCountdown, 1000);
 
   paint();
   retryPending();
   window.addEventListener('online', retryPending);
+}
+
+function loadConfig(){
+  var party = qs('party') || EVENT.party_id;
+  if (!GAS_URL || !party) return;
+  fetch(GAS_URL + '?action=vybechek_config&party=' + encodeURIComponent(party))
+    .then(function(r){ return r.json(); })
+    .then(function(cfg){
+      if (!cfg || cfg.ok === false) throw new Error(cfg && cfg.error || 'no config');
+      Object.keys(cfg).forEach(function(k){ if (cfg[k] !== '' && cfg[k] != null) EVENT[k] = cfg[k]; });
+      EVENT.winners = cfg.winners || [];
+      paintConfig();
+    })
+    .catch(function(e){ console.warn('[vybechek] config fetch failed, using local block:', e.message); });
 }
 
 /* "24 June 2026" style dates on a card read badly, and the sheet gives
@@ -621,7 +641,9 @@ function dateLabel(iso){
 function paintConfig(){
   EVENT.date_label = dateLabel(EVENT.edition_date);
   document.title = 'Do a VybeChek™ · ' + EVENT.party_name;
+  var st = EVENT.state || 'live', rl = EVENT.reward_line || '5 cocktails', n = +EVENT.reward_count || 1;
   set('tDraw2','textContent', EVENT.draw_time);
+  set('tWinners','textContent', n + (n === 1 ? ' winner' : ' winners'));
 
   var logo = document.getElementById('evLogo');
   var fb   = document.getElementById('evLogoFallback');
@@ -632,25 +654,50 @@ function paintConfig(){
     logo.style.display='none'; fb.style.display='block'; fb.textContent = EVENT.party_name;
   }
 
-  var sub = document.getElementById('heroSub');
-  if (sub) {
-    sub.innerHTML = 'Win one of <b>5 gifts</b>. Answer a few questions about your night. Share the result on your story.';
+  /* What the hero says depends on where the party is by the clock. */
+  var box = document.getElementById('stateBox'), sub = document.getElementById('heroSub');
+  var tags = document.querySelector('.tags');
+  var live = (st === 'live');
+  if (tags) tags.style.display = live ? '' : 'none';
+  box.style.display = live ? 'none' : 'block';
+  if (live) {
+    sub.innerHTML = 'Win <b>' + rl + '</b>. Answer a few questions about your night. Share the result on your story.';
+    set('fineNote','textContent', 'We email you now, and again when the draw is done at ' + EVENT.draw_time + '. We keep your details and photo to run it.');
+  } else if (st === 'before') {
+    set('stateT','textContent', 'Not live yet. ' + EVENT.party_name + ' goes live ' + (EVENT.start_label || 'on party night') + '.');
+    sub.innerHTML = 'Try it now and get your card. On the night it puts you in the draw for <b>' + rl + '</b>.';
+    set('fineNote','textContent', 'We email you now. We keep your details and photo to make your card.');
+  } else if (st === 'closing') {
+    set('stateT','textContent', 'Entries are closed.');
+    set('stateC','textContent', 'The draw is at ' + EVENT.draw_time + '.');
+    sub.innerHTML = 'You can still make your card. It will not be in tonight\u2019s draw.';
+    set('fineNote','textContent', 'We email you now. We keep your details and photo to make your card.');
+  } else if (st === 'drawn') {
+    set('stateT','textContent', 'The draw is done. ' + rl + ' went out.');
+    set('stateC','textContent', (EVENT.winners && EVENT.winners.length) ? EVENT.winners.join('   \u00b7   ') : '');
+    sub.innerHTML = 'Do a VybeChek now and you still get your card. Do it earlier next time to be in.';
+    set('fineNote','textContent', 'We email you now. We keep your details and photo to make your card.');
+  } else {
+    set('stateT','textContent', 'This one has ended.');
+    set('stateC','textContent', (EVENT.winners && EVENT.winners.length) ? 'Winners: ' + EVENT.winners.join('   \u00b7   ') : '');
+    sub.innerHTML = 'You can still make your card.';
+    set('fineNote','textContent', 'We email you now. We keep your details and photo to make your card.');
   }
+  var c = document.getElementById('stateC');
+  if (c) c.className = 'state-c' + (st === 'before' ? '' : ' sm');
+  if (st === 'before') tickCountdown();
   set('partnerLine','textContent', (EVENT.partners || []).join('  ·  '));
-  set('fineNote','textContent', 'We email you now, and again when the draw is done at ' + EVENT.draw_time + '. We keep your details and photo to run it.');
   document.body.classList.toggle('testing', !!EVENT.test_mode);
-  if (EVENT.open === false) showClosed(EVENT.closed_note);
 }
 
-/* Not a party day, or the draw is done. Nothing to fill in, so nobody
-   enters and no draw is held for a night nobody was at. */
-function showClosed(why){
-  document.querySelectorAll('.step').forEach(function(x){ x.classList.remove('active'); });
-  document.getElementById('qc').classList.add('active');
-  document.body.classList.add('later');
-  document.body.classList.add('isclosed');
-  set('closedH','textContent', /closed/i.test(why || '') ? 'This one has closed.' : 'Not open yet.');
-  set('closedS','textContent', why || 'VybeChek opens on party day.');
+/* Counts down to going live, then asks the sheet again. */
+function tickCountdown(){
+  if ((EVENT.state || '') !== 'before' || !EVENT.start_ms) return;
+  var ms = EVENT.start_ms - Date.now();
+  if (ms <= 0) { EVENT.start_ms = 0; loadConfig(); return; }
+  var t = Math.floor(ms / 1000), d = Math.floor(t / 86400), h = Math.floor(t % 86400 / 3600),
+      m = Math.floor(t % 3600 / 60), sec = t % 60, p = function(x){ return (x < 10 ? '0' : '') + x; };
+  set('stateC','textContent', (d ? d + 'd ' : '') + p(h) + ':' + p(m) + ':' + p(sec));
 }
 
 /* ── steps ─────────────────────────────────────────────────── */
@@ -796,11 +843,10 @@ function submitAll(){
     if (res && res.ok) {
       try { localStorage.removeItem('vybechek_pending'); } catch(e){}
       entryId = res.entry_id || null;
-      finish(res.duplicate);
+      finish(res.duplicate, res.state);
     } else {
       btn.disabled = false;
       btn.textContent = 'Enter the draw →';
-      if (res && res.closed) { showClosed(res.error); return; }
       err.textContent = (res && res.error) ? res.error : 'That did not go through. Tap again.';
       err.classList.add('show');
     }
@@ -866,19 +912,37 @@ function uploadPhoto(){
   img.src = url;
 }
 
+/* The finished card goes up on its own once it is drawn. The server
+   keeps it in Drive and sends the welcome email with it. */
+function uploadCard(blob){
+  if (!entryId || !GAS_URL || !blob) return;
+  var fr = new FileReader();
+  fr.onload = function(){
+    sendEntry({ source: 'vybechek_photo', kind: 'card', party_id: EVENT.party_id, entry_id: entryId, image: fr.result })
+      .catch(function(){});
+  };
+  fr.readAsDataURL(blob);
+}
+
 /* ── 5. done ───────────────────────────────────────────────── */
 
-function finish(already){
+function finish(already, state){
   go(5);
   current = TOTAL; paint();
 
-  set('doneH','textContent', (already ? 'You are already in, ' : 'You are in, ') + vals.first_name + '.');
+  var inDraw = !state || state === 'live';
+  set('doneH','textContent', inDraw ? (already ? 'You are already in, ' : 'You are in, ') + vals.first_name + '.' : 'Thanks, ' + vals.first_name + '.');
   set('doneS','textContent',
     'That is it. Your card is below.');
   var strip = document.getElementById('inStrip');
   if (strip) {
-    strip.innerHTML = '<b>' + EVENT.draw_prize + '</b>, pulled at random at <b>' + EVENT.draw_time +
-      '</b>. Everyone gets the result by email, win or lose.';
+    var rl = EVENT.reward_line || '5 cocktails';
+    strip.innerHTML = inDraw
+      ? '<b>' + rl + '</b>, pulled at random at <b>' + EVENT.draw_time + '</b>. Everyone gets the result by email, win or lose.'
+      : state === 'early'  || state === 'before'
+        ? 'It is not a party night yet. <b>' + EVENT.party_name + '</b> goes live ' + (EVENT.start_label || 'on the night') + '. Do it again then to be in the draw.'
+      : state === 'over' ? 'This one has ended. Your card is still yours.'
+      : 'Entries had closed, so this one was not in the draw. Your card is still yours. Do it earlier next time.';
   }
   buildCard();
   uploadPhoto();
@@ -993,6 +1057,7 @@ function draw(g, cv, photo, tex, flyer, chiby, acue, simgs){
   cv.toBlob(function(blob){
     if (!blob) return;
     cardBlob = blob;
+    uploadCard(blob);
     document.getElementById('cardImg').src = URL.createObjectURL(blob);
     document.getElementById('cardWrap').classList.add('show');
 
