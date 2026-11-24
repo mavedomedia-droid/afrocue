@@ -28,6 +28,7 @@
   <!-- Images come through wsrv.nl (resized, WebP); data comes from Apps Script.
        Opening these connections early saves a round trip each. -->
   <link rel="preconnect" href="https://wsrv.nl" crossorigin>
+  <link rel="preconnect" href="https://i.ibb.co" crossorigin>
   <link rel="preconnect" href="https://script.google.com">
   <link rel="preconnect" href="https://script.googleusercontent.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2032,29 +2033,29 @@
 
     /* ══ LIST YOUR PARTY ══ the hero button and the modal. One handle in, a spinner, then a tick, and the
        buttons stay ticked afterwards so nobody sends it twice. */
-    .lp-btn{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:14px 22px;border:2px solid var(--yellow);
-      background:transparent;color:var(--yellow);font-family:inherit;font-size:13px;font-weight:700;letter-spacing:.06em;
-      text-transform:uppercase;border-radius:999px;cursor:pointer;transition:background .2s,color .2s}
-    .lp-btn:hover{background:var(--yellow);color:#000}
-    .lp-btn.done{border-color:rgba(255,255,255,.28);color:#fff;cursor:default}
-    .lp-btn.done:hover{background:transparent;color:#fff}
+    .lp-btn{display:inline-flex;align-items:center;gap:7px;margin-top:14px;padding:0 0 3px;border:0;border-bottom:1px solid rgba(200,224,0,.35);border-radius:0;
+      background:none;color:var(--yellow);font-family:inherit;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:none;white-space:nowrap;
+      cursor:pointer;transition:border-color .2s,gap .2s}
+    .lp-btn:hover{border-bottom-color:var(--yellow);gap:10px}
+    .lp-btn.done{border-bottom-color:rgba(255,255,255,.2);color:rgba(255,255,255,.7);cursor:default}
+    .lp-btn.done:hover{border-bottom-color:rgba(255,255,255,.2);gap:7px}
     .lp-btn svg{flex-shrink:0}
     .lp-ov{position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.78);display:none;align-items:center;justify-content:center;padding:20px}
     .lp-ov.on{display:flex}
-    .lp-card{position:relative;width:100%;max-width:440px;box-sizing:border-box;padding:32px 28px 28px;background:#111110;
+    .lp-card{position:relative;width:100%;max-width:360px;box-sizing:border-box;padding:24px 20px 20px;background:#111110;
       border:1px solid #2e2d29;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.8);animation:lpIn .3s ease}
     @keyframes lpIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
     .lp-x{position:absolute;top:10px;right:12px;width:40px;height:40px;border:0;background:transparent;color:#8f8d86;font-size:28px;line-height:1;cursor:pointer}
-    .lp-k{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--yellow)}
-    .lp-h{margin:10px 0 8px;font-size:26px;font-weight:800;line-height:1.15;color:#fff}
-    .lp-p{margin:0 0 20px;font-size:15px;line-height:1.5;color:#b5b3ab}
-    .lp-field{display:flex;align-items:center;height:56px;box-sizing:border-box;padding:0 16px;border:2px solid #64625b;border-radius:12px;background:#000;transition:border-color .2s}
+    .lp-k{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--yellow)}
+    .lp-h{margin:8px 0 6px;font-size:19px;font-weight:800;line-height:1.2;color:#fff}
+    .lp-p{margin:0 0 14px;font-size:13px;line-height:1.45;color:#b5b3ab}
+    .lp-field{display:flex;align-items:center;height:46px;box-sizing:border-box;padding:0 14px;border:2px solid #64625b;border-radius:10px;background:#000;transition:border-color .2s}
     .lp-field:focus-within{border-color:var(--yellow)}
     .lp-field.bad{border-color:#ff5d6c}
-    .lp-at{color:#8f8d86;font-size:18px;font-weight:700;margin-right:4px}
-    .lp-in{flex:1;min-width:0;border:0;outline:0;background:transparent;color:#fff;font-family:inherit;font-size:18px}
+    .lp-at{color:#8f8d86;font-size:16px;font-weight:700;margin-right:4px}
+    .lp-in{flex:1;min-width:0;border:0;outline:0;background:transparent;color:#fff;font-family:inherit;font-size:16px}
     .lp-err{min-height:20px;margin:8px 2px 0;font-size:13px;color:#ff8b95}
-    .lp-go{position:relative;display:flex;align-items:center;justify-content:center;gap:12px;width:100%;height:56px;margin-top:10px;border:0;
+    .lp-go{position:relative;display:flex;align-items:center;justify-content:center;gap:12px;width:100%;height:46px;margin-top:8px;border:0;
       border-radius:12px;background:var(--yellow);color:#000;font-family:inherit;font-size:15px;font-weight:800;letter-spacing:.04em;cursor:pointer;transition:background .25s,color .25s}
     .lp-go[disabled]{cursor:default}
     .lp-spin{display:none;width:22px;height:22px;border:3px solid rgba(0,0,0,.25);border-top-color:#000;border-radius:50%;animation:lpSpin .7s linear infinite}
@@ -2064,14 +2065,29 @@
     .lp-ok{display:none;flex-direction:column;align-items:center;text-align:center;padding:10px 0 4px}
     .lp-card.done .lp-form{display:none}
     .lp-card.done .lp-ok{display:flex}
-    .lp-ring{width:84px;height:84px;margin-bottom:18px}
+    .lp-ring{width:64px;height:64px;margin-bottom:14px}
     .lp-ring circle{fill:none;stroke:var(--yellow);stroke-width:4;stroke-dasharray:226;stroke-dashoffset:226;transform:rotate(-90deg);transform-origin:50% 50%}
     .lp-ring path{fill:none;stroke:var(--yellow);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:44;stroke-dashoffset:44}
     .lp-card.done .lp-ring circle{animation:lpDraw .6s ease forwards}
     .lp-card.done .lp-ring path{animation:lpDraw .4s .5s ease forwards}
     @keyframes lpDraw{to{stroke-dashoffset:0}}
     .lp-ok .lp-h{margin-top:0}
-    @media (max-width:768px){ .lp-card{padding:28px 20px 22px} }
+    @media (max-width:768px){ .lp-card{padding:22px 18px 18px} }
+
+    /* Narrow web windows, 481 to 900px. The card sat beside the text as a
+       tall thin portrait. Here it goes under the text, full width and
+       landscape, with the by-line and the link back. Phones under 481px
+       keep the two column layout. */
+    @media (min-width:481px) and (max-width:900px){
+      .hero{grid-template-columns:1fr;gap:22px;align-items:start;padding-bottom:26px}
+      .hero-content{padding-bottom:0}
+      .featured-slot{aspect-ratio:16/10;height:auto;max-height:none;border-radius:14px}
+      .featured-slot-content{padding:0 20px 20px}
+      .featured-k{font-size:10px;letter-spacing:.14em;margin-bottom:7px}
+      .featured-name{font-size:clamp(22px,4.4vw,30px)}
+      .featured-by,.featured-meta{display:block!important}
+      .featured-cta{display:inline-flex!important}
+    }
 </style>
 </head>
 <body>
@@ -2199,7 +2215,7 @@
       <div class="label">Party Directory</div>
       <h1>Parties.</h1>
       <div class="hero-desc">Parties, raves and experiences worth knowing about in Afrobeats, Amapiano, EDM and dance music generally in Lagos and Nigeria.</div>
-      <button class="lp-btn" type="button" data-lp onclick="openListParty()"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" data-lp-plus><path d="M12 5v14M5 12h14"/></svg><span data-lp-label>List your party</span></button>
+      <button class="lp-btn" type="button" data-lp onclick="openListParty()"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" data-lp-plus><path d="M12 5v14M5 12h14"/></svg><span data-lp-label>List your party</span></button>
     </div>
     <!-- The one hero. This card used to show a franchise and a city
          while a second, full-bleed hero above it showed the actual
@@ -3232,6 +3248,36 @@
       });
       return d;
     }
+
+    /* The first screen of pictures should not wait to be scrolled to.
+       Every card image is loading="lazy", including the ones already
+       on screen, so the browser held them back until layout settled.
+       This lifts the first few in the strip and the grid to eager and
+       gives the very first two top priority. Nothing below the fold
+       changes. */
+    (function(){
+      var EAGER = 8, TOP = 2;
+      function lift(host){
+        if(!host) return;
+        var imgs = host.querySelectorAll('img[loading="lazy"]');
+        for(var i = 0; i < imgs.length && i < EAGER; i++){
+          imgs[i].setAttribute('loading', 'eager');
+          if(i < TOP) imgs[i].setAttribute('fetchpriority', 'high');
+        }
+      }
+      function arm(){
+        ['stripRow', 'partiesGrid'].forEach(function(id){
+          var host = document.getElementById(id);
+          if(!host || host.__fastArmed) return;
+          host.__fastArmed = true;
+          lift(host);
+          try { new MutationObserver(function(){ lift(host); })
+                  .observe(host, { childList: true, subtree: true }); } catch(e){}
+        });
+      }
+      if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', arm);
+      else arm();
+    })();
 
     /* A visitor who has been here in the last 12 hours sees the page at
        once from what their browser kept, while the fresh copy loads
