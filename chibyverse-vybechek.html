@@ -56,8 +56,10 @@
   .at-line{display:flex;align-items:center;justify-content:center;gap:9px;margin:0 0 18px}
   .at-lbl{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--fine);
     font-weight:700}
-  .at-line img{height:24px;width:auto;display:block}
-  .at-line .fallback{font-family:var(--display);font-weight:900;font-size:18px}
+  .at-name{font-family:var(--display);font-weight:900;font-size:20px;line-height:1;color:var(--white)}
+  .card-logo{display:none;margin-top:auto;padding-top:14px;text-align:center}
+  .card-logo.show{display:block}
+  .card-logo img{height:30px;width:auto;max-width:70%;opacity:.85}
   h1{
     font-family:var(--display);font-weight:900;
     font-size:clamp(38px,11vw,58px);line-height:1.02;letter-spacing:-0.015em;
@@ -99,7 +101,7 @@
   .opt{
     display:flex;align-items:center;gap:14px;width:100%;text-align:left;cursor:pointer;
     background:rgba(255,255,255,0.03);border:1px solid var(--line-hi);border-radius:var(--r);
-    padding:15px 16px;color:var(--white);font-family:inherit;font-size:16px;
+    padding:16.5px 16px;color:var(--white);font-family:inherit;font-size:16px;
     transition:border-color .16s,background .16s;
   }
   .opt:hover,.opt:focus-visible{border-color:var(--yellow);background:var(--y-soft);outline:none}
@@ -167,10 +169,21 @@
   .gal:hover{border-color:var(--yellow);color:var(--yellow)}
   #shotCam,#shotLib{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
 
-  .ideas{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 16px}
-  .idea{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
-    font-size:12.5px;font-weight:600;color:var(--mute);background:rgba(255,255,255,0.04);
-    border:1px solid var(--line);border-radius:100px;padding:7px 12px}
+  .ideas{display:flex;flex-wrap:nowrap;gap:4px;margin:0 0 12px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .ideas::-webkit-scrollbar{display:none}
+  .idea{display:inline-flex;align-items:center;white-space:nowrap;flex:0 0 auto;
+    font-size:10.5px;font-weight:600;color:var(--fine);background:rgba(255,255,255,0.03);
+    border:1px solid var(--line);border-radius:100px;padding:4px 7px}
+  .thumbs{display:none;gap:7px;margin:0 0 10px;overflow-x:auto;scrollbar-width:none}
+  .thumbs.show{display:flex}
+  .thumbs::-webkit-scrollbar{display:none}
+  .thumb{position:relative;flex:0 0 auto;width:46px;height:58px;border-radius:8px;overflow:hidden;padding:0;
+    border:2px solid transparent;background:#000;cursor:pointer}
+  .thumb.on{border-color:var(--yellow)}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .thumb i{position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);color:var(--yellow);
+    font-style:normal;font-size:8.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:2px 0}
+  .addmore{margin-top:0;margin-bottom:8px;padding:11px}
   .idea svg{width:13px;height:13px;stroke:var(--yellow);stroke-width:2;fill:none;flex-shrink:0}
 
   .live{position:relative;border-radius:var(--r);overflow:hidden;background:#000;
@@ -252,7 +265,7 @@
     body.lock .q{font-size:clamp(21px,5.6vw,26px);margin-bottom:8px}
     body.lock .hint{margin-bottom:12px;font-size:13.5px}
     body.lock .opts{flex:1;min-height:0;overflow-y:auto;gap:8px}
-    body.lock .opt{padding:12px 14px}
+    body.lock .opt{padding:13.5px 14px}
     /* the form step is the one place that scrolls */
     body.lock #q4.active{overflow-y:auto;-webkit-overflow-scrolling:touch}
     body.lock .ig{margin-bottom:10px}
@@ -278,13 +291,15 @@
     body.lock.done .done-h{font-size:21px;margin:2px 4px 8px}
     body.lock.done #q5.active{justify-content:center}
     body.lock .cardwrap.show{flex:0 1 auto}
-    body.lock .imgbox{min-height:0}
+    body.lock .imgbox{min-height:0;flex:1;display:flex;flex-direction:column}
+    body.lock .slides{flex:1;min-height:0}
+    body.lock .slide img{height:100%;width:auto;max-width:100%}
     body.lock .imgbox img{width:100%;height:auto;max-height:100%;object-fit:contain}
   }
   @media (max-width:700px) and (max-height:700px){
     body.lock .tags{display:none}
     body.lock .sub{font-size:13px}
-    body.lock .opt{padding:10px 12px}
+    body.lock .opt{padding:11px 12px}
     body.lock .opt-s{display:none}
   }
 
@@ -317,6 +332,13 @@
 
   .cardwrap{display:none;margin-bottom:18px}
   .cardwrap.show{display:block}
+  .slides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:0}
+  .slides::-webkit-scrollbar{display:none}
+  .slide{flex:0 0 100%;scroll-snap-align:center;display:flex;justify-content:center;min-height:0}
+  .cstat{font-size:13px;color:var(--mute);text-align:center;margin:10px 0}
+  .dots{display:none;justify-content:center;gap:6px;margin-top:8px}
+  .dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.25)}
+  .dots i.on{background:var(--yellow)}
   .cardwrap img{width:100%;border-radius:var(--r);display:block;border:1px solid var(--line-hi)}
   .cardnote{font-size:12.5px;color:var(--fine);text-align:center;margin-top:10px}
 
@@ -347,14 +369,12 @@
   .coach .caret{display:inline-block;width:2px;height:1em;background:var(--yellow);
     margin-left:2px;vertical-align:-2px;animation:blink 1s steps(1) infinite}
   @keyframes blink{50%{opacity:0}}
-  .state{margin:12px auto 0;max-width:22em;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);
-    border-radius:12px;padding:10px 14px;text-align:center}
-  .state-t{font-size:14px;font-weight:600;line-height:1.4;color:var(--white)}
-  .state-c{font-family:var(--display);font-weight:900;font-size:22px;letter-spacing:.02em;margin-top:4px;
-    color:var(--white);font-variant-numeric:tabular-nums}
-  .state-c.sm{font-family:inherit;font-weight:600;font-size:13.5px;letter-spacing:0;color:var(--mute);line-height:1.5}
-  body.lock .state{margin-top:8px;padding:8px 12px}
-  body.lock .state-c{font-size:19px}
+  .state{margin:12px auto 0;max-width:24em;text-align:center}
+  .state-t{font-size:12.5px;font-weight:500;line-height:1.45;color:var(--fine)}
+  .state-c{margin-top:3px;font-size:12.5px;font-weight:600;letter-spacing:.05em;color:var(--mute);
+    font-variant-numeric:tabular-nums}
+  .state-c.sm{letter-spacing:0;font-weight:500;line-height:1.5}
+  body.lock .state{margin-top:8px}
   .closed-h{font-family:var(--display);font-weight:900;font-size:clamp(24px,6.5vw,30px);line-height:1.1;margin:0 0 10px}
 </style>
 </head>
@@ -369,11 +389,9 @@
   <header class="hero">
     <div class="at-line">
       <span class="at-lbl">Currently at</span>
-      <img id="evLogo" alt="">
-      <span id="evLogoFallback" class="fallback" style="display:none"></span>
+      <span class="at-name" id="evName">South Social</span>
     </div>
     <h1>Do a <span class="y">VybeChek™</span></h1>
-    <div class="state" id="stateBox" style="display:none"><div class="state-t" id="stateT"></div><div class="state-c" id="stateC"></div></div>
     <p class="sub" id="heroSub">
       Win one of <b>5 cocktails</b>. Answer a few questions about your night. Share the result on your story.
     </p>
@@ -382,6 +400,7 @@
       <span class="tag"><svg viewBox="0 0 24 24"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg>Drawn at <b id="tDraw2">1AM</b></span>
       <span class="tag"><svg viewBox="0 0 24 24"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg>Free to enter</span>
     </div>
+    <div class="state" id="stateBox" style="display:none"><div class="state-t" id="stateT"></div><div class="state-c" id="stateC"></div></div>
   </header>
 
   <main class="card">
@@ -411,6 +430,7 @@
           <span class="opt-a">&rarr;</span>
         </button>
       </div>
+      <div class="card-logo" id="cardLogo"><img id="evLogo" alt=""></div>
     </section>
 
     <!-- 2 ───────────────────────────────────────────────── -->
@@ -438,16 +458,12 @@
 
     <!-- 3 ── the photo ──────────────────────────────────── -->
     <section class="step" id="q3">
-      <div class="slabel">Your view</div>
-      <h2 class="q">Show us your view.</h2>
-      <p class="hint">A photo from tonight. We build it into something you can post.</p>
+      <div class="slabel">My party view</div>
+      <h2 class="q">Show us your view right now at the party.</h2>
+      <p class="hint">Or choose a photo you took tonight from your gallery. Treat it like a postcard.</p>
 
       <div class="ideas">
-        <span class="idea"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/></svg>The DJ</span>
-        <span class="idea"><svg viewBox="0 0 24 24"><path d="M12 3v2M5.6 5.6l1.4 1.4M3 12h2M19 12h2M17 7l1.4-1.4"/><circle cx="12" cy="13" r="4"/></svg>The lights</span>
-        <span class="idea"><svg viewBox="0 0 24 24"><path d="M5 3h14l-1 5a6 6 0 0 1-12 0L5 3zM12 14v7M8 21h8"/></svg>Your table</span>
-        <span class="idea"><svg viewBox="0 0 24 24"><path d="M4 20h16M7 20V9a3 3 0 0 1 6 0v11M13 14h4a3 3 0 0 1 0 6"/></svg>Your feet</span>
-        <span class="idea"><svg viewBox="0 0 24 24"><path d="M17 20v-2a4 4 0 0 0-8 0v2"/><circle cx="13" cy="8" r="3.4"/></svg>Your people</span>
+        <span class="idea">The DJ</span><span class="idea">The lights</span><span class="idea">Your table</span><span class="idea">Your feet</span><span class="idea">Your people</span>
       </div>
 
       <div class="live" id="live">
@@ -457,8 +473,9 @@
 
       <div id="shotPrev" class="shot-prev">
         <img id="shotImg" alt="">
-        <button class="retake" onclick="retake()">Change photo</button>
+        <button class="retake" onclick="removeShot()">Remove</button>
       </div>
+      <div id="thumbs" class="thumbs"></div>
 
       <div id="shootRow">
         <button class="vf" onclick="openCamera()">
@@ -474,8 +491,9 @@
       </div>
 
       <input type="file" id="shotCam" accept="image/*" capture="environment" onchange="gotShot(this)">
-      <input type="file" id="shotLib" accept="image/*" onchange="gotShot(this)">
+      <input type="file" id="shotLib" accept="image/*" multiple onchange="gotShot(this)">
 
+      <button class="gal addmore" id="addMore" onclick="addMore()" style="display:none">+ Add another photo</button>
       <button class="cta" id="shotNext" onclick="go(4)" style="display:none">Use this &rarr;</button>
       <div class="err" id="shotErr"></div>
     </section>
@@ -517,11 +535,14 @@
 
       <div class="cardwrap" id="cardWrap">
         <div class="imgbox">
-          <img id="cardImg" alt="Your card">
+          <div class="slides" id="slides"></div>
+          <div class="dots" id="dots"></div>
           <div class="coach hide" id="coach" onclick="hideCoach()"><span id="coachTxt"></span><span class="caret"></span></div>
         </div>
         <div class="cardnote" id="cardNote">Hold the image to save it, then post it.</div>
       </div>
+      <p class="cstat" id="cardStat" style="display:none"></p>
+      <button class="cta ghost" id="retryBtn" onclick="buildCard()" style="display:none">Try again</button>
 
       <div class="in-strip" id="inStrip"></div>
 
@@ -584,8 +605,8 @@ if (!GAS_URL) console.warn('[vybechek] No AFROCUE_SCRIPT_URL yet. Expected if af
 
 var TOTAL = 4, current = 1;
 var vals = {};
-var shotFile = null, shotURL = null, stream = null;
-var cardBlob = null;
+var shots = [], cur = 0, stream = null, MAXSHOTS = 5;
+var cards = [], cardBlob = null;
 
 function qs(k){ try { return new URLSearchParams(location.search).get(k); } catch(e){ return null; } }
 
@@ -645,13 +666,15 @@ function paintConfig(){
   set('tDraw2','textContent', EVENT.draw_time);
   set('tWinners','textContent', n + (n === 1 ? ' winner' : ' winners'));
 
-  var logo = document.getElementById('evLogo');
-  var fb   = document.getElementById('evLogoFallback');
-  if (EVENT.logo_url) {
-    logo.src = EVENT.logo_url;
-    logo.onerror = function(){ logo.style.display='none'; fb.style.display='block'; fb.textContent = EVENT.party_name; };
-  } else {
-    logo.style.display='none'; fb.style.display='block'; fb.textContent = EVENT.party_name;
+  set('evName','textContent', EVENT.party_name);
+  /* The party's logo sits in the card, at the foot of the first step. */
+  var logo = document.getElementById('evLogo'), box0 = document.getElementById('cardLogo');
+  if (logo && box0) {
+    if (EVENT.logo_url) {
+      logo.onerror = function(){ box0.classList.remove('show'); };
+      logo.onload = function(){ box0.classList.add('show'); };
+      if (logo.getAttribute('src') !== EVENT.logo_url) logo.src = EVENT.logo_url;
+    } else { box0.classList.remove('show'); }
   }
 
   /* What the hero says depends on where the party is by the clock. */
@@ -664,8 +687,8 @@ function paintConfig(){
     sub.innerHTML = 'Win <b>' + rl + '</b>. Answer a few questions about your night. Share the result on your story.';
     set('fineNote','textContent', 'We email you now, and again when the draw is done at ' + EVENT.draw_time + '. We keep your details and photo to run it.');
   } else if (st === 'before') {
-    set('stateT','textContent', 'Not live yet. ' + EVENT.party_name + ' goes live ' + (EVENT.start_label || 'on party night') + '.');
-    sub.innerHTML = 'Try it now and get your card. On the night it puts you in the draw for <b>' + rl + '</b>.';
+    set('stateT','textContent', 'The draw is not live yet. It goes live ' + (EVENT.start_label || 'on party night') + '.');
+    sub.innerHTML = 'You can still do a VybeChek and get your card. On the night it puts you in the draw for <b>' + rl + '</b>.';
     set('fineNote','textContent', 'We email you now. We keep your details and photo to make your card.');
   } else if (st === 'closing') {
     set('stateT','textContent', 'Entries are closed.');
@@ -770,42 +793,74 @@ function snap(){
   c.getContext('2d').drawImage(v, 0, 0);
   c.toBlob(function(b){
     if (!b) return;
-    shotFile = new File([b], 'vybechek.jpg', { type: 'image/jpeg' });
+    addShot(new File([b], 'vybechek.jpg', { type: 'image/jpeg' }));
     stopCamera();
-    showShot();
+    showShots();
   }, 'image/jpeg', 0.92);
 }
 
-function gotShot(input){
-  var f = input.files && input.files[0];
-  if (!f) return;
-  shotFile = f;
-  ['shotCam','shotLib'].forEach(function(id){
-    var el = document.getElementById(id);
-    if (el && el !== input) { try { el.value = ''; } catch(e){} }
-  });
-  stopCamera();
-  showShot();
+function addShot(f){
+  if (shots.length >= MAXSHOTS) return;
+  shots.push({ file: f, url: URL.createObjectURL(f) });
+  cur = shots.length - 1;
 }
 
-function showShot(){
-  if (shotURL) { try { URL.revokeObjectURL(shotURL); } catch(e){} }
-  shotURL = URL.createObjectURL(shotFile);
-  document.getElementById('shotImg').src = shotURL;
+function gotShot(input){
+  var list = input.files ? Array.prototype.slice.call(input.files) : [];
+  if (!list.length) return;
+  list.slice(0, MAXSHOTS - shots.length).forEach(addShot);
+  try { input.value = ''; } catch(e){}
+  stopCamera();
+  showShots();
+}
+
+function showShots(){
+  var n = shots.length;
+  if (!n) { retake(); return; }
+  if (cur >= n) cur = n - 1;
+  document.getElementById('shotImg').src = shots[cur].url;
   document.getElementById('shotPrev').classList.add('show');
   document.getElementById('shootRow').style.display = 'none';
   document.getElementById('shotNext').style.display = 'block';
+  document.getElementById('shotNext').innerHTML = (n > 1 ? 'Use these ' + n : 'Use this') + ' &rarr;';
+  document.getElementById('addMore').style.display = n < MAXSHOTS ? 'block' : 'none';
+  var t = document.getElementById('thumbs');
+  t.innerHTML = '';
+  if (n > 1) {
+    shots.forEach(function(sh, i){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'thumb' + (i === cur ? ' on' : '');
+      b.innerHTML = '<img alt="" src="' + sh.url + '">' + (i === 0 ? '<i>Main</i>' : '');
+      b.onclick = function(){ cur = i; showShots(); };
+      t.appendChild(b);
+    });
+    t.classList.add('show');
+  } else { t.classList.remove('show'); }
+}
+
+function addMore(){
+  document.getElementById('addMore').style.display = 'none';
+  document.getElementById('shotNext').style.display = 'none';
+  document.getElementById('shootRow').style.display = 'block';
+}
+
+function removeShot(){
+  if (!shots.length) return;
+  try { URL.revokeObjectURL(shots[cur].url); } catch(e){}
+  shots.splice(cur, 1);
+  showShots();
 }
 
 function retake(){
-  shotFile = null;
   ['shotCam','shotLib'].forEach(function(id){
     var el = document.getElementById(id);
     if (el) { try { el.value = ''; } catch(e){} }
   });
   document.getElementById('shotPrev').classList.remove('show');
+  document.getElementById('thumbs').classList.remove('show');
   document.getElementById('shootRow').style.display = 'block';
   document.getElementById('shotNext').style.display = 'none';
+  document.getElementById('addMore').style.display = 'none';
 }
 
 /* ── 4. details ────────────────────────────────────────────── */
@@ -894,8 +949,8 @@ function retryPending(){
    costs nothing. Shrunk first: a phone photo is 4 to 8 MB, the card
    and the draw need about 200 KB. */
 function uploadPhoto(){
-  if (!shotFile || !entryId || !GAS_URL) return;
-  var url = URL.createObjectURL(shotFile), img = new Image();
+  if (!shots.length || !entryId || !GAS_URL) return;
+  var url = URL.createObjectURL(shots[0].file), img = new Image();
   img.onload = function(){
     try {
       var long = 1080, k = Math.min(1, long / Math.max(img.width, img.height));
@@ -914,14 +969,20 @@ function uploadPhoto(){
 
 /* The finished card goes up on its own once it is drawn. The server
    keeps it in Drive and sends the welcome email with it. */
-function uploadCard(blob){
-  if (!entryId || !GAS_URL || !blob) return;
-  var fr = new FileReader();
-  fr.onload = function(){
-    sendEntry({ source: 'vybechek_photo', kind: 'card', party_id: EVENT.party_id, entry_id: entryId, image: fr.result })
-      .catch(function(){});
-  };
-  fr.readAsDataURL(blob);
+function uploadCards(){
+  if (!entryId || !GAS_URL || !cards.length) return;
+  var total = cards.length, i = 0;
+  (function next(){
+    if (i >= total) return;
+    var idx = i++, fr = new FileReader();
+    fr.onload = function(){
+      sendEntry({ source: 'vybechek_photo', kind: 'card', party_id: EVENT.party_id, entry_id: entryId,
+                  image: fr.result, idx: idx, total: total })
+        .then(next, next);
+    };
+    fr.onerror = next;
+    fr.readAsDataURL(cards[idx]);
+  })();
 }
 
 /* ── 5. done ───────────────────────────────────────────────── */
@@ -963,8 +1024,9 @@ function loadImg(src){
     /* Never let a third-party image taint the canvas: without CORS
        headers it fails here instead of breaking the export. */
     if (/^https?:\/\//i.test(src) && src.indexOf(location.origin) !== 0) i.crossOrigin = 'anonymous';
-    i.onload = function(){ res(i); };
-    i.onerror = function(){ console.warn('[vybechek] image failed:', src); res(null); };
+    var done = false, tm = setTimeout(function(){ if (!done) { done = true; console.warn('[vybechek] image timed out:', src); res(null); } }, 9000);
+    i.onload = function(){ if (!done) { done = true; clearTimeout(tm); res(i); } };
+    i.onerror = function(){ if (!done) { done = true; clearTimeout(tm); console.warn('[vybechek] image failed:', src); res(null); } };
     i.src = src;
   });
 }
@@ -975,23 +1037,76 @@ function rule(g,x1,x2,y){g.strokeStyle='rgba(255,255,255,0.14)';g.lineWidth=2;g.
 
 function buildCard(){
   var cv = document.getElementById('cardCanvas'), g = cv.getContext('2d');
+  var fonts = (document.fonts && document.fonts.load)
+    ? Promise.race([
+        Promise.all([document.fonts.load('900 100px "Aesthet Nova"'), document.fonts.load('700 30px Figtree')]).catch(function(){}),
+        new Promise(function(r){ setTimeout(r, 4000); })
+      ])
+    : Promise.resolve();
+  setCardState('busy');
 
   Promise.all([
-    shotFile ? loadImg(URL.createObjectURL(shotFile)) : Promise.resolve(null),
     loadImg('texture.jpg'),
     loadImg(EVENT.flyer_url),
     loadImg(EVENT.logo_url),
     loadImg('logo_afrocue.png'),
-    Promise.all((EVENT.sponsors || []).map(function(s){ return s.logo ? loadImg(s.logo) : Promise.resolve(null); })),
-    (document.fonts && document.fonts.load)
-      ? Promise.all([document.fonts.load('900 100px "Aesthet Nova"'), document.fonts.load('700 30px Figtree')]).catch(function(){})
-      : Promise.resolve()
+    fonts
   ]).then(function(a){
-    draw(g, cv, a[0], a[1], a[2], a[3], a[4], a[5]);
-  }).catch(function(e){ console.error('[vybechek] card failed:', e); });
+    var photos = shots.length ? shots.map(function(sh){ return sh.url; }) : [null];
+    var out = [], p = Promise.resolve();
+    photos.forEach(function(u){
+      p = p.then(function(){ return loadImg(u); })
+           .then(function(ph){ return draw(g, cv, ph, a[0], a[1], a[2], a[3]); })
+           .then(function(b){ out.push(b); });
+    });
+    return p.then(function(){ return out; });
+  }).then(function(out){
+    cards = out; cardBlob = out[0];
+    showCards();
+    uploadCards();
+  }).catch(function(e){
+    console.error('[vybechek] card failed:', e);
+    setCardState('fail', e && e.message ? e.message : String(e));
+  });
 }
 
-function draw(g, cv, photo, tex, flyer, chiby, acue, simgs){
+function setCardState(st, msg){
+  var n = document.getElementById('cardStat'), b = document.getElementById('retryBtn');
+  if (!n) return;
+  if (st === 'busy') { document.getElementById('cardWrap').classList.remove('show'); n.style.display = 'block'; n.textContent = 'Making your card...'; b.style.display = 'none'; }
+  if (st === 'fail') { n.style.display = 'block'; n.textContent = 'Your card did not build on this phone. ' + (msg || ''); b.style.display = 'block'; }
+  if (st === 'ok') { n.style.display = 'none'; b.style.display = 'none'; }
+}
+
+function showCards(){
+  var box = document.getElementById('slides'), dots = document.getElementById('dots');
+  box.innerHTML = ''; dots.innerHTML = '';
+  cards.forEach(function(b, i){
+    var d = document.createElement('div'); d.className = 'slide';
+    var im = document.createElement('img'); im.alt = 'Your card ' + (i + 1); im.src = URL.createObjectURL(b);
+    d.appendChild(im); box.appendChild(d);
+    var dt = document.createElement('i'); if (i === 0) dt.className = 'on'; dots.appendChild(dt);
+  });
+  dots.style.display = cards.length > 1 ? 'flex' : 'none';
+  box.onscroll = function(){
+    var k = Math.round(box.scrollLeft / Math.max(box.clientWidth, 1));
+    Array.prototype.forEach.call(dots.children, function(d, i){ d.className = i === k ? 'on' : ''; });
+  };
+  document.getElementById('cardWrap').classList.add('show');
+  setCardState('ok');
+  var many = cards.length > 1;
+  var file = new File([cards[0]], 'vybechek.jpg', { type: 'image/jpeg' });
+  var canShare = false;
+  try { canShare = !!(navigator.canShare && navigator.share && navigator.canShare({ files: [file] })); } catch(e){}
+  document.getElementById('shareBtn').style.display = canShare ? 'block' : 'none';
+  document.getElementById('shareBtn').innerHTML = many ? 'Share all ' + cards.length + ' &rarr;' : 'Share it &rarr;';
+  document.getElementById('dlBtn').style.display = 'block';
+  document.getElementById('dlBtn').textContent = many ? 'Save all' : 'Save image';
+  set('cardNote','textContent', canShare ? 'Share it to your story, or save it and post it yourself.' : 'Hold the image to save it, then post it.');
+  startCoach(canShare);
+}
+
+function draw(g, cv, photo, tex, flyer, chiby, acue){
   /* Full story size, 9:16. The photo runs edge to edge, the party's mark sits top right,
      and one near-black panel, held clear of Instagram's reply bar, carries the name, the party and the
      way back. No lineup, no sponsors: this is the card people post. */
@@ -1054,25 +1169,11 @@ function draw(g, cv, photo, tex, flyer, chiby, acue, simgs){
   g.fillStyle = YEL; g.font = '700 26px Figtree, Helvetica, Arial, sans-serif';
   g.fillText(EVENT.share_url || 'afrocue.xyz/parties', px + (acue ? lw + 22 : 0), by - Math.max(lh/2 - 9, 0));
 
-  cv.toBlob(function(blob){
-    if (!blob) return;
-    cardBlob = blob;
-    uploadCard(blob);
-    document.getElementById('cardImg').src = URL.createObjectURL(blob);
-    document.getElementById('cardWrap').classList.add('show');
-
-    var file = new File([blob], 'vybechek.jpg', { type: 'image/jpeg' });
-    var canShare = false;
-    try { canShare = !!(navigator.canShare && navigator.share && navigator.canShare({ files: [file] })); } catch(e){}
-    if (canShare) {
-      document.getElementById('shareBtn').style.display = 'block';
-      set('cardNote','textContent', 'Share it to your story, or save it and post it yourself.');
-    }
-    startCoach(canShare);
-    /* Save is always there. Share is not on every browser, and on the
-       ones that have it a person may still want the file. */
-    document.getElementById('dlBtn').style.display = 'block';
-  }, 'image/jpeg', 0.92);
+  return new Promise(function(res, rej){
+    cv.toBlob(function(blob){
+      if (blob) res(blob); else rej(new Error('image export failed'));
+    }, 'image/jpeg', 0.92);
+  });
 }
 
 /* The instruction bar. Types itself across the card so the next three
@@ -1131,21 +1232,27 @@ function sponsorRow(g, imgs, cx, y, maxW){
   g.textAlign = 'center';
 }
 
+function cardFiles(){
+  return cards.map(function(b, i){ return new File([b], 'vybechek' + (cards.length > 1 ? '-' + (i + 1) : '') + '.jpg', { type: 'image/jpeg' }); });
+}
+
 function shareCard(){
-  if (!cardBlob) return;
-  var file = new File([cardBlob], 'vybechek.jpg', { type: 'image/jpeg' });
-  navigator.share({
-    files: [file],
-    text: vals.first_name + ' wuz at ' + EVENT.party_name + '. ' + EVENT.organizer_handle
-  }).catch(function(e){ if (e.name !== 'AbortError') console.warn('[vybechek] share:', e); });
+  if (!cards.length) return;
+  var files = cardFiles();
+  var data = { files: files, text: vals.first_name + ' wuz at ' + EVENT.party_name + '. ' + EVENT.organizer_handle };
+  try { if (!navigator.canShare(data)) data.files = [files[0]]; } catch(e){}
+  navigator.share(data).catch(function(e){ if (e.name !== 'AbortError') console.warn('[vybechek] share:', e); });
 }
 
 function downloadCard(){
-  if (!cardBlob) return;
-  var a = document.createElement('a');
-  a.href = URL.createObjectURL(cardBlob);
-  a.download = 'vybechek-' + (vals.first_name||'card').toLowerCase() + '.jpg';
-  document.body.appendChild(a); a.click(); a.remove();
+  cards.forEach(function(b, i){
+    setTimeout(function(){
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(b);
+      a.download = 'vybechek-' + (vals.first_name||'card').toLowerCase() + (cards.length > 1 ? '-' + (i + 1) : '') + '.jpg';
+      document.body.appendChild(a); a.click(); a.remove();
+    }, i * 350);
+  });
 }
 
 ['fname','email','ig'].forEach(function(id){
