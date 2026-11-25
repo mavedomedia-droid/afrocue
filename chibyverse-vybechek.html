@@ -59,7 +59,7 @@
   .at-name{font-family:var(--display);font-weight:900;font-size:20px;line-height:1;color:var(--white)}
   .card-logo{display:none;margin-top:auto;padding-top:14px;text-align:center}
   .card-logo.show{display:block}
-  .card-logo img{height:30px;width:auto;max-width:70%;opacity:.85}
+  .card-logo img{height:19px;width:auto;max-width:42%;opacity:.7}
   h1{
     font-family:var(--display);font-weight:900;
     font-size:clamp(38px,11vw,58px);line-height:1.02;letter-spacing:-0.015em;
@@ -542,7 +542,7 @@
         <div class="cardnote" id="cardNote">Hold the image to save it, then post it.</div>
       </div>
       <p class="cstat" id="cardStat" style="display:none"></p>
-      <button class="cta ghost" id="retryBtn" onclick="buildCard()" style="display:none">Try again</button>
+      <button class="cta ghost" id="retryBtn" onclick="cardsP=null;buildCard()" style="display:none">Try again</button>
 
       <div class="in-strip" id="inStrip"></div>
 
@@ -735,6 +735,7 @@ function go(n){
   document.body.classList.toggle('later', n >= 2);
   document.body.classList.toggle('done', n === 5);
   if (n !== 3) stopCamera();      /* camera is opt-in; see openCamera */
+  if (n >= 2 && n < 5) { try { prewarm(); } catch(e){} }
   window.scrollTo({ top: 0, behavior: 'auto' });
 }
 
@@ -893,6 +894,7 @@ function submitAll(){
 
   btn.disabled = true;
   btn.textContent = 'Entering…';
+  cardsP = makeCards(); cardsP.catch(function(){});
 
   sendEntry(vals).then(function(res){
     if (res && res.ok) {
@@ -1024,7 +1026,7 @@ function loadImg(src){
     /* Never let a third-party image taint the canvas: without CORS
        headers it fails here instead of breaking the export. */
     if (/^https?:\/\//i.test(src) && src.indexOf(location.origin) !== 0) i.crossOrigin = 'anonymous';
-    var done = false, tm = setTimeout(function(){ if (!done) { done = true; console.warn('[vybechek] image timed out:', src); res(null); } }, 9000);
+    var done = false, tm = setTimeout(function(){ if (!done) { done = true; console.warn('[vybechek] image timed out:', src); res(null); } }, 5000);
     i.onload = function(){ if (!done) { done = true; clearTimeout(tm); res(i); } };
     i.onerror = function(){ if (!done) { done = true; clearTimeout(tm); console.warn('[vybechek] image failed:', src); res(null); } };
     i.src = src;
@@ -1035,23 +1037,29 @@ function cover(g,i,x,y,w,h){var s=Math.max(w/i.width,h/i.height),dw=i.width*s,dh
 function sp(s){ return String(s).split('').join(' '); }
 function rule(g,x1,x2,y){g.strokeStyle='rgba(255,255,255,0.14)';g.lineWidth=2;g.beginPath();g.moveTo(x1,y);g.lineTo(x2,y);g.stroke();}
 
-function buildCard(){
-  var cv = document.getElementById('cardCanvas'), g = cv.getContext('2d');
+/* The shared pieces (texture, flyer, logos, fonts) start loading as soon
+   as the details step opens, so they are ready by the time someone taps
+   Enter. The drawing itself starts on that tap, alongside the entry
+   request, instead of waiting for the server to answer. */
+var assetsP = null, cardsP = null;
+
+function prewarm(){
+  if (assetsP) return assetsP;
   var fonts = (document.fonts && document.fonts.load)
     ? Promise.race([
         Promise.all([document.fonts.load('900 100px "Aesthet Nova"'), document.fonts.load('700 30px Figtree')]).catch(function(){}),
-        new Promise(function(r){ setTimeout(r, 4000); })
+        new Promise(function(r){ setTimeout(r, 3000); })
       ])
     : Promise.resolve();
-  setCardState('busy');
+  assetsP = Promise.all([
+    loadImg('texture.jpg'), loadImg(EVENT.flyer_url), loadImg(EVENT.logo_url), loadImg('logo_afrocue.png'), fonts
+  ]);
+  return assetsP;
+}
 
-  Promise.all([
-    loadImg('texture.jpg'),
-    loadImg(EVENT.flyer_url),
-    loadImg(EVENT.logo_url),
-    loadImg('logo_afrocue.png'),
-    fonts
-  ]).then(function(a){
+function makeCards(){
+  var cv = document.getElementById('cardCanvas'), g = cv.getContext('2d');
+  return prewarm().then(function(a){
     var photos = shots.length ? shots.map(function(sh){ return sh.url; }) : [null];
     var out = [], p = Promise.resolve();
     photos.forEach(function(u){
@@ -1060,12 +1068,19 @@ function buildCard(){
            .then(function(b){ out.push(b); });
     });
     return p.then(function(){ return out; });
-  }).then(function(out){
+  });
+}
+
+function buildCard(){
+  setCardState('busy');
+  if (!cardsP) cardsP = makeCards();
+  cardsP.then(function(out){
     cards = out; cardBlob = out[0];
     showCards();
     uploadCards();
   }).catch(function(e){
     console.error('[vybechek] card failed:', e);
+    cardsP = null;
     setCardState('fail', e && e.message ? e.message : String(e));
   });
 }
@@ -1148,7 +1163,7 @@ function draw(g, cv, photo, tex, flyer, chiby, acue){
 
   g.fillStyle = 'rgba(240,237,232,0.5)';
   g.font = '700 22px Figtree, Helvetica, Arial, sans-serif';
-  g.fillText(sp('WUZ AT'), px, BY+168);
+  g.font = '700 21px Figtree, Helvetica, Arial, sans-serif'; g.fillText('DID A VYBECHEK AT', px, BY+168);
   g.fillStyle = YEL;
   g.font = '700 44px Figtree, Helvetica, Arial, sans-serif';
   g.fillText((EVENT.party_name||'').toUpperCase(), px, BY+216);
@@ -1239,7 +1254,7 @@ function cardFiles(){
 function shareCard(){
   if (!cards.length) return;
   var files = cardFiles();
-  var data = { files: files, text: vals.first_name + ' wuz at ' + EVENT.party_name + '. ' + EVENT.organizer_handle };
+  var data = { files: files, text: vals.first_name + ' did a VybeChek at ' + EVENT.party_name + '. ' + EVENT.organizer_handle };
   try { if (!navigator.canShare(data)) data.files = [files[0]]; } catch(e){}
   navigator.share(data).catch(function(e){ if (e.name !== 'AbortError') console.warn('[vybechek] share:', e); });
 }
