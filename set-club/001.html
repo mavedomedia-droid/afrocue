@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>You have been invited to Set Club 001</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="You have been invited to Set Club 001. Friday 4 December, Lekki.">
+<meta property="og:title" content="You have been invited to Set Club 001"><meta property="og:image" content="https://afrocue.xyz/setsclub_hero.jpg">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap">
+<style>
+@font-face{font-family:'Aesthet Nova';font-weight:900;font-display:swap;src:url('/fonnts.com-Aesthet-Nova-Black.woff2') format('woff2'),url('/fonnts.com-Aesthet-Nova-Black.otf') format('opentype')}
+@font-face{font-family:'Aesthet Nova';font-weight:500;font-display:swap;src:url('/fonnts.com-Aesthet-Nova-Medium.woff2') format('woff2'),url('/fonnts.com-Aesthet-Nova-Medium.otf') format('opentype')}
+:root{--y:#dedc00;--ink:#f0ede8;--mute:rgba(240,237,232,.62);--fine:rgba(240,237,232,.4);--line:rgba(255,255,255,.12);
+  --display:'Aesthet Nova',Georgia,serif;--sans:'Figtree',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{background:#0a0a0a;color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh}
+.tex{position:fixed;inset:0;background:url('/texture.jpg') center/cover;opacity:.16;pointer-events:none;z-index:0}
+.page{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:calc(var(--ac-nav-h,64px) + 28px) 20px 48px}
+input{width:100%;padding:15px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--ink);font-family:inherit;font-size:16px}
+input:focus{outline:none;border-color:var(--y)}
+input::placeholder{color:rgba(240,237,232,.32)}
+label{display:block;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fine);margin:0 0 7px}
+.f{margin-bottom:12px}
+.at{position:relative}.at span{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--fine);pointer-events:none}.at input{padding-left:32px}
+.hp{position:absolute;left:-9999px;height:0;overflow:hidden}
+.err{display:none;color:#ff8c6b;font-size:13.5px;margin-top:10px}.err.show{display:block}
+.btn{display:block;width:100%;margin-top:14px;padding:16px;border-radius:12px;border:0;background:var(--y);color:#121200;font-family:inherit;font-weight:800;font-size:16px;cursor:pointer}
+.btn:disabled{opacity:.55}
+.decline{display:block;margin:14px auto 0;background:none;border:0;color:var(--fine);font-family:inherit;font-size:13px;text-decoration:underline;cursor:pointer}
+.done{display:none;text-align:center}.done.show{display:block}
+.done h3{font-family:var(--display);font-weight:900;font-size:28px;line-height:1.1;margin:0 0 8px}
+.done p{color:var(--mute);margin:0;font-size:15px}
+
+.tex{display:none}
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:#0a0a0a;transition:opacity .8s ease}
+body.dim .bg{opacity:.38}
+.bg::before{content:'';position:absolute;inset:-20px;background:url('/setsclub_hero.jpg') center 30%/cover;filter:blur(1px) saturate(1.15);opacity:.85}
+.bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 90% 60% at 50% 40%,rgba(10,10,10,0),rgba(10,10,10,.7) 75%),linear-gradient(180deg,rgba(10,10,10,.1),rgba(10,10,10,.75))}
+
+.card{position:relative;background:rgba(241,236,225,.84);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#141412;border-radius:6px;padding:26px 22px 24px;text-align:center;
+  box-shadow:0 30px 60px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.2);transform:rotate(-1.2deg);
+  transition:transform .7s cubic-bezier(.5,0,.2,1),opacity .5s ease .2s}
+.card::before{content:'';position:absolute;inset:10px;border:1px solid rgba(20,20,18,.28);border-radius:3px;pointer-events:none}
+
+/* invitation touches: paper grain, corner marks, an RSVP line, a wax seal, and a gentle arrival */
+.card::after{content:'';position:absolute;inset:0;border-radius:6px;background:url('/texture.jpg') center/cover;opacity:.07;mix-blend-mode:multiply;pointer-events:none}
+.corner{position:absolute;width:14px;height:14px;border:1.5px solid rgba(20,20,18,.55);pointer-events:none}
+.corner.tl{top:16px;left:16px;border-right:0;border-bottom:0}
+.corner.tr{top:16px;right:16px;border-left:0;border-bottom:0}
+.corner.bl{bottom:16px;left:16px;border-right:0;border-top:0}
+.corner.br{bottom:16px;right:16px;border-left:0;border-top:0}
+.rsvp-k{font-size:10px;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:#6b6656;margin:18px 0 -10px}
+.emb{position:absolute;right:14px;bottom:-30px;width:64px;height:auto;z-index:3;transform:rotate(8deg);filter:drop-shadow(0 6px 10px rgba(0,0,0,.45))}
+.seal{position:absolute;right:22px;bottom:-22px;width:58px;height:58px;border-radius:50%;z-index:3;
+  background:radial-gradient(circle at 35% 30%,#f4f15a,#dedc00 45%,#b8b600 100%);
+  box-shadow:0 6px 14px rgba(0,0,0,.45),inset 0 -3px 6px rgba(0,0,0,.18),inset 0 2px 3px rgba(255,255,255,.45);
+  display:flex;align-items:center;justify-content:center;transform:rotate(-12deg)}
+.seal::before{content:'';position:absolute;inset:6px;border-radius:50%;border:1.5px dashed rgba(60,58,0,.45)}
+.seal span{font-family:var(--display);font-weight:900;font-size:15px;color:#3c3a00;letter-spacing:.02em}
+@keyframes arrive{from{opacity:0;transform:translateY(40px) rotate(2deg)}to{opacity:1;transform:rotate(-1.2deg)}}
+.page:not(.go) .card{animation:arrive .9s cubic-bezier(.2,.8,.2,1) both .15s}
+@media (prefers-reduced-motion:reduce){.page:not(.go) .card{animation:none}}
+
+.emb-top{display:block;width:62px;height:auto;margin:0 auto 10px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.25))}
+.card .times{font-size:13.5px;font-weight:600;color:#3a382f;margin-top:6px}
+/* done: the same as the email */
+.ok-head{display:flex;gap:16px;align-items:flex-start;text-align:left;margin-bottom:16px}
+.ok-head img{width:64px;height:auto;flex-shrink:0}
+.done .ok-k{font-size:10px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--y);margin:6px 0 8px}
+.done .ok-h{font-family:var(--sans);font-weight:900;font-size:24px;line-height:1.15;color:#fff;margin:0}
+.done .ok-p{font-size:15px;line-height:1.65;color:var(--mute);text-align:left;margin:0 0 18px}
+.tk{background:#f1ece1;color:#141412;border-radius:10px;text-align:left;overflow:hidden}
+.tk-top{padding:16px 18px 14px;border-bottom:1.5px dashed #b0a993}
+.tk-top small{display:block;font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#6b6656;margin-bottom:3px}
+.tk-top b{font-size:19px;font-weight:900}
+.tk-row{display:grid;grid-template-columns:84px 1fr;gap:10px;padding:12px 18px;border-bottom:1px dashed #c7c0ad;font-size:14px;line-height:1.5}
+.tk-row:last-child{border-bottom:0}
+.tk-row b{font-weight:900}
+.tk-row span{color:#3a382f}
+.card .k{font-family:var(--display);font-weight:500;font-size:clamp(16px,4.6vw,19px);color:#3a382f;margin:4px 0 8px}
+.card h1{font-family:var(--display);font-weight:900;font-size:clamp(34px,10.4vw,50px);line-height:1;margin:0;letter-spacing:-.01em;white-space:nowrap}
+.card .for{font-size:11px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:#6b6656;margin-top:10px}
+.card .rule{width:44px;height:2px;background:#141412;margin:16px auto}
+.card p{font-size:15.5px;line-height:1.65;color:#2f2d27;margin:0 auto;max-width:24em}
+.accept{display:inline-block;margin:22px 0 4px;padding:15px 26px;border:0;border-radius:100px;background:#141412;color:#f1ece1;
+  font-family:inherit;font-weight:800;font-size:15.5px;cursor:pointer;transition:transform .15s}
+.accept:active{transform:scale(.97)}
+.accept span{color:var(--y)}
+
+.prog{margin:18px auto 2px;max-width:292px;text-align:left;border-top:1px dotted rgba(20,20,18,.35)}
+.prog li{list-style:none;display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start;padding:9px 0;border-bottom:1px dotted rgba(20,20,18,.35)}
+.prog .ic{width:28px;height:28px;border-radius:50%;background:#141412;display:flex;align-items:center;justify-content:center}
+.prog .ic svg{width:14px;height:14px;stroke:#dedc00;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.prog p{margin:3px 0 0;font-size:13.5px;line-height:1.55;color:#3a382f}
+.prog b{font-weight:800;color:#141412}
+.prog{padding:0}
+.card .when{font-family:var(--display);font-weight:900;font-size:19px;line-height:1.25;margin:0}
+.card .where{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#6b6656;margin-top:6px;font-weight:700}
+.card .from{margin-top:14px;font-size:12px;color:#6b6656}
+.card .from img{height:26px;vertical-align:middle;margin-left:6px;filter:invert(1) grayscale(1) contrast(1.4)}
+/* accepting: the card slides down and away, the form takes its place */
+.page.go .card{transform:translateY(110vh) rotate(4deg);opacity:0}
+.reply{display:none;background:#121212;border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:22px 20px}
+.reply.show{display:block;animation:drop .6s cubic-bezier(.2,.8,.2,1) both}
+@keyframes drop{from{opacity:0;transform:translateY(-40px)}to{opacity:1;transform:none}}
+.reply .rk{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--y);margin-bottom:6px}
+.reply h2{font-family:var(--display);font-weight:900;font-size:24px;margin:0 0 4px}
+.reply .sum{font-size:13.5px;color:var(--mute);margin:0 0 16px}
+
+/* ── the night, in three short scenes, between Accept and the form ── */
+.exp{display:none;position:relative;text-align:center;padding-top:8px}
+.exp.show{display:block}
+.scene{display:none}
+.scene.on{display:block;animation:sIn .6s cubic-bezier(.2,.8,.2,1) both}
+@keyframes sIn{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+.cap{font-family:var(--display);font-weight:900;font-size:clamp(24px,7vw,30px);line-height:1.12;margin:22px 0 6px}
+.cap .y{color:var(--y)}
+.capsub{font-size:14.5px;color:var(--mute);margin:0}
+.stage{position:relative;width:100%;max-width:360px;margin:0 auto;aspect-ratio:16/11}
+/* scene 1: a YouTube set playing */
+.yt{position:absolute;inset:0;border-radius:14px;overflow:hidden;background:#000;box-shadow:0 24px 50px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.08)}
+.yt-v{position:absolute;left:0;right:0;top:0;bottom:46px;background:url('/setsclub_hero.jpg') center 35%/cover;animation:kb 6s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.12) translateY(-3%)}}
+.yt-v::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.7))}
+.yt-live{position:absolute;left:10px;top:10px;z-index:2;font-size:10px;font-weight:800;letter-spacing:.08em;color:#fff;background:#e00;border-radius:3px;padding:2px 6px}
+.yt-n{position:absolute;right:10px;top:10px;z-index:2;font-size:10.5px;font-weight:700;color:#fff;background:rgba(0,0,0,.6);border-radius:3px;padding:2px 7px}
+.yt-eq{position:absolute;left:12px;bottom:58px;z-index:2;display:flex;gap:3px;align-items:flex-end;height:22px}
+.yt-eq i{display:block;width:4px;background:var(--y);border-radius:1px;animation:eq 1s ease-in-out infinite}
+.yt-eq i:nth-child(2){animation-delay:-.3s}.yt-eq i:nth-child(3){animation-delay:-.6s}.yt-eq i:nth-child(4){animation-delay:-.15s}.yt-eq i:nth-child(5){animation-delay:-.45s}
+@keyframes eq{0%,100%{height:5px}50%{height:22px}}
+.yt-bar{position:absolute;left:0;right:0;bottom:46px;height:3px;background:rgba(255,255,255,.25);z-index:2}
+.yt-bar b{display:block;height:100%;width:8%;background:#f00;animation:prog 6s linear forwards}
+.yt-bar b::after{content:'';position:absolute;width:11px;height:11px;border-radius:50%;background:#f00;top:-4px;margin-left:-5px}
+.yt-bar b{position:relative}
+@keyframes prog{to{width:72%}}
+.yt-meta{position:absolute;left:0;right:0;bottom:0;height:46px;display:flex;align-items:center;gap:10px;padding:0 12px;background:#0f0f0f;text-align:left}
+.yt-av{width:26px;height:26px;border-radius:50%;background:var(--y);flex-shrink:0}
+.yt-t{font-size:12.5px;font-weight:700;color:#f1f1f1;line-height:1.2}
+.yt-c{font-size:10.5px;color:#aaa}
+/* scene 2: a third space, a room to unwind */
+.room{position:absolute;inset:0;border-radius:14px;overflow:hidden;background:radial-gradient(ellipse 70% 60% at 72% 38%,rgba(255,196,110,.28),transparent 62%),#151410;border:1px solid rgba(255,255,255,.07)}
+.lamp{position:absolute;right:16%;top:16%;width:46px;height:30px;background:#e9d8b6;border-radius:6px 6px 22px 22px;animation:glow 3s ease-in-out infinite}
+.lamp::after{content:'';position:absolute;left:50%;top:30px;width:3px;height:70px;background:#5a5446;transform:translateX(-50%)}
+@keyframes glow{0%,100%{box-shadow:0 10px 60px 22px rgba(255,196,110,.25)}50%{box-shadow:0 10px 80px 34px rgba(255,196,110,.42)}}
+.sofa{position:absolute;left:12%;bottom:16%;width:56%;height:28%;background:#2c3a2c;border-radius:16px 16px 8px 8px}
+.sofa::before{content:'';position:absolute;left:-7%;right:-7%;bottom:0;height:62%;background:#344634;border-radius:12px}
+.sofa::after{content:'';position:absolute;left:8%;right:8%;bottom:-10px;height:10px;background:repeating-linear-gradient(90deg,#1c241c 0 8px,transparent 8px calc(100% - 8px),#1c241c calc(100% - 8px))}
+.tv{position:absolute;left:10%;top:14%;width:42%;aspect-ratio:16/9;border-radius:5px;background:url('/setsclub_hero.jpg') center/cover;box-shadow:0 0 40px rgba(70,255,90,.25);border:3px solid #0b0b0b}
+.breath{position:absolute;left:50%;bottom:-40%;width:120%;aspect-ratio:1;border-radius:50%;transform:translateX(-50%);background:radial-gradient(circle,rgba(222,220,0,.08),transparent 60%);animation:br 4s ease-in-out infinite}
+@keyframes br{0%,100%{transform:translateX(-50%) scale(.92)}50%{transform:translateX(-50%) scale(1.05)}}
+/* scene 3: games, chill and listen, refreshments */
+.table{position:absolute;inset:0;border-radius:14px;overflow:hidden;background:#12110e;border:1px solid rgba(255,255,255,.07)}
+.pc{position:absolute;top:22%;width:22%;aspect-ratio:5/7;border-radius:7px;background:#f1ece1;box-shadow:0 10px 24px rgba(0,0,0,.5)}
+.pc::after{content:'';position:absolute;inset:16%;border:2px solid #141412;border-radius:4px}
+.pc.a{left:16%;transform:rotate(-14deg);animation:deal .8s ease both .1s}
+.pc.b{left:30%;transform:rotate(4deg);animation:deal .8s ease both .35s}
+.pc.b::before{content:'';position:absolute;left:50%;top:50%;width:26%;aspect-ratio:1;background:var(--y);transform:translate(-50%,-50%) rotate(45deg)}
+@keyframes deal{from{opacity:0;transform:translateY(-40px) rotate(-30deg)}}
+.glass{position:absolute;right:18%;bottom:18%;width:20%;aspect-ratio:3/5;border:2px solid rgba(255,255,255,.55);border-top:0;border-radius:0 0 10px 10px;overflow:hidden}
+.glass b{position:absolute;left:0;right:0;bottom:0;height:0;background:linear-gradient(180deg,#f3e65a,#d8b521);animation:pour 2.2s ease-out forwards .5s}
+.glass b::before{content:'';position:absolute;left:0;right:0;top:-5px;height:6px;background:rgba(255,255,255,.8);border-radius:50%}
+@keyframes pour{to{height:68%}}
+.bub{position:absolute;bottom:0;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.7);animation:bub 2s ease-in infinite}
+@keyframes bub{from{transform:translateY(0);opacity:0}30%{opacity:1}to{transform:translateY(-60px);opacity:0}}
+.note{position:absolute;color:var(--y);font-size:20px;animation:fl 3s ease-in-out infinite;opacity:0}
+@keyframes fl{0%{opacity:0;transform:translateY(10px)}30%{opacity:1}100%{opacity:0;transform:translateY(-40px) rotate(12deg)}}
+.dots{display:flex;gap:6px;justify-content:center;margin:20px 0 0}
+.dots i{width:22px;height:3px;border-radius:2px;background:rgba(255,255,255,.32);overflow:hidden;position:relative}
+.dots i.done{background:var(--y)}
+.dots i.on::after{content:'';position:absolute;inset:0;background:var(--y);transform-origin:left;animation:fillx var(--d,2.6s) linear forwards}
+@keyframes fillx{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.skip{display:block;margin:16px auto 0;background:none;border:0;color:var(--fine);font-family:inherit;font-size:13px;cursor:pointer}
+
+/* story layout: one card per scene, bars on top that fill over the delay */
+.story{position:relative;max-width:360px;margin:0 auto;background:#121212;border:1px solid rgba(255,255,255,.09);border-radius:18px;overflow:hidden;box-shadow:0 24px 50px rgba(0,0,0,.55);user-select:none;-webkit-user-select:none}
+.bars{position:absolute;left:10px;right:10px;top:10px;z-index:6;display:flex;gap:4px}
+.bars i{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.3);overflow:hidden;position:relative}
+.bars i::after{content:'';position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:left}
+.bars i.done::after{transform:scaleX(1)}
+.bars i.on::after{animation:fillx var(--d,2.9s) linear forwards}
+.story .stage{max-width:none;aspect-ratio:16/12}
+.story .yt,.story .room,.story .table{border-radius:0;border:0;box-shadow:none}
+.story .yt-live,.story .yt-n{top:22px}
+.words{padding:18px 18px 20px;text-align:left;border-top:1px solid rgba(255,255,255,.07)}
+.words .cap{font-size:clamp(22px,6.4vw,27px);margin:0 0 6px}
+.words .capsub{font-size:14px}
+.tap{position:absolute;top:0;bottom:0;z-index:5;width:34%;background:none;border:0;cursor:pointer}
+.tap.l{left:0}.tap.r{right:0;width:66%}
+.scene.on{animation:sIn .45s ease both}
+@media (prefers-reduced-motion:reduce){.scene.on,.yt-v,.yt-eq i,.lamp,.breath,.pc,.glass b,.bub,.note{animation:none!important}.glass b{height:68%}}
+.back{display:block;margin:12px auto 0;background:none;border:0;color:var(--fine);font-family:inherit;font-size:13px;cursor:pointer}
+</style>
+</head>
+<body>
+<div id="ac-nav"></div>
+<div class="tex"></div>
+<div class="bg"></div>
+<main class="page" id="page">
+  <article class="card" id="card">
+    <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+    <img class="emb-top" src="/assets/setclub-emblem.png" alt="Set Club">
+    <div class="k" data-to="{n}, you have been invited to" data-plain="You have been invited to">You have been invited to</div>
+    <h1>Set Club 001</h1>
+    <div class="for">For lovers of DJ sets</div>
+    <div class="rule"></div>
+    <p>On Friday, December 4th, whatever you are doing at night, come pregame with AfroCue at the first edition of Set Club.</p>
+    <div class="rsvp-k">Kindly RSVP</div>
+    <button class="accept" type="button" onclick="accept()">Accept the invitation <span>&rarr;</span></button>
+    <ul class="prog">
+      <li><i class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M10 9l4 2-4 2z"/><path d="M8 21h8"/></svg></i>
+        <p><b>Music:</b> DJ sets from the Set Club playlist on YouTube, on the big screen and a proper sound system.</p></li>
+      <li><i class="ic"><svg viewBox="0 0 24 24"><path d="M4 18v-5a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v5"/><path d="M2 18h20"/><path d="M6 10V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/></svg></i>
+        <p><b>Space:</b> A comfortable Lekki apartment. Games, chill and good company.</p></li>
+      <li><i class="ic"><svg viewBox="0 0 24 24"><path d="M7 3h10l-1 9a4 4 0 0 1-8 0z"/><path d="M12 16v5"/><path d="M8 21h8"/></svg></i>
+        <p><b>Refreshments:</b> Drinks and light bites before the night out.</p></li>
+    </ul>
+    <div class="rule"></div>
+    <div class="when">Friday 4 December</div>
+    <div class="times">Lounge from 4:30PM &middot; Sets from 7PM</div>
+    <div class="where">Lekki</div>
+    <div class="from">With love from<img src="/logo_afrocue.png" alt="AfroCue"></div>
+  </article>
+  <section class="exp" id="exp" aria-live="polite">
+    <div class="story" id="story">
+      <div class="bars" id="dots"><i></i><i></i><i></i></div>
+      <button class="tap l" type="button" aria-label="Back" onclick="stepExp(-1)"></button><button class="tap r" type="button" aria-label="Next" onclick="stepExp(1)"></button>
+    <div class="scene" data-d="2900">
+      <div class="stage"><div class="yt">
+        <div class="yt-v"></div><span class="yt-live">LIVE SET</span><span class="yt-n" id="ytn">Now playing</span>
+        <div class="yt-eq"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="yt-bar"><b></b></div>
+        <div class="yt-meta"><span class="yt-av"></span><span><span class="yt-t">Set Club 001</span><br><span class="yt-c">YouTube sets on the big screen</span></span></div>
+      </div></div>
+      <div class="words"><div class="cap">The music is <span class="y">YouTube sets.</span></div><p class="capsub">A curated lineup of select sets from the archives of Nigerian dance music.</p></div>
+    </div>
+    <div class="scene" data-d="2900">
+      <div class="stage"><div class="room"><div class="breath"></div><div class="tv"></div><div class="lamp"></div><div class="sofa"></div></div></div>
+      <div class="words"><div class="cap">A third space to <span class="y">unwind and relax.</span></div><p class="capsub">A very comfortable apartment in Lekki.</p></div>
+    </div>
+    <div class="scene" data-d="2900">
+      <div class="stage"><div class="table">
+        <div class="pc a"></div><div class="pc b"></div>
+        <div class="glass"><b></b><span class="bub" style="left:30%;animation-delay:.9s"></span><span class="bub" style="left:60%;animation-delay:1.5s"></span></div>
+        <span class="note" style="left:58%;top:22%;animation-delay:.4s">&#9834;</span><span class="note" style="left:68%;top:30%;animation-delay:1.4s">&#9835;</span>
+      </div></div>
+      <div class="words"><div class="cap">Games, chill <span class="y">and listen.</span></div><p class="capsub">We will also have refreshments.</p></div>
+    </div>
+    </div>
+    <button class="skip" type="button" onclick="endExp()">Skip</button>
+  </section>
+  <section class="reply" id="reply">
+    <div class="rk">Set Club 001</div>
+    <h2>Almost there.</h2>
+    <p class="sum">Friday 4 December. Lounge from 4:30PM, sets from 7PM. Lekki, and we send the location to your email.</p>
+    <div id="formBox">
+  <div class="f"><label for="fname">First name</label><input id="fname" type="text" placeholder="Femi" autocomplete="given-name"></div>
+  <div class="f"><label for="email">Email</label><input id="email" type="email" placeholder="you@email.com" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false"></div>
+  <div class="f"><label for="insta">Instagram</label><div class="at"><span>@</span><input id="insta" type="text" placeholder="yourhandle" autocomplete="off" autocapitalize="off" spellcheck="false"></div></div>
+  <div class="hp" aria-hidden="true"><input id="hpWeb" tabindex="-1" autocomplete="off"></div>
+  <button class="btn" id="yesBtn" type="button" onclick="rsvp('yes')">Confirm my place &rarr;</button>
+  <button class="decline" id="noBtn" type="button" onclick="rsvp('no')">I cannot make it</button>
+  <div class="err" id="err"></div>
+</div>
+<div class="done" id="done"><h3 id="doneH"></h3><p id="doneP"></p></div>
+    <button class="back" type="button" onclick="unaccept()">Back to the invitation</button>
+  </section>
+</main>
+<script src="/js/afrocue-ui.js" data-nav="minimal" data-footer="none" data-base="/"></script>
+<script src="/js/afrocue.js"></script>
+<script>
+var EVENT = { name: 'Set Club 001', date_label: 'Friday 4 December 2026', time: '7PM to 10PM', area: 'Lekki' };
+var GAS_URL = (typeof AFROCUE_SCRIPT_URL !== 'undefined') ? AFROCUE_SCRIPT_URL : '';
+function $(id){ return document.getElementById(id); }
+/* A personal link: afrocue.xyz/set-club/001/?to=Tobi puts the name on the invitation and in the form. */
+(function(){
+  var to = (new URLSearchParams(location.search).get('to') || '').trim().replace(/[<>]/g, '').slice(0, 24);
+  Array.prototype.forEach.call(document.querySelectorAll('[data-to]'), function(el){
+    el.textContent = to ? el.getAttribute('data-to').replace('{n}', to) : el.getAttribute('data-plain');
+  });
+  if (to && $('fname')) $('fname').value = to;
+})();
+function rsvp(ans){
+  var err = $('err'), name = $('fname').value.trim(), email = $('email').value.trim(), ig = $('insta').value.trim().replace(/^@+/, '');
+  err.classList.remove('show');
+  if ($('hpWeb').value) return;
+  if (!name) { err.textContent = 'Add your first name.'; err.classList.add('show'); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = 'That email does not look right.'; err.classList.add('show'); return; }
+  if (!GAS_URL) { err.textContent = 'This page is missing its script link. Tell the team.'; err.classList.add('show'); return; }
+  var b = $(ans === 'yes' ? 'yesBtn' : 'noBtn'), label = b.innerHTML; b.disabled = true; b.textContent = 'Sending...';
+  try { dataLayer.push({ event: 'setClub001Rsvp', attending: ans }); } catch(e){}
+  fetch(GAS_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({ source: 'setclub_001', event: EVENT.name, event_date: EVENT.date_label,
+      first_name: name, name: name, email: email, instagram: ig, attending: ans }) })
+    .then(function(r){ return r.json(); })
+    .then(function(res){
+      if (res && res.status && res.status !== 'success' && res.status !== 'ok') throw new Error(res.message || 'not saved');
+      $('formBox').style.display = 'none';
+      $('doneH').textContent = ans === 'yes' ? 'See you Friday, ' + name + '.' : 'Thanks, ' + name + '.';
+      $('doneP').textContent = ans === 'yes' ? 'Your confirmation and the address are on the way to ' + email + '.' : 'We will miss you. Next time.';
+      $('done').classList.add('show');
+      if (window.onRsvp) window.onRsvp(ans);
+    })
+    .catch(function(e){ console.error('[setclub001]', e); b.disabled = false; b.innerHTML = label; err.textContent = 'That did not go through. Tap again.'; err.classList.add('show'); });
+}
+</script>
+<script>
+var expT = null, expI = 0;
+function accept(){
+  var pg = document.getElementById('page'); pg.classList.add('go'); document.body.classList.add('dim');
+  try { dataLayer.push({ event: 'setClub001Accept' }); } catch(x){}
+  setTimeout(function(){
+    document.getElementById('card').style.display = 'none';
+    window.scrollTo({ top: 0 });
+    startExp();
+  }, 650);
+}
+function startExp(){
+  var ex = document.getElementById('exp'); ex.classList.add('show'); expI = 0; showScene();
+}
+function showScene(){
+  var sc = document.querySelectorAll('#exp .scene'), dots = document.querySelectorAll('#dots i');
+  if (expI < 0) expI = 0;
+  if (expI >= sc.length) { endExp(); return; }
+  Array.prototype.forEach.call(sc, function(s, i){ s.classList.toggle('on', i === expI); });
+  Array.prototype.forEach.call(dots, function(d, i){ d.className = ''; void d.offsetWidth; d.className = i < expI ? 'done' : (i === expI ? 'on' : ''); });
+  var d = +sc[expI].getAttribute('data-d') || 2800;
+  document.getElementById('dots').style.setProperty('--d', d + 'ms');
+  clearTimeout(expT); expT = setTimeout(function(){ expI++; showScene(); }, d);
+}
+function stepExp(n){ clearTimeout(expT); expI += n; showScene(); }
+function endExp(){
+  clearTimeout(expT);
+  document.getElementById('exp').classList.remove('show');
+  document.getElementById('reply').classList.add('show');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function unaccept(){
+  var pg = document.getElementById('page');
+  document.getElementById('reply').classList.remove('show');
+  var c = document.getElementById('card'); c.style.display = ''; document.body.classList.remove('dim');
+  requestAnimationFrame(function(){ pg.classList.remove('go'); });
+}
+window.onRsvp = function(ans){
+  ['.back','.reply h2','.reply .sum','.reply .rk'].forEach(function(s){ var e = document.querySelector(s); if (e) e.style.display = 'none'; });
+  var d = document.getElementById('done'), n = document.getElementById('fname').value.trim(), em = document.getElementById('email').value.trim();
+  var esc = function(t){ return String(t).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+  var img = document.querySelector('.emb-top').getAttribute('src');
+  if (ans === 'yes') {
+    d.innerHTML = '<div class="ok-head"><img src="' + img + '" alt="Set Club"><div><p class="ok-k">RSVP confirmed</p><h3 class="ok-h">You’re on the list, ' + esc(n) + '.</h3></div></div>' +
+      '<p class="ok-p">Thank you for your RSVP to Set Club. Here is how Friday runs. A copy is on its way to ' + esc(em) + '.</p>' +
+      '<div class="tk"><div class="tk-top"><small>Set Club 001</small><b>Friday 4 December</b></div>' +
+      '<div class="tk-row"><b>4:30PM</b><span>The lounge opens. Come in and relax.</span></div>' +
+      '<div class="tk-row"><b>7PM</b><span>Official sets start.</span></div>' +
+      '<div class="tk-row"><b>Where</b><span>Lekki. We will send the location before Friday.</span></div></div>';
+  } else {
+    d.innerHTML = '<div class="ok-head"><img src="' + img + '" alt="Set Club"><div><p class="ok-k">Your reply</p><h3 class="ok-h">Thanks for letting us know, ' + esc(n) + '.</h3></div></div>' +
+      '<p class="ok-p">Sorry you can’t make Set Club 001. See you at the next one.</p>';
+  }
+};
+</script>
+</body>
+</html>
