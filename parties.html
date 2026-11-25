@@ -2037,6 +2037,24 @@
       .parties-header{margin-top:4px!important}
     }
 
+    /* The date chips and the side rails bleed 4px past the screen edge on
+       phones, which is a sideways wobble. Clipped at the section, which
+       does not make it a scroll box. */
+    @media (max-width:768px){ #parties{overflow-x:clip} }
+
+    /* The hero's one short line, and the counts under it. */
+    .hero-tag{font-size:14px;font-weight:400;line-height:1.5;color:rgba(240,237,232,0.6);max-width:400px;margin:0 0 14px}
+    .hero-desc:empty{display:none}
+    @media (max-width:768px){ .hero-tag{font-size:12px;line-height:1.4;margin:0 0 6px;max-width:100%} }
+
+    /* The title row: The parties, its count, and the sort at the far end. */
+    .search-input[hidden]{display:none !important}
+    .nsec-h-row{align-items:center;flex-wrap:nowrap;width:100%}
+    .nsec-h-row .nsec-t{white-space:nowrap}
+    .parties-header .nsec-h-row .filter-bar,.nsec-h-row .filter-bar{flex:0 0 auto;width:auto;margin-left:auto;justify-content:flex-end;overflow:visible;padding:0;gap:6px}
+    .nsec-h-row .filter-select{min-height:34px;min-width:0;padding:6px 26px 6px 10px;font-size:12px}
+    @media (max-width:768px){ .nsec-h-row .filter-select{font-size:16px;padding:5px 24px 5px 10px;min-height:36px;width:128px} }
+
     /* ══ HERO STATS ══ the counts as tiles, not a sentence */
     .hstats{display:flex;flex-wrap:wrap;gap:10px 0;margin-top:6px}
     .hstat{display:flex;flex-direction:column;gap:5px;padding:0 20px;
@@ -2063,7 +2081,7 @@
       .hero{align-items:center}
       .hstats{gap:12px 0;margin-top:10px}
       .hstat{padding:0 11px;gap:4px}
-      .hstat-n{font-size:clamp(22px,7vw,28px);gap:5px}
+      .hstat-n{font-size:clamp(18px,5.6vw,22px);gap:5px}
       .hstat-l{font-size:7.5px;letter-spacing:.16em}
       .hstat-dot{width:6px;height:6px}
       .hstat:nth-child(3){padding-left:0;border-left:0}
@@ -2205,6 +2223,13 @@
     .modal-hero,
     .modal-hero.modal-hero{aspect-ratio:10/11 !important;max-height:66vh}
     @media (max-width:768px){ .modal-hero{max-height:none} }
+    /* On a phone the flyer plate was a full-width, taller-than-square
+       block, so Interested sat below the fold. Shorter, and cropped from
+       the upper part of the flyer, so Interested and the facts come up
+       the screen. */
+    @media (max-width:768px){
+      .modal-hero,.modal-hero.modal-hero{aspect-ratio:6/5 !important}
+    }
     .modal-hero-img{object-fit:cover;object-position:center 22%}
 
     /* Doors, Venue, Tickets, City: no box, no grid lines, no yellow.
@@ -2381,7 +2406,10 @@
     <div class="hero-content">
       <div class="label">Party Directory</div>
       <h1>Parties.</h1>
-      <div class="hero-desc">Parties, raves and experiences worth knowing about in Afrobeats, Amapiano, EDM and dance music generally in Lagos and Nigeria.</div>
+      <!-- One short line. The long description is gone. The counts below
+           it fill in once the data arrives. -->
+      <div class="hero-tag">All your favourite parties, in one place.</div>
+      <div class="hero-desc"></div>
       <button class="lp-btn" type="button" data-lp onclick="openListParty()"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" data-lp-plus><path d="M12 5v14M5 12h14"/></svg><span data-lp-label>List your party</span></button>
     </div>
     <!-- The one hero. This card used to show a franchise and a city
@@ -2456,17 +2484,20 @@
       <!-- A franchise is not a night, so this rail reads differently:
            landscape cards, the party's own name, and how often it runs
            rather than when the next one is. -->
-      <div class="nsec-h">
+      <div class="nsec-h nsec-h-row">
         <span class="nsec-t">The parties</span>
         <span class="nsec-n" id="dirCount"></span>
-      </div>
-      <div class="filter-bar">
-        <select class="filter-select" id="filterSort" onchange="applyFilters()">
-          <option value="soon">Soonest</option><option value="views">Most viewed</option>
-          <option value="active">Recently active</option><option value="az">A to Z</option>
-        </select>
-        <input class="search-input" id="searchInput" type="text" placeholder="Search parties..." oninput="applyFilters()">
-        <button class="filter-reset" id="filterReset" onclick="resetFilters()">Clear</button>
+        <!-- Sort sits in the title row now. The search box is hidden, not
+             deleted: the filter code still reads it, and it comes back by
+             removing the hidden attribute. -->
+        <div class="filter-bar">
+          <select class="filter-select" id="filterSort" onchange="applyFilters()" aria-label="Sort">
+            <option value="soon">Soonest</option><option value="views">Most viewed</option>
+            <option value="active">Recently active</option><option value="az">A to Z</option>
+          </select>
+          <input class="search-input" id="searchInput" type="text" placeholder="Search parties..." oninput="applyFilters()" hidden>
+          <button class="filter-reset" id="filterReset" onclick="resetFilters()">Clear</button>
+        </div>
       </div>
       <!-- The date chips. The grid had a sort and a search and no way
            to answer the only question that matters on a Friday
@@ -4479,7 +4510,10 @@
       if(live)    tiles.push({ n: live,    l: 'On now',    hot: true });
       if(tonight) tiles.push({ n: tonight, l: 'Tonight',   hot: !live });
       if(soon)    tiles.push({ n: soon,    l: 'Coming up', hot: !live && !tonight });
-      if(parties) tiles.push({ n: parties, l: parties === 1 ? 'Party' : 'Parties' });
+      /* The directory's own size, so the count is always there, even on a
+         quiet week with nothing announced. */
+      var tracked = (typeof FRANCHISES !== 'undefined' && FRANCHISES.length) ? FRANCHISES.length : parties;
+      if(tracked) tiles.push({ n: tracked, l: tracked === 1 ? 'Party' : 'Parties' });
 
       if(!tiles.length){ el.innerHTML = '<span class="hstat-none">Nothing announced yet.</span>'; return; }
       el.innerHTML = '<div class="hstats">' + tiles.map(function(t){
