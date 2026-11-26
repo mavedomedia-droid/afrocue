@@ -1,0 +1,1576 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Amapiano District | Do a VybeChek™</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Figtree:wght@300;400;500;600;700;800&display=swap">
+<meta name="description" content="Win one of 5 gifts. Answer a few questions about your night. Share the result on your story.">
+
+<style>
+  @font-face{font-family:'Aesthet Nova';font-weight:900;font-display:swap;
+    src:url('/fonnts.com-Aesthet-Nova-Black.woff2') format('woff2'),
+        url('/fonnts.com-Aesthet-Nova-Black.otf') format('opentype')}
+  @font-face{font-family:'Aesthet Nova';font-weight:500;font-display:swap;
+    src:url('/fonnts.com-Aesthet-Nova-Medium.woff2') format('woff2'),
+        url('/fonnts.com-Aesthet-Nova-Medium.otf') format('opentype')}
+  @font-face{font-family:'Aesthet Nova';font-weight:400;font-display:swap;
+    src:url('/fonnts.com-Aesthet-Nova-.otf') format('opentype')}
+
+  :root{
+    --yellow:#dedc00;
+    --y-soft:rgba(222,220,0,0.12);
+    --black:#0a0a0a;
+    --panel:#121212;
+    --white:#f0ede8;
+    --mute:rgba(240,237,232,0.62);
+    --fine:rgba(240,237,232,0.40);
+    --line:rgba(255,255,255,0.09);
+    --line-hi:rgba(255,255,255,0.18);
+    --display:'Aesthet Nova',Georgia,serif;
+    --name:'Anton',Impact,sans-serif;
+    --sans:'Figtree',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --r:14px;
+    /* A plain gutter. max-width does the centring; this only keeps
+       content off the edge on a phone. */
+    --pad:20px;
+  }
+
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--black);color:var(--white);font-family:var(--sans);
+    font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;
+    min-height:100vh;min-height:100dvh;
+  }
+  /* The shared nav is fixed and sets --ac-nav-h (76 desktop, 57
+     mobile), so the page clears it the same way every other AfroCue
+     page does. */
+  .wrap{max-width:660px;margin:0 auto;
+    padding:calc(var(--ac-nav-h,76px) + 26px) var(--pad) 48px}
+
+  /* ── hero ───────────────────────────────────────────────── */
+  .hero{text-align:center;padding:0 0 4px}
+  /* The party: plain text, no box. Name on top, date and venue under it. */
+  .pt{margin:12px auto 0;max-width:100%;text-align:center;line-height:1.3}
+  .pt-v b{display:block;font-family:var(--display);font-weight:900;font-size:16px;color:var(--white)}
+  .pt-v > span{font-size:13px;font-weight:600;color:var(--mute)}
+  .pt-v > span + span::before{content:'';display:inline-block;width:3px;height:3px;border-radius:50%;background:var(--yellow);margin:0 7px;vertical-align:3px}
+  .pt-v > span:empty{display:none}
+
+  /* Variant B: a button, and under it the postcard they will get. */
+  .intro{display:none}
+  body.introOn .intro{display:block;margin-top:18px}
+  body.introOn:not(.started) main.card{display:none}
+  body.introOn.started .intro{display:none}
+  body.introOn.started .hero{display:none}
+  body.introOn.started .card{margin-top:0}
+  .start{display:inline-block;background:var(--white);color:#121212;border:0;border-radius:10px;padding:12px 38px;
+    font:700 16px var(--sans);cursor:pointer}
+  .start:active{transform:scale(.97)}
+  .ph-row{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:20px}
+  .ph-side{flex:1 1 0;min-width:0;font-size:12.5px;line-height:1.35;font-weight:600;color:var(--mute)}
+  .ph-side b{display:block;color:var(--white);font-weight:800;font-size:13.5px}
+  .ph-side.l{text-align:right}
+  .ph-side.r{text-align:left}
+  /* Squiggles above and below each side line: they draw in, hold, and
+     run off, on a loop, a beat apart. The words pop once on arrival. */
+  .ph-side .sq{display:block;width:46px;height:9px;overflow:visible;margin:0 0 6px}
+  .ph-side .sq.b{margin:6px 0 0}
+  .ph-side.l .sq{margin-left:auto}
+  .ph-side .sq path{fill:none;stroke:var(--yellow);stroke-width:2;stroke-linecap:round;
+    stroke-dasharray:60;stroke-dashoffset:60;opacity:0;animation:sqRun 3.6s ease-in-out infinite}
+  .ph-side.l .sq.b path{animation-delay:.25s}
+  .ph-side.r .sq path{animation-delay:.6s}
+  .ph-side.r .sq.b path{animation-delay:.85s}
+  @keyframes sqRun{
+    0%{stroke-dashoffset:60;opacity:0}
+    12%{opacity:.9}
+    40%{stroke-dashoffset:0;opacity:.9}
+    62%{stroke-dashoffset:0;opacity:.9}
+    90%{stroke-dashoffset:-60;opacity:0}
+    100%{stroke-dashoffset:-60;opacity:0}
+  }
+  .ph-side b{display:block;opacity:0;animation:sidePop .7s cubic-bezier(.2,1.5,.4,1) .45s forwards}
+  .ph-side.r b{animation-delay:.75s}
+  .ph-side.l b{transform-origin:right center}
+  .ph-side.r b{transform-origin:left center}
+  @keyframes sidePop{0%{opacity:0;transform:scale(.82)}60%{opacity:1;transform:scale(1.07)}100%{opacity:1;transform:scale(1)}}
+  @media (prefers-reduced-motion:reduce){
+    .ph-side .sq path{animation:none;stroke-dashoffset:0;opacity:.8}
+    .ph-side b{animation:none;opacity:1}
+  }
+  .phone{flex:0 0 auto;width:190px;height:338px;border-radius:24px;background:#111;border:1.5px solid #3a3a33;padding:3px;
+    box-shadow:0 30px 60px rgba(0,0,0,.55);transform:rotate(-3deg)}
+  .screen{position:relative;width:100%;height:100%;border-radius:21px;overflow:hidden;background:#151513 url('/texture.jpg') center/cover}
+  .screen.has-photo{background-size:cover;background-position:center}
+  /* Over a real photo the frame stays, quieter: it reads as "your photo goes here". */
+  .screen.has-photo .ph-photo{z-index:1;color:rgba(255,255,255,.78);font-size:10px;font-weight:600}
+  .screen.has-photo .ph-photo i{opacity:.75}
+  .screen.has-photo .ph-photo span{background:rgba(0,0,0,.35);padding:3px 8px;border-radius:20px;
+    -webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+  .screen.has-photo::after{content:'';position:absolute;left:0;right:0;bottom:0;height:55%;background:linear-gradient(transparent,rgba(0,0,0,.55))}
+  .screen.has-photo .ph-panel{z-index:1}
+  .ph-photo{position:absolute;left:18px;right:18px;top:26px;height:150px;display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:700;color:var(--fine);text-align:center}
+  .ph-photo i{position:absolute;width:16px;height:16px;border-color:var(--yellow);border-style:solid;border-width:0}
+  .ph-photo .c1{left:0;top:0;border-top-width:2px;border-left-width:2px}.ph-photo .c2{right:0;top:0;border-top-width:2px;border-right-width:2px}
+  .ph-photo .c3{left:0;bottom:0;border-bottom-width:2px;border-left-width:2px}.ph-photo .c4{right:0;bottom:0;border-bottom-width:2px;border-right-width:2px}
+  .ph-panel{position:absolute;left:8px;right:8px;bottom:22px;background:rgba(0,0,0,.86);border:1px solid rgba(255,255,255,.14);border-radius:10px;
+    padding:9px;display:flex;gap:8px;text-align:left}
+  .ph-t{flex:1;min-width:0}
+  .ph-nm{font-family:var(--display);font-weight:900;font-size:17px;line-height:1;color:var(--yellow)}
+  .ph-at{font-size:6.5px;font-weight:800;letter-spacing:.14em;margin-top:5px;color:var(--white)}
+  .ph-pt{font-family:var(--display);font-weight:900;font-size:12.5px;line-height:1.08;margin-top:2px;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .ph-u{font-size:6.5px;font-weight:700;letter-spacing:.1em;color:var(--fine);margin-top:7px}
+  .ph-fl{width:44px;border-radius:5px;background:#222 center/cover}
+  .card-logo{display:none;margin-top:auto;padding-top:14px;text-align:center}
+  .card-logo.show{display:block}
+  .card-logo img{height:19px;width:auto;max-width:42%;opacity:.7}
+  h1{
+    font-family:var(--display);font-weight:900;
+    font-size:clamp(40px,11.9vw,61px);line-height:1;letter-spacing:-0.015em;
+    margin:0 0 10px;white-space:nowrap;
+  }
+  h1 .y{color:var(--yellow)}
+  /* "Do a" is small and sits on the middle of VybeChek, like the table sign. */
+  h1 .do{display:inline-block;font-size:.4em;vertical-align:middle;margin-right:.35em;position:relative;top:-.08em;color:var(--white)}
+  .sub{font-size:15px;color:var(--mute);margin:0 auto;max-width:30em;line-height:1.5}
+  .sub b{color:var(--white);font-weight:600}
+
+  /* The draw: a ticket. Prize on the left, how it works on the right. */
+  .win{position:relative;display:flex;align-items:center;justify-content:space-between;gap:14px;text-align:left;
+    background:#f1ece1;color:#141412;border-radius:11px;padding:7px 13px;margin:0 auto 16px;max-width:262px;
+    box-shadow:0 14px 30px rgba(0,0,0,.35)}
+  .win::before,.win::after{content:'';position:absolute;top:50%;width:16px;height:16px;margin-top:-8px;border-radius:50%;background:var(--black)}
+  .win::before{left:-8px}.win::after{right:-8px}
+  .w-l{flex:1 1 auto;min-width:0}
+  .w-r{flex:0 0 auto}
+  .w-r{max-width:50%}
+  .w-cl{font-size:8.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#8a877c}
+  .w-cd{font-family:var(--sans);font-size:21px;font-weight:800;line-height:1.1;color:#141412;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+  .w-cd{white-space:nowrap}
+  .w-cd.dd{font-size:16px}
+  .w-cd.names{font-size:13px;line-height:1.3;letter-spacing:0;white-space:pre-line}
+  .w-n{font-size:9.5px;font-weight:600;color:#8a877c;white-space:nowrap;margin-top:1px}
+  .w-k{font-size:8.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#8a877c}
+  .w-s{font-size:11px;font-weight:600;color:#4a483f;margin-top:4px;line-height:1.1}
+  .w-t{font-family:var(--display);font-weight:900;font-size:18px;line-height:1.05;margin-top:1px}
+  .w-t.long{font-size:15px;line-height:1.15}
+  .w-r{border-left:2px dashed #c9c3b4;padding-left:14px;display:flex;flex-direction:column;gap:1px;
+    font-size:11px;font-weight:700;color:#4a483f;text-align:right;padding-left:12px}
+  .w-r b{color:#141412}
+  .win .state{margin:0;max-width:none;text-align:right;white-space:normal}
+  .win .state-t{font-size:12px;font-weight:700;line-height:1.35;color:#4a483f}
+  .win .state-c{margin-top:2px;font-size:15px;font-weight:800;letter-spacing:.04em;color:#141412;font-variant-numeric:tabular-nums}
+  .win .state-c.sm{font-size:12px;letter-spacing:0;font-weight:700;line-height:1.4}
+
+  .spons{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:14px 0 0}
+  body.started .spons{display:none}
+  .s-k{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--fine);font-weight:700}
+  .s-l{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;font-size:12.5px;font-weight:700;color:var(--mute)}
+  .s-l img{height:18px;width:auto;max-width:70px;object-fit:contain;opacity:.85}
+
+  /* ── card + steps ───────────────────────────────────────── */
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:20px;
+    padding:24px 20px 26px;margin-top:26px;
+  }
+  .prog{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+  .ptrack{flex:1;height:4px;background:rgba(255,255,255,0.09);border-radius:4px;overflow:hidden}
+  .pfill{height:100%;width:25%;background:var(--yellow);border-radius:4px;transition:width .3s ease}
+  .plbl{font-size:12px;color:var(--fine);font-weight:600;font-variant-numeric:tabular-nums}
+
+  .step{display:none}
+  .step.active{display:block;animation:in .26s ease}
+  @keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  .slabel{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--yellow);margin-bottom:10px}
+  .q{font-family:var(--display);font-weight:900;font-size:clamp(23px,6vw,30px);
+    line-height:1.14;margin:0 0 10px}
+  .hint{font-size:14px;color:var(--mute);margin:0 0 18px;line-height:1.5}
+
+  .opts{display:flex;flex-direction:column;gap:9px}
+  .opt{
+    display:flex;align-items:center;gap:14px;width:100%;text-align:left;cursor:pointer;
+    background:rgba(255,255,255,0.03);border:1px solid var(--line-hi);border-radius:var(--r);
+    padding:16.5px 16px;color:var(--white);font-family:inherit;font-size:16px;
+    transition:border-color .16s,background .16s;
+  }
+  .opt:hover,.opt:focus-visible{border-color:var(--yellow);background:var(--y-soft);outline:none}
+  .opt-n{font-size:12px;color:var(--fine);font-weight:700;font-variant-numeric:tabular-nums;min-width:20px}
+  .opt-b{flex:1;min-width:0}
+  .opt-t{display:block;font-weight:600;font-size:16px;line-height:1.25}
+  .opt-s{display:block;font-size:13px;color:var(--fine);margin-top:2px}
+  .opt-a{color:var(--fine);font-size:17px}
+
+  .cta{
+    display:block;width:100%;margin-top:16px;padding:16px;border:0;border-radius:var(--r);
+    background:var(--yellow);color:#121200;font-family:inherit;font-weight:800;font-size:16px;
+    cursor:pointer;transition:filter .16s;
+  }
+  .cta:hover{filter:brightness(1.07)}
+  .cta:disabled{opacity:.55;cursor:default}
+  .cta.ghost{background:transparent;border:1px solid var(--line-hi);color:var(--mute);font-weight:600}
+
+  /* ── photo step ─────────────────────────────────────────── */
+  /* A viewfinder, not a form control. The frame, the brackets and
+     the slow pulse are doing one job: making the next tap feel like
+     taking a picture rather than filling a field. */
+  .vf{
+    position:relative;width:100%;aspect-ratio:4/5;border-radius:18px;overflow:hidden;
+    background:#0c0c0c;border:1px solid var(--line-hi);cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+    font-family:inherit;padding:0;transition:border-color .22s,transform .12s;
+  }
+  .vf::before{
+    content:'';position:absolute;inset:0;background:url('/texture.jpg') center/cover;
+    opacity:.3;
+  }
+  .vf::after{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 50% 45%,rgba(222,220,0,0.11),transparent 62%);
+  }
+  .vf:hover{border-color:rgba(222,220,0,0.55)}
+  .vf:active{transform:scale(.993)}
+  .vf-c{position:absolute;width:30px;height:30px;border:2.5px solid var(--yellow);opacity:.85}
+  .vf-c.tl{top:16px;left:16px;border-right:0;border-bottom:0;border-radius:7px 0 0 0}
+  .vf-c.tr{top:16px;right:16px;border-left:0;border-bottom:0;border-radius:0 7px 0 0}
+  .vf-c.bl{bottom:16px;left:16px;border-right:0;border-top:0;border-radius:0 0 0 7px}
+  .vf-c.br{bottom:16px;right:16px;border-left:0;border-top:0;border-radius:0 0 7px 0}
+  .vf-ring{
+    position:relative;z-index:1;width:74px;height:74px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--yellow);box-shadow:0 0 0 0 rgba(222,220,0,0.45);
+    animation:pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(222,220,0,0.4)}
+    70%{box-shadow:0 0 0 20px rgba(222,220,0,0)}
+  }
+  @media (prefers-reduced-motion:reduce){ .vf-ring{animation:none} }
+  .vf-ring svg{width:31px;height:31px;stroke:#121200;stroke-width:2;fill:none}
+  .vf-t{position:relative;z-index:1;font-size:16px;font-weight:700;color:var(--white)}
+  .vf-s{position:relative;z-index:1;font-size:13px;color:var(--mute);margin-top:-7px}
+
+  .gal{
+    display:block;width:100%;margin-top:10px;padding:14px;border-radius:var(--r);
+    border:1px solid var(--line-hi);background:transparent;color:var(--mute);
+    font-family:inherit;font-weight:600;font-size:14.5px;cursor:pointer;text-align:center;
+    transition:border-color .18s,color .18s;
+  }
+  .gal:hover{border-color:var(--yellow);color:var(--yellow)}
+  #shotCam,#shotLib{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+
+  .ideas{display:flex;flex-wrap:nowrap;gap:4px;margin:0 0 12px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .ideas::-webkit-scrollbar{display:none}
+  .idea{display:inline-flex;align-items:center;white-space:nowrap;flex:0 0 auto;
+    font-size:10.5px;font-weight:600;color:var(--fine);background:rgba(255,255,255,0.03);
+    border:1px solid var(--line);border-radius:100px;padding:4px 7px}
+  .thumbs{display:none;gap:7px;margin:0 0 10px;overflow-x:auto;scrollbar-width:none}
+  .thumbs.show{display:flex}
+  .thumbs::-webkit-scrollbar{display:none}
+  .thumb{position:relative;flex:0 0 auto;width:46px;height:58px;border-radius:8px;overflow:hidden;padding:0;
+    border:2px solid transparent;background:#000;cursor:pointer}
+  .thumb.on{border-color:var(--yellow)}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .thumb i{position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);color:var(--yellow);
+    font-style:normal;font-size:8.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:2px 0}
+  .addmore{margin-top:0;margin-bottom:8px;padding:11px}
+  .idea svg{width:13px;height:13px;stroke:var(--yellow);stroke-width:2;fill:none;flex-shrink:0}
+
+  .live{position:relative;border-radius:var(--r);overflow:hidden;background:#000;
+    aspect-ratio:3/4;display:none;margin-bottom:12px}
+  .live.show{display:block}
+  .live video{width:100%;height:100%;object-fit:cover;display:block}
+  .shutter{
+    position:absolute;left:50%;bottom:16px;transform:translateX(-50%);
+    width:62px;height:62px;border-radius:50%;border:4px solid rgba(255,255,255,0.9);
+    background:rgba(255,255,255,0.25);cursor:pointer;backdrop-filter:blur(4px);
+  }
+  .shutter:active{transform:translateX(-50%) scale(.94)}
+
+  .shot-prev{display:none;position:relative;margin-bottom:12px}
+  .shot-prev.show{display:block}
+  .shot-prev img{width:100%;border-radius:var(--r);display:block}
+  .retake{
+    position:absolute;right:10px;top:10px;padding:8px 13px;border-radius:100px;border:0;
+    background:rgba(10,10,10,0.78);color:var(--white);font-family:inherit;font-size:12.5px;
+    font-weight:700;cursor:pointer;backdrop-filter:blur(6px);
+  }
+
+
+  /* ── shot mode ──────────────────────────────────────────────
+     The photo step takes the whole screen. Hero and partner list
+     step aside, and the viewfinder grows into whatever is left, so
+     the frame sits in view the moment you land on it and nothing
+     runs off the bottom. */
+  body.shot .hero,
+  body.shot .partners,
+  body.shot #ac-footer{display:none}   /* the shared footer too, or the page still scrolls */
+  body.shot .wrap{
+    min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;
+    padding-top:calc(var(--ac-nav-h,76px) + 14px);padding-bottom:16px;
+  }
+  body.shot .card{flex:1;display:flex;flex-direction:column;margin-top:0;padding-bottom:20px}
+  body.shot .step.active{flex:1;display:flex;flex-direction:column;min-height:0}
+  body.shot .hint{margin-bottom:12px}
+  body.shot .ideas{margin-bottom:12px}
+  body.shot #shootRow{flex:1;display:flex;flex-direction:column;min-height:0}
+  body.shot .vf{flex:1;aspect-ratio:auto;min-height:190px}
+  body.shot .shot-prev.show{flex:1;display:flex;align-items:center;min-height:0}
+  body.shot .shot-prev img{max-height:100%;object-fit:contain}
+  body.shot .live.show{flex:1;aspect-ratio:auto;min-height:0}
+
+  /* Short screens (SE and friends): the frame matters more than the
+     supporting copy, so the copy goes rather than the frame. */
+  @media (max-height:700px){
+    body.shot .hint{display:none}
+    body.shot .q{font-size:22px;margin-bottom:8px}
+    body.shot .slabel{margin-bottom:6px}
+    body.shot .ideas{margin-bottom:8px}
+    body.shot .card{padding:18px 18px 16px}
+    body.shot .prog{margin-bottom:16px}
+    body.shot .vf{min-height:150px}
+    body.shot .gal{padding:12px;margin-top:8px}
+  }
+
+  /* ── one screen on a phone ──────────────────────────────────
+     Every step fits the screen and the page itself never scrolls.
+     The one exception is the form step, which scrolls inside its own
+     card so the keyboard can never hide the button. Steps 2 onward
+     drop the hero to give the question the room. */
+  @media (max-width:700px){
+    body.lock{overflow:hidden;overscroll-behavior:none}
+    body.lock .wrap{height:100vh;height:100dvh;display:flex;flex-direction:column;
+      padding:calc(var(--ac-nav-h,57px) + 10px) var(--pad) 12px}
+    body.lock #ac-footer,body.lock .partners{display:none}
+    body.lock .hero{padding:0;flex:0 0 auto}
+    body.lock h1{font-size:clamp(36px,10.9vw,44px);margin:0 0 6px}
+    body.lock .sub{font-size:14px;line-height:1.45}
+    body.lock .win{margin-bottom:12px;padding:7px 13px}
+    body.lock .spons{margin-top:10px}
+    body.lock .pt{margin-top:10px}
+    body.lock.later .hero{display:none}
+    body.lock .card{flex:1;min-height:0;display:flex;flex-direction:column;margin-top:14px;padding:16px 16px 14px}
+    body.lock.later .card{margin-top:0}
+    body.lock .prog{margin-bottom:14px;flex:0 0 auto}
+    body.lock .step.active{flex:1;min-height:0;display:flex;flex-direction:column}
+    body.lock .q{font-size:clamp(21px,5.6vw,26px);margin-bottom:8px}
+    body.lock .hint{margin-bottom:12px;font-size:13.5px}
+    body.lock .opts{flex:1;min-height:0;overflow-y:auto;gap:8px}
+    body.lock .opt{padding:13.5px 14px}
+    /* the form step is the one place that scrolls */
+    body.lock #q4.active{overflow-y:auto;-webkit-overflow-scrolling:touch}
+    body.lock .ig{margin-bottom:10px}
+    body.lock .ig input{padding:13px 14px}
+    /* the result */
+    body.lock #q5.active{overflow:hidden}
+    body.lock .done-h{font-size:clamp(24px,6.5vw,30px);margin-bottom:6px}
+    body.lock .done-s{display:none}
+    body.lock .cardwrap.show{flex:1;min-height:0;display:flex;flex-direction:column;margin-bottom:10px}
+    body.lock .cardwrap img{flex:1;min-height:0;width:auto;max-width:100%;margin:0 auto;object-fit:contain}
+    body.lock .cardnote{margin-top:6px}
+    body.lock .in-strip{display:none}
+    body.lock .cta{flex:0 0 auto}
+    body.lock .at input{padding-left:32px}
+    body.lock .btnrow .cta{flex:1 1 0;width:auto;min-width:0}
+    body.lock.isclosed .prog{display:none}
+    body.lock .cardnote{display:none}
+
+    /* done screen: the card is the page */
+    body.lock.done .prog{display:none}
+    body.lock.done .wrap{padding-left:12px;padding-right:12px}
+    body.lock.done .card{padding:12px 12px 12px}
+    body.lock.done .done-h{font-size:21px;margin:2px 4px 8px}
+    body.lock.done #q5.active{justify-content:center}
+    body.lock .cardwrap.show{flex:0 1 auto}
+    body.lock .imgbox{min-height:0;flex:1;display:flex;flex-direction:column}
+    body.lock .slides{flex:1;min-height:0}
+    body.lock .slide img{height:100%;width:auto;max-width:100%}
+    body.lock .imgbox img{width:100%;height:auto;max-height:100%;object-fit:contain}
+  }
+  @media (max-width:700px) and (max-height:700px){
+    body.lock .tags{display:none}
+    body.lock .sub{font-size:13px}
+    body.lock .opt{padding:11px 12px}
+    body.lock .opt-s{display:none}
+  }
+
+  /* ── details ────────────────────────────────────────────── */
+  .ig{margin-bottom:13px}
+  .ig label{display:block;font-size:12px;font-weight:700;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--fine);margin-bottom:7px}
+  .ig input{
+    width:100%;padding:15px 15px;border-radius:var(--r);border:1px solid var(--line-hi);
+    background:rgba(255,255,255,0.03);color:var(--white);font-family:inherit;
+    font-size:16px; /* never below 16, or Safari zooms the page on focus */
+  }
+  .ig input:focus{outline:none;border-color:var(--yellow)}
+  .ig input::placeholder{color:rgba(240,237,232,0.3)}
+  .at{position:relative}
+  .at span{position:absolute;left:15px;top:50%;transform:translateY(-50%);
+    color:var(--fine);font-size:16px;pointer-events:none}
+  .at input{padding-left:32px}
+
+  .err{font-size:13.5px;color:#ff8c6b;margin-top:11px;display:none;line-height:1.45}
+  .err.show{display:block}
+
+  /* ── done ───────────────────────────────────────────────── */
+  .done-h{font-family:var(--display);font-weight:900;font-size:clamp(28px,7vw,36px);
+    line-height:1.08;margin:0 0 10px}
+  .done-s{font-size:15px;color:var(--mute);margin:0 0 20px;line-height:1.55}
+  .in-strip{border:1px solid rgba(222,220,0,0.3);background:var(--y-soft);border-radius:var(--r);
+    padding:14px 16px;margin-bottom:20px;font-size:14px;color:var(--white);line-height:1.5}
+  .in-strip b{color:var(--yellow)}
+
+  .cardwrap{display:none;margin-bottom:18px}
+  .cardwrap.show{display:block}
+  .slides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:0}
+  .slides::-webkit-scrollbar{display:none}
+  .slide{flex:0 0 100%;scroll-snap-align:center;display:flex;justify-content:center;min-height:0}
+  .cstat{font-size:13px;color:var(--mute);text-align:center;margin:10px 0}
+  .dots{display:none;justify-content:center;gap:6px;margin-top:8px}
+  .dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.25)}
+  .dots i.on{background:var(--yellow)}
+  .cardwrap img{width:100%;border-radius:var(--r);display:block;border:1px solid var(--line-hi)}
+  .cardnote{font-size:12.5px;color:var(--fine);text-align:center;margin-top:10px}
+
+  .partners{border-top:1px solid var(--line);margin-top:34px;padding-top:20px;text-align:center}
+  .partners-l{font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--fine);
+    font-weight:700;margin-bottom:9px}
+  .partners-n{font-size:12.5px;color:var(--mute);line-height:1.9}
+  .foot{text-align:center;font-size:12px;color:var(--fine);margin-top:18px}
+
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  .fine-note{font-size:12.5px;color:var(--fine);text-align:center;margin:12px 0 0;line-height:1.45}
+  canvas#cardCanvas{display:none}
+
+  .testmode{position:fixed;left:50%;transform:translateX(-50%);top:calc(var(--ac-nav-h,57px) + 4px);z-index:60;
+    background:#dedc00;color:#121200;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+    padding:5px 11px;border-radius:100px;display:none;white-space:nowrap}
+  body.testing .testmode{display:block}
+  .imgbox{position:relative}
+  .btnrow{display:flex;gap:10px;margin-top:12px}
+  .btnrow .cta{margin-top:0;flex:1 1 0;width:auto;min-width:0;padding:15px 10px}
+  /* The instruction bar, laid across the card like a Snapchat caption.
+     It types itself in, and goes on a tap or after a few seconds. */
+  .coach{position:absolute;left:0;right:0;top:46%;transform:translateY(-50%);
+    background:rgba(0,0,0,0.78);padding:12px 16px;font-size:14px;line-height:1.45;
+    color:#fff;font-weight:600;text-align:left;cursor:pointer;transition:opacity .5s;
+    border-top:1px solid rgba(255,255,255,0.12);border-bottom:1px solid rgba(255,255,255,0.12)}
+  .coach.hide{opacity:0;pointer-events:none}
+  .coach .caret{display:inline-block;width:2px;height:1em;background:var(--yellow);
+    margin-left:2px;vertical-align:-2px;animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .state{margin:12px auto 0;max-width:24em;text-align:center}
+  .state-t{font-size:12.5px;font-weight:500;line-height:1.45;color:var(--fine)}
+  .state-c{margin-top:3px;font-size:12.5px;font-weight:600;letter-spacing:.05em;color:var(--mute);
+    font-variant-numeric:tabular-nums}
+  .state-c.sm{letter-spacing:0;font-weight:500;line-height:1.5}
+  body.lock .state{margin-top:8px}
+  body.lock .win .state{margin:0}
+  .closed-h{font-family:var(--display);font-weight:900;font-size:clamp(24px,6.5vw,30px);line-height:1.1;margin:0 0 10px}
+</style>
+</head>
+<body class="lock">
+
+<!-- SHARED NAV (rendered by js/afrocue-ui.js) -->
+<div id="ac-nav"></div>
+<div class="testmode">Test mode: open any day</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="win" id="winTile">
+      <div class="w-l">
+        <div class="w-k" id="wKick">Enter the draw</div>
+        <div class="w-s" id="wLead">Win one of</div>
+        <div class="w-t" id="wPrize">5 cocktails</div>
+      </div>
+      <div class="w-r">
+        <span class="w-cl" id="wCdL">Draw in</span>
+        <span class="w-cd" id="wCd">--:--:--</span>
+        <span class="w-n" id="wNote">5 winners. Free to enter</span>
+      </div>
+    </div>
+    <h1><span class="do">Do a</span><span class="y">VybeChek&trade;</span></h1>
+    <p class="sub" id="heroSub">Answer a few questions about your night. Get your postcard and share it on your story.</p>
+    <div class="pt"><span class="pt-v"><b id="evName">Amapiano District</b><span id="dDate">Fri 4 Dec</span><span id="dVen">Casa 45</span></span></div>
+
+    <div class="intro" id="intro">
+      <button class="start" id="startBtn" type="button">Start</button>
+      <div class="ph-row">
+      <div class="ph-side l"><svg class="sq" viewBox="0 0 54 10" aria-hidden="true"><path pathLength="60" d="M2 5 Q 8.5 0.5 15 5 T 28 5 T 41 5 T 52 5"/></svg><b>This is what you get.</b><svg class="sq b" viewBox="0 0 54 10" aria-hidden="true"><path pathLength="60" d="M2 5 Q 8.5 0.5 15 5 T 28 5 T 41 5 T 52 5"/></svg></div>
+      <div class="phone"><div class="screen" id="phScreen">
+        <div class="ph-photo"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i><span>Your view of the night</span></div>
+        <div class="ph-panel">
+          <div class="ph-t"><div class="ph-nm">Your name</div><div class="ph-at">DID A VYBECHEK AT</div><div class="ph-pt" id="phParty">Amapiano District</div><div class="ph-u">afrocue.xyz</div></div>
+          <div class="ph-fl" id="phFlyer"></div>
+        </div>
+      </div></div>
+      <div class="ph-side r"><svg class="sq" viewBox="0 0 54 10" aria-hidden="true"><path pathLength="60" d="M2 5 Q 8.5 0.5 15 5 T 28 5 T 41 5 T 52 5"/></svg><b>Share it on your story.</b><svg class="sq b" viewBox="0 0 54 10" aria-hidden="true"><path pathLength="60" d="M2 5 Q 8.5 0.5 15 5 T 28 5 T 41 5 T 52 5"/></svg></div>
+      </div>
+    </div>
+    <div class="spons" id="spons" style="display:none"><span class="s-k">Sponsored by</span><span class="s-l" id="sList"></span></div>
+  </header>
+
+  <main class="card">
+    <div class="prog">
+      <div class="ptrack"><div class="pfill" id="pfill"></div></div>
+      <div class="plbl" id="plbl">1 / 4</div>
+    </div>
+
+    <!-- 1 ───────────────────────────────────────────────── -->
+    <section class="step active" id="q1">
+      <div class="slabel">Entry</div>
+      <h2 class="q">How did you get in tonight?</h2>
+      <div class="opts">
+        <button class="opt" onclick="pick('entry_route','Online tickets',2)">
+          <span class="opt-n">01</span>
+          <span class="opt-b"><span class="opt-t">Online tickets</span></span>
+          <span class="opt-a">&rarr;</span>
+        </button>
+        <button class="opt" onclick="pick('entry_route','At the door',2)">
+          <span class="opt-n">02</span>
+          <span class="opt-b"><span class="opt-t">At the door</span><span class="opt-s">Door tickets</span></span>
+          <span class="opt-a">&rarr;</span>
+        </button>
+        <button class="opt" onclick="pick('entry_route','Guest list',2)">
+          <span class="opt-n">03</span>
+          <span class="opt-b"><span class="opt-t">Guest list</span><span class="opt-s">On someone&rsquo;s list</span></span>
+          <span class="opt-a">&rarr;</span>
+        </button>
+      </div>
+      <div class="card-logo" id="cardLogo"><img id="evLogo" alt=""></div>
+    </section>
+
+    <!-- 2 ───────────────────────────────────────────────── -->
+    <section class="step" id="q2">
+      <div class="slabel">Your crew</div>
+      <h2 class="q">How are you partying tonight?</h2>
+      <div class="opts">
+        <button class="opt" onclick="pick('crew','Just me',6)">
+          <span class="opt-n">01</span>
+          <span class="opt-b"><span class="opt-t">Just me</span></span>
+          <span class="opt-a">&rarr;</span>
+        </button>
+        <button class="opt" onclick="pick('crew','Me and someone (my babe)',6)">
+          <span class="opt-n">02</span>
+          <span class="opt-b"><span class="opt-t">Me and someone (my babe)</span></span>
+          <span class="opt-a">&rarr;</span>
+        </button>
+        <button class="opt" onclick="pick('crew','Me and someone (just friends)',6)">
+          <span class="opt-n">03</span>
+          <span class="opt-b"><span class="opt-t">Me and someone (just friends)</span></span>
+          <span class="opt-a">&rarr;</span>
+        </button>
+        <button class="opt" onclick="pick('crew','Me and a group',6)">
+          <span class="opt-n">04</span>
+          <span class="opt-b"><span class="opt-t">Me and a group</span></span>
+          <span class="opt-a">&rarr;</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 6 ── the ride ───────────────────────────────────── -->
+    <section class="step" id="q6">
+      <div class="slabel">Your ride</div>
+      <h2 class="q">How did you get here?</h2>
+      <div class="opts">
+        <button class="opt" onclick="pick('ride','Cab hailing',7)">
+          <span class="opt-n">01</span>
+          <span class="opt-b"><span class="opt-t">Cab hailing</span><span class="opt-s">Bolt / inDrive and others</span></span>
+          <span class="opt-a">&rarr;</span>
+        </button>
+        <button class="opt" onclick="pick('ride','Drove here',7)">
+          <span class="opt-n">02</span>
+          <span class="opt-b"><span class="opt-t">Drove here</span></span>
+          <span class="opt-a">&rarr;</span>
+        </button>
+        <button class="opt" onclick="pick('ride','Hitched a ride',7)">
+          <span class="opt-n">03</span>
+          <span class="opt-b"><span class="opt-t">Hitched a ride</span><span class="opt-s">Came with someone</span></span>
+          <span class="opt-a">&rarr;</span>
+        </button>
+        <button class="opt" onclick="pick('ride','Found my way (PT)',7)">
+          <span class="opt-n">04</span>
+          <span class="opt-b"><span class="opt-t">Found my way (PT)</span></span>
+          <span class="opt-a">&rarr;</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 7 ── the spot ───────────────────────────────────── -->
+    <section class="step" id="q7">
+      <div class="slabel">Your spot</div>
+      <h2 class="q">What is your spot tonight?</h2>
+      <div class="opts">
+        <button class="opt" onclick="pick('spot','On the dance floor',3)">
+          <span class="opt-n">01</span>
+          <span class="opt-b"><span class="opt-t">On the dance floor</span><span class="opt-s">General admission</span></span>
+          <span class="opt-a">&rarr;</span>
+        </button>
+        <button class="opt" onclick="pick('spot','Guest / VIP',3)">
+          <span class="opt-n">02</span>
+          <span class="opt-b"><span class="opt-t">Guest / VIP</span></span>
+          <span class="opt-a">&rarr;</span>
+        </button>
+        <button class="opt" onclick="pick('spot','Table',3)">
+          <span class="opt-n">03</span>
+          <span class="opt-b"><span class="opt-t">Table</span></span>
+          <span class="opt-a">&rarr;</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 3 ── the photo ──────────────────────────────────── -->
+    <section class="step" id="q3">
+      <div class="slabel">My party view</div>
+      <h2 class="q">Show us your view right now.</h2>
+      <p class="hint">Or choose a photo you took tonight.</p>
+
+      <div class="ideas">
+        <span class="idea">The DJ</span><span class="idea">The lights</span><span class="idea">Your table</span><span class="idea">Your feet</span><span class="idea">Your people</span>
+      </div>
+
+      <div class="live" id="live">
+        <video id="vid" playsinline muted autoplay></video>
+        <button class="shutter" id="shutter" onclick="snap()" aria-label="Take photo"></button>
+      </div>
+
+      <div id="shotPrev" class="shot-prev">
+        <img id="shotImg" alt="">
+        <button class="retake" onclick="removeShot()">Remove</button>
+      </div>
+      <div id="thumbs" class="thumbs"></div>
+
+      <div id="shootRow">
+        <button class="vf" onclick="openCamera()">
+          <span class="vf-c tl"></span><span class="vf-c tr"></span>
+          <span class="vf-c bl"></span><span class="vf-c br"></span>
+          <span class="vf-ring">
+            <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          </span>
+          <span class="vf-t">Tap to shoot</span>
+          <span class="vf-s">Point it at whatever is in front of you</span>
+        </button>
+        <label class="gal" for="shotLib">or choose one from your gallery</label>
+      </div>
+
+      <input type="file" id="shotCam" accept="image/*" capture="environment" onchange="gotShot(this)">
+      <input type="file" id="shotLib" accept="image/*" multiple onchange="gotShot(this)">
+
+      <button class="gal addmore" id="addMore" onclick="addMore()" style="display:none">+ Add another photo</button>
+      <button class="cta" id="shotNext" onclick="go(4)" style="display:none">Use this &rarr;</button>
+      <div class="err" id="shotErr"></div>
+    </section>
+
+    <!-- 4 ── details ────────────────────────────────────── -->
+    <section class="step" id="q4">
+      <div class="slabel">Last bit</div>
+      <h2 class="q">Where do we reach you?</h2>
+      <p class="hint">Everyone gets the result, win or lose. Your name goes on your card.</p>
+
+      <div class="ig">
+        <label for="fname">First name</label>
+        <input type="text" id="fname" placeholder="Femi" autocomplete="given-name">
+      </div>
+      <div class="ig">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="you@email.com" autocomplete="email"
+               inputmode="email" autocapitalize="off" spellcheck="false">
+      </div>
+      <div class="ig">
+        <label for="ig">Instagram</label>
+        <div class="at">
+          <span>@</span>
+          <input type="text" id="ig" placeholder="yourhandle" autocomplete="off"
+                 autocapitalize="off" spellcheck="false" oninput="stripAt(this)">
+        </div>
+      </div>
+
+      <div class="hp" aria-hidden="true"><label for="hpWeb">Website</label><input type="text" id="hpWeb" tabindex="-1" autocomplete="off"></div>
+      <button class="cta" id="submitBtn" onclick="submitAll()">Enter the draw &rarr;</button>
+      <p class="fine-note" id="fineNote">We email you now, and again after the draw. We keep your details and photo to run it.</p>
+      <div class="err" id="errBox"></div>
+    </section>
+
+    <!-- 5 ── done ───────────────────────────────────────── -->
+    <section class="step" id="q5">
+      <h2 class="done-h" id="doneH">You are in.</h2>
+      <p class="done-s" id="doneS"></p>
+
+      <div class="cardwrap" id="cardWrap">
+        <div class="imgbox">
+          <div class="slides" id="slides"></div>
+          <div class="dots" id="dots"></div>
+          <div class="coach hide" id="coach" onclick="hideCoach()"><span id="coachTxt"></span><span class="caret"></span></div>
+        </div>
+        <div class="cardnote" id="cardNote">Hold the image to save it, then post it.</div>
+      </div>
+      <p class="cstat" id="cardStat" style="display:none"></p>
+      <button class="cta ghost" id="retryBtn" onclick="cardsP=null;buildCard()" style="display:none">Try again</button>
+
+      <div class="in-strip" id="inStrip"></div>
+
+      <div class="btnrow">
+        <button class="cta" id="shareBtn" onclick="shareCard()" style="display:none">Share it &rarr;</button>
+        <button class="cta ghost" id="dlBtn" onclick="downloadCard()" style="display:none">Save image</button>
+      </div>
+    </section>
+
+    <!-- closed: not a party day ─────────────────────────── -->
+    <section class="step" id="qc">
+      <div class="slabel">VybeChek</div>
+      <h2 class="closed-h" id="closedH">Not open yet.</h2>
+      <p class="hint" id="closedS"></p>
+    </section>
+  </main>
+
+  <div class="partners">
+    <div class="partners-l">Tonight</div>
+    <div class="partners-n" id="partnerLine"></div>
+  </div>
+</div>
+
+<canvas id="cardCanvas" width="1080" height="1920"></canvas>
+
+<script src="/js/afrocue-ui.js" data-nav="full" data-base="/"></script>
+<script src="/js/afrocue.js"></script>
+<script>
+/* ══════════════════════════════════════════════════════════════
+   VYBECHEK
+   Config comes from the sheet when a ?party= is present and
+   afrocue.js has loaded. Otherwise it falls back to the block
+   below, so the page still works standalone while the Apps
+   Script is being deployed.
+   ══════════════════════════════════════════════════════════════ */
+
+var EVENT = {
+  /* Amapiano District's own page. Everything here is only the backup:
+     the sheet's Amapiano District tab replaces it the moment it answers. */
+  party_id:        'amapiano-district',
+  party_name:      'Amapiano District',
+  organizer_handle:'',
+  edition_name:    'Amapiano Therapy',
+  edition_time:    '9PM',
+  edition_venue:   'Casa 45',
+  edition_date:    '2026-12-04',
+  logo_url:        '',
+  flyer_url:       '',
+  prizes:          [{name:'bottles of Martell', unit:'bottle of Martell', count:2, by:''}],
+  reward_name:     'bottles of Martell',
+  reward_unit:     'bottle of Martell',
+  reward_count:    2,
+  reward_line:     '2 bottles of Martell',
+  state:           'before',
+  draw_time:       '1AM',
+  djs:             ['Aniko'],
+  sponsors:        [{name:'Martell'},{name:'Red Bull'},{name:'Coca-Cola'},{name:'Chowdeck'},
+                    {name:'Sound City'},{name:'Cool FM'},{name:'Filmhouse'}],
+  share_url:       'afrocue.xyz/parties',
+  partners:        ['Martell','Red Bull','Coca-Cola','Chowdeck','Sound City','Cool FM','Filmhouse']
+};
+
+
+var GAS_URL = (typeof AFROCUE_SCRIPT_URL !== 'undefined') ? AFROCUE_SCRIPT_URL : '';
+if (!GAS_URL) console.warn('[vybechek] No AFROCUE_SCRIPT_URL yet. Expected if afrocue.js is not beside this file.');
+
+var TOTAL = 6, current = 1;
+/* Steps run 1, 2, 6, 7, 3, 4 on screen; the ids are not in order. */
+var POS = { 1:1, 2:2, 6:3, 7:4, 3:5, 4:6, 5:6 };
+var vals = {};
+var shots = [], cur = 0, stream = null, MAXSHOTS = 5;
+var cards = [], cardBlob = null;
+
+function qs(k){ try { return new URLSearchParams(location.search).get(k); } catch(e){ return null; } }
+
+/* Every write goes through here so one missing element can never
+   kill the rest of boot(). */
+function set(id, prop, value){
+  var el = document.getElementById(id);
+  if (!el) { console.warn('[vybechek] no #' + id); return; }
+  el[prop] = value;
+}
+
+/* ── boot ──────────────────────────────────────────────────── */
+
+/* ?check=1 on the page link: a small box that loads the sheet's images
+   the same way the card does and says, for each, whether the card can
+   use it. Nobody sees it without the ?check=1. */
+function imageCheck(){
+  var box = document.createElement('div');
+  box.style.cssText = 'position:fixed;left:10px;right:10px;bottom:10px;z-index:9999;background:#fff;color:#111;' +
+    'font:13px/1.45 system-ui,sans-serif;border-radius:12px;padding:12px 14px;box-shadow:0 10px 30px rgba(0,0,0,.5)';
+  box.innerHTML = '<b>Image check</b> <span style="color:#777">(waiting for the sheet...)</span>';
+  document.body.appendChild(box);
+  setTimeout(function(){
+    var list = [['logo_url', 'Logo, top right of the card', true], ['flyer_url', 'Flyer, in the card panel', false], ['party_photo', 'Photo in the phone', false]];
+    var rows = [];
+    var next = function(i){
+      if (i >= list.length) { box.innerHTML = '<b>Image check</b><br>' + rows.join('<br>') + '<br><span style="color:#777">From the sheet: ' + (EVENT._fromSheet ? 'yes' : 'NO, using the page copy') + '</span>'; return; }
+      var k = list[i][0], label = list[i][1], wide = list[i][2], src = EVENT[k];
+      if (!src) { rows.push('&#9675; ' + label + ': <b>empty in the sheet</b>'); next(i + 1); return; }
+      loadImg(src).then(function(img){
+        var msg;
+        if (!img) msg = '<b style="color:#c00">does not load</b> (not a direct image link, or blocked)';
+        else {
+          var ok = true;
+          try { var c = document.createElement('canvas'); c.width = 4; c.height = 4; var g = c.getContext('2d'); g.drawImage(img, 0, 0, 4, 4); c.toDataURL(); } catch (e) { ok = false; }
+          msg = img.naturalWidth + ' x ' + img.naturalHeight + ', ' +
+            (!ok ? '<b style="color:#c00">loads but the card cannot use it</b>'
+              : (wide && img.naturalWidth / img.naturalHeight < 1.6 ? '<b style="color:#c60">loads, but too square: the card skips logos that are not wide</b>' : '<b style="color:#080">works</b>'));
+        }
+        rows.push(label + ': ' + msg);
+        next(i + 1);
+      });
+    };
+    next(0);
+  }, 6000);
+}
+
+function boot(){
+  if (qs('check')) imageCheck();
+  /* Variant B (?v=b): a Do a VybeChek button, with the postcard preview under it.
+     The quiz opens when they tap. */
+  if (qs('v') !== 'a') {
+    document.body.classList.add('introOn');
+    var sb = document.getElementById('startBtn');
+    if (sb) sb.addEventListener('click', function(){
+      document.body.classList.add('started');
+      try { (window.dataLayer = window.dataLayer || []).push({event:'vybechek_start'}); } catch(e){}
+    });
+  }
+  paintConfig();
+
+  loadConfig();
+  /* The party moves through its states by the clock (live, closing, drawn),
+     so the page asks again every minute. */
+  setInterval(loadConfig, 60000);
+  setInterval(tickCountdown, 1000);
+
+  paint();
+  retryPending();
+  window.addEventListener('online', retryPending);
+}
+
+function loadConfig(){
+  var party = qs('party') || EVENT.party_id;
+  if (!GAS_URL || !party) return;
+  fetch(GAS_URL + '?action=vybechek_config&party=' + encodeURIComponent(party))
+    .then(function(r){ return r.json(); })
+    .then(function(cfg){
+      if (!cfg || cfg.ok === false) throw new Error(cfg && cfg.error || 'no config');
+      Object.keys(cfg).forEach(function(k){ if (cfg[k] !== '' && cfg[k] != null) EVENT[k] = cfg[k]; });
+      EVENT._fromSheet = true;
+      EVENT.winners = cfg.winners || [];
+      paintConfig();
+    })
+    .catch(function(e){ console.warn('[vybechek] config fetch failed, using local block:', e.message); });
+}
+
+/* "24 June 2026" style dates on a card read badly, and the sheet gives
+   2026-11-27. Turn it into Friday 27 November, in Lagos time. */
+function singular(w){
+  w = String(w || '');
+  if (/ies$/i.test(w)) return w.replace(/ies$/i, 'y');
+  if (/(ch|sh|ss|x)es$/i.test(w)) return w.replace(/es$/i, '');
+  if (/[^s]s$/i.test(w)) return w.replace(/s$/i, '');
+  return w;
+}
+
+function shortDate(iso){
+  var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ''));
+  if (!m) return String(iso || '');
+  try {
+    return new Date(Date.UTC(+m[1], +m[2] - 1, +m[3], 12)).toLocaleDateString('en-GB',
+      { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' }).replace(',', '');
+  } catch (e) { return String(iso); }
+}
+
+function dateLabel(iso){
+  var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ''));
+  if (!m) return String(iso || '');
+  try {
+    return new Date(Date.UTC(+m[1], +m[2] - 1, +m[3], 12)).toLocaleDateString('en-GB',
+      { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' });
+  } catch (e) { return String(iso); }
+}
+
+function paintConfig(){
+  EVENT.date_label = dateLabel(EVENT.edition_date);
+  document.title = 'Do a VybeChek™ · ' + EVENT.party_name;
+  var st = EVENT.state || 'live', rl = EVENT.reward_line || '5 cocktails', n = +EVENT.reward_count || 1;
+
+  set('evName','textContent', EVENT.party_name);
+  /* The prize as a sentence. reward_name is the plural ("cocktails"), reward_unit is
+     one of them ("cocktail"). With one prize it reads "Win a cocktail". */
+  var unit = EVENT.reward_unit || singular(EVENT.reward_name || '');
+  var aU = function(u){ return (/^[aeiou]/i.test(u) ? 'an ' : 'a ') + u; };
+  var ps = (EVENT.prizes || []).filter(function(p){ return p && p.name; });
+  var wp = document.getElementById('wPrize');
+  if (wp) wp.classList.remove('long');
+  if (ps.length > 1) {
+    /* Several prizes: "Win one of 6 prizes", then what they are. */
+    set('wLead','textContent', 'Win one of ' + n + ' prizes');
+    set('wPrize','textContent', ps.map(function(p){ return +p.count === 1 ? aU(p.unit) : p.count + ' ' + p.name; }).join(' + '));
+    if (wp) wp.classList.add('long');
+  } else if (n > 1) { set('wLead','textContent', 'Win one of'); set('wPrize','textContent', n + ' ' + (EVENT.reward_name || 'gifts')); }
+  else { set('wLead','textContent', 'Win'); set('wPrize','textContent', aU(unit)); }
+  /* The party line: name, short date, time. A blank one drops out. */
+  set('dDate','textContent', shortDate(EVENT.edition_date));
+  set('dVen','textContent', EVENT.edition_venue || EVENT.home_venue || '');
+  set('phParty','textContent', EVENT.party_name);
+  /* The phone shows a photo from the party itself (party_photo in the
+     sheet). Without one it shows the empty frame. */
+  var scr = document.getElementById('phScreen');
+  if (scr) {
+    if (EVENT.party_photo) { scr.style.backgroundImage = 'url("' + EVENT.party_photo + '")'; scr.classList.add('has-photo'); }
+    else { scr.style.backgroundImage = ''; scr.classList.remove('has-photo'); }
+  }
+  var pf = document.getElementById('phFlyer');
+  if (pf) pf.style.backgroundImage = EVENT.flyer_url ? 'url("' + EVENT.flyer_url + '")' : '';
+  /* Sponsored by: only when the sheet has sponsors. A logo if there is one, the name if not. */
+  var sp = (EVENT.sponsors || []).filter(function(x){ return x && (x.name || x.logo); });
+  var sbox = document.getElementById('spons'), sl = document.getElementById('sList');
+  if (sbox && sl) {
+    sl.innerHTML = '';
+    sp.forEach(function(x){
+      if (x.logo) { var im = document.createElement('img'); im.src = x.logo; im.alt = x.name || 'Sponsor';
+        im.onerror = function(){ var t = document.createElement('span'); t.textContent = x.name || ''; im.replaceWith(t); }; sl.appendChild(im); }
+      else { var t = document.createElement('span'); t.textContent = x.name; sl.appendChild(t); }
+    });
+    sbox.style.display = sp.length ? '' : 'none';
+  }
+  /* The party's logo sits in the card, at the foot of the first step. */
+  var logo = document.getElementById('evLogo'), box0 = document.getElementById('cardLogo');
+  if (logo && box0) {
+    if (EVENT.logo_url) {
+      logo.onerror = function(){ box0.classList.remove('show'); };
+      logo.onload = function(){ box0.classList.add('show'); };
+      if (logo.getAttribute('src') !== EVENT.logo_url) logo.src = EVENT.logo_url;
+    } else { box0.classList.remove('show'); }
+  }
+
+  /* The hero line stays the same. Where the party is by the clock lives on the draw ticket:
+     a countdown to the draw (1AM the morning after), and before the party opens, the time
+     entries start counting from. */
+  set('heroSub','innerHTML', 'Answer a few questions about your night. Get your postcard and share it on your story.');
+  var nW = n + (n === 1 ? ' winner' : ' winners'), cd = document.getElementById('wCd');
+  if (cd) cd.classList.remove('names');
+  if (st === 'live') {
+    set('wKick','textContent', 'Enter the draw');
+    set('wCdL','textContent', 'Draw in');
+    set('wNote','textContent', nW + '. Free to enter');
+    set('fineNote','textContent', 'We email you now, and again when the draw is done at ' + EVENT.draw_time + '. We keep your details and photo to run it.');
+  } else if (st === 'before') {
+    set('wKick','textContent', 'Enter the draw');
+    set('wCdL','textContent', 'Draw in');
+    set('wNote','textContent', 'Entries count from ' + (EVENT.start_time || 'party time'));
+    set('fineNote','textContent', 'We email you now. We keep your details and photo to make your card.');
+  } else if (st === 'closing') {
+    set('wKick','textContent', 'Entries closed');
+    set('wCdL','textContent', 'Draw in');
+    set('wNote','textContent', nW + ' at ' + EVENT.draw_time);
+    set('fineNote','textContent', 'We email you now. We keep your details and photo to make your card.');
+  } else {
+    set('wKick','textContent', st === 'drawn' ? 'Draw done' : 'This one has ended');
+    set('wCdL','textContent', 'Winners');
+    set('wCd','textContent', (EVENT.winners && EVENT.winners.length) ? EVENT.winners.join('\n') : 'Being called');
+    if (cd) cd.classList.add('names');
+    set('wNote','textContent', '');
+    set('fineNote','textContent', 'We email you now. We keep your details and photo to make your card.');
+  }
+  tickCountdown();
+  set('partnerLine','textContent', (EVENT.partners || []).join('  ·  '));
+  document.body.classList.toggle('testing', !!EVENT.test_mode);
+}
+
+/* Counts down to the draw, which is the morning after the party
+   (1AM on the 28th for a party on the 27th). The sheet sends the
+   exact moment as draw_ms; without it, it is worked out here. */
+function drawMs(){
+  if (EVENT.draw_ms) return EVENT.draw_ms;
+  var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(EVENT.edition_date || ''));
+  var t = /^(\d{1,2})(?::(\d{2}))?\s*(AM|PM)$/i.exec(String(EVENT.draw_time || '').trim());
+  if (!m || !t) return 0;
+  var h = (+t[1]) % 12 + (/pm/i.test(t[3]) ? 12 : 0);
+  /* Lagos is UTC+1. A draw before noon belongs to the next morning. */
+  return Date.UTC(+m[1], +m[2] - 1, +m[3] + (h < 12 ? 1 : 0), h - 1, +(t[2] || 0));
+}
+function tickCountdown(){
+  var st = EVENT.state || 'live';
+  if (st !== 'before' && st !== 'live' && st !== 'closing') return;
+  var at = drawMs();
+  if (!at) { set('wCd','textContent', EVENT.draw_time || ''); set('wCdL','textContent', 'Drawn at'); return; }
+  var ms = at - Date.now();
+  if (EVENT.start_ms && st === 'before' && EVENT.start_ms <= Date.now()) { EVENT.start_ms = 0; loadConfig(); }
+  if (ms <= 0) { set('wCd','textContent', '00:00:00'); if (!EVENT._asked) { EVENT._asked = true; loadConfig(); } return; }
+  var t = Math.floor(ms / 1000), d = Math.floor(t / 86400), h = Math.floor(t % 86400 / 3600),
+      mi = Math.floor(t % 3600 / 60), sec = t % 60, p = function(x){ return (x < 10 ? '0' : '') + x; };
+  set('wCd','textContent', (d ? d + 'd ' : '') + p(h) + ':' + p(mi) + ':' + p(sec));
+  var cdEl = document.getElementById('wCd'); if (cdEl) cdEl.classList.toggle('dd', d > 0);
+}
+
+/* ── steps ─────────────────────────────────────────────────── */
+
+function go(n){
+  document.querySelectorAll('.step').forEach(function(s){ s.classList.remove('active'); });
+  var el = document.getElementById('q' + n);
+  if (el) el.classList.add('active');
+  current = n;
+  paint();
+  document.body.classList.toggle('shot', n === 3);
+  document.body.classList.toggle('later', n >= 2 || document.body.classList.contains('started'));
+  document.body.classList.toggle('done', n === 5);
+  if (n !== 3) stopCamera();      /* camera is opt-in; see openCamera */
+  if (n >= 2 && n < 5) { try { prewarm(); } catch(e){} }
+  window.scrollTo({ top: 0, behavior: 'auto' });
+}
+
+function paint(){
+  var f = document.getElementById('pfill');
+  var at = POS[current] || TOTAL;
+  if (f) f.style.width = Math.round((at / TOTAL) * 100) + '%';
+  set('plbl','textContent', at + ' / ' + TOTAL);
+}
+
+function pick(key, value, next){
+  vals[key] = value;
+  go(next);
+}
+
+/* ── 3. the photo ──────────────────────────────────────────── */
+
+/* A live preview needs camera permission, so it is opt-in rather
+   than fired on arrival: a prompt that appears before anyone asked
+   for it mostly gets denied, and a denial is sticky. If getUserMedia
+   is unavailable or refused we fall back to the capture input, which
+   opens the phone's own camera app and needs no permission here. */
+function openCamera(){
+  var err = document.getElementById('shotErr');
+  err.classList.remove('show');
+
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    document.getElementById('shotCam').click();
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } }, audio: false })
+    .then(function(s){
+      stream = s;
+      var v = document.getElementById('vid');
+      v.srcObject = s;
+      v.play().catch(function(){});
+      document.getElementById('live').classList.add('show');
+      document.getElementById('shootRow').style.display = 'none';
+    })
+    .catch(function(e){
+      console.warn('[vybechek] camera denied or unavailable:', e.name);
+      document.getElementById('shotCam').click();
+    });
+}
+
+function stopCamera(){
+  if (stream) { stream.getTracks().forEach(function(t){ t.stop(); }); stream = null; }
+  var l = document.getElementById('live');
+  if (l) l.classList.remove('show');
+}
+
+function snap(){
+  var v = document.getElementById('vid');
+  if (!v || !v.videoWidth) return;
+  var c = document.createElement('canvas');
+  c.width = v.videoWidth; c.height = v.videoHeight;
+  c.getContext('2d').drawImage(v, 0, 0);
+  c.toBlob(function(b){
+    if (!b) return;
+    addShot(new File([b], 'vybechek.jpg', { type: 'image/jpeg' }));
+    stopCamera();
+    showShots();
+  }, 'image/jpeg', 0.92);
+}
+
+function addShot(f){
+  if (shots.length >= MAXSHOTS) return;
+  shots.push({ file: f, url: URL.createObjectURL(f) });
+  cur = shots.length - 1;
+}
+
+function gotShot(input){
+  var list = input.files ? Array.prototype.slice.call(input.files) : [];
+  if (!list.length) return;
+  list.slice(0, MAXSHOTS - shots.length).forEach(addShot);
+  try { input.value = ''; } catch(e){}
+  stopCamera();
+  showShots();
+}
+
+function showShots(){
+  var n = shots.length;
+  if (!n) { retake(); return; }
+  if (cur >= n) cur = n - 1;
+  document.getElementById('shotImg').src = shots[cur].url;
+  document.getElementById('shotPrev').classList.add('show');
+  document.getElementById('shootRow').style.display = 'none';
+  document.getElementById('shotNext').style.display = 'block';
+  document.getElementById('shotNext').innerHTML = (n > 1 ? 'Use these ' + n : 'Use this') + ' &rarr;';
+  document.getElementById('addMore').style.display = n < MAXSHOTS ? 'block' : 'none';
+  var t = document.getElementById('thumbs');
+  t.innerHTML = '';
+  if (n > 1) {
+    shots.forEach(function(sh, i){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'thumb' + (i === cur ? ' on' : '');
+      b.innerHTML = '<img alt="" src="' + sh.url + '">' + (i === 0 ? '<i>Main</i>' : '');
+      b.onclick = function(){ cur = i; showShots(); };
+      t.appendChild(b);
+    });
+    t.classList.add('show');
+  } else { t.classList.remove('show'); }
+}
+
+function addMore(){
+  document.getElementById('addMore').style.display = 'none';
+  document.getElementById('shotNext').style.display = 'none';
+  document.getElementById('shootRow').style.display = 'block';
+}
+
+function removeShot(){
+  if (!shots.length) return;
+  try { URL.revokeObjectURL(shots[cur].url); } catch(e){}
+  shots.splice(cur, 1);
+  showShots();
+}
+
+function retake(){
+  ['shotCam','shotLib'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) { try { el.value = ''; } catch(e){} }
+  });
+  document.getElementById('shotPrev').classList.remove('show');
+  document.getElementById('thumbs').classList.remove('show');
+  document.getElementById('shootRow').style.display = 'block';
+  document.getElementById('shotNext').style.display = 'none';
+  document.getElementById('addMore').style.display = 'none';
+}
+
+/* ── 4. details ────────────────────────────────────────────── */
+
+function stripAt(i){ i.value = i.value.replace(/^@+/, '').replace(/\s/g, ''); }
+
+function submitAll(){
+  var fname = document.getElementById('fname').value.trim();
+  var email = document.getElementById('email').value.trim();
+  var ig    = document.getElementById('ig').value.trim().replace(/^@+/, '');
+  var err   = document.getElementById('errBox');
+  var btn   = document.getElementById('submitBtn');
+  err.classList.remove('show');
+
+  if (!fname) {
+    err.textContent = 'We need a first name. It goes on your card.';
+    err.classList.add('show'); return;
+  }
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    err.textContent = 'That email does not look right. We send the result to everyone, so we need it.';
+    err.classList.add('show'); return;
+  }
+
+  vals.party_id   = EVENT.party_id;
+  vals.first_name = fname;
+  vals.email      = email;
+  vals.instagram  = ig ? '@' + ig : '';
+  vals.website    = document.getElementById('hpWeb').value;   /* bots only */
+  vals.source     = 'vybechek';
+
+  btn.disabled = true;
+  btn.textContent = 'Entering…';
+  cardsP = makeCards(); cardsP.catch(function(){});
+
+  sendEntry(vals).then(function(res){
+    if (res && res.ok) {
+      try { localStorage.removeItem('vybechek_pending'); } catch(e){}
+      entryId = res.entry_id || null;
+      finish(res.duplicate, res.state);
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'Enter the draw →';
+      err.textContent = (res && res.error) ? res.error : 'That did not go through. Tap again.';
+      err.classList.add('show');
+    }
+  }).catch(function(e){
+    console.error('[vybechek] submit failed:', e);
+    try { localStorage.setItem('vybechek_pending', JSON.stringify(vals)); } catch(e2){}
+    btn.disabled = false;
+    btn.textContent = 'Try again →';
+    err.textContent = 'That did not go through. Check your connection and tap again. Your answers are saved on this phone.';
+    err.classList.add('show');
+  });
+}
+
+/* text/plain is a "simple" request, so the browser sends it without a
+   preflight, and the reply stays readable. That is what lets the page
+   know the row really landed, which the old no-cors post could not.
+   The server keeps one entry per email per edition, so sending twice
+   after a dropped connection is safe. */
+function sendEntry(payload){
+  if (!GAS_URL) return Promise.reject(new Error('no script url'));
+  return fetch(GAS_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload)
+  }).then(function(r){ return r.json(); });
+}
+
+var entryId = null;
+
+/* Anything that failed to send on the last visit goes now, quietly. */
+function retryPending(){
+  var raw = null;
+  try { raw = localStorage.getItem('vybechek_pending'); } catch(e){}
+  if (!raw || !GAS_URL) return;
+  var p; try { p = JSON.parse(raw); } catch(e){ return; }
+  sendEntry(p).then(function(res){
+    if (res && (res.ok || /closed|unknown/i.test(res.error || ''))) {
+      try { localStorage.removeItem('vybechek_pending'); } catch(e){}
+    }
+  }).catch(function(){});
+}
+
+/* The photo goes second and on its own. The card is already on screen,
+   so a slow club connection never holds anyone up, and a failure here
+   costs nothing. Shrunk first: a phone photo is 4 to 8 MB, the card
+   and the draw need about 200 KB. */
+function uploadPhoto(){
+  if (!shots.length || !entryId || !GAS_URL) return;
+  var url = URL.createObjectURL(shots[0].file), img = new Image();
+  img.onload = function(){
+    try {
+      var long = 1080, k = Math.min(1, long / Math.max(img.width, img.height));
+      var c = document.createElement('canvas');
+      c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      var data = c.toDataURL('image/jpeg', 0.8);
+      URL.revokeObjectURL(url);
+      sendEntry({ source: 'vybechek_photo', party_id: EVENT.party_id, entry_id: entryId, image: data })
+        .catch(function(){});
+    } catch(e){ console.warn('[vybechek] photo skipped:', e.message); }
+  };
+  img.onerror = function(){ URL.revokeObjectURL(url); };
+  img.src = url;
+}
+
+/* The finished card goes up on its own once it is drawn. The server
+   keeps it in Drive and sends the welcome email with it. */
+function uploadCards(){
+  if (!entryId || !GAS_URL || !cards.length) return;
+  var total = cards.length, i = 0;
+  (function next(){
+    if (i >= total) return;
+    var idx = i++, fr = new FileReader();
+    fr.onload = function(){
+      sendEntry({ source: 'vybechek_photo', kind: 'card', party_id: EVENT.party_id, entry_id: entryId,
+                  image: fr.result, idx: idx, total: total })
+        .then(next, next);
+    };
+    fr.onerror = next;
+    fr.readAsDataURL(cards[idx]);
+  })();
+}
+
+/* ── 5. done ───────────────────────────────────────────────── */
+
+function finish(already, state){
+  go(5);
+  current = 5; paint();
+
+  var inDraw = !state || state === 'live';
+  set('doneH','textContent', inDraw ? (already ? 'You are already in, ' : 'You are in, ') + vals.first_name + '.' : 'Thanks, ' + vals.first_name + '.');
+  set('doneS','textContent',
+    'That is it. Your card is below.');
+  var strip = document.getElementById('inStrip');
+  if (strip) {
+    var rl = EVENT.reward_line || '5 cocktails';
+    strip.innerHTML = inDraw
+      ? '<b>' + rl + '</b>, pulled at random at <b>' + EVENT.draw_time + '</b>. Everyone gets the result by email, win or lose.'
+      : state === 'early'  || state === 'before'
+        ? 'It is not a party night yet. <b>' + EVENT.party_name + '</b> goes live ' + (EVENT.start_label || 'on the night') + '. Do it again then to be in the draw.'
+      : state === 'over' ? 'This one has ended. Your card is still yours.'
+      : 'Entries had closed, so this one was not in the draw. Your card is still yours. Do it earlier next time.';
+  }
+  buildCard();
+  uploadPhoto();
+}
+
+/* ══════════════════════════════════════════════════════════════
+   THE CARD
+   Their photo full bleed, one floating panel over it carrying the
+   flyer, their name, the lineup and the sponsors.
+   ══════════════════════════════════════════════════════════════ */
+
+var M = 40, CW = 1080, CH = 1920, YEL = '#dedc00';
+
+function loadImg(src){
+  return new Promise(function(res){
+    if (!src) { res(null); return; }
+    var i = new Image();
+    /* Never let a third-party image taint the canvas: without CORS
+       headers it fails here instead of breaking the export. */
+    if (/^https?:\/\//i.test(src) && src.indexOf(location.origin) !== 0) i.crossOrigin = 'anonymous';
+    var done = false, tm = setTimeout(function(){ if (!done) { done = true; console.warn('[vybechek] image timed out:', src); res(null); } }, 5000);
+    i.onload = function(){ if (!done) { done = true; clearTimeout(tm); res(i); } };
+    i.onerror = function(){ if (!done) { done = true; clearTimeout(tm); console.warn('[vybechek] image failed:', src); res(null); } };
+    i.src = src;
+  });
+}
+function rr(g,x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath();}
+function cover(g,i,x,y,w,h){var s=Math.max(w/i.width,h/i.height),dw=i.width*s,dh=i.height*s;g.drawImage(i,x+(w-dw)/2,y+(h-dh)/2,dw,dh);}
+function sp(s){ return String(s).split('').join(' '); }
+function rule(g,x1,x2,y){g.strokeStyle='rgba(255,255,255,0.14)';g.lineWidth=2;g.beginPath();g.moveTo(x1,y);g.lineTo(x2,y);g.stroke();}
+
+/* The shared pieces (texture, flyer, logos, fonts) start loading as soon
+   as the details step opens, so they are ready by the time someone taps
+   Enter. The drawing itself starts on that tap, alongside the entry
+   request, instead of waiting for the server to answer. */
+var assetsP = null, cardsP = null;
+
+function prewarm(){
+  if (assetsP) return assetsP;
+  var fonts = (document.fonts && document.fonts.load)
+    ? Promise.race([
+        Promise.all([document.fonts.load('900 100px "Aesthet Nova"'), document.fonts.load('700 30px Figtree')]).catch(function(){}),
+        new Promise(function(r){ setTimeout(r, 3000); })
+      ])
+    : Promise.resolve();
+  assetsP = Promise.all([
+    loadImg('/texture.jpg'), loadImg(EVENT.flyer_url), loadImg(EVENT.logo_url), loadImg('/logo_afrocue.png'), fonts
+  ]);
+  return assetsP;
+}
+
+function makeCards(){
+  var cv = document.getElementById('cardCanvas'), g = cv.getContext('2d');
+  return prewarm().then(function(a){
+    var photos = shots.length ? shots.map(function(sh){ return sh.url; }) : [null];
+    var out = [], p = Promise.resolve();
+    photos.forEach(function(u){
+      p = p.then(function(){ return loadImg(u); })
+           .then(function(ph){ return draw(g, cv, ph, a[0], a[1], a[2], a[3]); })
+           .then(function(b){ out.push(b); });
+    });
+    return p.then(function(){ return out; });
+  });
+}
+
+function buildCard(){
+  setCardState('busy');
+  if (!cardsP) cardsP = makeCards();
+  cardsP.then(function(out){
+    cards = out; cardBlob = out[0];
+    showCards();
+    uploadCards();
+  }).catch(function(e){
+    console.error('[vybechek] card failed:', e);
+    cardsP = null;
+    setCardState('fail', e && e.message ? e.message : String(e));
+  });
+}
+
+function setCardState(st, msg){
+  var n = document.getElementById('cardStat'), b = document.getElementById('retryBtn');
+  if (!n) return;
+  if (st === 'busy') { document.getElementById('cardWrap').classList.remove('show'); n.style.display = 'block'; n.textContent = 'Making your card...'; b.style.display = 'none'; }
+  if (st === 'fail') { n.style.display = 'block'; n.textContent = 'Your card did not build on this phone. ' + (msg || ''); b.style.display = 'block'; }
+  if (st === 'ok') { n.style.display = 'none'; b.style.display = 'none'; }
+}
+
+function showCards(){
+  var box = document.getElementById('slides'), dots = document.getElementById('dots');
+  box.innerHTML = ''; dots.innerHTML = '';
+  cards.forEach(function(b, i){
+    var d = document.createElement('div'); d.className = 'slide';
+    var im = document.createElement('img'); im.alt = 'Your card ' + (i + 1); im.src = URL.createObjectURL(b);
+    d.appendChild(im); box.appendChild(d);
+    var dt = document.createElement('i'); if (i === 0) dt.className = 'on'; dots.appendChild(dt);
+  });
+  dots.style.display = cards.length > 1 ? 'flex' : 'none';
+  box.onscroll = function(){
+    var k = Math.round(box.scrollLeft / Math.max(box.clientWidth, 1));
+    Array.prototype.forEach.call(dots.children, function(d, i){ d.className = i === k ? 'on' : ''; });
+  };
+  document.getElementById('cardWrap').classList.add('show');
+  setCardState('ok');
+  var many = cards.length > 1;
+  var file = new File([cards[0]], 'vybechek.jpg', { type: 'image/jpeg' });
+  var canShare = false;
+  try { canShare = !!(navigator.canShare && navigator.share && navigator.canShare({ files: [file] })); } catch(e){}
+  document.getElementById('shareBtn').style.display = canShare ? 'block' : 'none';
+  document.getElementById('shareBtn').innerHTML = many ? 'Share all ' + cards.length + ' &rarr;' : 'Share it &rarr;';
+  document.getElementById('dlBtn').style.display = 'block';
+  document.getElementById('dlBtn').textContent = many ? 'Save all' : 'Save image';
+  set('cardNote','textContent', canShare ? 'Share it to your story, or save it and post it yourself.' : 'Hold the image to save it, then post it.');
+  startCoach(canShare);
+}
+
+function draw(g, cv, photo, tex, flyer, chiby, acue){
+  /* Full story size, 9:16. The photo runs edge to edge, the party's mark sits top right,
+     and one near-black panel, held clear of Instagram's reply bar, carries the name, the party and the
+     way back. No lineup, no sponsors: this is the card people post. */
+  if (photo) cover(g, photo, 0, 0, CW, CH);
+  else { g.fillStyle = '#0f0f0f'; g.fillRect(0,0,CW,CH); if (tex) cover(g,tex,0,0,CW,CH); }
+
+  var v = g.createLinearGradient(0, CH*0.5, 0, CH);
+  v.addColorStop(0,'rgba(0,0,0,0)'); v.addColorStop(1,'rgba(0,0,0,0.5)');
+  g.fillStyle = v; g.fillRect(0, CH*0.5, CW, CH*0.5);
+
+  /* Only a wide mark goes top right. A portrait image there is a flyer,
+     and the flyer lives in the panel, nowhere else. */
+  if (chiby && chiby.width / chiby.height >= 1.6) {
+    var pw = 250, ph = pw*(chiby.height/chiby.width);
+    g.save(); g.shadowColor='rgba(0,0,0,0.7)'; g.shadowBlur=24; g.shadowOffsetY=4;
+    g.drawImage(chiby, CW-M-pw, 230, pw, ph);
+    g.restore();
+  }
+
+  var BW = CW - M*2, BH = 410, BY = CH - BH - 280, px = M + 42, tr = M + BW - 42;
+  var ffh = BH - 64, ffw = ffh * 0.8, fx = tr - ffw, fy = BY + 32;
+  var tw = (flyer ? fx - 36 : tr) - px;
+
+  g.save(); rr(g,M,BY,BW,BH,26);
+  g.shadowColor='rgba(0,0,0,0.38)'; g.shadowBlur=34; g.shadowOffsetY=10;
+  g.fillStyle='rgba(0,0,0,0.84)'; g.fill();
+  g.restore();
+  g.save(); rr(g,M,BY,BW,BH,26); g.strokeStyle='rgba(255,255,255,0.14)'; g.lineWidth=2; g.stroke(); g.restore();
+
+  g.textAlign = 'left';
+  /* Aesthet Nova Black, the site's own face. One size for every name,
+     shrunk only when a long one would not fit. */
+  var who = (vals.first_name || ''), base = 108;
+  g.font = '900 ' + base + 'px "Aesthet Nova", Georgia, serif';
+  var size = Math.min(base, base * (tw / Math.max(g.measureText(who).width, 1)));
+  g.font = '900 ' + Math.round(size) + 'px "Aesthet Nova", Georgia, serif';
+  g.fillStyle = '#f0ede8';
+  g.fillText(who, px, BY + 34 + size*0.80);
+
+  g.fillStyle = 'rgba(240,237,232,0.5)';
+  g.font = '700 22px Figtree, Helvetica, Arial, sans-serif';
+  g.font = '700 21px Figtree, Helvetica, Arial, sans-serif'; g.fillText('DID A VYBECHEK AT', px, BY+168);
+  g.fillStyle = YEL;
+  g.font = '700 44px Figtree, Helvetica, Arial, sans-serif';
+  g.fillText((EVENT.party_name||'').toUpperCase(), px, BY+216);
+  g.fillStyle = 'rgba(240,237,232,0.6)';
+  g.font = '300 26px Figtree, Helvetica, Arial, sans-serif';
+  g.fillText(EVENT.edition_venue + '  ·  ' + (EVENT.date_label || EVENT.edition_date), px, BY+258);
+
+  /* The flyer, right side of the panel. */
+  if (flyer) {
+    g.save(); rr(g,fx,fy,ffw,ffh,12); g.clip(); cover(g,flyer,fx,fy,ffw,ffh); g.restore();
+    g.save(); rr(g,fx,fy,ffw,ffh,12); g.strokeStyle='rgba(255,255,255,0.22)'; g.lineWidth=2; g.stroke(); g.restore();
+  }
+
+  /* AfroCue bottom left, and the way back beside it. */
+  var by = BY + BH - 38;
+  var lw = 72, lh = acue ? lw*(acue.height/acue.width) : 0;
+  if (acue) g.drawImage(acue, px, by - lh, lw, lh);
+  g.fillStyle = YEL; g.font = '700 26px Figtree, Helvetica, Arial, sans-serif';
+  g.fillText(EVENT.share_url || 'afrocue.xyz/parties', px + (acue ? lw + 22 : 0), by - Math.max(lh/2 - 9, 0));
+
+  return new Promise(function(res, rej){
+    cv.toBlob(function(blob){
+      if (blob) res(blob); else rej(new Error('image export failed'));
+    }, 'image/jpeg', 0.92);
+  });
+}
+
+/* The instruction bar. Types itself across the card so the next three
+   taps are clear, then leaves on a tap or after a few seconds. */
+var coachTimer = null, coachHide = null;
+function hideCoach(){
+  var c = document.getElementById('coach'); if (c) c.classList.add('hide');
+  clearInterval(coachTimer); clearTimeout(coachHide);
+}
+function startCoach(canShare){
+  var c = document.getElementById('coach'), t = document.getElementById('coachTxt');
+  if (!c || !t) return;
+  var msg = canShare
+    ? 'Tap Share it, choose Instagram, then Story. Add music if you want.'
+    : 'Save the image, then post it to your Instagram story. Add music if you want.';
+  c.classList.remove('hide'); t.textContent = '';
+  var reduce = false; try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){}
+  if (reduce) { t.textContent = msg; }
+  else {
+    var i = 0; clearInterval(coachTimer);
+    coachTimer = setInterval(function(){
+      i++; t.textContent = msg.slice(0, i);
+      if (i >= msg.length) clearInterval(coachTimer);
+    }, 32);
+  }
+  clearTimeout(coachHide); coachHide = setTimeout(hideCoach, 14000);
+}
+
+/* A sponsor with a logo file is drawn; one without is set as a
+   wordmark in the same row. */
+function sponsorRow(g, imgs, cx, y, maxW){
+  var list = EVENT.sponsors || [];
+  var Hh = 46, items = [], total = 0, gap = 46;
+  list.forEach(function(s, i){
+    var im = imgs && imgs[i];
+    if (im) { var w = im.width*(Hh/im.height); items.push({im:im,w:w,h:Hh}); total += w; }
+    else {
+      g.font = '700 31px Figtree, Helvetica, Arial, sans-serif';
+      var w2 = g.measureText(s.name).width; items.push({txt:s.name,w:w2}); total += w2;
+    }
+  });
+  if (!items.length) return;
+  total += gap*(items.length-1);
+  var s = Math.min(1, maxW/total);
+  if (s < 1) { items.forEach(function(it){ it.w *= s; if (it.h) it.h *= s; }); gap *= s; total = maxW; }
+  var x = cx - total/2;
+  items.forEach(function(it){
+    if (it.im) g.drawImage(it.im, x, y-it.h/2, it.w, it.h);
+    else {
+      g.textAlign = 'left'; g.fillStyle = '#f0ede8';
+      g.font = '700 ' + Math.round(31*s) + 'px Figtree, Helvetica, Arial, sans-serif';
+      g.fillText(it.txt, x, y+10);
+    }
+    x += it.w + gap;
+  });
+  g.textAlign = 'center';
+}
+
+function cardFiles(){
+  return cards.map(function(b, i){ return new File([b], 'vybechek' + (cards.length > 1 ? '-' + (i + 1) : '') + '.jpg', { type: 'image/jpeg' }); });
+}
+
+function shareCard(){
+  if (!cards.length) return;
+  var files = cardFiles();
+  var data = { files: files, text: vals.first_name + ' did a VybeChek at ' + EVENT.party_name + '. ' + EVENT.organizer_handle };
+  try { if (!navigator.canShare(data)) data.files = [files[0]]; } catch(e){}
+  navigator.share(data).catch(function(e){ if (e.name !== 'AbortError') console.warn('[vybechek] share:', e); });
+}
+
+function downloadCard(){
+  cards.forEach(function(b, i){
+    setTimeout(function(){
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(b);
+      a.download = 'vybechek-' + (vals.first_name||'card').toLowerCase() + (cards.length > 1 ? '-' + (i + 1) : '') + '.jpg';
+      document.body.appendChild(a); a.click(); a.remove();
+    }, i * 350);
+  });
+}
+
+['fname','email','ig'].forEach(function(id){
+  var el = document.getElementById(id);
+  if (el) el.addEventListener('keydown', function(e){ if (e.key === 'Enter') { e.preventDefault(); submitAll(); } });
+});
+window.addEventListener('pagehide', stopCamera);
+boot();
+</script>
+</body>
+</html>
