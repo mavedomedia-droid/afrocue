@@ -52,30 +52,89 @@
     padding:calc(var(--ac-nav-h,76px) + 26px) var(--pad) 48px}
 
   /* ── hero ───────────────────────────────────────────────── */
-  .hero{text-align:center;padding:0 0 26px}
-  .at-line{display:flex;align-items:center;justify-content:center;gap:9px;margin:0 0 18px}
-  .at-lbl{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--fine);
-    font-weight:700}
-  .at-name{font-family:var(--display);font-weight:900;font-size:20px;line-height:1;color:var(--white)}
+  .hero{text-align:center;padding:0 0 4px}
+  /* The party: one compact line. */
+  .pt{display:inline-flex;align-items:center;gap:10px;max-width:100%;background:rgba(255,255,255,0.04);
+    border:1px solid var(--line-hi);border-radius:10px;padding:7px 12px;margin:14px 0 0;white-space:nowrap;overflow:hidden}
+  .pt-k{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--fine);font-weight:700}
+  .pt-v{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--mute);min-width:0}
+  .pt-v b{font-family:var(--display);font-weight:900;font-size:15px;color:var(--white)}
+  .pt-v > span::before{content:'';display:inline-block;width:3px;height:3px;border-radius:50%;background:var(--yellow);margin-right:7px;vertical-align:3px}
+  .pt-v > span:empty{display:none}
+
+  /* Variant B: a button, and under it the postcard they will get. */
+  .intro{display:none}
+  body.introOn .intro{display:block;margin-top:18px}
+  body.introOn:not(.started) main.card{display:none}
+  body.introOn.started .intro{display:none}
+  .start{display:inline-block;background:var(--white);color:#121212;border:0;border-radius:10px;padding:12px 38px;
+    font:700 16px var(--sans);cursor:pointer}
+  .start:active{transform:scale(.97)}
+  .phone{width:200px;height:356px;margin:20px auto 0;border-radius:30px;background:#111;border:3px solid #34342e;padding:7px;
+    box-shadow:0 30px 60px rgba(0,0,0,.55);transform:rotate(-3deg)}
+  .screen{position:relative;width:100%;height:100%;border-radius:23px;overflow:hidden;background:#151513 url('texture.jpg') center/cover}
+  .screen.has-photo{background-size:cover;background-position:center}
+  .screen.has-photo .ph-photo{display:none}
+  .screen.has-photo::after{content:'';position:absolute;left:0;right:0;bottom:0;height:55%;background:linear-gradient(transparent,rgba(0,0,0,.55))}
+  .screen.has-photo .ph-panel{z-index:1}
+  .ph-photo{position:absolute;left:18px;right:18px;top:26px;height:150px;display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:700;color:var(--fine);text-align:center}
+  .ph-photo i{position:absolute;width:16px;height:16px;border-color:var(--yellow);border-style:solid;border-width:0}
+  .ph-photo .c1{left:0;top:0;border-top-width:2px;border-left-width:2px}.ph-photo .c2{right:0;top:0;border-top-width:2px;border-right-width:2px}
+  .ph-photo .c3{left:0;bottom:0;border-bottom-width:2px;border-left-width:2px}.ph-photo .c4{right:0;bottom:0;border-bottom-width:2px;border-right-width:2px}
+  .ph-panel{position:absolute;left:8px;right:8px;bottom:22px;background:rgba(0,0,0,.86);border:1px solid rgba(255,255,255,.14);border-radius:10px;
+    padding:9px;display:flex;gap:8px;text-align:left}
+  .ph-t{flex:1;min-width:0}
+  .ph-nm{font-family:var(--display);font-weight:900;font-size:17px;line-height:1;color:var(--yellow)}
+  .ph-at{font-size:6.5px;font-weight:800;letter-spacing:.14em;margin-top:5px;color:var(--white)}
+  .ph-pt{font-family:var(--display);font-weight:900;font-size:13px;line-height:1.05;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ph-u{font-size:6.5px;font-weight:700;letter-spacing:.1em;color:var(--fine);margin-top:7px}
+  .ph-fl{width:44px;border-radius:5px;background:#222 center/cover}
+  .ph-cap{margin-top:14px;font-size:13px;color:var(--fine)}
   .card-logo{display:none;margin-top:auto;padding-top:14px;text-align:center}
   .card-logo.show{display:block}
   .card-logo img{height:19px;width:auto;max-width:42%;opacity:.7}
   h1{
     font-family:var(--display);font-weight:900;
-    font-size:clamp(38px,11vw,58px);line-height:1.02;letter-spacing:-0.015em;
-    margin:0 0 16px;
+    font-size:clamp(42px,12.5vw,64px);line-height:1;letter-spacing:-0.015em;
+    margin:0 0 10px;white-space:nowrap;
   }
   h1 .y{color:var(--yellow)}
-  .sub{font-size:16px;color:var(--mute);margin:0 auto;max-width:34em;line-height:1.55}
+  .sub{font-size:15px;color:var(--mute);margin:0 auto;max-width:30em;line-height:1.5}
   .sub b{color:var(--white);font-weight:600}
 
-  /* Tiny, one line. Proof, not buttons. */
-  .tags{display:flex;gap:14px;justify-content:center;align-items:center;margin:18px 0 0;
-    flex-wrap:nowrap;white-space:nowrap}
-  .tag{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;
-    color:var(--mute)}
-  .tag svg{width:11px;height:11px;stroke:var(--yellow);stroke-width:3.2;fill:none;flex-shrink:0}
-  @media (max-width:340px){ .tags{gap:10px} .tag{font-size:10.5px} }
+  /* The draw: a ticket. Prize on the left, how it works on the right. */
+  .win{position:relative;display:flex;align-items:center;justify-content:space-between;gap:14px;text-align:left;
+    background:#f1ece1;color:#141412;border-radius:12px;padding:8px 14px;margin:0 auto 16px;max-width:290px;
+    box-shadow:0 14px 30px rgba(0,0,0,.35)}
+  .win::before,.win::after{content:'';position:absolute;top:50%;width:16px;height:16px;margin-top:-8px;border-radius:50%;background:var(--black)}
+  .win::before{left:-8px}.win::after{right:-8px}
+  .w-l{flex:1 1 auto;min-width:0}
+  .w-r{flex:0 0 auto}
+  .w-r{max-width:50%}
+  .w-cl{font-size:8.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#8a877c}
+  .w-cd{font-family:var(--sans);font-size:23px;font-weight:800;line-height:1.1;color:#141412;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+  .w-cd{white-space:nowrap}
+  .w-cd.dd{font-size:18px}
+  .w-cd.names{font-size:13px;line-height:1.3;letter-spacing:0;white-space:pre-line}
+  .w-n{font-size:10px;font-weight:600;color:#8a877c;white-space:normal;margin-top:1px}
+  .w-k{font-size:8.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#8a877c}
+  .w-s{font-size:12px;font-weight:600;color:#4a483f;margin-top:4px;line-height:1.1}
+  .w-t{font-family:var(--display);font-weight:900;font-size:20px;line-height:1.05;margin-top:1px}
+  .w-t.long{font-size:15px;line-height:1.15}
+  .w-r{border-left:2px dashed #c9c3b4;padding-left:14px;display:flex;flex-direction:column;gap:1px;
+    font-size:12px;font-weight:700;color:#4a483f;text-align:right}
+  .w-r b{color:#141412}
+  .win .state{margin:0;max-width:none;text-align:right;white-space:normal}
+  .win .state-t{font-size:12px;font-weight:700;line-height:1.35;color:#4a483f}
+  .win .state-c{margin-top:2px;font-size:15px;font-weight:800;letter-spacing:.04em;color:#141412;font-variant-numeric:tabular-nums}
+  .win .state-c.sm{font-size:12px;letter-spacing:0;font-weight:700;line-height:1.4}
+
+  .spons{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:14px 0 0}
+  body.started .spons{display:none}
+  .s-k{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--fine);font-weight:700}
+  .s-l{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;font-size:12.5px;font-weight:700;color:var(--mute)}
+  .s-l img{height:18px;width:auto;max-width:70px;object-fit:contain;opacity:.85}
 
   /* ── card + steps ───────────────────────────────────────── */
   .card{
@@ -253,10 +312,11 @@
       padding:calc(var(--ac-nav-h,57px) + 10px) var(--pad) 12px}
     body.lock #ac-footer,body.lock .partners{display:none}
     body.lock .hero{padding:0;flex:0 0 auto}
-    body.lock .at-line{margin:0 0 8px}
-    body.lock h1{font-size:clamp(30px,9vw,38px);margin:0 0 8px}
+    body.lock h1{font-size:clamp(38px,11.5vw,46px);margin:0 0 6px}
     body.lock .sub{font-size:14px;line-height:1.45}
-    body.lock .tags{margin:10px 0 0}
+    body.lock .win{margin-bottom:12px;padding:8px 14px}
+    body.lock .spons{margin-top:10px}
+    body.lock .pt{margin-top:10px}
     body.lock.later .hero{display:none}
     body.lock .card{flex:1;min-height:0;display:flex;flex-direction:column;margin-top:14px;padding:16px 16px 14px}
     body.lock.later .card{margin-top:0}
@@ -375,6 +435,7 @@
     font-variant-numeric:tabular-nums}
   .state-c.sm{letter-spacing:0;font-weight:500;line-height:1.5}
   body.lock .state{margin-top:8px}
+  body.lock .win .state{margin:0}
   .closed-h{font-family:var(--display);font-weight:900;font-size:clamp(24px,6.5vw,30px);line-height:1.1;margin:0 0 10px}
 </style>
 </head>
@@ -387,20 +448,34 @@
 <div class="wrap">
 
   <header class="hero">
-    <div class="at-line">
-      <span class="at-lbl">Currently at</span>
-      <span class="at-name" id="evName">South Social</span>
+    <div class="win" id="winTile">
+      <div class="w-l">
+        <div class="w-k" id="wKick">Enter the draw</div>
+        <div class="w-s" id="wLead">Win one of</div>
+        <div class="w-t" id="wPrize">5 cocktails</div>
+      </div>
+      <div class="w-r">
+        <span class="w-cl" id="wCdL">Draw in</span>
+        <span class="w-cd" id="wCd">--:--:--</span>
+        <span class="w-n" id="wNote">5 winners. Free to enter</span>
+      </div>
     </div>
-    <h1>Do a <span class="y">VybeChek™</span></h1>
-    <p class="sub" id="heroSub">
-      Win one of <b>5 cocktails</b>. Answer a few questions about your night. Share the result on your story.
-    </p>
-    <div class="tags">
-      <span class="tag" id="tagWin"><svg viewBox="0 0 24 24"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg><span id="tWinners">5 winners</span></span>
-      <span class="tag"><svg viewBox="0 0 24 24"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg>Drawn at <b id="tDraw2">1AM</b></span>
-      <span class="tag"><svg viewBox="0 0 24 24"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg>Free to enter</span>
+    <h1>Do a <span class="y">VybeChek&trade;</span></h1>
+    <p class="sub" id="heroSub">Answer a few questions about your night. Get your postcard and share it on your story.</p>
+    <div class="pt"><span class="pt-v"><b id="evName">South Social</b><span id="dDate">Fri 27 Nov</span><span id="dVen">Shiro Lagos</span></span></div>
+
+    <div class="intro" id="intro">
+      <button class="start" id="startBtn" type="button">Start</button>
+      <div class="phone"><div class="screen" id="phScreen">
+        <div class="ph-photo"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i><span>Your view of the night</span></div>
+        <div class="ph-panel">
+          <div class="ph-t"><div class="ph-nm">Your name</div><div class="ph-at">DID A VYBECHEK AT</div><div class="ph-pt" id="phParty">South Social</div><div class="ph-u">afrocue.xyz</div></div>
+          <div class="ph-fl" id="phFlyer"></div>
+        </div>
+      </div></div>
+      <div class="ph-cap">This is what you get. Share it on your story.</div>
     </div>
-    <div class="state" id="stateBox" style="display:none"><div class="state-t" id="stateT"></div><div class="state-c" id="stateC"></div></div>
+    <div class="spons" id="spons" style="display:none"><span class="s-k">Sponsored by</span><span class="s-l" id="sList"></span></div>
   </header>
 
   <main class="card">
@@ -414,19 +489,19 @@
       <div class="slabel">Entry</div>
       <h2 class="q">How did you get in tonight?</h2>
       <div class="opts">
-        <button class="opt" onclick="pick('entry_route','Online ticket',2)">
+        <button class="opt" onclick="pick('entry_route','Online tickets',2)">
           <span class="opt-n">01</span>
-          <span class="opt-b"><span class="opt-t">Online ticket</span><span class="opt-s">Booked ahead</span></span>
+          <span class="opt-b"><span class="opt-t">Online tickets</span></span>
           <span class="opt-a">&rarr;</span>
         </button>
         <button class="opt" onclick="pick('entry_route','At the door',2)">
           <span class="opt-n">02</span>
-          <span class="opt-b"><span class="opt-t">At the door</span><span class="opt-s">Walked in</span></span>
+          <span class="opt-b"><span class="opt-t">At the door</span><span class="opt-s">Door tickets</span></span>
           <span class="opt-a">&rarr;</span>
         </button>
         <button class="opt" onclick="pick('entry_route','Guest list',2)">
           <span class="opt-n">03</span>
-          <span class="opt-b"><span class="opt-t">Guest list</span><span class="opt-s">On someone's list</span></span>
+          <span class="opt-b"><span class="opt-t">Guest list</span><span class="opt-s">On someone&rsquo;s list</span></span>
           <span class="opt-a">&rarr;</span>
         </button>
       </div>
@@ -436,21 +511,77 @@
     <!-- 2 ───────────────────────────────────────────────── -->
     <section class="step" id="q2">
       <div class="slabel">Your crew</div>
-      <h2 class="q">Who are you here with?</h2>
+      <h2 class="q">How are you partying tonight?</h2>
       <div class="opts">
-        <button class="opt" onclick="pick('crew','Solo',3)">
+        <button class="opt" onclick="pick('crew','Just me',6)">
           <span class="opt-n">01</span>
-          <span class="opt-b"><span class="opt-t">Solo</span><span class="opt-s">Just me</span></span>
+          <span class="opt-b"><span class="opt-t">Just me</span></span>
           <span class="opt-a">&rarr;</span>
         </button>
-        <button class="opt" onclick="pick('crew','One other person',3)">
+        <button class="opt" onclick="pick('crew','Me and someone (my babe)',6)">
           <span class="opt-n">02</span>
-          <span class="opt-b"><span class="opt-t">One other person</span><span class="opt-s">Plus one</span></span>
+          <span class="opt-b"><span class="opt-t">Me and someone (my babe)</span></span>
           <span class="opt-a">&rarr;</span>
         </button>
-        <button class="opt" onclick="pick('crew','A group',3)">
+        <button class="opt" onclick="pick('crew','Me and someone (just friends)',6)">
           <span class="opt-n">03</span>
-          <span class="opt-b"><span class="opt-t">A group</span><span class="opt-s">Came mob deep</span></span>
+          <span class="opt-b"><span class="opt-t">Me and someone (just friends)</span></span>
+          <span class="opt-a">&rarr;</span>
+        </button>
+        <button class="opt" onclick="pick('crew','Me and a group',6)">
+          <span class="opt-n">04</span>
+          <span class="opt-b"><span class="opt-t">Me and a group</span></span>
+          <span class="opt-a">&rarr;</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 6 ── the ride ───────────────────────────────────── -->
+    <section class="step" id="q6">
+      <div class="slabel">Your ride</div>
+      <h2 class="q">How did you get here?</h2>
+      <div class="opts">
+        <button class="opt" onclick="pick('ride','Cab hailing',7)">
+          <span class="opt-n">01</span>
+          <span class="opt-b"><span class="opt-t">Cab hailing</span><span class="opt-s">Bolt / inDrive and others</span></span>
+          <span class="opt-a">&rarr;</span>
+        </button>
+        <button class="opt" onclick="pick('ride','Drove here',7)">
+          <span class="opt-n">02</span>
+          <span class="opt-b"><span class="opt-t">Drove here</span></span>
+          <span class="opt-a">&rarr;</span>
+        </button>
+        <button class="opt" onclick="pick('ride','Hitched a ride',7)">
+          <span class="opt-n">03</span>
+          <span class="opt-b"><span class="opt-t">Hitched a ride</span><span class="opt-s">Came with someone</span></span>
+          <span class="opt-a">&rarr;</span>
+        </button>
+        <button class="opt" onclick="pick('ride','Found my way (PT)',7)">
+          <span class="opt-n">04</span>
+          <span class="opt-b"><span class="opt-t">Found my way (PT)</span></span>
+          <span class="opt-a">&rarr;</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 7 ── the spot ───────────────────────────────────── -->
+    <section class="step" id="q7">
+      <div class="slabel">Your spot</div>
+      <h2 class="q">What is your spot tonight?</h2>
+      <div class="opts">
+        <button class="opt" onclick="pick('spot','On the dance floor',3)">
+          <span class="opt-n">01</span>
+          <span class="opt-b"><span class="opt-t">On the dance floor</span><span class="opt-s">General admission</span></span>
+          <span class="opt-a">&rarr;</span>
+        </button>
+        <button class="opt" onclick="pick('spot','Guest / VIP',3)">
+          <span class="opt-n">02</span>
+          <span class="opt-b"><span class="opt-t">Guest / VIP</span></span>
+          <span class="opt-a">&rarr;</span>
+        </button>
+        <button class="opt" onclick="pick('spot','Table',3)">
+          <span class="opt-n">03</span>
+          <span class="opt-b"><span class="opt-t">Table</span></span>
           <span class="opt-a">&rarr;</span>
         </button>
       </div>
@@ -459,8 +590,8 @@
     <!-- 3 ── the photo ──────────────────────────────────── -->
     <section class="step" id="q3">
       <div class="slabel">My party view</div>
-      <h2 class="q">Show us your view right now at the party.</h2>
-      <p class="hint">Or choose a photo you took tonight from your gallery. Treat it like a postcard.</p>
+      <h2 class="q">Show us your view right now.</h2>
+      <p class="hint">Or choose a photo you took tonight.</p>
 
       <div class="ideas">
         <span class="idea">The DJ</span><span class="idea">The lights</span><span class="idea">Your table</span><span class="idea">Your feet</span><span class="idea">Your people</span>
@@ -583,6 +714,9 @@ var EVENT = {
   party_id:        'south-social',
   party_name:      'South Social',
   organizer_handle:'@thechibyverse',
+  edition_name:    'Black Friday Special',
+  edition_time:    '8PM',
+  party_photo:     'chibyverse_hero.jpg',
   edition_venue:   'Shiro Lagos',
   edition_date:    'Friday 27 November',
   logo_url:        'chibyverse_logo.png',
@@ -603,7 +737,9 @@ var EVENT = {
 var GAS_URL = (typeof AFROCUE_SCRIPT_URL !== 'undefined') ? AFROCUE_SCRIPT_URL : '';
 if (!GAS_URL) console.warn('[vybechek] No AFROCUE_SCRIPT_URL yet. Expected if afrocue.js is not beside this file.');
 
-var TOTAL = 4, current = 1;
+var TOTAL = 6, current = 1;
+/* Steps run 1, 2, 6, 7, 3, 4 on screen; the ids are not in order. */
+var POS = { 1:1, 2:2, 6:3, 7:4, 3:5, 4:6, 5:6 };
 var vals = {};
 var shots = [], cur = 0, stream = null, MAXSHOTS = 5;
 var cards = [], cardBlob = null;
@@ -621,6 +757,16 @@ function set(id, prop, value){
 /* ── boot ──────────────────────────────────────────────────── */
 
 function boot(){
+  /* Variant B (?v=b): a Do a VybeChek button, with the postcard preview under it.
+     The quiz opens when they tap. */
+  if (qs('v') !== 'a') {
+    document.body.classList.add('introOn');
+    var sb = document.getElementById('startBtn');
+    if (sb) sb.addEventListener('click', function(){
+      document.body.classList.add('started');
+      try { (window.dataLayer = window.dataLayer || []).push({event:'vybechek_start'}); } catch(e){}
+    });
+  }
   paintConfig();
 
   loadConfig();
@@ -650,6 +796,23 @@ function loadConfig(){
 
 /* "24 June 2026" style dates on a card read badly, and the sheet gives
    2026-11-27. Turn it into Friday 27 November, in Lagos time. */
+function singular(w){
+  w = String(w || '');
+  if (/ies$/i.test(w)) return w.replace(/ies$/i, 'y');
+  if (/(ch|sh|ss|x)es$/i.test(w)) return w.replace(/es$/i, '');
+  if (/[^s]s$/i.test(w)) return w.replace(/s$/i, '');
+  return w;
+}
+
+function shortDate(iso){
+  var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ''));
+  if (!m) return String(iso || '');
+  try {
+    return new Date(Date.UTC(+m[1], +m[2] - 1, +m[3], 12)).toLocaleDateString('en-GB',
+      { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' }).replace(',', '');
+  } catch (e) { return String(iso); }
+}
+
 function dateLabel(iso){
   var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ''));
   if (!m) return String(iso || '');
@@ -663,10 +826,47 @@ function paintConfig(){
   EVENT.date_label = dateLabel(EVENT.edition_date);
   document.title = 'Do a VybeChek™ · ' + EVENT.party_name;
   var st = EVENT.state || 'live', rl = EVENT.reward_line || '5 cocktails', n = +EVENT.reward_count || 1;
-  set('tDraw2','textContent', EVENT.draw_time);
-  set('tWinners','textContent', n + (n === 1 ? ' winner' : ' winners'));
 
   set('evName','textContent', EVENT.party_name);
+  /* The prize as a sentence. reward_name is the plural ("cocktails"), reward_unit is
+     one of them ("cocktail"). With one prize it reads "Win a cocktail". */
+  var unit = EVENT.reward_unit || singular(EVENT.reward_name || '');
+  var aU = function(u){ return (/^[aeiou]/i.test(u) ? 'an ' : 'a ') + u; };
+  var ps = (EVENT.prizes || []).filter(function(p){ return p && p.name; });
+  var wp = document.getElementById('wPrize');
+  if (wp) wp.classList.remove('long');
+  if (ps.length > 1) {
+    /* Several prizes: "Win one of 6 prizes", then what they are. */
+    set('wLead','textContent', 'Win one of ' + n + ' prizes');
+    set('wPrize','textContent', ps.map(function(p){ return +p.count === 1 ? aU(p.unit) : p.count + ' ' + p.name; }).join(' + '));
+    if (wp) wp.classList.add('long');
+  } else if (n > 1) { set('wLead','textContent', 'Win one of'); set('wPrize','textContent', n + ' ' + (EVENT.reward_name || 'gifts')); }
+  else { set('wLead','textContent', 'Win'); set('wPrize','textContent', aU(unit)); }
+  /* The party line: name, short date, time. A blank one drops out. */
+  set('dDate','textContent', shortDate(EVENT.edition_date));
+  set('dVen','textContent', EVENT.edition_venue || EVENT.home_venue || '');
+  set('phParty','textContent', EVENT.party_name);
+  /* The phone shows a photo from the party itself (party_photo in the
+     sheet). Without one it shows the empty frame. */
+  var scr = document.getElementById('phScreen');
+  if (scr) {
+    if (EVENT.party_photo) { scr.style.backgroundImage = 'url("' + EVENT.party_photo + '")'; scr.classList.add('has-photo'); }
+    else { scr.style.backgroundImage = ''; scr.classList.remove('has-photo'); }
+  }
+  var pf = document.getElementById('phFlyer');
+  if (pf) pf.style.backgroundImage = EVENT.flyer_url ? 'url("' + EVENT.flyer_url + '")' : '';
+  /* Sponsored by: only when the sheet has sponsors. A logo if there is one, the name if not. */
+  var sp = (EVENT.sponsors || []).filter(function(x){ return x && (x.name || x.logo); });
+  var sbox = document.getElementById('spons'), sl = document.getElementById('sList');
+  if (sbox && sl) {
+    sl.innerHTML = '';
+    sp.forEach(function(x){
+      if (x.logo) { var im = document.createElement('img'); im.src = x.logo; im.alt = x.name || 'Sponsor';
+        im.onerror = function(){ var t = document.createElement('span'); t.textContent = x.name || ''; im.replaceWith(t); }; sl.appendChild(im); }
+      else { var t = document.createElement('span'); t.textContent = x.name; sl.appendChild(t); }
+    });
+    sbox.style.display = sp.length ? '' : 'none';
+  }
   /* The party's logo sits in the card, at the foot of the first step. */
   var logo = document.getElementById('evLogo'), box0 = document.getElementById('cardLogo');
   if (logo && box0) {
@@ -677,50 +877,64 @@ function paintConfig(){
     } else { box0.classList.remove('show'); }
   }
 
-  /* What the hero says depends on where the party is by the clock. */
-  var box = document.getElementById('stateBox'), sub = document.getElementById('heroSub');
-  var tags = document.querySelector('.tags');
-  var live = (st === 'live');
-  if (tags) tags.style.display = live ? '' : 'none';
-  box.style.display = live ? 'none' : 'block';
-  if (live) {
-    sub.innerHTML = 'Win <b>' + rl + '</b>. Answer a few questions about your night. Share the result on your story.';
+  /* The hero line stays the same. Where the party is by the clock lives on the draw ticket:
+     a countdown to the draw (1AM the morning after), and before the party opens, the time
+     entries start counting from. */
+  set('heroSub','innerHTML', 'Answer a few questions about your night. Get your postcard and share it on your story.');
+  var nW = n + (n === 1 ? ' winner' : ' winners'), cd = document.getElementById('wCd');
+  if (cd) cd.classList.remove('names');
+  if (st === 'live') {
+    set('wKick','textContent', 'Enter the draw');
+    set('wCdL','textContent', 'Draw in');
+    set('wNote','textContent', nW + '. Free to enter');
     set('fineNote','textContent', 'We email you now, and again when the draw is done at ' + EVENT.draw_time + '. We keep your details and photo to run it.');
   } else if (st === 'before') {
-    set('stateT','textContent', 'The draw is not live yet. It goes live ' + (EVENT.start_label || 'on party night') + '.');
-    sub.innerHTML = 'You can still do a VybeChek and get your card. On the night it puts you in the draw for <b>' + rl + '</b>.';
+    set('wKick','textContent', 'Enter the draw');
+    set('wCdL','textContent', 'Draw in');
+    set('wNote','textContent', 'Entries count from ' + (EVENT.start_time || 'party time'));
     set('fineNote','textContent', 'We email you now. We keep your details and photo to make your card.');
   } else if (st === 'closing') {
-    set('stateT','textContent', 'Entries are closed.');
-    set('stateC','textContent', 'The draw is at ' + EVENT.draw_time + '.');
-    sub.innerHTML = 'You can still make your card. It will not be in tonight\u2019s draw.';
-    set('fineNote','textContent', 'We email you now. We keep your details and photo to make your card.');
-  } else if (st === 'drawn') {
-    set('stateT','textContent', 'The draw is done. ' + rl + ' went out.');
-    set('stateC','textContent', (EVENT.winners && EVENT.winners.length) ? EVENT.winners.join('   \u00b7   ') : '');
-    sub.innerHTML = 'Do a VybeChek now and you still get your card. Do it earlier next time to be in.';
+    set('wKick','textContent', 'Entries closed');
+    set('wCdL','textContent', 'Draw in');
+    set('wNote','textContent', nW + ' at ' + EVENT.draw_time);
     set('fineNote','textContent', 'We email you now. We keep your details and photo to make your card.');
   } else {
-    set('stateT','textContent', 'This one has ended.');
-    set('stateC','textContent', (EVENT.winners && EVENT.winners.length) ? 'Winners: ' + EVENT.winners.join('   \u00b7   ') : '');
-    sub.innerHTML = 'You can still make your card.';
+    set('wKick','textContent', st === 'drawn' ? 'Draw done' : 'This one has ended');
+    set('wCdL','textContent', 'Winners');
+    set('wCd','textContent', (EVENT.winners && EVENT.winners.length) ? EVENT.winners.join('\n') : 'Being called');
+    if (cd) cd.classList.add('names');
+    set('wNote','textContent', '');
     set('fineNote','textContent', 'We email you now. We keep your details and photo to make your card.');
   }
-  var c = document.getElementById('stateC');
-  if (c) c.className = 'state-c' + (st === 'before' ? '' : ' sm');
-  if (st === 'before') tickCountdown();
+  tickCountdown();
   set('partnerLine','textContent', (EVENT.partners || []).join('  ·  '));
   document.body.classList.toggle('testing', !!EVENT.test_mode);
 }
 
-/* Counts down to going live, then asks the sheet again. */
+/* Counts down to the draw, which is the morning after the party
+   (1AM on the 28th for a party on the 27th). The sheet sends the
+   exact moment as draw_ms; without it, it is worked out here. */
+function drawMs(){
+  if (EVENT.draw_ms) return EVENT.draw_ms;
+  var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(EVENT.edition_date || ''));
+  var t = /^(\d{1,2})(?::(\d{2}))?\s*(AM|PM)$/i.exec(String(EVENT.draw_time || '').trim());
+  if (!m || !t) return 0;
+  var h = (+t[1]) % 12 + (/pm/i.test(t[3]) ? 12 : 0);
+  /* Lagos is UTC+1. A draw before noon belongs to the next morning. */
+  return Date.UTC(+m[1], +m[2] - 1, +m[3] + (h < 12 ? 1 : 0), h - 1, +(t[2] || 0));
+}
 function tickCountdown(){
-  if ((EVENT.state || '') !== 'before' || !EVENT.start_ms) return;
-  var ms = EVENT.start_ms - Date.now();
-  if (ms <= 0) { EVENT.start_ms = 0; loadConfig(); return; }
+  var st = EVENT.state || 'live';
+  if (st !== 'before' && st !== 'live' && st !== 'closing') return;
+  var at = drawMs();
+  if (!at) { set('wCd','textContent', EVENT.draw_time || ''); set('wCdL','textContent', 'Drawn at'); return; }
+  var ms = at - Date.now();
+  if (EVENT.start_ms && st === 'before' && EVENT.start_ms <= Date.now()) { EVENT.start_ms = 0; loadConfig(); }
+  if (ms <= 0) { set('wCd','textContent', '00:00:00'); if (!EVENT._asked) { EVENT._asked = true; loadConfig(); } return; }
   var t = Math.floor(ms / 1000), d = Math.floor(t / 86400), h = Math.floor(t % 86400 / 3600),
-      m = Math.floor(t % 3600 / 60), sec = t % 60, p = function(x){ return (x < 10 ? '0' : '') + x; };
-  set('stateC','textContent', (d ? d + 'd ' : '') + p(h) + ':' + p(m) + ':' + p(sec));
+      mi = Math.floor(t % 3600 / 60), sec = t % 60, p = function(x){ return (x < 10 ? '0' : '') + x; };
+  set('wCd','textContent', (d ? d + 'd ' : '') + p(h) + ':' + p(mi) + ':' + p(sec));
+  var cdEl = document.getElementById('wCd'); if (cdEl) cdEl.classList.toggle('dd', d > 0);
 }
 
 /* ── steps ─────────────────────────────────────────────────── */
@@ -741,8 +955,9 @@ function go(n){
 
 function paint(){
   var f = document.getElementById('pfill');
-  if (f) f.style.width = Math.round((Math.min(current, TOTAL) / TOTAL) * 100) + '%';
-  set('plbl','textContent', Math.min(current, TOTAL) + ' / ' + TOTAL);
+  var at = POS[current] || TOTAL;
+  if (f) f.style.width = Math.round((at / TOTAL) * 100) + '%';
+  set('plbl','textContent', at + ' / ' + TOTAL);
 }
 
 function pick(key, value, next){
@@ -991,7 +1206,7 @@ function uploadCards(){
 
 function finish(already, state){
   go(5);
-  current = TOTAL; paint();
+  current = 5; paint();
 
   var inDraw = !state || state === 'live';
   set('doneH','textContent', inDraw ? (already ? 'You are already in, ' : 'You are in, ') + vals.first_name + '.' : 'Thanks, ' + vals.first_name + '.');
