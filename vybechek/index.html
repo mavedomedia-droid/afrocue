@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VybeChek by AfroCue</title>
+<link rel="icon" href="/favicon.png">
+<meta property="og:title" content="VybeChek by AfroCue">
+<meta property="og:description" content="At a party? Do a VybeChek. Scan your ticket tag, answer a few questions and get a postcard from the night.">
+<meta name="description" content="When you're at a party, do a VybeChek. Scan your ticket tag, answer a few questions and get a postcard from the night.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700;800&display=swap">
+<style>
+@font-face{font-family:'Aesthet Nova';font-weight:900;font-display:swap;src:url('/fonnts.com-Aesthet-Nova-Black.woff2') format('woff2')}
+:root{--ink:#0d0d0c;--ink2:#151513;--line:#2c2c27;--cream:#f1ece1;--mute:#a8a69c;--y:#dedc00}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ink) url('/assets/texture.jpg') center top/100% auto repeat-y;overflow-x:hidden;color:var(--cream);font-family:Figtree,system-ui,sans-serif;line-height:1.45}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.disp{font-family:'Aesthet Nova',Figtree,sans-serif;font-weight:900;letter-spacing:-0.5px;line-height:0.95}
+.kick{font-size:12px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--mute)}
+
+/* nav */
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+nav img{width:46px}
+nav a{font-size:14px;font-weight:700;color:var(--mute);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+
+/* hero */
+.hero{text-align:center;padding:28px 0 0}
+.hero h1{font-size:clamp(44px,11vw,92px);margin:14px auto 0;max-width:12ch}
+.hero h1 em{font-style:normal;color:var(--y);display:block;white-space:nowrap}
+.hero p.lede{font-size:18px;color:#d6d1c5;max-width:30ch;margin:16px auto 0}
+.proof{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px;margin-top:14px;font-size:13px;font-weight:700;color:var(--mute)}
+.proof span::before{content:'';display:inline-block;width:6px;height:6px;background:var(--y);margin-right:8px;vertical-align:2px}
+
+/* phone with postcard */
+.stage{position:relative;margin:40px auto 0;width:280px;height:560px}
+.phone{position:absolute;inset:0;border-radius:44px;background:#111;border:3px solid #34342e;padding:10px;box-shadow:0 40px 80px rgba(0,0,0,.6)}
+.screen{position:relative;width:100%;height:100%;border-radius:34px;overflow:hidden}
+.notch{position:absolute;top:10px;left:50%;width:80px;height:22px;border-radius:12px;background:#000;transform:translateX(-50%);z-index:3}
+.card{position:absolute;inset:0;background-size:cover;background-position:center}
+.card::after{content:'';position:absolute;inset:50% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.5))}
+.panel{position:absolute;left:12px;right:12px;bottom:58px;z-index:2;background:rgba(0,0,0,.84);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:14px;display:flex;gap:12px;align-items:stretch}
+.panel .t{flex:1;min-width:0;text-align:left}
+.panel .nm{font-family:'Aesthet Nova',Figtree,sans-serif;font-weight:900;font-size:30px;line-height:1;color:var(--y)}
+.panel .at{font-size:9px;font-weight:800;letter-spacing:2px;margin-top:6px;color:var(--cream)}
+.panel .pt{font-family:'Aesthet Nova',Figtree,sans-serif;font-weight:900;font-size:19px;line-height:1;margin-top:4px}
+.panel .url{font-size:8px;font-weight:700;letter-spacing:1px;color:var(--mute);margin-top:10px}
+.panel .fl{width:58px;border-radius:6px;background-size:cover;background-position:center}
+.chip{position:absolute;z-index:4;background:var(--cream);color:var(--ink);font-size:13px;font-weight:800;padding:9px 14px;border-radius:100px;box-shadow:0 12px 24px rgba(0,0,0,.45);white-space:nowrap}
+.chip.a{left:-34px;top:120px;transform:rotate(-6deg)}
+.chip.b{right:-40px;top:250px;transform:rotate(5deg);background:var(--y)}
+
+/* sections */
+section{padding:84px 0 0}
+.sh{text-align:center}
+.sh h2{font-size:clamp(30px,7vw,48px);margin:10px 0 0}
+.steps{display:grid;gap:16px;margin-top:32px}
+.step{background:rgba(21,21,19,.92);border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.step .vis{height:220px;position:relative;overflow:hidden;background:#11110f}
+.step .tx{padding:18px 20px 22px}
+.step .n{font-family:'Aesthet Nova',Figtree,sans-serif;font-weight:900;font-size:18px;color:var(--y)}
+.step h3{font-size:22px;font-weight:800;margin:4px 0 0;letter-spacing:-.2px}
+.step p{margin:6px 0 0;color:var(--mute);font-size:15px}
+
+/* step visuals */
+.band{position:absolute;left:-30px;right:-30px;top:96px;height:40px;background:#1b1b18;border-top:1px solid #3a3a33;border-bottom:1px solid #3a3a33;transform:rotate(-5deg);display:flex;align-items:center;justify-content:center;gap:22px}
+.band span{font-size:10px;font-weight:800;letter-spacing:3px;color:var(--y)}
+.band .qr{width:84px;height:84px;background:var(--cream);border-radius:8px;padding:6px;box-shadow:0 10px 18px rgba(0,0,0,.5)}
+.band .qr img{width:100%;height:100%}
+.quiz{position:absolute;inset:22px 22px;display:flex;flex-direction:column;gap:8px;justify-content:center}
+.quiz .q{font-size:15px;font-weight:800;margin-bottom:4px}
+.quiz .o{border:1px solid #3a3a33;border-radius:12px;padding:10px 12px;font-size:14px;font-weight:700;color:#d6d1c5}
+.quiz .o.on{border-color:var(--y);background:rgba(222,220,0,.1);color:var(--cream)}
+.mini{position:absolute;top:18px;bottom:-60px;width:150px;border-radius:14px;background-size:cover;background-position:center;box-shadow:0 18px 30px rgba(0,0,0,.6)}
+.mini.one{left:50%;margin-left:-130px;transform:rotate(-7deg)}
+.mini.two{left:50%;margin-left:-20px;transform:rotate(5deg)}
+.mini b{position:absolute;left:8px;right:8px;bottom:78px;background:rgba(0,0,0,.84);border-radius:8px;padding:8px;font-family:'Aesthet Nova',Figtree,sans-serif;font-weight:900;font-size:15px;color:var(--y);line-height:1}
+.mini b small{display:block;font-family:Figtree,sans-serif;font-size:7px;letter-spacing:1.2px;color:var(--cream);margin-top:4px}
+.mini b i{display:block;font-style:normal;font-size:12px;color:var(--cream);margin-top:2px}
+
+/* draw */
+.draw{display:grid;gap:28px;align-items:center}
+.draw h2{font-size:clamp(34px,8vw,56px);margin:10px 0 0}
+.draw p{color:#d6d1c5;font-size:17px;max-width:34ch;margin:14px 0 0}
+.ticket{position:relative;background:var(--cream);color:var(--ink);border-radius:18px;padding:22px 24px;max-width:360px;justify-self:center;transform:rotate(-3deg);box-shadow:0 30px 60px rgba(0,0,0,.55)}
+.ticket::before,.ticket::after{content:'';position:absolute;top:50%;width:26px;height:26px;border-radius:50%;background:var(--ink);margin-top:-13px}
+.ticket::before{left:-13px}.ticket::after{right:-13px}
+.ticket .k{font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#6b685e}
+.ticket .h{font-family:'Aesthet Nova',Figtree,sans-serif;font-weight:900;font-size:34px;line-height:1;margin-top:8px}
+.ticket .cut{border-top:2px dashed #c9c3b4;margin:18px -24px}
+.ticket .row{display:flex;justify-content:space-between;gap:14px;text-align:right;font-size:13px;font-weight:700;padding:3px 0}
+.ticket .row span:first-child{color:#6b685e}
+
+/* close */
+.close{margin-top:84px;background:var(--y);color:var(--ink);padding:56px 0}
+.close h2{font-size:clamp(34px,8vw,64px);margin:0;max-width:16ch}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px}
+.trio div{border-top:3px solid var(--ink);padding-top:10px;font-size:15px;font-weight:800;line-height:1.2}
+.close .look{margin-top:30px;font-size:15px;font-weight:700}
+
+footer{padding:30px 0 48px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
+footer .p{font-size:15px;font-weight:700}
+footer .p a{color:var(--y);text-decoration:none;border-bottom:1px solid var(--y)}
+footer .u{font-size:11px;font-weight:800;letter-spacing:4px;color:var(--mute);text-transform:uppercase}
+
+@media (min-width:820px){
+  .steps{grid-template-columns:repeat(3,1fr)}
+  .draw{grid-template-columns:1.1fr 1fr}
+}
+@media (max-width:380px){.chip.a{left:-14px}.chip.b{right:-14px}}
+
+/* motion */
+[data-r]{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+[data-r].in{opacity:1;transform:none}
+.steps [data-r]:nth-child(2){transition-delay:.12s}.steps [data-r]:nth-child(3){transition-delay:.24s}
+.stage{transform:translateY(calc(var(--p,0) * -24px))}
+.phone{animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}}
+.chip{opacity:0;animation:pop .6s cubic-bezier(.2,1.4,.4,1) forwards}
+.chip.a{animation-delay:.5s;translate:0 calc(var(--p,0) * -30px)}
+.chip.b{animation-delay:1.1s;translate:0 calc(var(--p,0) * 30px)}
+@keyframes pop{from{opacity:0;scale:.6}to{opacity:1;scale:1}}
+.band{translate:-60px 0;transition:translate 1.1s cubic-bezier(.2,.7,.2,1)}
+.in .band{translate:0 0}
+.band .qr{position:relative;overflow:hidden}
+.band .qr::after{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:var(--y);box-shadow:0 0 12px var(--y);animation:scan 2.2s ease-in-out infinite}
+@keyframes scan{0%,100%{top:6%}50%{top:90%}}
+.quiz .o{transition:border-color .3s,background .3s,color .3s}
+.mini{transition:transform .9s cubic-bezier(.2,.7,.2,1),margin .9s cubic-bezier(.2,.7,.2,1)}
+.step:not(.in) .mini.one,.step:not(.in) .mini.two{margin-left:-75px;transform:rotate(0)}
+.ticket{transition:transform 1s cubic-bezier(.2,1.2,.4,1) .15s}
+.draw:not(.in) .ticket{transform:rotate(8deg) translateY(40px)}
+.trio div{border-top:0;position:relative}
+.trio div::before{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .8s ease}
+.in .trio div::before{transform:scaleX(1)}
+.in .trio div:nth-child(2)::before{transition-delay:.15s}.in .trio div:nth-child(3)::before{transition-delay:.3s}
+@media (prefers-reduced-motion:reduce){
+  [data-r]{opacity:1;transform:none;transition:none}
+  .phone,.chip,.band .qr::after{animation:none}.chip{opacity:1}
+  .stage,.chip.a,.chip.b{transform:none;translate:none}
+  .band,.mini,.ticket,.trio div::before{transition:none}
+}
+
+/* for parties */
+.nav-cta{font-size:13px!important;font-weight:800!important;color:var(--ink)!important;background:var(--y);border:0!important;border-radius:100px;padding:9px 14px!important}
+.get{padding:72px 0 10px}
+.get .box{background:rgba(21,21,19,.94);border:1px solid var(--line);border-radius:24px;padding:28px 22px}
+.get h2{font-size:clamp(30px,7vw,46px);margin:10px 0 0;max-width:14ch}
+.get .sub{color:#d6d1c5;font-size:16px;max-width:40ch;margin:12px 0 0}
+.btn{display:inline-block;margin-top:22px;background:var(--y);color:var(--ink);border:0;border-radius:100px;padding:15px 24px;font:800 16px Figtree,sans-serif;cursor:pointer;text-decoration:none}
+.btn:disabled{opacity:.6}
+form.pf{display:none;margin-top:26px;gap:16px}
+form.pf.open{display:grid}
+.pf label{display:block;font-size:13px;font-weight:800;letter-spacing:.3px;color:var(--mute);margin-bottom:7px}
+.pf label i{font-style:normal;font-weight:600;color:#6f6d64}
+.pf input{width:100%;background:#0f0f0e;border:1px solid #3a3a33;border-radius:12px;padding:14px;color:var(--cream);font:600 16px Figtree,sans-serif;outline:none;-webkit-appearance:none;appearance:none}
+.pf input:focus{border-color:var(--y)}
+.pf input[type=date]{min-height:50px;color-scheme:dark}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts button{background:transparent;border:1px solid #3a3a33;border-radius:100px;padding:10px 14px;color:#d6d1c5;font:700 15px Figtree,sans-serif;cursor:pointer}
+.opts button.on{border-color:var(--y);background:rgba(222,220,0,.12);color:var(--cream)}
+.pf .two{display:grid;gap:16px}
+.pf .hide{display:none}
+.pf .err{display:none;color:#ff8a7a;font-size:14px;font-weight:700}
+.pf .err.show{display:block}
+.pf .fine{font-size:13px;color:var(--mute);margin:0}
+@media (min-width:820px){.get .box{padding:44px}.pf .two{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <img src="/logo_afrocue.png" alt="AfroCue">
+    <a href="#get" class="nav-cta" data-open>Get VybeChek</a>
+  </nav>
+
+  <header class="hero">
+    <div class="kick">VybeChek by AfroCue</div>
+    <h1 class="disp">At a party? <em>Do a VybeChek.</em></h1>
+    <p class="lede">The social way to share moments at parties, and document your night without the effort.</p>
+    <div class="proof"><span>First edition at Chibyverse South Social</span><span>Built by AfroCue, Lagos nightlife media</span></div>
+
+    <div class="stage">
+      <div class="chip a">Scan your ticket tag</div>
+      <div class="chip b">Your postcard is ready</div>
+      <div class="phone"><div class="screen">
+        <div class="notch"></div>
+        <div class="card" style="background-image:url('/assets/v6_hero.jpg')"></div>
+        <div class="panel">
+          <div class="t">
+            <div class="nm">Tobi</div>
+            <div class="at">DID A VYBECHEK AT</div>
+            <div class="pt">Monochroma</div>
+            <div class="url">AFROCUE.XYZ/VYBECHEK</div>
+          </div>
+          <div class="fl" style="background-image:url('/assets/v6_flyer.jpg')"></div>
+        </div>
+      </div></div>
+    </div>
+  </header>
+
+  <section id="how">
+    <div class="sh" data-r><div class="kick">How it works</div><h2 class="disp">Three taps, one keepsake.</h2></div>
+    <div class="steps">
+      <div class="step" data-r>
+        <div class="vis"><div class="band"><span>VYBECHEK</span><div class="qr"><img src="/assets/vybechek_qr.png" alt=""></div><span>VYBECHEK</span></div></div>
+        <div class="tx"><div class="n">01</div><h3>Scan your ticket tag.</h3><p>The QR is on your wrist. Point your camera at it.</p></div>
+      </div>
+      <div class="step" data-r>
+        <div class="vis"><div class="quiz">
+          <div class="q">How are you partying tonight?</div>
+          <div class="o">Just me</div>
+          <div class="o on">Me and my babe</div>
+          <div class="o">Me and a group</div>
+        </div></div>
+        <div class="tx"><div class="n">02</div><h3>Answer a few questions.</h3><p>Quick ones about your night. Then add a photo of your view.</p></div>
+      </div>
+      <div class="step" data-r>
+        <div class="vis">
+          <div class="mini one" style="background-image:url('/assets/chibyverse_hero.jpg')"><b>Amaka<small>DID A VYBECHEK AT</small><i>Sunday Service</i></b></div>
+          <div class="mini two" style="background-image:url('/assets/roamers_who.jpg')"><b>Chibueze<small>DID A VYBECHEK AT</small><i>Group Collective</i></b></div>
+        </div>
+        <div class="tx"><div class="n">03</div><h3>Get your postcard from the night.</h3><p>A picture postcard with your name and the party already on it. Post it or keep it.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="draw">
+    <div class="draw" data-r>
+      <div>
+        <div class="kick">The party draw</div>
+        <h2 class="disp">Win prizes without stressing.</h2>
+        <p>A fun new way to engage with the night. Enter the draw and win from a pool of prizes. It's fair for everyone: winners are picked at random.</p>
+      </div>
+      <div class="ticket">
+        <div class="k">Party draw</div>
+        <div class="h">You're in.</div>
+        <div class="cut"></div>
+        <div class="row"><span>Party</span><span>Tonight's party</span></div>
+        <div class="row"><span>Entry</span><span>Your VybeChek</span></div>
+        <div class="row"><span>Prizes</span><span>From the pool</span></div>
+        <div class="row"><span>Winners</span><span>Picked at random</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="close" data-r>
+  <div class="wrap">
+    <h2 class="disp">Beyond the dance floor.</h2>
+    <div class="trio"><div>Get a keepsake</div><div>Win prizes</div><div>Back to the dance floor</div></div>
+    <div class="look">At a VybeChek party? Look for the QR on your wristband.</div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="get" id="get">
+    <div class="box" data-r>
+      <div class="kick">For parties</div>
+      <h2 class="disp">Get VybeChek at your party.</h2>
+      <p class="sub">Tell us about your party and we'll bring VybeChek to your night.</p>
+      <button type="button" class="btn" id="openForm" data-open>Get VybeChek at your party</button>
+
+      <form class="pf" id="pf" novalidate>
+        <div class="two">
+          <div><label for="f_name">Your name</label><input id="f_name" autocomplete="name" required></div>
+          <div><label for="f_party">Party name</label><input id="f_party" required></div>
+        </div>
+        <div class="two">
+          <div><label for="f_date">Date of your next party</label><input id="f_date" type="date" required></div>
+          <div><label for="f_venue">Venue or area <i>(optional)</i></label><input id="f_venue" placeholder="e.g. Victoria Island"></div>
+        </div>
+        <div>
+          <label>How many guests do you expect?</label>
+          <div class="opts" data-pick="guests"><button type="button">Under 200</button><button type="button">200 to 500</button><button type="button">500 to 1,000</button><button type="button">Over 1,000</button></div>
+        </div>
+        <div>
+          <label>Do you have sponsors?</label>
+          <div class="opts" data-pick="sponsors"><button type="button">Yes</button><button type="button">Not yet</button></div>
+        </div>
+        <div class="hide" id="sponsorWho"><label for="f_sponsors">Who are your sponsors?</label><input id="f_sponsors" placeholder="Brand names"></div>
+        <div class="two">
+          <div><label for="f_email">Email</label><input id="f_email" type="email" autocomplete="email" required></div>
+          <div><label for="f_phone">WhatsApp number</label><input id="f_phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+        </div>
+        <div><label for="f_ig">Party Instagram <i>(optional)</i></label><input id="f_ig" placeholder="@yourparty" autocapitalize="off"></div>
+        <div class="err" id="pfErr"></div>
+        <div><button class="btn" id="pfBtn" type="submit" style="margin-top:0">Send request</button></div>
+        <p class="fine">We'll reply within 48 hours.</p>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="u">afrocue.xyz</div>
+  </footer>
+</div>
+<script src="/js/afrocue.js"></script>
+<script>
+(function(){
+  var THANKS = '/thank-you/vybechek';
+  var dl = window.dataLayer = window.dataLayer || [];
+  var form = document.getElementById('pf'), picked = {};
+  function $(id){ return document.getElementById(id); }
+
+  function openForm(e){
+    if (!form.classList.contains('open')) {
+      form.classList.add('open');
+      $('openForm').style.display = 'none';
+      dl.push({event:'vybechek_party_form_open'});
+    }
+    if (e && e.currentTarget.id === 'openForm') { e.preventDefault(); setTimeout(function(){ $('f_name').focus(); }, 50); }
+  }
+  document.querySelectorAll('[data-open]').forEach(function(b){ b.addEventListener('click', openForm); });
+
+  document.querySelectorAll('[data-pick]').forEach(function(g){
+    var key = g.getAttribute('data-pick');
+    g.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click', function(){
+        g.querySelectorAll('button').forEach(function(x){ x.classList.remove('on'); });
+        b.classList.add('on'); picked[key] = b.textContent;
+        if (key === 'sponsors') $('sponsorWho').classList.toggle('hide', picked.sponsors !== 'Yes');
+      });
+    });
+  });
+
+  function fail(msg){ var e = $('pfErr'); e.textContent = msg; e.classList.add('show'); }
+
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    $('pfErr').classList.remove('show');
+    var v = function(id){ return $(id).value.trim(); };
+    var name = v('f_name'), party = v('f_party'), date = v('f_date'), email = v('f_email'), phone = v('f_phone');
+    if (!name || !party || !date || !email || !phone) return fail('Fill in your name, the party, the date, your email and your WhatsApp number.');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail('Check your email address.');
+    if (!picked.guests) return fail('Pick how many guests you expect.');
+    if (!picked.sponsors) return fail('Tell us if you have sponsors.');
+
+    var sponsors = picked.sponsors === 'Yes' ? ('Yes' + (v('f_sponsors') ? ': ' + v('f_sponsors') : '')) : 'Not yet';
+    var lines = ['Party: ' + party, 'Date: ' + date, 'Venue: ' + (v('f_venue') || 'Not given'),
+                 'Expected guests: ' + picked.guests, 'Sponsors: ' + sponsors];
+    var data = {
+      source: 'vybechek_party', name: name, email: email, phone: phone, instagram: v('f_ig'),
+      company: party, subject: 'VybeChek at ' + party + ' on ' + date, category: picked.guests,
+      message: lines.join('\n'), source_page: '/vybechek/',
+      party_name: party, party_date: date, venue: v('f_venue'), guests: picked.guests, sponsors: sponsors
+    };
+    var url = (typeof AFROCUE_SCRIPT_URL !== 'undefined') ? AFROCUE_SCRIPT_URL : '';
+    if (!url) return fail('This page is missing its script link. Tell the team.');
+
+    var btn = $('pfBtn'); btn.disabled = true; btn.textContent = 'Sending...';
+    fetch(url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(data) })
+      .then(function(r){ return r.json(); })
+      .then(function(res){
+        if (!res || res.status !== 'success') throw new Error((res && res.message) || 'not saved');
+        dl.push({event:'vybechek_party_inquiry', guests: picked.guests, sponsors: picked.sponsors});
+        location.href = THANKS + '?name=' + encodeURIComponent(name.split(' ')[0]) + '&party=' + encodeURIComponent(party);
+      })
+      .catch(function(e){
+        console.error('[vybechek] party inquiry failed:', e);
+        btn.disabled = false; btn.textContent = 'Send request';
+        fail('That did not go through. Tap Send request again.');
+      });
+  });
+})();
+</script>
+<script>
+(function(){
+  var dl = window.dataLayer = window.dataLayer || [];
+  dl.push({event:'vybechek_home_view'});
+
+  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els = document.querySelectorAll('[data-r]');
+  if (still || !('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.25});
+  els.forEach(function(e){ io.observe(e); });
+
+  /* hero parallax: phone rises, chips drift apart as you scroll */
+  var stage = document.querySelector('.stage'), tick = false;
+  function par(){
+    tick = false;
+    var r = stage.getBoundingClientRect(), vh = window.innerHeight;
+    var p = Math.max(-1, Math.min(1, (vh/2 - (r.top + r.height/2)) / vh));
+    stage.style.setProperty('--p', p.toFixed(3));
+  }
+  window.addEventListener('scroll', function(){ if (!tick) { tick = true; requestAnimationFrame(par); } }, {passive:true});
+  par();
+
+  /* step 2: the answer moves through the options while it is on screen */
+  var opts = document.querySelectorAll('.quiz .o'), k = 1, live = false;
+  new IntersectionObserver(function(es){ live = es[0].isIntersecting; }).observe(document.querySelector('.quiz'));
+  setInterval(function(){
+    if (!live) return;
+    opts[k].classList.remove('on'); k = (k + 1) % opts.length; opts[k].classList.add('on');
+  }, 1600);
+})();
+</script>
+</body>
+</html>
