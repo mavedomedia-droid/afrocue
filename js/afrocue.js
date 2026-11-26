@@ -3,7 +3,7 @@
    ============================================================ */
 
 // 👇 Set your Google Apps Script URL once here
-var AFROCUE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNTt9dGt74j2Nplc2h7vd5DYABV2uG5T_HOjJg6SD2IjCJM_MofcitwmnWY_BOUZxB/exec';
+var AFROCUE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzKnPjQuwy4MAvzec6hZxQm1rLbT3PGXbe6Yy6P0B8AZIsmO7qeATgjjkVESIjoovs1/exec';
 
 /* 👇 The Clayface guestlist runs on its OWN deployment, bound to its own
    spreadsheet, so it has its own URL. Keeping it separate means the
