@@ -131,10 +131,12 @@
   .card-logo img{height:19px;width:auto;max-width:42%;opacity:.7}
   h1{
     font-family:var(--display);font-weight:900;
-    font-size:clamp(42px,12.5vw,64px);line-height:1;letter-spacing:-0.015em;
+    font-size:clamp(40px,11.9vw,61px);line-height:1;letter-spacing:-0.015em;
     margin:0 0 10px;white-space:nowrap;
   }
   h1 .y{color:var(--yellow)}
+  /* "Do a" is small and sits on the middle of VybeChek, like the table sign. */
+  h1 .do{display:inline-block;font-size:.4em;vertical-align:middle;margin-right:.35em;position:relative;top:-.08em;color:var(--white)}
   .sub{font-size:15px;color:var(--mute);margin:0 auto;max-width:30em;line-height:1.5}
   .sub b{color:var(--white);font-weight:600}
 
@@ -347,7 +349,7 @@
       padding:calc(var(--ac-nav-h,57px) + 10px) var(--pad) 12px}
     body.lock #ac-footer,body.lock .partners{display:none}
     body.lock .hero{padding:0;flex:0 0 auto}
-    body.lock h1{font-size:clamp(38px,11.5vw,46px);margin:0 0 6px}
+    body.lock h1{font-size:clamp(36px,10.9vw,44px);margin:0 0 6px}
     body.lock .sub{font-size:14px;line-height:1.45}
     body.lock .win{margin-bottom:12px;padding:7px 13px}
     body.lock .spons{margin-top:10px}
@@ -495,7 +497,7 @@
         <span class="w-n" id="wNote">5 winners. Free to enter</span>
       </div>
     </div>
-    <h1>Do a <span class="y">VybeChek&trade;</span></h1>
+    <h1><span class="do">Do a</span><span class="y">VybeChek&trade;</span></h1>
     <p class="sub" id="heroSub">Answer a few questions about your night. Get your postcard and share it on your story.</p>
     <div class="pt"><span class="pt-v"><b id="evName">South Social</b><span id="dDate">Fri 27 Nov</span><span id="dVen">Shiro Lagos</span></span></div>
 
