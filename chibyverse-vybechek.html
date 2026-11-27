@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Figtree:wght@300;400;500;600;700;800&display=swap">
-<meta name="description" content="Win one of 5 gifts. Answer a few questions about your night. Share the result on your story.">
+<meta name="description" content="Win one of 5 gifts. A few taps to get your postcard and enter the draw.">
 
 <style>
   @font-face{font-family:'Aesthet Nova';font-weight:900;font-display:swap;
@@ -41,8 +41,8 @@
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{margin:0;padding:0}
   body{
-    background:var(--black);color:var(--white);font-family:var(--sans);
-    font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;
+    background:#0d0d0c url('/assets/texture.jpg') center top/100% auto repeat-y;color:var(--white);font-family:var(--sans);
+    font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;
     min-height:100vh;min-height:100dvh;
   }
   /* The shared nav is fixed and sets --ac-nav-h (76 desktop, 57
@@ -67,8 +67,8 @@
   body.introOn.started .intro{display:none}
   body.introOn.started .hero{display:none}
   body.introOn.started .card{margin-top:0}
-  .start{display:inline-block;background:var(--white);color:#121212;border:0;border-radius:10px;padding:12px 38px;
-    font:700 16px var(--sans);cursor:pointer}
+  .start{display:inline-block;background:var(--yellow);color:#0d0d0c;border:0;border-radius:100px;padding:15px 44px;
+    font:800 16px var(--sans);cursor:pointer}
   .start:active{transform:scale(.97)}
   .ph-row{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:20px}
   .ph-side{flex:1 1 0;min-width:0;font-size:12.5px;line-height:1.35;font-weight:600;color:var(--mute)}
@@ -131,13 +131,13 @@
   .card-logo img{height:19px;width:auto;max-width:42%;opacity:.7}
   h1{
     font-family:var(--display);font-weight:900;
-    font-size:clamp(40px,11.9vw,61px);line-height:1;letter-spacing:-0.015em;
-    margin:0 0 10px;white-space:nowrap;
+    font-size:clamp(44px,12.6vw,68px);line-height:.95;letter-spacing:-0.5px;
+    margin:0 0 12px;white-space:nowrap;
   }
   h1 .y{color:var(--yellow)}
   /* "Do a" is small and sits on the middle of VybeChek, like the table sign. */
-  h1 .do{display:inline-block;font-size:.4em;vertical-align:middle;margin-right:.35em;position:relative;top:-.08em;color:var(--white)}
-  .sub{font-size:15px;color:var(--mute);margin:0 auto;max-width:30em;line-height:1.5}
+  h1 .do{display:inline-block;font-size:.5em;vertical-align:middle;margin-right:.35em;position:relative;top:-.08em;color:var(--white)}
+  .sub{font-size:17px;color:#d6d1c5;margin:0 auto;max-width:30ch;line-height:1.45}
   .sub b{color:var(--white);font-weight:600}
 
   /* The draw: a ticket. Prize on the left, how it works on the right. */
@@ -150,15 +150,15 @@
   .w-r{flex:0 0 auto}
   .w-r{max-width:50%}
   .w-cl{font-size:8.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#8a877c}
-  .w-cd{font-family:var(--sans);font-size:21px;font-weight:800;line-height:1.1;color:#141412;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+  .w-cd{font-family:var(--sans);font-size:17px;font-weight:800;line-height:1.1;color:#141412;font-variant-numeric:tabular-nums;letter-spacing:.02em}
   .w-cd{white-space:nowrap}
-  .w-cd.dd{font-size:16px}
+  .w-cd.dd{font-size:14px}
   .w-cd.names{font-size:13px;line-height:1.3;letter-spacing:0;white-space:pre-line}
-  .w-n{font-size:9.5px;font-weight:600;color:#8a877c;white-space:nowrap;margin-top:1px}
+  .w-n{font-size:9.5px;font-weight:600;color:#8a877c;white-space:normal;margin-top:1px}
   .w-k{font-size:8.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#8a877c}
-  .w-s{font-size:11px;font-weight:600;color:#4a483f;margin-top:4px;line-height:1.1}
-  .w-t{font-family:var(--display);font-weight:900;font-size:18px;line-height:1.05;margin-top:1px}
-  .w-t.long{font-size:15px;line-height:1.15}
+  .w-s{font-size:10px;font-weight:600;color:#4a483f;margin-top:4px;line-height:1.1}
+  .w-t{font-family:var(--display);font-weight:900;font-size:13px;line-height:1.08;margin-top:1px}
+  .w-t.long{font-size:11.5px;line-height:1.15}
   .w-r{border-left:2px dashed #c9c3b4;padding-left:14px;display:flex;flex-direction:column;gap:1px;
     font-size:11px;font-weight:700;color:#4a483f;text-align:right;padding-left:12px}
   .w-r b{color:#141412}
@@ -350,7 +350,7 @@
     body.lock #ac-footer,body.lock .partners{display:none}
     body.lock .hero{padding:0;flex:0 0 auto}
     body.lock h1{font-size:clamp(36px,10.9vw,44px);margin:0 0 6px}
-    body.lock .sub{font-size:14px;line-height:1.45}
+    body.lock .sub{font-size:15px;line-height:1.4}
     body.lock .win{margin-bottom:12px;padding:7px 13px}
     body.lock .spons{margin-top:10px}
     body.lock .pt{margin-top:10px}
@@ -497,8 +497,8 @@
         <span class="w-n" id="wNote">5 winners. Free to enter</span>
       </div>
     </div>
-    <h1><span class="do">Do a</span><span class="y">VybeChek&trade;</span></h1>
-    <p class="sub" id="heroSub">Answer a few questions about your night. Get your postcard and share it on your story.</p>
+    <h1><span class="do">Do a</span><span class="y">VybeChek.</span></h1>
+    <p class="sub" id="heroSub">A few taps to get your postcard and enter the draw.</p>
     <div class="pt"><span class="pt-v"><b id="evName">South Social</b><span id="dDate">Fri 27 Nov</span><span id="dVen">Shiro Lagos</span></span></div>
 
     <div class="intro" id="intro">
@@ -919,7 +919,7 @@ function paintConfig(){
   /* The hero line stays the same. Where the party is by the clock lives on the draw ticket:
      a countdown to the draw (1AM the morning after), and before the party opens, the time
      entries start counting from. */
-  set('heroSub','innerHTML', 'Answer a few questions about your night. Get your postcard and share it on your story.');
+  set('heroSub','innerHTML', 'A few taps to get your postcard and enter the draw.');
   var nW = n + (n === 1 ? ' winner' : ' winners'), cd = document.getElementById('wCd');
   if (cd) cd.classList.remove('names');
   if (st === 'live') {
@@ -1456,8 +1456,8 @@ function startCoach(canShare){
   var c = document.getElementById('coach'), t = document.getElementById('coachTxt');
   if (!c || !t) return;
   var msg = canShare
-    ? 'Tap Share it, choose Instagram, then Story. Add music if you want.'
-    : 'Save the image, then post it to your Instagram story. Add music if you want.';
+    ? 'Post this on your story now. Tap Share it, choose Instagram, then Story.'
+    : 'Post this on your story now. Hold the image to save it, then add it to your Instagram story.';
   c.classList.remove('hide'); t.textContent = '';
   var reduce = false; try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){}
   if (reduce) { t.textContent = msg; }
@@ -1468,7 +1468,7 @@ function startCoach(canShare){
       if (i >= msg.length) clearInterval(coachTimer);
     }, 32);
   }
-  clearTimeout(coachHide); coachHide = setTimeout(hideCoach, 14000);
+  clearTimeout(coachHide); coachHide = setTimeout(hideCoach, 20000);
 }
 
 /* A sponsor with a logo file is drawn; one without is set as a
