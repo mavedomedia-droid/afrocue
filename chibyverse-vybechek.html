@@ -2,6 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WB5HQGFV');</script>
+  <!-- End Google Tag Manager -->
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Do a VybeChek™</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -364,7 +371,7 @@
     body.lock .opts{flex:1;min-height:0;overflow-y:auto;gap:8px}
     body.lock .opt{padding:13.5px 14px}
     /* the form step is the one place that scrolls */
-    body.lock #q4.active{overflow-y:auto;-webkit-overflow-scrolling:touch}
+    body.lock #q4.active,body.lock #q1.active,body.lock #q2.active,body.lock #q6.active{overflow-y:auto;-webkit-overflow-scrolling:touch}
     body.lock .ig{margin-bottom:10px}
     body.lock .ig input{padding:13px 14px}
     /* the result */
@@ -454,8 +461,91 @@
     padding:5px 11px;border-radius:100px;display:none;white-space:nowrap}
   body.testing .testmode{display:block}
   .imgbox{position:relative}
-  .btnrow{display:flex;gap:10px;margin-top:12px}
-  .btnrow .cta{margin-top:0;flex:1 1 0;width:auto;min-width:0;padding:15px 10px}
+  /* Card style picker: small see-through previews floating on the top of the card,
+     where the photo matters least. Tap one and the card switches. */
+  .pickrow{position:absolute;top:8px;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:8px;padding:7px 8px;
+    border-radius:var(--r);background:rgba(10,10,10,.34);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+  .pk{background:none;border:0;padding:0;margin:0;cursor:pointer;display:block;line-height:0;-webkit-tap-highlight-color:transparent}
+  .pk i{display:block;width:37px;height:66px;border-radius:6px;background:#1c1c1a center/cover;opacity:.7;outline:2px solid transparent;outline-offset:1px}
+  .pk.on i{opacity:1;outline-color:var(--yellow)}
+  /* Share: one compact row, our radius, no yellow */
+  .sharebar{display:flex;align-items:center;gap:10px;margin-top:10px;flex:0 0 auto}
+  .sb-ask{flex:1 1 auto;min-width:0;text-align:left;font-size:11.5px;font-weight:600;line-height:1.3;color:var(--mute)}
+  .sb-ask b{display:block;color:var(--white);font-weight:800;overflow-wrap:anywhere}
+  .sb-btns{flex:0 0 auto;display:flex;gap:6px}
+  .sb{width:40px;height:40px;border-radius:var(--r);border:1px solid var(--line-hi);background:rgba(255,255,255,.04);color:var(--white);
+    font:800 12px var(--sans);display:flex;align-items:center;justify-content:center;gap:3px;cursor:pointer;padding:0;-webkit-tap-highlight-color:transparent}
+  .sb:active{background:rgba(255,255,255,.14)}
+  .sb img{width:20px;height:20px;display:block}
+  .sb img + span{display:none}
+  .sb .dot{width:3.5px;height:3.5px;border-radius:50%;background:currentColor;display:block}
+  /* What to tap next, at the top of the screen so the share sheet does not cover it */
+  .toast{position:fixed;left:12px;right:12px;top:calc(10px + env(safe-area-inset-top));z-index:99999;background:#161614;color:var(--white);
+    border:1px solid var(--line-hi);border-left:3px solid var(--yellow);font-size:14.5px;font-weight:700;line-height:1.35;padding:12px 14px;
+    border-radius:var(--r);box-shadow:0 10px 28px rgba(0,0,0,.6);transform:translateY(-170%);transition:transform .25s;text-align:left}
+  .toast.show{transform:none}
+
+  /* Check your vybe: one clean line per slider. Name, the line with ten notches, the number.
+     The two end words sit small under the line. No boxes, so five fit on any phone. */
+  .vy-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+  .vy-head .q{margin-bottom:4px}
+  .vy-head .hint{margin-bottom:6px;font-size:13px}
+  .vy-mini{flex:0 0 auto;width:60px;height:60px;margin:-6px -2px 0 0}
+  .vy{display:grid;grid-template-columns:96px minmax(0,1fr) 20px;column-gap:10px;align-items:start;padding:7px 0 6px;border-top:1px solid var(--line)}
+  .vy-n{font-size:13.5px;font-weight:700;line-height:1.15;min-height:26px;display:flex;align-items:center}
+  .vy-v{font-size:14px;font-weight:800;line-height:26px;text-align:right;font-variant-numeric:tabular-nums;color:var(--fine)}
+  .vy.set .vy-v{color:var(--white)}
+  .vy-s{position:relative;height:26px;touch-action:pan-y;cursor:pointer}
+  .vy-ticks{position:absolute;left:13px;right:13px;top:50%;height:8px;margin-top:-4px;display:flex;justify-content:space-between;pointer-events:none}
+  .vy-ticks i{width:2px;height:8px;border-radius:2px;background:rgba(255,255,255,.2)}
+  .vy-r{-webkit-appearance:none;appearance:none;position:relative;width:100%;height:26px;margin:0;display:block;background:transparent;--f:0;pointer-events:none}
+  .vy-r::-webkit-slider-runnable-track{height:5px;border-radius:5px;
+    background:linear-gradient(90deg,var(--white) calc(13px + (100% - 26px) * var(--f)),rgba(255,255,255,.14) 0)}
+  .vy-r::-moz-range-track{height:5px;border-radius:5px;background:rgba(255,255,255,.14)}
+  .vy-r::-moz-range-progress{height:5px;border-radius:5px;background:var(--white)}
+  .vy-r::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:rgba(240,237,232,.4);border:0;margin-top:-9.5px;box-shadow:0 2px 8px rgba(0,0,0,.5)}
+  .vy-r::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:rgba(240,237,232,.4);border:0}
+  .vy.set .vy-r::-webkit-slider-thumb{background:var(--white)}
+  .vy.set .vy-r::-moz-range-thumb{background:var(--white)}
+  .vy:not(.set) .vy-r::-webkit-slider-runnable-track{background:rgba(255,255,255,.14)}
+  .vy-ends{display:flex;justify-content:space-between;gap:8px;font-size:10.5px;font-weight:600;color:var(--fine);line-height:1.15;padding:0 2px}
+  .vy-ends span:last-child{text-align:right}
+  #vyRows{border-bottom:1px solid var(--line);margin-bottom:10px}
+  @media (max-width:350px){.vy{grid-template-columns:86px minmax(0,1fr) 18px;column-gap:8px}.vy-n{font-size:12.5px}}
+  @media (max-height:600px){.vy{padding:5px 0 4px}.vy-mini{display:none}}
+  /* Next is a quiet outline. Only the last button of the quiz is solid yellow. */
+  .cta.quiet{background:transparent;color:var(--white);border:1px solid var(--white);padding:13px;font-size:15px;margin-top:10px}
+  .cta.quiet:disabled{border-color:var(--line-hi);color:var(--fine);opacity:1}
+  /* The DJ question: a dot on each name shows several can be picked */
+  .djgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:4px}
+  .dj{display:flex;align-items:center;gap:10px;border:1px solid var(--line-hi);border-radius:var(--r);padding:13px 12px;background:rgba(255,255,255,0.03);
+    color:var(--white);font:700 14.5px var(--sans);text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent;min-width:0}
+  .dj i{flex:0 0 auto;width:16px;height:16px;border-radius:50%;border:1.5px solid var(--fine);display:block}
+  .dj span{min-width:0;overflow-wrap:anywhere}
+  .dj.on{border-color:var(--white);background:rgba(255,255,255,0.09)}
+  .dj.on i{border-color:var(--white);background:radial-gradient(circle,var(--white) 0 45%,transparent 50%)}
+  /* The draw step */
+  .dlist{list-style:none;margin:0 0 16px;padding:0}
+  .dlist li{position:relative;padding:6px 0 6px 16px;font-size:15px;font-weight:600;color:var(--white);border-bottom:1px solid var(--line)}
+  .dlist li::before{content:'';position:absolute;left:2px;top:14px;width:5px;height:5px;border-radius:50%;background:var(--fine)}
+  .optin{display:flex;align-items:center;gap:12px;padding:14px;border:1px solid var(--line-hi);border-radius:var(--r);background:rgba(255,255,255,0.03);
+    font-size:16px;font-weight:700;cursor:pointer;margin-bottom:12px}
+  .optin input{position:absolute;opacity:0;width:0;height:0}
+  .optin .ck{flex:0 0 auto;width:24px;height:24px;border-radius:7px;border:1.5px solid var(--line-hi);display:flex;align-items:center;justify-content:center}
+  .optin input:checked + .ck{background:var(--white);border-color:var(--white)}
+  .optin input:checked + .ck::after{content:'';width:11px;height:6px;border-left:2.5px solid #0d0d0c;border-bottom:2.5px solid #0d0d0c;transform:rotate(-45deg) translate(1px,-1px)}
+  /* Several prizes on the opening ticket: one bold line, then quiet bullets */
+  .win.multi{max-width:306px}
+  .win.multi .w-r{max-width:40%}
+  .w-s.lead{font-family:var(--display);font-weight:900;font-size:13px;color:#141412;margin-top:3px}
+  .w-t.list{font-family:var(--sans);font-weight:600;font-size:10px;line-height:1.4;color:#5a584f;margin-top:3px}
+  .w-t.list span{display:block;position:relative;padding-left:9px}
+  .w-t.list span::before{content:'';position:absolute;left:0;top:.55em;width:3.5px;height:3.5px;border-radius:50%;background:#9a978c}
+  /* After the draw: the ticket goes quiet */
+  .win.done{max-width:230px;justify-content:center;text-align:center}
+  .win.done .w-r{display:none}
+  .win.done .w-s{font-family:var(--display);font-weight:900;font-size:13.5px;color:#141412}
+  .win.done .w-t{font-family:var(--sans);font-weight:600;font-size:10.5px;color:#6a685f;margin-top:2px}
   /* The instruction bar, laid across the card like a Snapchat caption.
      It types itself in, and goes on a tap or after a few seconds. */
   .coach{position:absolute;left:0;right:0;top:46%;transform:translateY(-50%);
@@ -474,13 +564,39 @@
   body.lock .state{margin-top:8px}
   body.lock .win .state{margin:0}
   .closed-h{font-family:var(--display);font-weight:900;font-size:clamp(24px,6.5vw,30px);line-height:1.1;margin:0 0 10px}
+
+  /* Start sits on the top edge of the phone, like its island, so the
+     phone and the sponsors under it come up the page. */
+  .phone.isl{position:relative;margin-top:14px}
+  .start.island{position:absolute;left:50%;top:-16px;transform:translateX(-50%);z-index:3;padding:11px 26px 11px 20px;font-size:15px;
+    display:flex;align-items:center;gap:9px;white-space:nowrap;box-shadow:0 8px 22px rgba(0,0,0,.55),0 0 0 4px #0d0d0c;animation:islPulse 2.2s ease-in-out infinite}
+  .start.island i{width:9px;height:9px;border-radius:50%;background:#0d0d0c;display:block}
+  .start.island:active{transform:translateX(-50%) scale(.97)}
+  @keyframes islPulse{0%,100%{box-shadow:0 8px 22px rgba(0,0,0,.55),0 0 0 4px #0d0d0c,0 0 0 4px rgba(222,220,0,0)}50%{box-shadow:0 8px 22px rgba(0,0,0,.55),0 0 0 4px #0d0d0c,0 0 0 9px rgba(222,220,0,.28)}}
+  @media (prefers-reduced-motion:reduce){.start.island{animation:none}}
+  body.introOn .intro{margin-top:6px}
+
+  /* Opening screen on a phone: tighter above the phone so the phone gets the room. */
+  @media (max-width:700px){
+    body.lock:not(.started) .win{margin-bottom:8px;padding:5px 12px}
+    body.lock:not(.started) h1{margin:0 0 3px}
+    body.lock:not(.started) .sub{font-size:14px;line-height:1.3}
+    body.lock:not(.started) .pt{margin-top:5px;line-height:1.2}
+    body.lock:not(.started) .ph-row{margin-top:8px}
+    body.lock:not(.started) .spons{margin-top:12px;position:relative;z-index:2}
+    body.lock:not(.started) .wrap{padding-top:calc(var(--ac-nav-h,57px) + 6px);padding-bottom:6px}
+  }
 </style>
 </head>
 <body class="lock">
 
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5HQGFV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <!-- SHARED NAV (rendered by js/afrocue-ui.js) -->
 <div id="ac-nav"></div>
 <div class="testmode">Test mode: open any day</div>
+<div class="toast" id="toast" role="status"></div>
 
 <div class="wrap">
 
@@ -502,13 +618,12 @@
     <div class="pt"><span class="pt-v"><b id="evName">South Social</b><span id="dDate">Fri 27 Nov</span><span id="dVen">Shiro Lagos</span></span></div>
 
     <div class="intro" id="intro">
-      <button class="start" id="startBtn" type="button">Start</button>
       <div class="ph-row">
       <div class="ph-side l"><svg class="sq" viewBox="0 0 54 10" aria-hidden="true"><path pathLength="60" d="M2 5 Q 8.5 0.5 15 5 T 28 5 T 41 5 T 52 5"/></svg><b>This is what you get.</b><svg class="sq b" viewBox="0 0 54 10" aria-hidden="true"><path pathLength="60" d="M2 5 Q 8.5 0.5 15 5 T 28 5 T 41 5 T 52 5"/></svg></div>
-      <div class="phone"><div class="screen" id="phScreen">
+      <div class="phone isl"><button class="start island" id="startBtn" type="button"><i></i>Start</button><div class="screen" id="phScreen">
         <div class="ph-photo"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i><span>Your view of the night</span></div>
         <div class="ph-panel">
-          <div class="ph-t"><div class="ph-nm">Your name</div><div class="ph-at">DID A VYBECHEK AT</div><div class="ph-pt" id="phParty">South Social</div><div class="ph-u">afrocue.xyz</div></div>
+          <div class="ph-t"><div class="ph-nm">Your postcard</div><div class="ph-at">FROM</div><div class="ph-pt" id="phParty">South Social</div><div class="ph-u">afrocue.xyz</div></div>
           <div class="ph-fl" id="phFlyer"></div>
         </div>
       </div></div>
@@ -524,114 +639,44 @@
       <div class="plbl" id="plbl">1 / 4</div>
     </div>
 
-    <!-- 1 ───────────────────────────────────────────────── -->
+    <!-- 1 ── check your vybe ────────────────────────────── -->
     <section class="step active" id="q1">
-      <div class="slabel">Entry</div>
-      <h2 class="q">How did you get in tonight?</h2>
-      <div class="opts">
-        <button class="opt" onclick="pick('entry_route','Online tickets',2)">
-          <span class="opt-n">01</span>
-          <span class="opt-b"><span class="opt-t">Online tickets</span></span>
-          <span class="opt-a">&rarr;</span>
-        </button>
-        <button class="opt" onclick="pick('entry_route','At the door',2)">
-          <span class="opt-n">02</span>
-          <span class="opt-b"><span class="opt-t">At the door</span><span class="opt-s">Door tickets</span></span>
-          <span class="opt-a">&rarr;</span>
-        </button>
-        <button class="opt" onclick="pick('entry_route','Guest list',2)">
-          <span class="opt-n">03</span>
-          <span class="opt-b"><span class="opt-t">Guest list</span><span class="opt-s">On someone&rsquo;s list</span></span>
-          <span class="opt-a">&rarr;</span>
-        </button>
+      <div class="vy-head">
+        <div>
+          <h2 class="q">Check your vybe.</h2>
+          <p class="hint">Slide each one to where you are.</p>
+        </div>
+        <svg class="vy-mini" id="vyMini" viewBox="-62 -62 124 124" aria-hidden="true"></svg>
       </div>
-      <div class="card-logo" id="cardLogo"><img id="evLogo" alt=""></div>
+      <div id="vyRows"></div>
+      <button class="cta quiet" id="vyNext" onclick="vybeNext()" disabled>Next &rarr;</button>
     </section>
 
-    <!-- 2 ───────────────────────────────────────────────── -->
+    <!-- 2 ── the DJs ────────────────────────────────────── -->
     <section class="step" id="q2">
-      <div class="slabel">Your crew</div>
-      <h2 class="q">How are you partying tonight?</h2>
-      <div class="opts">
-        <button class="opt" onclick="pick('crew','Just me',6)">
-          <span class="opt-n">01</span>
-          <span class="opt-b"><span class="opt-t">Just me</span></span>
-          <span class="opt-a">&rarr;</span>
-        </button>
-        <button class="opt" onclick="pick('crew','Me and someone (my babe)',6)">
-          <span class="opt-n">02</span>
-          <span class="opt-b"><span class="opt-t">Me and someone (my babe)</span></span>
-          <span class="opt-a">&rarr;</span>
-        </button>
-        <button class="opt" onclick="pick('crew','Me and someone (just friends)',6)">
-          <span class="opt-n">03</span>
-          <span class="opt-b"><span class="opt-t">Me and someone (just friends)</span></span>
-          <span class="opt-a">&rarr;</span>
-        </button>
-        <button class="opt" onclick="pick('crew','Me and a group',6)">
-          <span class="opt-n">04</span>
-          <span class="opt-b"><span class="opt-t">Me and a group</span></span>
-          <span class="opt-a">&rarr;</span>
-        </button>
-      </div>
+      <div class="slabel">AfroCue documents DJs</div>
+      <h2 class="q">Which DJ&rsquo;s set are you looking forward to the most?</h2>
+      <p class="hint">You can pick multiple.</p>
+      <div class="djgrid" id="djGrid"></div>
+      <button class="cta quiet" id="djNextBtn" onclick="djNext()" disabled>Next &rarr;</button>
+      <button class="gal" onclick="djSkip()">Not sure yet</button>
     </section>
 
-    <!-- 6 ── the ride ───────────────────────────────────── -->
+    <!-- 6 ── the draw ───────────────────────────────────── -->
     <section class="step" id="q6">
-      <div class="slabel">Your ride</div>
-      <h2 class="q">How did you get here?</h2>
-      <div class="opts">
-        <button class="opt" onclick="pick('ride','Cab hailing',7)">
-          <span class="opt-n">01</span>
-          <span class="opt-b"><span class="opt-t">Cab hailing</span><span class="opt-s">Bolt / inDrive and others</span></span>
-          <span class="opt-a">&rarr;</span>
-        </button>
-        <button class="opt" onclick="pick('ride','Drove here',7)">
-          <span class="opt-n">02</span>
-          <span class="opt-b"><span class="opt-t">Drove here</span></span>
-          <span class="opt-a">&rarr;</span>
-        </button>
-        <button class="opt" onclick="pick('ride','Hitched a ride',7)">
-          <span class="opt-n">03</span>
-          <span class="opt-b"><span class="opt-t">Hitched a ride</span><span class="opt-s">Came with someone</span></span>
-          <span class="opt-a">&rarr;</span>
-        </button>
-        <button class="opt" onclick="pick('ride','Found my way (PT)',7)">
-          <span class="opt-n">04</span>
-          <span class="opt-b"><span class="opt-t">Found my way (PT)</span></span>
-          <span class="opt-a">&rarr;</span>
-        </button>
-      </div>
-    </section>
-
-    <!-- 7 ── the spot ───────────────────────────────────── -->
-    <section class="step" id="q7">
-      <div class="slabel">Your spot</div>
-      <h2 class="q">What is your spot tonight?</h2>
-      <div class="opts">
-        <button class="opt" onclick="pick('spot','On the dance floor',3)">
-          <span class="opt-n">01</span>
-          <span class="opt-b"><span class="opt-t">On the dance floor</span><span class="opt-s">General admission</span></span>
-          <span class="opt-a">&rarr;</span>
-        </button>
-        <button class="opt" onclick="pick('spot','Guest / VIP',3)">
-          <span class="opt-n">02</span>
-          <span class="opt-b"><span class="opt-t">Guest / VIP</span></span>
-          <span class="opt-a">&rarr;</span>
-        </button>
-        <button class="opt" onclick="pick('spot','Table',3)">
-          <span class="opt-n">03</span>
-          <span class="opt-b"><span class="opt-t">Table</span></span>
-          <span class="opt-a">&rarr;</span>
-        </button>
-      </div>
+      <div class="slabel">Tonight&rsquo;s draw</div>
+      <h2 class="q">We have a pool of prizes tonight.</h2>
+      <ul class="dlist" id="drawList"></ul>
+      <label class="optin"><input type="checkbox" id="drawOpt" checked><span class="ck" aria-hidden="true"></span><span>Enter me in the draw</span></label>
+      <p class="hint" id="drawHint">The winners are emailed automatically and everybody sees the result. It is a transparent process.</p>
+      <button class="cta quiet" onclick="go(nextStep(6))">Next &rarr;</button>
     </section>
 
     <!-- 3 ── the photo ──────────────────────────────────── -->
     <section class="step" id="q3">
       <div class="slabel">My party view</div>
       <h2 class="q">Show us your view right now.</h2>
-      <p class="hint">Or choose a photo you took tonight.</p>
+      <p class="hint">Snap anything in front of you worth posting.</p>
 
       <div class="ideas">
         <span class="idea">The DJ</span><span class="idea">The lights</span><span class="idea">Your table</span><span class="idea">Your feet</span><span class="idea">Your people</span>
@@ -656,7 +701,7 @@
             <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
           </span>
           <span class="vf-t">Tap to shoot</span>
-          <span class="vf-s">Point it at whatever is in front of you</span>
+          <span class="vf-s">Snap anything in front of you worth posting</span>
         </button>
         <label class="gal" for="shotLib">or choose one from your gallery</label>
       </div>
@@ -665,7 +710,7 @@
       <input type="file" id="shotLib" accept="image/*" multiple onchange="gotShot(this)">
 
       <button class="gal addmore" id="addMore" onclick="addMore()" style="display:none">+ Add another photo</button>
-      <button class="cta" id="shotNext" onclick="go(4)" style="display:none">Use this &rarr;</button>
+      <button class="cta quiet" id="shotNext" onclick="go(4)" style="display:none">Use this &rarr;</button>
       <div class="err" id="shotErr"></div>
     </section>
 
@@ -685,7 +730,7 @@
                inputmode="email" autocapitalize="off" spellcheck="false">
       </div>
       <div class="ig">
-        <label for="ig">Instagram</label>
+        <label for="ig">Instagram (optional)</label>
         <div class="at">
           <span>@</span>
           <input type="text" id="ig" placeholder="yourhandle" autocomplete="off"
@@ -707,19 +752,27 @@
       <div class="cardwrap" id="cardWrap">
         <div class="imgbox">
           <div class="slides" id="slides"></div>
+          <div class="pickrow" id="pickRow" style="display:none"></div>
           <div class="dots" id="dots"></div>
           <div class="coach hide" id="coach" onclick="hideCoach()"><span id="coachTxt"></span><span class="caret"></span></div>
         </div>
         <div class="cardnote" id="cardNote">Hold the image to save it, then post it.</div>
       </div>
       <p class="cstat" id="cardStat" style="display:none"></p>
-      <button class="cta ghost" id="retryBtn" onclick="cardsP=null;buildCard()" style="display:none">Try again</button>
+      <button class="cta ghost" id="retryBtn" onclick="cardsP=null;resetCards();buildCard()" style="display:none">Try again</button>
 
       <div class="in-strip" id="inStrip"></div>
-
-      <div class="btnrow">
-        <button class="cta" id="shareBtn" onclick="shareCard()" style="display:none">Share it &rarr;</button>
-        <button class="cta ghost" id="dlBtn" onclick="downloadCard()" style="display:none">Save image</button>
+      <!-- Share: one small row. Each button opens the phone's share sheet with the card and
+           the right caption. Drop the three official logo files in /assets/icons/ and they
+           replace the short text. -->
+      <div class="sharebar" id="shareBar" style="display:none">
+        <div class="sb-ask" id="sbAsk"></div>
+        <div class="sb-btns">
+          <button type="button" class="sb" onclick="shareTo('instagram')" aria-label="Share to your Instagram story"><img src="/assets/icons/instagram.svg" alt="" onerror="this.remove()"><span>IG</span></button>
+          <button type="button" class="sb" onclick="shareTo('x')" aria-label="Share on X"><img src="/assets/icons/x.svg" alt="" onerror="this.remove()"><span>X</span></button>
+          <button type="button" class="sb" onclick="shareTo('whatsapp')" aria-label="Share on WhatsApp"><img src="/assets/icons/whatsapp.svg" alt="" onerror="this.remove()"><span>WA</span></button>
+          <button type="button" class="sb" onclick="shareTo('more')" aria-label="More ways to share, or save"><i class="dot"></i><i class="dot"></i><i class="dot"></i></button>
+        </div>
       </div>
     </section>
 
@@ -760,12 +813,15 @@ var EVENT = {
   edition_date:    'Friday 27 November',
   logo_url:        'chibyverse_logo.png',
   flyer_url:       'chibyverse_flyer.jpeg',
-  reward_name:     'cocktails',
+  reward_name:     'prizes',
   reward_count:    5,
-  reward_line:     '5 cocktails',
+  reward_line:     '5 prizes',
+  prizes:          [{name:'tickets to South Social 4 Dec.', unit:'ticket to South Social 4 Dec.', count:2},
+                    {name:'tickets to South Social 11 Dec.', unit:'ticket to South Social 11 Dec.', count:2},
+                    {name:'cocktails', unit:'cocktail', count:1}],
   state:           'live',
-  draw_time:       '1AM',
-  djs:             ['Tohbahd','Shawn','Titanium','Salt','Hayzee','Naffy'],
+  draw_time:       '2AM',
+  djs:             [],   /* tonight's lineup comes from the djs row in the sheet; with none, the DJ question is skipped */
   sponsors:        [{name:'Pepsi'},{name:'Smirnoff Ice'},{name:'Chowdeck'},{name:'Munch It'}],
   share_url:       'afrocue.xyz/parties',
   partners:        ['South','Shiro Lagos','The Observatory','Pepsi','Smirnoff Ice',
@@ -776,9 +832,12 @@ var EVENT = {
 var GAS_URL = (typeof AFROCUE_SCRIPT_URL !== 'undefined') ? AFROCUE_SCRIPT_URL : '';
 if (!GAS_URL) console.warn('[vybechek] No AFROCUE_SCRIPT_URL yet. Expected if afrocue.js is not beside this file.');
 
-var TOTAL = 6, current = 1;
-/* Steps run 1, 2, 6, 7, 3, 4 on screen; the ids are not in order. */
-var POS = { 1:1, 2:2, 6:3, 7:4, 3:5, 4:6, 5:6 };
+var current = 1;
+/* Steps on screen: vybe (1), the DJs (2, only with a lineup in the sheet),
+   the draw (6, only while entries count), the photo (3), details (4). */
+function drawOpen(){ return (EVENT.state || 'live') === 'live' || !!EVENT.test_mode; }
+function flow(){ var f = [1]; if (djList().length) f.push(2); if (drawOpen()) f.push(6); f.push(3, 4); return f; }
+function nextStep(n){ var f = flow(), i = f.indexOf(n); return (i > -1 && i < f.length - 1) ? f[i + 1] : 4; }
 var vals = {};
 var shots = [], cur = 0, stream = null, MAXSHOTS = 5;
 var cards = [], cardBlob = null;
@@ -872,13 +931,21 @@ function paintConfig(){
   var unit = EVENT.reward_unit || singular(EVENT.reward_name || '');
   var aU = function(u){ return (/^[aeiou]/i.test(u) ? 'an ' : 'a ') + u; };
   var ps = (EVENT.prizes || []).filter(function(p){ return p && p.name; });
-  var wp = document.getElementById('wPrize');
-  if (wp) wp.classList.remove('long');
-  if (ps.length > 1) {
-    /* Several prizes: "Win one of 6 prizes", then what they are. */
+  var wp = document.getElementById('wPrize'), wl = document.getElementById('wLead'), tile = document.getElementById('winTile');
+  var over = (st === 'drawn' || st === 'over');
+  if (wp) wp.classList.remove('long', 'list');
+  if (wl) wl.classList.remove('lead');
+  if (tile) { tile.classList.remove('multi'); tile.classList.toggle('done', over); }
+  if (over) {
+    /* After the draw the ticket goes quiet. They can still do a VybeChek and get the card. */
+    set('wLead','textContent', 'The draw is over.');
+    set('wPrize','textContent', 'Catch us next time.');
+  } else if (ps.length > 1) {
+    /* Several prizes: one bold line, then each prize as a quiet bullet. */
     set('wLead','textContent', 'Win one of ' + n + ' prizes');
-    set('wPrize','textContent', ps.map(function(p){ return +p.count === 1 ? aU(p.unit) : p.count + ' ' + p.name; }).join(' + '));
-    if (wp) wp.classList.add('long');
+    if (wl) wl.classList.add('lead');
+    if (wp) { wp.textContent = ''; wp.classList.add('list'); prizeLines().forEach(function(t){ var sp = document.createElement('span'); sp.textContent = t; wp.appendChild(sp); }); }
+    if (tile) tile.classList.add('multi');
   } else if (n > 1) { set('wLead','textContent', 'Win one of'); set('wPrize','textContent', n + ' ' + (EVENT.reward_name || 'gifts')); }
   else { set('wLead','textContent', 'Win'); set('wPrize','textContent', aU(unit)); }
   /* The party line: name, short date, time. A blank one drops out. */
@@ -919,13 +986,13 @@ function paintConfig(){
   /* The hero line stays the same. Where the party is by the clock lives on the draw ticket:
      a countdown to the draw (1AM the morning after), and before the party opens, the time
      entries start counting from. */
-  set('heroSub','innerHTML', 'A few taps to get your postcard and enter the draw.');
+  set('heroSub','innerHTML', over ? 'A few taps to get your postcard.' : 'A few taps to get your postcard and enter the draw.');
   var nW = n + (n === 1 ? ' winner' : ' winners'), cd = document.getElementById('wCd');
   if (cd) cd.classList.remove('names');
   if (st === 'live') {
     set('wKick','textContent', 'Enter the draw');
     set('wCdL','textContent', 'Draw in');
-    set('wNote','textContent', nW + '. Free to enter');
+    set('wNote','textContent', ps.length > 1 ? 'Free to enter' : nW + '. Free to enter');
     set('fineNote','textContent', 'We email you now, and again when the draw is done at ' + EVENT.draw_time + '. We keep your details and photo to run it.');
   } else if (st === 'before') {
     set('wKick','textContent', 'Enter the draw');
@@ -938,16 +1005,14 @@ function paintConfig(){
     set('wNote','textContent', nW + ' at ' + EVENT.draw_time);
     set('fineNote','textContent', 'We email you now. We keep your details and photo to make your card.');
   } else {
-    set('wKick','textContent', st === 'drawn' ? 'Draw done' : 'This one has ended');
-    set('wCdL','textContent', 'Winners');
-    set('wCd','textContent', (EVENT.winners && EVENT.winners.length) ? EVENT.winners.join('\n') : 'Being called');
-    if (cd) cd.classList.add('names');
-    set('wNote','textContent', '');
+    set('wKick','textContent', 'The draw');
+    set('wCdL','textContent', ''); set('wCd','textContent', ''); set('wNote','textContent', '');
     set('fineNote','textContent', 'We email you now. We keep your details and photo to make your card.');
   }
   tickCountdown();
   set('partnerLine','textContent', (EVENT.partners || []).join('  ·  '));
   document.body.classList.toggle('testing', !!EVENT.test_mode);
+  buildVybe(); buildDjs(); buildDraw(); paint();
 }
 
 /* Counts down to the draw, which is the morning after the party
@@ -983,6 +1048,9 @@ function go(n){
   var el = document.getElementById('q' + n);
   if (el) el.classList.add('active');
   current = n;
+  if (n === 2) buildDjs();
+  if (n === 6) buildDraw();
+  if (n === 4) set('submitBtn','textContent', submitLabel());
   paint();
   document.body.classList.toggle('shot', n === 3);
   document.body.classList.toggle('later', n >= 2 || document.body.classList.contains('started'));
@@ -993,11 +1061,145 @@ function go(n){
 }
 
 function paint(){
+  var fl = flow(), i = fl.indexOf(current), at = i > -1 ? i + 1 : fl.length;
   var f = document.getElementById('pfill');
-  var at = POS[current] || TOTAL;
-  if (f) f.style.width = Math.round((at / TOTAL) * 100) + '%';
-  set('plbl','textContent', at + ' / ' + TOTAL);
+  if (f) f.style.width = Math.round((at / fl.length) * 100) + '%';
+  set('plbl','textContent', at + ' / ' + fl.length);
 }
+
+/* ── 1. check your vybe ────────────────────────────────────────
+   The things on the sliders come from the sheet: the vybe_items row,
+   one per cell, written  Name | word at 1 | word at 10.
+   Without that row, these five. */
+var VYBE_DEFAULT = [
+  'Drink bar | Water \uD83D\uDCA7 | Drunk \uD83E\uDD74',
+  'Outfit | Threw it on | Head turner',
+  'Social battery | Drained \uD83D\uDE34 | Talkative \uD83D\uDDE3\uFE0F',
+  'The music | Missing | Hitting',
+  'Dance floor | Standing | Sweating'
+];
+var vybe = [], vybeSig = '';
+function vybeItems(){
+  var src = (EVENT.vybe_items && EVENT.vybe_items.length) ? EVENT.vybe_items : VYBE_DEFAULT;
+  return src.map(function(t){
+    var p = String(t || '').split('|').map(function(x){ return x.trim(); });
+    return { name: p[0] || '', lo: p[1] || '1', hi: p[2] || '10' };
+  }).filter(function(x){ return x.name; }).slice(0, 8);
+}
+function buildVybe(){
+  var items = vybeItems(), sig = JSON.stringify(items);
+  if (sig === vybeSig) return;          /* the page re-reads the sheet every minute; sliders in use are left alone */
+  vybeSig = sig;
+  vybe = items.map(function(it){ return { name: it.name, lo: it.lo, hi: it.hi, v: 0 }; });
+  var box = document.getElementById('vyRows'); if (!box) return;
+  box.innerHTML = '';
+  vybe.forEach(function(it){
+    var row = document.createElement('div'); row.className = 'vy';
+    var b = document.createElement('b'); b.className = 'vy-n'; b.textContent = it.name;
+    var val = document.createElement('span'); val.className = 'vy-v'; val.textContent = '\u2013';
+    var mid = document.createElement('div');
+    var sl = document.createElement('div'); sl.className = 'vy-s';
+    var tk = document.createElement('div'); tk.className = 'vy-ticks';
+    for (var k = 0; k < 10; k++) tk.appendChild(document.createElement('i'));
+    var r = document.createElement('input'); r.type = 'range'; r.min = 1; r.max = 10; r.step = 1; r.value = 5; r.className = 'vy-r';
+    r.setAttribute('aria-label', it.name + ', 1 to 10');
+    var onSet = function(){
+      it.v = +r.value; row.classList.add('set'); val.textContent = it.v;
+      r.style.setProperty('--f', (it.v - 1) / 9); paintVybe();
+    };
+    /* A touch anywhere on the line sets it, and a drag follows the finger.
+       iPhones only move a slider when you grab its knob, so this is done by hand. */
+    var at = function(e){
+      var box2 = sl.getBoundingClientRect(), f = (e.clientX - box2.left - 13) / Math.max(box2.width - 26, 1);
+      r.value = Math.round(1 + Math.min(1, Math.max(0, f)) * 9); onSet();
+    };
+    var down = false;
+    sl.addEventListener('pointerdown', function(e){ down = true; try { sl.setPointerCapture(e.pointerId); } catch(x){} at(e); e.preventDefault(); });
+    sl.addEventListener('pointermove', function(e){ if (down) at(e); });
+    ['pointerup','pointercancel','lostpointercapture'].forEach(function(n){ sl.addEventListener(n, function(){ down = false; }); });
+    r.addEventListener('input', onSet); r.addEventListener('change', onSet);   /* keyboard */
+    sl.appendChild(tk); sl.appendChild(r);
+    var ends = document.createElement('div'); ends.className = 'vy-ends';
+    var lo = document.createElement('span'); lo.textContent = it.lo; var hi = document.createElement('span'); hi.textContent = it.hi;
+    ends.appendChild(lo); ends.appendChild(hi);
+    mid.appendChild(sl); mid.appendChild(ends);
+    row.appendChild(b); row.appendChild(mid); row.appendChild(val); box.appendChild(row);
+  });
+  paintVybe();
+}
+function vybeScore(){
+  var set0 = vybe.filter(function(x){ return x.v; });
+  if (!set0.length) return '';
+  return (set0.reduce(function(t, x){ return t + x.v; }, 0) / set0.length).toFixed(1);
+}
+/* The little shape beside the heading grows as they slide. */
+function paintVybe(){
+  var svg = document.getElementById('vyMini'), n = vybe.length, R = 46;
+  if (svg) {
+    svg.style.display = n >= 3 ? '' : 'none';
+    if (n >= 3) {
+      var P = function(i, r){ var a = -Math.PI / 2 + i * 2 * Math.PI / n; return (Math.cos(a) * r).toFixed(1) + ',' + (Math.sin(a) * r).toFixed(1); };
+      var ring = function(f){ return '<polygon points="' + vybe.map(function(_, i){ return P(i, R * f); }).join(' ') + '" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1"/>'; };
+      svg.innerHTML = ring(1) + ring(.55) + '<polygon points="' + vybe.map(function(x, i){ return P(i, R * Math.max(x.v, .5) / 10); }).join(' ') +
+        '" fill="rgba(222,220,0,.3)" stroke="#dedc00" stroke-width="2" stroke-linejoin="round"/>';
+    }
+  }
+  var nx = document.getElementById('vyNext');
+  if (nx) nx.disabled = !(vybe.length && vybe.every(function(x){ return x.v; }));
+}
+function vybeNext(){
+  vals.answers = vybe.map(function(x){ return x.name + ': ' + x.v; }).join(' | ');
+  vals.vybe_score = vybeScore();
+  go(nextStep(1));
+}
+
+/* ── 2. the DJs ────────────────────────────────────────────────
+   Tonight's lineup, from the djs row in the sheet. As many as they like. */
+var djSel = [], djSig = null;
+function djList(){ return (EVENT.djs || []).map(function(x){ return String(x || '').trim(); }).filter(String).slice(0, 12); }
+function buildDjs(){
+  var list = djList(), sig = list.join('|');
+  if (sig === djSig) return;
+  djSig = sig; djSel = [];
+  var g = document.getElementById('djGrid'); if (!g) return;
+  g.innerHTML = '';
+  list.forEach(function(name){
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'dj'; b.setAttribute('data-n', name);
+    b.appendChild(document.createElement('i'));
+    var lab = document.createElement('span'); lab.textContent = name; b.appendChild(lab);
+    b.onclick = function(){
+      var k = djSel.indexOf(name);
+      if (k > -1) djSel.splice(k, 1); else djSel.push(name);
+      paintDjs();
+    };
+    g.appendChild(b);
+  });
+  paintDjs();
+}
+function paintDjs(){
+  Array.prototype.forEach.call(document.querySelectorAll('#djGrid .dj'), function(b){ b.classList.toggle('on', djSel.indexOf(b.getAttribute('data-n')) > -1); });
+  var nx = document.getElementById('djNextBtn'); if (nx) nx.disabled = !djSel.length;
+}
+function djNext(){ vals.dj_picks = djSel.join(', '); go(nextStep(2)); }
+function djSkip(){ djSel = []; paintDjs(); vals.dj_picks = ''; go(nextStep(2)); }
+
+/* ── 6. the draw ───────────────────────────────────────────────
+   The prizes, and a box that is already ticked. */
+function prizeLines(){
+  return (EVENT.prizes || []).filter(function(p){ return p && p.name; }).map(function(p){
+    return (+p.count === 1) ? '1 ' + (p.unit || singular(p.name)) : p.count + ' ' + p.name;
+  });
+}
+function buildDraw(){
+  var ul = document.getElementById('drawList'); if (!ul) return;
+  var lines = prizeLines(); if (!lines.length && EVENT.reward_line) lines = [EVENT.reward_line];
+  ul.innerHTML = '';
+  lines.forEach(function(t){ var li = document.createElement('li'); li.textContent = t; ul.appendChild(li); });
+  set('drawHint','textContent', 'At ' + (EVENT.draw_time || 'the end of the night') +
+    ' the winners are emailed automatically and everybody sees the result. It is a transparent process.');
+}
+function wantsDraw(){ var c = document.getElementById('drawOpt'); return drawOpen() && (!c || c.checked); }
+function submitLabel(){ return wantsDraw() ? 'Enter the draw \u2192' : 'Get my card \u2192'; }
 
 function pick(key, value, next){
   vals[key] = value;
@@ -1145,19 +1347,22 @@ function submitAll(){
   vals.instagram  = ig ? '@' + ig : '';
   vals.website    = document.getElementById('hpWeb').value;   /* bots only */
   vals.source     = 'vybechek';
+  vals.draw_optin = wantsDraw() ? 'yes' : (drawOpen() ? 'no' : '');
 
   btn.disabled = true;
   btn.textContent = 'Entering…';
-  cardsP = makeCards(); cardsP.catch(function(){});
+  resetCards(); cardsP = makeCards(); cardsP.catch(function(){});
 
   sendEntry(vals).then(function(res){
     if (res && res.ok) {
       try { localStorage.removeItem('vybechek_pending'); } catch(e){}
       entryId = res.entry_id || null;
-      finish(res.duplicate, res.state);
+      /* The lead: their email is in. Not counted twice for someone already entered. */
+      if (!res.duplicate) { try { (window.dataLayer = window.dataLayer || []).push({event:'vybechek_lead', party_id: EVENT.party_id}); } catch(e){} }
+      finish(res.duplicate, vals.draw_optin === 'no' ? 'out' : res.state);
     } else {
       btn.disabled = false;
-      btn.textContent = 'Enter the draw →';
+      btn.textContent = submitLabel();
       err.textContent = (res && res.error) ? res.error : 'That did not go through. Tap again.';
       err.classList.add('show');
     }
@@ -1258,6 +1463,7 @@ function finish(already, state){
       ? '<b>' + rl + '</b>, pulled at random at <b>' + EVENT.draw_time + '</b>. Everyone gets the result by email, win or lose.'
       : state === 'early'  || state === 'before'
         ? 'It is not a party night yet. <b>' + EVENT.party_name + '</b> goes live ' + (EVENT.start_label || 'on the night') + '. Do it again then to be in the draw.'
+      : state === 'out'  ? 'You are not in tonight\u2019s draw. Your card is still yours.'
       : state === 'over' ? 'This one has ended. Your card is still yours.'
       : 'Entries had closed, so this one was not in the draw. Your card is still yours. Do it earlier next time.';
   }
@@ -1311,18 +1517,69 @@ function prewarm(){
   return assetsP;
 }
 
-function makeCards(){
-  var cv = document.getElementById('cardCanvas'), g = cv.getContext('2d');
-  return prewarm().then(function(a){
-    var photos = shots.length ? shots.map(function(sh){ return sh.url; }) : [null];
+/* Four card styles. One is drawn for every photo up front; the others
+   are drawn when their preview is needed or tapped, and kept. */
+var STYLES = [['dark','Black'],['ticket','Ticket'],['print','Print'],['yellow','Yellow']];
+var styleNow = 'dark', cardSets = {}, photosP = null, drawQ = Promise.resolve();
+
+function resetCards(){ cardSets = {}; photosP = null; drawQ = Promise.resolve(); }
+
+function loadPhotos(){
+  if (!photosP) photosP = Promise.all((shots.length ? shots.map(function(sh){ return sh.url; }) : [null]).map(loadImg));
+  return photosP;
+}
+
+/* One card: this style, this photo. Draws share one canvas, so they queue. */
+function cardFor(style, i){
+  var set0 = cardSets;
+  var job = drawQ.catch(function(){}).then(function(){ return Promise.all([prewarm(), loadPhotos()]); }).then(function(r){
+    var have = set0[style] && set0[style][i];
+    if (have) return have;
+    var cv = document.getElementById('cardCanvas'), g = cv.getContext('2d');
+    return draw(g, cv, r[1][i], r[0][0], r[0][1], r[0][3], style).then(function(b){
+      (set0[style] = set0[style] || [])[i] = b; return b;
+    });
+  });
+  drawQ = job;
+  return job;
+}
+
+function makeCards(style){
+  style = style || styleNow;
+  return loadPhotos().then(function(ph){
     var out = [], p = Promise.resolve();
-    photos.forEach(function(u){
-      p = p.then(function(){ return loadImg(u); })
-           .then(function(ph){ return draw(g, cv, ph, a[0], a[1], a[2], a[3]); })
-           .then(function(b){ out.push(b); });
+    ph.forEach(function(_, i){
+      p = p.then(function(){ return cardFor(style, i); }).then(function(b){ out.push(b); });
     });
     return p.then(function(){ return out; });
   });
+}
+
+function buildPicker(){
+  var row = document.getElementById('pickRow'); if (!row) return;
+  row.innerHTML = '';
+  STYLES.forEach(function(st){
+    var b = document.createElement('button'); b.type = 'button';
+    b.className = 'pk' + (st[0] === styleNow ? ' on' : ''); b.setAttribute('data-s', st[0]);
+    var t = document.createElement('i'); b.appendChild(t); b.setAttribute('aria-label', st[1] + ' card');
+    b.onclick = function(){ pickStyle(st[0]); };
+    row.appendChild(b);
+    cardFor(st[0], 0).then(function(bl){ t.style.backgroundImage = 'url("' + URL.createObjectURL(bl) + '")'; }).catch(function(){});
+  });
+  row.style.display = 'flex';
+}
+
+function pickStyle(style){
+  if (style === styleNow) return;
+  styleNow = style;
+  Array.prototype.forEach.call(document.querySelectorAll('.pk'), function(b){ b.classList.toggle('on', b.getAttribute('data-s') === style); });
+  hideCoach();
+  try { (window.dataLayer = window.dataLayer || []).push({event:'vybechek_style', card_style: style, party_id: EVENT.party_id}); } catch(e){}
+  makeCards(style).then(function(out){
+    if (styleNow !== style) return;
+    cards = out; cardBlob = out[0];
+    showCards(true);
+  }).catch(function(e){ console.warn('[vybechek] style failed:', e); });
 }
 
 function buildCard(){
@@ -1332,6 +1589,7 @@ function buildCard(){
     cards = out; cardBlob = out[0];
     showCards();
     uploadCards();
+    buildPicker();
   }).catch(function(e){
     console.error('[vybechek] card failed:', e);
     cardsP = null;
@@ -1347,7 +1605,7 @@ function setCardState(st, msg){
   if (st === 'ok') { n.style.display = 'none'; b.style.display = 'none'; }
 }
 
-function showCards(){
+function showCards(quiet){
   var box = document.getElementById('slides'), dots = document.getElementById('dots');
   box.innerHTML = ''; dots.innerHTML = '';
   cards.forEach(function(b, i){
@@ -1363,80 +1621,125 @@ function showCards(){
   };
   document.getElementById('cardWrap').classList.add('show');
   setCardState('ok');
-  var many = cards.length > 1;
   var file = new File([cards[0]], 'vybechek.jpg', { type: 'image/jpeg' });
   var canShare = false;
   try { canShare = !!(navigator.canShare && navigator.share && navigator.canShare({ files: [file] })); } catch(e){}
-  document.getElementById('shareBtn').style.display = canShare ? 'block' : 'none';
-  document.getElementById('shareBtn').innerHTML = many ? 'Share all ' + cards.length + ' &rarr;' : 'Share it &rarr;';
-  document.getElementById('dlBtn').style.display = 'block';
-  document.getElementById('dlBtn').textContent = many ? 'Save all' : 'Save image';
-  set('cardNote','textContent', canShare ? 'Share it to your story, or save it and post it yourself.' : 'Hold the image to save it, then post it.');
-  startCoach(canShare);
+  var bar = document.getElementById('shareBar'); if (bar) bar.style.display = 'flex';
+  var ask = document.getElementById('sbAsk');
+  if (ask) {
+    ask.textContent = 'Post it and tag';
+    var tg = document.createElement('b'); tg.textContent = shareTags('instagram').join(' '); ask.appendChild(tg);
+  }
+  set('cardNote','textContent', '');
+  if (!quiet) startCoach(canShare);
 }
 
-function draw(g, cv, photo, tex, flyer, chiby, acue){
-  /* Full story size, 9:16. The photo runs edge to edge, the party's mark sits top right,
-     and one near-black panel, held clear of Instagram's reply bar, carries the name, the party and the
-     way back. No lineup, no sponsors: this is the card people post. */
-  if (photo) cover(g, photo, 0, 0, CW, CH);
-  else { g.fillStyle = '#0f0f0f'; g.fillRect(0,0,CW,CH); if (tex) cover(g,tex,0,0,CW,CH); }
+/* Text with letter spacing, and its width */
+function csp(g,t,x,y,ls){ t = String(t); for (var k=0;k<t.length;k++){ g.fillText(t[k],x,y); x += g.measureText(t[k]).width + ls; } }
+function cspw(g,t,ls){ t = String(t); var w=0; for (var k=0;k<t.length;k++) w += g.measureText(t[k]).width + ls; return w - ls; }
+function cardDate(){
+  var d = shortDate(EVENT.edition_date);
+  var m = /^([A-Za-z]+) (\d{1,2}) ([A-Za-z]+)$/.exec(d);
+  return m ? m[1].slice(0,3) + ' ' + m[2] + ' ' + m[3].slice(0,3) : d;
+}
 
-  var v = g.createLinearGradient(0, CH*0.5, 0, CH);
-  v.addColorStop(0,'rgba(0,0,0,0)'); v.addColorStop(1,'rgba(0,0,0,0.5)');
-  g.fillStyle = v; g.fillRect(0, CH*0.5, CW, CH*0.5);
+function draw(g, cv, photo, tex, flyer, acue, style){
+  /* Story size, 9:16 (1080 x 1920). The photo is the top 1080 x 1440, which is the
+     3:4 a phone shoots, left clean. The bottom 480 is the card's own band.
+     X shows only y 240 to 1680 in the feed and Instagram's reply bar covers the
+     last strip, so the name, the party line, the handles and the flyer all sit
+     above y 1680. Only the small AfroCue line goes below it. */
+  var SANS = 'Figtree, Helvetica, Arial, sans-serif', DISP = '"Aesthet Nova", Georgia, serif';
+  var T = style === 'dark'   ? {bg:'#0d0d0c', nm:YEL,       tx:'#f1ece1', lo:'#a8a69c', lb:'#f1ece1'}
+        : style === 'yellow' ? {bg:YEL,       nm:'#0d0d0c', tx:'#0d0d0c', lo:'#3a3a00', lb:'#3a3a00'}
+        :                      {bg:'#f1ece1', nm:'#0d0d0c', tx:'#0d0d0c', lo:'#77746a', lb:'#77746a'};
+  var PH = 1440, L = 48, R = CW - 48;
+  g.setTransform(1,0,0,1,0,0); g.globalAlpha = 1; g.shadowColor = 'transparent'; g.shadowBlur = 0; g.shadowOffsetY = 0;
+  g.textAlign = 'left'; g.textBaseline = 'alphabetic'; g.setLineDash([]);
 
-  /* Only a wide mark goes top right. A portrait image there is a flyer,
-     and the flyer lives in the panel, nowhere else. */
-  if (chiby && chiby.width / chiby.height >= 1.6) {
-    var pw = 250, ph = pw*(chiby.height/chiby.width);
-    g.save(); g.shadowColor='rgba(0,0,0,0.7)'; g.shadowBlur=24; g.shadowOffsetY=4;
-    g.drawImage(chiby, CW-M-pw, 230, pw, ph);
-    g.restore();
-  }
-
-  var BW = CW - M*2, BH = 410, BY = CH - BH - 280, px = M + 42, tr = M + BW - 42;
-  var ffh = BH - 64, ffw = ffh * 0.8, fx = tr - ffw, fy = BY + 32;
-  var tw = (flyer ? fx - 36 : tr) - px;
-
-  g.save(); rr(g,M,BY,BW,BH,26);
-  g.shadowColor='rgba(0,0,0,0.38)'; g.shadowBlur=34; g.shadowOffsetY=10;
-  g.fillStyle='rgba(0,0,0,0.84)'; g.fill();
+  g.fillStyle = style === 'print' ? '#f1ece1' : '#0d0d0c'; g.fillRect(0,0,CW,CH);
+  var px = style === 'print' ? 36 : 0, pw = CW - px*2, phh = PH - px;
+  g.save(); g.beginPath(); g.rect(px, px, pw, phh); g.clip();
+  if (photo) cover(g, photo, px, px, pw, phh);
+  else { g.fillStyle = '#0f0f0f'; g.fillRect(px,px,pw,phh); if (tex) cover(g,tex,px,px,pw,phh); }
   g.restore();
-  g.save(); rr(g,M,BY,BW,BH,26); g.strokeStyle='rgba(255,255,255,0.14)'; g.lineWidth=2; g.stroke(); g.restore();
 
-  g.textAlign = 'left';
-  /* Aesthet Nova Black, the site's own face. One size for every name,
-     shrunk only when a long one would not fit. */
-  var who = (vals.first_name || ''), base = 108;
-  g.font = '900 ' + base + 'px "Aesthet Nova", Georgia, serif';
-  var size = Math.min(base, base * (tw / Math.max(g.measureText(who).width, 1)));
-  g.font = '900 ' + Math.round(size) + 'px "Aesthet Nova", Georgia, serif';
-  g.fillStyle = '#f0ede8';
-  g.fillText(who, px, BY + 34 + size*0.80);
+  g.fillStyle = T.bg; g.fillRect(0, PH, CW, CH - PH);
+  if (style === 'dark' && tex) { g.save(); g.beginPath(); g.rect(0,PH,CW,CH-PH); g.clip(); g.globalAlpha = .9; cover(g,tex,0,PH,CW,CH-PH); g.restore(); }
 
-  g.fillStyle = 'rgba(240,237,232,0.5)';
-  g.font = '700 22px Figtree, Helvetica, Arial, sans-serif';
-  g.font = '700 21px Figtree, Helvetica, Arial, sans-serif'; g.fillText('DID A VYBECHEK AT', px, BY+168);
-  g.fillStyle = YEL;
-  g.font = '700 44px Figtree, Helvetica, Arial, sans-serif';
-  g.fillText((EVENT.party_name||'').toUpperCase(), px, BY+216);
-  g.fillStyle = 'rgba(240,237,232,0.6)';
-  g.font = '300 26px Figtree, Helvetica, Arial, sans-serif';
-  g.fillText(EVENT.edition_venue + '  ·  ' + (EVENT.date_label || EVENT.edition_date), px, BY+258);
-
-  /* The flyer, right side of the panel. */
+  /* The party's flyer, large, lifted over the photo edge, ending above the X cut-off */
+  var fw = 311, fh = 389, fx = R - fw, fy = 1285, fr = 22;
+  var tw = (flyer ? fx - 28 : R) - L;
   if (flyer) {
-    g.save(); rr(g,fx,fy,ffw,ffh,12); g.clip(); cover(g,flyer,fx,fy,ffw,ffh); g.restore();
-    g.save(); rr(g,fx,fy,ffw,ffh,12); g.strokeStyle='rgba(255,255,255,0.22)'; g.lineWidth=2; g.stroke(); g.restore();
+    g.save(); g.shadowColor='rgba(0,0,0,.45)'; g.shadowBlur=24; g.shadowOffsetY=8; rr(g,fx,fy,fw,fh,fr); g.fillStyle='#0d0d0c'; g.fill(); g.restore();
+    g.save(); rr(g,fx,fy,fw,fh,fr); g.clip(); cover(g,flyer,fx,fy,fw,fh); g.restore();
+    g.save(); rr(g,fx,fy,fw,fh,fr); g.lineWidth=4; g.strokeStyle='rgba(241,236,225,.9)'; g.stroke(); g.restore();
   }
 
-  /* AfroCue bottom left, and the way back beside it. */
-  var by = BY + BH - 38;
-  var lw = 72, lh = acue ? lw*(acue.height/acue.width) : 0;
-  if (acue) g.drawImage(acue, px, by - lh, lw, lh);
-  g.fillStyle = YEL; g.font = '700 26px Figtree, Helvetica, Arial, sans-serif';
-  g.fillText(EVENT.share_url || 'afrocue.xyz/parties', px + (acue ? lw + 22 : 0), by - Math.max(lh/2 - 9, 0));
+  /* Their vybe, drawn straight on the bottom left of the photo. No panel behind it:
+     a soft shadow under every line keeps it readable on any picture. */
+  var vy = vybe.filter(function(x){ return x.v; });
+  if (vy.length >= 3) {
+    var VR = 72, cx = px + 178, cy = PH - 168, vn = vy.length;
+    var VP = function(i, r){ var a = -Math.PI / 2 + i * 2 * Math.PI / vn; return [cx + Math.cos(a) * r, cy + Math.sin(a) * r]; };
+    g.save();
+    g.shadowColor = 'rgba(0,0,0,.8)'; g.shadowBlur = 14; g.shadowOffsetY = 2;
+    g.strokeStyle = 'rgba(255,255,255,.5)'; g.lineWidth = 2;
+    [1, .55].forEach(function(f){ g.beginPath(); for (var i = 0; i < vn; i++){ var q = VP(i, VR * f); if (i) g.lineTo(q[0], q[1]); else g.moveTo(q[0], q[1]); } g.closePath(); g.stroke(); });
+    g.beginPath(); for (var i = 0; i < vn; i++){ var q2 = VP(i, VR * vy[i].v / 10); if (i) g.lineTo(q2[0], q2[1]); else g.moveTo(q2[0], q2[1]); } g.closePath();
+    g.fillStyle = 'rgba(222,220,0,.4)'; g.fill(); g.strokeStyle = YEL; g.lineWidth = 5; g.lineJoin = 'round'; g.stroke();
+    g.fillStyle = '#ffffff'; g.font = '800 14px ' + SANS; g.textAlign = 'center';
+    vy.forEach(function(it, i){
+      var t = it.name.toUpperCase(), q3 = VP(i, VR + 22), half = g.measureText(t).width / 2;
+      g.fillText(t, Math.max(px + 14 + half, q3[0]), q3[1] + 5);
+    });
+    /* VYBE 7.8, centred under the shape */
+    g.font = '800 17px ' + SANS; var lw0 = cspw(g, 'VYBE', 4);
+    g.font = '900 40px ' + DISP; var sc = vybeScore(), sw0 = g.measureText(sc).width, x0 = cx - (lw0 + 12 + sw0) / 2, yb = cy + VR + 76;
+    g.textAlign = 'left'; g.fillStyle = '#ffffff'; g.font = '800 17px ' + SANS; csp(g, 'VYBE', x0, yb - 3, 4);
+    g.fillStyle = YEL; g.font = '900 40px ' + DISP; g.fillText(sc, x0 + lw0 + 12, yb);
+    g.restore(); g.textAlign = 'left';
+  }
+
+  var who = (vals.first_name || '').trim(), party = EVENT.party_name || '', date = cardDate();
+  var hs = (EVENT.organizer_handle ? EVENT.organizer_handle + ' · ' : '') + '@afro.cue';
+  /* Name big, "VybeChek" small beside it. A long name shrinks to fit. */
+  function nameLine(y){
+    var n = who ? who + '’s' : '', big = 72, small = 38, gap = 14, w;
+    for (;;) {
+      g.font = '900 ' + big + 'px ' + DISP; w = n ? g.measureText(n).width + gap : 0;
+      g.font = '900 ' + small + 'px ' + DISP; w += g.measureText('postcard').width;
+      if (w <= tw || big <= 40) break;
+      big -= 4; small = Math.max(28, small - 1);
+    }
+    g.fillStyle = T.nm; var x = L;
+    if (n) { g.font = '900 ' + big + 'px ' + DISP; g.fillText(n, x, y); x += g.measureText(n).width + gap; }
+    g.font = '900 ' + small + 'px ' + DISP; g.fillText('postcard', x, y);
+  }
+  function fitText(t, weight, size, x, y){
+    g.font = weight + ' ' + size + 'px ' + SANS;
+    while (size > 22 && g.measureText(t).width > tw) { size -= 1; g.font = weight + ' ' + size + 'px ' + SANS; }
+    g.fillText(t, x, y);
+  }
+
+  if (style === 'ticket') {
+    g.fillStyle = '#0d0d0c'; g.beginPath(); g.arc(0,PH,27,0,7); g.arc(CW,PH,27,0,7); g.fill();
+    g.save(); g.strokeStyle = 'rgba(13,13,12,.33)'; g.lineWidth = 6; g.setLineDash([18,14]);
+    g.beginPath(); g.moveTo(42,PH+3); g.lineTo(flyer ? fx - 14 : CW - 42, PH+3); g.stroke(); g.restore();
+  }
+  /* "Femi's postcard / from South Social". VybeChek is named only on the bottom line. */
+  nameLine(1545);
+  g.fillStyle = T.tx; fitText('from ' + party + ' \u00B7 ' + date, 700, 35, L, 1603);
+  g.fillStyle = T.lo; g.font = '700 27px ' + SANS; csp(g, hs, L, 1656, 1);
+  /* A faint dashed rule above the AfroCue line, like the tear on a stub */
+  g.save(); g.strokeStyle = style === 'dark' ? 'rgba(241,236,225,.2)' : 'rgba(13,13,12,.22)'; g.lineWidth = 3; g.setLineDash([10,12]);
+  g.beginPath(); g.moveTo(L, 1768); g.lineTo(R, 1768); g.stroke(); g.restore();
+
+  /* AfroCue, very small, bottom left, with the website bottom right */
+  var z = 58, ly = 1832, lx = L;
+  if (acue) { g.save(); rr(g,lx,ly,z,z,10); g.fillStyle = '#0d0d0c'; g.fill(); g.drawImage(acue, lx+3, ly+3, z-6, z-6); g.restore(); lx += z + 16; }
+  g.fillStyle = T.lb; g.font = '900 34px ' + DISP; g.fillText('VybeChek by AfroCue', lx, 1873);
+  g.fillStyle = T.lo; g.font = '700 27px ' + SANS; var site = 'afrocue.xyz', sw = cspw(g, site, 1.5); csp(g, site, R - sw, 1873, 1.5);
 
   return new Promise(function(res, rej){
     cv.toBlob(function(blob){
@@ -1455,9 +1758,10 @@ function hideCoach(){
 function startCoach(canShare){
   var c = document.getElementById('coach'), t = document.getElementById('coachTxt');
   if (!c || !t) return;
+  var tags = (EVENT.organizer_handle ? EVENT.organizer_handle + ' and ' : '') + '@afro.cue';
   var msg = canShare
-    ? 'Post this on your story now. Tap Share it, choose Instagram, then Story.'
-    : 'Post this on your story now. Hold the image to save it, then add it to your Instagram story.';
+    ? 'Post this on your story and tag ' + tags + '.'
+    : 'Post this on your story and tag ' + tags + '. Hold the image to save it first.';
   c.classList.remove('hide'); t.textContent = '';
   var reduce = false; try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){}
   if (reduce) { t.textContent = msg; }
@@ -1505,15 +1809,72 @@ function cardFiles(){
   return cards.map(function(b, i){ return new File([b], 'vybechek' + (cards.length > 1 ? '-' + (i + 1) : '') + '.jpg', { type: 'image/jpeg' }); });
 }
 
-function shareCard(){
+/* Who gets tagged, per app. Handles differ between apps: organizer_x in the sheet
+   is the party's X handle, when it has one. */
+function shareTags(p){
+  if (p === 'x') return [EVENT.organizer_x, '@afrocue_'].filter(Boolean);
+  if (p === 'whatsapp') return [];
+  return [EVENT.organizer_handle, '@afro.cue'].filter(Boolean);
+}
+var SHARE_NEXT = {
+  instagram: 'Tags copied. Tap Instagram, then Story, then paste the tags.',
+  x:         'Tap X. Your caption is already written.',
+  whatsapp:  'Tap WhatsApp, then My status.',
+  more:      'Tags copied. Paste them when you post.'
+};
+var SHARE_SAVED = {
+  instagram: 'Image saved. Open Instagram and add it to your story.',
+  x:         'Image saved. Attach it to the post that just opened.',
+  whatsapp:  'Image saved. Attach it in WhatsApp.',
+  more:      'Image saved.'
+};
+var toastT = null;
+function toast(msg){
+  var t = document.getElementById('toast'); if (!t) return;
+  clearTimeout(toastT);
+  if (!msg) { t.classList.remove('show'); return; }
+  t.textContent = msg; t.classList.add('show');
+  toastT = setTimeout(function(){ t.classList.remove('show'); }, 9000);
+}
+/* The sheet is told which button they tapped and which card they had up.
+   Nothing waits on it. */
+function logShare(p){
+  if (!entryId || !GAS_URL) return;
+  try {
+    sendEntry({ source: 'vybechek_photo', kind: 'share', party_id: EVENT.party_id, entry_id: entryId, platform: p, card_style: styleNow })
+      .catch(function(){});
+  } catch(e){}
+}
+function shareTo(p){
   if (!cards.length) return;
-  var files = cardFiles();
-  var data = { files: files, text: vals.first_name + ' did a VybeChek at ' + EVENT.party_name + '. ' + EVENT.organizer_handle };
-  try { if (!navigator.canShare(data)) data.files = [files[0]]; } catch(e){}
-  navigator.share(data).catch(function(e){ if (e.name !== 'AbortError') console.warn('[vybechek] share:', e); });
+  try { (window.dataLayer = window.dataLayer || []).push({event:'vybechek_share', party_id: EVENT.party_id, platform: p, card_style: styleNow}); } catch(e){}
+  logShare(p);
+  hideCoach();
+  var files = cardFiles(), tags = shareTags(p).join(' ');
+  var text = (vals.first_name || '') + '\u2019s postcard from ' + EVENT.party_name + '.' + (tags ? ' ' + tags : '');
+  var data = { files: files, text: text }, can = false;
+  try { can = !!(navigator.share && navigator.canShare && navigator.canShare({ files: [files[0]] })); } catch(e){}
+  if (can) {
+    /* A web page cannot open one app with an image attached. It opens the phone's
+       share sheet, and the line at the top says which app to tap. Instagram drops
+       any caption, so the tags go on the clipboard on the same tap. */
+    try { if (!navigator.canShare(data)) data.files = [files[0]]; } catch(e){}
+    if (tags && p !== 'x' && p !== 'whatsapp') {
+      try { if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(tags).catch(function(){}); } catch(e){}
+    }
+    toast(SHARE_NEXT[p]);
+    navigator.share(data).catch(function(e){ if (e && e.name !== 'AbortError') console.warn('[vybechek] share:', e); });
+    return;
+  }
+  /* No share sheet (a laptop, an old browser): save the image, and open the app's own compose page where it has one. */
+  downloadCard();
+  if (p === 'x') window.open('https://x.com/intent/post?text=' + encodeURIComponent(text), '_blank', 'noopener');
+  if (p === 'whatsapp') window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener');
+  toast(SHARE_SAVED[p]);
 }
 
 function downloadCard(){
+  try { (window.dataLayer = window.dataLayer || []).push({event:'vybechek_save', party_id: EVENT.party_id}); } catch(e){}
   cards.forEach(function(b, i){
     setTimeout(function(){
       var a = document.createElement('a');
@@ -1530,6 +1891,26 @@ function downloadCard(){
 });
 window.addEventListener('pagehide', stopCamera);
 boot();
+</script>
+<script>
+/* On a phone the opening screen does not scroll, so the phone preview
+   shrinks to whatever room is left. Start stays full size. */
+(function(){
+  function fit(){
+    var ph = document.querySelector('.phone.isl'), hero = document.querySelector('.hero'), btn = document.getElementById('startBtn');
+    if (!ph || !hero) return;
+    ph.style.zoom = ''; if (btn) btn.style.zoom = '';
+    if (!document.body.classList.contains('lock') || document.body.classList.contains('started')) return;
+    var over = hero.getBoundingClientRect().bottom + 6 - window.innerHeight;
+    if (over <= 0) return;
+    var h = ph.getBoundingClientRect().height, s = Math.max(0.6, Math.min(1, (h - over) / h));
+    ph.style.zoom = s; if (btn) btn.style.zoom = 1 / s;
+  }
+  window.vcFitIntro = fit;
+  window.addEventListener('load', fit); window.addEventListener('resize', fit);
+  [300, 900, 2000, 4000].forEach(function(t){ setTimeout(fit, t); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+})();
 </script>
 </body>
 </html>
