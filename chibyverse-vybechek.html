@@ -487,24 +487,33 @@
     border-radius:var(--r);box-shadow:0 10px 28px rgba(0,0,0,.6);transform:translateY(-170%);transition:transform .25s;text-align:left}
   .toast.show{transform:none}
 
-  /* Check your vybe: one thing at a time, ten big numbers to tap. Nothing to slide, nothing to scroll. */
+  /* Check your vybe: a round dot on a line, one per row. Each starts high and drifts
+     between 8 and 9 until it is touched. The whole strip beside the name takes the
+     finger, so there is nothing small to aim at. */
   .vy-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
   .vy-head .q{margin-bottom:4px}
-  .vy-head .hint{margin-bottom:10px;font-size:13px}
+  .vy-head .hint{margin-bottom:8px;font-size:13px}
   .vy-mini{flex:0 0 auto;width:60px;height:60px;margin:-6px -2px 0 0}
-  .vy-pips{display:flex;gap:6px;margin:0 0 18px}
-  .vy-pips i{flex:1;height:4px;border-radius:4px;background:rgba(255,255,255,.14);cursor:pointer;display:block}
-  .vy-pips i.at{background:rgba(240,237,232,.5)}
-  .vy-pips i.done{background:var(--white)}
-  .vy-name{font-family:var(--display);font-weight:900;font-size:clamp(30px,9.5vw,42px);line-height:1;text-align:center;margin:0 0 18px}
-  .vy-lo,.vy-hi{font-size:13px;font-weight:700;color:var(--mute);line-height:1.2}
-  .vy-lo{margin:0 2px 7px}
-  .vy-hi{margin:7px 2px 0;text-align:right}
-  .vy-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
-  .vy-b{height:56px;border:1px solid var(--line-hi);border-radius:var(--r);background:rgba(255,255,255,0.03);color:var(--white);
-    font:800 20px var(--sans);cursor:pointer;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-  .vy-b.on{background:var(--white);color:#0d0d0c;border-color:var(--white)}
-  @media (max-height:600px){.vy-b{height:48px}.vy-name{margin-bottom:12px}.vy-pips{margin-bottom:12px}}
+  .vy{display:grid;grid-template-columns:94px minmax(0,1fr) 20px;column-gap:10px;align-items:start;padding:8px 0 7px;border-top:1px solid var(--line)}
+  .vy-n{font-size:13.5px;font-weight:700;line-height:1.15;min-height:30px;display:flex;align-items:center}
+  .vy-v{font-size:14px;font-weight:800;line-height:30px;text-align:right;font-variant-numeric:tabular-nums;color:var(--fine)}
+  .vy.set .vy-v{color:var(--white)}
+  .vy-mid{touch-action:none;cursor:pointer;-webkit-user-select:none;user-select:none}
+  .vy-s{position:relative;height:30px}
+  .vy-ticks{position:absolute;left:14px;right:14px;top:50%;height:8px;margin-top:-4px;display:flex;justify-content:space-between;pointer-events:none}
+  .vy-ticks i{width:2px;height:8px;border-radius:2px;background:rgba(255,255,255,.2)}
+  .vy-r{-webkit-appearance:none;appearance:none;position:relative;width:100%;height:30px;margin:0;display:block;background:transparent;--f:0;pointer-events:none}
+  .vy-r::-webkit-slider-runnable-track{height:5px;border-radius:5px;
+    background:linear-gradient(90deg,var(--white) calc(14px + (100% - 28px) * var(--f)),rgba(255,255,255,.14) 0)}
+  .vy-r::-moz-range-track{height:5px;border-radius:5px;background:rgba(255,255,255,.14)}
+  .vy-r::-moz-range-progress{height:5px;border-radius:5px;background:var(--white)}
+  .vy-r::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:var(--white);border:0;margin-top:-11.5px;box-shadow:0 2px 8px rgba(0,0,0,.5)}
+  .vy-r::-moz-range-thumb{width:28px;height:28px;border-radius:50%;background:var(--white);border:0}
+  .vy-ends{display:flex;justify-content:space-between;gap:8px;font-size:10.5px;font-weight:600;color:var(--fine);line-height:1.15;padding:0 2px}
+  .vy-ends span:last-child{text-align:right}
+  #vyRows{border-bottom:1px solid var(--line);margin-bottom:10px}
+  @media (max-width:350px){.vy{grid-template-columns:84px minmax(0,1fr) 18px;column-gap:8px}.vy-n{font-size:12.5px}}
+  @media (max-height:600px){.vy{padding:5px 0 4px}.vy-mini{display:none}.vy-head .hint{display:none}}
   /* Next is a quiet outline. Only the last button of the quiz is solid yellow. */
   .cta.quiet{background:transparent;color:var(--white);border:1px solid var(--white);padding:13px;font-size:15px;margin-top:10px}
   .cta.quiet:disabled{border-color:var(--line-hi);color:var(--fine);opacity:1}
@@ -632,20 +641,18 @@
     </div>
 
     <!-- 1 ── check your vybe ──────────────────────────────
-         One thing on screen at a time and ten big numbers. A tap sets it and moves on. -->
+         One screen. Each line starts high, around 8 and 9, and drifts there until they
+         touch it. They move only the ones that are off, then Next. -->
     <section class="step active" id="q1">
       <div class="vy-head">
         <div>
           <h2 class="q">Check your vybe.</h2>
-          <p class="hint">Tap a number. It moves on by itself.</p>
+          <p class="hint">Slide any of them to change it.</p>
         </div>
         <svg class="vy-mini" id="vyMini" viewBox="-62 -62 124 124" aria-hidden="true"></svg>
       </div>
-      <div class="vy-pips" id="vyPips"></div>
-      <div class="vy-name" id="vyName"></div>
-      <div class="vy-lo" id="vyLo"></div>
-      <div class="vy-grid" id="vyGrid"></div>
-      <div class="vy-hi" id="vyHi"></div>
+      <div id="vyRows"></div>
+      <button class="cta quiet" id="vyNext" onclick="vybeNext()">Next &rarr;</button>
     </section>
 
     <!-- 2 ── the DJs ────────────────────────────────────── -->
@@ -1082,51 +1089,70 @@ function vybeItems(){
     return { name: p[0] || '', lo: p[1] || '1', hi: p[2] || '10' };
   }).filter(function(x){ return x.name; }).slice(0, 8);
 }
-var vyAt = 0, vyT = null;
+/* Every line starts here, and counts as this if it is never touched. */
+var VYBE_START = 8;
+var vyRaf = 0;
 function buildVybe(){
   var items = vybeItems(), sig = JSON.stringify(items);
-  if (sig === vybeSig) return;          /* the page re-reads the sheet every minute; answers already given are left alone */
+  if (sig === vybeSig) return;          /* the page re-reads the sheet every minute; lines already moved are left alone */
   vybeSig = sig;
-  vybe = items.map(function(it){ return { name: it.name, lo: it.lo, hi: it.hi, v: 0 }; });
-  vyAt = 0;
-  renderVybe();
-}
-/* One thing at a time: its name, the word for 1 above the numbers, the word for 10 below. */
-function renderVybe(){
-  var it = vybe[vyAt]; if (!it) return;
-  var pips = document.getElementById('vyPips'), grid = document.getElementById('vyGrid');
-  if (!pips || !grid) return;
-  pips.innerHTML = '';
-  vybe.forEach(function(x, i){
-    var p = document.createElement('i'); p.className = (x.v ? 'done' : '') + (i === vyAt ? ' at' : '');
-    p.onclick = function(){ clearTimeout(vyT); vyAt = i; renderVybe(); };
-    pips.appendChild(p);
+  vybe = items.map(function(it){ return { name: it.name, lo: it.lo, hi: it.hi, v: VYBE_START, touched: false }; });
+  var box = document.getElementById('vyRows'); if (!box) return;
+  box.innerHTML = '';
+  vybe.forEach(function(it, idx){
+    var row = document.createElement('div'); row.className = 'vy';
+    var b = document.createElement('b'); b.className = 'vy-n'; b.textContent = it.name;
+    var val = document.createElement('span'); val.className = 'vy-v'; val.textContent = it.v;
+    var mid = document.createElement('div'); mid.className = 'vy-mid';
+    var sl = document.createElement('div'); sl.className = 'vy-s';
+    var tk = document.createElement('div'); tk.className = 'vy-ticks';
+    for (var k = 0; k < 10; k++) tk.appendChild(document.createElement('i'));
+    var r = document.createElement('input'); r.type = 'range'; r.min = 1; r.max = 10; r.step = 'any'; r.value = it.v; r.className = 'vy-r';
+    r.setAttribute('aria-label', it.name + ', 1 to 10');
+    r.style.setProperty('--f', (it.v - 1) / 9);
+    it.el = r; it.phase = idx * 1.3;
+    var onSet = function(v){
+      it.touched = true; it.v = Math.min(10, Math.max(1, Math.round(v)));
+      r.step = 1; r.value = it.v; row.classList.add('set'); val.textContent = it.v;
+      r.style.setProperty('--f', (it.v - 1) / 9); paintVybe();
+    };
+    /* A touch anywhere on the strip sets it and a drag follows the finger. */
+    var at = function(e){
+      var box2 = sl.getBoundingClientRect(), f = (e.clientX - box2.left - 14) / Math.max(box2.width - 28, 1);
+      onSet(1 + Math.min(1, Math.max(0, f)) * 9);
+    };
+    var down = false;
+    mid.addEventListener('pointerdown', function(e){ down = true; try { mid.setPointerCapture(e.pointerId); } catch(x){} at(e); e.preventDefault(); });
+    mid.addEventListener('pointermove', function(e){ if (down) at(e); });
+    ['pointerup','pointercancel','lostpointercapture'].forEach(function(n){ mid.addEventListener(n, function(){ down = false; }); });
+    r.addEventListener('change', function(){ onSet(+r.value); });   /* keyboard */
+    sl.appendChild(tk); sl.appendChild(r);
+    var ends = document.createElement('div'); ends.className = 'vy-ends';
+    var lo = document.createElement('span'); lo.textContent = it.lo; var hi = document.createElement('span'); hi.textContent = it.hi;
+    ends.appendChild(lo); ends.appendChild(hi);
+    mid.appendChild(sl); mid.appendChild(ends);
+    row.appendChild(b); row.appendChild(mid); row.appendChild(val); box.appendChild(row);
   });
-  set('vyName','textContent', it.name);
-  set('vyLo','textContent', it.lo);
-  set('vyHi','textContent', it.hi);
-  grid.innerHTML = '';
-  for (var k = 1; k <= 10; k++) (function(k){
-    var b = document.createElement('button'); b.type = 'button'; b.className = 'vy-b' + (it.v === k ? ' on' : ''); b.textContent = k;
-    b.setAttribute('aria-label', it.name + ': ' + k + ' out of 10');
-    b.onclick = function(){ pickVybe(k); };
-    grid.appendChild(b);
-  })(k);
   paintVybe();
+  hoverVybe();
 }
-/* A tap sets the number, shows it for a moment, then moves to the next one not yet
-   answered. After the last one the quiz moves on by itself. */
-function pickVybe(k){
-  var it = vybe[vyAt]; if (!it) return;
-  it.v = k; renderVybe();
-  clearTimeout(vyT);
-  vyT = setTimeout(function(){
-    var nxt = -1, i;
-    for (i = vyAt + 1; i < vybe.length; i++) if (!vybe[i].v) { nxt = i; break; }
-    if (nxt < 0) for (i = 0; i < vybe.length; i++) if (!vybe[i].v) { nxt = i; break; }
-    if (nxt > -1) { vyAt = nxt; renderVybe(); }
-    else vybeNext();
-  }, 260);
+/* Until a line is touched, its dot drifts gently between 8 and 9, each one out of step
+   with the others, so the screen looks alive and already answered. */
+function hoverVybe(){
+  var still = false; try { still = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){}
+  cancelAnimationFrame(vyRaf);
+  if (still) return;
+  var tick = function(t){
+    var any = false;
+    vybe.forEach(function(it){
+      if (it.touched || !it.el) return;
+      any = true;
+      var v = VYBE_START + 0.5 + 0.5 * Math.sin(t / 650 + it.phase);
+      it.el.value = v; it.el.style.setProperty('--f', (v - 1) / 9);
+    });
+    if (any && current === 1) vyRaf = requestAnimationFrame(tick);
+  };
+  vyRaf = requestAnimationFrame(tick);
 }
 function vybeScore(){
   var set0 = vybe.filter(function(x){ return x.v; });
@@ -1145,6 +1171,7 @@ function paintVybe(){
     '" fill="rgba(240,237,232,.25)" stroke="#f0ede8" stroke-width="2" stroke-linejoin="round"/>';
 }
 function vybeNext(){
+  cancelAnimationFrame(vyRaf);
   vals.answers = vybe.filter(function(x){ return x.v; }).map(function(x){ return x.name + ': ' + x.v; }).join(' | ');
   vals.vybe_score = vybeScore();
   go(nextStep(1));
