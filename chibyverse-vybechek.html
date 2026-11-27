@@ -132,7 +132,7 @@
   .ph-at{font-size:6.5px;font-weight:800;letter-spacing:.14em;margin-top:5px;color:var(--white)}
   .ph-pt{font-family:var(--display);font-weight:900;font-size:13px;line-height:1.05;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .ph-u{font-size:6.5px;font-weight:700;letter-spacing:.1em;color:var(--fine);margin-top:7px}
-  .ph-fl{width:44px;border-radius:5px;background:#222 center/cover}
+  .ph-fl{flex:0 0 auto;align-self:center;width:46px;aspect-ratio:4/5;border-radius:5px;background:#222 center/cover}
   .card-logo{display:none;margin-top:auto;padding-top:14px;text-align:center}
   .card-logo.show{display:block}
   .card-logo img{height:19px;width:auto;max-width:42%;opacity:.7}
@@ -330,7 +330,9 @@
   body.shot .vf{flex:1;aspect-ratio:auto;min-height:190px}
   body.shot .shot-prev.show{flex:1;display:flex;align-items:center;min-height:0}
   body.shot .shot-prev img{max-height:100%;object-fit:contain}
-  body.shot .live.show{flex:1;aspect-ratio:auto;min-height:0}
+  body.shot .live.show{flex:1;aspect-ratio:auto;min-height:0;display:flex;align-items:center;justify-content:center;container-type:size}
+  /* The viewfinder is 3:4, the shape of the photo on the card, as large as the space allows */
+  body.shot .live.show video{width:100%;height:100%;width:min(100cqw,75cqh);height:min(100cqh,133.34cqw)}
 
   /* Short screens (SE and friends): the frame matters more than the
      supporting copy, so the copy goes rather than the frame. */
@@ -485,34 +487,24 @@
     border-radius:var(--r);box-shadow:0 10px 28px rgba(0,0,0,.6);transform:translateY(-170%);transition:transform .25s;text-align:left}
   .toast.show{transform:none}
 
-  /* Check your vybe: one clean line per slider. Name, the line with ten notches, the number.
-     The two end words sit small under the line. No boxes, so five fit on any phone. */
+  /* Check your vybe: one thing at a time, ten big numbers to tap. Nothing to slide, nothing to scroll. */
   .vy-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
   .vy-head .q{margin-bottom:4px}
-  .vy-head .hint{margin-bottom:6px;font-size:13px}
+  .vy-head .hint{margin-bottom:10px;font-size:13px}
   .vy-mini{flex:0 0 auto;width:60px;height:60px;margin:-6px -2px 0 0}
-  .vy{display:grid;grid-template-columns:96px minmax(0,1fr) 20px;column-gap:10px;align-items:start;padding:7px 0 6px;border-top:1px solid var(--line)}
-  .vy-n{font-size:13.5px;font-weight:700;line-height:1.15;min-height:26px;display:flex;align-items:center}
-  .vy-v{font-size:14px;font-weight:800;line-height:26px;text-align:right;font-variant-numeric:tabular-nums;color:var(--fine)}
-  .vy.set .vy-v{color:var(--white)}
-  .vy-s{position:relative;height:26px;touch-action:pan-y;cursor:pointer}
-  .vy-ticks{position:absolute;left:13px;right:13px;top:50%;height:8px;margin-top:-4px;display:flex;justify-content:space-between;pointer-events:none}
-  .vy-ticks i{width:2px;height:8px;border-radius:2px;background:rgba(255,255,255,.2)}
-  .vy-r{-webkit-appearance:none;appearance:none;position:relative;width:100%;height:26px;margin:0;display:block;background:transparent;--f:0;pointer-events:none}
-  .vy-r::-webkit-slider-runnable-track{height:5px;border-radius:5px;
-    background:linear-gradient(90deg,var(--white) calc(13px + (100% - 26px) * var(--f)),rgba(255,255,255,.14) 0)}
-  .vy-r::-moz-range-track{height:5px;border-radius:5px;background:rgba(255,255,255,.14)}
-  .vy-r::-moz-range-progress{height:5px;border-radius:5px;background:var(--white)}
-  .vy-r::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:rgba(240,237,232,.4);border:0;margin-top:-9.5px;box-shadow:0 2px 8px rgba(0,0,0,.5)}
-  .vy-r::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:rgba(240,237,232,.4);border:0}
-  .vy.set .vy-r::-webkit-slider-thumb{background:var(--white)}
-  .vy.set .vy-r::-moz-range-thumb{background:var(--white)}
-  .vy:not(.set) .vy-r::-webkit-slider-runnable-track{background:rgba(255,255,255,.14)}
-  .vy-ends{display:flex;justify-content:space-between;gap:8px;font-size:10.5px;font-weight:600;color:var(--fine);line-height:1.15;padding:0 2px}
-  .vy-ends span:last-child{text-align:right}
-  #vyRows{border-bottom:1px solid var(--line);margin-bottom:10px}
-  @media (max-width:350px){.vy{grid-template-columns:86px minmax(0,1fr) 18px;column-gap:8px}.vy-n{font-size:12.5px}}
-  @media (max-height:600px){.vy{padding:5px 0 4px}.vy-mini{display:none}}
+  .vy-pips{display:flex;gap:6px;margin:0 0 18px}
+  .vy-pips i{flex:1;height:4px;border-radius:4px;background:rgba(255,255,255,.14);cursor:pointer;display:block}
+  .vy-pips i.at{background:rgba(240,237,232,.5)}
+  .vy-pips i.done{background:var(--white)}
+  .vy-name{font-family:var(--display);font-weight:900;font-size:clamp(30px,9.5vw,42px);line-height:1;text-align:center;margin:0 0 18px}
+  .vy-lo,.vy-hi{font-size:13px;font-weight:700;color:var(--mute);line-height:1.2}
+  .vy-lo{margin:0 2px 7px}
+  .vy-hi{margin:7px 2px 0;text-align:right}
+  .vy-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .vy-b{height:56px;border:1px solid var(--line-hi);border-radius:var(--r);background:rgba(255,255,255,0.03);color:var(--white);
+    font:800 20px var(--sans);cursor:pointer;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+  .vy-b.on{background:var(--white);color:#0d0d0c;border-color:var(--white)}
+  @media (max-height:600px){.vy-b{height:48px}.vy-name{margin-bottom:12px}.vy-pips{margin-bottom:12px}}
   /* Next is a quiet outline. Only the last button of the quiz is solid yellow. */
   .cta.quiet{background:transparent;color:var(--white);border:1px solid var(--white);padding:13px;font-size:15px;margin-top:10px}
   .cta.quiet:disabled{border-color:var(--line-hi);color:var(--fine);opacity:1}
@@ -639,17 +631,21 @@
       <div class="plbl" id="plbl">1 / 4</div>
     </div>
 
-    <!-- 1 ── check your vybe ────────────────────────────── -->
+    <!-- 1 ── check your vybe ──────────────────────────────
+         One thing on screen at a time and ten big numbers. A tap sets it and moves on. -->
     <section class="step active" id="q1">
       <div class="vy-head">
         <div>
           <h2 class="q">Check your vybe.</h2>
-          <p class="hint">Slide each one to where you are.</p>
+          <p class="hint">Tap a number. It moves on by itself.</p>
         </div>
         <svg class="vy-mini" id="vyMini" viewBox="-62 -62 124 124" aria-hidden="true"></svg>
       </div>
-      <div id="vyRows"></div>
-      <button class="cta quiet" id="vyNext" onclick="vybeNext()" disabled>Next &rarr;</button>
+      <div class="vy-pips" id="vyPips"></div>
+      <div class="vy-name" id="vyName"></div>
+      <div class="vy-lo" id="vyLo"></div>
+      <div class="vy-grid" id="vyGrid"></div>
+      <div class="vy-hi" id="vyHi"></div>
     </section>
 
     <!-- 2 ── the DJs ────────────────────────────────────── -->
@@ -1086,69 +1082,70 @@ function vybeItems(){
     return { name: p[0] || '', lo: p[1] || '1', hi: p[2] || '10' };
   }).filter(function(x){ return x.name; }).slice(0, 8);
 }
+var vyAt = 0, vyT = null;
 function buildVybe(){
   var items = vybeItems(), sig = JSON.stringify(items);
-  if (sig === vybeSig) return;          /* the page re-reads the sheet every minute; sliders in use are left alone */
+  if (sig === vybeSig) return;          /* the page re-reads the sheet every minute; answers already given are left alone */
   vybeSig = sig;
   vybe = items.map(function(it){ return { name: it.name, lo: it.lo, hi: it.hi, v: 0 }; });
-  var box = document.getElementById('vyRows'); if (!box) return;
-  box.innerHTML = '';
-  vybe.forEach(function(it){
-    var row = document.createElement('div'); row.className = 'vy';
-    var b = document.createElement('b'); b.className = 'vy-n'; b.textContent = it.name;
-    var val = document.createElement('span'); val.className = 'vy-v'; val.textContent = '\u2013';
-    var mid = document.createElement('div');
-    var sl = document.createElement('div'); sl.className = 'vy-s';
-    var tk = document.createElement('div'); tk.className = 'vy-ticks';
-    for (var k = 0; k < 10; k++) tk.appendChild(document.createElement('i'));
-    var r = document.createElement('input'); r.type = 'range'; r.min = 1; r.max = 10; r.step = 1; r.value = 5; r.className = 'vy-r';
-    r.setAttribute('aria-label', it.name + ', 1 to 10');
-    var onSet = function(){
-      it.v = +r.value; row.classList.add('set'); val.textContent = it.v;
-      r.style.setProperty('--f', (it.v - 1) / 9); paintVybe();
-    };
-    /* A touch anywhere on the line sets it, and a drag follows the finger.
-       iPhones only move a slider when you grab its knob, so this is done by hand. */
-    var at = function(e){
-      var box2 = sl.getBoundingClientRect(), f = (e.clientX - box2.left - 13) / Math.max(box2.width - 26, 1);
-      r.value = Math.round(1 + Math.min(1, Math.max(0, f)) * 9); onSet();
-    };
-    var down = false;
-    sl.addEventListener('pointerdown', function(e){ down = true; try { sl.setPointerCapture(e.pointerId); } catch(x){} at(e); e.preventDefault(); });
-    sl.addEventListener('pointermove', function(e){ if (down) at(e); });
-    ['pointerup','pointercancel','lostpointercapture'].forEach(function(n){ sl.addEventListener(n, function(){ down = false; }); });
-    r.addEventListener('input', onSet); r.addEventListener('change', onSet);   /* keyboard */
-    sl.appendChild(tk); sl.appendChild(r);
-    var ends = document.createElement('div'); ends.className = 'vy-ends';
-    var lo = document.createElement('span'); lo.textContent = it.lo; var hi = document.createElement('span'); hi.textContent = it.hi;
-    ends.appendChild(lo); ends.appendChild(hi);
-    mid.appendChild(sl); mid.appendChild(ends);
-    row.appendChild(b); row.appendChild(mid); row.appendChild(val); box.appendChild(row);
+  vyAt = 0;
+  renderVybe();
+}
+/* One thing at a time: its name, the word for 1 above the numbers, the word for 10 below. */
+function renderVybe(){
+  var it = vybe[vyAt]; if (!it) return;
+  var pips = document.getElementById('vyPips'), grid = document.getElementById('vyGrid');
+  if (!pips || !grid) return;
+  pips.innerHTML = '';
+  vybe.forEach(function(x, i){
+    var p = document.createElement('i'); p.className = (x.v ? 'done' : '') + (i === vyAt ? ' at' : '');
+    p.onclick = function(){ clearTimeout(vyT); vyAt = i; renderVybe(); };
+    pips.appendChild(p);
   });
+  set('vyName','textContent', it.name);
+  set('vyLo','textContent', it.lo);
+  set('vyHi','textContent', it.hi);
+  grid.innerHTML = '';
+  for (var k = 1; k <= 10; k++) (function(k){
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'vy-b' + (it.v === k ? ' on' : ''); b.textContent = k;
+    b.setAttribute('aria-label', it.name + ': ' + k + ' out of 10');
+    b.onclick = function(){ pickVybe(k); };
+    grid.appendChild(b);
+  })(k);
   paintVybe();
+}
+/* A tap sets the number, shows it for a moment, then moves to the next one not yet
+   answered. After the last one the quiz moves on by itself. */
+function pickVybe(k){
+  var it = vybe[vyAt]; if (!it) return;
+  it.v = k; renderVybe();
+  clearTimeout(vyT);
+  vyT = setTimeout(function(){
+    var nxt = -1, i;
+    for (i = vyAt + 1; i < vybe.length; i++) if (!vybe[i].v) { nxt = i; break; }
+    if (nxt < 0) for (i = 0; i < vybe.length; i++) if (!vybe[i].v) { nxt = i; break; }
+    if (nxt > -1) { vyAt = nxt; renderVybe(); }
+    else vybeNext();
+  }, 260);
 }
 function vybeScore(){
   var set0 = vybe.filter(function(x){ return x.v; });
   if (!set0.length) return '';
   return (set0.reduce(function(t, x){ return t + x.v; }, 0) / set0.length).toFixed(1);
 }
-/* The little shape beside the heading grows as they slide. */
+/* The little shape beside the heading grows as they answer. */
 function paintVybe(){
   var svg = document.getElementById('vyMini'), n = vybe.length, R = 46;
-  if (svg) {
-    svg.style.display = n >= 3 ? '' : 'none';
-    if (n >= 3) {
-      var P = function(i, r){ var a = -Math.PI / 2 + i * 2 * Math.PI / n; return (Math.cos(a) * r).toFixed(1) + ',' + (Math.sin(a) * r).toFixed(1); };
-      var ring = function(f){ return '<polygon points="' + vybe.map(function(_, i){ return P(i, R * f); }).join(' ') + '" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1"/>'; };
-      svg.innerHTML = ring(1) + ring(.55) + '<polygon points="' + vybe.map(function(x, i){ return P(i, R * Math.max(x.v, .5) / 10); }).join(' ') +
-        '" fill="rgba(222,220,0,.3)" stroke="#dedc00" stroke-width="2" stroke-linejoin="round"/>';
-    }
-  }
-  var nx = document.getElementById('vyNext');
-  if (nx) nx.disabled = !(vybe.length && vybe.every(function(x){ return x.v; }));
+  if (!svg) return;
+  svg.style.display = n >= 3 ? '' : 'none';
+  if (n < 3) return;
+  var P = function(i, r){ var a = -Math.PI / 2 + i * 2 * Math.PI / n; return (Math.cos(a) * r).toFixed(1) + ',' + (Math.sin(a) * r).toFixed(1); };
+  var ring = function(f){ return '<polygon points="' + vybe.map(function(_, i){ return P(i, R * f); }).join(' ') + '" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1"/>'; };
+  svg.innerHTML = ring(1) + ring(.55) + '<polygon points="' + vybe.map(function(x, i){ return P(i, R * Math.max(x.v, .5) / 10); }).join(' ') +
+    '" fill="rgba(240,237,232,.25)" stroke="#f0ede8" stroke-width="2" stroke-linejoin="round"/>';
 }
 function vybeNext(){
-  vals.answers = vybe.map(function(x){ return x.name + ': ' + x.v; }).join(' | ');
+  vals.answers = vybe.filter(function(x){ return x.v; }).map(function(x){ return x.name + ': ' + x.v; }).join(' | ');
   vals.vybe_score = vybeScore();
   go(nextStep(1));
 }
@@ -1221,7 +1218,8 @@ function openCamera(){
     document.getElementById('shotCam').click();
     return;
   }
-  navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } }, audio: false })
+  /* Ask for a sharp 4:3 frame. Phones that cannot give it fall back to what they have. */
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' }, width: { ideal: 1920 }, height: { ideal: 1440 } }, audio: false })
     .then(function(s){
       stream = s;
       var v = document.getElementById('vid');
@@ -1245,9 +1243,13 @@ function stopCamera(){
 function snap(){
   var v = document.getElementById('vid');
   if (!v || !v.videoWidth) return;
+  /* Keep exactly what the viewfinder showed: the middle of the frame, 3:4 upright,
+     which is the shape of the photo on the card. Nothing is blown up or cut later. */
+  var vw = v.videoWidth, vh = v.videoHeight, cw = vw, ch = vh;
+  if (vw / vh > 3 / 4) cw = Math.round(vh * 3 / 4); else ch = Math.round(vw * 4 / 3);
   var c = document.createElement('canvas');
-  c.width = v.videoWidth; c.height = v.videoHeight;
-  c.getContext('2d').drawImage(v, 0, 0);
+  c.width = cw; c.height = ch;
+  c.getContext('2d').drawImage(v, Math.round((vw - cw) / 2), Math.round((vh - ch) / 2), cw, ch, 0, 0, cw, ch);
   c.toBlob(function(b){
     if (!b) return;
     addShot(new File([b], 'vybechek.jpg', { type: 'image/jpeg' }));
@@ -1643,6 +1645,23 @@ function cardDate(){
   return m ? m[1].slice(0,3) + ' ' + m[2] + ' ' + m[3].slice(0,3) : d;
 }
 
+/* A photo close to the window's shape fills it. Any other shape (a tall 9:16 shot, a
+   wide one) is shown whole over a soft blurred copy of itself, so nothing is cut off
+   or blown up. */
+function fitPhoto(g, im, x, y, w, h){
+  var ar = im.width / im.height, win = w / h;
+  if (Math.abs(ar / win - 1) < 0.07) { cover(g, im, x, y, w, h); return; }
+  var t = document.createElement('canvas'); t.width = 40; t.height = Math.max(2, Math.round(40 * h / w));
+  cover(t.getContext('2d'), im, 0, 0, t.width, t.height);
+  g.save();
+  g.imageSmoothingEnabled = true; try { g.imageSmoothingQuality = 'high'; } catch(e){}
+  g.drawImage(t, 2, 2, t.width - 4, t.height - 4, x, y, w, h);
+  g.fillStyle = 'rgba(0,0,0,.4)'; g.fillRect(x, y, w, h);
+  g.restore();
+  var k = Math.min(w / im.width, h / im.height), dw = im.width * k, dh = im.height * k;
+  g.drawImage(im, x + (w - dw) / 2, y + (h - dh) / 2, dw, dh);
+}
+
 function draw(g, cv, photo, tex, flyer, acue, style){
   /* Story size, 9:16 (1080 x 1920). The photo is the top 1080 x 1440, which is the
      3:4 a phone shoots, left clean. The bottom 480 is the card's own band.
@@ -1660,7 +1679,7 @@ function draw(g, cv, photo, tex, flyer, acue, style){
   g.fillStyle = style === 'print' ? '#f1ece1' : '#0d0d0c'; g.fillRect(0,0,CW,CH);
   var px = style === 'print' ? 36 : 0, pw = CW - px*2, phh = PH - px;
   g.save(); g.beginPath(); g.rect(px, px, pw, phh); g.clip();
-  if (photo) cover(g, photo, px, px, pw, phh);
+  if (photo) fitPhoto(g, photo, px, px, pw, phh);
   else { g.fillStyle = '#0f0f0f'; g.fillRect(px,px,pw,phh); if (tex) cover(g,tex,px,px,pw,phh); }
   g.restore();
 
@@ -1668,7 +1687,11 @@ function draw(g, cv, photo, tex, flyer, acue, style){
   if (style === 'dark' && tex) { g.save(); g.beginPath(); g.rect(0,PH,CW,CH-PH); g.clip(); g.globalAlpha = .9; cover(g,tex,0,PH,CW,CH-PH); g.restore(); }
 
   /* The party's flyer, large, lifted over the photo edge, ending above the X cut-off */
-  var fw = 311, fh = 389, fx = R - fw, fy = 1285, fr = 22;
+  /* The box takes the flyer's own shape (4:5, square, a tall story flyer), so the whole
+     flyer always shows. Its bottom edge stays put, above the X cut-off; it grows upward. */
+  var fw = 311, far = (flyer && flyer.width && flyer.height) ? flyer.width / flyer.height : 0.8;
+  var fh = Math.round(Math.max(fw * 0.9, Math.min(fw / far, fw * 1.78)));
+  var fx = R - fw, fy = 1674 - fh, fr = 22;
   var tw = (flyer ? fx - 28 : R) - L;
   if (flyer) {
     g.save(); g.shadowColor='rgba(0,0,0,.45)'; g.shadowBlur=24; g.shadowOffsetY=8; rr(g,fx,fy,fw,fh,fr); g.fillStyle='#0d0d0c'; g.fill(); g.restore();
@@ -1687,7 +1710,7 @@ function draw(g, cv, photo, tex, flyer, acue, style){
     g.strokeStyle = 'rgba(255,255,255,.5)'; g.lineWidth = 2;
     [1, .55].forEach(function(f){ g.beginPath(); for (var i = 0; i < vn; i++){ var q = VP(i, VR * f); if (i) g.lineTo(q[0], q[1]); else g.moveTo(q[0], q[1]); } g.closePath(); g.stroke(); });
     g.beginPath(); for (var i = 0; i < vn; i++){ var q2 = VP(i, VR * vy[i].v / 10); if (i) g.lineTo(q2[0], q2[1]); else g.moveTo(q2[0], q2[1]); } g.closePath();
-    g.fillStyle = 'rgba(222,220,0,.4)'; g.fill(); g.strokeStyle = YEL; g.lineWidth = 5; g.lineJoin = 'round'; g.stroke();
+    g.fillStyle = 'rgba(255,255,255,.3)'; g.fill(); g.strokeStyle = '#ffffff'; g.lineWidth = 5; g.lineJoin = 'round'; g.stroke();
     g.fillStyle = '#ffffff'; g.font = '800 14px ' + SANS; g.textAlign = 'center';
     vy.forEach(function(it, i){
       var t = it.name.toUpperCase(), q3 = VP(i, VR + 22), half = g.measureText(t).width / 2;
@@ -1697,7 +1720,7 @@ function draw(g, cv, photo, tex, flyer, acue, style){
     g.font = '800 17px ' + SANS; var lw0 = cspw(g, 'VYBE', 4);
     g.font = '900 40px ' + DISP; var sc = vybeScore(), sw0 = g.measureText(sc).width, x0 = cx - (lw0 + 12 + sw0) / 2, yb = cy + VR + 76;
     g.textAlign = 'left'; g.fillStyle = '#ffffff'; g.font = '800 17px ' + SANS; csp(g, 'VYBE', x0, yb - 3, 4);
-    g.fillStyle = YEL; g.font = '900 40px ' + DISP; g.fillText(sc, x0 + lw0 + 12, yb);
+    g.fillStyle = '#ffffff'; g.font = '900 40px ' + DISP; g.fillText(sc, x0 + lw0 + 12, yb);
     g.restore(); g.textAlign = 'left';
   }
 
